@@ -1,0 +1,2 @@
+# Normalize text files without changing the user's global Git configuration.
+* text=auto eol=lf

@@ -1,0 +1,45 @@
+# Godot: generated editor/import caches (Godot 4 and older generations)
+.godot/
+.import/
+.nomedia
+~*.dll
+*.translation
+
+# Export credentials and legacy export configuration
+export_credentials.cfg
+export.cfg
+# Revisit after selecting Godot: older versions may store secrets here.
+export_presets.cfg
+
+# Optional Godot .NET/Mono generated data
+.mono/
+data_*/
+mono_crash.*.json
+**/bin/
+**/obj/
+
+# Local builds and exports; source/runtime PCK assets are not globally ignored
+/build/
+/builds/
+/dist/
+/exports/
+*.exe
+
+# Scratch data, temporary files and credentials
+/work/
+*.tmp
+*.bak
+*.log
+.env
+.env.*
+!.env.example
+
+# Operating system / per-user editor state
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+*.code-workspace
+
+# Keep project.godot, source assets, *.tscn, *.tres, *.gd,
+# asset *.import metadata and *.uid files versioned when development begins.
