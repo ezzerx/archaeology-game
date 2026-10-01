@@ -53,10 +53,28 @@ PR #1 mergée vers `main`, merge commit :
 
 P1 est autorisé.
 
-## Points encore ouverts pour P1+
+## Décisions d'implémentation P1 — 2026-10-01
 
-- méthode technique finale du relief / height map ;
-- stratégie de picking / raycast sur surface creusée ;
+Ces décisions sont techniques, prises dans la mission P1 autorisée. Elles ne constituent pas la validation humaine du game feel.
+
+| Décision | Raison / limite vérifiée |
+|---|---|
+| Grille native dense déplacée GPU, carte hauteur RF 1024×640 | Vraies cavités, une seule map runtime dirty, aucune reconstruction mesh par geste |
+| Picking DDA + triangles identiques au rendu | Évite le décalage d'un plan ou d'une interpolation différente ; oracle mesh et lecture GPU passent |
+| Tolérance relative de ray/triangle | La tolérance absolue du helper générique rejetait les triangles millimétriques ; régression P0 détectée puis corrigée |
+| Deux frontières statiques légèrement ondulées, trois Resources matière | Bloc test déterministe sans générateur ; résistances configurées 1 / 3 / 8 |
+| Retrait intégré par couche, hauteur bornée et reset exact | Aucun contournement d'une couche dure lors d'un grand tick |
+| Base sans cap supérieur doublant le fond | Élimine le z-fighting constaté graphiquement à profondeur minimale |
+| Édition packed spécialisée + Image de staging synchronisée | Réduit le coût des strokes ; oracle indépendant protège la formule optimisée |
+| Hard Rock omis | Optionnel ; les trois matériaux suffisent à la preuve P1 |
+| Maintenir la gate humaine | Tests techniques verts, mais ressenti de fouille et précision perçue à juger par Antoine |
+
+Référence : [P1_REPORT](../dev/P1_REPORT.md), [P1_RELIEF_DECISION](../dev/P1_RELIEF_DECISION.md). Limite mesurée : le stress coin-à-coin répété dépasse le budget malgré la fluidité nominale à 60 FPS. Aucun P2+ engagé.
+
+## Points encore ouverts pour P2+
+
+- validation humaine du relief, des résistances et du contact P1 ;
+- coût des empreintes extrêmes et des éventuels futurs objets physiques ;
 - stratégie d'upload GPU lorsque plusieurs maps existeront ;
 - valeurs finales de résistance, rayon, cadence et dégâts ;
 - assets et samples audio de production ;

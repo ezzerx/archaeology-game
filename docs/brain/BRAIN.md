@@ -23,4 +23,4 @@ Le contexte du projet voyage avec ce dépôt. Le Brain personnel conserve unique
 
 Provenance : demande de canonisation d’Antoine le 2026-09-30, complétée par la conversation ChatGPT « jeu archéologie » (`6abd6b0a-1744-83eb-80f3-f739fa4f427d`). Les anciens messages sont du contexte ; les orientations de la demande actuelle prévalent. La planche canonique est versionnée dans `docs/visual-references/` sur la branche P0 ; elle n'est pas un asset de production.
 
-Pour auditer l'implémentation P0, lire [dev/P0_REPORT.md](../dev/P0_REPORT.md). Les jalons suivants restent soumis à validation humaine.
+Pour reprendre le développement, lire [dev/P1_REPORT.md](../dev/P1_REPORT.md) et [dev/P1_RELIEF_DECISION.md](../dev/P1_RELIEF_DECISION.md). P1 attend le test d'Antoine ; P2 reste interdit. L'historique P0 validé reste dans [dev/P0_REPORT.md](../dev/P0_REPORT.md).
