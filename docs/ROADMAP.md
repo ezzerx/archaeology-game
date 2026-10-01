@@ -11,8 +11,8 @@ The canonical phase numbering remains the simple **P0 → P7** sequence from `PR
 | **P0 — Interaction** | Mouse mapping, editable surface, debug foundation | ✅ validated |
 | **P1 — Material / Relief** | Real cavities, stratigraphy, material resistance | ✅ validated |
 | **P2 — Tools** | Soft Brush, Chisel, Air Blower with distinct roles | ✅ validated |
-| **P3 — Fossil** | Hidden fossil, progressive exposure, bone contact / condition | ▶ active |
-| **P4 — Game Feel** | Dust/residue feedback, particles/debris placeholders, tool presence, sound/feedback sufficient to judge satisfaction | Excavation must begin to feel satisfying, still without full production DA |
+| **P3 — Fossil** | Hidden fossil, progressive exposure, bone contact / condition | ✅ validated & merged |
+| **P4 — Game Feel** | Material reactions, fracture/chunks, particles/debris placeholders, tool presence, sound/feedback | ▶ active — excavation must begin to feel satisfying without full production DA |
 | **P5 — UI & Progression** | Objectives, specimen dossier, classification, fragments, completion card, one complete excavation loop | One session must make sense end-to-end |
 | **P6 — Art Pass** | Reproduce and validate the canonical visual direction in-engine, then apply it to the V0.1 slice | DA must become coherent, reproducible and performant |
 | **P7 — Tuning** | No new systems: tune speed, resistance, radii, sounds, dust, feedback and discovery rhythm | V0.1 ready for external playtest |
