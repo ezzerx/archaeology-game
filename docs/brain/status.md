@@ -2,7 +2,7 @@
 
 - Date : **2026-10-01**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — corrections gameplay P3 implémentées et testées ; retest humain requis ; non mergé**.
+- Phase : **préproduction — zoom P3 implémenté ; retest humain requis ; non mergé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
 - Branche de livraison P3 : `prototype/p3-fossil` ; [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon vers `main`, non mergée.
@@ -62,56 +62,38 @@ Aucune autre optimisation GPU n'est demandée pour l'instant. Après son test P3
 
 Aucun de ces points ne bloque P3.
 
-## P3 — Corrections de précision livrées ; retest humain requis
+## P3 — Zoom seul ; retest humain requis
 
-Livré dans le périmètre autorisé :
+Livré dans le périmètre confirmé par Antoine le 2026-10-01 :
 
 - Specimen B-17 fixe, initialement caché, **32 290 cellules** et quatre composants ;
 - champ fossile RGF statique, clamp au sommet osseux et relief émergent ;
-- marge **2 mm** pour le Chisel sur os caché ; finition locale sûre au Brush à **1 mm/s** ;
-- zoom orthographique **1×–3×** ancré au curseur, orientation 84° fixe ; Home rétablit la vue ;
-- `Bone detected` une fois par reset, premier contact de chaque cellule protégé ;
-- condition 100→0, Chisel **−3 points par impact direct sur centre déjà exposé** ;
-- Brush/Blower sûrs, résidu indépendant ;
+- zoom orthographique **1×–3×** ancré au curseur, orientation **84°** fixe ;
+- molette réservée au zoom ; réglages développeur sur F6/F7, Shift et Ctrl ;
+- Home rétablit la vue ; R restaure également le spécimen ; resize/focus robustes ;
+- logique osseuse P3 initiale conservée : premier contact protégé, `Bone detected` une fois par reset, Chisel **−3 points par impact direct sur centre déjà exposé** ;
+- Brush/Blower sûrs, efficacités P2 inchangées, résidu indépendant ;
 - exposition globale/composants, signaux découplés et reset exact ;
 - cap officiel **240 FPS**, physique **60 Hz** ;
-- **500 checks P0/P1/P2/P3, zéro échec**, benchmarks graphiques P1/P2/P3 validés ;
-- scénario de douze zones avec outils par défaut : **1 698 cellules / 5,259 %**, condition **100 %**, puis **97 %** après impact volontaire ;
-- comparaison GPU/picking à 1×/2×/3× : **194 955 pixels**, huit cas de frontière documentés, aucun échec.
+- **426 checks P0/P1/P2/P3, zéro échec**, benchmarks graphiques P1/P2/P3 validés ;
+- sept scénarios P3 autour de **240 FPS**, rendu/picking comparés sur **194 955 pixels** à 1×/2×/3×.
 
-Reprise et checklist : [P3_REPORT](../dev/P3_REPORT.md). Architecture/limites : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Source de vérité corrective : [P3_DESIGN_FIXES](../dev/P3_DESIGN_FIXES.md), prioritaire sur le [brief initial](../dev/P3_BRIEF.md).
+Résultats automatisés et checklist : [P3_REPORT](../dev/P3_REPORT.md). Architecture : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Source de vérité corrective : [P3_DESIGN_FIXES](../dev/P3_DESIGN_FIXES.md), prioritaire sur le [brief initial](../dev/P3_BRIEF.md).
 
-Retour humain d'Antoine le 2026-10-01 : « Ok tout fonctionne et le GPU ne surchauffe plus. » Le fonctionnement P3 et le confort GPU sont donc validés par son retour. Cette confirmation reste qualitative et ne remplace pas les mesures automatisées conservées dans le rapport.
+Retour humain initial d'Antoine : « Ok tout fonctionne et le GPU ne surchauffe plus. » Ce retour valide le fonctionnement initial et le confort GPU ; le zoom attend son propre retest.
 
-Après cette validation initiale, la revue produit a imposé le zoom et la finition sûre décrits ci-dessous. Ces deux corrections sont désormais implémentées ; **prochaine action : retest humain du workflow Chisel → Brush à 100 % de condition**, puis essai de dégât volontaire. Les six phases P3 tournent à environ 240 FPS, dont une finition à 3×. La grille dense est conservée.
+## Clarification design — 2026-10-01
 
-**STOP à P3. PR #4 conservée en brouillon. Aucun merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
+La revue produit confirme l'envie de continuer à révéler le fossile et le besoin de zoom. Antoine confirme ensuite **« Zoom seul comme le design fix l'indique »**. La marge de 2 mm et le bonus Brush près des os sont retirés de la passe ; le code de retrait et les tests osseux historiques retrouvent leur version P3 initiale.
+
+**L'équilibrage de Bone Condition n'est pas final. Une excavation à 100 % de condition n'est pas un critère d'acceptation P3.** P4 devra réévaluer l'évitement des dégâts après l'introduction des réactions de matière prévues : fissures, morceaux d'argile, détachement de blocs de grès, interaction du Chisel et débris. Aucune solution n'est canonisée à l'avance. La lisibilité Bone/Clay reste principalement un sujet P4/P6.
+
+Règle de conception : ne pas ajouter un contournement dans une phase antérieure pour un problème qu'une phase déjà prévue doit remodeler, sauf s'il bloque la validation de la phase courante.
+
+**Prochaine action : retest humain du zoom, du picking et du fonctionnement P3 existant. STOP à P3. PR #4 conservée en brouillon ; aucun merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
 
 ## Séquence
 
 P0 ✅ → P1 ✅ → P2 ✅ → **P3 Fossile** → P4 Game feel → P5 UI/progression → P6 Art pass (spike puis application) → P7 Tuning → V0.1.
 
 La [roadmap](../ROADMAP.md) fixe les gates suivants. Les [systèmes futurs confirmés](../FUTURE_SYSTEMS.md) restent différés après V0.1 ; leur documentation n'autorise aucune implémentation dans P3.
-
-
-## P3 design review — 2026-10-01
-
-Human feedback after functional validation:
-
-- discovery hook succeeds: once bone is perceived, Antoine wants to continue revealing it;
-- Bone/Clay readability remains weak in greybox; defer the real solution to P4/P6;
-- precision excavation requires camera zoom;
-- current Chisel/Bone Condition interaction makes damage too difficult to avoid during normal careful excavation.
-
-Decision:
-
-- **PR #4 remains unmerged**;
-- P3 receives a design-fix pass before closure;
-- add smooth orthographic zoom for precision;
-- add a configurable near-bone precision margin: Chisel stops before hidden bone, Soft Brush safely removes only the final thin matrix near bone, and direct Chisel impacts on already exposed bone can still damage condition;
-- target outcome: a careful player can expose a meaningful fossil region while maintaining 100% condition;
-- P4 remains blocked until human retest passes.
-
-Reference: [P3_DESIGN_FIXES.md](../dev/P3_DESIGN_FIXES.md).
-
-État de la passe : corrections implémentées au commit `79b3193`. Aucun résultat automatique ne valide le naturel du nouveau geste à la place d'Antoine. La lisibilité Bone/Clay reste un sujet P4/P6.

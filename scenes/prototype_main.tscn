@@ -142,17 +142,6 @@ offset_right = 1297.0
 offset_bottom = 1026.0
 theme_override_constants/separation = 12
 
-[node name="PrecisionHint" type="Label" parent="Debug"]
-visible = false
-offset_left = 400.0
-offset_top = 935.0
-offset_right = 1520.0
-offset_bottom = 974.0
-mouse_filter = 2
-theme_override_colors/font_color = Color(1, 0.91, 0.73, 1)
-theme_override_font_sizes/font_size = 23
-horizontal_alignment = 1
-
 [node name="Help" type="Label" parent="Debug"]
 offset_left = 16.0
 offset_top = 1038.0

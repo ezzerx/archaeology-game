@@ -1,0 +1,220 @@
+{
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"extreme_diagonal": {
+		"changed_texels": {
+			"max": 93064.0,
+			"mean": 91539.9166666667,
+			"p95": 93060.0
+		},
+		"cpu_edit_ms": {
+			"max": 64.526,
+			"mean": 57.3799166666667,
+			"p95": 61.893
+		},
+		"cpu_pick_ms": {
+			"max": 0.126,
+			"mean": 0.0878666666666667,
+			"p95": 0.109
+		},
+		"elapsed_seconds": 3.501523,
+		"frame_ms": {
+			"max": 478.512,
+			"mean": 70.0966363636364,
+			"p95": 468.412
+		},
+		"render_fps": 12.5659605834375,
+		"ticks": 60,
+		"upload_submit_ms": {
+			"max": 0.281,
+			"mean": 0.146583333333333,
+			"p95": 0.177
+		}
+	},
+	"failures": 0,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"gpu_height_max_error": 0.00414557550467698,
+	"gpu_height_samples": 864,
+	"gpu_texture_byte_exact": true,
+	"idle": {
+		"changed_texels": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"cpu_edit_ms": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"cpu_pick_ms": {
+			"max": 0.137,
+			"mean": 0.0470055555555556,
+			"p95": 0.114
+		},
+		"elapsed_seconds": 3.00209,
+		"frame_ms": {
+			"max": 3.474,
+			"mean": 0.811718191662157,
+			"p95": 1.359
+		},
+		"render_fps": 1230.47610164918,
+		"ticks": 180,
+		"upload_submit_ms": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		}
+	},
+	"normal": {
+		"changed_texels": {
+			"max": 5465.0,
+			"mean": 5322.95555555556,
+			"p95": 5445.0
+		},
+		"cpu_edit_ms": {
+			"max": 5.322,
+			"mean": 3.72208888888889,
+			"p95": 4.243
+		},
+		"cpu_pick_ms": {
+			"max": 0.206,
+			"mean": 0.0818472222222222,
+			"p95": 0.098
+		},
+		"elapsed_seconds": 6.003499,
+		"frame_ms": {
+			"max": 6.834,
+			"mean": 0.979975984316289,
+			"p95": 4.551
+		},
+		"render_fps": 1019.57208621172,
+		"ticks": 360,
+		"upload_submit_ms": {
+			"max": 0.234,
+			"mean": 0.126227777777778,
+			"p95": 0.142
+		}
+	},
+	"normal_capped_60": {
+		"changed_texels": {
+			"max": 5465.0,
+			"mean": 5322.95555555556,
+			"p95": 5445.0
+		},
+		"cpu_edit_ms": {
+			"max": 6.003,
+			"mean": 3.74114166666667,
+			"p95": 4.186
+		},
+		"cpu_pick_ms": {
+			"max": 0.269,
+			"mean": 0.0840666666666667,
+			"p95": 0.103
+		},
+		"elapsed_seconds": 6.003497,
+		"frame_ms": {
+			"max": 21.338,
+			"mean": 16.6763621169916,
+			"p95": 17.23
+		},
+		"render_fps": 59.7984807854489,
+		"ticks": 360,
+		"upload_submit_ms": {
+			"max": 0.461,
+			"mean": 0.134875,
+			"p95": 0.179
+		}
+	},
+	"rapid": {
+		"changed_texels": {
+			"max": 20410.0,
+			"mean": 15171.7222222222,
+			"p95": 19929.0
+		},
+		"cpu_edit_ms": {
+			"max": 14.532,
+			"mean": 9.77406111111112,
+			"p95": 13.321
+		},
+		"cpu_pick_ms": {
+			"max": 0.236,
+			"mean": 0.0778277777777777,
+			"p95": 0.087
+		},
+		"elapsed_seconds": 3.009479,
+		"frame_ms": {
+			"max": 15.58,
+			"mean": 1.74566880093132,
+			"p95": 11.356
+		},
+		"render_fps": 570.862930095209,
+		"ticks": 180,
+		"upload_submit_ms": {
+			"max": 0.209,
+			"mean": 0.122722222222222,
+			"p95": 0.137
+		}
+	},
+	"rapid_capped_60": {
+		"changed_texels": {
+			"max": 20410.0,
+			"mean": 15171.7222222222,
+			"p95": 19929.0
+		},
+		"cpu_edit_ms": {
+			"max": 15.117,
+			"mean": 9.72939444444445,
+			"p95": 12.931
+		},
+		"cpu_pick_ms": {
+			"max": 0.211,
+			"mean": 0.0771333333333333,
+			"p95": 0.092
+		},
+		"elapsed_seconds": 3.008866,
+		"frame_ms": {
+			"max": 24.87,
+			"mean": 16.7025139664805,
+			"p95": 19.463
+		},
+		"render_fps": 59.4908513705828,
+		"ticks": 180,
+		"upload_submit_ms": {
+			"max": 0.284,
+			"mean": 0.128994444444444,
+			"p95": 0.155
+		}
+	},
+	"stationary_deep": {
+		"changed_texels": {
+			"max": 5046.0,
+			"mean": 5029.79166666667,
+			"p95": 5038.0
+		},
+		"cpu_edit_ms": {
+			"max": 4.793,
+			"mean": 3.559625,
+			"p95": 3.88
+		},
+		"cpu_pick_ms": {
+			"max": 0.2,
+			"mean": 0.10576875,
+			"p95": 0.126
+		},
+		"elapsed_seconds": 8.003312,
+		"frame_ms": {
+			"max": 21.622,
+			"mean": 16.6735615866388,
+			"p95": 17.064
+		},
+		"render_fps": 59.8502220080887,
+		"ticks": 480,
+		"upload_submit_ms": {
+			"max": 0.244,
+			"mean": 0.130516666666667,
+			"p95": 0.16
+		}
+	},
+	"viewport": "(1920, 1080)"
+}

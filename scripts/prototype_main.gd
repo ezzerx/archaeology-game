@@ -12,7 +12,6 @@ extends Node3D
 @onready var bone_panel: PanelContainer = $Debug/BonePanel
 @onready var bone_label: Label = $Debug/BonePanel/Text
 @onready var bone_notice: Label = $Debug/BoneNotice
-@onready var precision_hint: Label = $Debug/PrecisionHint
 
 var _debug_elapsed := 0.0
 var _notice_remaining := 0.0
@@ -54,7 +53,6 @@ func _on_bone_first_contact(_cell: Vector2i, _component: int) -> void:
 func _on_specimen_reset() -> void:
 	_notice_remaining = 0.0
 	bone_notice.hide()
-	precision_hint.hide()
 
 func _update_toolbar(index: int) -> void:
 	for i in range(toolbar.get_child_count()):
@@ -74,9 +72,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			block.set_debug_view(block.debug_view + 1)
 
 func _process(delta: float) -> void:
-	var precision: bool = controller.hit.inside and controller.hit.get("bone_precision", false)
-	precision_hint.visible = precision
-	precision_hint.text = "Delicate material nearby — switch to Soft Brush" if controller.selected_index != 0 else "Precision cleaning — Soft Brush"
 	_notice_remaining = maxf(0.0, _notice_remaining - delta)
 	if _notice_remaining <= 0.0:
 		bone_notice.hide()
@@ -89,12 +84,8 @@ func _process(delta: float) -> void:
 	var surface_info := "Height / Depth / Material: —"
 	if hit.inside:
 		var definition: MaterialDefinition = hit.material
-		var rate_info := "Effectiveness %.2f | Rate %.4f depth/s (%.2f mm/s)\n" % [config.effectiveness_for(definition.id),
-			config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
-		if hit.bone_precision and config.precision_speed_mm_s > 0.0:
-			rate_info = "Precision cleaning | %.2f mm/s at centre\n" % config.precision_speed_mm_s
 		surface_info = ("Height %.4f | Depth %.1f mm\n%s | Resistance %.1f\n" % [hit.height, hit.depth * 1000.0, definition.display_name, definition.resistance]
-			+ rate_info
+			+ "Effectiveness %.2f | Rate %.4f depth/s (%.2f mm/s)\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
 			+ "Residue %.3f | grey overlay in SHADED view" % block.working_map.residue.value_at(hit.uv))
 	debug_label.text = ("P3 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
 		+ "Zoom %.2fx | Wheel: zoom | Home: overview\n" % camera.zoom_factor
@@ -115,8 +106,6 @@ func _process(delta: float) -> void:
 		hovered = "Hovered bone: %s | Exposed: %s\nComponent: %s\nCell height %.5f | Bone ceiling %s" % [
 			"yes" if hit.bone else "no", "yes" if hit.bone_exposed else "no",
 			FossilField.COMPONENT_NAMES[component], hit.cell_height, "%.5f" % hit.bone_ceiling if hit.bone else "—"]
-		if hit.bone:
-			hovered += "\nCover remaining %.2f mm" % ((hit.cell_height - hit.bone_ceiling) * (block.thickness - block.base_height) * 1000.0)
 	bone_label.text = ("%s / DEBUG\nExposure %.2f%% | %d / %d cells\nBone Condition %.0f%%\n" % [
 		FossilField.SPECIMEN_NAME, fossil.exposure_percent(), fossil.exposed_cells, fossil.field.total_cells, fossil.condition]
 		+ hovered + "\n")
@@ -124,4 +113,3 @@ func _process(delta: float) -> void:
 		bone_label.text += "%s: %.2f%%\n" % [FossilField.COMPONENT_NAMES[component], fossil.exposure_percent(component)]
 	bone_label.text += "Contact: %s\nDamage: %s\nCap %d FPS | Physics %d Hz" % [fossil.last_bone_event,
 		fossil.last_damage_event, Engine.max_fps, Engine.physics_ticks_per_second]
-	bone_label.text += "\nPrecision margin %.1f mm | Brush %.1f mm/s" % [block.working_map.precision_margin_mm, controller.tools[0].precision_speed_mm_s]

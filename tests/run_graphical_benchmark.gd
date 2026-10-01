@@ -65,6 +65,10 @@ func phase(label: String, ticks: int, kind: String) -> void:
 		await physics_frame
 		controller._focused = true
 		controller._pointer_inside = true
+		# This fixture holds a synthetic brush stroke. Native focus changes must
+		# not silently turn a workload measurement into an idle measurement.
+		# Focus cancellation itself is covered by the deterministic input tests.
+		controller._held = kind != "idle"
 		match kind:
 			"normal":
 				var t := tick / 60.0
@@ -89,6 +93,9 @@ func phase(label: String, ticks: int, kind: String) -> void:
 		"render_fps": frame_times.size() / seconds, "frame_ms": stats(frame_times),
 		"cpu_edit_ms": stats(edit), "upload_submit_ms": stats(upload),
 		"cpu_pick_ms": stats(pick), "changed_texels": stats(changed)}
+	if kind != "idle" and report[label].changed_texels.max == 0:
+		failures += 1
+		push_error("Excavation benchmark performed no excavation: " + label)
 	print("P1 BENCH ", label, ": ", JSON.stringify(report[label]))
 
 func screenshot(name: String) -> Image:

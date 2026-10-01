@@ -9,21 +9,12 @@ var dirty := true
 var strata: Stratigraphy
 var residue: SurfaceResidue
 var fossil: FossilState
-## Physical units are shared with the block; no mutable proximity map.
-var excavatable_height_m := 0.102
-var precision_margin_mm := 2.0
-var precision_margin: float:
-	get: return maxf(precision_margin_mm, 0.1) * 0.001 / excavatable_height_m
 var last_residue_edit_usec := 0
 var changed_residue_cells := 0
 var _heights := PackedFloat32Array()
 
-func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null, fossil_field: FossilField = null,
-		depth_m := 0.102, margin_mm := 2.0) -> void:
+func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null, fossil_field: FossilField = null) -> void:
 	assert(resolution.x > 0 and resolution.y > 0)
-	assert(depth_m > 0.0)
-	excavatable_height_m = depth_m
-	precision_margin_mm = margin_mm
 	size = resolution
 	strata = stratigraphy
 	image = Image.create(size.x, size.y, false, Image.FORMAT_RF)
@@ -52,14 +43,9 @@ static func weight(distance_ratio: float, falloff: float) -> float:
 	var smooth_weight := 1.0 - t * t * (3.0 - 2.0 * t)
 	return pow(smooth_weight, maxf(falloff, 0.01))
 
-func is_precision_cell(index: int) -> bool:
-	return fossil != null and index >= 0 and index < _heights.size() \
-		and fossil.field.component_ids[index] != 0 and fossil.exposed[index] == 0 \
-		and _heights[index] <= fossil.field.ceilings[index] + precision_margin + FossilField.EXPOSURE_EPSILON
-
 func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 		falloff: float, delta: float, effectiveness := Vector3.ONE,
-		residue_generation := 0.0, protect_hidden_bone := false, precision_speed_mm_s := 0.0) -> int:
+		residue_generation := 0.0) -> int:
 	if radius <= 0.0 or strength <= 0.0 or delta <= 0.0:
 		return 0
 	# Sweep a capsule: the entire segment is covered, including fast movements.
@@ -86,10 +72,6 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 	var bone_ceilings := fossil.field.ceilings if has_fossil else PackedFloat32Array()
 	# Above this immutable bound no cell can contact bone: skip its packed reads.
 	var bone_limit := fossil.field.highest_ceiling + 2.0 * FossilField.EXPOSURE_EPSILON if has_fossil else -1.0
-	var margin := precision_margin
-	var precision_limit := bone_limit + margin if has_fossil else -1.0
-	var contact_limit := precision_limit if protect_hidden_bone else bone_limit
-	var precision_depth := precision_speed_mm_s * 0.001 / excavatable_height_m * delta
 	var newly_exposed := PackedInt32Array()
 	for y in range(low.y, high.y + 1):
 		var row_low := low.x
@@ -114,15 +96,9 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 			if distance_squared >= radius_squared:
 				continue
 			var ratio := sqrt(distance_squared) * inverse_radius
-			var influence := pow(maxf(0.0, 1.0 - ratio * ratio * (3.0 - 2.0 * ratio)), exponent)
-			var work := base_work * influence
+			var work := base_work * pow(maxf(0.0, 1.0 - ratio * ratio * (3.0 - 2.0 * ratio)), exponent)
 			var next_value := old_value
-			if precision_depth > 0.0 and old_value <= precision_limit and bone_ceilings[index] > 0.0 \
-					and old_value <= bone_ceilings[index] + margin + FossilField.EXPOSURE_EPSILON:
-				# A slow physical depth rate ONLY in the thin cover over an actual bone.
-				# The geological material elsewhere still uses the unchanged P2 kernel.
-				next_value = maxf(bone_ceilings[index], old_value - precision_depth * influence)
-			elif strata == null:
+			if strata == null:
 				next_value = maxf(0.0, old_value - work * effectiveness.x)
 			else:
 				# Inline the same piecewise work integration as Stratigraphy.remove_work.
@@ -140,14 +116,10 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				if next_value <= lower and effectiveness.z > 0.0:
 					next_value = maxf(0.0, next_value - maxf(work, 0.0) / resistance.z)
 			if next_value < old_value:
-				if next_value <= contact_limit and bone_ceilings[index] > 0.0:
+				if next_value <= bone_limit and bone_ceilings[index] > 0.0:
 					# Discard remaining work at bone. Ineffective strokes do not
 					# inspect fossil state, and clamped cells produce no dirty upload.
-					var stop_height := bone_ceilings[index]
-					if protect_hidden_bone:
-						# Never raise partly brushed cover, or touch the height of exposed bone.
-						stop_height = old_value if fossil.exposed[index] != 0 else minf(old_value, stop_height + margin)
-					next_value = maxf(next_value, stop_height)
+					next_value = maxf(next_value, bone_ceilings[index])
 					if next_value >= old_value:
 						continue
 					# Decide from the stored float32, not the pre-rounding calculation.
@@ -171,7 +143,7 @@ func apply_continuous(from: Vector2, to: Vector2, tool: ToolDefinition, delta: f
 
 func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 	# Impacts deliberately have no previous point and cannot form a capsule.
-	# Snapshot the centre BEFORE removal. Hidden cover is stopped at the margin.
+	# Snapshot the centre BEFORE removal: the impact revealing it is always safe.
 	if fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT and tool.power > 0.0:
 		fossil.damage_at(fossil.field.index_at_map(point), tool.bone_damage)
 	return _apply_tool(point, point, tool, 1.0)
@@ -184,8 +156,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	var changed := 0
 	if tool.effectiveness != Vector3.ZERO:
 		changed = apply_segment(from, to, tool.radius, tool.power, tool.falloff,
-			amount, tool.effectiveness, tool.residue_generation,
-			tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT, tool.precision_speed_mm_s)
+			amount, tool.effectiveness, tool.residue_generation)
 	if tool.residue_clear > 0.0 or (changed > 0 and tool.residue_generation > 0.0):
 		var start := Time.get_ticks_usec()
 		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount)

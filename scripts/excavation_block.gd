@@ -5,7 +5,6 @@ extends Node3D
 @export_range(0.01, 0.5) var thickness := 0.12
 @export_range(0.001, 0.1) var base_height := 0.018
 @export var map_resolution := Vector2i(1024, 640)
-@export_range(0.1, 5.0, 0.1) var precision_margin_mm := 2.0
 @export var material_definitions: Array[MaterialDefinition] = [
 	preload("res://config/loose_soil.tres"), preload("res://config/compact_clay.tres"),
 	preload("res://config/sandstone.tres")]
@@ -30,8 +29,7 @@ var debug_view := 0
 func _ready() -> void:
 	assert(surface_size.x > 0.0 and surface_size.y > 0.0 and thickness > base_height)
 	var strata := Stratigraphy.new(map_resolution, material_definitions)
-	working_map = WorkingSurface.new(map_resolution, strata, FossilField.new(map_resolution),
-		thickness - base_height, precision_margin_mm)
+	working_map = WorkingSurface.new(map_resolution, strata, FossilField.new(map_resolution))
 	relief = ReliefSurface.new(working_map.image, surface_size, map_resolution, base_height, thickness)
 	texture = ImageTexture.create_from_image(working_map.image)
 	layer_texture = ImageTexture.create_from_image(strata.boundaries)
@@ -107,7 +105,6 @@ func pick(screen: Vector2, camera: Camera3D) -> Dictionary:
 	result.merge({"bone": component != 0, "bone_component": component,
 		"bone_ceiling": working_map.fossil.field.ceilings[index],
 		"bone_exposed": working_map.fossil.exposed[index] != 0,
-		"bone_precision": working_map.is_precision_cell(index),
 		"cell_height": working_map.value_at(cell)})
 	return result
 

@@ -96,13 +96,15 @@ Décision complète : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Résul
 
 Antoine confirme : « Ok tout fonctionne et le GPU ne surchauffe plus. » Le fonctionnement P3 est validé humainement et le cap 240 FPS est conservé. Il souhaite cadrer quelques modifications design avec l'orchestrateur avant une nouvelle passe ; leur contenu reste à définir. Ce retour n'autorise ni le merge de la PR #4 ni P4/P5.
 
-## Corrections gameplay P3 — 2026-10-01
+## Passe corrective P3 : zoom seul — 2026-10-01
 
-Le cadrage suivant est confirmé dans [P3_DESIGN_FIXES](../dev/P3_DESIGN_FIXES.md) : zoom joueur à la molette et workflow sûr Chisel → Brush obligatoires avant merge. La validation initiale ne ferme pas ce nouveau gate.
+Le cadrage actuel de [P3_DESIGN_FIXES](../dev/P3_DESIGN_FIXES.md) et la confirmation explicite d'Antoine remplacent la proposition initiale de marge osseuse : **zoom joueur seulement**. La marge de 2 mm et le bonus Brush près des os ne sont pas livrés ; les outils et la condition retrouvent leur logique P3 initiale.
 
-Implémentation : zoom orthographique 1×–3× au curseur, marge Chisel configurable de 2 mm, finition Brush locale de 1 mm/s dans cette marge seulement. Efficacités P2 hors marge et dégâts volontaires sur os exposé conservés. Proximité dérivée des hauteurs : aucune nouvelle map. Réglages debug déplacés sur F6/F7 et modificateurs ; Home restaure le cadrage et R restaure aussi le spécimen.
+Zoom orthographique 1×–3× au curseur, orientation 84° fixe ; réglages debug sur F6/F7 et modificateurs ; Home restaure le cadrage et R restaure aussi le spécimen. Le zoom et le picking attendent un retest humain ; PR #4 non mergée et P4/P5 bloqués.
 
-Le scénario automatique de douze zones conserve 100 % de condition, puis un impact volontaire donne 97 %. Le retest humain doit encore confirmer que le geste est naturel ; PR #4 non mergée et P4/P5 bloqués. Le contraste Bone/Clay reste différé à P4/P6.
+Bone Condition reste une preuve technique, avec premier contact protégé et dégâts sur os déjà exposé. Son équilibrage n'est pas final ; conserver 100 % lors d'une fouille attentive n'est pas encore un critère P3. P4 réévaluera l'évitement des dégâts après les réactions de matière et le Chisel prévus. La lisibilité Bone/Clay reste différée à P4/P6.
+
+Règle réutilisable : ne pas ajouter dans une phase antérieure un contournement pour un problème qu'une phase déjà prévue doit remodeler, sauf s'il empêche de valider la phase courante.
 
 ## Future product pillars confirmed — 2026-10-01
 

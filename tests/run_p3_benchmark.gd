@@ -26,9 +26,9 @@ func p3_phase(label: String, tool_index: int, kind: String, ticks := 360, zoom :
 	if kind in ["bone", "brush", "blower"]:
 		prepare_bone(kind in ["brush", "blower"])
 	elif kind == "reveal":
-		# Coarse Chisel preparation leaves the new safety cover, without exposure.
+		# Original P3 fixture: thin sandstone cover for incremental Chisel reveal.
 		var p := SurfaceMapping.uv_to_map(target_uv(), block.map_resolution)
-		for i in range(80): block.working_map.apply_impact(p, controller.tools[1])
+		block.working_map.apply_segment(p, p, 65, 1.15, 1.5, 1)
 	if zoom > 1:
 		move_to(target_uv())
 		(camera as PrecisionZoom)._focused = true
@@ -82,7 +82,7 @@ func p3_phase(label: String, tool_index: int, kind: String, ticks := 360, zoom :
 	if Engine.max_fps > 0: check(report[label].render_fps <= 241, "runtime cap respected: " + label)
 	check(block.fossil_texture.get_image().get_data() == static_before, "fossil texture remains immutable")
 	if kind == "matrix": check(fossil.exposed_cells == 0, "matrix phase actually stays away from fossil")
-	if kind == "reveal": check(fossil.exposed_cells > initial_exposure and fossil.condition == 100, "Brush boundary phase exposes new cells safely")
+	if kind == "reveal": check(fossil.exposed_cells > initial_exposure, "bone boundary phase actually exposes new cells")
 	if kind == "bone": check(fossil.condition == maxf(0, initial_condition - controller.total_impacts * 3), "repeated direct hits pay one damage penalty each")
 	if kind in ["brush", "blower"]: check(fossil.condition == initial_condition, "safe tools preserve condition")
 	if kind == "blower":
@@ -187,36 +187,17 @@ func initial_and_first_reveal() -> void:
 	(camera as PrecisionZoom)._focused = true
 	(camera as PrecisionZoom).request_zoom(log(2.5) / log((camera as PrecisionZoom).wheel_step), controller._screen)
 	for i in range(90): await physics_frame
-	var impacts := 80
-	for i in range(impacts):
+	var impacts := 0
+	while block.working_map.fossil.exposed_cells == 0 and impacts < 80:
 		block.working_map.apply_impact(point, controller.config)
+		impacts += 1
 	block.flush_texture()
-	check(block.working_map.fossil.exposed_cells == 0 and first_contacts == 0, "Chisel holds hidden bone safely without discovery")
-	move_to(target_uv())
-	controller._physics_process(1.0 / 60.0)
-	main._process(0.1)
-	await screenshot("p3-precision-margin")
-	select(0)
-	press_at(target_uv())
-	for i in range(210):
-		await physics_frame
-		controller._focused = true
-		controller._pointer_inside = true
-		move_to(target_uv())
-		controller._physics_process(1.0 / 60.0)
-	controller.cancel_stroke()
-	check(block.working_map.fossil.condition == 100 and first_contacts == 1, "Chisel-to-Brush first reveal is safe with one notification")
+	check(block.working_map.fossil.condition == 100 and first_contacts == 1, "natural first reveal at 2.5x is protected with one notification")
 	check(block.working_map.fossil.exposure_percent() > 0 and block.working_map.fossil.exposure_percent() < 1, "natural first contact exposes under one percent")
 	await screenshot("p3-first-contact")
 	report["first_contact"] = {"default_chisel_impacts": impacts, "condition": block.working_map.fossil.condition,
-		"default_brush_seconds": 3.5, "zoom": (camera as PrecisionZoom).zoom_factor,
+		"zoom": (camera as PrecisionZoom).zoom_factor,
 		"exposed_cells": block.working_map.fossil.exposed_cells, "exposure_percent": block.working_map.fossil.exposure_percent()}
-	select(1)
-	press_at(target_uv())
-	controller._physics_process(1.0 / 60.0)
-	controller.cancel_stroke()
-	check(block.working_map.fossil.condition == 97, "intentional direct Chisel hit after safe finishing loses three points")
-	report.first_contact["condition_after_deliberate_hit"] = block.working_map.fossil.condition
 	(camera as PrecisionZoom).reset_view()
 
 func run() -> void:
@@ -243,9 +224,10 @@ func run() -> void:
 	if not "--gpu-only" in OS.get_cmdline_user_args():
 		await initial_and_first_reveal()
 		await p3_phase("matrix_excavation", 0, "matrix")
-		await p3_phase("bone_boundary_reveal", 0, "reveal")
-		await p3_phase("brush_precision_zoom_3x", 0, "reveal", 360, 3.0)
+		await p3_phase("bone_boundary_reveal", 1, "reveal")
+		await p3_phase("chisel_reveal_zoom_3x", 1, "reveal", 360, 3.0)
 		await p3_phase("chisel_exposed_bone", 1, "bone")
+		await p3_phase("chisel_exposed_zoom_3x", 1, "bone", 360, 3.0)
 		await p3_phase("brush_bone", 0, "brush")
 		await p3_phase("blower_bone_residue", 2, "blower")
 	await validate_bone_pixels()

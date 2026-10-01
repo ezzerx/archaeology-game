@@ -12,4 +12,3 @@ falloff = 1.5
 effectiveness = Vector3(1, 0.06, 0)
 residue_generation = 1.25
 residue_clear = 0.1
-precision_speed_mm_s = 1.0
