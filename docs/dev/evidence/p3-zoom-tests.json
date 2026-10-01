@@ -1,0 +1,28 @@
+{
+	"checks": 160,
+	"failures": 0,
+	"godot": "4.7.2-stable (official)",
+	"physics_hz": 60,
+	"runtime_cap": 240,
+	"zoom": {
+		"anchor_max_pixels": 0.0003662109375,
+		"bone_hits": 528,
+		"floor_hits": 676,
+		"logical_viewport": "(1920.0, 1080.0)",
+		"native_window_sizes": [
+			"1920x1080",
+			"1280x800",
+			"800x1200",
+			"2560x1080"
+		],
+		"rays": 4432,
+		"roundtrip_max_m": 0.000000478696165373549,
+		"slope_hits": 92,
+		"zoom_levels": [
+			1,
+			1.5,
+			2,
+			3
+		]
+	}
+}

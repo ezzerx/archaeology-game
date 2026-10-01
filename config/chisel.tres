@@ -13,3 +13,4 @@ falloff = 2.0
 cadence = 4.5
 effectiveness = Vector3(0.12, 1, 1.5)
 residue_generation = 8.0
+bone_damage = 3.0

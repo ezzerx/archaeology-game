@@ -65,6 +65,10 @@ func phase(label: String, ticks: int, kind: String) -> void:
 		await physics_frame
 		controller._focused = true
 		controller._pointer_inside = true
+		# This fixture holds a synthetic brush stroke. Native focus changes must
+		# not silently turn a workload measurement into an idle measurement.
+		# Focus cancellation itself is covered by the deterministic input tests.
+		controller._held = kind != "idle"
 		match kind:
 			"normal":
 				var t := tick / 60.0
@@ -89,6 +93,9 @@ func phase(label: String, ticks: int, kind: String) -> void:
 		"render_fps": frame_times.size() / seconds, "frame_ms": stats(frame_times),
 		"cpu_edit_ms": stats(edit), "upload_submit_ms": stats(upload),
 		"cpu_pick_ms": stats(pick), "changed_texels": stats(changed)}
+	if kind != "idle" and report[label].changed_texels.max == 0:
+		failures += 1
+		push_error("Excavation benchmark performed no excavation: " + label)
 	print("P1 BENCH ", label, ": ", JSON.stringify(report[label]))
 
 func screenshot(name: String) -> Image:
@@ -108,6 +115,7 @@ func run() -> void:
 	root.content_scale_size = Vector2i(1920, 1080)
 	# Uncapped rendering measures headroom. Simulation remains fixed at 60 Hz.
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	Engine.max_fps = 0 # Explicit benchmark override of P3's normal 240 cap.
 	process_frame.connect(on_frame)
 	main = load("res://scenes/prototype_main.tscn").instantiate()
 	root.add_child(main)
@@ -178,5 +186,6 @@ func run() -> void:
 	file.store_string(JSON.stringify(report, "\t"))
 	file.close()
 	print("P1 GRAPHICAL CHECKS: ", failures, " failures")
+	Engine.max_fps = ProjectSettings.get_setting("application/run/max_fps")
 	if not "--inspect" in OS.get_cmdline_user_args():
 		quit(0 if failures == 0 else 1)

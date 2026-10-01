@@ -29,6 +29,7 @@ var _previous := Vector2.ZERO
 var _focused := true
 var _pointer_inside := true
 var _screen := Vector2.ZERO
+var _window_size := Vector2i.ZERO
 
 func _ready() -> void:
 	for i in range(tools.size()):
@@ -37,9 +38,9 @@ func _ready() -> void:
 	get_window().size_changed.connect(_update_pointer_position)
 
 func _update_pointer_position() -> void:
+	cancel_stroke()
+	_window_size = get_window().size
 	_screen = get_viewport().get_mouse_position()
-	_previous_valid = false
-	impact_clock.reset()
 
 func select_tool(index: int) -> bool:
 	if index < 0 or index >= tools.size():
@@ -51,6 +52,8 @@ func select_tool(index: int) -> bool:
 	return true
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _focused:
+		return
 	if event is InputEventKey and event.pressed and not event.echo:
 		var index := -1
 		match event.physical_keycode:
@@ -60,21 +63,31 @@ func _unhandled_input(event: InputEvent) -> void:
 		if index >= 0:
 			select_tool(index)
 			get_viewport().set_input_as_handled()
+		elif OS.is_debug_build() and event.physical_keycode in [KEY_F6, KEY_F7]:
+			var direction := -1.0 if event.physical_keycode == KEY_F6 else 1.0
+			_tune_tool(direction, event.shift_pressed, event.ctrl_pressed)
+			get_viewport().set_input_as_handled()
 	if event is InputEventMouseButton and event.pressed:
+		if OS.is_debug_build() and _pointer_inside \
+				and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN] \
+				and (event.shift_pressed or event.ctrl_pressed or event.alt_pressed):
+			var direction := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
+			_tune_tool(direction * maxf(event.factor, 0.01), event.shift_pressed, event.ctrl_pressed)
+			get_viewport().set_input_as_handled()
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_held = _focused and _pointer_inside
 			_previous_valid = false
 			impact_clock.reset()
-		elif event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
-			var direction := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
-			if event.shift_pressed:
-				config.power += direction * 0.1
-			elif event.ctrl_pressed:
-				config.falloff += direction * 0.25
-			else:
-				config.radius += direction * 2.0
-			_previous_valid = false
-			impact_clock.reset()
+
+func _tune_tool(steps: float, shift: bool, ctrl: bool) -> void:
+	# Shared wheel/key increments and deterministic priority: Shift > Ctrl > Alt.
+	if shift:
+		config.power += steps * 0.1
+	elif ctrl:
+		config.falloff += steps * 0.25
+	else:
+		config.radius += steps * 2.0
+	cancel_stroke()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
@@ -108,14 +121,30 @@ func reset_surface() -> void:
 	block.flush_texture()
 	total_impacts = 0
 
-func _physics_process(delta: float) -> void:
-	var pick_start := Time.get_ticks_usec()
-	hit = block.pick(_screen, camera)
-	last_pick_usec = Time.get_ticks_usec() - pick_start
+func _pick_current() -> Dictionary:
+	var result := block.pick(_screen, camera)
 	if not _focused or not _pointer_inside:
-		hit.inside = false
+		result.inside = false
 	if toolbar != null and toolbar.is_visible_in_tree() and toolbar.get_global_rect().has_point(_screen):
-		hit.inside = false
+		result.inside = false
+	return result
+
+func refresh_view() -> void:
+	_previous_valid = false # Never sweep across a camera movement.
+	hit = _pick_current()
+	_render_cursor()
+
+func _render_cursor() -> void:
+	var color := [Color(0.95, 0.8, 0.2), Color(1.0, 0.45, 0.18), Color(0.3, 0.85, 1.0)][selected_index] as Color
+	block.show_cursor(hit, config.radius, color.lerp(Color.WHITE, _impact_flash / 0.07))
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN if hit.inside else Input.MOUSE_MODE_VISIBLE
+
+func _physics_process(delta: float) -> void:
+	if get_window().size != _window_size:
+		_update_pointer_position()
+	var pick_start := Time.get_ticks_usec()
+	hit = _pick_current()
+	last_pick_usec = Time.get_ticks_usec() - pick_start
 	changed_texels = 0
 	last_edit_usec = 0
 	last_residue_edit_usec = 0
@@ -157,6 +186,4 @@ func _physics_process(delta: float) -> void:
 		pick_start = Time.get_ticks_usec()
 		hit = block.pick(_screen, camera)
 		last_pick_usec += Time.get_ticks_usec() - pick_start
-	var color := [Color(0.95, 0.8, 0.2), Color(1.0, 0.45, 0.18), Color(0.3, 0.85, 1.0)][selected_index] as Color
-	block.show_cursor(hit, config.radius, color.lerp(Color.WHITE, _impact_flash / 0.07))
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN if hit.inside else Input.MOUSE_MODE_VISIBLE
+	_render_cursor()

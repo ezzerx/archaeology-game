@@ -8,16 +8,20 @@ var size: Vector2i
 var dirty := true
 var strata: Stratigraphy
 var residue: SurfaceResidue
+var fossil: FossilState
 var last_residue_edit_usec := 0
 var changed_residue_cells := 0
 var _heights := PackedFloat32Array()
 
-func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null) -> void:
+func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null, fossil_field: FossilField = null) -> void:
 	assert(resolution.x > 0 and resolution.y > 0)
 	size = resolution
 	strata = stratigraphy
 	image = Image.create(size.x, size.y, false, Image.FORMAT_RF)
 	residue = SurfaceResidue.new(size)
+	if fossil_field != null:
+		assert(fossil_field.size == size)
+		fossil = FossilState.new(fossil_field)
 	reset()
 
 func reset() -> void:
@@ -25,6 +29,8 @@ func reset() -> void:
 	_heights.fill(1.0)
 	image.fill(Color(1.0, 0.0, 0.0, 1.0))
 	residue.reset()
+	if fossil != null:
+		fossil.reset()
 	last_residue_edit_usec = 0
 	changed_residue_cells = 0
 	dirty = true
@@ -62,6 +68,11 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 	# Cost in tool work per depth. Zero effectiveness is an impassable layer.
 	resistance /= effectiveness.max(Vector3.ONE * 0.00000001)
 	var changed := 0
+	var has_fossil := fossil != null
+	var bone_ceilings := fossil.field.ceilings if has_fossil else PackedFloat32Array()
+	# Above this immutable bound no cell can contact bone: skip its packed reads.
+	var bone_limit := fossil.field.highest_ceiling + 2.0 * FossilField.EXPOSURE_EPSILON if has_fossil else -1.0
+	var newly_exposed := PackedInt32Array()
 	for y in range(low.y, high.y + 1):
 		var row_low := low.x
 		var row_high := high.x
@@ -105,6 +116,16 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				if next_value <= lower and effectiveness.z > 0.0:
 					next_value = maxf(0.0, next_value - maxf(work, 0.0) / resistance.z)
 			if next_value < old_value:
+				if next_value <= bone_limit and bone_ceilings[index] > 0.0:
+					# Discard remaining work at bone. Ineffective strokes do not
+					# inspect fossil state, and clamped cells produce no dirty upload.
+					next_value = maxf(next_value, bone_ceilings[index])
+					if next_value >= old_value:
+						continue
+					# Decide from the stored float32, not the pre-rounding calculation.
+					_heights[index] = next_value
+					if _heights[index] <= bone_ceilings[index] + FossilField.EXPOSURE_EPSILON and fossil.exposed[index] == 0:
+						newly_exposed.append(index)
 				_heights[index] = next_value
 				if residue_generation > 0.0:
 					residue.deposit_removed(x, y, (old_value - next_value) * residue_generation)
@@ -113,6 +134,8 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 		# Image is the synchronized RF staging buffer, also used by CPU picking.
 		image.set_data(size.x, size.y, false, Image.FORMAT_RF, _heights.to_byte_array())
 	dirty = dirty or changed > 0
+	if not newly_exposed.is_empty():
+		fossil.expose_cells(newly_exposed)
 	return changed
 
 func apply_continuous(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> int:
@@ -120,6 +143,9 @@ func apply_continuous(from: Vector2, to: Vector2, tool: ToolDefinition, delta: f
 
 func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 	# Impacts deliberately have no previous point and cannot form a capsule.
+	# Snapshot the centre BEFORE removal: the impact revealing it is always safe.
+	if fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT and tool.power > 0.0:
+		fossil.damage_at(fossil.field.index_at_map(point), tool.bone_damage)
 	return _apply_tool(point, point, tool, 1.0)
 
 func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float) -> int:

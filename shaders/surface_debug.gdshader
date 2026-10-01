@@ -4,6 +4,9 @@ render_mode cull_disabled, diffuse_burley;
 uniform sampler2D working_map : filter_linear, repeat_disable;
 uniform sampler2D layer_boundaries : filter_linear, repeat_disable;
 uniform sampler2D residue_map : filter_linear, repeat_disable;
+uniform sampler2D fossil_map : filter_nearest, repeat_disable;
+uniform float bone_exposure_epsilon = 0.0000152587890625;
+uniform vec4 bone_color : source_color = vec4(0.94, 0.87, 0.72, 1.0);
 uniform vec2 map_size = vec2(1024.0, 640.0);
 uniform float base_height = 0.018;
 uniform float excavatable_height = 0.102;
@@ -31,10 +34,16 @@ void fragment() {
 	NORMAL = relief_normal;
 	vec2 limits = texture(layer_boundaries, UV).rg;
 	vec3 color = surface_height > limits.r ? soil_color.rgb : (surface_height > limits.g ? clay_color.rgb : sandstone_color.rgb);
+	// Discrete exposure agrees with CPU cell accounting. Geometry/picking retain
+	// P1's interpolated heightfield; no coplanar second bone mesh or dynamic mask.
+	ivec2 cell = clamp(ivec2(UV * map_size), ivec2(0), ivec2(map_size) - ivec2(1));
+	vec2 bone = texelFetch(fossil_map, cell, 0).rg;
+	bool exposed_bone = !is_skirt && bone.g > 0.5 && texelFetch(working_map, cell, 0).r <= bone.r + bone_exposure_epsilon;
+	if (exposed_bone) { color = bone_color.rgb; }
 	// Flat grey debug overlay only. Never affects height, normals or picking.
 	if (debug_view == 0 && !is_skirt) {
 		float residue = texture(residue_map, UV).r;
-		color = mix(color, vec3(0.64, 0.66, 0.69), residue * 0.8);
+		color = mix(color, vec3(0.64, 0.66, 0.69), residue * (exposed_bone ? 0.4 : 0.8));
 	}
 	float distance_texels = length((UV - cursor_uv) * map_size);
 	float ring = 1.0 - smoothstep(0.7, 1.6, abs(distance_texels - cursor_radius));
@@ -45,8 +54,8 @@ void fragment() {
 	if (debug_view == 1) { color = vec3(0.25 + 0.75 * surface_height); }
 	if (debug_view == 3) { color = relief_normal * 0.5 + 0.5; }
 	ALBEDO = mix(color, cursor_color.rgb, marker);
-	ROUGHNESS = 1.0;
-	SPECULAR = 0.15;
+	ROUGHNESS = exposed_bone ? 0.43 : 1.0;
+	SPECULAR = exposed_bone ? 0.38 : 0.15;
 	if (debug_view != 0) {
 		SPECULAR = 0.0;
 		EMISSION = ALBEDO;
