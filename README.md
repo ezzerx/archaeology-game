@@ -2,7 +2,7 @@
 
 **Working title modifiable.** ArchaeologyGame est un nom temporaire de projet.
 
-**Statut : préproduction — P0 et P1 validés/mergés ; P2 Outils autorisé.**  
+**Statut : préproduction — P0/P1 validés et mergés ; P2 livré pour validation humaine.**
 Plateforme visée : Steam. Moteur prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
 
 ## État du prototype
@@ -32,17 +32,19 @@ Rapports :
 - [P1_REPORT](docs/dev/P1_REPORT.md)
 - [P1_RELIEF_DECISION](docs/dev/P1_RELIEF_DECISION.md)
 
-### P2 — Outils ▶ prochaine étape
+### P2 — Outils ▶ à tester par Antoine
 
-P2 doit introduire :
+La scène jouable propose :
 
 - **Soft Brush**
 - **Chisel**
 - **Air Blower**
 
-avec des modes d'interaction réellement différents et une compatibilité matière lisible.
+avec trois profils configurables : Brush continu, Chisel à 4,5 impacts/s, Blower nettoyant un résidu debug sans changer la hauteur. Une toolbar cliquable et les touches `1/2/3` sélectionnent l'outil. Un changement pendant le clic annule le geste jusqu'au prochain clic.
 
-P2 ne doit pas commencer le fossile. P3 reste soumis à validation humaine.
+**194 checks P0/P1/P2 passent**, ainsi que les sept phases du benchmark graphique local à environ 60 FPS / 1080p. Valeurs, limites et checklist : [P2_REPORT](docs/dev/P2_REPORT.md). **PR non mergée ; P3 interdit avant validation et autorisation explicites.**
+
+Pour jouer : ouvrir `project.godot` dans Godot 4.7.2 Standard puis **F5**. LMB maintenu : utiliser ; `R` : reset ; `F1` : données ; `F2` : vues. Molette : rayon ; Shift+molette : puissance ; Ctrl+molette : falloff. Le voile gris est le résidu debug et se voit dans la vue éclairée.
 
 ## Vision
 
@@ -73,6 +75,7 @@ Le pixel art n’est pas la cible de la V0.1.
 | [P1_REPORT](docs/dev/P1_REPORT.md) | P1 |
 | [P1_RELIEF_DECISION](docs/dev/P1_RELIEF_DECISION.md) | Relief/picking |
 | [P2_BRIEF](docs/dev/P2_BRIEF.md) | Scope P2 |
+| [P2_REPORT](docs/dev/P2_REPORT.md) | Outils, mesures et test humain |
 | [Brain](docs/brain/BRAIN.md) | Statut et décisions |
 
 Pour reprendre : lire `AGENTS.md`, `docs/PROTOTYPE_V0_1_SPEC.md`, `docs/brain/status.md`, puis le brief du jalon actif.

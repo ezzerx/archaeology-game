@@ -87,3 +87,20 @@ P3 (fossile) reste interdit jusqu'à validation humaine de P2.
 - stratégie d'upload si un état de résidu runtime est ajouté ;
 - assets, sons et FX de production ;
 - tuning du fossile et du musée plus tard.
+
+## Implémentation P2 vérifiée — 2026-10-01
+
+Choix techniques appliqués dans le périmètre autorisé ; **le tuning et le ressenti attendent la validation d'Antoine**.
+
+| Choix | Preuve / conséquence |
+|---|---|
+| `ToolDefinition` minimale + trois `.tres` | Profils dupliqués par scène, pas d'inventaire ni de champs P3/P4 |
+| Une boucle surface, efficacité divisant le coût de résistance | Oracle indépendant ; efficacité nulle bloque une couche même pendant un grand delta |
+| Chisel ponctuel, horloge `n / 4,5` | 90 impacts / 20 s à 30, 60 et 144 Hz ; aucun pont entre impacts |
+| Sélection immédiate, nouveau clic après changement d'outil | Évite le transfert d'une interaction maintenue ; clavier et toolbar testés |
+| Résidu CPU float + GPU R8 256×160 | Incréments faibles conservés, upload de 40 Kio ; voile gris debug sans incidence sur le picking |
+| Dépôt fondé sur la profondeur retirée, nettoyage séparé | Blower : hauteur inchangée octet pour octet et zéro upload hauteur |
+| F2 conserve ses quatre vues P1 | Résidu visible seulement dans le rendu éclairé ; détail quantitatif sous F1 |
+| P0/P1 conservés, 97 nouveaux checks P2 et 7 phases graphiques | 194 checks sans échec ; mesures et limites dans [P2_REPORT](../dev/P2_REPORT.md) |
+
+Le reste des watchpoints P1 subsiste. Les résultats techniques ne valent ni validation humaine de P2, ni autorisation de merge, ni autorisation de P3.
