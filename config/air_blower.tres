@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ToolDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/tool_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"air_blower"
+display_name = "Air Blower"
+radius = 60.0
+power = 0.0
+falloff = 1.0
+effectiveness = Vector3(0, 0, 0)
+residue_clear = 2.5

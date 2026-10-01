@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ToolDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/tool_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"chisel"
+display_name = "Chisel"
+interaction_mode = 1
+radius = 12.0
+power = 0.24
+falloff = 2.0
+cadence = 4.5
+effectiveness = Vector3(0.12, 1, 1.5)
+residue_generation = 8.0
