@@ -134,13 +134,23 @@ Detailed design is deferred.
 
 Reference: [FUTURE_SYSTEMS.md](../FUTURE_SYSTEMS.md).
 
-## Visual-production timing confirmed — 2026-10-01
+## Visual-production timing clarified — 2026-10-01
 
-The DA is treated as a core product risk, not late polish.
+Canonical roadmap numbering remains:
 
-- P4 starts the sensory visual language tied directly to gameplay.
-- After P4, **ART0 — Visual Direction & Production Spike** creates one near-target representative slice and validates the art pipeline.
-- P5 and later production then build on that validated language.
-- Full art scaling must not begin before ART0 proves coherence, reproducibility and performance.
+**P0 → P1 → P2 → P3 → P4 → P5 → P6 Art Pass → P7 Tuning**
+
+There is **no separate ART0 phase**.
+
+Decision:
+
+- advance gameplay with placeholder/greybox visuals using a Pareto 80/20 approach;
+- P4 adds only the sensory visuals/audio needed to validate game feel;
+- P5 completes the gameplay loop and functional UI without requiring final DA;
+- P6 is the dedicated DA milestone once visual production has greater leverage than adding another gameplay system;
+- inside P6, first run a **P6A Visual Direction / Production Spike**, then a **P6B V0.1 Art Pass**;
+- P7 tunes the completed, art-passed slice.
+
+DA remains a core product risk and must not be treated as optional polish, but expensive production art is intentionally deferred until the gameplay foundation is mature.
 
 Reference: [ROADMAP.md](../ROADMAP.md) and [ART_DIRECTION.md](../ART_DIRECTION.md).

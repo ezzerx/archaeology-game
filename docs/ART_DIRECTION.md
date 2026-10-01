@@ -145,50 +145,69 @@ Le prototype ne doit pas chercher à reproduire immédiatement la finition des c
 Si un choix esthétique réduit la qualité ou la précision de la fouille, **le gameplay gagne**.
 
 
-## Production timing — decision 2026-10-01
+## Production timing — clarified 2026-10-01
 
-The DA is considered a **core product risk on the same level as game feel**, not late cosmetic polish.
+The DA is a core product risk, but the roadmap deliberately keeps the canonical phase order:
 
-The project therefore separates:
+> **P3 → P4 → P5 → P6 Art Pass → P7**
 
-### Interaction / sensory visual work
+There is no separate `ART0` roadmap phase.
 
-This begins in **P4 — Game Feel**:
+### P4 — sensory gameplay feedback, not production art
 
-- dust and localized particles;
+P4 may introduce visual/audio elements that are necessary to judge the feel of excavation:
+
+- local dust / particles;
 - material reaction readability;
-- physical tool presence;
-- small fragments / debris;
+- basic tool presence;
+- simple fragments / debris;
 - lighting response around cavities and bone;
 - discovery feedback;
-- audio-visual cohesion.
+- sound families.
 
-These effects directly affect whether excavation is satisfying.
+These can remain placeholder / prototype quality.
 
-### ART0 — Visual Direction & Production Spike
+The purpose is to judge **game feel**, not to reproduce the final concept art.
 
-Immediately after P4 validation, before scaling UI/content, create one representative slice close to the target visual quality.
+### P5 — complete loop, functional UI
 
-ART0 should include only enough content to validate the pipeline, for example:
+P5 implements the complete excavation loop and usable UI/progression:
 
-- one excavation block;
-- one table/workbench composition;
-- one lighting setup;
-- the three prototype materials plus bone;
-- representative tool visuals;
-- a small subset of scientific props;
-- a small representative UI treatment.
+- objectives;
+- specimen dossier;
+- classification;
+- fragments;
+- completion card.
 
-The objective is **not** to make the whole prototype beautiful.
+The UI may still be functional / greybox. Do not delay the loop to perfect the visual language.
 
-The objective is to prove:
+### P6 — dedicated Art Pass
 
-1. the canonical visual direction can be achieved in-engine;
-2. the asset workflow is practical;
-3. the style can remain coherent across future content;
-4. performance remains acceptable;
-5. future artists/AI tools can reproduce the style without drifting.
+P6 is the point where DA becomes a primary development priority.
 
-Only after ART0 should the project commit to a scalable production-art workflow.
+P6 begins with **P6A — Visual Direction / Production Spike**, then **P6B — V0.1 Art Pass**.
 
-Tools such as Blender, image-generation systems, texture/material generators, Higgsfield or other game-art workflows may be evaluated during ART0. No external tool is canonized yet.
+P6A validates the pipeline on one representative slice before broad application:
+
+- 3D/2.5D balance;
+- materials and texturing;
+- lighting;
+- tool and prop workflow;
+- UI visual language;
+- image-generation / Higgsfield / Blender / texture-tool workflow;
+- consistency and GPU budget.
+
+P6B then applies the validated language to the full V0.1 slice.
+
+The objective is to spend production-art effort only once the gameplay structure is mature enough that DA has more leverage than another gameplay feature.
+
+### Pareto rule
+
+> **Do the minimum visual work necessary to validate gameplay until final-quality visuals become the highest-leverage next step.**
+
+This avoids both extremes:
+
+- rushing into expensive art too early;
+- treating DA as cosmetic polish left until the end.
+
+No external art tool is canonized yet.
