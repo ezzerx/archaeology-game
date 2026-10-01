@@ -1,6 +1,7 @@
 # Prototype v0.1 — Fossil Cleaning Prototype
 
-**Statut : spécifié, non développé.** Ce document décrit la prochaine expérience à réaliser lorsqu’un développement sera demandé.
+**Statut : spécifié, non développé.**  
+La spécification détaillée et canonique se trouve dans [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md).
 
 ## Question à résoudre
 
@@ -8,52 +9,96 @@
 
 Une réponse positive valide le cœur de sensation, pas la viabilité commerciale ni le jeu complet.
 
+## Direction visuelle retenue
+
+Pour le prototype, la direction canonique est désormais :
+
+> **2.5D stylisée — tabletop — caméra orthographique presque verticale**
+
+Le pixel art n'est plus la cible du prototype. La fouille doit permettre profondeur, cavités, ombres locales, fissures, poussière et révélation progressive des os. Voir [ART_DIRECTION.md](ART_DIRECTION.md).
+
 ## Périmètre obligatoire
 
 | Élément | Résultat attendu |
 |---|---|
-| Un écran | Tabletop strictement du dessus, sans personnage ni déplacement |
+| Un écran | Tabletop fixe, sans personnage ni déplacement |
 | Un bloc | Surface multicouche travaillable directement |
-| Un fossile | Os révélés progressivement sous la matière |
-| Trois matériaux | Résistance, réactions et sons perceptiblement différents |
-| Trois outils | Fonctions distinctes et changement immédiat compréhensible |
-| Matière destructible | Usure locale, états visuels intermédiaires, retrait et couche suivante |
-| Game feel | Animation de l’outil, particules, poussière, petits éclats et sons de matière |
-| Découverte | Contact avec l’os identifiable et retour de nouvelle révélation |
-| Progression | Jauge lisible de dégagement / nettoyage du fossile |
+| Un fossile | Specimen B-17, os révélés progressivement |
+| Trois matières cœur | Loose Soil, Compact Clay, Sandstone |
+| Une zone secondaire | Hard Rock facultatif pour tester la résistance |
+| Trois outils | Soft Brush, Chisel, Air Blower |
+| Matière destructible | Profondeur, états intermédiaires, creux et couche suivante |
+| Poussière | État gameplay nettoyable, pas simple VFX |
+| Game feel | Outils visibles, particules, débris, sons, lumière et réactions distinctes |
+| Découverte | Premier contact os protégé, son différent, feedback Bone detected |
+| Condition | Chisel pouvant endommager un os déjà exposé |
+| Mystère | Unknown → Vertebrate remains → Possible Theropod → Likely small theropod |
+| Fragments | Deux fragments récupérables automatiquement après dégagement |
+| Progression | Trois objectifs, completion card et Keep Cleaning |
 
-### Sélection de départ proposée
+## Les trois objectifs
 
-Trois matériaux : **terre meuble, argile compacte, grès / roche tendre**. Trois outils : **soft brush, chisel, air bulb / blower**, conformément à la piste du brainstorming. Cette sélection est un point de départ de test, pas une décision de catalogue définitive.
+- Expose the skull
+- Reveal 60 % of the skeleton
+- Recover both fragments
 
-Le pinceau travaille la terre ; le burin travaille les couches compactes et le grès ; la soufflette évacue les résidus et clarifie la surface. La poussière est un résidu visuel / nettoyable, pas une quatrième couche géologique. Tester que chaque outil apporte un geste utile et que la précision près des os reste agréable.
+Ils peuvent être réalisés dans n'importe quel ordre.
 
-Le retour de contact avec l’os est obligatoire. Un système complet de dommages, résine et condition persistante ne l’est pas.
+## Condition de fin
+
+Une fois les trois objectifs atteints, afficher **Preparation Complete** avec :
+
+- classification probable ;
+- pourcentage révélé ;
+- fragments récupérés ;
+- condition du spécimen.
+
+Proposer :
+
+- **Keep Cleaning**
+- **Restart Specimen**
+
+Le comportement le plus important à observer est : **le joueur continue-t-il volontairement après la fin ?**
+
+## Validation interne
+
+Feu vert proposé :
+
+- au moins **4 joueurs sur 5** donnent **4/5 ou plus** à la satisfaction de la fouille ;
+- au moins **3 joueurs sur 5** continuent volontairement après **Preparation Complete**.
 
 ## Hors périmètre
 
-Pas de menu complexe, monde ouvert, personnage, musée complet, sauvegarde avancée, économie, intégration Steam, succès, large catalogue ni « 30 dinosaures ». Pas d’identification encyclopédique complète ou de pipeline industriel d’assets à cette étape.
+Pas de :
 
-Une information simple de découverte peut être testée. Le mystère reste compatible avec un fossile unique : connaître le contenu après une première tentative doit encore laisser le geste plaisant.
+- musée fonctionnel ;
+- économie ;
+- monde ouvert ;
+- personnage ;
+- multiples fossiles ;
+- sauvegarde avancée ;
+- génération procédurale ;
+- Steam integration ;
+- achievements ;
+- gamepad ;
+- histoire ;
+- catalogue important d'assets.
 
-## Ordre de réalisation futur
+**V0.1 = le bloc.**
 
-1. Vérifier la version stable de Godot et choisir le rendu de test.
-2. Construire une petite surface multicouche qui s’use progressivement.
-3. Ajouter les trois outils et leurs réactions distinctes.
-4. Travailler particules, sons, contact avec l’os et rythme de révélation.
-5. Ajouter la jauge, puis rejouer le bloc connu.
-6. Comparer pixel art et 2D illustrée sur cette interaction.
+## Ordre de réalisation
 
-Chaque étape sert le test de sensation ; aucune n’est exécutée par la présente canonisation.
+1. **P0 — Interaction brute** : caméra, bloc, raycast, curseur, modification d'une map.
+2. **P1 — Matière** : profondeur, matériaux, résistance, creusement.
+3. **P2 — Outils** : Brush, Chisel, Blower.
+4. **P3 — Fossile** : exposure, detection, condition.
+5. **P4 — Game feel** : particules, débris, outil physique, audio, poussière, lumière.
+6. **P5 — UI et progression**.
+7. **P6 — Art pass** vers la DA canonique.
+8. **P7 — Tuning**, sans nouveau système.
 
-## Validation manuelle
+Le développement doit respecter la règle suivante :
 
-- Chaque outil produit un effet visible sans délai perceptible ; un outil inadapté n’efface pas arbitrairement la roche.
-- Les matériaux se distinguent à la vue et au son ; la matière montre une progression avant de disparaître.
-- L’os émerge par petites révélations ; les particules n’en masquent pas les indices.
-- Le contact os / outil et la découverte d’un fragment se reconnaissent ; les récompenses ne se répètent pas à chaque passage.
-- La jauge progresse avec le dégagement réel et atteint la complétion selon une règle définie pour ce bloc.
-- Une seconde fouille du même contenu donne encore envie de poursuivre sans dépendre uniquement de la surprise.
+> Si Astra hésite entre ajouter une feature et rendre le pinceau plus agréable, améliorer le pinceau.
 
-Recueillir le verdict d’Antoine, les moments satisfaisants et les gestes frustrants. Si le cœur échoue, reprendre résistance, sons, visuels et rythme avant le musée. Si le cœur fonctionne, passer au prochain jalon de la [roadmap](ROADMAP.md).
+Tous les détails de comportement, architecture, audio, matériaux, UI, debug et critères de Done sont définis dans [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md).
