@@ -78,7 +78,7 @@ P2 doit construire les **outils**, pas le fossile ni le polish complet.
 
 Pour rendre le Blower testable sans empiéter sur P4, P2 peut créer un **résidu scalaire minimal / debug-only** généré par certaines excavations et supprimé par le Blower. Ce résidu n'est pas le système final de poussière : pas de particules, audio, turbulence ni art pass.
 
-P3 (fossile) reste interdit jusqu'à validation humaine de P2.
+P3 (fossile) nécessite la validation humaine de P2 puis une autorisation explicite de démarrage.
 
 ## Points encore ouverts
 
@@ -87,3 +87,26 @@ P3 (fossile) reste interdit jusqu'à validation humaine de P2.
 - stratégie d'upload si un état de résidu runtime est ajouté ;
 - assets, sons et FX de production ;
 - tuning du fossile et du musée plus tard.
+
+## Implémentation P2 vérifiée — 2026-10-01
+
+Choix techniques appliqués dans le périmètre autorisé ; le verdict humain global est consigné ci-dessous. Les valeurs restent un tuning de prototype.
+
+| Choix | Preuve / conséquence |
+|---|---|
+| `ToolDefinition` minimale + trois `.tres` | Profils dupliqués par scène, pas d'inventaire ni de champs P3/P4 |
+| Une boucle surface, efficacité divisant le coût de résistance | Oracle indépendant ; efficacité nulle bloque une couche même pendant un grand delta |
+| Chisel ponctuel, horloge `n / 4,5` | 90 impacts / 20 s à 30, 60 et 144 Hz ; aucun pont entre impacts |
+| Sélection immédiate, nouveau clic après changement d'outil | Évite le transfert d'une interaction maintenue ; clavier et toolbar testés |
+| Résidu CPU float + GPU R8 256×160 | Incréments faibles conservés, upload de 40 Kio ; voile gris debug sans incidence sur le picking |
+| Dépôt fondé sur la profondeur retirée, nettoyage séparé | Blower : hauteur inchangée octet pour octet et zéro upload hauteur |
+| F2 conserve ses quatre vues P1 | Résidu visible seulement dans le rendu éclairé ; détail quantitatif sous F1 |
+| P0/P1 conservés, 97 nouveaux checks P2 et 7 phases graphiques | 194 checks sans échec ; mesures et limites dans [P2_REPORT](../dev/P2_REPORT.md) |
+
+Le reste des watchpoints P1 subsiste. Les résultats techniques ne constituent pas une autorisation de merge ou de P3.
+
+### Verdict P2
+
+**Validé par Antoine le 2026-10-01 : « Ok ça fonctionne ! »**. Version livrée pour ce test : `0a35e63d06aabc5064676c5a4ef72268672a9c0a`. Validation globale du fonctionnement, sans défaut remonté ; pas de verdict détaillé par critère ni de verrouillage du tuning final.
+
+La PR #3 reste en brouillon et non mergée. Le merge et le démarrage de P3 nécessitent une autorisation explicite distincte.

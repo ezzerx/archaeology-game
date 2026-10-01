@@ -33,14 +33,16 @@ func sample_limits(uv: Vector2) -> Vector2:
 	var color := ReliefSurface.sample_image(boundaries, uv)
 	return Vector2(color.r, color.g)
 
-func remove_work(height: float, work: float, cell: Vector2i) -> float:
+func remove_work(height: float, work: float, cell: Vector2i, effectiveness := Vector3.ONE) -> float:
 	var limits := boundaries.get_pixelv(cell)
 	# Consume work piecewise at each interface. A long tick cannot skip resistance.
 	for layer in range(3):
 		var bottom := limits.r if layer == 0 else (limits.g if layer == 1 else 0.0)
 		if height <= bottom:
 			continue
-		var resistance := materials[layer].resistance
+		if effectiveness[layer] <= 0.0:
+			return height
+		var resistance := materials[layer].resistance / effectiveness[layer]
 		var cost := (height - bottom) * resistance
 		if work < cost:
 			return maxf(bottom, height - work / resistance)

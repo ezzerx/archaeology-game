@@ -13,10 +13,13 @@ var working_map: WorkingSurface
 var relief: ReliefSurface
 var texture: ImageTexture
 var layer_texture: ImageTexture
+var residue_texture: ImageTexture
 var material: ShaderMaterial
 var skirt_material: ShaderMaterial
 var last_upload_usec := 0
 var upload_count := 0
+var last_residue_upload_usec := 0
+var residue_upload_count := 0
 var debug_view := 0
 
 @onready var surface: MeshInstance3D = $SurfaceMesh
@@ -29,10 +32,13 @@ func _ready() -> void:
 	relief = ReliefSurface.new(working_map.image, surface_size, map_resolution, base_height, thickness)
 	texture = ImageTexture.create_from_image(working_map.image)
 	layer_texture = ImageTexture.create_from_image(strata.boundaries)
+	residue_texture = ImageTexture.create_from_image(working_map.residue.image)
 	working_map.dirty = false
+	working_map.residue.dirty = false
 	material = surface.material_override.duplicate() as ShaderMaterial
 	material.set_shader_parameter("working_map", texture)
 	material.set_shader_parameter("layer_boundaries", layer_texture)
+	material.set_shader_parameter("residue_map", residue_texture)
 	material.set_shader_parameter("map_size", Vector2(map_resolution))
 	material.set_shader_parameter("base_height", base_height)
 	material.set_shader_parameter("excavatable_height", thickness - base_height)
@@ -91,9 +97,10 @@ func pick(screen: Vector2, camera: Camera3D) -> Dictionary:
 		"material": working_map.strata.material_at(uv, height)}, true)
 	return result
 
-func show_cursor(hit: Dictionary, radius: float) -> void:
+func show_cursor(hit: Dictionary, radius: float, color := Color(0.95, 0.8, 0.2)) -> void:
 	material.set_shader_parameter("cursor_visible", hit.inside)
 	material.set_shader_parameter("cursor_radius", radius)
+	material.set_shader_parameter("cursor_color", color)
 	if hit.inside:
 		material.set_shader_parameter("cursor_uv", hit.uv)
 
@@ -104,9 +111,16 @@ func set_debug_view(view: int) -> void:
 
 func flush_texture() -> void:
 	last_upload_usec = 0
+	last_residue_upload_usec = 0
 	if working_map.dirty:
 		var start := Time.get_ticks_usec()
 		texture.update(working_map.image)
 		last_upload_usec = Time.get_ticks_usec() - start
 		upload_count += 1
 		working_map.dirty = false
+	if working_map.residue.dirty:
+		var start := Time.get_ticks_usec()
+		residue_texture.update(working_map.residue.image)
+		last_residue_upload_usec = Time.get_ticks_usec() - start
+		residue_upload_count += 1
+		working_map.residue.dirty = false

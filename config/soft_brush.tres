@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ToolDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/tool_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"soft_brush"
+display_name = "Soft Brush"
+radius = 40.0
+power = 0.8
+falloff = 1.5
+effectiveness = Vector3(1, 0.06, 0)
+residue_generation = 1.25
+residue_clear = 0.1
