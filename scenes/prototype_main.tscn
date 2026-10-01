@@ -1,0 +1,117 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/prototype_main.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/excavation_block.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/tool_controller.gd" id="3"]
+[ext_resource type="Resource" path="res://config/debug_excavator.tres" id="4"]
+[ext_resource type="Shader" path="res://shaders/surface_debug.gdshader" id="5"]
+
+[sub_resource type="StandardMaterial3D" id="TableMaterial"]
+albedo_color = Color(0.26, 0.27, 0.28, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="TableMesh"]
+size = Vector3(1.7, 0.06, 1.1)
+
+[sub_resource type="StandardMaterial3D" id="SideMaterial"]
+albedo_color = Color(0.4, 0.41, 0.42, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BlockMesh"]
+resource_local_to_scene = true
+size = Vector3(1.1, 0.12, 0.7)
+
+[sub_resource type="PlaneMesh" id="SurfaceMesh"]
+resource_local_to_scene = true
+size = Vector2(1.1, 0.7)
+
+[sub_resource type="BoxShape3D" id="BlockShape"]
+resource_local_to_scene = true
+size = Vector3(1.1, 0.12, 0.7)
+
+[sub_resource type="ShaderMaterial" id="SurfaceMaterial"]
+shader = ExtResource("5")
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 1
+background_color = Color(0.12, 0.13, 0.14, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.8, 0.8, 0.8, 1)
+ambient_light_energy = 0.7
+
+[node name="PrototypeMain" type="Node3D"]
+script = ExtResource("1")
+
+[node name="TableEnvironment" type="Node3D" parent="."]
+
+[node name="Table" type="MeshInstance3D" parent="TableEnvironment"]
+position = Vector3(0, -0.03, 0)
+mesh = SubResource("TableMesh")
+material_override = SubResource("TableMaterial")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="TableEnvironment"]
+environment = SubResource("Environment")
+
+[node name="Light" type="DirectionalLight3D" parent="TableEnvironment"]
+rotation_degrees = Vector3(-65, -25, 0)
+light_energy = 0.7
+
+[node name="ExcavationBlock" type="Node3D" parent="."]
+script = ExtResource("2")
+
+[node name="Sides" type="MeshInstance3D" parent="ExcavationBlock"]
+position = Vector3(0, 0.06, 0)
+mesh = SubResource("BlockMesh")
+material_override = SubResource("SideMaterial")
+
+[node name="SurfaceMesh" type="MeshInstance3D" parent="ExcavationBlock"]
+position = Vector3(0, 0.1201, 0)
+mesh = SubResource("SurfaceMesh")
+material_override = SubResource("SurfaceMaterial")
+
+[node name="Body" type="StaticBody3D" parent="ExcavationBlock"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExcavationBlock/Body"]
+position = Vector3(0, 0.06, 0)
+shape = SubResource("BlockShape")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(0, 3.10357, 0.31359)
+rotation_degrees = Vector3(-84, 0, 0)
+projection = 1
+size = 0.85
+near = 0.01
+far = 10.0
+current = true
+
+[node name="ToolController" type="Node" parent="." node_paths=PackedStringArray("block", "camera")]
+script = ExtResource("3")
+block = NodePath("../ExcavationBlock")
+camera = NodePath("../Camera3D")
+config = ExtResource("4")
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="PanelContainer" parent="Debug"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 660.0
+offset_bottom = 240.0
+mouse_filter = 2
+
+[node name="Text" type="Label" parent="Debug/Panel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 18
+text = "P0 / DEBUG EXCAVATOR"
+
+[node name="Help" type="Label" parent="Debug"]
+offset_left = 16.0
+offset_top = 1038.0
+offset_right = 1904.0
+offset_bottom = 1072.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+text = "P0 greybox | Hold LMB: mark | R: reset | F1: debug | Wheel: radius | Shift+wheel: strength | Ctrl+wheel: falloff"
