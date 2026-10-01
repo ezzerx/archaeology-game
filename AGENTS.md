@@ -6,7 +6,7 @@ Lire `docs/brain/BRAIN.md`, `docs/brain/status.md` et les documents utiles à la
 
 ## Périmètre actuel
 
-Le projet est en **préproduction — P2 Outils validé humainement, non mergé**. P0/P1 sont validés et mergés ; consulter `docs/dev/P2_REPORT.md` pour le jalon courant. **Ne pas merger P2 ni commencer P3 sans nouvelle autorisation explicite d’Antoine.** La présence d’une roadmap ou de notes techniques ne lance pas ses étapes.
+Le projet est en **préproduction — P3 Fossile implémenté, en attente de validation humaine**. P0/P1/P2 sont validés et mergés ; consulter `docs/dev/P3_REPORT.md` et `docs/dev/P3_FOSSIL_DECISION.md` pour le jalon courant. **Ne pas merger P3 ni commencer P4/P5 sans nouvelle autorisation explicite d’Antoine.** La présence d’une roadmap ou de notes techniques ne lance pas ses étapes.
 
 ## Invariants de conception
 

@@ -1,0 +1,728 @@
+{
+	"godot": "4.7.2-stable (official)",
+	"note": "Ordinary project settings, automatic idle observation; no fabricated user playtest.",
+	"samples": [
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 1
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 2
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 3
+		},
+		{
+			"cap": 240,
+			"fps": 241.0,
+			"physics_hz": 60,
+			"second": 4
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 5
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 6
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 7
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 8
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 9
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 10
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 11
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 12
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 13
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 14
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 15
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 16
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 17
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 18
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 19
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 20
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 21
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 22
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 23
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 24
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 25
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 26
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 27
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 28
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 29
+		},
+		{
+			"cap": 240,
+			"fps": 241.0,
+			"physics_hz": 60,
+			"second": 30
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 31
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 32
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 33
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 34
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 35
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 36
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 37
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 38
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 39
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 40
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 41
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 42
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 43
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 44
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 45
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 46
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 47
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 48
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 49
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 50
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 51
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 52
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 53
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 54
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 55
+		},
+		{
+			"cap": 240,
+			"fps": 241.0,
+			"physics_hz": 60,
+			"second": 56
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 57
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 58
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 59
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 60
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 61
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 62
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 63
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 64
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 65
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 66
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 67
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 68
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 69
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 70
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 71
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 72
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 73
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 74
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 75
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 76
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 77
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 78
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 79
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 80
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 81
+		},
+		{
+			"cap": 240,
+			"fps": 241.0,
+			"physics_hz": 60,
+			"second": 82
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 83
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 84
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 85
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 86
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 87
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 88
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 89
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 90
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 91
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 92
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 93
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 94
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 95
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 96
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 97
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 98
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 99
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 100
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 101
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 102
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 103
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 104
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 105
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 106
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 107
+		},
+		{
+			"cap": 240,
+			"fps": 241.0,
+			"physics_hz": 60,
+			"second": 108
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 109
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 110
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 111
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 112
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 113
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 114
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 115
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 116
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 117
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 118
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 119
+		},
+		{
+			"cap": 240,
+			"fps": 240.0,
+			"physics_hz": 60,
+			"second": 120
+		}
+	],
+	"viewport": "(1920.0, 1080.0)",
+	"vsync_mode": 1
+}

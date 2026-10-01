@@ -2,9 +2,10 @@
 
 - Date : **2026-10-01**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P2 validé et mergé ; P3 Fossile autorisé**.
+- Phase : **préproduction — P3 Fossile implémenté ; validation humaine en attente**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
+- Branche de livraison P3 : `prototype/p3-fossil` ; PR vers `main`, sans merge.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -61,25 +62,24 @@ Aucune autre optimisation GPU n'est demandée pour l'instant. Si 240 FPS laisse 
 
 Aucun de ces points ne bloque P3.
 
-## Prochaine étape autorisée — P3 Fossile
+## P3 — Implémenté, test humain requis
 
-P3 doit introduire :
+Livré dans le périmètre autorisé :
 
-- Specimen B-17 caché dans le bloc ;
-- révélation progressive du fossile ;
-- plafond osseux empêchant de creuser à travers l'os ;
-- `Bone detected` au premier contact ;
-- premier contact protégé ;
-- condition du spécimen ;
-- dégâts Chisel sur os déjà exposé ;
-- Brush/Blower sûrs ;
-- pourcentage d'exposition global et par composant.
+- Specimen B-17 fixe, initialement caché, **32 290 cellules** et quatre composants ;
+- champ fossile RGF statique, clamp au sommet osseux et relief émergent ;
+- `Bone detected` une fois par reset, premier contact de chaque cellule protégé ;
+- condition 100→0, Chisel **−3 points par impact direct sur centre déjà exposé** ;
+- Brush/Blower sûrs, résidu indépendant ;
+- exposition globale/composants, signaux découplés et reset exact ;
+- cap officiel **240 FPS**, physique **60 Hz** ;
+- **279 checks P0/P1/P2/P3, zéro échec**, validation graphique locale et captures GPU.
 
-Le brief canonique est :
+Reprise et checklist : [P3_REPORT](../dev/P3_REPORT.md). Architecture/limites : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Scope : [P3_BRIEF](../dev/P3_BRIEF.md).
 
-[P3_BRIEF.md](../dev/P3_BRIEF.md)
+Le verdict de découverte et le playtest F5/GPU de 2–3 minutes restent à obtenir d'Antoine. Les résultats automatisés ne constituent pas son approbation. La grille dense est conservée ; seul le coût des lectures osseuses inutiles a été réduit pour respecter le benchmark CPU existant.
 
-**P4 n'est pas autorisé avant validation humaine de P3.**
+**STOP à P3. Aucun merge ni P4/P5 avant nouvelle validation/autorisation explicite d'Antoine.**
 
 ## Séquence
 

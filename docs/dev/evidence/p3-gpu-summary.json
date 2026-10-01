@@ -1,0 +1,12 @@
+{
+  "samples": 53,
+  "start_utc": "2026-10-01T20:37:11.9676968Z",
+  "end_utc": "2026-10-01T20:38:01.9515162Z",
+  "utilization_mean": 28.71698113207547,
+  "utilization_min": 27.0,
+  "utilization_max": 32.0,
+  "power_mean_w": 92.20169811320756,
+  "power_min_w": 91.51,
+  "power_max_w": 93.83,
+  "scope": "Whole GPU via nvidia-smi during the ordinary idle runtime, not per-process utilization or a human playtest."
+}

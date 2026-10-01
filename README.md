@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2 validés et mergés ; P3 Fossile autorisé.**  
+**Statut : préproduction — P0/P1/P2 validés et mergés ; P3 Fossile à tester humainement, non mergé.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -33,13 +33,15 @@ Rapport : [P2_REPORT](docs/dev/P2_REPORT.md).
 
 Objectif : créer le premier vrai moment de découverte.
 
-P3 doit cacher Specimen B-17 dans la matrice, le révéler progressivement, empêcher de creuser à travers les os, gérer un premier contact protégé et une condition de spécimen.
+P3 cache Specimen B-17 dans la matrice, le révèle progressivement et bloque l'excavation sur les os. Le premier contact est protégé ; les impacts Chisel suivants sur un centre déjà exposé retirent 3 points de condition. Brush/Blower restent sûrs.
 
-Brief : [P3_BRIEF](docs/dev/P3_BRIEF.md).
+**279 checks fonctionnels passent.** Exposition globale/quatre composants, F1 étendu et reset exact. Rapport et checklist F5 : [P3_REPORT](docs/dev/P3_REPORT.md). Architecture : [P3_FOSSIL_DECISION](docs/dev/P3_FOSSIL_DECISION.md). Scope : [P3_BRIEF](docs/dev/P3_BRIEF.md).
+
+Travailler sur `prototype/p3-fossil`. **Pas de merge ni P4/P5 avant validation explicite d'Antoine.**
 
 ## Runtime
 
-Les runs interactifs normaux doivent désormais être plafonnés à **240 FPS**. Les benchmarks peuvent override ce cap.
+Les runs interactifs normaux sont plafonnés à **240 FPS** (`application/run/max_fps`), physique **60 Hz**. VSync peut limiter plus bas. Les benchmarks peuvent explicitement override ce cap.
 
 ## Vision
 
