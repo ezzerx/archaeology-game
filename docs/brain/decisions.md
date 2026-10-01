@@ -196,3 +196,44 @@ The comparison standard is not “Unity has more features”, but:
 
 Until such a case exists, Godot 4.7.2 remains the canonical engine for the prototype and subsequent development.
 
+
+
+## P3 final — 2026-10-02
+
+P3 est validé humainement et mergé.
+
+Merge PR #4 :
+
+`10a12379ab1db629380ac9697e5597aeb16a373b`
+
+Décisions finales :
+
+- Specimen B-17 / bone ceiling / exposition / condition technique validés ;
+- zoom orthographique 1×–3× au curseur validé ;
+- aide et raccourcis debug validés ;
+- cap 240 FPS conservé ;
+- le hook de découverte fonctionne : une fois l'os perçu, Antoine veut continuer à le révéler.
+
+Bone Condition n'est pas considérée équilibrée en P3.
+
+Le problème observé vient potentiellement du comportement encore simplifié du Chisel et des matériaux. Il est donc explicitement reporté à P4, après introduction de fissures/chunks/débris.
+
+Règle maintenue :
+
+> Ne pas créer un workaround dans une phase antérieure pour un problème qu'une phase suivante est précisément censée remodeler.
+
+## P4 autorisé — 2026-10-02
+
+P4 = **Game Feel / Material Reactions**.
+
+Objectif :
+
+- faire sentir des matières différentes par leur comportement ;
+- faire du Chisel un outil de frappe/fracture et non un effaceur de pixels ;
+- introduire particles/debris/audio/tool presence en qualité prototype ;
+- améliorer la lisibilité de la découverte ;
+- réévaluer ensuite seulement l'évitement des dégâts osseux.
+
+P4 reste un jalon gameplay/game feel, pas un Art Pass.
+
+Référence : [P4_BRIEF](../dev/P4_BRIEF.md).
