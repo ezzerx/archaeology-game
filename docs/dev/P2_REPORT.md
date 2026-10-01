@@ -2,9 +2,9 @@
 
 Date : **2026-10-01**. Branche : **`prototype/p2-tools`**. Base `main` : `749a1f605e4fcfe61ae8f8569625d90bfcb1e21c`.
 
-**P2 validé techniquement et humainement.** Branche poussée ; **[PR #3](https://github.com/ezzerx/archaeology-game/pull/3)** ouverte en brouillon vers `main`, **non mergée**. Aucun système P3. Les paramètres ci-dessous restent un tuning de prototype.
+**Statut final : P2 VALIDÉ ET MERGÉ. P3 AUTORISÉ.** Les paramètres ci-dessous restent un tuning de prototype.
 
-Antoine confirme le **2026-10-01** : **« Ok ça fonctionne ! »**, après livraison de la version `0a35e63d06aabc5064676c5a4ef72268672a9c0a`. C'est une validation globale du fonctionnement, sans défaut remonté ; elle ne détaille pas chaque case de la checklist et n'autorise pas le merge ou P3.
+Antoine confirme le **2026-10-01** : **« Ok ça fonctionne ! »**, après livraison de la version `0a35e63d06aabc5064676c5a4ef72268672a9c0a`. C'est une validation globale du fonctionnement, sans défaut remonté. Antoine a ensuite explicitement autorisé le merge et P3. PR #3 mergée vers `main` au commit `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
 
 ## Architecture
 
@@ -172,3 +172,19 @@ Ouvrir `project.godot` sur **`prototype/p2-tools`**, avec **Godot 4.7.2 Standard
 10. [ ] **Fluidité / verdict** : faire 2–3 minutes de Brush → Chisel → Blower aux réglages par défaut. Vérifier la fluidité proche de 60 FPS, l'absence de retard visible et de console en erreur. Répondre : « Je comprends l'utilité des trois outils et j'ai naturellement envie d'en changer selon la surface. » Sinon noter outil, matériau et geste problématiques.
 
 **Arrêt à P2, validé humainement. Tout merge ou passage à P3 attend une autorisation explicite distincte d'Antoine.**
+
+
+## Note après validation
+
+Lors du playtest humain P2, le runtime Godot non plafonné utilisait la RTX 5080 à 100%. Le processus responsable a été confirmé comme Godot.
+
+Aucune indication de comportement anormal n'a été relevée : la cause la plus probable est le rendu uncapped sur une scène à grille dense.
+
+Décision utilisateur pour P3 :
+
+- cap runtime normal : **240 FPS** ;
+- benchmarks autorisés à override ;
+- ne pas optimiser davantage avant retest ;
+- réduire le cap si la charge reste jugée excessive.
+
+**P2 est fermé. P3 est autorisé.**
