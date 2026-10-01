@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2 validés et mergés ; P3 validé fonctionnellement par Antoine, non mergé ; passe design à cadrer.**
+**Statut : préproduction — P0/P1/P2 validés et mergés ; corrections gameplay P3 testées, retest humain requis ; PR #4 non mergée.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -10,11 +10,11 @@ Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 - P0 Interaction brute ✅
 - P1 Matière / relief ✅
 - P2 Outils ✅
-- **P3 Fossile : fonctionnement validé ; passe design à cadrer**
+- **P3 Fossile : zoom et finition sûre à retester**
 - P4 Game feel
-- ART0 Direction visuelle et pipeline
-- P5 Boucle complète
-- V0.1 ; suite dans la [roadmap](docs/ROADMAP.md)
+- P5 UI / progression
+- P6 Art pass (spike visuel puis application)
+- P7 Tuning ; détails dans la [roadmap](docs/ROADMAP.md)
 
 ### P2 — Outils
 
@@ -33,11 +33,11 @@ Rapport : [P2_REPORT](docs/dev/P2_REPORT.md).
 
 Objectif : créer le premier vrai moment de découverte.
 
-P3 cache Specimen B-17 dans la matrice, le révèle progressivement et bloque l'excavation sur les os. Le premier contact est protégé ; les impacts Chisel suivants sur un centre déjà exposé retirent 3 points de condition. Brush/Blower restent sûrs.
+P3 cache Specimen B-17 dans la matrice et bloque l'excavation sur les os. Le Chisel laisse une marge de **2 mm** sur os caché ; le Brush termine localement à **1 mm/s**, même à travers Clay/Sandstone. Un impact Chisel centré sur un os déjà exposé retire 3 points de condition. Brush/Blower restent sûrs. Molette : **zoom orthographique 1–3× au curseur** ; Home : vue d'ensemble ; R : reset.
 
-**279 checks fonctionnels passent.** Exposition globale/quatre composants, F1 étendu et reset exact. Rapport et checklist F5 : [P3_REPORT](docs/dev/P3_REPORT.md). Architecture : [P3_FOSSIL_DECISION](docs/dev/P3_FOSSIL_DECISION.md). Scope : [P3_BRIEF](docs/dev/P3_BRIEF.md).
+**500 checks fonctionnels passent.** Le scénario de douze zones expose **1 698 cellules à 100 % de condition**. Exposition globale/quatre composants, F1 et reset exact. Rapport et checklist F5 : [P3_REPORT](docs/dev/P3_REPORT.md). Architecture : [P3_FOSSIL_DECISION](docs/dev/P3_FOSSIL_DECISION.md). Scope correctif prioritaire : [P3_DESIGN_FIXES](docs/dev/P3_DESIGN_FIXES.md), complétant [P3_BRIEF](docs/dev/P3_BRIEF.md).
 
-Antoine confirme le 2026-10-01 que tout fonctionne et que le GPU ne surchauffe plus. Il souhaite définir quelques modifications design avec l'orchestrateur avant une nouvelle passe.
+Antoine a validé le fonctionnement initial et le confort GPU. La revue produit a ensuite imposé le zoom et la finition sûre avant merge. Ces corrections sont livrées ; leur naturel attend un nouveau retest humain. Les réglages développeur sont déplacés vers F6/F7 (rayon), Shift+F6/F7 (puissance), Ctrl+F6/F7 (falloff).
 
 Travailler sur `prototype/p3-fossil`. **Pas de merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
 

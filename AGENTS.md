@@ -6,7 +6,7 @@ Lire `docs/brain/BRAIN.md`, `docs/brain/status.md` et les documents utiles à la
 
 ## Périmètre actuel
 
-Le projet est en **préproduction — P3 Fossile validé fonctionnellement par Antoine, non mergé ; passe design à cadrer avec l’orchestrateur**. P0/P1/P2 sont validés et mergés ; consulter `docs/dev/P3_REPORT.md` et `docs/dev/P3_FOSSIL_DECISION.md` pour le jalon courant. **Ne pas merger P3 ni commencer P4/P5 sans nouvelle autorisation explicite d’Antoine.** La présence d’une roadmap ou de notes techniques ne lance pas ses étapes.
+Le projet est en **préproduction — corrections gameplay P3 implémentées et testées ; retest humain requis, PR #4 non mergée**. P0/P1/P2 sont validés et mergés. `docs/dev/P3_DESIGN_FIXES.md` est la source de vérité de cette passe ; consulter `docs/dev/P3_REPORT.md` et `docs/dev/P3_FOSSIL_DECISION.md` pour les résultats. **Ne pas merger P3 ni commencer P4/P5 sans nouvelle autorisation explicite d’Antoine.** La validation fonctionnelle initiale ne vaut pas validation du nouveau workflow Chisel → Brush. La présence d’une roadmap ne lance pas ses étapes.
 
 ## Invariants de conception
 

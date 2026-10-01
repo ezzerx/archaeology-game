@@ -96,6 +96,14 @@ Décision complète : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Résul
 
 Antoine confirme : « Ok tout fonctionne et le GPU ne surchauffe plus. » Le fonctionnement P3 est validé humainement et le cap 240 FPS est conservé. Il souhaite cadrer quelques modifications design avec l'orchestrateur avant une nouvelle passe ; leur contenu reste à définir. Ce retour n'autorise ni le merge de la PR #4 ni P4/P5.
 
+## Corrections gameplay P3 — 2026-10-01
+
+Le cadrage suivant est confirmé dans [P3_DESIGN_FIXES](../dev/P3_DESIGN_FIXES.md) : zoom joueur à la molette et workflow sûr Chisel → Brush obligatoires avant merge. La validation initiale ne ferme pas ce nouveau gate.
+
+Implémentation : zoom orthographique 1×–3× au curseur, marge Chisel configurable de 2 mm, finition Brush locale de 1 mm/s dans cette marge seulement. Efficacités P2 hors marge et dégâts volontaires sur os exposé conservés. Proximité dérivée des hauteurs : aucune nouvelle map. Réglages debug déplacés sur F6/F7 et modificateurs ; Home restaure le cadrage et R restaure aussi le spécimen.
+
+Le scénario automatique de douze zones conserve 100 % de condition, puis un impact volontaire donne 97 %. Le retest humain doit encore confirmer que le geste est naturel ; PR #4 non mergée et P4/P5 bloqués. Le contraste Bone/Clay reste différé à P4/P6.
+
 ## Future product pillars confirmed — 2026-10-01
 
 These directions are now confirmed as intended future features, but their detailed design is deliberately deferred until the core excavation loop and visual pipeline are validated.

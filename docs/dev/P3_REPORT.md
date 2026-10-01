@@ -1,136 +1,140 @@
-# Rapport P3 — Fossil / Exposure / Bone Contact
+# Rapport P3 — Fossile et corrections de précision
 
-Date : **2026-10-01**. Branche : **`prototype/p3-fossil`**. Base initiale : `4472fef` après le merge P2 `9b8423f`. Documentation de `main` intégrée jusqu'à `f4e94fa` (roadmap ART0 et systèmes futurs, sans implémentation de ces étapes).
+Date : **2026-10-01**. Branche : **`prototype/p3-fossil`**. [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon, **non mergée**.
 
-Livraison : [PR #4](https://github.com/ezzerx/archaeology-game/pull/4), en brouillon vers `main`, **non mergée**.
+**Corrections implémentées et vérifiées techniquement ; retest humain Chisel → Brush requis avant clôture P3. P4/P5 non commencés.** Source de vérité de cette passe : [P3_DESIGN_FIXES](P3_DESIGN_FIXES.md). Code correctif : `79b3193` ; notes canoniques P0–P7 de `main` intégrées par `6692c8a`.
 
-**Fonctionnement P3 validé par Antoine ; passe design à cadrer avec l'orchestrateur. Merge et P4/P5 non autorisés.**
+## Retour humain et périmètre
 
-## Retour humain — 2026-10-01
+Antoine avait validé le fonctionnement initial et confirmé que le GPU ne surchauffait plus. La revue produit a ensuite confirmé l'envie de poursuivre la découverte, mais imposé deux corrections avant merge : zoom de précision et workflow d'exposition permettant de conserver 100 % de condition. Cette validation initiale ne vaut pas validation du nouveau workflow.
 
-Antoine confirme : « Ok tout fonctionne et le GPU ne surchauffe plus. » Ce retour valide le fonctionnement du prototype et le confort GPU ressenti ; aucun nouveau relevé chiffré n'est fourni. Il souhaite discuter de quelques modifications design avec l'orchestrateur avant une nouvelle passe. Leur contenu reste à définir ; la PR demeure en brouillon, non mergée. La checklist ci-dessous est conservée pour les retests, sans attribuer au retour global des vérifications détaillées non rapportées.
+La distinction Bone/Clay, les ombres et les matériaux restent greybox. La solution visuelle complète est différée à P4/P6 ; aucun son, VFX, outil final, dossier, progression, classification, fragment, musée ou sauvegarde n'a été ajouté.
 
-## Résultat et architecture
-
-Specimen B-17 est entièrement caché au lancement. La fouille découvre progressivement une matière ivoire ; les cellules d'os arrêtent le retrait, tandis que la matrice voisine peut descendre au fond du bloc. Le fossile ressort donc du creux, sans second mesh ni changement de picking.
+## Architecture et comportement livré
 
 | Élément | Responsabilité |
 |---|---|
-| `FossilField` | Composition fixe rasterisée une fois, plafonds float32 et IDs d'os, texture RGF statique |
-| `FossilState` | Flags/counters d'exposition, condition, événements de contact et reset |
-| `WorkingSurface` | Intégration P1/P2 puis clamp local au plafond osseux ; dégâts au centre avant l'impact |
-| `ExcavationBlock` / shader | Rendu ivoire du texel exposé, relief et picking P1 conservés |
-| F1 / notification | Mesures du spécimen et contact unique, sans dossier ni progression |
+| `FossilField` | Champ fixe 1024×640 : plafond float32 et ID, texture RGF statique |
+| `FossilState` | Exposition, condition, événements et reset |
+| `WorkingSurface` | Retrait P1/P2, marge du Chisel, finition locale du Brush, clamp osseux |
+| `ExcavationBlock` / shader | Relief et picking exacts existants, matériau osseux sur texels exposés |
+| `PrecisionZoom` | Zoom orthographique fluide ancré au point 3D sous le curseur |
+| F1 / indications | Mesures, couverture restante, proximité et découverte |
 
-Décision exacte, stockage, alternatives et limites : [P3_FOSSIL_DECISION](P3_FOSSIL_DECISION.md).
+B-17 contient **32 290 cellules** : Skull **7 756**, Spine / Vertebrae **7 243**, Ribs **10 771**, Hind Limb **6 520**. Composition déterministe et initialement invisible. Les plafonds normalisés vont de **0,236786 à 0,355**. L'os bloque le retrait ; la matrice voisine reste excavable jusqu'au fond, ce qui fait émerger l'os dans le relief.
 
-Le fossile contient **32 290 cellules** : Skull **7 756**, Spine / Vertebrae **7 243**, Ribs **10 771**, Hind Limb **6 520**. Orbite ouverte, mâchoire, vertèbres séparées, queue courbe, cage partielle et patte repliée sont dessinées par coordonnées fixes. Aucun asset externe, modèle téléchargé, hasard ou classification.
+### Chisel → Brush
 
-## Plafond et matière osseuse
+- **Marge : 2,0 mm**, configurable sur `ExcavationBlock.precision_margin_mm`, convertie selon la profondeur excavable réelle du bloc. Aucune nouvelle map mutable.
+- **Chisel sur os caché :** arrêt à `bone_ceiling + margin`. Les impacts suivants, même énormes, ne franchissent pas la marge. Une couverture déjà partiellement brossée n'est ni retirée ni remontée.
+- **Brush dans la marge d'une cellule osseuse :** finition de **1,0 mm/s au centre**, modulée par le falloff, y compris à travers Clay/Sandstone. Réglage `precision_speed_mm_s` dans la Resource Brush. Clamp exact au sommet osseux et zéro dommage.
+- **Brush ailleurs :** efficacité P2 conservée, Soil **1**, Clay **0,06**, Sandstone **0**. Clay était déjà très faiblement excavable ; la passe ne transforme pas le Brush en outil général pour les matières dures.
+- **Chisel sur os déjà exposé :** **−3 points par impact centré dessus**, au maximum un événement de dégât. La hauteur de l'os ne change jamais. Un centre dans la matrice reste sûr même si le bord de l'outil recouvre de l'os.
 
-`surface_height >= bone_ceiling` est imposé dans la boucle d'édition. Les plafonds normalisés vont de **0,236786 à 0,355**, soit environ **24,2–36,2 mm au-dessus du fond excavable**. Le travail restant est abandonné à l'os. Les cellules libres restent excavables jusqu'à `0`.
+Le message contextuel **Delicate material nearby — switch to Soft Brush** signale la couverture fine sous le curseur. La proximité est calculée, sans nouveau flag persistant. **Bone detected / Delicate material underneath** apparaît seulement lors de l'exposition réelle, une fois par reset, pendant huit secondes. Aucun effet P4.
 
-La surface P1 garde ~1,31 M triangles. Le shader emploie les mêmes texels que le CPU pour décider de l'exposition ; la géométrie et les normales suivent toujours les triangles déplacés. Ivoire chaud, roughness **0,43**, specular **0,38**, aucune émission osseuse. Le voile de résidu P2 peut couvrir légèrement l'os puis être retiré au Blower. Le résidu ne change ni géométrie, ni exposition structurelle, ni condition, ni picking.
+L'exposition reste fondée sur les hauteurs RF stockées et l'epsilon binaire **1/65536**, indépendamment du résidu. Les cinq événements P3 sont conservés : `bone_first_contact`, `bone_cell_exposed`, `bone_component_exposure_changed`, `bone_condition_changed`, `specimen_reset`. Ils observent la surface synchronisée ; les changements de composants restent regroupés par opération.
 
-## Premier contact, condition et exposition
+### Zoom et entrées
 
-- Le premier impact révélant une cellule cachée est protégé, y compris après une découverte ailleurs sur le spécimen.
-- Le Chisel examine **le centre avant excavation** : s'il est déjà exposé, **−3 points par impact**, au maximum une pénalité. Un centre dans la matrice reste sûr même si le bord du footprint touche de l'os.
-- Condition initiale **100**, bornée à **0–100**. Brush/Blower sûrs ; aucune destruction, géométrie cassée ou fin de partie.
-- `Bone detected` / `Delicate material underneath` apparaît **une fois par reset**, pendant huit secondes. Aucun son, effet ou musique ajouté.
-- Exposition : hauteur RF de cellule ≤ plafond + **1/65536 ≈ 0,00001526**, epsilon exact en float32. Une cellule représente **0,00310 %** du spécimen. Pourcentages calculés sur les surfaces occupées globalement et par composant, sans dépendance au résidu.
-- Événements découplés : `bone_first_contact`, `bone_cell_exposed`, `bone_component_exposure_changed`, `bone_condition_changed`, `specimen_reset`. Les changements de composant sont regroupés par opération et les événements sont émis après synchronisation de la height map.
+- Molette normale, avec ou sans Shift/Ctrl : **zoom 1× → 3×**. Projection orthographique et orientation **84°** fixes, aucune rotation ni caméra libre.
+- Le hit 3D sous le curseur reste ancré pendant l'interpolation. Hors du bloc, zoom autour du centre de la vue.
+- **Home / Origine** rétablit la vue initiale sans modifier le terrain. **R** restaure le terrain, le fossile et la vue 1×.
+- Le zoom annule le geste courant ; un nouveau clic permet de reprendre. Le resize et la perte de focus annulent également les gestes et figent l'interpolation en cours.
+- Contrôles développeur, disponibles dans un build debug : **F6/F7** rayon −/+, **Shift+F6/F7** puissance, **Ctrl+F6/F7** falloff. Ils sont indiqués dans F1, sans conflit avec la molette.
 
-F1 conserve outils/matériaux/perf et ajoute les quatre composants, le nombre de cellules, l'exposition, la condition, l'os sous le curseur, sa hauteur et son plafond, le contact et les derniers dégâts. Les quatre vues F2 existantes restent inchangées ; aucune silhouette cachée affichée par défaut.
+Le contrôle de taille inclut la fenêtre native : son redimensionnement ne déclenche pas forcément `Viewport.size_changed` quand la résolution logique reste fixe. L'arrêt du zoom tolère la précision float32 de la caméra pour éviter des mises à jour et du picking perpétuels après convergence.
 
-`R` restaure les octets initiaux de hauteur et résidu (fractions CPU incluses), efface l'exposition globale/composants, rétablit 100 de condition et réarme la première découverte. Il annule le clic et la cadence du Chisel ; l'outil sélectionné est conservé.
+Détails : [P3_FOSSIL_DECISION](P3_FOSSIL_DECISION.md).
 
-## Cap runtime
+## Vérifications fonctionnelles
 
-**`application/run/max_fps=240`**, réglage officiel de Godot, actif sur les runs normaux/F5. **Physique : 60 Hz**. Les tests contrôlent à la fois `ProjectSettings` et `Engine`. VSync reste dans son état précédent et peut limiter plus bas. [Documentation officielle](https://docs.godotengine.org/en/stable/classes/class_engine.html#class-engine-property-max-fps).
+**500 checks, zéro échec** avec Godot **4.7.2 stable Standard** :
 
-Le benchmark P3 conserve ce cap ; l'option explicite `--uncapped` permet de mesurer la marge. P2 garde son cap de 60. Le benchmark P1 force désormais explicitement `Engine.max_fps=0` pendant ses phases historiques de marge, puis revient à 60 pour ses phases plafonnées et au réglage du projet à sa sortie. Aucun fichier de projet modifié par les benchmarks.
+| Suite | Checks |
+|---|---:|
+| P0 | 45 |
+| P1 | 52 |
+| P2 | 97 |
+| P3 historique | 87 |
+| P3 précision / zoom | 219 |
 
-Le fichier `project.godot` comportait une réécriture locale préexistante par l'éditeur. Elle est préservée hors commits ; le nom P3 et le cap sont versionnés. La valeur physique 60 Hz déjà présente dans Git est explicitement rétablie dans la copie locale, où l'éditeur avait omis ce défaut.
+Les assertions historiques sont conservées. Les fixtures de découverte P3 utilisent désormais Chisel puis Brush, avec deux assertions supplémentaires sur la marge. La fixture de nettoyage reçoit du résidu neuf puisque la finition l'avait déjà nettoyée. Le noyau géométrique sans règle d'outil reste utilisé pour les oracles de relief, jamais comme entrée joueur.
 
-Observation automatique séparée de la scène ordinaire, **sans override FPS/VSync** : **120 relevés sur deux minutes**, affichage compteur **240–241 FPS** (moyenne 240,04), cap moteur **240** et physique **60** à chaque relevé. Viewport 1920×1080, VSync réglé à 1. La fenêtre glissante du compteur explique l'arrondi ponctuel à 241. [Données runtime](evidence/p3-runtime.json).
+Les nouveaux tests couvrent Clay et Sandstone, deux profondeurs physiques de bloc, marge configurable, très gros impacts, finition partielle, clamp exact, efficacités P2 hors marge, matrice voisine, dégâts volontaires, reset et entrées.
 
-Pendant les **50 dernières secondes** observées de ce runtime **au repos**, 53 relevés `nvidia-smi` indiquent **27–32 % GPU**, moyenne **28,72 %**, environ **92,2 W**. C'est la charge de **tout le GPU**, pas une attribution par processus ni un test humain en fouille. Le retour humain ultérieur sur le GPU est consigné séparément en tête de rapport. [Résumé](evidence/p3-gpu-summary.json), [relevés](evidence/p3-gpu-runtime.csv).
+**Workflow avec outils par défaut, sans préparation directe des hauteurs :** douze zones successives Chisel → Brush révèlent **1 698 cellules / 5,259 %** du spécimen, avec **100 % de condition**, **un premier contact** et **zéro dégât**. Un impact volontaire ensuite donne **97 %**. Cela prouve la possibilité mécanique ; le caractère naturel du geste reste à juger par Antoine.
 
-## Tests automatisés
+**Zoom :** 4 432 rayons, dont 528 sur os, 676 sur fond et 92 sur pentes ; facteurs 1 / 1,5 / 2 / 3, centre et bords du bloc. Quatre tailles de fenêtre native (1920×1080, 1280×800, 800×1200, 2560×1080), viewport logique 1920×1080 conservé par stretch. Erreur maximale d'ancrage pendant interpolation : **0,000367 pixel** ; aller-retour picking : **0,000000479 m**. Orientation, focus, resize, raccourcis, absence de reprise parasite et arrêt des mises à jour après convergence sont vérifiés.
 
-**Godot réellement exécuté : 4.7.2 stable `ed1daf0bf`, Windows, Compatibility/OpenGL 3.3, RTX 5080 / Ryzen 7 9800X3D, pilote 610.88.**
-
-- P0 **45**, P1 **52**, P2 **97**, P3 **85** : **279 checks, zéro échec**, y compris six cas à la frontière de l'epsilon float32.
-- Les assertions historiques sont conservées. Une fixture P1 de fond profond est déplacée de la vertèbre centrale vers une zone libre ; le test vérifie toujours le fond physique, ses pentes et les transformations.
-- Champ déterministe, bornes/IDs/plafonds, énormes deltas, voisin libre sous l'os, premier contact protégé, dégâts uniques au centre, outils sûrs, clamp de condition, événements uniques et reset exact.
-- Oracle d'exposition indépendant : recomptage des données RF et IDs sur toute la carte, comparé aux caches/flags et aux quatre pourcentages en état intact, partiel, complet et remis à zéro.
-- Entrées réelles dans la scène : Chisel sur os, changement pendant le clic, perte/reprise de focus, nouveau clic, `R` maintenu, notice et cadence remis à zéro. Les autres cas fenêtre/resize/toolbar restent couverts par P2.
-- Picking P1 : oracle natif **180 rayons**, erreur maximale **0,00000020 m**. P3 : **493 roundtrips caméra**, dont 351 contacts osseux et 142 sur matrice, erreur maximale **0,00000351 m**, occlusions traitées.
-
-Rejouer :
+Preuve : [p3-precision-tests.json](evidence/p3-precision-tests.json).
 
 ```powershell
-.\tests\check_p3.ps1 -GodotBin 'C:\Users\antoi\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe' -Graphical
+& tests/check_p3.ps1 -GodotBin 'C:\Users\antoi\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe' -Graphical
 ```
 
-Cette commande contrôle version, import, codes de sortie et erreurs des logs, puis les benchmarks P2, P1 et P3. Logs et captures de travail : `work/test-logs/`, exclus de Git. Le benchmark P3 peut rester ouvert avec `-- --inspect` ; il remet alors le spécimen intact et restaure le cap 240.
+Le script vérifie version, import, codes de sortie et erreurs des logs. Les benchmarks graphiques sont séquentiels pour éviter leur interférence. Les logs et captures de travail restent dans `work/test-logs/`, exclus de Git.
 
-## Mesures graphiques et preuves
+## Performances et comparaison GPU / picking
 
-Renderer réel **1920×1080**, simulation 60 Hz, VSync désactivée seulement dans les benchmarks. Cinq phases P3 de **6 secondes** via les entrées et le contrôleur de production, cap normal **240**, hors préparation/reset/chauffe/captures.
+RTX 5080, Ryzen 7 9800X3D, renderer Compatibility, **1920×1080**, physique 60 Hz. Six phases P3 de six secondes, cap **240**, VSync désactivée seulement pour le benchmark ; préparation et captures exclues du timing.
 
-| Phase P3 | FPS observés | Frame P95 / max (ms) | Édition CPU moyenne (ms) | Édition par tick actif (ms) |
-|---|---:|---:|---:|---:|
-| Brush, matrice loin de l'os | 239,74 | 8,33 / 10,16 | 3,726 | 3,726 |
-| Révélation au bord du crâne | 239,89 | 4,30 / 5,98 | 0,050 | 0,647 |
-| Chisel répété sur os exposé | 239,89 | 4,30 / 6,03 | 0,016 | 0,185 |
-| Brush sur os + résidu | 239,85 | 5,24 / 6,63 | 0,900 | 0,900 |
-| Blower sur os + résidu | 239,88 | 4,54 / 5,75 | 0,204 | 0,204 |
+| Phase | FPS | Frame P95 / max (ms) | Édition CPU moyenne (ms) |
+|---|---:|---:|---:|
+| Brush dans la matrice | 239,77 | 8,244 / 11,502 | 3,698 |
+| Brush, révélation au bord du crâne | 239,74 | 8,106 / 9,908 | 3,579 |
+| Même finition au zoom 3× | 239,74 | 8,157 / 9,905 | 3,600 |
+| Chisel sur os exposé | 239,89 | 4,290 / 5,455 | 0,017 |
+| Brush sur os + résidu | 239,86 | 5,088 / 5,852 | 0,771 |
+| Blower sur os + résidu | 239,88 | 4,552 / 5,411 | 0,204 |
 
-La moyenne de 240 FPS n'implique pas toutes les frames à 4,17 ms : les ticks d'excavation sont plus longs, notamment au Brush. Les cinq phases passent le budget d'interaction existant (≥58 FPS, frame P95 <20 ms) et le contrôle du plafond. **Zéro erreur graphique.** Le Chisel sur os déjà entièrement dégagé et le Blower réalisent **zéro upload de hauteur**. La phase de révélation passe de 0 à **314 cellules** ; les 27 impacts directs sur os déjà exposé donnent **100→19** de condition. Brush/Blower conservent 100.
+La moyenne de 240 FPS n'implique pas toutes les frames à 4,17 ms : l'édition se fait à 60 Hz. Les phases passent les budgets existants, sans modification des seuils. Les deux phases de finition exposent **136 nouvelles cellules** à **100 %**. Les 27 impacts sur os exposé donnent **100 → 19**, sans upload de hauteur ; le Blower conserve également les hauteurs.
 
-Le contact depuis un bloc intact avec le Chisel par défaut arrive après **16 impacts**, expose **3 cellules / 0,00929 %**, condition **100** et une seule notification. Cette fixture volontairement minuscule valide la protection sans surestimer l'exposition.
+Le scénario graphique à **2,5×**, avec 80 impacts de préparation par le Chisel par défaut puis 3,5 s de Brush via les entrées de production, expose **134 cellules**, reste à **100 %**, puis descend à **97 %** après l'impact volontaire.
 
-Oracle GPU P3 : **64 985 pixels** (6 864 os, 58 121 matrice), erreur maximale de hauteur normalisée **0,004679** pour une tolérance de 0,01 sur framebuffer 8 bits. Erreur maximale de couleur **0,010883** pour une tolérance de 0,02 : le matériau osseux rendu concorde avec les cellules structurellement exposées. Textures hauteur, résidu et champ fossile relues identiques au CPU.
+**Oracle GPU : 64 985 pixels par zoom** à 1× / 2× / 3×, soit **194 955 pixels** au total. Erreur maximale de hauteur normalisée **0,004826**, seuil 0,01 sur framebuffer 8 bits. Erreur de couleur ≤ **0,010883**, seuil 0,02. Les trois textures relues restent identiques au CPU.
 
-Régressions graphiques : **P1 zéro échec** (864 pixels, erreur hauteur 0,004146), **P2 zéro échec** sur sept phases, environ **59,76–59,89 FPS** au cap 60. Le Brush rapide garde une marge étroite : **frame P95 19,859 ms**, édition moyenne **10,053 ms**. Deux premiers runs avaient dépassé 20 ms (20,351 puis 20,290) ; les lectures fossiles inutiles au-dessus des os ont été éliminées, sans baisser les seuils ni toucher au mesh. Ces mesures courtes restent sensibles à la charge du PC.
+La classification os/matrice est discontinue à la frontière d'un texel : **4 pixels à 2× et 4 à 3×** tombent sur cette frontière. L'oracle exige alors la couleur d'une cellule voisine réelle à **moins de 0,01 texel** (moins de 0,05 pixel écran à 3×). Aucun pixel n'est ignoré ; les seuils de hauteur et couleur restent inchangés. Les écarts bruts et ces huit cas sont enregistrés dans le JSON. L'ancrage et les hauteurs ne présentent pas de décalage perceptible.
 
-Le stress synthétique P1 coin-à-coin demeure hors budget : **11,26 FPS**, édition moyenne **62,50 ms**. Il n'est pas représentatif des gestes normaux et n'a pas fait l'objet d'un chantier d'optimisation.
+Régressions graphiques : **P1 et P2 zéro échec**. P2 reste à environ 59,76–59,89 FPS au cap 60 ; Brush rapide : frame P95 **19,561 ms**, édition moyenne **10,019 ms**. P1 rapide au cap 60 : P95 **19,937 ms**. La marge reste étroite et dépend de la charge du PC. Le stress synthétique extrême P1 reste hors budget (**12,04 FPS**, CPU moyen **58,57 ms**) ; aucun chantier d'optimisation du mesh n'est engagé.
 
-Données brutes : [P3](evidence/p3-benchmark.json), [replay P2](evidence/p2-on-p3-benchmark.json), [replay P1](evidence/p1-on-p3-benchmark.json).
+Données : [P3 précision](evidence/p3-precision-benchmark.json), [P2 sur cette passe](evidence/p2-on-p3-precision-benchmark.json), [P1 sur cette passe](evidence/p1-on-p3-precision-benchmark.json).
 
-![Premier contact réel, seulement trois cellules exposées](evidence/p3-first-contact.png)
+## Cap runtime et reset
 
-![Fossile émergent dans une grande cavité de test](evidence/p3-emergence.png)
+`application/run/max_fps=240` est conservé et observé dans les nouvelles suites et tous les benchmarks P3 ; physique **60 Hz** inchangée. Les benchmarks P1/P2 peuvent explicitement modifier leur propre plafond. La VSync normale reste inchangée.
 
-Captures du renderer, sans retouche. La grande cavité est une **fixture de vérification** créée par l'API d'excavation ; le jeu démarre toujours intact. Elle ne prétend pas représenter une session humaine.
+La mesure initiale de deux minutes sans override reste conservée : 120 relevés, compteur 240–241, cap moteur 240 ; GPU global au repos 27–32 % sur les 50 dernières secondes. Ce sont les [mesures initiales](evidence/p3-runtime.json), pas une nouvelle mesure thermique de cette passe. Antoine a confirmé ensuite l'absence de surchauffe. Le retest vérifiera également le confort en fouille avec zoom.
 
-## Limites conservées après validation fonctionnelle
+`R` restaure les octets de hauteur et résidu, les fractions CPU du résidu, exposition 0 %, condition 100 %, événements/notice réarmés, vue initiale et absence de reprise du clic. L'outil sélectionné est conservé. Le champ fossile reste immuable. La réécriture locale préexistante de `project.godot` reste hors commits ; aucun réglage runtime supplémentaire n'y est introduit.
 
-1. Une hauteur par colonne : l'os est une colonne solide, sans sous-face ni excavation en dessous. Les bords s'interpolent sur environ un texel. Aucune promesse de géométrie anatomique finale.
-2. Palette, ombres en marches sur pentes fortes, contours et résidu restent greybox. Le Brush ne retire toujours pas Sandstone : autour d'un os dans le grès, creuser prudemment au Chisel avec le centre dans la matrice, puis nettoyer au Blower.
-3. Les premières cellules peuvent être minuscules et dans l'ombre d'une cavité étroite. La lisibilité et le plaisir de découverte doivent être jugés en manipulant la scène, pas seulement sur une capture dégagée.
-4. Coûts hérités : grille dense, upload RF complet quand dirty, stress diagonal extrême hors budget, collider enveloppe. Aucun chantier d'optimisation du mesh n'a été entrepris.
-5. Données nouvelles : RGF statique **5 Mio GPU**, données CPU persistantes **8,75 Mio**. Aucune nouvelle texture mutable ou reconstruction de mesh pendant les gestes.
-6. Aucun système de classification, fragments, objectifs, dossier final, completion, audio/VFX, débris, caméra, outils finaux, mains, musée, sauvegarde, économie ou Steam.
+## Captures et limites
 
-**La validation humaine du fonctionnement est consignée en tête de rapport.** La passe design reste à cadrer ; le merge et P4/P5 demandent une nouvelle autorisation explicite d'Antoine.
+![Couverture de sécurité après Chisel, zoom 2,5×](evidence/p3-precision-margin.png)
 
-## Checklist exacte pour Antoine — conservée pour retest
+![Exposition après finition au Brush, zoom 2,5×](evidence/p3-precision-reveal.png)
 
-Ouvrir `project.godot` sur **`prototype/p3-fossil`** dans **Godot 4.7.2 Standard**, puis **F5**. Relancer pour restaurer les réglages par défaut. `1` Brush, `2` Chisel, `3` Blower ; toujours relâcher puis cliquer après un changement d'outil. F1 masque/affiche les deux panneaux ; F2 doit être en **SHADED**.
+Captures du vrai renderer, sans retouche. La préparation au Chisel utilise les outils par défaut, et la finition passe par le contrôleur joueur. Les grandes cavités des oracles GPU restent des fixtures de géométrie ; elles ne représentent pas une extraction humaine complète.
 
-1. [ ] **Découverte initiale.** Vérifier qu'aucun os/squelette n'apparaît sur le bloc intact. Brosser, puis utiliser le Chisel lorsque l'argile résiste. Pour un test dirigé, le haut du crâne se trouve vers **28 % de la largeur / 30,5 % de la hauteur du bloc** (UV `0.28, 0.305` dans F1).
-2. [ ] **Bone detected.** À l'apparition des premières cellules, observer la notification exacte. Continuer ailleurs : elle ne doit pas se répéter avant `R`. Souffler le résidu pour mieux distinguer l'ivoire.
-3. [ ] **Premier contact protégé.** Après `R`, rejoindre à nouveau cette zone. À l'approche du plafond, donner des **clics brefs et séparés** au Chisel et relâcher dès le premier reveal : condition **100 %**. Un maintien prolongé peut déjà programmer l'impact suivant environ 0,22 s après.
-4. [ ] **Dégâts contrôlés.** Avec le centre posé sur `Exposed: yes`, faire deux clics Chisel séparés : **100 → 97 → 94**. Le rayon ne multiplie pas les dégâts. Déplacer le centre dans la matrice voisine : aucun dommage même si le bord de l'outil recouvre l'os.
-5. [ ] **Creuser autour.** Garder le centre du Chisel dans la matrice et descendre plus bas que l'os. L'os reste en place, dépasse du creux et prend la lumière ; aucun trou ou scintillement à son emplacement.
-6. [ ] **Picking.** Balayer le sommet de l'os, son bord, les pentes et le fond adjacent. Le cercle et son centre restent au contact sous la souris, y compris après resize et près d'une occlusion.
-7. [ ] **Outils sûrs et résidu.** Maintenir Brush puis Blower sur l'os : condition inchangée et os immobile. Le Blower retire le voile sans changer les hauteurs ni l'exposition ; le Brush peut travailler les matières compatibles dans son footprint.
-8. [ ] **Exposition.** Dégager différentes portions de crâne, vertèbres, côtes et patte. F1 indique le bon composant et des pourcentages progressifs ; un petit contact ne révèle pas artificiellement la moitié du squelette.
-9. [ ] **Reset.** Après exposition de plusieurs composants et dégâts, maintenir LMB puis presser `R` : bloc intact, résidu nul, exposition **0 %**, condition **100 %**, notice effacée. Rien ne reprend avant un nouveau clic ; une nouvelle découverte réaffiche une seule notice.
-10. [ ] **Entrées.** Changer `1→2→3` pendant le clic ; aucune reprise automatique. Alt+Tab en maintenant le clic, relâcher ailleurs, revenir : aucun impact parasite. Vérifier aussi les boutons et la sortie/réentrée du bloc.
-11. [ ] **Cap et GPU, 2–3 minutes.** Dans un F5 normal, F1 indique **Cap 240 FPS / Physics 60 Hz**. Observer FPS et charge GPU dans le Gestionnaire des tâches ou l'overlay NVIDIA pendant une fouille normale. Relever si la saturation précédente à 100 % diminue suffisamment ; un affichage ponctuel de 241 dû à la fenêtre de comptage n'est pas un cap désactivé.
+- Une hauteur par colonne : aucune excavation sous un os, aucun surplomb ou sous-face.
+- Palette, marches d'ombre, contraste os/argile et résidu restent greybox ; ce retour visuel est conservé pour P4/P6.
+- Grille dense (~1,31 M triangles), upload RF complet quand dirty et collider enveloppe hérités de P1. La passe n'ajoute aucune texture mutable ; le champ fossile initial occupe 5 Mio GPU / 8,75 Mio CPU persistants.
+- Le zoom déplace uniquement le cadrage pour son ancrage. Il ne propose pas de pan libre ; utiliser Home pour revenir à la vue d'ensemble.
+- Les tests automatiques ne concluent pas au plaisir ou au naturel du nouveau geste. **P3 attend le retest ci-dessous ; PR #4 non mergée, P4 bloqué.**
 
-Verdict attendu : « Je comprends immédiatement que je découvre un os, je peux creuser autour sans le traverser, et le changement de précaution est lisible. » Signaler sinon le geste, l'outil et l'endroit problématiques. **Ne pas lancer P4 sans nouvelle autorisation explicite.**
+## Checklist exacte de retest pour Antoine
+
+Ouvrir `project.godot` sur **`prototype/p3-fossil`**, Godot **4.7.2 Standard**, puis **F5** pour repartir des réglages par défaut. F1 affiche les mesures ; F2 doit être sur **SHADED**. Toujours relâcher puis cliquer après un changement d'outil.
+
+1. [ ] **Vue et zoom.** Après `R`, pointer le haut du crâne vers UV **0,28 / 0,305** (28 % de la largeur, 30,5 % de la hauteur du bloc). Zoomer à 2–3× avec la molette : point visuellement ancré, orientation fixe. La molette ne modifie ni rayon, ni puissance, ni falloff.
+2. [ ] **Approche sûre.** Sélectionner `2` Chisel et creuser au point visé. À **Delicate material nearby — switch to Soft Brush**, F1 doit montrer environ **2,00 mm** de couverture. Continuer quelques impacts au même point : aucun os exposé, aucune perte de condition, couverture conservée.
+3. [ ] **Finition.** Relâcher, sélectionner `1` Brush, recliquer et maintenir environ **2–4 secondes**. La fine couverture part progressivement, **Bone detected** apparaît une seule fois, la condition reste à **100 %**. `3` Blower peut enlever le résidu sans changer exposition/hauteur/condition.
+4. [ ] **Plusieurs zones.** Répéter Chisel → Brush sur un autre bord encore couvert, par exemple UV **0,31 / 0,36**, puis sur une côte. Garder le centre du Chisel hors des cellules déjà exposées. Les pourcentages augmentent et la condition peut rester à **100 %**.
+5. [ ] **Matrice voisine.** Avec le centre du Chisel dans la matrice libre, creuser plus bas que l'os. L'os reste en place et dépasse du creux. Le Brush loin des os conserve ses limites P2 sur les matières dures.
+6. [ ] **Erreur volontaire.** Poser le centre sur `Exposed: yes`, sélectionner Chisel puis donner un clic bref : **100 → 97**. Un deuxième clic séparé donne **94**. La hauteur de l'os reste inchangée ; le diamètre ne multiplie pas les dégâts.
+7. [ ] **Picking et cadrage.** Zoomer/dézoomer au centre, sur les bords du bloc, les pentes et l'os. Le centre du curseur reste sous la souris. Home / Origine retrouve la vue initiale sans effacer la fouille. Après zoom pendant un geste, recliquer pour reprendre.
+8. [ ] **Resize et focus.** Pendant un clic/zoom, redimensionner puis Alt+Tab, relâcher ailleurs et revenir. Aucun impact ni geste ne reprend seul ; un nouveau clic fonctionne au bon endroit.
+9. [ ] **Reset.** Après plusieurs révélations et dégâts, maintenir le clic puis `R` : bloc intact, résidu nul, exposition **0 %**, condition **100 %**, vue **1×**, indications effacées. La découverte suivante réaffiche une seule notice.
+10. [ ] **Runtime et verdict.** Fouiller **2–3 minutes** avec zoom : F1 indique **Cap 240 FPS / Physics 60 Hz**, sans retour de la surchauffe gênante. Confirmer surtout que passer du Chisel au Brush paraît naturel et permet de révéler plusieurs zones sans dégâts imposés.
+
+**Le retest doit valider le workflow, pas seulement l'absence d'erreurs. Aucun merge ni P4 sans nouvelle autorisation explicite.**
