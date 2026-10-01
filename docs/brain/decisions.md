@@ -1,90 +1,89 @@
 # Décisions initiales
 
-Source : décisions confirmées par Antoine au 2026-09-30 et au 2026-10-01. Ces décisions cadrent la préproduction ; elles ne constituent pas encore des résultats de playtest du game feel final.
+Source : décisions confirmées par Antoine au 2026-09-30 et au 2026-10-01.
 
 | Décision | Raison / conséquence |
 |---|---|
 | Canoniser avant de développer | Conserver une référence claire et portable |
-| ArchaeologyGame comme working title neutre | Permettre l’initialisation sans figer le nom commercial |
-| Dépôt GitHub privé par défaut | Conserver la conception dans le compte d’Antoine |
-| Tabletop fixe, sans personnage ni monde ouvert | Concentrer l’expérience sur les gestes de fouille et la découverte |
-| Game feel prioritaire | Tester résistance, réactions, son et rythme avant le volume de contenu |
-| Musée horizontal et squelettes réellement incomplets | Rendre l’acquisition de fragments tangible et motivante |
-| Prototype v0.1 focalisé | Un écran, un bloc, un fossile, trois outils ; aucune production étendue |
-| **DA v0.1 : 2.5D stylisée, tabletop, orthographique presque verticale** | Prioriser profondeur, cavités, ombres, poussière et révélation libre des os |
-| Pixel art abandonné comme cible du prototype | Éviter que la grille et les contours intentionnels limitent la fouille |
-| Références de philosophie visuelle | Assemble with Care, A Little to the Left, Potion Craft, Strange Horticulture — inspiration uniquement, aucune copie |
-| Specimen B-17 pour la v0.1 | Petit théropode fictif / indéterminé, adapté à une révélation progressive |
+| ArchaeologyGame comme working title neutre | Ne pas figer le nom commercial |
+| Dépôt GitHub privé | Conserver la conception dans le compte d’Antoine |
+| Tabletop fixe, sans personnage ni monde ouvert | Concentrer l’expérience sur la fouille |
+| Game feel prioritaire | Tester le geste avant le volume de contenu |
+| Musée horizontal avec squelettes incomplets | Méta-progression tangible |
+| Prototype v0.1 focalisé | Un écran, un bloc, un fossile, trois outils |
+| **DA v0.1 : 2.5D stylisée, tabletop, orthographique presque verticale** | Prioriser relief et révélation libre |
+| Pixel art non retenu pour le prototype | Éviter les contraintes de grille sur la fouille |
+| Références | Assemble with Care, A Little to the Left, Potion Craft, Strange Horticulture — inspiration seulement |
+| Specimen B-17 | Petit théropode fictif / indéterminé |
 | Outils v0.1 | Soft Brush, Chisel, Air Blower |
-| Matières cœur v0.1 | Loose Soil, Compact Clay, Sandstone ; Hard Rock secondaire |
-| Poussière = état gameplay | Casser → poussière → souffler → révéler |
-| Premier contact os protégé | Le premier contact agressif signale l'os sans pénaliser le joueur |
-| Bone Condition testée sans Game Over | Permettre une tension légère sans frustration forte |
-| Deux fragments récupérables automatiquement | Faire évoluer physiquement la table et tester la collection |
-| Keep Cleaning après complétion | Mesurer si le geste reste attirant une fois l'objectif déjà atteint |
-| Godot 4.7.2 stable Standard pour le prototype | Version P0 vérifiée en headless et localement |
-| Brain canonique dans le dépôt | Reprendre depuis un autre PC sans dépendre de la mémoire globale |
+| Matières cœur | Loose Soil, Compact Clay, Sandstone |
+| Poussière / résidu | Le vrai game feel poussière est P4 ; P2 peut utiliser un état minimal debug-only si nécessaire au Blower |
+| Premier contact os protégé | P3 : signaler sans pénaliser |
+| Bone Condition sans Game Over | Tension légère |
+| Deux fragments récupérables | Collection visible |
+| Keep Cleaning | KPI comportemental central |
+| Godot 4.7.2 stable Standard | Stack prototype validée localement |
+| Brain canonique dans le dépôt | Reprise portable |
 
 ## Spécification de référence
 
-La référence détaillée pour l'implémentation du prototype est :
+[PROTOTYPE_V0_1_SPEC.md](../PROTOTYPE_V0_1_SPEC.md) prévaut pour le produit.
 
-[PROTOTYPE_V0_1_SPEC.md](../PROTOTYPE_V0_1_SPEC.md)
+## Verdict P0
 
-En cas de conflit entre une ancienne note de brainstorming et cette spec, **la spec v0.1 la plus récente prévaut pour le prototype**.
+**Validé par Antoine le 2026-10-01.**  
+PR #1 mergée : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 
-## Décisions techniques P0 — 2026-10-01
+## Décisions techniques P1
 
 | Décision | Raison / limite |
 |---|---|
-| Godot 4.7.2 stable Standard, GDScript, Compatibility | Stable vérifiée officiellement, exécutée en headless puis validée localement |
-| Image RF 1024×640, mask scalaire temporaire | Écriture CPU locale et inspection simple ; P0 ne lui donne volontairement aucune sémantique matière/profondeur |
-| Footprint balayé entre positions à 60 Hz | Couvrir le trait sans gaps, avec falloff configurable et déterminisme pour les mêmes entrées |
-| Collision plane avec rejet des côtés | Mapping précis validé en P0 ; P1 doit réévaluer le picking avec relief |
-| Paramètres du DebugExcavator en Resource | Tuning accessible sans anticiper les outils finaux |
-| Gate humaine avant P1 | Antoine a testé le rendu et l'interaction localement avant merge |
-
-### Verdict P0
-
-**Validé par Antoine le 2026-10-01.**
-
-PR #1 mergée vers `main`, merge commit :
-`244aba3652a03aac908b1aabe1651c3b9edb1315`.
-
-P1 est autorisé.
-
-## Décisions d'implémentation P1 — 2026-10-01
-
-Ces décisions sont techniques, prises dans la mission P1 autorisée. Elles ne constituent pas la validation humaine du game feel.
-
-| Décision | Raison / limite vérifiée |
-|---|---|
-| Grille native dense déplacée GPU, carte hauteur RF 1024×640 | Vraies cavités, une seule map runtime dirty, aucune reconstruction mesh par geste |
-| Picking DDA + triangles identiques au rendu | Évite le décalage d'un plan ou d'une interpolation différente ; oracle mesh et lecture GPU passent |
-| Tolérance relative de ray/triangle | La tolérance absolue du helper générique rejetait les triangles millimétriques ; régression P0 détectée puis corrigée |
-| Deux frontières statiques légèrement ondulées, trois Resources matière | Bloc test déterministe sans générateur ; résistances configurées 1 / 3 / 8 |
-| Retrait intégré par couche, hauteur bornée et reset exact | Aucun contournement d'une couche dure lors d'un grand tick |
-| Base sans cap supérieur doublant le fond | Élimine le z-fighting constaté graphiquement à profondeur minimale |
-| Édition packed spécialisée + Image de staging synchronisée | Réduit le coût des strokes ; oracle indépendant protège la formule optimisée |
-| Hard Rock omis | Optionnel ; les trois matériaux suffisent à la preuve P1 |
-| Validation humaine après les tests techniques | Antoine a testé P1 et confirmé son fonctionnement le 2026-10-01 ; verdict ci-dessous |
-
-Référence : [P1_REPORT](../dev/P1_REPORT.md), [P1_RELIEF_DECISION](../dev/P1_RELIEF_DECISION.md). Limite mesurée : le stress coin-à-coin répété dépasse le budget malgré la fluidité nominale à 60 FPS. Aucun P2+ engagé.
+| Grille dense GPU + height RF 1024×640 | Cavités précises sans reconstruction mesh par geste |
+| Picking DDA sur triangles identiques au rendu | Alignement souris/relief exact |
+| Tolérance relative ray/triangle | Adaptée aux triangles millimétriques |
+| Deux frontières statiques ondulées | Bloc test déterministe sans génération procédurale |
+| Retrait intégré par couche | Ne pas sauter une couche résistante |
+| Base sans cap supérieur doublé | Évite le z-fighting au fond |
+| PackedFloat32Array + Image staging | Hot loop plus efficace |
+| Hard Rock omis | Non nécessaire à la preuve P1 |
 
 ### Verdict P1
 
-**Validé par Antoine le 2026-10-01 : « j'ai testé tout fonctionne ».** Validation globale du fonctionnement sur la livraison `b8a61661405b6413c4d4dbb385a72bbc007caac7`, sans défaut remonté. Le game feel final de la V0.1 reste un objectif ultérieur.
+**Validé par Antoine le 2026-10-01 : « j'ai testé tout fonctionne ».**
 
-La [PR #2](https://github.com/ezzerx/archaeology-game/pull/2) reste ouverte en brouillon, non mergée. Le merge et le démarrage de P2 attendent une demande explicite ; cette confirmation de test ne les autorise pas.
+PR #2 mergée vers `main` :
+`960642c3fc6972bdb257c96abd43b90c148e632d`.
 
-## Points encore ouverts pour P2+
+P2 est autorisé.
 
-- coût des empreintes extrêmes et des éventuels futurs objets physiques ;
-- stratégie d'upload GPU lorsque plusieurs maps existeront ;
-- valeurs finales de résistance, rayon, cadence et dégâts ;
-- assets et samples audio de production ;
-- tuning du seuil de révélation des composants ;
-- comportement final du musée au-delà du concept canonique ;
-- éventuelle génération procédurale, économie ou progression longue après validation du cœur.
+## Review technique après P1
 
-Ne pas transformer ces points en nouvelles features hors jalon sans décision explicite.
+Architecture jugée solide pour le prototype.
+
+Watchpoints :
+
+- 1,31 M triangles : précision excellente, coût production à réévaluer plus tard ;
+- upload RF complet : ne pas multiplier les maps sans mesure ;
+- stress coin-à-coin hors budget : non bloquant pour usage naturel ;
+- collider physique approximatif : acceptable tant que seuls les outils utilisent le picking exact ;
+- résistances 1/3/8 : ne pas les considérer comme tuning final.
+
+## Décision de scope P2
+
+P2 doit construire les **outils**, pas le fossile ni le polish complet.
+
+- Soft Brush : interaction continue, large et douce, très efficace sur Loose Soil, presque inefficace sur Clay, inefficace sur Sandstone.
+- Chisel : impacts discrets cadencés, efficace sur Clay, utile sur Sandstone, non destiné au nettoyage fin.
+- Air Blower : ne retire pratiquement pas de matière structurelle.
+
+Pour rendre le Blower testable sans empiéter sur P4, P2 peut créer un **résidu scalaire minimal / debug-only** généré par certaines excavations et supprimé par le Blower. Ce résidu n'est pas le système final de poussière : pas de particules, audio, turbulence ni art pass.
+
+P3 (fossile) reste interdit jusqu'à validation humaine de P2.
+
+## Points encore ouverts
+
+- tuning final des outils ;
+- coût des très grandes empreintes après ajout des trois modes ;
+- stratégie d'upload si un état de résidu runtime est ajouté ;
+- assets, sons et FX de production ;
+- tuning du fossile et du musée plus tard.
