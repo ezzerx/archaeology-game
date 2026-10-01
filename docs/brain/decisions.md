@@ -1,6 +1,6 @@
 # Décisions initiales
 
-Source : décisions confirmées par Antoine au 2026-09-30 et au 2026-10-01. Ces décisions cadrent la préproduction ; elles ne constituent pas encore des résultats de playtest.
+Source : décisions confirmées par Antoine au 2026-09-30 et au 2026-10-01. Ces décisions cadrent la préproduction ; elles ne constituent pas encore des résultats de playtest du game feel final.
 
 | Décision | Raison / conséquence |
 |---|---|
@@ -22,7 +22,7 @@ Source : décisions confirmées par Antoine au 2026-09-30 et au 2026-10-01. Ces 
 | Bone Condition testée sans Game Over | Permettre une tension légère sans frustration forte |
 | Deux fragments récupérables automatiquement | Faire évoluer physiquement la table et tester la collection |
 | Keep Cleaning après complétion | Mesurer si le geste reste attirant une fois l'objectif déjà atteint |
-| Godot envisagé, version stable à vérifier | Conserver une stack simple et adaptée à la 2.5D / shaders / maps |
+| Godot 4.7.2 stable Standard pour le prototype | Version P0 vérifiée en headless et localement |
 | Brain canonique dans le dépôt | Reprendre depuis un autre PC sans dépendre de la mémoire globale |
 
 ## Spécification de référence
@@ -33,31 +33,35 @@ La référence détaillée pour l'implémentation du prototype est :
 
 En cas de conflit entre une ancienne note de brainstorming et cette spec, **la spec v0.1 la plus récente prévaut pour le prototype**.
 
-## Points encore ouverts
+## Décisions techniques P0 — 2026-10-01
 
-Restent à tester ou décider :
+| Décision | Raison / limite |
+|---|---|
+| Godot 4.7.2 stable Standard, GDScript, Compatibility | Stable vérifiée officiellement, exécutée en headless puis validée localement |
+| Image RF 1024×640, mask scalaire temporaire | Écriture CPU locale et inspection simple ; P0 ne lui donne volontairement aucune sémantique matière/profondeur |
+| Footprint balayé entre positions à 60 Hz | Couvrir le trait sans gaps, avec falloff configurable et déterminisme pour les mêmes entrées |
+| Collision plane avec rejet des côtés | Mapping précis validé en P0 ; P1 doit réévaluer le picking avec relief |
+| Paramètres du DebugExcavator en Resource | Tuning accessible sans anticiper les outils finaux |
+| Gate humaine avant P1 | Antoine a testé le rendu et l'interaction localement avant merge |
 
+### Verdict P0
+
+**Validé par Antoine le 2026-10-01.**
+
+PR #1 mergée vers `main`, merge commit :
+`244aba3652a03aac908b1aabe1651c3b9edb1315`.
+
+P1 est autorisé.
+
+## Points encore ouverts pour P1+
+
+- méthode technique finale du relief / height map ;
+- stratégie de picking / raycast sur surface creusée ;
+- stratégie d'upload GPU lorsque plusieurs maps existeront ;
 - valeurs finales de résistance, rayon, cadence et dégâts ;
-- méthode technique finale du relief / height map dans Godot ;
-- renderer et méthode de mise à jour des futures surfaces avec relief ;
 - assets et samples audio de production ;
 - tuning du seuil de révélation des composants ;
 - comportement final du musée au-delà du concept canonique ;
 - éventuelle génération procédurale, économie ou progression longue après validation du cœur.
 
-Ne pas transformer ces points en nouvelles features de v0.1 sans décision explicite.
-
-## Décisions techniques P0 — 2026-10-01
-
-À la demande explicite de développement P0 d'Antoine :
-
-| Décision | Raison / limite |
-|---|---|
-| Godot 4.7.2 stable Standard, GDScript, Compatibility | Stable vérifiée officiellement et exécutée en headless ; primitives 3D et outils natifs suffisants pour P0 |
-| Image RF 1024×640, mask scalaire temporaire | Écriture CPU locale et inspection simple ; aucune sémantique de matériau ou profondeur livrée |
-| Footprint balayé entre positions à 60 Hz | Couvrir le trait sans gaps, avec falloff configurable et déterminisme pour les mêmes entrées |
-| Collision plane avec rejet des côtés | Mapping précis de la surface P0 ; réévaluation requise avant du relief P1 |
-| Paramètres du DebugExcavator en Resource | Tuning accessible sans anticiper les outils finaux |
-| Branche et PR P0 séparées, sans merge automatique | Revue humaine et test local obligatoires avant autorisation de P1 |
-
-Résultats réellement vérifiés et limites : [P0_REPORT.md](../dev/P0_REPORT.md). Aucun changement du périmètre produit V0.1.
+Ne pas transformer ces points en nouvelles features hors jalon sans décision explicite.
