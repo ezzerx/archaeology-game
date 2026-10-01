@@ -19,7 +19,7 @@ A 2×2 contact sheet has been generated from the four approved concepts.
 
 `58d223c25022c1badc59cd822a7df144672646be6dcd645b8a80788c34881fa1`
 
-Until the binary is committed into the repository, the exact image is preserved in the source ChatGPT conversation / project context and is identified by the checksum above. When it is added to GitHub, verify the checksum before treating it as the canonical binary.
+The exact approved binary is versioned on `prototype/p0-foundation` at the path above. Its SHA-256 was verified on 2026-10-01 against this manifest. It is documentation only, excluded from Godot imports by `docs/.gdignore` and never loaded by the prototype.
 
 ## 01 — Excavation main
 
