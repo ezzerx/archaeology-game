@@ -1,6 +1,8 @@
 # Rapport P3 — Fossil / Exposure / Bone Contact
 
-Date : **2026-10-01**. Branche : **`prototype/p3-fossil`**. Base : `4472fef` après le merge P2 `9b8423f`.
+Date : **2026-10-01**. Branche : **`prototype/p3-fossil`**. Base initiale : `4472fef` après le merge P2 `9b8423f`. Documentation de `main` intégrée jusqu'à `f4e94fa` (roadmap ART0 et systèmes futurs, sans implémentation de ces étapes).
+
+Livraison : [PR #4](https://github.com/ezzerx/archaeology-game/pull/4), en brouillon vers `main`, **non mergée**.
 
 **P3 implémenté ; validation humaine d'Antoine requise avant merge et toute étape suivante. P4/P5 non autorisés.**
 

@@ -143,3 +143,52 @@ Le prototype ne doit pas chercher à reproduire immédiatement la finition des c
 3. seulement ensuite réaliser l'art pass vers cette DA.
 
 Si un choix esthétique réduit la qualité ou la précision de la fouille, **le gameplay gagne**.
+
+
+## Production timing — decision 2026-10-01
+
+The DA is considered a **core product risk on the same level as game feel**, not late cosmetic polish.
+
+The project therefore separates:
+
+### Interaction / sensory visual work
+
+This begins in **P4 — Game Feel**:
+
+- dust and localized particles;
+- material reaction readability;
+- physical tool presence;
+- small fragments / debris;
+- lighting response around cavities and bone;
+- discovery feedback;
+- audio-visual cohesion.
+
+These effects directly affect whether excavation is satisfying.
+
+### ART0 — Visual Direction & Production Spike
+
+Immediately after P4 validation, before scaling UI/content, create one representative slice close to the target visual quality.
+
+ART0 should include only enough content to validate the pipeline, for example:
+
+- one excavation block;
+- one table/workbench composition;
+- one lighting setup;
+- the three prototype materials plus bone;
+- representative tool visuals;
+- a small subset of scientific props;
+- a small representative UI treatment.
+
+The objective is **not** to make the whole prototype beautiful.
+
+The objective is to prove:
+
+1. the canonical visual direction can be achieved in-engine;
+2. the asset workflow is practical;
+3. the style can remain coherent across future content;
+4. performance remains acceptable;
+5. future artists/AI tools can reproduce the style without drifting.
+
+Only after ART0 should the project commit to a scalable production-art workflow.
+
+Tools such as Blender, image-generation systems, texture/material generators, Higgsfield or other game-art workflows may be evaluated during ART0. No external tool is canonized yet.

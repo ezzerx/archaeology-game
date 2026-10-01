@@ -5,7 +5,7 @@
 - Phase : **préproduction — P3 Fossile implémenté ; validation humaine en attente**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
-- Branche de livraison P3 : `prototype/p3-fossil` ; PR vers `main`, sans merge.
+- Branche de livraison P3 : `prototype/p3-fossil` ; [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon vers `main`, non mergée.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -83,4 +83,6 @@ Le verdict de découverte et le playtest F5/GPU de 2–3 minutes restent à obte
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → **P3 Fossile** → P4 Game feel → P5 UI/progression → P6 Art pass → P7 Tuning.
+P0 ✅ → P1 ✅ → P2 ✅ → **P3 Fossile** → P4 Game feel → ART0 Direction visuelle et pipeline → P5 Boucle complète → V0.1.
+
+La [roadmap](../ROADMAP.md) fixe les gates suivants. Les [systèmes futurs confirmés](../FUTURE_SYSTEMS.md) restent différés après V0.1 ; leur documentation n'autorise aucune implémentation dans P3.

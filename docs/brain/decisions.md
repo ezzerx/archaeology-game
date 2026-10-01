@@ -91,3 +91,51 @@ Référence : [P3_BRIEF](../dev/P3_BRIEF.md).
 - Cap Godot `application/run/max_fps=240`, physique 60 Hz. Aucun changement de densité du mesh. Lectures osseuses évitées tant que le retrait reste au-dessus du plus haut plafond.
 
 Décision complète : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Résultats et limites mesurés : [P3_REPORT](../dev/P3_REPORT.md). **Aucune validation humaine P3 ou autorisation P4 n'est inférée des tests automatiques.**
+## Future product pillars confirmed — 2026-10-01
+
+These directions are now confirmed as intended future features, but their detailed design is deliberately deferred until the core excavation loop and visual pipeline are validated.
+
+### Variable excavation blocks
+
+The finished game must not repeat identical layer depths and stratigraphy across every block.
+
+Future blocks should use controlled, seed-based / authored variability so the player reads the material rather than memorizing fixed depths.
+
+Confirmed future variation may include:
+
+- variable layer thicknesses;
+- irregular interfaces;
+- local pockets / lenses;
+- variable fossil depth / position / orientation where compatible;
+- difficulty bands.
+
+Implementation is deferred until after the V0.1 core gate.
+
+### Equipment progression
+
+Long-term progression should include tool unlocks / specialization in addition to fossil collection.
+
+Prefer functional choices (precision, width, stiffness, power/risk, nozzle control, preservation tools) over simple percentage upgrades.
+
+Detailed progression economy / tree / currency remains open for a dedicated brainstorm.
+
+### Expertise / site progression
+
+Long-term progression should also unlock more demanding excavation sites / matrices.
+
+Possible framing includes museum prestige, expertise, reputation, funding or another diegetic system.
+
+Detailed design is deferred.
+
+Reference: [FUTURE_SYSTEMS.md](../FUTURE_SYSTEMS.md).
+
+## Visual-production timing confirmed — 2026-10-01
+
+The DA is treated as a core product risk, not late polish.
+
+- P4 starts the sensory visual language tied directly to gameplay.
+- After P4, **ART0 — Visual Direction & Production Spike** creates one near-target representative slice and validates the art pipeline.
+- P5 and later production then build on that validated language.
+- Full art scaling must not begin before ART0 proves coherence, reproducibility and performance.
+
+Reference: [ROADMAP.md](../ROADMAP.md) and [ART_DIRECTION.md](../ART_DIRECTION.md).
