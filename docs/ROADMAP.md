@@ -1,22 +1,93 @@
-# Roadmap initiale
+# ArchaeologyGame — Roadmap
 
-Pas de calendrier engagé. Chaque jalon dépend du résultat du précédent ; les étapes après la canonisation décrivent du travail futur.
+No calendar is committed. Each gate depends on human validation of the previous one.
 
-| Jalon | Livrable attendu | Condition de passage |
+## Core prototype gates
+
+| Gate | Purpose | Status / exit condition |
 |---|---|---|
-| **0 — Canonisation** | Dépôt privé, documentation, décisions et contexte portable | Concept et périmètre v0.1 clairement conservés, premier commit publié |
-| **1 — Nettoyage v0.1** | Un écran / bloc / fossile, trois matériaux et outils, matière progressive, sons, particules, jauge | Envie de poursuivre le geste même sur un fossile déjà connu |
-| **2 — Choix de DA** | Comparaison jouable pixel art / 2D illustrée | Bords de retrait, lisibilité, atmosphère et coût de contenu acceptables |
-| **3 — Petite boucle de collection** | Quelques fouilles, identification simple, récupération et exposition partielle | Les nouvelles pièces complètent visiblement le squelette et motivent une autre fouille |
-| **4 — Contenu reproductible** | Second bloc / spécimen et méthode documentée pour les ajouter | Contenu réalisable sans reprendre le cœur du moteur ; effort évalué |
-| **5 — Cadrage de production** | Périmètre de jeu, besoins d’assets, sauvegarde et plan Steam | Cœur validé, budget et charge de production évalués avec Antoine |
+| **P0 — Interaction** | Mouse mapping, editable surface, debug foundation | ✅ validated |
+| **P1 — Material / Relief** | Real cavities, stratigraphy, material resistance | ✅ validated |
+| **P2 — Tools** | Soft Brush, Chisel, Air Blower with distinct roles | ✅ validated |
+| **P3 — Fossil** | Hidden fossil, progressive exposure, bone contact / condition | ▶ active |
+| **P4 — Game Feel** | Dust, particles, debris, audio, physical tool presence, discovery feedback | Must make excavation satisfying |
+| **ART0 — Visual Direction & Production Spike** | Take one small slice near target quality and validate the visual production pipeline | Must prove the target DA is achievable, coherent and performant |
+| **P5 — One Complete Excavation Loop** | Objectives, identification, fragments, Preparation Complete / Keep Cleaning, minimal usable UI | One full session should make sense end-to-end |
+| **V0.1 Gate** | Human playtest of the complete core | Core must pass the North Star test |
 
-## Règles de progression
+## Why ART0 happens before a full art pass
 
-- Si la v0.1 manque de satisfaction, reprendre les sensations avant d’élargir le contenu.
-- Choisir la DA à partir d’une interaction jouée, pas seulement d’une image.
-- Tester la fragilité / résine et les statistiques du musée comme options, sans les transformer d’avance en obligations.
-- Ne pas engager un catalogue de dizaines de fossiles, un musée complet ou une intégration Steam avant les validations nécessaires.
-- Consigner les verdicts réels dans le [statut](brain/status.md) et les [décisions](brain/decisions.md).
+The visual direction is a core product risk, not decoration.
 
-**Prochaine action après cette tâche :** reprendre le cadrage v0.1 lorsqu’Antoine demandera le prototype. La canonisation ne constitue pas une autorisation de coder le jeu maintenant.
+We should **not** wait until late production to discover how the game will actually look.
+
+However, doing finished art before the excavation mechanics and game feel are stable would create expensive rework.
+
+Therefore:
+
+- P0–P3 use greybox / debug visuals;
+- P4 begins the sensory visual language of the interaction itself;
+- after P4, ART0 produces one intentionally polished representative slice;
+- P5 can then build its UI / complete loop using a validated visual language;
+- later production art scales a known pipeline instead of inventing one.
+
+## ART0 — expected questions
+
+ART0 should answer:
+
+- What is the final balance between 3D, 2.5D and illustrated assets?
+- How are Soil / Clay / Sandstone / Bone authored and shaded?
+- What lighting setup creates the warm natural-history atmosphere?
+- How are the table, props and tools modeled / textured?
+- What is the final visual treatment of cavities and material boundaries?
+- How do particles / dust integrate without obscuring discovery?
+- What is the UI production language: paper / wood / brass / scientific notebook?
+- Which tools belong in the asset pipeline: Blender, image generation, texture generation, manual paintover, etc.?
+- Can the style be reproduced consistently for dozens of blocks / fossils?
+- What is the GPU budget on realistic Steam hardware?
+
+ART0 is a **pipeline and style validation**, not mass asset production.
+
+## Post-core confirmed systems
+
+Once V0.1 passes:
+
+### Block Variability Prototype
+
+Create multiple seed-based / controlled variants to ensure repeated excavation does not become a memorized fixed depth sequence.
+
+See [FUTURE_SYSTEMS.md](FUTURE_SYSTEMS.md).
+
+### Meta Progression Prototype
+
+Brainstorm and prototype:
+
+- equipment unlocks / specialization;
+- museum / collection progression;
+- expertise / site access;
+- difficulty bands and long-term motivation.
+
+These are confirmed future pillars but intentionally deferred until the core exists.
+
+## Later production
+
+After the above are validated:
+
+- reproducible content pipeline;
+- additional fossils;
+- generated / authored block families;
+- museum expansion;
+- progression balancing;
+- save system;
+- Steam production requirements;
+- optimization across representative hardware;
+- full art production / content scaling.
+
+## Rules
+
+- If excavation is not satisfying, fix excavation before adding content.
+- If the target DA cannot be reproduced consistently, fix the art pipeline before scaling assets.
+- Do not let procedural variability hide weak base gameplay.
+- Prefer functional tool progression over pure percentage upgrades.
+- Keep deterministic seeds / fixtures for QA even when production blocks become variable.
+- Record every human gate in the Brain and reports.
