@@ -8,7 +8,7 @@
 
 Un jeu cosy et satisfaisant d’archéologie, centré sur la fouille et la préparation de fossiles. La satisfaction répétée de *PowerWash Simulator* inspire la boucle : travailler une surface, observer une transformation tangible, puis avoir envie de continuer.
 
-Le joueur travaille en **vue strictement du dessus / tabletop** sur un bloc de terre et de roche posé sur une table. Il retire progressivement les couches pour découvrir des os, identifier un spécimen et récupérer des fragments qui complètent son musée. Aucun monde ouvert ni personnage contrôlable.
+Le joueur travaille en **vue tabletop presque verticale**, sur un bloc de terre et de roche posé sur une table. Il retire progressivement les couches pour découvrir des os, identifier un spécimen et récupérer des fragments qui complètent son musée. Aucun monde ouvert ni personnage contrôlable.
 
 **Fouille / nettoyage → découverte → identification / classification → récupération de fragments → collection → musée → nouvelle fouille.**
 
@@ -22,11 +22,21 @@ Le joueur travaille en **vue strictement du dessus / tabletop** sur un bloc de t
 
 ## Premier objectif : prototype v0.1
 
-Un écran, un bloc, un fossile, trois matériaux, trois outils, destruction progressive, particules, sons, os découvrable et jauge de progression. Le critère de validation est :
+Un écran, un bloc, un fossile, trois outils, plusieurs matériaux, profondeur/destruction progressive, poussière, particules, sons, os découvrable et progression de spécimen.
+
+Le critère de validation reste :
 
 > Est-ce que j’ai envie de continuer à gratter alors que je sais déjà ce qu’il y a dessous ?
 
-La direction artistique privilégiée est un pixel art premium, détaillé et chaleureux. Une alternative en 2D illustrée haute résolution sera comparée sur le prototype jouable avant de figer ce choix.
+### Direction visuelle canonique du prototype
+
+La cible retenue est désormais :
+
+> **2.5D stylisée — tabletop — caméra orthographique presque verticale**
+
+Le rendu doit ressembler à une illustration chaleureuse devenue interactive : table en bois, lampe chaude, carnet scientifique, matériaux avec relief, os ivoire, UI papier/bois/laiton et atmosphère de musée d’histoire naturelle.
+
+Le pixel art n’est plus la cible de la V0.1.
 
 ## Documentation canonique
 
@@ -34,8 +44,9 @@ La direction artistique privilégiée est un pixel art premium, détaillé et ch
 |---|---|
 | [CONCEPT](docs/CONCEPT.md) | Promesse, périmètre confirmé et hypothèses ouvertes |
 | [GAMEPLAY_LOOP](docs/GAMEPLAY_LOOP.md) | Fouille, matériaux, outils, révélation et sensations |
-| [ART_DIRECTION](docs/ART_DIRECTION.md) | Atmosphère, deux pistes visuelles et méthode de choix |
-| [MVP_V0_1](docs/MVP_V0_1.md) | Périmètre minimal et critères de validation |
+| [ART_DIRECTION](docs/ART_DIRECTION.md) | Direction 2.5D tabletop, palette, caméra et références visuelles |
+| [MVP_V0_1](docs/MVP_V0_1.md) | Résumé du prototype, périmètre et validation |
+| [PROTOTYPE_V0_1_SPEC](docs/PROTOTYPE_V0_1_SPEC.md) | **Spécification détaillée canonique pour le développement de la V0.1** |
 | [MUSEUM_SYSTEM](docs/MUSEUM_SYSTEM.md) | Galerie horizontale, fragments et progression |
 | [TECH_NOTES](docs/TECH_NOTES.md) | Architecture conceptuelle et pistes Godot à vérifier |
 | [ROADMAP](docs/ROADMAP.md) | Jalons conditionnés par les résultats du prototype |
@@ -43,8 +54,8 @@ La direction artistique privilégiée est un pixel art premium, détaillé et ch
 
 ## État du dépôt
 
-Le dépôt privé [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game) canonise le brainstorming au 2026-09-30. La demande de canonisation fournie par Antoine est la référence principale ; la conversation « jeu archéologie » sert de contexte complémentaire.
+Le dépôt privé [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game) canonise la conception du projet.
 
-Cette étape ne contient aucune implémentation du jeu : ni projet Godot, ni scènes, scripts ou assets de production. La roadmap décrit le travail futur ; sa présence ne lance pas le développement. Le `.gitignore` prépare le versionnement Godot et `.gitattributes` normalise les fichiers texte.
+La V0.1 est désormais suffisamment spécifiée pour démarrer l’implémentation, mais aucun code de jeu n’est considéré comme validé tant que le cœur de fouille n’a pas été testé manuellement.
 
-Pour reprendre, lire [AGENTS.md](AGENTS.md), puis le [statut canonique](docs/brain/status.md). Les hypothèses de conception restent explicitement séparées des décisions confirmées.
+Pour reprendre, lire [AGENTS.md](AGENTS.md), puis [PROTOTYPE_V0_1_SPEC.md](docs/PROTOTYPE_V0_1_SPEC.md), puis le [statut canonique](docs/brain/status.md).
