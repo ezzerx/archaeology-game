@@ -1,6 +1,6 @@
 class_name DebugExcavator
 extends Resource
-## Temporary P0 parameters. Radius is in map texels, strength is units/second.
+## Generic P1 test instrument. Radius in texels, base power in work units/second.
 
 @export_range(1.0, 128.0, 1.0) var radius := 40.0:
 	set(value): radius = clampf(value, 1.0, 128.0)

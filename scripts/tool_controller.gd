@@ -7,6 +7,7 @@ extends Node
 
 var hit: Dictionary = {"screen": Vector2.ZERO, "inside": false}
 var last_edit_usec := 0
+var last_pick_usec := 0
 var changed_texels := 0
 var _held := false
 var _previous_valid := false
@@ -70,11 +71,11 @@ func reset_surface() -> void:
 	block.flush_texture()
 
 func _physics_process(delta: float) -> void:
+	var pick_start := Time.get_ticks_usec()
 	hit = block.pick(_screen, camera)
+	last_pick_usec = Time.get_ticks_usec() - pick_start
 	if not _focused or not _pointer_inside:
 		hit.inside = false
-	block.show_cursor(hit, config.radius)
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN if hit.inside else Input.MOUSE_MODE_VISIBLE
 	changed_texels = 0
 	last_edit_usec = 0
 	if _held and hit.inside:
@@ -89,3 +90,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		_previous_valid = false
 	block.flush_texture()
+	if changed_texels > 0:
+		# The marker and F1 describe the surface rendered after this very edit.
+		pick_start = Time.get_ticks_usec()
+		hit = block.pick(_screen, camera)
+		last_pick_usec += Time.get_ticks_usec() - pick_start
+	block.show_cursor(hit, config.radius)
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN if hit.inside else Input.MOUSE_MODE_VISIBLE

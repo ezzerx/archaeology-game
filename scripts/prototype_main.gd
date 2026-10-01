@@ -12,6 +12,7 @@ extends Node3D
 var _debug_elapsed := 0.0
 
 func _ready() -> void:
+	get_window().title = "ArchaeologyGame — P1 Materials"
 	var angle := deg_to_rad(camera_elevation_degrees)
 	var target := block.to_global(Vector3(0.0, block.thickness, 0.0))
 	camera.position = target + Vector3(0.0, sin(angle), cos(angle)) * 3.0
@@ -24,6 +25,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			controller.reset_surface()
 		elif event.physical_keycode == KEY_F1:
 			debug_panel.visible = not debug_panel.visible
+		elif event.physical_keycode == KEY_F2:
+			block.set_debug_view(block.debug_view + 1)
 
 func _process(delta: float) -> void:
 	_debug_elapsed += delta
@@ -32,13 +35,15 @@ func _process(delta: float) -> void:
 	_debug_elapsed = 0.0
 	var hit := controller.hit
 	var config := controller.config
-	var value := "—"
+	var surface_info := "Height / Depth / Material: —"
 	if hit.inside:
-		value = "%.6f" % block.working_map.value_at(hit.cell)
-	debug_label.text = ("P0 / DEBUG EXCAVATOR   |   %d FPS\n" % Engine.get_frames_per_second()
-		+ "Radius %.0f texels | Strength %.2f/s | Falloff %.2f\n" % [config.radius, config.strength, config.falloff]
+		var definition: MaterialDefinition = hit.material
+		surface_info = "Height %.4f | Depth %.1f mm\n%s | Resistance %.1f" % [hit.height, hit.depth * 1000.0, definition.display_name, definition.resistance]
+	debug_label.text = ("P1 / DEBUG EXCAVATOR | %d FPS | %s\n" % [Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+		+ "Radius %.0f texels | Power %.2f/s | Falloff %.2f\n" % [config.radius, config.strength, config.falloff]
 		+ "Screen: %s | %s\n" % [hit.screen, "IN BOUNDS" if hit.inside else "OUT OF BOUNDS"]
 		+ "World: %s\nLocal: %s\n" % [hit.get("world", "—"), hit.get("local", "—")]
 		+ "UV: %s | Map: %s\n" % [hit.get("uv", "—"), hit.get("map", "—")]
-		+ "Cell: %s | Value: %s\n" % [hit.get("cell", "—"), value]
-		+ "CPU edit: %.2f ms | Changed texels: %d" % [controller.last_edit_usec / 1000.0, controller.changed_texels])
+		+ "Cell: %s | %s\n" % [hit.get("cell", "—"), surface_info]
+		+ "CPU edit %.2f ms | Upload submit %.2f ms | Pick %.2f ms\n" % [controller.last_edit_usec / 1000.0, block.last_upload_usec / 1000.0, controller.last_pick_usec / 1000.0]
+		+ "Changed texels: %d | DDA cells: %d" % [controller.changed_texels, hit.get("visited_cells", 0)])
