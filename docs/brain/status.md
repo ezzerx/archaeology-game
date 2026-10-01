@@ -2,9 +2,9 @@
 
 - Date : **2026-10-02**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P3 validé et mergé ; P4 Game Feel autorisé**.
+- Phase : **préproduction — P4 implémenté, test humain attendu ; P5 interdit**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`.
+- Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -62,9 +62,9 @@ Rapports :
 - Le Chisel actuel reste encore trop proche d'un effacement local de heightfield : P4 doit introduire une vraie réaction de matière avant de décider d'une mécanique de protection supplémentaire.
 - Les valeurs de vitesse/puissance actuelles peuvent sembler lentes ; ne pas faire le tuning final avant P7, sauf nécessité de test.
 
-## P4 — Game Feel autorisé ▶
+## P4 — Implémenté, validation humaine attendue ▶
 
-P4 doit faire passer le prototype de :
+P4 vise à faire passer le prototype de :
 
 > système d'excavation techniquement correct
 
@@ -85,6 +85,16 @@ Priorités :
 - réévaluation de Bone Condition **après** ces nouvelles réactions de matière.
 
 Aucune mécanique de marge de sécurité osseuse n'est pré-autorisée.
+
+Livraison du 2026-10-02 : stress local déterministe, fissures avant retrait, plaques Clay / petits fragments Sandstone, trois proxies, quatre familles de débris bornées et six familles audio procédurales. Le heightfield, les plafonds osseux et les commandes P3 restent l'autorité.
+
+Vérifications : **495 checks fonctionnels** (439 historiques + 56 P4), dix scénarios graphiques 1×/3× à environ 240 FPS, P95 maximal 8,842 ms. Cap 240 FPS / physique 60 Hz. Oracle GPU P3 : 194 955 pixels, seuils historiques conservés.
+
+Condition : sonde attentive de 1 004 impacts → 4 105 cellules osseuses, **49,87 % du crâne**, condition **100 %**. Elle reconnaît parfaitement les centres visibles ; ce n'est pas un test humain. Maintenir le Chisel sur un centre exposé inflige toujours −3 par impact. Aucun mécanisme de protection ajouté.
+
+Prochaine action : Antoine joue 3–5 minutes selon [P4_REPORT](../dev/P4_REPORT.md), puis juge matériaux, fracture, changement d'outil, contact osseux, condition et plaisir. Si les dégâts restent structurellement injustes, documenter le geste précis et attendre une revue avant toute protection supplémentaire. **Ne pas merger cette livraison ni commencer P5.**
+
+Architecture et limites : [P4_MATERIAL_REACTION_DECISION](../dev/P4_MATERIAL_REACTION_DECISION.md).
 
 Brief canonique :
 

@@ -5,6 +5,9 @@ uniform sampler2D working_map : filter_linear, repeat_disable;
 uniform sampler2D layer_boundaries : filter_linear, repeat_disable;
 uniform sampler2D residue_map : filter_linear, repeat_disable;
 uniform sampler2D fossil_map : filter_nearest, repeat_disable;
+uniform sampler2D fracture_map : filter_nearest, repeat_disable;
+uniform vec2 fracture_sizes = vec2(9.0, 5.0);
+uniform float fracture_seed = 0.0;
 uniform float bone_exposure_epsilon = 0.0000152587890625;
 uniform vec4 bone_color : source_color = vec4(0.94, 0.87, 0.72, 1.0);
 uniform vec2 map_size = vec2(1024.0, 640.0);
@@ -43,12 +46,25 @@ void fragment() {
 	// Flat grey debug overlay only. Never affects height, normals or picking.
 	if (debug_view == 0 && !is_skirt) {
 		float residue = texture(residue_map, UV).r;
-		color = mix(color, vec3(0.64, 0.66, 0.69), residue * (exposed_bone ? 0.4 : 0.8));
+		color = mix(color, vec3(0.52, 0.43, 0.31), residue * (exposed_bone ? 0.22 : 0.5));
+		if (!exposed_bone && surface_height <= limits.r) {
+			bool clay = surface_height > limits.g;
+			vec2 p = vec2(cell);
+			vec2 warped = vec2(p.x + 0.25 * p.y + 3.0 * abs(mod(p.y / 7.0 + fracture_seed, 2.0) - 1.0),
+				p.y + 2.0 * abs(mod(p.x / 11.0 + fracture_seed, 2.0) - 1.0));
+			vec2 partition = warped / (clay ? fracture_sizes.x : fracture_sizes.y);
+			ivec2 tile = ivec2(floor(partition)) + ivec2(1);
+			vec2 stress = texelFetch(fracture_map, tile, 0).rg;
+			float tension = clay ? stress.r : stress.g;
+			vec2 edge = min(fract(partition), 1.0 - fract(partition));
+			float crack = 1.0 - smoothstep(0.03, 0.11, min(edge.x, edge.y));
+			color *= 1.0 - tension * (0.15 + 0.62 * crack);
+		}
 	}
 	float distance_texels = length((UV - cursor_uv) * map_size);
 	float ring = 1.0 - smoothstep(0.7, 1.6, abs(distance_texels - cursor_radius));
 	float centre = 1.0 - smoothstep(0.7, 1.8, distance_texels);
-	float marker = cursor_visible && !is_skirt ? max(ring, centre) : 0.0;
+	float marker = cursor_visible && !is_skirt ? max(ring * (debug_view == 0 ? 0.32 : 1.0), centre) : 0.0;
 	// Keep height in midtones: Compatibility's low-end color conversion otherwise
 	// crushes near-zero values, which also obscures differences in this debug view.
 	if (debug_view == 1) { color = vec3(0.25 + 0.75 * surface_height); }

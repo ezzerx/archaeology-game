@@ -54,6 +54,7 @@ environment = SubResource("Environment")
 
 [node name="Light" type="DirectionalLight3D" parent="TableEnvironment"]
 rotation_degrees = Vector3(-48, -145, 0)
+light_color = Color(1, 0.91, 0.79, 1)
 light_energy = 1.0
 shadow_enabled = true
 
@@ -108,7 +109,7 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 18
-text = "P3 / TOOLS DEBUG"
+text = "P4 / TOOLS DEBUG"
 
 [node name="BonePanel" type="PanelContainer" parent="Debug"]
 offset_left = 1370.0
@@ -151,4 +152,4 @@ mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.05, 0.95)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 18
-text = "P3 | Hold LMB: use tool | 1/2/3: select, then fresh click | Wheel: zoom | Home: overview | R: reset | F1: debug | F2: view\nDEBUG | Shift+Wheel: power | Ctrl+Wheel: falloff | Alt+Wheel: radius | F6/F7: radius -/+ (Shift: power, Ctrl: falloff)"
+text = "P4 | Hold LMB: use tool | 1/2/3: select, then fresh click | Wheel: zoom | Home: overview | R: reset | F1: debug | F2: view\nDEBUG | Shift+Wheel: power | Ctrl+Wheel: falloff | Alt+Wheel: radius | F6/F7: radius -/+ (Shift: power, Ctrl: falloff)"

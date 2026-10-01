@@ -9,16 +9,25 @@ var dirty := true
 var strata: Stratigraphy
 var residue: SurfaceResidue
 var fossil: FossilState
+signal material_action(event: Dictionary)
+signal surface_reset
+var fracture: MaterialFracture
+var last_removed := Vector3.ZERO
+var last_action: Dictionary = {}
 var last_residue_edit_usec := 0
 var changed_residue_cells := 0
 var _heights := PackedFloat32Array()
 
-func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null, fossil_field: FossilField = null) -> void:
+func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null,
+		fossil_field: FossilField = null, reactions: ReactionProfile = null) -> void:
 	assert(resolution.x > 0 and resolution.y > 0)
 	size = resolution
 	strata = stratigraphy
 	image = Image.create(size.x, size.y, false, Image.FORMAT_RF)
 	residue = SurfaceResidue.new(size)
+	if reactions != null:
+		assert(strata != null)
+		fracture = MaterialFracture.new(size, reactions)
 	if fossil_field != null:
 		assert(fossil_field.size == size)
 		fossil = FossilState.new(fossil_field)
@@ -29,11 +38,16 @@ func reset() -> void:
 	_heights.fill(1.0)
 	image.fill(Color(1.0, 0.0, 0.0, 1.0))
 	residue.reset()
+	if fracture != null:
+		fracture.reset()
+	last_removed = Vector3.ZERO
+	last_action = {}
 	if fossil != null:
 		fossil.reset()
 	last_residue_edit_usec = 0
 	changed_residue_cells = 0
 	dirty = true
+	surface_reset.emit()
 
 func value_at(cell: Vector2i) -> float:
 	return image.get_pixelv(cell.clamp(Vector2i.ZERO, size - Vector2i.ONE)).r
@@ -127,6 +141,8 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 					if _heights[index] <= bone_ceilings[index] + FossilField.EXPOSURE_EPSILON and fossil.exposed[index] == 0:
 						newly_exposed.append(index)
 				_heights[index] = next_value
+				var layer := Stratigraphy.index_at(old_value, Vector2(limits[index * 2], limits[index * 2 + 1])) if strata != null else 0
+				last_removed[layer] += old_value - _heights[index]
 				if residue_generation > 0.0:
 					residue.deposit_removed(x, y, (old_value - next_value) * residue_generation)
 				changed += 1
@@ -144,6 +160,10 @@ func apply_continuous(from: Vector2, to: Vector2, tool: ToolDefinition, delta: f
 func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 	# Impacts deliberately have no previous point and cannot form a capsule.
 	# Snapshot the centre BEFORE removal: the impact revealing it is always safe.
+	# Calls outside the map never clamp into a valid edge-cell damage decision.
+	if point.x < -0.5 or point.y < -0.5 or point.x >= size.x - 0.5 or point.y >= size.y - 0.5:
+		last_action = {}
+		return 0
 	if fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT and tool.power > 0.0:
 		fossil.damage_at(fossil.field.index_at_map(point), tool.bone_damage)
 	return _apply_tool(point, point, tool, 1.0)
@@ -151,14 +171,30 @@ func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float) -> int:
 	last_residue_edit_usec = 0
 	changed_residue_cells = 0
+	last_removed = Vector3.ZERO
+	last_action = {}
 	if amount <= 0.0:
 		return 0
+	residue.last_cleared = 0.0
 	var changed := 0
-	if tool.effectiveness != Vector3.ZERO:
+	var exposed_before := fossil.exposed_cells if fossil != null else 0
+	var direct_bone := fossil != null and fossil.exposed[fossil.field.index_at_map(to)] != 0
+	var is_fracture := fracture != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT
+	if is_fracture:
+		changed = fracture.apply(self, to, tool)
+	elif tool.effectiveness != Vector3.ZERO:
 		changed = apply_segment(from, to, tool.radius, tool.power, tool.falloff,
 			amount, tool.effectiveness, tool.residue_generation)
 	if tool.residue_clear > 0.0 or (changed > 0 and tool.residue_generation > 0.0):
 		var start := Time.get_ticks_usec()
 		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount)
 		last_residue_edit_usec = Time.get_ticks_usec() - start
+	var marks := fracture.last_marks if is_fracture else 0
+	var bone_contact := (fossil != null and fossil.exposed_cells > exposed_before) or (direct_bone and tool.power > 0.0)
+	if changed > 0 or marks > 0 or changed_residue_cells > 0 or bone_contact:
+		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
+			"changed": changed, "marks": marks, "chunks": fracture.last_chunks.duplicate(true) if is_fracture else [],
+			"residue_cleared": residue.last_cleared, "bone_contact": bone_contact,
+			"direct_bone": direct_bone, "movement": from.distance_to(to) / maxf(amount, 0.0001)}
+		material_action.emit(last_action)
 	return changed

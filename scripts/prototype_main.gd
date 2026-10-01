@@ -15,9 +15,14 @@ extends Node3D
 
 var _debug_elapsed := 0.0
 var _notice_remaining := 0.0
+var feedback: MaterialFeedback
 
 func _ready() -> void:
-	get_window().title = "ArchaeologyGame — P3 Fossil"
+	get_window().title = "ArchaeologyGame — P4 Material Reactions"
+	feedback = MaterialFeedback.new()
+	feedback.name = "MaterialFeedback"
+	add_child(feedback)
+	feedback.setup(block, controller)
 	block.working_map.fossil.bone_first_contact.connect(_on_bone_first_contact)
 	block.working_map.fossil.specimen_reset.connect(_on_specimen_reset)
 	var button_group := ButtonGroup.new()
@@ -85,9 +90,9 @@ func _process(delta: float) -> void:
 	if hit.inside:
 		var definition: MaterialDefinition = hit.material
 		surface_info = ("Height %.4f | Depth %.1f mm\n%s | Resistance %.1f\n" % [hit.height, hit.depth * 1000.0, definition.display_name, definition.resistance]
-			+ "Effectiveness %.2f | Rate %.4f depth/s (%.2f mm/s)\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
+			+ "Effectiveness %.2f | Base rate %.4f depth/s (%.2f mm/s), before fracture\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
 			+ "Residue %.3f | grey overlay in SHADED view" % block.working_map.residue.value_at(hit.uv))
-	debug_label.text = ("P3 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+	debug_label.text = ("P4 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
 		+ "Zoom %.2fx | Wheel: zoom | Home: overview\n" % camera.zoom_factor
 		+ "Radius %.0f texels | Power %.2f %s | Falloff %.2f\n" % [config.radius, config.power, "/impact" if config.interaction_mode == ToolDefinition.InteractionMode.IMPACT else "/s", config.falloff]
 		+ "Screen: %s | %s\n" % [hit.screen, "IN BOUNDS" if hit.inside else "OUT OF BOUNDS"]
@@ -98,6 +103,7 @@ func _process(delta: float) -> void:
 		+ "CPU edit %.2f ms (residue %.2f) | Pick %.2f ms\n" % [controller.last_edit_usec / 1000.0, controller.last_residue_edit_usec / 1000.0, controller.last_pick_usec / 1000.0]
 		+ "Upload submit: height %.2f ms | residue %.3f ms (40 KiB)\n" % [block.last_upload_usec / 1000.0, block.last_residue_upload_usec / 1000.0]
 		+ "Changed height %d / residue %d | DDA cells %d\n" % [controller.changed_texels, controller.changed_residue_cells, hit.get("visited_cells", 0)]
+		+ "Fracture: %d stressed cells | %d chips last impact\n" % [block.working_map.fracture.stress.size(), block.working_map.fracture.last_chunks.size()]
 		+ "DEV Wheel: Shift power | Ctrl falloff | Alt radius\n"
 		+ "DEV F6/F7: radius -/+ | Shift: power | Ctrl: falloff")
 	var fossil := block.working_map.fossil

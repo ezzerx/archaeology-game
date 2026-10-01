@@ -6,7 +6,7 @@ Lire `docs/brain/BRAIN.md`, `docs/brain/status.md` et les documents utiles à la
 
 ## Périmètre actuel
 
-Le projet est en **préproduction — zoom P3 validé humainement ; ergonomie debug vérifiée, PR #4 non mergée**. P0/P1/P2 sont validés et mergés. `docs/dev/P3_DESIGN_FIXES.md` est la source de vérité de cette passe ; consulter `docs/dev/P3_REPORT.md` et `docs/dev/P3_FOSSIL_DECISION.md` pour les résultats. **Ne pas merger P3 ni commencer P4/P5 sans nouvelle autorisation explicite d’Antoine.** La passe corrective porte seulement sur le zoom. L'évitement des dégâts osseux et l'équilibrage de condition sont différés à P4 ; conserver 100 % n'est pas un critère P3. Antoine valide humainement le zoom le 2026-10-02. Shift/Ctrl/Alt + molette règlent puissance/falloff/rayon en debug, sans modifier les valeurs par défaut. La présence d’une roadmap ne lance pas ses étapes.
+Le projet est en **préproduction — P4 implémenté, en attente du test humain** sur `prototype/p4-game-feel`. P0/P1/P2/P3 sont validés et mergés. `docs/dev/P4_BRIEF.md` est la source de vérité ; consulter `docs/dev/P4_REPORT.md` et `docs/dev/P4_MATERIAL_REACTION_DECISION.md`. **Ne pas merger P4 ni commencer P5 sans nouvelle autorisation explicite d’Antoine.** P4 ajoute la fracture locale, les outils visibles, les débris et l'audio placeholder. Aucune marge de sécurité osseuse ni bonus Brush près des os n'est ajouté. La sonde automatique de condition ne vaut pas validation humaine de l'équité. Molette = zoom 1–3× ; Shift/Ctrl/Alt + molette règlent puissance/falloff/rayon en debug. Cap 240 FPS, physique 60 Hz. La présence d’une roadmap ne lance pas ses étapes.
 
 ## Invariants de conception
 

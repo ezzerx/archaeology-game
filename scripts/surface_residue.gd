@@ -8,6 +8,7 @@ var size: Vector2i
 var height_size: Vector2i
 var image: Image
 var dirty := true
+var last_cleared := 0.0
 var _values := PackedFloat32Array()
 var _bytes := PackedByteArray()
 
@@ -18,6 +19,7 @@ func _init(resolution: Vector2i) -> void:
 	reset()
 
 func reset() -> void:
+	last_cleared = 0.0
 	_values.resize(size.x * size.y)
 	_values.fill(0.0)
 	_bytes.resize(size.x * size.y)
@@ -49,6 +51,7 @@ func _cell_value(cell: Vector2i) -> float:
 	return _values[cell.y * size.x + cell.x]
 
 func apply_segment(from: Vector2, to: Vector2, radius: float, falloff: float, clear_amount: float) -> int:
+	last_cleared = 0.0
 	if radius <= 0.0:
 		return 0
 	var low := Vector2i(((from.min(to) - Vector2.ONE * radius) / STRIDE).floor()).max(Vector2i.ZERO)
@@ -63,7 +66,9 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, falloff: float, cl
 				var point := (Vector2(x, y) + Vector2(0.5, 0.5)) * STRIDE - Vector2(0.5, 0.5)
 				var t := clampf((point - from).dot(segment) * inverse_length, 0.0, 1.0)
 				var weight := WorkingSurface.weight(point.distance_to(from + segment * t) / radius, falloff)
-				_values[index] = maxf(0.0, _values[index] - clear_amount * weight)
+				var before := _values[index]
+				_values[index] = maxf(0.0, before - clear_amount * weight)
+				last_cleared += before - _values[index]
 			var encoded := roundi(_values[index] * 255.0)
 			if encoded != _bytes[index]:
 				_bytes[index] = encoded

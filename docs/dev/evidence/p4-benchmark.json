@@ -1,0 +1,451 @@
+{
+	"blower_1x": {
+		"audio_events": 60,
+		"changed_texels": 0,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 0.321,
+			"mean": 0.187594444444445,
+			"p95": 0.276
+		},
+		"cpu_edit_ms": {
+			"max": 0.321,
+			"mean": 0.187594444444445,
+			"p95": 0.276
+		},
+		"cpu_pick_ms": {
+			"max": 0.186,
+			"mean": 0.0614194444444444,
+			"p95": 0.07
+		},
+		"exposed_cells": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 5.759,
+			"mean": 4.1659332870049,
+			"p95": 4.53
+		},
+		"height_uploads": 0,
+		"impacts": 0,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			490
+		],
+		"render_fps": 239.861956860185,
+		"upload_submit_ms": {
+			"max": 0.052,
+			"mean": 0.0221805555555555,
+			"p95": 0.024
+		},
+		"zoom": 1.0
+	},
+	"blower_3x": {
+		"audio_events": 60,
+		"changed_texels": 0,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 0.463,
+			"mean": 0.186180555555556,
+			"p95": 0.269
+		},
+		"cpu_edit_ms": {
+			"max": 0.463,
+			"mean": 0.186180555555556,
+			"p95": 0.269
+		},
+		"cpu_pick_ms": {
+			"max": 0.18,
+			"mean": 0.0612277777777777,
+			"p95": 0.075
+		},
+		"exposed_cells": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 4.931,
+			"mean": 4.16593606671303,
+			"p95": 4.527
+		},
+		"height_uploads": 0,
+		"impacts": 0,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			490
+		],
+		"render_fps": 239.861477079977,
+		"upload_submit_ms": {
+			"max": 0.043,
+			"mean": 0.0220555555555555,
+			"p95": 0.026
+		},
+		"zoom": 3.00000010518467
+	},
+	"bone_1x": {
+		"audio_events": 27,
+		"changed_texels": 1083,
+		"chunks": 33,
+		"condition": 25.0,
+		"cpu_active_edit_ms": {
+			"max": 1.544,
+			"mean": 0.976962962962963,
+			"p95": 1.293
+		},
+		"cpu_edit_ms": {
+			"max": 1.544,
+			"mean": 0.0749138888888887,
+			"p95": 0.678
+		},
+		"cpu_pick_ms": {
+			"max": 0.167,
+			"mean": 0.0600972222222222,
+			"p95": 0.088
+		},
+		"exposed_cells": 404,
+		"fracture_uploads": 27,
+		"frame_ms": {
+			"max": 6.171,
+			"mean": 4.16593537178599,
+			"p95": 4.289
+		},
+		"height_uploads": 15,
+		"impacts": 27,
+		"marks": 470,
+		"particles_emitted": [
+			0,
+			65,
+			34,
+			0
+		],
+		"render_fps": 239.868314129144,
+		"upload_submit_ms": {
+			"max": 0.207,
+			"mean": 0.00736666666666667,
+			"p95": 0.03
+		},
+		"zoom": 1.0
+	},
+	"bone_3x": {
+		"audio_events": 27,
+		"changed_texels": 1083,
+		"chunks": 33,
+		"condition": 25.0,
+		"cpu_active_edit_ms": {
+			"max": 1.591,
+			"mean": 0.960222222222222,
+			"p95": 1.232
+		},
+		"cpu_edit_ms": {
+			"max": 1.591,
+			"mean": 0.0737027777777777,
+			"p95": 0.655
+		},
+		"cpu_pick_ms": {
+			"max": 0.167,
+			"mean": 0.0602666666666666,
+			"p95": 0.091
+		},
+		"exposed_cells": 404,
+		"fracture_uploads": 27,
+		"frame_ms": {
+			"max": 6.136,
+			"mean": 4.16593966712903,
+			"p95": 4.298
+		},
+		"height_uploads": 15,
+		"impacts": 27,
+		"marks": 470,
+		"particles_emitted": [
+			0,
+			65,
+			34,
+			0
+		],
+		"render_fps": 239.868747547459,
+		"upload_submit_ms": {
+			"max": 0.188,
+			"mean": 0.00748333333333333,
+			"p95": 0.032
+		},
+		"zoom": 3.00000010518467
+	},
+	"clay_1x": {
+		"audio_events": 27,
+		"changed_texels": 2117,
+		"chunks": 28,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 2.056,
+			"mean": 1.24488888888889,
+			"p95": 1.588
+		},
+		"cpu_edit_ms": {
+			"max": 2.056,
+			"mean": 0.0950472222222221,
+			"p95": 0.932
+		},
+		"cpu_pick_ms": {
+			"max": 0.176,
+			"mean": 0.0571638888888888,
+			"p95": 0.095
+		},
+		"exposed_cells": 0,
+		"fracture_uploads": 27,
+		"frame_ms": {
+			"max": 6.539,
+			"mean": 4.16593689320392,
+			"p95": 4.293
+		},
+		"height_uploads": 14,
+		"impacts": 27,
+		"marks": 278,
+		"particles_emitted": [
+			0,
+			140,
+			0,
+			0
+		],
+		"render_fps": 239.868747547459,
+		"upload_submit_ms": {
+			"max": 0.183,
+			"mean": 0.00730277777777778,
+			"p95": 0.033
+		},
+		"zoom": 1.0
+	},
+	"clay_3x": {
+		"audio_events": 27,
+		"changed_texels": 2116,
+		"chunks": 28,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.756,
+			"mean": 1.25140740740741,
+			"p95": 1.647
+		},
+		"cpu_edit_ms": {
+			"max": 1.756,
+			"mean": 0.0955166666666665,
+			"p95": 0.927
+		},
+		"cpu_pick_ms": {
+			"max": 0.205,
+			"mean": 0.0572999999999999,
+			"p95": 0.091
+		},
+		"exposed_cells": 0,
+		"fracture_uploads": 27,
+		"frame_ms": {
+			"max": 6.232,
+			"mean": 4.1659416261293,
+			"p95": 4.29
+		},
+		"height_uploads": 14,
+		"impacts": 27,
+		"marks": 278,
+		"particles_emitted": [
+			0,
+			140,
+			0,
+			0
+		],
+		"render_fps": 239.868354113034,
+		"upload_submit_ms": {
+			"max": 0.166,
+			"mean": 0.006975,
+			"p95": 0.03
+		},
+		"zoom": 3.00000010518467
+	},
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"engine": "4.7.2-stable (official)",
+	"failures": 0,
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"max_particles": 192,
+	"physics_hz": 60,
+	"runtime_cap": 240,
+	"soil_1x": {
+		"audio_events": 60,
+		"changed_texels": 1831659,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 4.973,
+			"mean": 4.25995,
+			"p95": 4.548
+		},
+		"cpu_edit_ms": {
+			"max": 4.973,
+			"mean": 4.25995,
+			"p95": 4.548
+		},
+		"cpu_pick_ms": {
+			"max": 0.122,
+			"mean": 0.0849527777777776,
+			"p95": 0.094
+		},
+		"exposed_cells": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 9.902,
+			"mean": 4.16592772758862,
+			"p95": 8.842
+		},
+		"height_uploads": 360,
+		"impacts": 0,
+		"marks": 0,
+		"particles_emitted": [
+			476,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.695029301426,
+		"upload_submit_ms": {
+			"max": 0.262,
+			"mean": 0.128886111111111,
+			"p95": 0.147
+		},
+		"zoom": 1.0
+	},
+	"soil_3x": {
+		"audio_events": 60,
+		"changed_texels": 1831658,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 7.078,
+			"mean": 4.24706111111111,
+			"p95": 4.493
+		},
+		"cpu_edit_ms": {
+			"max": 7.078,
+			"mean": 4.24706111111111,
+			"p95": 4.493
+		},
+		"cpu_pick_ms": {
+			"max": 0.128,
+			"mean": 0.0865416666666665,
+			"p95": 0.099
+		},
+		"exposed_cells": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 11.597,
+			"mean": 4.16592441054094,
+			"p95": 8.807
+		},
+		"height_uploads": 360,
+		"impacts": 0,
+		"marks": 0,
+		"particles_emitted": [
+			476,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.691359974202,
+		"upload_submit_ms": {
+			"max": 0.178,
+			"mean": 0.128605555555556,
+			"p95": 0.145
+		},
+		"zoom": 3.00000010518467
+	},
+	"stone_1x": {
+		"audio_events": 27,
+		"changed_texels": 226,
+		"chunks": 9,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.445,
+			"mean": 1.09785185185185,
+			"p95": 1.375
+		},
+		"cpu_edit_ms": {
+			"max": 1.445,
+			"mean": 0.0839805555555554,
+			"p95": 0.942
+		},
+		"cpu_pick_ms": {
+			"max": 0.183,
+			"mean": 0.0643638888888888,
+			"p95": 0.087
+		},
+		"exposed_cells": 0,
+		"fracture_uploads": 27,
+		"frame_ms": {
+			"max": 5.96,
+			"mean": 4.16593606671303,
+			"p95": 4.298
+		},
+		"height_uploads": 9,
+		"impacts": 27,
+		"marks": 705,
+		"particles_emitted": [
+			0,
+			0,
+			27,
+			0
+		],
+		"render_fps": 239.868234161404,
+		"upload_submit_ms": {
+			"max": 0.195,
+			"mean": 0.00560277777777778,
+			"p95": 0.031
+		},
+		"zoom": 1.0
+	},
+	"stone_3x": {
+		"audio_events": 27,
+		"changed_texels": 226,
+		"chunks": 9,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.42,
+			"mean": 1.07381481481482,
+			"p95": 1.369
+		},
+		"cpu_edit_ms": {
+			"max": 1.42,
+			"mean": 0.0821777777777777,
+			"p95": 0.944
+		},
+		"cpu_pick_ms": {
+			"max": 0.158,
+			"mean": 0.0641166666666666,
+			"p95": 0.087
+		},
+		"exposed_cells": 0,
+		"fracture_uploads": 27,
+		"frame_ms": {
+			"max": 5.971,
+			"mean": 4.16592981236973,
+			"p95": 4.297
+		},
+		"height_uploads": 9,
+		"impacts": 27,
+		"marks": 711,
+		"particles_emitted": [
+			0,
+			0,
+			27,
+			0
+		],
+		"render_fps": 239.868074226084,
+		"upload_submit_ms": {
+			"max": 0.159,
+			"mean": 0.00534444444444445,
+			"p95": 0.03
+		},
+		"zoom": 3.00000010518467
+	},
+	"stress_atlas_bytes": 64372,
+	"viewport": "(1920, 1080)"
+}

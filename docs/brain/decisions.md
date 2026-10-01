@@ -237,3 +237,14 @@ Objectif :
 P4 reste un jalon gameplay/game feel, pas un Art Pass.
 
 Référence : [P4_BRIEF](../dev/P4_BRIEF.md).
+
+## Implémentation P4 et état de validation — 2026-10-02
+
+- Partition angulaire seedée et stress sparse par matériau : Clay 9 texels / plaques, Sandstone 5 texels / fragments. Un impact ne traverse pas la couche initialement touchée ; plafond osseux toujours appliqué.
+- Atlas dynamique de stress RG8 **64 372 octets** ; aucun masque mutable à la résolution du heightfield. Reset exact, aucun calcul de fracture au repos.
+- Les effets consomment les actions réelles : proxies sans collider, quatre pools MultiMesh limités à 192 particules, six familles audio originales × quatre variantes. F2 masque les effets pour conserver des vues de données et un oracle GPU sans occlusion.
+- La sonde attentive conserve 100 % de condition avec 49,87 % du crâne révélé. Cette preuve technique ne valide ni la lisibilité humaine ni le plaisir ; aucune protection nouvelle n'a été nécessaire pour cette sonde et aucune n'est ajoutée.
+- Un pic isolé au premier effet a motivé une préchauffe invisible du matériau instancié au démarrage. Le passage final reste sous 11,6 ms par frame mesurée ; ne pas généraliser cette mesure à tous les pilotes.
+- P4 reste à valider humainement. PR non mergée ; P5/P6/P7 non commencés.
+
+Références : [P4_REPORT](../dev/P4_REPORT.md), [P4_MATERIAL_REACTION_DECISION](../dev/P4_MATERIAL_REACTION_DECISION.md).
