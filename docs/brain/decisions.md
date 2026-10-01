@@ -53,10 +53,33 @@ PR #1 mergée vers `main`, merge commit :
 
 P1 est autorisé.
 
-## Points encore ouverts pour P1+
+## Décisions d'implémentation P1 — 2026-10-01
 
-- méthode technique finale du relief / height map ;
-- stratégie de picking / raycast sur surface creusée ;
+Ces décisions sont techniques, prises dans la mission P1 autorisée. Elles ne constituent pas la validation humaine du game feel.
+
+| Décision | Raison / limite vérifiée |
+|---|---|
+| Grille native dense déplacée GPU, carte hauteur RF 1024×640 | Vraies cavités, une seule map runtime dirty, aucune reconstruction mesh par geste |
+| Picking DDA + triangles identiques au rendu | Évite le décalage d'un plan ou d'une interpolation différente ; oracle mesh et lecture GPU passent |
+| Tolérance relative de ray/triangle | La tolérance absolue du helper générique rejetait les triangles millimétriques ; régression P0 détectée puis corrigée |
+| Deux frontières statiques légèrement ondulées, trois Resources matière | Bloc test déterministe sans générateur ; résistances configurées 1 / 3 / 8 |
+| Retrait intégré par couche, hauteur bornée et reset exact | Aucun contournement d'une couche dure lors d'un grand tick |
+| Base sans cap supérieur doublant le fond | Élimine le z-fighting constaté graphiquement à profondeur minimale |
+| Édition packed spécialisée + Image de staging synchronisée | Réduit le coût des strokes ; oracle indépendant protège la formule optimisée |
+| Hard Rock omis | Optionnel ; les trois matériaux suffisent à la preuve P1 |
+| Validation humaine après les tests techniques | Antoine a testé P1 et confirmé son fonctionnement le 2026-10-01 ; verdict ci-dessous |
+
+Référence : [P1_REPORT](../dev/P1_REPORT.md), [P1_RELIEF_DECISION](../dev/P1_RELIEF_DECISION.md). Limite mesurée : le stress coin-à-coin répété dépasse le budget malgré la fluidité nominale à 60 FPS. Aucun P2+ engagé.
+
+### Verdict P1
+
+**Validé par Antoine le 2026-10-01 : « j'ai testé tout fonctionne ».** Validation globale du fonctionnement sur la livraison `b8a61661405b6413c4d4dbb385a72bbc007caac7`, sans défaut remonté. Le game feel final de la V0.1 reste un objectif ultérieur.
+
+La [PR #2](https://github.com/ezzerx/archaeology-game/pull/2) reste ouverte en brouillon, non mergée. Le merge et le démarrage de P2 attendent une demande explicite ; cette confirmation de test ne les autorise pas.
+
+## Points encore ouverts pour P2+
+
+- coût des empreintes extrêmes et des éventuels futurs objets physiques ;
 - stratégie d'upload GPU lorsque plusieurs maps existeront ;
 - valeurs finales de résistance, rayon, cadence et dégâts ;
 - assets et samples audio de production ;

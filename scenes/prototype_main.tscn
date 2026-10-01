@@ -37,7 +37,7 @@ background_mode = 1
 background_color = Color(0.12, 0.13, 0.14, 1)
 ambient_light_source = 3
 ambient_light_color = Color(0.8, 0.8, 0.8, 1)
-ambient_light_energy = 0.7
+ambient_light_energy = 0.45
 
 [node name="PrototypeMain" type="Node3D"]
 script = ExtResource("1")
@@ -53,8 +53,9 @@ material_override = SubResource("TableMaterial")
 environment = SubResource("Environment")
 
 [node name="Light" type="DirectionalLight3D" parent="TableEnvironment"]
-rotation_degrees = Vector3(-65, -25, 0)
-light_energy = 0.7
+rotation_degrees = Vector3(-48, -145, 0)
+light_energy = 1.0
+shadow_enabled = true
 
 [node name="ExcavationBlock" type="Node3D" parent="."]
 script = ExtResource("2")
@@ -105,7 +106,7 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 18
-text = "P0 / DEBUG EXCAVATOR"
+text = "P1 / DEBUG EXCAVATOR"
 
 [node name="Help" type="Label" parent="Debug"]
 offset_left = 16.0
@@ -114,4 +115,4 @@ offset_right = 1904.0
 offset_bottom = 1072.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 20
-text = "P0 greybox | Hold LMB: mark | R: reset | F1: debug | Wheel: radius | Shift+wheel: strength | Ctrl+wheel: falloff"
+text = "P1 | Hold LMB: excavate | R: reset | F1: debug | F2: view | Wheel: radius | Shift+wheel: power | Ctrl+wheel: falloff"

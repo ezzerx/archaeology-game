@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaterialDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/material_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"loose_soil"
+display_name = "Loose Soil"
+resistance = 1.0
+debug_color = Color(0.36, 0.20, 0.105, 1)

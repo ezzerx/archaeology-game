@@ -2,7 +2,7 @@
 
 **Working title modifiable.** ArchaeologyGame est un nom temporaire de projet, pas un titre commercial validé.
 
-**Statut : préproduction — P0 validé et mergé ; P1 Matière autorisé.** Plateforme visée : Steam. Moteur du prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
+**Statut : préproduction — P0 validé et mergé ; P1 validé humainement, non mergé.** Plateforme visée : Steam. Moteur du prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
 
 ## État du prototype
 
@@ -25,20 +25,23 @@ PR #1 mergée vers `main` : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 
 Rapport : [P0_REPORT](docs/dev/P0_REPORT.md).
 
-### P1 — Matière ▶ prochaine étape
+### P1 — Matière ✅
 
-P1 doit transformer cette surface abstraite en matière creusable :
+Sur `prototype/p1-materials`, la surface est maintenant un volume creusable :
 
-- profondeur réelle / simulée de façon convaincante ;
+- relief 3D borné à 102 mm ;
 - creux visibles ;
 - mapping précis malgré le relief ;
 - Loose Soil ;
 - Compact Clay ;
 - Sandstone ;
-- Hard Rock secondaire si pertinent ;
 - résistances distinctes avec outil debug générique.
 
-P2 (outils finaux) reste interdit avant validation humaine de P1.
+**97 contrôles automatisés passent**, plus la vérification graphique CPU/GPU. En 1080p local, les gestes normaux et rapides tiennent environ 60 FPS ; le stress artificiel coin-à-coin à chaque tick dépasse le budget.
+
+**Clic maintenu** : creuser · **R** : reset · **F1** : données · **F2** : vues · **Molette** : rayon · **Shift+molette** : puissance · **Ctrl+molette** : falloff.
+
+Antoine a testé P1 le **2026-10-01** et confirme : « j'ai testé tout fonctionne ». Le [rapport P1](docs/dev/P1_REPORT.md) conserve les résultats et la checklist de retest. La [PR #2](https://github.com/ezzerx/archaeology-game/pull/2) reste non mergée ; le merge et P2 (outils finaux) attendent une demande explicite.
 
 ## Vision
 
@@ -79,6 +82,8 @@ Le pixel art n’est plus la cible de la V0.1.
 | [MVP_V0_1](docs/MVP_V0_1.md) | Résumé du prototype |
 | [PROTOTYPE_V0_1_SPEC](docs/PROTOTYPE_V0_1_SPEC.md) | **Spécification détaillée canonique V0.1** |
 | [P0_REPORT](docs/dev/P0_REPORT.md) | Fondation technique P0 validée |
+| [P1_REPORT](docs/dev/P1_REPORT.md) | Résultats P1, performance, limites et test humain |
+| [P1_RELIEF_DECISION](docs/dev/P1_RELIEF_DECISION.md) | Choix du relief et du picking |
 | [MUSEUM_SYSTEM](docs/MUSEUM_SYSTEM.md) | Galerie et progression future |
 | [TECH_NOTES](docs/TECH_NOTES.md) | Notes techniques |
 | [ROADMAP](docs/ROADMAP.md) | Jalons |
