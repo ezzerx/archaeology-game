@@ -5,7 +5,7 @@
 - Phase : **préproduction — P2 Outils livré, validation humaine en attente**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
-- Branche de travail P2 : `prototype/p2-tools` ; PR vers `main` non mergée.
+- Branche de travail P2 : `prototype/p2-tools`, poussée ; [PR #3](https://github.com/ezzerx/archaeology-game/pull/3) en brouillon vers `main`, non mergée.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.

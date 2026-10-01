@@ -2,7 +2,7 @@
 
 Date : **2026-10-01**. Branche : **`prototype/p2-tools`**. Base `main` : `749a1f605e4fcfe61ae8f8569625d90bfcb1e21c`.
 
-**P2 implémenté et vérifié techniquement ; validation humaine en attente.** PR vers `main` à renseigner après publication. Aucun merge ni système P3. Les paramètres ci-dessous sont des propositions de tuning à tester par Antoine.
+**P2 implémenté et vérifié techniquement ; validation humaine en attente.** Branche poussée ; **[PR #3](https://github.com/ezzerx/archaeology-game/pull/3)** ouverte en brouillon vers `main`, **non mergée**. Aucun système P3. Les paramètres ci-dessous sont des propositions de tuning à tester par Antoine.
 
 ## Architecture
 
