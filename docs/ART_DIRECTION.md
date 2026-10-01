@@ -8,7 +8,8 @@ Pour le prototype gameplay v0.1, la direction visuelle retenue est :
 
 Le pixel art premium reste une inspiration historique du projet mais **n'est plus la cible du prototype**. La décision part désormais du gameplay : la fouille doit permettre des bords libres, des cavités, du relief, des ombres locales, des matériaux qui se fissurent et une révélation très progressive des os.
 
-La référence détaillée du prototype est [PROTOTYPE_V0_1_SPEC](PROTOTYPE_V0_1_SPEC.md).
+La référence détaillée du prototype est [PROTOTYPE_V0_1_SPEC](PROTOTYPE_V0_1_SPEC.md).  
+Le jeu de références visuelles canonique est défini dans [VISUAL_REFERENCES](VISUAL_REFERENCES.md).
 
 ## Intention
 
@@ -40,14 +41,16 @@ L'identité propre d'ArchaeologyGame repose sur :
 
 ## Références conceptuelles validées
 
-La famille de concept arts générée le 2026-10-01 dans la conversation de conception constitue la référence visuelle de travail :
+La famille de concept arts générée le 2026-10-01 dans la conversation de conception constitue la référence visuelle de travail. Son ordre, son rôle et le checksum du board canonique sont consignés dans [VISUAL_REFERENCES.md](VISUAL_REFERENCES.md).
+
+Les quatre axes sont :
 
 1. **Écran de fouille principal** — bloc central multi-matériaux sur table, lumière chaude, barre d'outils basse, panneaux papier.
 2. **Moment actif de fouille** — pinceau visible au-dessus du bloc, poussière en mouvement, cavité marquée et message **Bone detected!**.
 3. **Fouille avancée / identification** — squelette largement exposé, dossier du spécimen, fragments récupérés et carnet de comparaison.
 4. **Musée scrollable** — galerie / carousel sans avatar, squelette incomplet, silhouettes fantômes des parties manquantes et panneau **Missing Fossil Parts**.
 
-Ces images sont des **mood/concept references**, pas des assets de production. Avant le premier art pass sérieux, exporter et versionner leurs fichiers dans le dépôt sous un dossier de références afin que la DA ne dépende pas uniquement de l'historique de conversation.
+Ces images sont des **mood/concept references**, pas des assets de production.
 
 ## Caméra
 
