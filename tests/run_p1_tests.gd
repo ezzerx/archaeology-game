@@ -179,10 +179,12 @@ func test_scene_relief() -> void:
 	controller.set_physics_process(false)
 	await physics_frame
 	var initial := block.working_map.image.get_data()
-	block.working_map.apply_segment(Vector2(512, 320), Vector2(512, 320), 80, 5, 1, 2)
+	# P3 adds bone near the old centre fixture. Test the P1 free-matrix floor
+	# above the fossil; bone/cavity contacts have their own P3 oracle.
+	block.working_map.apply_segment(Vector2(512, 100), Vector2(512, 100), 80, 5, 1, 2)
 	block.flush_texture()
-	check(block.relief.height_at(Vector2(0.5, 0.5)) < block.thickness - 0.09, "deep cavity has physical depth")
-	for uv in [Vector2(0.5, 0.5), Vector2(0.54, 0.5), Vector2(0.57, 0.5), Vector2(0.2, 0.2)]:
+	check(block.relief.height_at(Vector2(0.5, 0.15625)) < block.thickness - 0.09, "deep cavity has physical depth")
+	for uv in [Vector2(0.5, 0.15625), Vector2(0.54, 0.15625), Vector2(0.57, 0.15625), Vector2(0.2, 0.2)]:
 		var local := Vector3((uv.x - 0.5) * 1.1, block.relief.height_at(uv), (uv.y - 0.5) * 0.7)
 		var screen := camera.unproject_position(block.to_global(local))
 		var hit := block.pick(screen, camera)
@@ -198,7 +200,7 @@ func test_scene_relief() -> void:
 	block.position = Vector3(0.03, 0.02, 0.01)
 	block.rotation = Vector3(0.07, 0.15, -0.03)
 	block.scale = Vector3(0.9, 1.1, 0.8)
-	var target := Vector3(0.0, block.relief.height_at(Vector2(0.5, 0.5)), 0.0)
+	var target := Vector3(0.0, block.relief.height_at(Vector2(0.5, 0.15625)), (0.15625 - 0.5) * 0.7)
 	var transformed := block.pick(camera.unproject_position(block.to_global(target)), camera)
 	check(transformed.inside and transformed.local.distance_to(target) < 0.00001, "deep picking with translated/rotated/non-uniformly scaled block")
 	check(transformed.inside and absf(transformed.normal.length() - 1.0) < 0.00001, "transformed contact normal is normalized")

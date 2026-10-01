@@ -105,7 +105,32 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 18
-text = "P2 / TOOLS DEBUG"
+text = "P3 / TOOLS DEBUG"
+
+[node name="BonePanel" type="PanelContainer" parent="Debug"]
+offset_left = 1370.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 320.0
+mouse_filter = 2
+
+[node name="Text" type="Label" parent="Debug/BonePanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 18
+text = "Specimen B-17 / DEBUG"
+
+[node name="BoneNotice" type="Label" parent="Debug"]
+visible = false
+offset_left = 710.0
+offset_top = 35.0
+offset_right = 1320.0
+offset_bottom = 110.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.91, 0.73, 1)
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+text = "Bone detected\nDelicate material underneath"
 
 [node name="Toolbar" type="HBoxContainer" parent="Debug"]
 offset_left = 623.0
@@ -121,4 +146,4 @@ offset_right = 1904.0
 offset_bottom = 1072.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 20
-text = "P2 | Hold LMB: use tool | 1/2/3: select, then fresh click | R: reset | F1: debug | F2: view | Wheel: radius | Shift: power | Ctrl: falloff"
+text = "P3 | Hold LMB: use tool | 1/2/3: select, then fresh click | R: reset | F1: debug | F2: view | Wheel: radius | Shift: power | Ctrl: falloff"

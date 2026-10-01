@@ -14,6 +14,7 @@ var relief: ReliefSurface
 var texture: ImageTexture
 var layer_texture: ImageTexture
 var residue_texture: ImageTexture
+var fossil_texture: ImageTexture
 var material: ShaderMaterial
 var skirt_material: ShaderMaterial
 var last_upload_usec := 0
@@ -28,17 +29,20 @@ var debug_view := 0
 func _ready() -> void:
 	assert(surface_size.x > 0.0 and surface_size.y > 0.0 and thickness > base_height)
 	var strata := Stratigraphy.new(map_resolution, material_definitions)
-	working_map = WorkingSurface.new(map_resolution, strata)
+	working_map = WorkingSurface.new(map_resolution, strata, FossilField.new(map_resolution))
 	relief = ReliefSurface.new(working_map.image, surface_size, map_resolution, base_height, thickness)
 	texture = ImageTexture.create_from_image(working_map.image)
 	layer_texture = ImageTexture.create_from_image(strata.boundaries)
 	residue_texture = ImageTexture.create_from_image(working_map.residue.image)
+	fossil_texture = ImageTexture.create_from_image(working_map.fossil.field.image)
 	working_map.dirty = false
 	working_map.residue.dirty = false
 	material = surface.material_override.duplicate() as ShaderMaterial
 	material.set_shader_parameter("working_map", texture)
 	material.set_shader_parameter("layer_boundaries", layer_texture)
 	material.set_shader_parameter("residue_map", residue_texture)
+	material.set_shader_parameter("fossil_map", fossil_texture)
+	material.set_shader_parameter("bone_exposure_epsilon", FossilField.EXPOSURE_EPSILON)
 	material.set_shader_parameter("map_size", Vector2(map_resolution))
 	material.set_shader_parameter("base_height", base_height)
 	material.set_shader_parameter("excavatable_height", thickness - base_height)
@@ -95,6 +99,13 @@ func pick(screen: Vector2, camera: Camera3D) -> Dictionary:
 		"cell": SurfaceMapping.uv_to_cell(uv, map_resolution),
 		"height": height, "depth": thickness - hit.local.y,
 		"material": working_map.strata.material_at(uv, height)}, true)
+	var cell: Vector2i = result.cell
+	var index := cell.y * map_resolution.x + cell.x
+	var component := working_map.fossil.field.component_ids[index]
+	result.merge({"bone": component != 0, "bone_component": component,
+		"bone_ceiling": working_map.fossil.field.ceilings[index],
+		"bone_exposed": working_map.fossil.exposed[index] != 0,
+		"cell_height": working_map.value_at(cell)})
 	return result
 
 func show_cursor(hit: Dictionary, radius: float, color := Color(0.95, 0.8, 0.2)) -> void:
