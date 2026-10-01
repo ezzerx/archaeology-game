@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scripts/prototype_main.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/excavation_block.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/tool_controller.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/precision_zoom.gd" id="4"]
 [ext_resource type="Shader" path="res://shaders/surface_debug.gdshader" id="5"]
 
 [sub_resource type="StandardMaterial3D" id="TableMaterial"]
@@ -77,7 +78,9 @@ collision_mask = 0
 position = Vector3(0, 0.06, 0)
 shape = SubResource("BlockShape")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("block")]
+script = ExtResource("4")
+block = NodePath("../ExcavationBlock")
 position = Vector3(0, 3.10357, 0.31359)
 rotation_degrees = Vector3(-84, 0, 0)
 projection = 1
@@ -139,6 +142,17 @@ offset_right = 1297.0
 offset_bottom = 1026.0
 theme_override_constants/separation = 12
 
+[node name="PrecisionHint" type="Label" parent="Debug"]
+visible = false
+offset_left = 400.0
+offset_top = 935.0
+offset_right = 1520.0
+offset_bottom = 974.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.91, 0.73, 1)
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 1
+
 [node name="Help" type="Label" parent="Debug"]
 offset_left = 16.0
 offset_top = 1038.0
@@ -146,4 +160,4 @@ offset_right = 1904.0
 offset_bottom = 1072.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 20
-text = "P3 | Hold LMB: use tool | 1/2/3: select, then fresh click | R: reset | F1: debug | F2: view | Wheel: radius | Shift: power | Ctrl: falloff"
+text = "P3 | Hold LMB: use tool | 1/2/3: select, then fresh click | Wheel: zoom | Home: overview | R: reset | F1: debug | F2: view"

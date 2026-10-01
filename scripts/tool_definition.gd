@@ -27,6 +27,9 @@ enum InteractionMode { CONTINUOUS, IMPACT }
 ## Percentage points per direct impact on a centre cell exposed BEFORE the hit.
 @export_range(0.0, 100.0, 0.1) var bone_damage := 0.0:
 	set(value): bone_damage = clampf(value, 0.0, 100.0)
+## Only the Soft Brush uses this slow, material-independent near-bone depth rate.
+@export_range(0.0, 2.0, 0.05) var precision_speed_mm_s := 0.0:
+	set(value): precision_speed_mm_s = clampf(value, 0.0, 2.0)
 
 func effectiveness_for(material_id: StringName) -> float:
 	match material_id:

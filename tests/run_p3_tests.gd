@@ -132,6 +132,13 @@ func test_contact_damage_and_reset() -> void:
 	strong.power = 5
 	strong.radius = 1
 	check(surface.apply_impact(point, strong) == 1, "tiny direct impact edits exactly one cell")
+	check(absf(surface.value_at(cell) - field.ceilings[index] - surface.precision_margin) < 0.0000001,
+		"Chisel stops at the new precision margin")
+	check(fossil.exposed_cells == 0 and first_events == 0 and fossil.condition == 100,
+		"Chisel approach alone does not reveal bone or emit contact")
+	var finishing := brush.duplicate() as ToolDefinition
+	finishing.radius = 1
+	surface.apply_continuous(point, point, finishing, 3.0)
 	check(surface.value_at(cell) == field.ceilings[index], "material removal clamps exactly at ceiling")
 	check(fossil.condition == 100 and damage_events == 0, "first hidden contact protected before damage decision")
 	check(first_events == 1 and fossil.first_contact and cell_events == 1, "first and per-cell contact emitted once")
@@ -143,6 +150,8 @@ func test_contact_damage_and_reset() -> void:
 	strong.radius = 50
 	surface.apply_impact(point, strong)
 	check(fossil.condition == 94 and damage_events == 2, "large footprint still pays one penalty maximum")
+	finishing.radius = strong.radius
+	surface.apply_continuous(point, point, finishing, 20.0)
 	check(fossil.exposed_cells > 1 and committed_events, "signals observe synchronized height and counters")
 	verify_accounting(surface, "partial reveal")
 	# Hidden centre adjacent to exposed cells is safe despite the overlapping footprint.
@@ -161,6 +170,9 @@ func test_contact_damage_and_reset() -> void:
 	check(field.component_ids[free_cell.y * field.size.x + free_cell.x] == 0
 		and surface.value_at(free_cell) == 0 and surface.value_at(free_cell) < surface.value_at(cell), "nearby non-bone matrix reaches floor below bone")
 	var before := fossil.condition
+	# Precision finishing already brushed this area clean; seed fresh residue to
+	# preserve the historical cleaning assertion instead of comparing zero to zero.
+	surface.residue.deposit_removed(cell.x, cell.y, 8.0)
 	var residue_before := surface.residue.value_at((point + Vector2.ONE * 0.5) / Vector2(field.size))
 	for repeat in range(10): surface.apply_continuous(point, point, brush, 1)
 	check(fossil.condition == before and surface.value_at(cell) == field.ceilings[index], "Brush safe with fixed bone height")
@@ -193,6 +205,7 @@ func test_contact_damage_and_reset() -> void:
 	check(fossil.last_bone_event == "—" and fossil.last_damage_event == "—", "reset clears event history")
 	event_cells.clear()
 	surface.apply_impact(point, strong)
+	surface.apply_continuous(point, point, finishing, 20.0)
 	check(first_events == 2 and fossil.condition == 100, "fresh discovery after reset again protected with one new notice")
 	# Brush still works compatible matrix within a mixed bone/non-bone footprint.
 	var mixed := WorkingSurface.new(field.size, null, field)

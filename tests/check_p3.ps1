@@ -18,6 +18,7 @@ function Invoke-P3Check([string]$Name, [string[]]$EngineArguments) {
 }
 
 Invoke-P3Check 'p3-tests' @('--headless', '--script', 'res://tests/run_p3_tests.gd')
+Invoke-P3Check 'p3-precision-tests' @('--headless', '--script', 'res://tests/run_p3_precision_tests.gd')
 if ($Graphical) {
     Invoke-P3Check 'p1-on-p3-benchmark' @('--script', 'res://tests/run_graphical_benchmark.gd')
     Invoke-P3Check 'p3-benchmark' @('--script', 'res://tests/run_p3_benchmark.gd')

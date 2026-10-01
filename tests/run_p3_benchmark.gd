@@ -17,17 +17,22 @@ func prepare_bone(residue := false) -> void:
 		block.working_map.residue.apply_segment(point, point, 90, 1.5, 0)
 	block.flush_texture()
 
-func p3_phase(label: String, tool_index: int, kind: String, ticks := 360) -> void:
+func p3_phase(label: String, tool_index: int, kind: String, ticks := 360, zoom := 1.0) -> void:
 	controller.reset_surface()
+	(camera as PrecisionZoom).reset_view()
 	controller._focused = true
 	controller._pointer_inside = true
 	select(tool_index)
 	if kind in ["bone", "brush", "blower"]:
 		prepare_bone(kind in ["brush", "blower"])
 	elif kind == "reveal":
-		# Prepare a thin sandstone cover, keeping the benchmark's reveal incremental.
+		# Coarse Chisel preparation leaves the new safety cover, without exposure.
 		var p := SurfaceMapping.uv_to_map(target_uv(), block.map_resolution)
-		block.working_map.apply_segment(p, p, 65, 1.15, 1.5, 1)
+		for i in range(80): block.working_map.apply_impact(p, controller.tools[1])
+	if zoom > 1:
+		move_to(target_uv())
+		(camera as PrecisionZoom)._focused = true
+		(camera as PrecisionZoom).request_zoom(log(zoom) / log((camera as PrecisionZoom).wheel_step), controller._screen)
 	block.flush_texture()
 	block.show_cursor({"inside": false}, 40)
 	if kind == "blower": await screenshot("p3-residue-before")
@@ -71,12 +76,13 @@ func p3_phase(label: String, tool_index: int, kind: String, ticks := 360) -> voi
 		"cpu_pick_ms": stats(pick), "height_submit_ms": stats(height_submit), "residue_submit_ms": stats(residue_submit),
 		"height_uploads": block.upload_count - height_uploads, "residue_uploads": block.residue_upload_count - residue_uploads,
 		"impacts": controller.total_impacts, "exposed_before": initial_exposure, "exposed_after": fossil.exposed_cells,
-		"condition_before": initial_condition, "condition_after": fossil.condition, "runtime_cap": Engine.max_fps}
+		"condition_before": initial_condition, "condition_after": fossil.condition, "runtime_cap": Engine.max_fps,
+		"zoom": (camera as PrecisionZoom).zoom_factor}
 	check(report[label].render_fps >= 58 and report[label].frame_ms.p95 < 20, "60 FPS interaction budget: " + label)
 	if Engine.max_fps > 0: check(report[label].render_fps <= 241, "runtime cap respected: " + label)
 	check(block.fossil_texture.get_image().get_data() == static_before, "fossil texture remains immutable")
 	if kind == "matrix": check(fossil.exposed_cells == 0, "matrix phase actually stays away from fossil")
-	if kind == "reveal": check(fossil.exposed_cells > initial_exposure, "bone boundary phase actually exposes new cells")
+	if kind == "reveal": check(fossil.exposed_cells > initial_exposure and fossil.condition == 100, "Brush boundary phase exposes new cells safely")
 	if kind == "bone": check(fossil.condition == maxf(0, initial_condition - controller.total_impacts * 3), "repeated direct hits pay one damage penalty each")
 	if kind in ["brush", "blower"]: check(fossil.condition == initial_condition, "safe tools preserve condition")
 	if kind == "blower":
@@ -86,25 +92,35 @@ func p3_phase(label: String, tool_index: int, kind: String, ticks := 360) -> voi
 	block.show_cursor({"inside": false}, 40)
 	await screenshot("p3-" + label)
 
-func validate_bone_pixels() -> void:
+func validate_bone_pixels(zoom := 1.0) -> void:
 	# A large test cavity, created only through the production edit operation.
 	controller.reset_surface()
+	(camera as PrecisionZoom).reset_view()
 	block.working_map.apply_segment(Vector2(295, 365), Vector2(745, 365), 220, 1000, 1.5, 1)
 	block.flush_texture()
+	if zoom > 1:
+		move_to(target_uv())
+		(camera as PrecisionZoom)._focused = true
+		(camera as PrecisionZoom).request_zoom(log(zoom) / log((camera as PrecisionZoom).wheel_step), controller._screen)
+		for i in range(90): await physics_frame
+	var suffix := "" if zoom == 1 else "-%dx" % zoom
 	main.get_node("Debug/Panel").hide()
 	main.get_node("Debug/BonePanel").hide()
 	main.get_node("Debug/BoneNotice").hide()
 	block.show_cursor({"inside": false}, 40)
-	await screenshot("p3-emergence")
+	await screenshot("p3-emergence" + suffix)
 	block.set_debug_view(1)
-	var height_picture := await screenshot("p3-height")
+	var height_picture := await screenshot("p3-height" + suffix)
 	block.set_debug_view(2)
-	var material_picture := await screenshot("p3-material")
+	var material_picture := await screenshot("p3-material" + suffix)
 	var bone_color: Color = block.material.get_shader_parameter("bone_color")
 	var color_error := 0.0
+	var raw_color_error := 0.0
+	var boundary_alternatives := 0
 	var height_error := 0.0
 	var bone_samples := 0
 	var matrix_samples := 0
+	var color_mismatches := []
 	for y in range(270, 885, 3):
 		for x in range(480, 1430, 3):
 			var pixel := Vector2i(x, y)
@@ -114,8 +130,26 @@ func validate_bone_pixels() -> void:
 			# Compare the CPU texel criterion against the GPU's flat layer rendering.
 			var expected: Color = bone_color if hit.bone_exposed else hit.material.debug_color
 			var actual := material_picture.get_pixelv(pixel)
-			var error := maxf(absf(actual.r - expected.r), maxf(absf(actual.g - expected.g), absf(actual.b - expected.b)))
+			var error := color_distance(actual, expected)
+			raw_color_error = maxf(raw_color_error, error)
+			if error > 0.02:
+				# Categorical material is discontinuous at texel boundaries. GPU
+				# rasterization may select the adjacent cell within 0.01 texel
+				# (<0.05 screen pixel at 3x). Require an actual neighbouring cell
+				# in that tolerance, never ignore the pixel or relax colour/height.
+				var map_pos: Vector2 = hit.uv * Vector2(block.map_resolution)
+				var low := Vector2i((map_pos - Vector2.ONE * 0.01).floor()).clamp(Vector2i.ZERO, block.map_resolution - Vector2i.ONE)
+				var high := Vector2i((map_pos + Vector2.ONE * 0.01).floor()).clamp(Vector2i.ZERO, block.map_resolution - Vector2i.ONE)
+				for cy in range(low.y, high.y + 1):
+					for cx in range(low.x, high.x + 1):
+						var exposed := block.working_map.fossil.exposed[cy * block.map_resolution.x + cx] != 0
+						var neighbour: Color = bone_color if exposed else hit.material.debug_color
+						error = minf(error, color_distance(actual, neighbour))
+				if error <= 0.02: boundary_alternatives += 1
 			color_error = maxf(color_error, error)
+			if error > 0.02 and color_mismatches.size() < 20:
+				color_mismatches.append({"pixel": str(pixel), "uv_cells": str(hit.uv * Vector2(block.map_resolution)),
+					"bone": hit.bone_exposed, "expected": str(expected), "actual": str(actual)})
 			if hit.bone_exposed: bone_samples += 1
 			else: matrix_samples += 1
 	check(bone_samples > 2000 and matrix_samples > 10000, "GPU oracle samples both bone and adjacent cavity")
@@ -124,16 +158,22 @@ func validate_bone_pixels() -> void:
 	check(block.fossil_texture.get_image().get_data() == block.working_map.fossil.field.image.get_data(), "static RGF GPU/CPU byte equality")
 	check(block.texture.get_image().get_data() == block.working_map.image.get_data(), "height GPU/CPU byte equality")
 	check(block.residue_texture.get_image().get_data() == block.working_map.residue.image.get_data(), "residue GPU/CPU byte equality")
-	report["gpu_oracle"] = {"bone_pixels": bone_samples, "matrix_pixels": matrix_samples,
-		"height_max_error": height_error, "bone_material_max_error": color_error, "textures_byte_exact":
+	var oracle_key := "gpu_oracle" + suffix
+	report[oracle_key] = {"bone_pixels": bone_samples, "matrix_pixels": matrix_samples, "zoom": (camera as PrecisionZoom).zoom_factor,
+		"height_max_error": height_error, "bone_material_max_error": color_error, "raw_material_max_error": raw_color_error,
+		"boundary_alternatives": boundary_alternatives, "boundary_tolerance_texels": 0.01, "textures_byte_exact":
 		block.fossil_texture.get_image().get_data() == block.working_map.fossil.field.image.get_data()}
-	print("P3 GPU ORACLE: ", JSON.stringify(report.gpu_oracle))
+	print("P3 GPU ORACLE: ", JSON.stringify(report[oracle_key]))
+	if not color_mismatches.is_empty(): print("P3 COLOR DIAGNOSTICS: ", JSON.stringify(color_mismatches))
 	block.set_debug_view(0)
 	main.get_node("Debug/Panel").show()
 	main.get_node("Debug/BonePanel").show()
 	# Debug F1 legibility and every component's final counters.
 	main._process(0.1)
-	await screenshot("p3-debug")
+	await screenshot("p3-debug" + suffix)
+
+func color_distance(a: Color, b: Color) -> float:
+	return maxf(absf(a.r - b.r), maxf(absf(a.g - b.g), absf(a.b - b.b)))
 
 func initial_and_first_reveal() -> void:
 	controller.reset_surface()
@@ -143,16 +183,41 @@ func initial_and_first_reveal() -> void:
 	await screenshot("p3-initial")
 	select(1)
 	var point := SurfaceMapping.uv_to_map(target_uv(), block.map_resolution)
-	var impacts := 0
-	while block.working_map.fossil.exposed_cells == 0 and impacts < 80:
+	move_to(target_uv())
+	(camera as PrecisionZoom)._focused = true
+	(camera as PrecisionZoom).request_zoom(log(2.5) / log((camera as PrecisionZoom).wheel_step), controller._screen)
+	for i in range(90): await physics_frame
+	var impacts := 80
+	for i in range(impacts):
 		block.working_map.apply_impact(point, controller.config)
-		impacts += 1
 	block.flush_texture()
-	check(block.working_map.fossil.condition == 100 and first_contacts == 1, "natural first reveal is protected with one notification")
+	check(block.working_map.fossil.exposed_cells == 0 and first_contacts == 0, "Chisel holds hidden bone safely without discovery")
+	move_to(target_uv())
+	controller._physics_process(1.0 / 60.0)
+	main._process(0.1)
+	await screenshot("p3-precision-margin")
+	select(0)
+	press_at(target_uv())
+	for i in range(210):
+		await physics_frame
+		controller._focused = true
+		controller._pointer_inside = true
+		move_to(target_uv())
+		controller._physics_process(1.0 / 60.0)
+	controller.cancel_stroke()
+	check(block.working_map.fossil.condition == 100 and first_contacts == 1, "Chisel-to-Brush first reveal is safe with one notification")
 	check(block.working_map.fossil.exposure_percent() > 0 and block.working_map.fossil.exposure_percent() < 1, "natural first contact exposes under one percent")
 	await screenshot("p3-first-contact")
 	report["first_contact"] = {"default_chisel_impacts": impacts, "condition": block.working_map.fossil.condition,
+		"default_brush_seconds": 3.5, "zoom": (camera as PrecisionZoom).zoom_factor,
 		"exposed_cells": block.working_map.fossil.exposed_cells, "exposure_percent": block.working_map.fossil.exposure_percent()}
+	select(1)
+	press_at(target_uv())
+	controller._physics_process(1.0 / 60.0)
+	controller.cancel_stroke()
+	check(block.working_map.fossil.condition == 97, "intentional direct Chisel hit after safe finishing loses three points")
+	report.first_contact["condition_after_deliberate_hit"] = block.working_map.fossil.condition
+	(camera as PrecisionZoom).reset_view()
 
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute("res://work/test-logs")
@@ -175,13 +240,17 @@ func run() -> void:
 	controller.set_physics_process(false)
 	block.working_map.fossil.bone_first_contact.connect(on_first_contact)
 	for i in range(120): await physics_frame
-	await initial_and_first_reveal()
-	await p3_phase("matrix_excavation", 0, "matrix")
-	await p3_phase("bone_boundary_reveal", 1, "reveal")
-	await p3_phase("chisel_exposed_bone", 1, "bone")
-	await p3_phase("brush_bone", 0, "brush")
-	await p3_phase("blower_bone_residue", 2, "blower")
+	if not "--gpu-only" in OS.get_cmdline_user_args():
+		await initial_and_first_reveal()
+		await p3_phase("matrix_excavation", 0, "matrix")
+		await p3_phase("bone_boundary_reveal", 0, "reveal")
+		await p3_phase("brush_precision_zoom_3x", 0, "reveal", 360, 3.0)
+		await p3_phase("chisel_exposed_bone", 1, "bone")
+		await p3_phase("brush_bone", 0, "brush")
+		await p3_phase("blower_bone_residue", 2, "blower")
 	await validate_bone_pixels()
+	await validate_bone_pixels(2.0)
+	await validate_bone_pixels(3.0)
 	report["gpu"] = RenderingServer.get_video_adapter_name()
 	report["cpu"] = OS.get_processor_name()
 	report["godot"] = Engine.get_version_info().string
@@ -196,5 +265,6 @@ func run() -> void:
 	# --inspect is interactive: restore the project cap and pristine specimen.
 	Engine.max_fps = ProjectSettings.get_setting("application/run/max_fps")
 	controller.reset_surface()
+	(camera as PrecisionZoom).reset_view()
 	controller.set_physics_process(true)
 	if not "--inspect" in OS.get_cmdline_user_args(): quit(0 if failures == 0 else 1)
