@@ -4,7 +4,7 @@
 - Projet : **ArchaeologyGame**, working title modifiable.
 - Phase : **préproduction — P4 implémenté, test humain attendu ; P5 interdit**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`.
+- Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation `42ec46d`).
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.

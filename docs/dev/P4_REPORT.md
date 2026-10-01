@@ -2,7 +2,7 @@
 
 **2026-10-02 · `prototype/p4-game-feel` · Godot 4.7.2 stable Standard / Compatibility.**
 
-P4 est implémenté et testé automatiquement. **Validation humaine attendue, PR non mergée, P5 interdit.** Source de vérité : [P4_BRIEF](P4_BRIEF.md).
+P4 est implémenté et testé automatiquement. [PR #5](https://github.com/ezzerx/archaeology-game/pull/5), commit d'implémentation `42ec46d`. **Validation humaine attendue, PR non mergée, P5 interdit.** Source de vérité : [P4_BRIEF](P4_BRIEF.md).
 
 ## Comportement livré
 
