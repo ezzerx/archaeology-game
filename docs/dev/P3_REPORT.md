@@ -1,8 +1,8 @@
 # Rapport P3 — Fossile et zoom de précision
 
-Mise à jour : **2026-10-02**. Branche : **`prototype/p3-fossil`**. [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon, **non mergée**.
+Mise à jour : **2026-10-02**. Branche historique : **`prototype/p3-fossil`**. [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) **mergée** vers `main`.
 
-**P3 validé humainement par Antoine le 2026-10-02, zoom, ergonomie debug et indications en bas inclus. PR non mergée, P4/P5 non commencés.** Confirmation finale : « Ok là on est bon ;) ». Source de vérité : [P3_DESIGN_FIXES](P3_DESIGN_FIXES.md). Antoine confirme explicitement le périmètre « zoom seul » ; la logique osseuse P3 initiale est conservée. Toute suite ou merge attend une autorisation explicite.
+**P3 validé humainement puis mergé le 2026-10-02.** Confirmation finale : « Ok là on est bon ;) ». Merge : `10a12379ab1db629380ac9697e5597aeb16a373b`. P4 est autorisé séparément ; P5 reste bloqué jusqu'à validation humaine de P4.
 
 ## Périmètre et condition osseuse
 
@@ -121,3 +121,19 @@ Ouvrir `project.godot` sur **`prototype/p3-fossil`**, Godot **4.7.2 Standard**, 
 7. [ ] Fouiller **2–3 minutes** avec zoom : F1 indique **Cap 240 FPS / Physics 60 Hz** ; vérifier le confort et l'absence de surchauffe gênante.
 
 **Le retest porte sur le zoom, le picking et la découverte P3 existante. Il ne demande pas encore une fouille complète à 100 % de condition. PR #4 reste non mergée ; P4 attend une nouvelle autorisation explicite.**
+
+
+## Clôture P3
+
+P3 est officiellement clos et mergé.
+
+Le hook de découverte est validé qualitativement : **une fois l'os perçu, l'envie de continuer à révéler est présente**.
+
+Les points volontairement transmis à P4 sont :
+
+- réaction de matière plus physique ;
+- Chisel moins « pixel eraser » ;
+- lisibilité Bone/Clay ;
+- équité de Bone Condition après introduction de fractures/chunks.
+
+Aucun tuning final des vitesses d'outils n'est décidé en P3.
