@@ -52,6 +52,8 @@ func select_tool(index: int) -> bool:
 	return true
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _focused:
+		return
 	if event is InputEventKey and event.pressed and not event.echo:
 		var index := -1
 		match event.physical_keycode:
@@ -62,21 +64,30 @@ func _unhandled_input(event: InputEvent) -> void:
 			select_tool(index)
 			get_viewport().set_input_as_handled()
 		elif OS.is_debug_build() and event.physical_keycode in [KEY_F6, KEY_F7]:
-			# Developer tuning; the mouse wheel is exclusively player zoom.
 			var direction := -1.0 if event.physical_keycode == KEY_F6 else 1.0
-			if event.shift_pressed:
-				config.power += direction * 0.1
-			elif event.ctrl_pressed:
-				config.falloff += direction * 0.25
-			else:
-				config.radius += direction * 2.0
-			cancel_stroke()
+			_tune_tool(direction, event.shift_pressed, event.ctrl_pressed)
 			get_viewport().set_input_as_handled()
 	if event is InputEventMouseButton and event.pressed:
+		if OS.is_debug_build() and _pointer_inside \
+				and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN] \
+				and (event.shift_pressed or event.ctrl_pressed or event.alt_pressed):
+			var direction := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
+			_tune_tool(direction * maxf(event.factor, 0.01), event.shift_pressed, event.ctrl_pressed)
+			get_viewport().set_input_as_handled()
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_held = _focused and _pointer_inside
 			_previous_valid = false
 			impact_clock.reset()
+
+func _tune_tool(steps: float, shift: bool, ctrl: bool) -> void:
+	# Shared wheel/key increments and deterministic priority: Shift > Ctrl > Alt.
+	if shift:
+		config.power += steps * 0.1
+	elif ctrl:
+		config.falloff += steps * 0.25
+	else:
+		config.radius += steps * 2.0
+	cancel_stroke()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:

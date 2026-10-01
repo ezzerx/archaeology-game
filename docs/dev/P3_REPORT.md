@@ -1,8 +1,8 @@
 # Rapport P3 — Fossile et zoom de précision
 
-Date : **2026-10-01**. Branche : **`prototype/p3-fossil`**. [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon, **non mergée**.
+Mise à jour : **2026-10-02**. Branche : **`prototype/p3-fossil`**. [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon, **non mergée**.
 
-**Zoom implémenté et vérifié techniquement ; retest humain requis avant clôture P3. P4/P5 non commencés.** Source de vérité : [P3_DESIGN_FIXES](P3_DESIGN_FIXES.md). Antoine confirme explicitement le périmètre « zoom seul » ; la logique osseuse P3 initiale est conservée.
+**Zoom validé humainement par Antoine le 2026-10-02 ; ergonomie debug vérifiée. PR non mergée, P4/P5 non commencés.** Source de vérité : [P3_DESIGN_FIXES](P3_DESIGN_FIXES.md). Antoine confirme explicitement le périmètre « zoom seul » ; la logique osseuse P3 initiale est conservée.
 
 ## Périmètre et condition osseuse
 
@@ -22,11 +22,11 @@ L'exposition utilise les hauteurs RF réellement stockées et l'epsilon binaire 
 
 ### Zoom et entrées
 
-- Molette normale, avec ou sans Shift/Ctrl : **zoom fluide 1× → 3×**, amplitude et pas configurables. Projection orthographique et orientation **84°** fixes.
+- Molette seule : **zoom fluide 1× → 3×**, amplitude et pas configurables. Projection orthographique et orientation **84°** fixes.
 - Le point 3D réellement touché sous le curseur reste ancré pendant l'interpolation. Hors du bloc, zoom autour du centre de la vue.
 - **Home / Origine** rétablit la vue initiale sans modifier le terrain. **R** restaure terrain, fossile et vue 1×.
 - Une commande de zoom annule le geste courant ; un nouveau clic permet de reprendre. Resize et perte de focus annulent également les gestes et figent l'interpolation.
-- Réglages développeur en build debug : **F6/F7** rayon −/+, **Shift+F6/F7** puissance, **Ctrl+F6/F7** falloff. Ils sont indiqués dans F1.
+- En debug : **Shift+molette** puissance (pas 0,1), **Ctrl+molette** falloff (0,25), **Alt+molette** rayon (2 texels). Monter augmente, descendre diminue ; facteur de molette respecté. Priorité des combinaisons : Shift > Ctrl > Alt. Aucun zoom déclenché. F6/F7 et leurs modificateurs Shift/Ctrl restent en secours. Aide dans F1 ; valeurs par défaut inchangées.
 
 `PrecisionZoom` déplace uniquement le cadrage dans le plan caméra pour maintenir l'ancrage ; aucune rotation ni caméra libre. Le curseur est reprojeté pendant l'interpolation. Le contrôle de resize inclut la fenêtre native, car le viewport logique reste fixe en mode stretch. L'arrêt du zoom tient compte de la précision float32 pour éviter du picking perpétuel après convergence.
 
@@ -34,7 +34,7 @@ Décision d'architecture : [P3_FOSSIL_DECISION](P3_FOSSIL_DECISION.md).
 
 ## Vérifications fonctionnelles
 
-**426 checks, zéro échec**, Godot **4.7.2 stable Standard** :
+**439 checks, zéro échec**, Godot **4.7.2 stable Standard** :
 
 | Suite | Checks |
 |---|---:|
@@ -42,7 +42,7 @@ Décision d'architecture : [P3_FOSSIL_DECISION](P3_FOSSIL_DECISION.md).
 | P1 | 52 |
 | P2 | 97 |
 | P3 historique, inchangée | 85 |
-| Zoom / picking / entrées | 147 |
+| Zoom / picking / entrées | 160 |
 
 Les tests P3 historiques vérifient découverte, clamp même à très grande puissance, protection du premier contact, dégâts sur centre déjà exposé, Brush/Blower sûrs, matrice voisine, exposition et reset exact.
 
@@ -55,6 +55,8 @@ Preuve : [p3-zoom-tests.json](evidence/p3-zoom-tests.json).
 ```
 
 Le script vérifie version, import, codes de sortie et erreurs des logs. Les benchmarks graphiques sont séquentiels. Logs et captures de travail : `work/test-logs/`, exclus de Git.
+
+La passe debug du **2026-10-02** rejoue `tests/check_p3.ps1` sans `-Graphical` : **439 checks**, dont **160 input/zoom**, zéro échec. Couverture ajoutée : réglages dans les deux sens, absence de zoom sur modificateur, priorité des combinaisons, facteur de molette, annulation du geste, perte de focus et Resources par défaut intactes. Les mesures graphiques ci-dessous proviennent de la passe zoom précédente (`8a89844`), sans nouvelle mesure graphique pour ce changement de raccourcis.
 
 ## Performances et comparaison GPU / picking
 
@@ -104,9 +106,9 @@ Captures du renderer, sans retouche. Le premier contact emploie le Chisel par d�
 - Palette, ombres et contraste os/argile restent greybox ; traitement visuel différé à P4/P6.
 - Grille dense (~1,31 M triangles), upload RF complet quand dirty et collider enveloppe hérités de P1. Le zoom n'ajoute aucune map ni texture.
 - Pas de pan libre ; Home retrouve la vue d'ensemble.
-- Les tests automatiques ne valent pas validation humaine du confort du zoom.
+- Le zoom est validé humainement le 2026-10-02 ; les nouveaux raccourcis debug sont vérifiés automatiquement.
 
-## Retest pour Antoine
+## Checklist de référence — zoom validé le 2026-10-02
 
 Ouvrir `project.godot` sur **`prototype/p3-fossil`**, Godot **4.7.2 Standard**, puis **F5**. F1 affiche les mesures ; F2 doit être sur **SHADED**. Relâcher puis cliquer après chaque changement d'outil.
 

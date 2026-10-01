@@ -1,5 +1,5 @@
 {
-	"checks": 147,
+	"checks": 160,
 	"failures": 0,
 	"godot": "4.7.2-stable (official)",
 	"physics_hz": 60,

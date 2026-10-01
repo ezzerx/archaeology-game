@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2 validés et mergés ; zoom P3 implémenté, retest humain requis ; PR #4 non mergée.**
+**Statut : préproduction — P0/P1/P2 validés et mergés ; zoom P3 validé humainement ; ergonomie debug vérifiée ; PR #4 non mergée.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -10,7 +10,7 @@ Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 - P0 Interaction brute ✅
 - P1 Matière / relief ✅
 - P2 Outils ✅
-- **P3 Fossile : zoom à retester**
+- **P3 Fossile : zoom validé humainement**
 - P4 Game feel
 - P5 UI / progression
 - P6 Art pass (spike visuel puis application)
@@ -37,7 +37,7 @@ P3 cache Specimen B-17 dans la matrice et bloque l'excavation sur les os. Le pre
 
 Le correctif porte sur **le zoom seul**, conformément à [P3_DESIGN_FIXES](docs/dev/P3_DESIGN_FIXES.md). L'équilibrage de Bone Condition reste provisoire et sera réévalué en P4 après les réactions de matière ; une fouille à 100 % de condition n'est pas un critère P3. Aucune marge osseuse ou efficacité spéciale du Brush n'est ajoutée.
 
-Résultats des régressions P0/P1/P2/P3 et checklist F5 : [P3_REPORT](docs/dev/P3_REPORT.md). Architecture : [P3_FOSSIL_DECISION](docs/dev/P3_FOSSIL_DECISION.md). Antoine a validé le fonctionnement initial et le confort GPU ; le zoom attend son retest humain. Les réglages développeur sont sur F6/F7 (rayon), Shift+F6/F7 (puissance), Ctrl+F6/F7 (falloff).
+Résultats des régressions P0/P1/P2/P3 et checklist F5 : [P3_REPORT](docs/dev/P3_REPORT.md). Architecture : [P3_FOSSIL_DECISION](docs/dev/P3_FOSSIL_DECISION.md). Antoine a validé le fonctionnement initial et le confort GPU ; le zoom est validé humainement le 2026-10-02. En debug : Shift+molette (puissance), Ctrl+molette (falloff), Alt+molette (rayon). F6/F7 et leurs modificateurs restent en secours ; valeurs par défaut inchangées.
 
 Travailler sur `prototype/p3-fossil`. **Pas de merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
 

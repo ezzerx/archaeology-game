@@ -1,8 +1,8 @@
 # Statut canonique
 
-- Date : **2026-10-01**.
+- Date : **2026-10-02**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — zoom P3 implémenté ; retest humain requis ; non mergé**.
+- Phase : **préproduction — zoom P3 validé humainement ; ergonomie debug vérifiée ; non mergé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
 - Branche de livraison P3 : `prototype/p3-fossil` ; [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon vers `main`, non mergée.
@@ -62,25 +62,25 @@ Aucune autre optimisation GPU n'est demandée pour l'instant. Après son test P3
 
 Aucun de ces points ne bloque P3.
 
-## P3 — Zoom seul ; retest humain requis
+## P3 — Zoom validé ; ergonomie debug vérifiée
 
 Livré dans le périmètre confirmé par Antoine le 2026-10-01 :
 
 - Specimen B-17 fixe, initialement caché, **32 290 cellules** et quatre composants ;
 - champ fossile RGF statique, clamp au sommet osseux et relief émergent ;
 - zoom orthographique **1×–3×** ancré au curseur, orientation **84°** fixe ;
-- molette réservée au zoom ; réglages développeur sur F6/F7, Shift et Ctrl ;
+- molette seule = zoom ; Shift+molette = puissance, Ctrl+molette = falloff, Alt+molette = rayon ; F6/F7 en secours ;
 - Home rétablit la vue ; R restaure également le spécimen ; resize/focus robustes ;
 - logique osseuse P3 initiale conservée : premier contact protégé, `Bone detected` une fois par reset, Chisel **−3 points par impact direct sur centre déjà exposé** ;
 - Brush/Blower sûrs, efficacités P2 inchangées, résidu indépendant ;
 - exposition globale/composants, signaux découplés et reset exact ;
 - cap officiel **240 FPS**, physique **60 Hz** ;
-- **426 checks P0/P1/P2/P3, zéro échec**, benchmarks graphiques P1/P2/P3 validés ;
+- **439 checks P0/P1/P2/P3, zéro échec** après ergonomie debug ; benchmarks graphiques de la passe zoom précédente validés ;
 - sept scénarios P3 autour de **240 FPS**, rendu/picking comparés sur **194 955 pixels** à 1×/2×/3×.
 
 Résultats automatisés et checklist : [P3_REPORT](../dev/P3_REPORT.md). Architecture : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Source de vérité corrective : [P3_DESIGN_FIXES](../dev/P3_DESIGN_FIXES.md), prioritaire sur le [brief initial](../dev/P3_BRIEF.md).
 
-Retour humain initial d'Antoine : « Ok tout fonctionne et le GPU ne surchauffe plus. » Ce retour valide le fonctionnement initial et le confort GPU ; le zoom attend son propre retest.
+Retour humain initial d'Antoine : « Ok tout fonctionne et le GPU ne surchauffe plus. » Ce retour valide le fonctionnement initial et le confort GPU ; Antoine valide également le zoom le 2026-10-02.
 
 ## Clarification design — 2026-10-01
 
@@ -90,7 +90,7 @@ La revue produit confirme l'envie de continuer à révéler le fossile et le bes
 
 Règle de conception : ne pas ajouter un contournement dans une phase antérieure pour un problème qu'une phase déjà prévue doit remodeler, sauf s'il bloque la validation de la phase courante.
 
-**Prochaine action : retest humain du zoom, du picking et du fonctionnement P3 existant. STOP à P3. PR #4 conservée en brouillon ; aucun merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
+**Zoom validé humainement le 2026-10-02 ; ergonomie debug vérifiée automatiquement. STOP à P3. PR #4 conservée en brouillon ; aucun merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
 
 ## Séquence
 

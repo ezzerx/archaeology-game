@@ -164,3 +164,7 @@ Decision:
 DA remains a core product risk and must not be treated as optional polish, but expensive production art is intentionally deferred until the gameplay foundation is mature.
 
 Reference: [ROADMAP.md](../ROADMAP.md) and [ART_DIRECTION.md](../ART_DIRECTION.md).
+
+## Validation humaine du zoom et ergonomie debug — 2026-10-02
+
+Antoine valide humainement le zoom et autorise uniquement une petite passe debug : molette seule = zoom ; Shift+molette = puissance ; Ctrl+molette = falloff ; Alt+molette = rayon. F6/F7 restent en secours. Valeurs par défaut inchangées. Les réglages annulent le geste courant et ne déclenchent pas de zoom. 439 checks fonctionnels passent, dont 160 input/zoom. PR #4 non mergée ; aucune autorisation de merge ou P4 n’est inférée.

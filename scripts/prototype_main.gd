@@ -98,6 +98,7 @@ func _process(delta: float) -> void:
 		+ "CPU edit %.2f ms (residue %.2f) | Pick %.2f ms\n" % [controller.last_edit_usec / 1000.0, controller.last_residue_edit_usec / 1000.0, controller.last_pick_usec / 1000.0]
 		+ "Upload submit: height %.2f ms | residue %.3f ms (40 KiB)\n" % [block.last_upload_usec / 1000.0, block.last_residue_upload_usec / 1000.0]
 		+ "Changed height %d / residue %d | DDA cells %d\n" % [controller.changed_texels, controller.changed_residue_cells, hit.get("visited_cells", 0)]
+		+ "DEV Wheel: Shift power | Ctrl falloff | Alt radius\n"
 		+ "DEV F6/F7: radius -/+ | Shift: power | Ctrl: falloff")
 	var fossil := block.working_map.fossil
 	var hovered := "Hovered bone: — | Component: —"

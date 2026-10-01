@@ -49,7 +49,7 @@ L'exposition est le nombre de cellules exposées divisé par la surface occupée
 
 Le picking DDA n'est pas remplacé. Le curseur est reprojeté pendant l'interpolation. Une commande de zoom annule le geste en cours ; aucun segment ne relie des coordonnées avant/après déplacement de caméra. La perte de focus fige l'interpolation et annule le geste. Le resize contrôle également la taille native de la fenêtre, car le viewport logique reste fixe en mode stretch et son signal peut ne pas se déclencher.
 
-`Home` / `Origine` rétablit la vue initiale sans toucher au terrain. `R` restaure terrain, état fossile et vue 1×. Les réglages développeur utilisent **F6/F7** pour rayon −/+, **Shift+F6/F7** pour puissance et **Ctrl+F6/F7** pour falloff ; aucun modificateur de molette ne modifie les outils.
+`Home` / `Origine` rétablit la vue initiale sans toucher au terrain. `R` restaure terrain, état fossile et vue 1×. La molette seule zoome. En debug : **Shift+molette** puissance, **Ctrl+molette** falloff, **Alt+molette** rayon, sans zoom. Priorité Shift > Ctrl > Alt ; pas respectifs 0,1 / 0,25 / 2 texels. F6/F7 restent en secours. Seule la copie runtime de l’outil sélectionné est modifiée ; les Resources par défaut restent intactes.
 
 API de projection : [documentation officielle Camera3D](https://docs.godotengine.org/en/stable/classes/class_camera3d.html). L'ancrage emploie `project_ray_origin`, `project_ray_normal` et le hit exact existant.
 

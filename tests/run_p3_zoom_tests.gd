@@ -14,7 +14,7 @@ func check(ok: bool, message: String) -> void:
 		failures += 1
 		push_error("FAIL: " + message)
 
-func wheel(position: Vector2, steps: float, shift := false, ctrl := false) -> void:
+func wheel(position: Vector2, steps: float, shift := false, ctrl := false, alt := false) -> void:
 	var event := InputEventMouseButton.new()
 	event.position = position
 	event.button_index = MOUSE_BUTTON_WHEEL_UP if steps > 0 else MOUSE_BUTTON_WHEEL_DOWN
@@ -22,6 +22,7 @@ func wheel(position: Vector2, steps: float, shift := false, ctrl := false) -> vo
 	event.pressed = true
 	event.shift_pressed = shift
 	event.ctrl_pressed = ctrl
+	event.alt_pressed = alt
 	root.push_input(event, true)
 
 func key(code: Key, shift := false, ctrl := false) -> void:
@@ -117,10 +118,32 @@ func test_zoom() -> void:
 	check(camera.target_zoom > 1 and camera.zoom_factor == 1 and not controller._held, "wheel starts smooth zoom and cancels held excavation")
 	camera._process(1.0 / 60.0)
 	check(camera.zoom_factor > 1 and camera.zoom_factor < camera.target_zoom, "zoom interpolates rather than snapping")
-	wheel(screen, 1, true)
-	wheel(screen, 1, false, true)
 	check(Vector3(controller.config.radius, controller.config.power, controller.config.falloff) == original,
-		"wheel including modifiers never changes tool tuning")
+		"plain wheel never changes tool tuning")
+	var zoom_before_tuning := camera.target_zoom
+	for modifiers in [Vector3i(1, 0, 0), Vector3i(0, 1, 0), Vector3i(0, 0, 1)]:
+		controller._held = true
+		wheel(screen, 1, modifiers.x != 0, modifiers.y != 0, modifiers.z != 0)
+		var expected := original + Vector3(modifiers.z * 2.0, modifiers.x * 0.1, modifiers.y * 0.25)
+		check(Vector3(controller.config.radius, controller.config.power, controller.config.falloff).is_equal_approx(expected),
+			"modified wheel changes only its assigned tool parameter: " + str(modifiers))
+		check(camera.target_zoom == zoom_before_tuning and not controller._held,
+			"modified wheel does not zoom and cancels the stroke")
+		wheel(screen, -1, modifiers.x != 0, modifiers.y != 0, modifiers.z != 0)
+		check(Vector3(controller.config.radius, controller.config.power, controller.config.falloff).is_equal_approx(original),
+			"wheel-down reverses wheel-up tuning")
+	wheel(screen, 2, true, true, true)
+	check(is_equal_approx(controller.config.power, original.y + 0.2)
+		and controller.config.radius == original.x and controller.config.falloff == original.z,
+		"combined modifiers prioritize Shift and honor wheel factor")
+	wheel(screen, -2, true)
+	wheel(screen, 1, false, true, true)
+	check(controller.config.falloff == original.z + 0.25 and controller.config.radius == original.x,
+		"Ctrl takes priority over Alt")
+	wheel(screen, -1, false, true)
+	var defaults: ToolDefinition = load("res://config/soft_brush.tres")
+	check(Vector3(defaults.radius, defaults.power, defaults.falloff) == original,
+		"debug tuning never mutates default tool resources")
 	wheel(screen, 100)
 	check(camera.target_zoom == camera.max_zoom, "zoom-in limit is 3x")
 	wheel(screen, -100)
@@ -142,6 +165,11 @@ func test_zoom() -> void:
 	var frozen := camera.size
 	camera._process(1)
 	wheel(screen, 1)
+	wheel(screen, 1, true)
+	wheel(screen, 1, false, true)
+	wheel(screen, 1, false, false, true)
+	check(Vector3(controller.config.radius, controller.config.power, controller.config.falloff).is_equal_approx(original),
+		"focus loss ignores all modified wheel tuning")
 	check(camera.size == frozen and not controller._held, "focus loss freezes zoom and cancels excavation")
 	camera._notification(Node.NOTIFICATION_WM_WINDOW_FOCUS_IN)
 	controller._notification(Node.NOTIFICATION_WM_WINDOW_FOCUS_IN)

@@ -144,3 +144,7 @@ Antoine should test:
 7. judge only whether P3's discovery/exposure tech works — **not yet whether 100% condition is fairly achievable**.
 
 P3 remains open until this zoom retest passes.
+
+## Human acceptance and debug ergonomics — 2026-10-02
+
+Antoine explicitly validated the zoom. His follow-up authorizes Shift+wheel for power, Ctrl+wheel for falloff, Alt+wheel for radius, with plain wheel reserved for zoom. F6/F7 remain as fallback. Tool defaults stay unchanged. This supersedes the earlier developer-binding requirement. No merge or P4 is authorized.

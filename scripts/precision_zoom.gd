@@ -62,6 +62,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseButton and event.pressed \
 			and event.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
+		# Modified wheel input belongs to developer tool tuning, in any node order.
+		if event.shift_pressed or event.ctrl_pressed or event.alt_pressed:
+			return
 		var direction := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
 		request_zoom(direction * maxf(event.factor, 0.01), event.position)
 		get_viewport().set_input_as_handled()

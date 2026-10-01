@@ -6,7 +6,7 @@ Lire `docs/brain/BRAIN.md`, `docs/brain/status.md` et les documents utiles à la
 
 ## Périmètre actuel
 
-Le projet est en **préproduction — zoom P3 implémenté ; retest humain requis, PR #4 non mergée**. P0/P1/P2 sont validés et mergés. `docs/dev/P3_DESIGN_FIXES.md` est la source de vérité de cette passe ; consulter `docs/dev/P3_REPORT.md` et `docs/dev/P3_FOSSIL_DECISION.md` pour les résultats. **Ne pas merger P3 ni commencer P4/P5 sans nouvelle autorisation explicite d’Antoine.** La passe corrective porte seulement sur le zoom. L'évitement des dégâts osseux et l'équilibrage de condition sont différés à P4 ; conserver 100 % n'est pas un critère P3. La validation initiale ne vaut pas validation du zoom. La présence d’une roadmap ne lance pas ses étapes.
+Le projet est en **préproduction — zoom P3 validé humainement ; ergonomie debug vérifiée, PR #4 non mergée**. P0/P1/P2 sont validés et mergés. `docs/dev/P3_DESIGN_FIXES.md` est la source de vérité de cette passe ; consulter `docs/dev/P3_REPORT.md` et `docs/dev/P3_FOSSIL_DECISION.md` pour les résultats. **Ne pas merger P3 ni commencer P4/P5 sans nouvelle autorisation explicite d’Antoine.** La passe corrective porte seulement sur le zoom. L'évitement des dégâts osseux et l'équilibrage de condition sont différés à P4 ; conserver 100 % n'est pas un critère P3. Antoine valide humainement le zoom le 2026-10-02. Shift/Ctrl/Alt + molette règlent puissance/falloff/rayon en debug, sans modifier les valeurs par défaut. La présence d’une roadmap ne lance pas ses étapes.
 
 ## Invariants de conception
 
