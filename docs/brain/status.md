@@ -2,84 +2,85 @@
 
 - Date : **2026-10-01**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P2 Outils validé humainement, non mergé**.
+- Phase : **préproduction — P2 validé et mergé ; P3 Fossile autorisé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
-- Branche de travail P2 : `prototype/p2-tools`, poussée ; [PR #3](https://github.com/ezzerx/archaeology-game/pull/3) en brouillon vers `main`, non mergée.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
+- Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.
 
 ## P0 — Validé ✅
 
-Fondation interaction : caméra orthographique, mapping souris précis, working map, strokes continus, reset/debug et tests.
-
-Rapport : [P0_REPORT.md](../dev/P0_REPORT.md).
+Fondation interaction validée : mapping souris, surface, strokes, reset/debug.
 
 ## P1 — Validé ✅
 
-Antoine a testé localement le build P1 dans Godot 4.7.2 et a confirmé : **« j'ai testé tout fonctionne »**.
+Relief excavable 3D, stratigraphie, résistances et picking précis sur le relief.
+
+## P2 — Validé ✅
+
+Antoine confirme le 2026-10-01 que les trois outils fonctionnent comme voulu pour le prototype.
 
 Livré et validé :
 
-- vraie hauteur 3D excavable, bornée à 102 mm ;
-- Loose Soil / Compact Clay / Sandstone ;
-- résistances 1 / 3 / 8 ;
-- stratigraphie fixe légèrement irrégulière ;
-- picking CPU sur la même topologie triangulée que le rendu GPU ;
-- curseur restant aligné au fond des cavités et sur les pentes ;
-- reset exact ;
-- 45 checks P0 + 52 checks P1, 0 échec ;
-- vérifications GPU/CPU et benchmark graphique local.
+- Soft Brush continu ;
+- Chisel discret à 4,5 Hz ;
+- Air Blower sans retrait structurel ;
+- ToolDefinition data-driven ;
+- résidu debug R8 256×160 ;
+- changement 1/2/3 et toolbar ;
+- reset/input robustes ;
+- **194 checks P0/P1/P2, 0 échec** ;
+- ~60 FPS sur les benchmarks graphiques 1080p plafonnés à 60.
 
-PR #2 mergée vers `main` le 2026-10-01.
+PR #3 mergée vers `main` le 2026-10-01 au commit `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
 
-Rapports :
+Rapport : [P2_REPORT.md](../dev/P2_REPORT.md).
 
-- [P1_REPORT.md](../dev/P1_REPORT.md)
-- [P1_RELIEF_DECISION.md](../dev/P1_RELIEF_DECISION.md)
+## Décision runtime FPS
 
-## Watchpoints techniques après P1
+Lors du test humain P2, le runtime Godot non plafonné a poussé la RTX 5080 à 100% GPU.
 
-Ces points ne bloquent pas P2, mais doivent rester visibles :
+Décision explicite d'Antoine :
 
-1. **Grille très dense** : 1024×640 quads, environ 1,31 M triangles. Excellent pour la précision du prototype, mais pas encore une cible de performance production pour un parc Steam plus large.
-2. **Upload height texture complet** à chaque tick dirty. Acceptable aujourd'hui avec une seule map ; éviter de multiplier naïvement les maps runtime.
-3. **Stress extrême** coin-à-coin hors budget 60 FPS. L'usage réel est fluide ; ne pas optimiser prématurément, mais mesurer après ajout des outils.
-4. **Collider physique = enveloppe**. Le picking est exact ; une future physique de débris nécessitera une stratégie séparée.
-5. **Résistances 1/3/8 = paramètres P1**, pas tuning final du game feel.
-6. **Hard Rock volontairement omis** : bon choix pour garder P1 focalisé.
+> **Capper les runs interactifs normaux à 240 FPS à partir de P3.**
 
-## P2 — Validé humainement ✅, non mergé
+Les scripts de benchmark peuvent temporairement désactiver/modifier ce plafond pour mesurer la marge.
 
-Antoine confirme le **2026-10-01** : **« Ok ça fonctionne ! »**, après livraison de la version `0a35e63d06aabc5064676c5a4ef72268672a9c0a`. C'est une validation globale du fonctionnement, sans défaut remonté ; aucun détail par case de la checklist n'a été déclaré.
+Aucune autre optimisation GPU n'est demandée pour l'instant. Si 240 FPS laisse encore une charge jugée excessive, le plafond sera abaissé dans une décision ultérieure.
 
-P2 introduit les trois outils du prototype :
+## Watchpoints techniques
 
-- Soft Brush ;
-- Chisel ;
-- Air Blower.
+- grille relief dense (~1,31 M triangles) ;
+- upload height RF complet à chaque tick dirty ;
+- residue R8 séparé mais léger ;
+- stress synthétique extrême hors budget ;
+- collider physique enveloppe uniquement ;
+- valeurs d'efficacité/résistance encore de prototype.
 
-Les profils sont data-driven : Brush continu (Soil 50× Clay, Sandstone nul), Chisel discret à 4,5 Hz et Blower sans effet structurel. Toolbar debug cliquable, touches 1/2/3, changement d'outil désarmant le clic en cours, F1 étendu et F2 conservé.
+Aucun de ces points ne bloque P3.
 
-Résidu debug scalaire 256×160, accumulation CPU float32 et texture R8 de 40 Kio, soit un payload 64× inférieur à la hauteur RF P1. Génération liée à la profondeur réellement retirée ; nettoyage spatial, aucune particule/audio/physique.
+## Prochaine étape autorisée — P3 Fossile
 
-Vérification locale Godot 4.7.2 : **45 P0 + 52 P1 + 97 P2, zéro échec**. Sept phases graphiques à 1920×1080 : **59,76–59,89 FPS** observés ; coût CPU Brush normal 3,59 ms, rapide 9,33 ms ; Blower 0,30 ms avec zéro upload de hauteur. Hauteur et résidu relus sur GPU identiques aux données CPU ; précision du picking conservée. Ces mesures courtes ne sont pas une validation du ressenti ni de tous les matériels.
+P3 doit introduire :
 
-Rapport, données brutes, limites et checklist de retest : [P2_REPORT](../dev/P2_REPORT.md). **Prochaine action : attendre l'autorisation explicite de merge et/ou de la suite ; aucun merge automatique.**
+- Specimen B-17 caché dans le bloc ;
+- révélation progressive du fossile ;
+- plafond osseux empêchant de creuser à travers l'os ;
+- `Bone detected` au premier contact ;
+- premier contact protégé ;
+- condition du spécimen ;
+- dégâts Chisel sur os déjà exposé ;
+- Brush/Blower sûrs ;
+- pourcentage d'exposition global et par composant.
 
-**La validation de P2 n'autorise pas à elle seule le merge ou le démarrage de P3.**
+Le brief canonique est :
 
-## Références
+[P3_BRIEF.md](../dev/P3_BRIEF.md)
 
-- [PROTOTYPE_V0_1_SPEC](../PROTOTYPE_V0_1_SPEC.md)
-- [ART_DIRECTION](../ART_DIRECTION.md)
-- [VISUAL_REFERENCES](../VISUAL_REFERENCES.md)
-- [P2_BRIEF](../dev/P2_BRIEF.md)
-- [P2_REPORT](../dev/P2_REPORT.md)
+**P4 n'est pas autorisé avant validation humaine de P3.**
 
-Séquence : P0 ✅ → P1 ✅ → **P2 validé, non mergé** → P3 non autorisé → P4/P5/P6/P7 conditionnels.
+## Séquence
 
-La question finale V0.1 demeure :
-
-> « Est-ce que j'ai envie de continuer à gratter alors que je sais déjà ce qu'il y a dessous ? »
+P0 ✅ → P1 ✅ → P2 ✅ → **P3 Fossile** → P4 Game feel → P5 UI/progression → P6 Art pass → P7 Tuning.
