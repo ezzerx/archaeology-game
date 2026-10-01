@@ -2,7 +2,9 @@
 
 Date : **2026-10-01**. Branche : **`prototype/p2-tools`**. Base `main` : `749a1f605e4fcfe61ae8f8569625d90bfcb1e21c`.
 
-**P2 implémenté et vérifié techniquement ; validation humaine en attente.** Branche poussée ; **[PR #3](https://github.com/ezzerx/archaeology-game/pull/3)** ouverte en brouillon vers `main`, **non mergée**. Aucun système P3. Les paramètres ci-dessous sont des propositions de tuning à tester par Antoine.
+**P2 validé techniquement et humainement.** Branche poussée ; **[PR #3](https://github.com/ezzerx/archaeology-game/pull/3)** ouverte en brouillon vers `main`, **non mergée**. Aucun système P3. Les paramètres ci-dessous restent un tuning de prototype.
+
+Antoine confirme le **2026-10-01** : **« Ok ça fonctionne ! »**, après livraison de la version `0a35e63d06aabc5064676c5a4ef72268672a9c0a`. C'est une validation globale du fonctionnement, sans défaut remonté ; elle ne détaille pas chaque case de la checklist et n'autorise pas le merge ou P3.
 
 ## Architecture
 
@@ -142,7 +144,7 @@ Le script vérifie la version, les codes de sortie et les erreurs des logs. Pour
 
 ## Limites et dette
 
-1. **Identité ressentie et tuning attendent Antoine.** Les rapports numériques et images prouvent des fonctions distinctes, pas à eux seuls l'envie de changer d'outil.
+1. **Fonctionnement validé globalement par Antoine ; tuning final encore ouvert.** Aucun verdict détaillé sur chaque outil ou sur l'envie de changer d'outil n'a été déclaré ; les rapports numériques et images ne suffisent pas à l'établir seuls.
 2. Résidu à résolution réduite, quantification R8 et interpolation : approximation assumée, surtout aux rayons debug très petits. Aucune simulation physique ou rendu de poussière final.
 3. Le Chisel agit à la cadence de la simulation et au hit courant. Des ticks de rattrapage peuvent rapprocher des impacts affichés après un blocage ; pas de reconstruction d'historique de souris.
 4. Dette P1 conservée : grille ~1,31 M triangles, upload hauteur complet de 2,5 Mio quand dirty, collider enveloppe, ombres greybox sur fortes pentes. Précision P1 conservée, pas de promesse de performance sur d'autres PC.
@@ -152,7 +154,9 @@ Le script vérifie la version, les codes de sortie et les erreurs des logs. Pour
 
 **Aucun système exclu ajouté :** fossile, détection/condition osseuse, fragments, classification, objectifs, particules, débris, audio, modèles d'outils finaux, mains, camera shake, UI finale, musée, sauvegarde, économie, Steam ou génération procédurale.
 
-## Checklist exacte du test humain
+## Checklist de référence pour retest
+
+La validation globale d'Antoine est consignée en tête du rapport. Les cases restent disponibles pour les retests ; elles ne prétendent pas détailler les manipulations qu'il a effectuées.
 
 Ouvrir `project.godot` sur **`prototype/p2-tools`**, avec **Godot 4.7.2 Standard**, puis **F5**. Relancer la scène pour partir des profils par défaut. Juger d'abord sans les chiffres : masquer F1. Laisser F2 sur le rendu éclairé pour voir le voile gris de résidu.
 
@@ -167,4 +171,4 @@ Ouvrir `project.godot` sur **`prototype/p2-tools`**, avec **Godot 4.7.2 Standard
 9. [ ] **Reset / debug** : `R` pendant LMB rend le bloc intact et le résidu nul sans réapplication. Refaire la même cavité : mêmes couches. F1 affiche/masque les données ; F2 parcourt bien les quatre vues et revient au rendu éclairé.
 10. [ ] **Fluidité / verdict** : faire 2–3 minutes de Brush → Chisel → Blower aux réglages par défaut. Vérifier la fluidité proche de 60 FPS, l'absence de retard visible et de console en erreur. Répondre : « Je comprends l'utilité des trois outils et j'ai naturellement envie d'en changer selon la surface. » Sinon noter outil, matériau et geste problématiques.
 
-**Arrêt à P2. Antoine valide le résultat et autorise explicitement tout merge ou passage à P3.**
+**Arrêt à P2, validé humainement. Tout merge ou passage à P3 attend une autorisation explicite distincte d'Antoine.**

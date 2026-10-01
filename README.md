@@ -2,7 +2,7 @@
 
 **Working title modifiable.** ArchaeologyGame est un nom temporaire de projet.
 
-**Statut : préproduction — P0/P1 validés et mergés ; P2 livré pour validation humaine.**
+**Statut : préproduction — P0/P1 validés et mergés ; P2 validé humainement, non mergé.**
 Plateforme visée : Steam. Moteur prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
 
 ## État du prototype
@@ -32,7 +32,9 @@ Rapports :
 - [P1_REPORT](docs/dev/P1_REPORT.md)
 - [P1_RELIEF_DECISION](docs/dev/P1_RELIEF_DECISION.md)
 
-### P2 — Outils ▶ à tester par Antoine
+### P2 — Outils validé ✅, merge en attente d'autorisation
+
+Antoine confirme le 2026-10-01 : **« Ok ça fonctionne ! »**. Validation globale du fonctionnement ; la checklist détaillée reste disponible pour les retests.
 
 La scène jouable propose :
 
@@ -42,7 +44,7 @@ La scène jouable propose :
 
 avec trois profils configurables : Brush continu, Chisel à 4,5 impacts/s, Blower nettoyant un résidu debug sans changer la hauteur. Une toolbar cliquable et les touches `1/2/3` sélectionnent l'outil. Un changement pendant le clic annule le geste jusqu'au prochain clic.
 
-**194 checks P0/P1/P2 passent**, ainsi que les sept phases du benchmark graphique local à environ 60 FPS / 1080p. Valeurs, limites et checklist : [P2_REPORT](docs/dev/P2_REPORT.md). **PR non mergée ; P3 interdit avant validation et autorisation explicites.**
+**194 checks P0/P1/P2 passent**, ainsi que les sept phases du benchmark graphique local à environ 60 FPS / 1080p. Valeurs, limites et checklist : [P2_REPORT](docs/dev/P2_REPORT.md). **PR non mergée ; merge et P3 attendent une autorisation explicite distincte.**
 
 Pour jouer : ouvrir `project.godot` dans Godot 4.7.2 Standard puis **F5**. LMB maintenu : utiliser ; `R` : reset ; `F1` : données ; `F2` : vues. Molette : rayon ; Shift+molette : puissance ; Ctrl+molette : falloff. Le voile gris est le résidu debug et se voit dans la vue éclairée.
 

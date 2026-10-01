@@ -2,7 +2,7 @@
 
 - Date : **2026-10-01**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P2 Outils livré, validation humaine en attente**.
+- Phase : **préproduction — P2 Outils validé humainement, non mergé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
 - Branche de travail P2 : `prototype/p2-tools`, poussée ; [PR #3](https://github.com/ezzerx/archaeology-game/pull/3) en brouillon vers `main`, non mergée.
@@ -50,7 +50,9 @@ Ces points ne bloquent pas P2, mais doivent rester visibles :
 5. **Résistances 1/3/8 = paramètres P1**, pas tuning final du game feel.
 6. **Hard Rock volontairement omis** : bon choix pour garder P1 focalisé.
 
-## P2 — Implémenté, vérifié techniquement ; verdict humain en attente
+## P2 — Validé humainement ✅, non mergé
+
+Antoine confirme le **2026-10-01** : **« Ok ça fonctionne ! »**, après livraison de la version `0a35e63d06aabc5064676c5a4ef72268672a9c0a`. C'est une validation globale du fonctionnement, sans défaut remonté ; aucun détail par case de la checklist n'a été déclaré.
 
 P2 introduit les trois outils du prototype :
 
@@ -64,9 +66,9 @@ Résidu debug scalaire 256×160, accumulation CPU float32 et texture R8 de 40 Ki
 
 Vérification locale Godot 4.7.2 : **45 P0 + 52 P1 + 97 P2, zéro échec**. Sept phases graphiques à 1920×1080 : **59,76–59,89 FPS** observés ; coût CPU Brush normal 3,59 ms, rapide 9,33 ms ; Blower 0,30 ms avec zéro upload de hauteur. Hauteur et résidu relus sur GPU identiques aux données CPU ; précision du picking conservée. Ces mesures courtes ne sont pas une validation du ressenti ni de tous les matériels.
 
-Rapport, données brutes, limites et checklist exacte : [P2_REPORT](../dev/P2_REPORT.md). **Prochaine action : Antoine teste P2 et donne son verdict ; aucun merge automatique.**
+Rapport, données brutes, limites et checklist de retest : [P2_REPORT](../dev/P2_REPORT.md). **Prochaine action : attendre l'autorisation explicite de merge et/ou de la suite ; aucun merge automatique.**
 
-**P3 ne doit pas commencer avant validation humaine de P2.**
+**La validation de P2 n'autorise pas à elle seule le merge ou le démarrage de P3.**
 
 ## Références
 
@@ -76,7 +78,7 @@ Rapport, données brutes, limites et checklist exacte : [P2_REPORT](../dev/P2_RE
 - [P2_BRIEF](../dev/P2_BRIEF.md)
 - [P2_REPORT](../dev/P2_REPORT.md)
 
-Séquence : P0 ✅ → P1 ✅ → **P2 en attente de test humain** → P3 interdit à ce stade → P4/P5/P6/P7 conditionnels.
+Séquence : P0 ✅ → P1 ✅ → **P2 validé, non mergé** → P3 non autorisé → P4/P5/P6/P7 conditionnels.
 
 La question finale V0.1 demeure :
 
