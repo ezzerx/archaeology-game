@@ -2,33 +2,74 @@
 
 - Date : **2026-10-01**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P0 implémenté, revue humaine attendue**.
+- Phase : **préproduction — P0 validé humainement, P1 autorisé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche : `prototype/p0-foundation`, issue de `main` au commit `74b5e88dea181d7b8683a7cbb8a290928e88edf5`.
+- Branche canonique : `main`.
+- Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.
 
-## État livré sur la branche P0
+## P0 — Validé
 
-Godot **4.7.2 stable**, GDScript, renderer Compatibility. Scène 3D greybox, caméra orthographique fixe à 84°, bloc, raycast/local/UV/map, mask CPU 1024×640, DebugExcavator à footprint balayé, curseur et panneau debug, R/F1, tuning temporaire rayon/force/falloff.
+P0 a été implémenté sur `prototype/p0-foundation`, revu techniquement, puis testé localement par Antoine dans Godot 4.7.2 Standard.
 
-La planche des quatre références est versionnée avec son SHA-256 canonique vérifié. Elle n'est pas un asset de jeu.
+Éléments validés :
 
-**Validation automatisée : 45 checks passés**, import et démarrage headless sans erreur. Rendu graphique, souris physique et 1080p/60 à vérifier localement : l'affichage virtuel Work a échoué à ouvrir ses sockets. Aucun playtest humain ni résultat de game feel n'est revendiqué.
+- scène 3D greybox ;
+- caméra orthographique fixe à 84° ;
+- mapping souris → raycast → local → UV → map ;
+- précision centre, bords et coins ;
+- strokes lents et rapides, y compris diagonaux ;
+- absence de pont lors d'une sortie/réentrée du bloc ;
+- reset `R` ;
+- debug `F1` ;
+- tuning molette / Shift+molette / Ctrl+molette ;
+- comportement réel sous redimensionnement / usage local ;
+- réactivité jugée correcte par Antoine.
 
-Le livrable détaillé, les commandes et la checklist sont dans [P0_REPORT.md](../dev/P0_REPORT.md).
+Validation automatisée P0 : **45 checks, 0 failures**.
 
-## Prochaine action autorisée
+PR #1 a été validée puis mergée vers `main` le 2026-10-01.
 
-1. Revoir la PR P0 vers `main` sans merge automatique.
-2. Ouvrir `project.godot` dans Godot 4.7.2 et suivre la checklist locale du rapport.
-3. Corriger les éventuels défauts de P0, puis obtenir la validation d'Antoine avant de planifier la suite.
+Rapport : [P0_REPORT.md](../dev/P0_REPORT.md).
 
-**P1 n'est pas commencé.** Aucun matériau, outil final, fossile, FX/audio, objectif, musée, sauvegarde ou progression n'a été ajouté.
+## Limites connues héritées de P0
 
-## Références et suite conditionnelle
+- surface et collision encore planes ;
+- working map RF temporaire, sans sémantique de profondeur ou matériau ;
+- upload de texture complet à chaque modification ;
+- stress case d'un stroke diagonal extrême plus coûteux que l'usage naturel ;
+- aucun matériau, fossile, FX/audio final, objectif ou musée n'est encore implémenté.
 
-[PROTOTYPE_V0_1_SPEC](../PROTOTYPE_V0_1_SPEC.md) reste la source canonique. DA : **2.5D stylisée — tabletop — orthographique presque verticale**, sans pixel art pour le prototype.
+Ces points ne remettent pas en cause P0 ; ils cadrent P1.
 
-Séquence : P0 Interaction brute → P1 Matière → P2 Outils → P3 Fossile → P4 Game feel → P5 UI/progression → P6 Art pass → P7 Tuning. Les jalons ultérieurs ne sont pas autorisés par la livraison de P0.
+## Prochaine étape autorisée — P1 Matière
 
-La question de validation V0.1 demeure : « Est-ce que j'ai envie de continuer à gratter alors que je sais déjà ce qu'il y a dessous ? » Les objectifs proposés (4 joueurs sur 5 à 4/5 de satisfaction, 3 sur 5 continuant après la fin) ne sont pas encore testables dans ce greybox P0.
+P1 peut maintenant commencer **en local avec Codex + Godot 4.7.2**.
+
+Objectifs canoniques P1 :
+
+1. donner une vraie sémantique de profondeur à la surface ;
+2. produire un relief / creux visuellement convaincant ;
+3. conserver un mapping souris précis malgré le relief ;
+4. introduire les trois matières cœur :
+   - Loose Soil ;
+   - Compact Clay ;
+   - Sandstone ;
+5. ajouter Hard Rock uniquement comme petite zone secondaire si cela reste dans le scope ;
+6. rendre les résistances et réactions de retrait perceptiblement différentes avec un outil debug générique ;
+7. préserver 60 FPS et une architecture compatible avec P2.
+
+**P2 ne doit pas commencer avant validation humaine de P1.**
+
+## Références
+
+- [PROTOTYPE_V0_1_SPEC](../PROTOTYPE_V0_1_SPEC.md) — source produit canonique.
+- [ART_DIRECTION](../ART_DIRECTION.md) — DA 2.5D stylisée tabletop.
+- [VISUAL_REFERENCES](../VISUAL_REFERENCES.md) — références visuelles canoniques.
+- [P0_REPORT](../dev/P0_REPORT.md) — fondation technique validée.
+
+Séquence : P0 ✅ → **P1 Matière** → P2 Outils → P3 Fossile → P4 Game feel → P5 UI/progression → P6 Art pass → P7 Tuning.
+
+La question finale V0.1 demeure :
+
+> « Est-ce que j'ai envie de continuer à gratter alors que je sais déjà ce qu'il y a dessous ? »
