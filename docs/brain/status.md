@@ -90,22 +90,35 @@ P0 ✅ → P1 ✅ → P2 ✅ → **P3 Fossile** → P4 Game feel → ART0 Direct
 La [roadmap](../ROADMAP.md) fixe les gates suivants. Les [systèmes futurs confirmés](../FUTURE_SYSTEMS.md) restent différés après V0.1 ; leur documentation n'autorise aucune implémentation dans P3.
 
 
-## P3 design review — 2026-10-01
 
-Human feedback after functional validation:
+## P3 design review — clarified 2026-10-01
+
+Human feedback:
 
 - discovery hook succeeds: once bone is perceived, Antoine wants to continue revealing it;
-- Bone/Clay readability remains weak in greybox; defer the real solution to P4/P6;
-- precision excavation requires camera zoom;
-- current Chisel/Bone Condition interaction makes damage too difficult to avoid during normal careful excavation.
+- Bone/Clay readability is weak in greybox and is deferred mainly to P4/P6;
+- precision excavation needs camera zoom;
+- current Bone Condition is hard to preserve because the Chisel interaction is still a simplified point-by-point prototype.
 
-Decision:
+Scope decision:
 
-- **PR #4 remains unmerged**;
-- P3 receives a design-fix pass before closure;
-- add smooth orthographic zoom for precision;
-- add a configurable near-bone precision margin: Chisel stops before hidden bone, Soft Brush safely removes only the final thin matrix near bone, and direct Chisel impacts on already exposed bone can still damage condition;
-- target outcome: a careful player can expose a meaningful fossil region while maintaining 100% condition;
-- P4 remains blocked until human retest passes.
+- **do not add a P3 precision-margin / near-bone Brush workaround**;
+- P4 is already intended to change material reaction toward cracks, chunks, debris and stronger tool physicality, so the fair way to avoid bone damage must be reassessed there;
+- P3 only needs to prove detection, clamping, protected first contact, condition damage semantics, exposure, picking and reset;
+- a 100%-condition excavation is **not yet a P3 acceptance criterion**.
+
+Required P3 follow-up before merge:
+
+- add smooth fixed-orientation orthographic zoom for precision;
+- reserve normal mouse wheel for zoom and move debug tuning to developer-only bindings;
+- keep current bone damage semantics as technical proof;
+- document Bone Condition avoidance as a P4 design target;
+- retest zoom/picking and existing P3 functionality.
+
+Design rule now canonized:
+
+> Do not add an earlier-phase workaround for a problem that a later planned phase is explicitly expected to reshape, unless it blocks validation of the current phase.
 
 Reference: [P3_DESIGN_FIXES.md](../dev/P3_DESIGN_FIXES.md).
+
+P4 remains blocked until the P3 zoom retest passes.
