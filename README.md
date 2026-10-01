@@ -45,6 +45,7 @@ Le pixel art n’est plus la cible de la V0.1.
 | [CONCEPT](docs/CONCEPT.md) | Promesse, périmètre confirmé et hypothèses ouvertes |
 | [GAMEPLAY_LOOP](docs/GAMEPLAY_LOOP.md) | Fouille, matériaux, outils, révélation et sensations |
 | [ART_DIRECTION](docs/ART_DIRECTION.md) | Direction 2.5D tabletop, palette, caméra et références visuelles |
+| [VISUAL_REFERENCES](docs/VISUAL_REFERENCES.md) | **Jeu de 4 références visuelles canonique + checksum du board** |
 | [MVP_V0_1](docs/MVP_V0_1.md) | Résumé du prototype, périmètre et validation |
 | [PROTOTYPE_V0_1_SPEC](docs/PROTOTYPE_V0_1_SPEC.md) | **Spécification détaillée canonique pour le développement de la V0.1** |
 | [MUSEUM_SYSTEM](docs/MUSEUM_SYSTEM.md) | Galerie horizontale, fragments et progression |
@@ -58,4 +59,4 @@ Le dépôt privé [ezzerx/archaeology-game](https://github.com/ezzerx/archaeolog
 
 La V0.1 est désormais suffisamment spécifiée pour démarrer l’implémentation, mais aucun code de jeu n’est considéré comme validé tant que le cœur de fouille n’a pas été testé manuellement.
 
-Pour reprendre, lire [AGENTS.md](AGENTS.md), puis [PROTOTYPE_V0_1_SPEC.md](docs/PROTOTYPE_V0_1_SPEC.md), puis le [statut canonique](docs/brain/status.md).
+Pour reprendre, lire [AGENTS.md](AGENTS.md), puis [PROTOTYPE_V0_1_SPEC.md](docs/PROTOTYPE_V0_1_SPEC.md), [VISUAL_REFERENCES.md](docs/VISUAL_REFERENCES.md), puis le [statut canonique](docs/brain/status.md).
