@@ -6,7 +6,7 @@ extends RefCounted
 enum Component { NONE, SKULL, SPINE, RIBS, HIND_LIMB }
 const COMPONENT_NAMES := ["—", "Skull", "Spine / Vertebrae", "Ribs", "Hind Limb"]
 const SPECIMEN_NAME := "Specimen B-17"
-const EXPOSURE_EPSILON := 0.00001
+const EXPOSURE_EPSILON := 1.0 / 65536.0 # Binary-exact in both CPU and shader float32.
 const AUTHOR_SIZE := Vector2(1024, 640)
 
 var size: Vector2i
@@ -14,6 +14,7 @@ var ceilings := PackedFloat32Array()
 var component_ids := PackedByteArray()
 var component_totals := PackedInt32Array([0, 0, 0, 0, 0])
 var total_cells := 0
+var highest_ceiling := 0.0
 var image: Image # Static RGF: ceiling, integer component ID (0 also means no bone).
 
 func _init(resolution := Vector2i(1024, 640)) -> void:
@@ -29,6 +30,7 @@ func _init(resolution := Vector2i(1024, 640)) -> void:
 			continue
 		component_totals[component] += 1
 		total_cells += 1
+		highest_ceiling = maxf(highest_ceiling, ceilings[index])
 		image.set_pixel(index % size.x, index / size.x, Color(ceilings[index], component, 0, 1))
 
 func index_at_map(point: Vector2) -> int:

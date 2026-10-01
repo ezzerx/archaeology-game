@@ -68,7 +68,10 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 	# Cost in tool work per depth. Zero effectiveness is an impassable layer.
 	resistance /= effectiveness.max(Vector3.ONE * 0.00000001)
 	var changed := 0
-	var bone_ceilings := fossil.field.ceilings if fossil != null else PackedFloat32Array()
+	var has_fossil := fossil != null
+	var bone_ceilings := fossil.field.ceilings if has_fossil else PackedFloat32Array()
+	# Above this immutable bound no cell can contact bone: skip its packed reads.
+	var bone_limit := fossil.field.highest_ceiling + 2.0 * FossilField.EXPOSURE_EPSILON if has_fossil else -1.0
 	var newly_exposed := PackedInt32Array()
 	for y in range(low.y, high.y + 1):
 		var row_low := low.x
@@ -112,12 +115,17 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 					work -= removed * resistance.y
 				if next_value <= lower and effectiveness.z > 0.0:
 					next_value = maxf(0.0, next_value - maxf(work, 0.0) / resistance.z)
-			if fossil != null and bone_ceilings[index] > 0.0:
-				# Discard all remaining work at bone, even for an enormous delta.
-				next_value = maxf(next_value, bone_ceilings[index])
-				if next_value <= bone_ceilings[index] + FossilField.EXPOSURE_EPSILON and fossil.exposed[index] == 0:
-					newly_exposed.append(index)
 			if next_value < old_value:
+				if next_value <= bone_limit and bone_ceilings[index] > 0.0:
+					# Discard remaining work at bone. Ineffective strokes do not
+					# inspect fossil state, and clamped cells produce no dirty upload.
+					next_value = maxf(next_value, bone_ceilings[index])
+					if next_value >= old_value:
+						continue
+					# Decide from the stored float32, not the pre-rounding calculation.
+					_heights[index] = next_value
+					if _heights[index] <= bone_ceilings[index] + FossilField.EXPOSURE_EPSILON and fossil.exposed[index] == 0:
+						newly_exposed.append(index)
 				_heights[index] = next_value
 				if residue_generation > 0.0:
 					residue.deposit_removed(x, y, (old_value - next_value) * residue_generation)

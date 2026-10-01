@@ -16,10 +16,10 @@ Dans la boucle locale de `WorkingSurface`, après intégration du travail dans l
 
 ```text
 next_height = max(material_removal_result, bone_ceiling)
-exposed = bone_occupied && next_height <= bone_ceiling + 0.00001
+exposed = bone_occupied && stored_float32_height <= bone_ceiling + 1/65536
 ```
 
-Le surplus de travail est abandonné ; même une puissance/durée énorme ne traverse pas l'os. Les cellules voisines sans os peuvent atteindre le fond `0`. L'os devient donc un volume qui ressort réellement du creux. Le résidu est calculé sur le retrait effectif après clamp.
+Le surplus de travail est abandonné ; même une puissance/durée énorme ne traverse pas l'os. Les cellules voisines sans os peuvent atteindre le fond `0`. L'os devient donc un volume qui ressort réellement du creux. Le résidu est calculé sur le retrait effectif après clamp. L'epsilon **1/65536 ≈ 0,00001526** est représentable exactement en float32 ; le CPU teste la hauteur après arrondi RF, comme le GPU. Au-dessus du plus haut os, les lectures du champ sont évitées.
 
 Une texture **RGF statique** contient hauteur et ID ; l'occupation est dérivée de l'ID. Upload unique à l'initialisation. Le shader compare les **texels exacts** de hauteur RF et de fossile pour utiliser le même critère discret que les compteurs CPU. La géométrie reste interpolée comme en P1. Matériau ivoire chaud `(0,94 ; 0,87 ; 0,72)`, roughness `0,43`, specular `0,38`, sans émission osseuse. Le voile résidu reste gris et léger sur l'os (40 % au maximum, contre 80 % sur la matrice).
 

@@ -5,7 +5,7 @@ uniform sampler2D working_map : filter_linear, repeat_disable;
 uniform sampler2D layer_boundaries : filter_linear, repeat_disable;
 uniform sampler2D residue_map : filter_linear, repeat_disable;
 uniform sampler2D fossil_map : filter_nearest, repeat_disable;
-uniform float bone_exposure_epsilon = 0.00001;
+uniform float bone_exposure_epsilon = 0.0000152587890625;
 uniform vec4 bone_color : source_color = vec4(0.94, 0.87, 0.72, 1.0);
 uniform vec2 map_size = vec2(1024.0, 640.0);
 uniform float base_height = 0.018;

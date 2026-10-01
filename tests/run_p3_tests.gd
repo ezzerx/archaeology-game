@@ -213,6 +213,20 @@ func mouse(root_window: Window, screen: Vector2, pressed := false) -> void:
 		event.pressed = true
 		root_window.push_input(event, true)
 
+func test_exposure_epsilon() -> void:
+	var small := FossilField.new(Vector2i(64, 40))
+	var index := 0
+	for i in range(small.ceilings.size()):
+		if small.ceilings[i] > small.ceilings[index]: index = i
+	var cell := Vector2i(index % small.size.x, index / small.size.x)
+	var surface := WorkingSurface.new(small.size, null, small)
+	for factor in [0.0, 0.5, 0.99999, 1.00001, 1.5, 2.0]:
+		surface.reset()
+		var target: float = small.ceilings[index] + FossilField.EXPOSURE_EPSILON * factor
+		surface.apply_segment(Vector2(cell), Vector2(cell), 1, 1, 1, 1.0 - target)
+		var expected := surface.value_at(cell) <= small.ceilings[index] + FossilField.EXPOSURE_EPSILON
+		check((surface.fossil.exposed[index] != 0) == expected, "epsilon uses stored float32 at factor %.5f" % factor)
+
 func test_scene() -> void:
 	root.size = Vector2i(1920, 1080)
 	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
@@ -293,6 +307,7 @@ func test_scene() -> void:
 func run() -> void:
 	test_layout()
 	test_contact_damage_and_reset()
+	test_exposure_epsilon()
 	await test_scene()
 	print("P3 TESTS: %d checks, %d failures" % [checks, failures])
 	quit(0 if failures == 0 else 1)
