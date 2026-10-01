@@ -2,7 +2,7 @@
 
 Mise à jour : **2026-10-02**. Branche : **`prototype/p3-fossil`**. [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon, **non mergée**.
 
-**Zoom validé humainement par Antoine le 2026-10-02 ; ergonomie debug vérifiée. PR non mergée, P4/P5 non commencés.** Source de vérité : [P3_DESIGN_FIXES](P3_DESIGN_FIXES.md). Antoine confirme explicitement le périmètre « zoom seul » ; la logique osseuse P3 initiale est conservée.
+**P3 validé humainement par Antoine le 2026-10-02, zoom, ergonomie debug et indications en bas inclus. PR non mergée, P4/P5 non commencés.** Confirmation finale : « Ok là on est bon ;) ». Source de vérité : [P3_DESIGN_FIXES](P3_DESIGN_FIXES.md). Antoine confirme explicitement le périmètre « zoom seul » ; la logique osseuse P3 initiale est conservée. Toute suite ou merge attend une autorisation explicite.
 
 ## Périmètre et condition osseuse
 

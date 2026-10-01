@@ -2,7 +2,9 @@
 
 - Date : **2026-10-02**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — zoom P3 validé humainement ; ergonomie debug vérifiée ; non mergé**.
+- Phase : **préproduction — P3 validé humainement, zoom et aide des raccourcis inclus ; non mergé**.
+
+Validation finale du 2026-10-02 : Antoine confirme « Ok là on est bon ;) » après ajout des indications en bas. Aucun travail P3 supplémentaire demandé. Attendre une autorisation explicite pour merger la PR #4 ou commencer P4.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
 - Branche de livraison P3 : `prototype/p3-fossil` ; [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon vers `main`, non mergée.
