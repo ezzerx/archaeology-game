@@ -168,3 +168,31 @@ Reference: [ROADMAP.md](../ROADMAP.md) and [ART_DIRECTION.md](../ART_DIRECTION.m
 ## Validation humaine du zoom et ergonomie debug — 2026-10-02
 
 Antoine valide humainement le zoom et autorise uniquement une petite passe debug : molette seule = zoom ; Shift+molette = puissance ; Ctrl+molette = falloff ; Alt+molette = rayon. F6/F7 restent en secours. Valeurs par défaut inchangées. Les réglages annulent le geste courant et ne déclenchent pas de zoom. 439 checks fonctionnels passent, dont 160 input/zoom. PR #4 non mergée ; aucune autorisation de merge ou P4 n’est inférée.
+
+## Engine policy — Godot remains canonical — 2026-10-01
+
+Decision by Antoine:
+
+> Continue development on Godot. Do not perform a speculative Unity port or parallel implementation.
+
+Rationale:
+
+- Godot currently satisfies the technical needs of ArchaeologyGame;
+- the existing P0–P3 architecture is progressing quickly and has not hit an engine-specific blocker;
+- switching now would impose a certain rewrite cost for hypothetical benefits;
+- Unity's larger ecosystem / artist tooling is acknowledged, but is not sufficient reason by itself to migrate.
+
+A Unity switch should be reconsidered only if a **concrete, material engine limitation** appears, for example:
+
+- a required visual/VFX result is significantly harder or impractical in Godot;
+- the art/content pipeline is materially less efficient than a Unity equivalent;
+- performance cannot meet target hardware after reasonable Godot optimization;
+- console/platform requirements make Unity materially more practical;
+- a critical production tool or middleware cannot be integrated reasonably in Godot.
+
+The comparison standard is not “Unity has more features”, but:
+
+> **Would Unity materially reduce risk, effort, or quality limitations for a problem we are actually facing?**
+
+Until such a case exists, Godot 4.7.2 remains the canonical engine for the prototype and subsequent development.
+
