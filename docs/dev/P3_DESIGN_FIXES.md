@@ -1,4 +1,4 @@
-# P3 Design Review — Precision Around Bone
+# P3 Design Review — Scope Clarification
 
 **Status:** required P3 follow-up before merge  
 **Date:** 2026-10-01  
@@ -12,15 +12,42 @@ P3 succeeds at the most important qualitative point:
 
 > Once bone is perceived, the player wants to continue revealing it.
 
-Three follow-up observations were reported:
+Three observations were reported:
 
-1. Bone is currently difficult to distinguish from Clay in the greybox. This is primarily a DA/readability issue and is **not a P3 blocker**. It should be addressed in P4/P6 with material contrast, lighting, sound and discovery feedback rather than production art now.
+1. Bone is currently difficult to distinguish from Clay in the greybox.
 2. Precision excavation around bone needs **camera zoom**.
-3. The current Chisel/Bone Condition interaction makes damage too difficult to avoid. Because hard matrix above/around bone requires the Chisel, the player is frequently forced to strike the same area again after exposure. A careful player should be able to fully reveal a fossil while keeping condition near 100%.
+3. Bone Condition is currently difficult to preserve because the prototype Chisel still removes matrix in a point-by-point heightfield manner.
 
-Items 2 and 3 are gameplay issues and must be fixed before merging P3.
+## Scope correction
 
-## Design decision A — Precision zoom
+Observation 3 is real, but **must not be prematurely solved inside P3 with a new precision-margin mechanic**.
+
+The original V0.1 design already expects later gameplay/game-feel work to change how materials react:
+
+- Clay should break / peel in pieces;
+- Sandstone should crack and detach chunks;
+- Chisel should feel impact-based rather than like a pixel eraser;
+- P4 owns debris, fracture feedback, tool physicality and material reaction.
+
+Therefore the current unavoidable-damage behavior may be partly an artifact of an unfinished P4 interaction model.
+
+### Design rule
+
+> Do not add an earlier-phase workaround for a problem that a later already-planned phase is explicitly expected to reshape, unless the problem blocks validation of the current phase.
+
+P3 only needs to prove:
+
+- fossil can be hidden and progressively exposed;
+- bone cannot be excavated through;
+- first contact can be detected/protected;
+- condition can decrease from a direct Chisel hit on exposed bone;
+- exposure/picking/reset are technically correct.
+
+P3 does **not** need to solve the final skill model for preserving 100% condition.
+
+## Required P3 change — Precision zoom
+
+Camera zoom remains a valid P3 requirement because it is an independent precision/navigation need and will remain useful regardless of the final Chisel fracture model.
 
 Add player-facing zoom to the fixed-orientation orthographic camera.
 
@@ -29,115 +56,91 @@ Requirements:
 - mouse wheel controls zoom during normal play;
 - camera orientation remains fixed at the canonical ~84°;
 - no rotation;
-- zoom range approximately **1.0× to 2.5–3.0×**, exposed as configurable values;
+- configurable range, approximately **1.0× to 2.5–3.0×**;
 - smooth interpolation;
-- strongly prefer **zoom toward cursor** so the excavation point under the mouse remains visually anchored;
-- no input mismatch after resize/focus changes;
-- picking remains exact at all zoom levels;
-- provide a simple reset-to-default-view action if useful.
+- strongly prefer zoom toward cursor so the excavation point remains visually anchored;
+- picking remains exact at every zoom level;
+- resize/focus behavior remains robust;
+- move existing wheel-based debug tuning to developer-only bindings;
+- no free-camera system.
 
-The current mouse-wheel debug tuning must move to clearly documented **developer-only controls** so normal play can reserve the wheel for zoom.
+## Bone Condition — defer final avoidance model to P4
 
-Do not add a full free-camera/navigation system in P3.
+Keep the existing P3 semantics for now:
 
-## Design decision B — Bone precision margin
+- first hidden contact protected;
+- Brush / Blower safe;
+- direct Chisel hit on already exposed bone can reduce condition;
+- bone cannot be excavated through.
 
-The Chisel must not be the tool required to remove the final millimetres directly against hidden bone.
+Document explicitly in P3_REPORT that:
 
-Add a configurable **precision margin / safety envelope** above each bone ceiling.
+- **condition balance is not final**;
+- a careful 100%-condition excavation is not yet an acceptance criterion;
+- P4 must revisit condition avoidance after Chisel/material fracture behavior exists.
 
-Suggested starting value:
+Do not add the previously proposed 2 mm precision margin or near-bone Brush override in P3 unless a later explicit decision re-authorizes it.
 
-- about **1.5–2.5 mm** of real block depth;
-- start at **2.0 mm** and tune locally.
+## P4 design target carried forward
 
-### Hidden bone + Chisel
+P4 should reassess Bone Condition only after implementing the intended material reactions:
 
-For a bone-occupied cell that is not yet exposed:
+- impact marks / cracks;
+- clay pieces / plates;
+- sandstone chunk detachment;
+- physical-looking Chisel interaction;
+- debris / residue / feedback;
+- clearer bone contact cues.
 
-- Chisel can remove bulk matrix normally;
-- when the cell reaches `bone_ceiling + precision_margin`, Chisel structural removal on that cell clamps there;
-- Chisel cannot cross the precision margin and therefore cannot accidentally expose/damage that hidden cell;
-- reaching the precision margin may emit a one-time / throttled **delicate material nearby** debug event so the player understands why progress stopped.
+At that point, evaluate whether:
 
-No additional mutable full-resolution map is required if this state can be derived from current height + static bone ceiling.
+- chunk fracture naturally makes careful excavation possible;
+- fracture propagation should stop or weaken near bone;
+- a safety margin is still needed;
+- a precision tool / technique is needed later;
+- damage amount / rules need retuning.
 
-### Precision finishing with Soft Brush
-
-Soft Brush gains a **near-bone precision rule**:
-
-- normally its P2 material effectiveness remains unchanged;
-- on a bone-occupied cell inside the precision margin, Brush is allowed to remove the remaining thin matrix even if the geological material is Clay or Sandstone;
-- removal rate should be deliberately slower / controlled;
-- Brush clamps at the exact bone ceiling;
-- Brush never damages condition.
-
-This represents delicately clearing loosened / thin matrix around a fossil and gives the player a safe finishing tool.
-
-The rule must apply only in the local near-bone margin, not make Brush generally effective on Clay/Sandstone.
-
-### Exposed bone + Chisel
-
-Once the bone cell is structurally exposed:
-
-- Chisel direct impact centred on exposed bone may still apply the existing condition penalty (prototype target ~-3 points/impact);
-- one scheduled impact = at most one damage event;
-- surrounding matrix may still be chiselled with the centre off bone;
-- bone height never changes.
-
-This preserves Bone Condition as a meaningful consequence of careless behaviour while making **100% condition realistically achievable**.
-
-## Discovery event semantics
-
-The exact wording/UI remains debug-only.
-
-Recommended behavior:
-
-- reaching the Chisel precision margin can emit a subtle `delicate_material_nearby` / equivalent event;
-- actual `bone_first_contact` / structural exposure occurs when Brush reaches the bone ceiling;
-- specimen-level `Bone detected` should not spam.
-
-If implementation simplicity strongly favors keeping the current event name, preserve one-time semantics and document it. Do not build P4 audio/VFX here.
+No solution is canonized yet.
 
 ## Bone readability
 
-Do not spend P3 on final materials.
+Bone-vs-Clay readability is not a P3 blocker.
 
-A small greybox-only contrast tweak is acceptable if necessary for testing, but the real solution belongs to:
+Real solution belongs mainly to:
 
-- P4: sound, particles, discovery feedback, local readability;
-- P6: final material, palette, lighting and art direction.
+- P4: sound, particles, contact feedback, material readability;
+- P6: final bone/clay material, roughness, lighting, palette and art direction.
 
-## Acceptance criteria for P3 follow-up
+A tiny greybox contrast tweak is allowed only if required for testing.
+
+## P3 acceptance criteria after this clarification
 
 Before P3 can merge:
 
-- [ ] normal mouse wheel zoom works;
-- [ ] zoom remains precise at block center, edges, cavity slopes and bone;
-- [ ] zoom does not alter the canonical camera orientation;
+- [ ] normal mouse-wheel zoom works;
+- [ ] zoom remains precise at center, edges, cavity slopes and bone;
+- [ ] camera orientation remains fixed;
 - [ ] debug tuning no longer conflicts with normal zoom;
-- [ ] Chisel stops hidden bone cells at the configurable precision margin;
-- [ ] Brush can safely remove only the final near-bone matrix through Clay/Sandstone;
-- [ ] Brush cannot generally excavate Clay/Sandstone away from bone;
-- [ ] a careful player can expose a meaningful region of fossil with **100% condition**;
-- [ ] Chisel can still damage already exposed bone intentionally/carelessly;
-- [ ] surrounding non-bone matrix remains fully excavatable;
-- [ ] reset restores all precision/discovery state;
+- [ ] existing fossil reveal/contact/condition logic remains correct;
+- [ ] first hidden contact remains protected;
+- [ ] Chisel can still damage already exposed bone;
+- [ ] Brush / Blower remain safe;
+- [ ] reset remains exact;
 - [ ] P0/P1/P2/P3 regression tests remain green;
-- [ ] new automated tests cover precision-margin clamp and safe Brush finishing;
 - [ ] runtime cap stays 240 FPS / physics 60 Hz;
-- [ ] P4/P5 remain unimplemented.
+- [ ] P3_REPORT clearly records Bone Condition avoidance as a P4 design issue;
+- [ ] no P4 system is implemented yet.
 
 ## Human retest
 
-Antoine should specifically test:
+Antoine should test:
 
-1. zoom into a rib/skull edge and excavate precisely;
-2. Chisel toward hidden bone until it stops at the safety margin;
-3. switch to Brush and reveal the bone without condition loss;
-4. trace a longer exposed section using Brush and surrounding Chisel work;
-5. confirm condition can stay at 100%;
-6. deliberately hit exposed bone with Chisel and confirm condition decreases;
-7. zoom in/out while moving across cavities and verify cursor/picking alignment.
+1. zoom into skull/rib details;
+2. excavate while zoomed and verify precise picking;
+3. zoom in/out around cavities and bone;
+4. confirm first contact / exposure still works;
+5. confirm Chisel still damages already exposed bone;
+6. confirm Brush / Blower remain safe;
+7. judge only whether P3's discovery/exposure tech works — **not yet whether 100% condition is fairly achievable**.
 
-P3 remains open until this retest passes.
+P3 remains open until this zoom retest passes.
