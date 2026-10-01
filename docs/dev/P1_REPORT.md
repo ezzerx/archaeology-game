@@ -4,9 +4,9 @@ Date : **2026-10-01**. Branche : **`prototype/p1-materials`**. Base : `main` / `
 
 Branche poussée ; **[PR #2](https://github.com/ezzerx/archaeology-game/pull/2)** ouverte en brouillon vers `main`, non mergée.
 
-**P1 validé techniquement et humainement. P2 n'est pas autorisé.**
+**Statut final : P1 VALIDÉ, MERGÉ, P2 AUTORISÉ.**
 
-Antoine confirme le **2026-10-01** : « j'ai testé tout fonctionne ». C'est une validation globale du fonctionnement, sans défaut remonté ; la version livrée pour ce test est `b8a61661405b6413c4d4dbb385a72bbc007caac7`. La checklist ci-dessous est conservée pour les retests. La PR reste non mergée ; le merge et P2 attendent une demande explicite.
+Antoine confirme le **2026-10-01** : « j'ai testé tout fonctionne ». C'est une validation globale du fonctionnement, sans défaut remonté ; la version livrée pour ce test est `b8a61661405b6413c4d4dbb385a72bbc007caac7`. La checklist ci-dessous est conservée pour les retests. Après cette validation, Antoine a explicitement autorisé le merge et le passage à P2. PR #2 mergée vers `main` au commit `960642c3fc6972bdb257c96abd43b90c148e632d`.
 
 ## Résultat visible
 
@@ -147,3 +147,28 @@ Ouvrir `project.godot` avec **Godot 4.7.2 Standard**, sur `prototype/p1-material
 8. [ ] **R pendant le clic maintenu** restaure le bloc intact et arrête le creusement jusqu'à un nouveau clic. Refaire une cavité : mêmes couches au même endroit.
 9. [ ] Redimensionner la fenêtre et perdre/reprendre le focus : mapping correct, aucune fouille involontaire, console sans erreur.
 10. [ ] Décider : « Je creuse un volume », « la souris reste précise », « les résistances se sentent ». Sinon demander les corrections P1. **Le merge et P2 nécessitent une demande explicite distincte.**
+
+
+## Review après merge
+
+La revue d'architecture ne relève aucun blocker pour P2.
+
+Points particulièrement réussis :
+
+- le picking utilise exactement la topologie rendue au lieu d'une approximation plane ;
+- la stratigraphie reste statique et déterministe ;
+- une seule map runtime de hauteur reste dirty ;
+- le travail traverse correctement les interfaces sans contourner la résistance ;
+- les tests comparent l'implémentation optimisée à des oracles indépendants.
+
+Points à surveiller sans les traiter prématurément :
+
+1. la grille représente environ **1,31 million de triangles** ; excellente précision pour le prototype, à benchmarker plus tard sur un matériel plus modeste ;
+2. l'upload de la hauteur reste complet à chaque tick dirty ;
+3. le stress synthétique extrême dépasse le budget 60 FPS ;
+4. les valeurs de résistance actuelles servent de preuve de concept, pas de tuning final ;
+5. le collider physique ne suit pas les cavités, ce qui reste acceptable avant d'introduire d'éventuels objets physiques.
+
+Le choix d'omettre Hard Rock en P1 est confirmé : il aurait ajouté du scope sans mieux valider le relief ou la stratigraphie.
+
+**P1 est fermé. P2 — Outils est autorisé.**
