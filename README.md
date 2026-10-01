@@ -2,7 +2,7 @@
 
 **Working title modifiable.** ArchaeologyGame est un nom temporaire de projet, pas un titre commercial validé.
 
-**Statut : préproduction — P0 validé et mergé ; P1 implémenté, validation humaine attendue.** Plateforme visée : Steam. Moteur du prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
+**Statut : préproduction — P0 validé et mergé ; P1 validé humainement, non mergé.** Plateforme visée : Steam. Moteur du prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
 
 ## État du prototype
 
@@ -25,7 +25,7 @@ PR #1 mergée vers `main` : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 
 Rapport : [P0_REPORT](docs/dev/P0_REPORT.md).
 
-### P1 — Matière ▶ à tester
+### P1 — Matière ✅
 
 Sur `prototype/p1-materials`, la surface est maintenant un volume creusable :
 
@@ -41,7 +41,7 @@ Sur `prototype/p1-materials`, la surface est maintenant un volume creusable :
 
 **Clic maintenu** : creuser · **R** : reset · **F1** : données · **F2** : vues · **Molette** : rayon · **Shift+molette** : puissance · **Ctrl+molette** : falloff.
 
-Lire le [rapport P1 et sa checklist humaine](docs/dev/P1_REPORT.md) avant validation. P2 (outils finaux) reste interdit avant le test d'Antoine.
+Antoine a testé P1 le **2026-10-01** et confirme : « j'ai testé tout fonctionne ». Le [rapport P1](docs/dev/P1_REPORT.md) conserve les résultats et la checklist de retest. La [PR #2](https://github.com/ezzerx/archaeology-game/pull/2) reste non mergée ; le merge et P2 (outils finaux) attendent une demande explicite.
 
 ## Vision
 

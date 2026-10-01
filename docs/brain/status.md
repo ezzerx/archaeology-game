@@ -2,7 +2,7 @@
 
 - Date : **2026-10-01**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P1 implémenté et vérifié techniquement, validation humaine attendue**.
+- Phase : **préproduction — P1 validé techniquement et humainement, non mergé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
 - Branche de travail P1 : `prototype/p1-materials` (pas de merge).
@@ -34,7 +34,9 @@ PR #1 a été validée puis mergée vers `main` le 2026-10-01.
 
 Rapport : [P0_REPORT.md](../dev/P0_REPORT.md).
 
-## P1 — Livré pour validation humaine
+## P1 — Validé
+
+**Antoine confirme le 2026-10-01 : « j'ai testé tout fonctionne ».** Validation globale du fonctionnement de P1, sans défaut remonté. Version livrée pour ce test : `b8a61661405b6413c4d4dbb385a72bbc007caac7`.
 
 - Hauteur normalisée 1→0, excavation bornée à 102 mm, vraie grille 3D déplacée, côtés adaptés et base fixe.
 - Loose Soil / Compact Clay / Sandstone, résistances 1 / 3 / 8, frontières statiques ondulées ; outil debug générique uniquement.
@@ -51,13 +53,13 @@ Preuves, limites, commandes et checklist : **[P1_REPORT](../dev/P1_REPORT.md)**.
 - Le stress synthétique coin-à-coin à chaque tick dépasse 60 FPS : édition ≈29,84 ms, rattrapages pouvant bloquer une frame ≈256 ms.
 - Un upload RF complet par tick modifié ; grille dense ; aucune garantie de performance sur d'autres GPU ou au rayon maximal.
 - Collider physique toujours boîte : seul le picking fournit le relief exact. Pas de tunnels/surplombs.
-- Greybox uniquement, ombres encore imparfaites ; game feel et précision perçue à valider humainement.
+- Greybox uniquement, ombres encore imparfaites ; game feel final de la V0.1 à construire et tester.
 
-## Prochaine action — gate humaine
+## Prochaine action — décision de suite
 
-Antoine ouvre la branche P1 dans Godot 4.7.2 et suit la checklist du rapport : sensation de creusement, contact dans les cavités, différences de résistance, traits/coins/reset et fluidité. Corriger P1 en cas de défaut ressenti. La validation automatisée n'est pas un verdict humain.
+La gate humaine P1 est franchie. La PR #2 reste ouverte en brouillon et non mergée, conformément à la mission P1. Attendre une demande explicite pour le merge et pour démarrer P2.
 
-**Aucun système P2+ commencé. Ne pas merger ni commencer P2 avant validation humaine de P1.**
+**Aucun système P2+ commencé. La confirmation du test clôt la validation de P1 ; elle ne lance pas le jalon suivant.**
 
 ## Références
 
@@ -65,9 +67,9 @@ Antoine ouvre la branche P1 dans Godot 4.7.2 et suit la checklist du rapport : s
 - [ART_DIRECTION](../ART_DIRECTION.md) — DA 2.5D stylisée tabletop.
 - [VISUAL_REFERENCES](../VISUAL_REFERENCES.md) — références visuelles canoniques.
 - [P0_REPORT](../dev/P0_REPORT.md) — fondation technique validée.
-- [P1_REPORT](../dev/P1_REPORT.md) — implémentation techniquement vérifiée, gate humaine ouverte.
+- [P1_REPORT](../dev/P1_REPORT.md) — résultats techniques et validation humaine de P1.
 
-Séquence : P0 ✅ → **P1 Matière : test humain attendu** → P2 Outils → P3 Fossile → P4 Game feel → P5 UI/progression → P6 Art pass → P7 Tuning.
+Séquence : P0 ✅ → **P1 Matière ✅ (non mergé)** → P2 Outils → P3 Fossile → P4 Game feel → P5 UI/progression → P6 Art pass → P7 Tuning.
 
 La question finale V0.1 demeure :
 

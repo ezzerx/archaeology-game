@@ -67,13 +67,18 @@ Ces décisions sont techniques, prises dans la mission P1 autorisée. Elles ne c
 | Base sans cap supérieur doublant le fond | Élimine le z-fighting constaté graphiquement à profondeur minimale |
 | Édition packed spécialisée + Image de staging synchronisée | Réduit le coût des strokes ; oracle indépendant protège la formule optimisée |
 | Hard Rock omis | Optionnel ; les trois matériaux suffisent à la preuve P1 |
-| Maintenir la gate humaine | Tests techniques verts, mais ressenti de fouille et précision perçue à juger par Antoine |
+| Validation humaine après les tests techniques | Antoine a testé P1 et confirmé son fonctionnement le 2026-10-01 ; verdict ci-dessous |
 
 Référence : [P1_REPORT](../dev/P1_REPORT.md), [P1_RELIEF_DECISION](../dev/P1_RELIEF_DECISION.md). Limite mesurée : le stress coin-à-coin répété dépasse le budget malgré la fluidité nominale à 60 FPS. Aucun P2+ engagé.
 
+### Verdict P1
+
+**Validé par Antoine le 2026-10-01 : « j'ai testé tout fonctionne ».** Validation globale du fonctionnement sur la livraison `b8a61661405b6413c4d4dbb385a72bbc007caac7`, sans défaut remonté. Le game feel final de la V0.1 reste un objectif ultérieur.
+
+La [PR #2](https://github.com/ezzerx/archaeology-game/pull/2) reste ouverte en brouillon, non mergée. Le merge et le démarrage de P2 attendent une demande explicite ; cette confirmation de test ne les autorise pas.
+
 ## Points encore ouverts pour P2+
 
-- validation humaine du relief, des résistances et du contact P1 ;
 - coût des empreintes extrêmes et des éventuels futurs objets physiques ;
 - stratégie d'upload GPU lorsque plusieurs maps existeront ;
 - valeurs finales de résistance, rayon, cadence et dégâts ;

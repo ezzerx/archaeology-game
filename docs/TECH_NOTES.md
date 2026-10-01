@@ -1,8 +1,8 @@
 # Notes techniques
 
-**État au 2026-10-01 : P0 validé/mergé ; P1 implémenté, validation humaine attendue.** Godot **4.7.2 stable**, GDScript, caméra orthographique, Compatibility. Architecture actuelle : hauteur RF 1024×640, grille déplacée GPU, picking CPU sur les mêmes triangles, trois matériaux et frontières statiques. Voir [P1_RELIEF_DECISION](dev/P1_RELIEF_DECISION.md) et [P1_REPORT](dev/P1_REPORT.md) pour les preuves, performances et limites.
+**État au 2026-10-01 : P0 validé/mergé ; P1 validé humainement, non mergé.** Godot **4.7.2 stable**, GDScript, caméra orthographique, Compatibility. Architecture actuelle : hauteur RF 1024×640, grille déplacée GPU, picking CPU sur les mêmes triangles, trois matériaux et frontières statiques. Voir [P1_RELIEF_DECISION](dev/P1_RELIEF_DECISION.md) et [P1_REPORT](dev/P1_REPORT.md) pour les preuves, performances et limites.
 
-Les sections exploratoires ci-dessous datent de la conception initiale. Leurs pistes 2D / pixel art sont historiques : [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md) prévaut. P1 vérifie techniquement relief et matériaux ; le game feel reste à valider humainement. Aucun système P2+ n'est lancé par ces notes.
+Les sections exploratoires ci-dessous datent de la conception initiale. Leurs pistes 2D / pixel art sont historiques : [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md) prévaut. Le fonctionnement de P1 est validé techniquement et par Antoine ; le game feel final de la V0.1 reste à construire et tester. Aucun système P2+ n'est lancé par ces notes.
 
 ## Pourquoi explorer Godot
 

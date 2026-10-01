@@ -1,6 +1,6 @@
 # P1 — Décision relief / picking
 
-Date : 2026-10-01. Périmètre : P1 uniquement, avant validation humaine.
+Date : 2026-10-01. Périmètre : P1 uniquement. Fonctionnement validé par Antoine après le test local ; voir [P1_REPORT](P1_REPORT.md).
 
 ## Choix
 
@@ -14,7 +14,7 @@ La base reste un volume non excavable ; quatre jupes subdivisées suivent les ha
 
 | Approche | Avantages | Motif du choix / rejet |
 |---|---|---|
-| Grille déplacée GPU + picking sur les mêmes triangles | Pas de reconstruction mesh/collision pendant les gestes, une map dirty, précision contrôlable | **Retenue**, validée techniquement en rendu local ; gate humaine encore ouverte |
+| Grille déplacée GPU + picking sur les mêmes triangles | Pas de reconstruction mesh/collision pendant les gestes, une map dirty, précision contrôlable | **Retenue**, validée techniquement en rendu local ; fonctionnement confirmé par Antoine |
 | Mesh CPU par régions + collision actualisée | Géométrie physique native accessible | Plus de code de buffers/chunks ; reconstruire une collision dense à chaque geste est inutile pour une table sans objets physiques |
 | Grille grossière + recherche itérative dans une height map dense | Géométrie moins coûteuse | Un hit bilinéaire peut différer du triangle visible, surtout aux petites empreintes et sur une paroi raide |
 | Heightfield CPU dense réactualisé intégralement | Facile à expliquer | Trafic de positions/normales et édition CPU plus coûteux que la seule hauteur RF |

@@ -4,7 +4,9 @@ Date : **2026-10-01**. Branche : **`prototype/p1-materials`**. Base : `main` / `
 
 Branche poussée ; **[PR #2](https://github.com/ezzerx/archaeology-game/pull/2)** ouverte en brouillon vers `main`, non mergée.
 
-**Implémentation et validation technique effectuées ; validation humaine d'Antoine attendue. P2 n'est pas autorisé.**
+**P1 validé techniquement et humainement. P2 n'est pas autorisé.**
+
+Antoine confirme le **2026-10-01** : « j'ai testé tout fonctionne ». C'est une validation globale du fonctionnement, sans défaut remonté ; la version livrée pour ce test est `b8a61661405b6413c4d4dbb385a72bbc007caac7`. La checklist ci-dessous est conservée pour les retests. La PR reste non mergée ; le merge et P2 attendent une demande explicite.
 
 ## Résultat visible
 
@@ -12,7 +14,7 @@ Le DebugExcavator creuse un volume 3D, traverse Loose Soil → Compact Clay → 
 
 ![Cavités P1 capturées dans le rendu Godot local](evidence/p1-cavities.png)
 
-Capture de vérification, sans retouche, issue du renderer réel. Les trous de plusieurs profondeurs et le bord excavé sont des fixtures de test ; le jeu démarre avec le bloc intact. Le jugement tactile et visuel final appartient à Antoine.
+Capture de vérification, sans retouche, issue du renderer réel. Les trous de plusieurs profondeurs et le bord excavé sont des fixtures de test ; le jeu démarre avec le bloc intact.
 
 ## Architecture livrée
 
@@ -125,11 +127,13 @@ Adapter seulement le chemin du binaire sur un autre PC. Le script vérifie 4.7.2
 3. L'intégration de travail du hot loop est spécialisée et comparée à `Stratigraphy.remove_work` par un oracle. Faire évoluer les deux ensemble si le modèle change.
 4. Le collider boîte ne représente pas les cavités pour la physique. Un outil visuel P2 peut utiliser le hit précis ; des objets physiques nécessiteront une stratégie séparée.
 5. Les ombres présentent encore des marches/pixels dans les fortes pentes ; palette et lumière restent du greybox. La hauteur initiale est plane, les frontières internes seules sont ondulées. Aucun art pass.
-6. Les trajectoires restent des capsules linéaires entre ticks, comme P0. L'envie de gratter, la précision ressentie et les réglages doivent encore être jugés par Antoine.
+6. Les trajectoires restent des capsules linéaires entre ticks, comme P0. Le fonctionnement P1 est validé par Antoine ; l'envie de gratter durablement et les réglages finaux restent à tester sur la V0.1 complète.
 
 **Aucun système P2+ commencé** : pas de Soft Brush, Chisel, Air Blower, poussière, particules, débris, audio, fossile, Bone detected/Condition, fragment, objectif, classification, musée, sauvegarde, économie ou Steam.
 
-## Checklist humaine — gate d'Antoine
+## Checklist humaine de référence pour retest
+
+La validation globale d'Antoine est consignée en tête du rapport. Les cases ci-dessous servent à un futur retest ; elles ne sont pas un relevé détaillé de ses observations.
 
 Ouvrir `project.godot` avec **Godot 4.7.2 Standard**, sur `prototype/p1-materials`, puis **F5**. Garder les paramètres par défaut pour les étapes 1–5.
 
@@ -142,4 +146,4 @@ Ouvrir `project.godot` avec **Godot 4.7.2 Standard**, sur `prototype/p1-material
 7. [ ] F1 masque/réaffiche les données. F2 parcourt les quatre vues, dont relief/normales. Revenir au rendu éclairé.
 8. [ ] **R pendant le clic maintenu** restaure le bloc intact et arrête le creusement jusqu'à un nouveau clic. Refaire une cavité : mêmes couches au même endroit.
 9. [ ] Redimensionner la fenêtre et perdre/reprendre le focus : mapping correct, aucune fouille involontaire, console sans erreur.
-10. [ ] Décider : « Je creuse un volume », « la souris reste précise », « les résistances se sentent ». Sinon demander les corrections P1. **Ne pas merger ni commencer P2 avant cette validation.**
+10. [ ] Décider : « Je creuse un volume », « la souris reste précise », « les résistances se sentent ». Sinon demander les corrections P1. **Le merge et P2 nécessitent une demande explicite distincte.**
