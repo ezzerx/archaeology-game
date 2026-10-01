@@ -1,6 +1,8 @@
 # Notes techniques
 
-**Architecture conceptuelle, sans implémentation.** Godot est envisagé pour le prototype 2D. Aucun choix de langage, version précise, renderer ou structure de scènes n’est encore engagé.
+**État au 2026-10-01 : P0 implémenté, revue humaine attendue.** Godot **4.7.2 stable**, GDScript, scène 3D / caméra orthographique, renderer Compatibility. Le détail de l'architecture effectivement livrée et des tests est dans [dev/P0_REPORT.md](dev/P0_REPORT.md).
+
+Les sections exploratoires ci-dessous datent de la conception initiale. Leurs pistes 2D / pixel art sont historiques : [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md) prévaut. P0 ne valide encore ni relief, ni matériaux, ni game feel.
 
 ## Pourquoi explorer Godot
 

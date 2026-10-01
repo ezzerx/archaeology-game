@@ -2,7 +2,36 @@
 
 **Working title modifiable.** ArchaeologyGame est un nom temporaire de projet, pas un titre commercial validé.
 
-**Statut : Concept / pre-production.** Plateforme visée : Steam. Moteur envisagé : Godot, version à vérifier et choisir au démarrage du prototype.
+**Statut : préproduction — fondation P0 implémentée, en attente de revue humaine.** Plateforme visée : Steam. Moteur du prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
+
+## Lancer et auditer P0
+
+Sur la branche `prototype/p0-foundation`, importer `project.godot` dans **Godot 4.7.2 Standard** et appuyer sur **F6** depuis `scenes/prototype_main.tscn`, ou sur **F5** pour lancer le projet.
+
+P0 est un greybox : table, bloc, caméra fixe à 84°, curseur et map scalaire modifiable. Le clic gauche maintenu assombrit la surface ; ce n'est pas encore du creusement.
+
+| Commande | Effet |
+|---|---|
+| Clic gauche maintenu | Appliquer le DebugExcavator |
+| R | Reset exact ; recliquer pour reprendre si le bouton était maintenu |
+| F1 | Afficher / masquer le panneau debug |
+| Molette | Rayon |
+| Maj + molette | Force |
+| Ctrl + molette | Falloff |
+
+Les paramètres persistants se règlent dans `config/debug_excavator.tres`. Le tuning en jeu est temporaire. La caméra et la taille/résolution du bloc sont exposées dans l'inspecteur de la scène.
+
+Tests sans addon, depuis la racine du dépôt (remplacer `godot` par le chemin de l'exécutable) :
+
+```sh
+godot --headless --path . --editor --import
+godot --headless --path . --script res://tests/run_tests.gd
+godot --headless --path . --quit-after 120
+```
+
+Sous Linux : `bash tests/check_p0.sh /chemin/absolu/vers/godot` exécute les trois contrôles avec timeout et détection d'erreurs dans les logs.
+
+Résultats, limites et checklist de test local : [rapport P0](docs/dev/P0_REPORT.md). **P1 n'est pas commencé ; la suite demande la validation humaine de P0.**
 
 ## Vision
 

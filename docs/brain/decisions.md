@@ -39,10 +39,25 @@ Restent à tester ou décider :
 
 - valeurs finales de résistance, rayon, cadence et dégâts ;
 - méthode technique finale du relief / height map dans Godot ;
-- version stable exacte de Godot ;
+- renderer et méthode de mise à jour des futures surfaces avec relief ;
 - assets et samples audio de production ;
 - tuning du seuil de révélation des composants ;
 - comportement final du musée au-delà du concept canonique ;
 - éventuelle génération procédurale, économie ou progression longue après validation du cœur.
 
 Ne pas transformer ces points en nouvelles features de v0.1 sans décision explicite.
+
+## Décisions techniques P0 — 2026-10-01
+
+À la demande explicite de développement P0 d'Antoine :
+
+| Décision | Raison / limite |
+|---|---|
+| Godot 4.7.2 stable Standard, GDScript, Compatibility | Stable vérifiée officiellement et exécutée en headless ; primitives 3D et outils natifs suffisants pour P0 |
+| Image RF 1024×640, mask scalaire temporaire | Écriture CPU locale et inspection simple ; aucune sémantique de matériau ou profondeur livrée |
+| Footprint balayé entre positions à 60 Hz | Couvrir le trait sans gaps, avec falloff configurable et déterminisme pour les mêmes entrées |
+| Collision plane avec rejet des côtés | Mapping précis de la surface P0 ; réévaluation requise avant du relief P1 |
+| Paramètres du DebugExcavator en Resource | Tuning accessible sans anticiper les outils finaux |
+| Branche et PR P0 séparées, sans merge automatique | Revue humaine et test local obligatoires avant autorisation de P1 |
+
+Résultats réellement vérifiés et limites : [P0_REPORT.md](../dev/P0_REPORT.md). Aucun changement du périmètre produit V0.1.

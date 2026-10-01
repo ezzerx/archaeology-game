@@ -2,64 +2,33 @@
 
 - Date : **2026-10-01**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **Concept / pre-production — prototype v0.1 spécifié**.
-- Dépôt : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game), privé.
+- Phase : **préproduction — P0 implémenté, revue humaine attendue**.
+- Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
+- Branche : `prototype/p0-foundation`, issue de `main` au commit `74b5e88dea181d7b8683a7cbb8a290928e88edf5`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.
 
-## État actuel
+## État livré sur la branche P0
 
-Le concept général, la boucle de gameplay, le musée et la direction artistique sont documentés.
+Godot **4.7.2 stable**, GDScript, renderer Compatibility. Scène 3D greybox, caméra orthographique fixe à 84°, bloc, raycast/local/UV/map, mask CPU 1024×640, DebugExcavator à footprint balayé, curseur et panneau debug, R/F1, tuning temporaire rayon/force/falloff.
 
-La **spécification complète du Gameplay Prototype V0.1 est désormais canonique** :
+La planche des quatre références est versionnée avec son SHA-256 canonique vérifié. Elle n'est pas un asset de jeu.
 
-[PROTOTYPE_V0_1_SPEC](../PROTOTYPE_V0_1_SPEC.md)
+**Validation automatisée : 45 checks passés**, import et démarrage headless sans erreur. Rendu graphique, souris physique et 1080p/60 à vérifier localement : l'affichage virtuel Work a échoué à ouvrir ses sockets. Aucun playtest humain ni résultat de game feel n'est revendiqué.
 
-La direction visuelle du prototype est désormais fixée à :
+Le livrable détaillé, les commandes et la checklist sont dans [P0_REPORT.md](../dev/P0_REPORT.md).
 
-> **2.5D stylisée — tabletop — caméra orthographique presque verticale**
+## Prochaine action autorisée
 
-Le pixel art n'est plus la cible du prototype.
+1. Revoir la PR P0 vers `main` sans merge automatique.
+2. Ouvrir `project.godot` dans Godot 4.7.2 et suivre la checklist locale du rapport.
+3. Corriger les éventuels défauts de P0, puis obtenir la validation d'Antoine avant de planifier la suite.
 
-Les concept arts validés du 2026-10-01 servent de mood references : fouille tabletop chaude et tactile, outil visible au-dessus du bloc, matériaux avec profondeur, UI papier / bois / laiton, dossier scientifique et futur musée scrollable avec Missing Fossil Parts.
+**P1 n'est pas commencé.** Aucun matériau, outil final, fossile, FX/audio, objectif, musée, sauvegarde ou progression n'a été ajouté.
 
-## Développement
+## Références et suite conditionnelle
 
-Aucun code de gameplay n'est encore considéré comme validé.
+[PROTOTYPE_V0_1_SPEC](../PROTOTYPE_V0_1_SPEC.md) reste la source canonique. DA : **2.5D stylisée — tabletop — orthographique presque verticale**, sans pixel art pour le prototype.
 
-La séquence de développement prévue est :
+Séquence : P0 Interaction brute → P1 Matière → P2 Outils → P3 Fossile → P4 Game feel → P5 UI/progression → P6 Art pass → P7 Tuning. Les jalons ultérieurs ne sont pas autorisés par la livraison de P0.
 
-1. P0 — Interaction brute
-2. P1 — Matière
-3. P2 — Outils
-4. P3 — Fossile
-5. P4 — Game feel
-6. P5 — UI et progression
-7. P6 — Art pass
-8. P7 — Tuning
-
-Le premier jalon réellement significatif est **P0 → P3**, où il devient possible de creuser, changer d'outil et tomber sur un os.
-
-## Prochaine action
-
-Démarrer le prototype à partir de [PROTOTYPE_V0_1_SPEC](../PROTOTYPE_V0_1_SPEC.md).
-
-Avant le code :
-
-- vérifier la version stable de Godot à utiliser ;
-- préparer une branche de prototype ;
-- conserver les systèmes découplés ;
-- rendre tous les paramètres de game feel configurables ;
-- ne pas développer le musée ou une méta-progression avant validation du cœur.
-
-## Validation attendue
-
-Question centrale :
-
-> « Est-ce que j’ai envie de continuer à gratter alors que je sais déjà ce qu’il y a dessous ? »
-
-Feu vert interne proposé :
-
-- 4 joueurs sur 5 évaluent la satisfaction de la fouille à 4/5 ou plus ;
-- 3 joueurs sur 5 continuent volontairement après Preparation Complete.
-
-Si le cœur échoue, reprendre matière, audio, VFX, outils et rythme avant toute extension de scope.
+La question de validation V0.1 demeure : « Est-ce que j'ai envie de continuer à gratter alors que je sais déjà ce qu'il y a dessous ? » Les objectifs proposés (4 joueurs sur 5 à 4/5 de satisfaction, 3 sur 5 continuant après la fin) ne sont pas encore testables dans ce greybox P0.
