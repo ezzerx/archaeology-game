@@ -2,36 +2,43 @@
 
 **Working title modifiable.** ArchaeologyGame est un nom temporaire de projet, pas un titre commercial validé.
 
-**Statut : préproduction — fondation P0 implémentée, en attente de revue humaine.** Plateforme visée : Steam. Moteur du prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
+**Statut : préproduction — P0 validé et mergé ; P1 Matière autorisé.** Plateforme visée : Steam. Moteur du prototype : **Godot 4.7.2 stable**, GDScript, rendu 3D Compatibility.
 
-## Lancer et auditer P0
+## État du prototype
 
-Sur la branche `prototype/p0-foundation`, importer `project.godot` dans **Godot 4.7.2 Standard** et appuyer sur **F6** depuis `scenes/prototype_main.tscn`, ou sur **F5** pour lancer le projet.
+### P0 — Interaction brute ✅
 
-P0 est un greybox : table, bloc, caméra fixe à 84°, curseur et map scalaire modifiable. Le clic gauche maintenu assombrit la surface ; ce n'est pas encore du creusement.
+Validé automatiquement puis testé localement par Antoine le 2026-10-01.
 
-| Commande | Effet |
-|---|---|
-| Clic gauche maintenu | Appliquer le DebugExcavator |
-| R | Reset exact ; recliquer pour reprendre si le bouton était maintenu |
-| F1 | Afficher / masquer le panneau debug |
-| Molette | Rayon |
-| Maj + molette | Force |
-| Ctrl + molette | Falloff |
+Fondations disponibles :
 
-Les paramètres persistants se règlent dans `config/debug_excavator.tres`. Le tuning en jeu est temporaire. La caméra et la taille/résolution du bloc sont exposées dans l'inspecteur de la scène.
+- caméra orthographique fixe à 84° ;
+- bloc greybox ;
+- mapping souris → raycast → local → UV → map ;
+- working map CPU 1024×640 ;
+- stroke continu avec rayon / force / falloff configurables ;
+- reset `R` ;
+- debug `F1` ;
+- tests automatisés.
 
-Tests sans addon, depuis la racine du dépôt (remplacer `godot` par le chemin de l'exécutable) :
+PR #1 mergée vers `main` : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 
-```sh
-godot --headless --path . --editor --import
-godot --headless --path . --script res://tests/run_tests.gd
-godot --headless --path . --quit-after 120
-```
+Rapport : [P0_REPORT](docs/dev/P0_REPORT.md).
 
-Sous Linux : `bash tests/check_p0.sh /chemin/absolu/vers/godot` exécute les trois contrôles avec timeout et détection d'erreurs dans les logs.
+### P1 — Matière ▶ prochaine étape
 
-Résultats, limites et checklist de test local : [rapport P0](docs/dev/P0_REPORT.md). **P1 n'est pas commencé ; la suite demande la validation humaine de P0.**
+P1 doit transformer cette surface abstraite en matière creusable :
+
+- profondeur réelle / simulée de façon convaincante ;
+- creux visibles ;
+- mapping précis malgré le relief ;
+- Loose Soil ;
+- Compact Clay ;
+- Sandstone ;
+- Hard Rock secondaire si pertinent ;
+- résistances distinctes avec outil debug générique.
+
+P2 (outils finaux) reste interdit avant validation humaine de P1.
 
 ## Vision
 
@@ -43,27 +50,21 @@ Le joueur travaille en **vue tabletop presque verticale**, sur un bloc de terre 
 
 ## Piliers
 
-1. **Le game feel d’abord.** Résistance, poussière, éclats, sons, animation des outils et rythme de révélation rendent le geste agréable, même lorsque le fossile est déjà connu.
-2. **Une matière crédible à travailler.** Plusieurs couches réagissent différemment ; elles s’abîment et se fissurent avant d’être retirées.
-3. **Une découverte progressive.** L’identité peut rester inconnue, puis devenir probable avant d’être précise.
-4. **Une collection physique visible.** Les fragments trouvés complètent réellement les squelettes exposés ; les parties manquantes restent manquantes.
-5. **Un périmètre maîtrisé.** Valider un écran de fouille avant d’investir dans le musée, le volume de contenu ou la production artistique.
+1. **Le game feel d’abord.**
+2. **Une matière crédible à travailler.**
+3. **Une découverte progressive.**
+4. **Une collection physique visible.**
+5. **Un périmètre maîtrisé.**
 
-## Premier objectif : prototype v0.1
-
-Un écran, un bloc, un fossile, trois outils, plusieurs matériaux, profondeur/destruction progressive, poussière, particules, sons, os découvrable et progression de spécimen.
-
-Le critère de validation reste :
+Le critère de validation final reste :
 
 > Est-ce que j’ai envie de continuer à gratter alors que je sais déjà ce qu’il y a dessous ?
 
-### Direction visuelle canonique du prototype
-
-La cible retenue est désormais :
+## Direction visuelle canonique
 
 > **2.5D stylisée — tabletop — caméra orthographique presque verticale**
 
-Le rendu doit ressembler à une illustration chaleureuse devenue interactive : table en bois, lampe chaude, carnet scientifique, matériaux avec relief, os ivoire, UI papier/bois/laiton et atmosphère de musée d’histoire naturelle.
+Illustration chaleureuse devenue interactive : table en bois, lampe chaude, carnet scientifique, matériaux avec relief, os ivoire, UI papier/bois/laiton et atmosphère de musée d’histoire naturelle.
 
 Le pixel art n’est plus la cible de la V0.1.
 
@@ -71,21 +72,16 @@ Le pixel art n’est plus la cible de la V0.1.
 
 | Fichier | Usage |
 |---|---|
-| [CONCEPT](docs/CONCEPT.md) | Promesse, périmètre confirmé et hypothèses ouvertes |
-| [GAMEPLAY_LOOP](docs/GAMEPLAY_LOOP.md) | Fouille, matériaux, outils, révélation et sensations |
-| [ART_DIRECTION](docs/ART_DIRECTION.md) | Direction 2.5D tabletop, palette, caméra et références visuelles |
-| [VISUAL_REFERENCES](docs/VISUAL_REFERENCES.md) | **Jeu de 4 références visuelles canonique + checksum du board** |
-| [MVP_V0_1](docs/MVP_V0_1.md) | Résumé du prototype, périmètre et validation |
-| [PROTOTYPE_V0_1_SPEC](docs/PROTOTYPE_V0_1_SPEC.md) | **Spécification détaillée canonique pour le développement de la V0.1** |
-| [MUSEUM_SYSTEM](docs/MUSEUM_SYSTEM.md) | Galerie horizontale, fragments et progression |
-| [TECH_NOTES](docs/TECH_NOTES.md) | Architecture conceptuelle et pistes Godot à vérifier |
-| [ROADMAP](docs/ROADMAP.md) | Jalons conditionnés par les résultats du prototype |
-| [Brain du projet](docs/brain/BRAIN.md) | Routage, statut et décisions pour reprendre le travail |
+| [CONCEPT](docs/CONCEPT.md) | Promesse et périmètre |
+| [GAMEPLAY_LOOP](docs/GAMEPLAY_LOOP.md) | Fouille, matériaux, outils, révélation |
+| [ART_DIRECTION](docs/ART_DIRECTION.md) | Direction 2.5D tabletop |
+| [VISUAL_REFERENCES](docs/VISUAL_REFERENCES.md) | Références visuelles canoniques |
+| [MVP_V0_1](docs/MVP_V0_1.md) | Résumé du prototype |
+| [PROTOTYPE_V0_1_SPEC](docs/PROTOTYPE_V0_1_SPEC.md) | **Spécification détaillée canonique V0.1** |
+| [P0_REPORT](docs/dev/P0_REPORT.md) | Fondation technique P0 validée |
+| [MUSEUM_SYSTEM](docs/MUSEUM_SYSTEM.md) | Galerie et progression future |
+| [TECH_NOTES](docs/TECH_NOTES.md) | Notes techniques |
+| [ROADMAP](docs/ROADMAP.md) | Jalons |
+| [Brain](docs/brain/BRAIN.md) | Routage et décisions |
 
-## État du dépôt
-
-Le dépôt privé [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game) canonise la conception du projet.
-
-La V0.1 est désormais suffisamment spécifiée pour démarrer l’implémentation, mais aucun code de jeu n’est considéré comme validé tant que le cœur de fouille n’a pas été testé manuellement.
-
-Pour reprendre, lire [AGENTS.md](AGENTS.md), puis [PROTOTYPE_V0_1_SPEC.md](docs/PROTOTYPE_V0_1_SPEC.md), [VISUAL_REFERENCES.md](docs/VISUAL_REFERENCES.md), puis le [statut canonique](docs/brain/status.md).
+Pour reprendre le développement : lire [AGENTS.md](AGENTS.md), [PROTOTYPE_V0_1_SPEC.md](docs/PROTOTYPE_V0_1_SPEC.md), [docs/brain/status.md](docs/brain/status.md), puis le rapport du dernier jalon.
