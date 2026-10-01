@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://scripts/prototype_main.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/excavation_block.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/tool_controller.gd" id="3"]
-[ext_resource type="Resource" path="res://config/debug_excavator.tres" id="4"]
 [ext_resource type="Shader" path="res://shaders/surface_debug.gdshader" id="5"]
 
 [sub_resource type="StandardMaterial3D" id="TableMaterial"]
@@ -87,11 +86,11 @@ near = 0.01
 far = 10.0
 current = true
 
-[node name="ToolController" type="Node" parent="." node_paths=PackedStringArray("block", "camera")]
+[node name="ToolController" type="Node" parent="." node_paths=PackedStringArray("block", "camera", "toolbar")]
 script = ExtResource("3")
 block = NodePath("../ExcavationBlock")
 camera = NodePath("../Camera3D")
-config = ExtResource("4")
+toolbar = NodePath("../Debug/Toolbar")
 
 [node name="Debug" type="CanvasLayer" parent="."]
 
@@ -106,7 +105,14 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 18
-text = "P1 / DEBUG EXCAVATOR"
+text = "P2 / TOOLS DEBUG"
+
+[node name="Toolbar" type="HBoxContainer" parent="Debug"]
+offset_left = 623.0
+offset_top = 980.0
+offset_right = 1297.0
+offset_bottom = 1026.0
+theme_override_constants/separation = 12
 
 [node name="Help" type="Label" parent="Debug"]
 offset_left = 16.0
@@ -115,4 +121,4 @@ offset_right = 1904.0
 offset_bottom = 1072.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 20
-text = "P1 | Hold LMB: excavate | R: reset | F1: debug | F2: view | Wheel: radius | Shift+wheel: power | Ctrl+wheel: falloff"
+text = "P2 | Hold LMB: use tool | 1/2/3: select, then fresh click | R: reset | F1: debug | F2: view | Wheel: radius | Shift: power | Ctrl: falloff"

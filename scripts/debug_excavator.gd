@@ -1,6 +1,6 @@
 class_name DebugExcavator
 extends Resource
-## Generic P1 test instrument. Radius in texels, base power in work units/second.
+## Legacy P0/P1 regression fixture only; the playable scene uses ToolDefinition.
 
 @export_range(1.0, 128.0, 1.0) var radius := 40.0:
 	set(value): radius = clampf(value, 1.0, 128.0)
