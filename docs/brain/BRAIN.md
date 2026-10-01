@@ -21,4 +21,6 @@ Le contexte du projet voyage avec ce dépôt. Le Brain personnel conserve unique
 | Architecture / hypothèses Godot | [TECH_NOTES](../TECH_NOTES.md) |
 | Jalons conditionnels | [ROADMAP](../ROADMAP.md) |
 
-Provenance : demande de canonisation d’Antoine le 2026-09-30, complétée par la conversation ChatGPT « jeu archéologie » (`6abd6b0a-1744-83eb-80f3-f739fa4f427d`). Les anciens messages sont du contexte ; les orientations de la demande actuelle prévalent. Les images de référence ne sont pas des assets de production validés et ne sont pas incluses.
+Provenance : demande de canonisation d’Antoine le 2026-09-30, complétée par la conversation ChatGPT « jeu archéologie » (`6abd6b0a-1744-83eb-80f3-f739fa4f427d`). Les anciens messages sont du contexte ; les orientations de la demande actuelle prévalent. La planche canonique est versionnée dans `docs/visual-references/` sur la branche P0 ; elle n'est pas un asset de production.
+
+Pour auditer l'implémentation P0, lire [dev/P0_REPORT.md](../dev/P0_REPORT.md). Les jalons suivants restent soumis à validation humaine.
