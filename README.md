@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2 validés et mergés ; P3 Fossile à tester humainement, non mergé.**
+**Statut : préproduction — P0/P1/P2 validés et mergés ; P3 validé fonctionnellement par Antoine, non mergé ; passe design à cadrer.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -10,11 +10,11 @@ Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 - P0 Interaction brute ✅
 - P1 Matière / relief ✅
 - P2 Outils ✅
-- **P3 Fossile ▶**
+- **P3 Fossile : fonctionnement validé ; passe design à cadrer**
 - P4 Game feel
-- P5 UI / progression
-- P6 Art pass
-- P7 Tuning
+- ART0 Direction visuelle et pipeline
+- P5 Boucle complète
+- V0.1 ; suite dans la [roadmap](docs/ROADMAP.md)
 
 ### P2 — Outils
 
@@ -37,7 +37,9 @@ P3 cache Specimen B-17 dans la matrice, le révèle progressivement et bloque l'
 
 **279 checks fonctionnels passent.** Exposition globale/quatre composants, F1 étendu et reset exact. Rapport et checklist F5 : [P3_REPORT](docs/dev/P3_REPORT.md). Architecture : [P3_FOSSIL_DECISION](docs/dev/P3_FOSSIL_DECISION.md). Scope : [P3_BRIEF](docs/dev/P3_BRIEF.md).
 
-Travailler sur `prototype/p3-fossil`. **Pas de merge ni P4/P5 avant validation explicite d'Antoine.**
+Antoine confirme le 2026-10-01 que tout fonctionne et que le GPU ne surchauffe plus. Il souhaite définir quelques modifications design avec l'orchestrateur avant une nouvelle passe.
+
+Travailler sur `prototype/p3-fossil`. **Pas de merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
 
 ## Runtime
 

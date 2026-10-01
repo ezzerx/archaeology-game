@@ -81,7 +81,7 @@ P3 ne doit pas couvrir classification, fragments, objectifs, final audio/VFX ou 
 
 Référence : [P3_BRIEF](../dev/P3_BRIEF.md).
 
-## Choix techniques P3 implémentés — validation humaine en attente
+## Choix techniques P3 implémentés
 
 - Un champ statique aligné à la hauteur P1 porte plafond et ID de composant ; l'occupation dérive de l'ID. Même géométrie/picking, aucune texture dynamique supplémentaire.
 - Quatre composants fixes de B-17 : Skull, Spine / Vertebrae, Ribs, Hind Limb. Pas de génération aléatoire ou d'asset externe.
@@ -91,6 +91,11 @@ Référence : [P3_BRIEF](../dev/P3_BRIEF.md).
 - Cap Godot `application/run/max_fps=240`, physique 60 Hz. Aucun changement de densité du mesh. Lectures osseuses évitées tant que le retrait reste au-dessus du plus haut plafond.
 
 Décision complète : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Résultats et limites mesurés : [P3_REPORT](../dev/P3_REPORT.md). **Aucune validation humaine P3 ou autorisation P4 n'est inférée des tests automatiques.**
+
+## Retour humain P3 et suite — 2026-10-01
+
+Antoine confirme : « Ok tout fonctionne et le GPU ne surchauffe plus. » Le fonctionnement P3 est validé humainement et le cap 240 FPS est conservé. Il souhaite cadrer quelques modifications design avec l'orchestrateur avant une nouvelle passe ; leur contenu reste à définir. Ce retour n'autorise ni le merge de la PR #4 ni P4/P5.
+
 ## Future product pillars confirmed — 2026-10-01
 
 These directions are now confirmed as intended future features, but their detailed design is deliberately deferred until the core excavation loop and visual pipeline are validated.

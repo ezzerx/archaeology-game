@@ -2,7 +2,7 @@
 
 - Date : **2026-10-01**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P3 Fossile implémenté ; validation humaine en attente**.
+- Phase : **préproduction — P3 Fossile validé fonctionnellement par Antoine ; passe design à cadrer ; non mergé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`.
 - Branche de livraison P3 : `prototype/p3-fossil` ; [PR #4](https://github.com/ezzerx/archaeology-game/pull/4) en brouillon vers `main`, non mergée.
@@ -49,7 +49,7 @@ Décision explicite d'Antoine :
 
 Les scripts de benchmark peuvent temporairement désactiver/modifier ce plafond pour mesurer la marge.
 
-Aucune autre optimisation GPU n'est demandée pour l'instant. Si 240 FPS laisse encore une charge jugée excessive, le plafond sera abaissé dans une décision ultérieure.
+Aucune autre optimisation GPU n'est demandée pour l'instant. Après son test P3 le 2026-10-01, Antoine confirme que le GPU ne surchauffe plus ; le cap reste à 240 FPS.
 
 ## Watchpoints techniques
 
@@ -62,7 +62,7 @@ Aucune autre optimisation GPU n'est demandée pour l'instant. Si 240 FPS laisse 
 
 Aucun de ces points ne bloque P3.
 
-## P3 — Implémenté, test humain requis
+## P3 — Fonctionnement validé humainement ; passe design à cadrer
 
 Livré dans le périmètre autorisé :
 
@@ -77,9 +77,11 @@ Livré dans le périmètre autorisé :
 
 Reprise et checklist : [P3_REPORT](../dev/P3_REPORT.md). Architecture/limites : [P3_FOSSIL_DECISION](../dev/P3_FOSSIL_DECISION.md). Scope : [P3_BRIEF](../dev/P3_BRIEF.md).
 
-Le verdict de découverte et le playtest F5/GPU de 2–3 minutes restent à obtenir d'Antoine. Les résultats automatisés ne constituent pas son approbation. La grille dense est conservée ; seul le coût des lectures osseuses inutiles a été réduit pour respecter le benchmark CPU existant.
+Retour humain d'Antoine le 2026-10-01 : « Ok tout fonctionne et le GPU ne surchauffe plus. » Le fonctionnement P3 et le confort GPU sont donc validés par son retour. Cette confirmation reste qualitative et ne remplace pas les mesures automatisées conservées dans le rapport.
 
-**STOP à P3. Aucun merge ni P4/P5 avant nouvelle validation/autorisation explicite d'Antoine.**
+Prochaine action : Antoine souhaite discuter de quelques modifications design avec l'orchestrateur, puis définir une nouvelle passe. Les modifications précises ne sont pas encore fournies. La grille dense est conservée ; seul le coût des lectures osseuses inutiles a été réduit pour respecter le benchmark CPU existant.
+
+**STOP à P3. PR #4 conservée en brouillon. Aucun merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
 
 ## Séquence
 

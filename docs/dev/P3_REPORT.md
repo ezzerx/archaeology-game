@@ -4,7 +4,11 @@ Date : **2026-10-01**. Branche : **`prototype/p3-fossil`**. Base initiale : `447
 
 Livraison : [PR #4](https://github.com/ezzerx/archaeology-game/pull/4), en brouillon vers `main`, **non mergée**.
 
-**P3 implémenté ; validation humaine d'Antoine requise avant merge et toute étape suivante. P4/P5 non autorisés.**
+**Fonctionnement P3 validé par Antoine ; passe design à cadrer avec l'orchestrateur. Merge et P4/P5 non autorisés.**
+
+## Retour humain — 2026-10-01
+
+Antoine confirme : « Ok tout fonctionne et le GPU ne surchauffe plus. » Ce retour valide le fonctionnement du prototype et le confort GPU ressenti ; aucun nouveau relevé chiffré n'est fourni. Il souhaite discuter de quelques modifications design avec l'orchestrateur avant une nouvelle passe. Leur contenu reste à définir ; la PR demeure en brouillon, non mergée. La checklist ci-dessous est conservée pour les retests, sans attribuer au retour global des vérifications détaillées non rapportées.
 
 ## Résultat et architecture
 
@@ -51,7 +55,7 @@ Le fichier `project.godot` comportait une réécriture locale préexistante par 
 
 Observation automatique séparée de la scène ordinaire, **sans override FPS/VSync** : **120 relevés sur deux minutes**, affichage compteur **240–241 FPS** (moyenne 240,04), cap moteur **240** et physique **60** à chaque relevé. Viewport 1920×1080, VSync réglé à 1. La fenêtre glissante du compteur explique l'arrondi ponctuel à 241. [Données runtime](evidence/p3-runtime.json).
 
-Pendant les **50 dernières secondes** observées de ce runtime **au repos**, 53 relevés `nvidia-smi` indiquent **27–32 % GPU**, moyenne **28,72 %**, environ **92,2 W**. C'est la charge de **tout le GPU**, pas une attribution par processus ni un test humain en fouille. Cela ne remplace pas le contrôle F5 actif de 2–3 minutes demandé à Antoine. [Résumé](evidence/p3-gpu-summary.json), [relevés](evidence/p3-gpu-runtime.csv).
+Pendant les **50 dernières secondes** observées de ce runtime **au repos**, 53 relevés `nvidia-smi` indiquent **27–32 % GPU**, moyenne **28,72 %**, environ **92,2 W**. C'est la charge de **tout le GPU**, pas une attribution par processus ni un test humain en fouille. Le retour humain ultérieur sur le GPU est consigné séparément en tête de rapport. [Résumé](evidence/p3-gpu-summary.json), [relevés](evidence/p3-gpu-runtime.csv).
 
 ## Tests automatisés
 
@@ -102,7 +106,7 @@ Données brutes : [P3](evidence/p3-benchmark.json), [replay P2](evidence/p2-on-p
 
 Captures du renderer, sans retouche. La grande cavité est une **fixture de vérification** créée par l'API d'excavation ; le jeu démarre toujours intact. Elle ne prétend pas représenter une session humaine.
 
-## Limites et verdict à confirmer
+## Limites conservées après validation fonctionnelle
 
 1. Une hauteur par colonne : l'os est une colonne solide, sans sous-face ni excavation en dessous. Les bords s'interpolent sur environ un texel. Aucune promesse de géométrie anatomique finale.
 2. Palette, ombres en marches sur pentes fortes, contours et résidu restent greybox. Le Brush ne retire toujours pas Sandstone : autour d'un os dans le grès, creuser prudemment au Chisel avec le centre dans la matrice, puis nettoyer au Blower.
@@ -111,9 +115,9 @@ Captures du renderer, sans retouche. La grande cavité est une **fixture de vér
 5. Données nouvelles : RGF statique **5 Mio GPU**, données CPU persistantes **8,75 Mio**. Aucune nouvelle texture mutable ou reconstruction de mesh pendant les gestes.
 6. Aucun système de classification, fragments, objectifs, dossier final, completion, audio/VFX, débris, caméra, outils finaux, mains, musée, sauvegarde, économie ou Steam.
 
-**Ce rapport ne constitue pas une validation humaine.** Le merge et P4 attendent explicitement Antoine.
+**La validation humaine du fonctionnement est consignée en tête de rapport.** La passe design reste à cadrer ; le merge et P4/P5 demandent une nouvelle autorisation explicite d'Antoine.
 
-## Checklist exacte pour Antoine
+## Checklist exacte pour Antoine — conservée pour retest
 
 Ouvrir `project.godot` sur **`prototype/p3-fossil`** dans **Godot 4.7.2 Standard**, puis **F5**. Relancer pour restaurer les réglages par défaut. `1` Brush, `2` Chisel, `3` Blower ; toujours relâcher puis cliquer après un changement d'outil. F1 masque/affiche les deux panneaux ; F2 doit être en **SHADED**.
 
