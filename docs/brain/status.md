@@ -88,3 +88,24 @@ Prochaine action : Antoine souhaite discuter de quelques modifications design av
 P0 ✅ → P1 ✅ → P2 ✅ → **P3 Fossile** → P4 Game feel → ART0 Direction visuelle et pipeline → P5 Boucle complète → V0.1.
 
 La [roadmap](../ROADMAP.md) fixe les gates suivants. Les [systèmes futurs confirmés](../FUTURE_SYSTEMS.md) restent différés après V0.1 ; leur documentation n'autorise aucune implémentation dans P3.
+
+
+## P3 design review — 2026-10-01
+
+Human feedback after functional validation:
+
+- discovery hook succeeds: once bone is perceived, Antoine wants to continue revealing it;
+- Bone/Clay readability remains weak in greybox; defer the real solution to P4/P6;
+- precision excavation requires camera zoom;
+- current Chisel/Bone Condition interaction makes damage too difficult to avoid during normal careful excavation.
+
+Decision:
+
+- **PR #4 remains unmerged**;
+- P3 receives a design-fix pass before closure;
+- add smooth orthographic zoom for precision;
+- add a configurable near-bone precision margin: Chisel stops before hidden bone, Soft Brush safely removes only the final thin matrix near bone, and direct Chisel impacts on already exposed bone can still damage condition;
+- target outcome: a careful player can expose a meaningful fossil region while maintaining 100% condition;
+- P4 remains blocked until human retest passes.
+
+Reference: [P3_DESIGN_FIXES.md](../dev/P3_DESIGN_FIXES.md).
