@@ -90,7 +90,7 @@ La revue produit confirme l'envie de continuer à révéler le fossile et le bes
 
 Règle de conception : ne pas ajouter un contournement dans une phase antérieure pour un problème qu'une phase déjà prévue doit remodeler, sauf s'il bloque la validation de la phase courante.
 
-**Zoom validé humainement le 2026-10-02 ; ergonomie debug vérifiée automatiquement. STOP à P3. PR #4 conservée en brouillon ; aucun merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
+**Zoom validé humainement le 2026-10-02 ; ergonomie debug validée humainement ; aide permanente des raccourcis ajoutée en bas et vérifiée visuellement. STOP à P3. PR #4 conservée en brouillon ; aucun merge ni P4/P5 sans nouvelle autorisation explicite d'Antoine.**
 
 ## Séquence
 

@@ -26,7 +26,7 @@ L'exposition utilise les hauteurs RF réellement stockées et l'epsilon binaire 
 - Le point 3D réellement touché sous le curseur reste ancré pendant l'interpolation. Hors du bloc, zoom autour du centre de la vue.
 - **Home / Origine** rétablit la vue initiale sans modifier le terrain. **R** restaure terrain, fossile et vue 1×.
 - Une commande de zoom annule le geste courant ; un nouveau clic permet de reprendre. Resize et perte de focus annulent également les gestes et figent l'interpolation.
-- En debug : **Shift+molette** puissance (pas 0,1), **Ctrl+molette** falloff (0,25), **Alt+molette** rayon (2 texels). Monter augmente, descendre diminue ; facteur de molette respecté. Priorité des combinaisons : Shift > Ctrl > Alt. Aucun zoom déclenché. F6/F7 et leurs modificateurs Shift/Ctrl restent en secours. Aide dans F1 ; valeurs par défaut inchangées.
+- En debug : **Shift+molette** puissance (pas 0,1), **Ctrl+molette** falloff (0,25), **Alt+molette** rayon (2 texels). Monter augmente, descendre diminue ; facteur de molette respecté. Priorité des combinaisons : Shift > Ctrl > Alt. Aucun zoom déclenché. F6/F7 et leurs modificateurs Shift/Ctrl restent en secours. Aide permanente en bas sur deux lignes et rappel dans F1 ; valeurs par défaut inchangées.
 
 `PrecisionZoom` déplace uniquement le cadrage dans le plan caméra pour maintenir l'ancrage ; aucune rotation ni caméra libre. Le curseur est reprojeté pendant l'interpolation. Le contrôle de resize inclut la fenêtre native, car le viewport logique reste fixe en mode stretch. L'arrêt du zoom tient compte de la précision float32 pour éviter du picking perpétuel après convergence.
 
@@ -106,7 +106,7 @@ Captures du renderer, sans retouche. Le premier contact emploie le Chisel par d�
 - Palette, ombres et contraste os/argile restent greybox ; traitement visuel différé à P4/P6.
 - Grille dense (~1,31 M triangles), upload RF complet quand dirty et collider enveloppe hérités de P1. Le zoom n'ajoute aucune map ni texture.
 - Pas de pan libre ; Home retrouve la vue d'ensemble.
-- Le zoom est validé humainement le 2026-10-02 ; les nouveaux raccourcis debug sont vérifiés automatiquement.
+- Le zoom est validé humainement le 2026-10-02 ; les raccourcis debug sont également validés humainement. Leur rappel permanent en bas est vérifié dans le renderer, sans débordement ni chevauchement avec la toolbar.
 
 ## Checklist de référence — zoom validé le 2026-10-02
 

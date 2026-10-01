@@ -137,16 +137,18 @@ text = "Bone detected\nDelicate material underneath"
 
 [node name="Toolbar" type="HBoxContainer" parent="Debug"]
 offset_left = 623.0
-offset_top = 980.0
+offset_top = 960.0
 offset_right = 1297.0
-offset_bottom = 1026.0
+offset_bottom = 1006.0
 theme_override_constants/separation = 12
 
 [node name="Help" type="Label" parent="Debug"]
 offset_left = 16.0
-offset_top = 1038.0
+offset_top = 1018.0
 offset_right = 1904.0
 offset_bottom = 1072.0
 mouse_filter = 2
-theme_override_font_sizes/font_size = 20
-text = "P3 | Hold LMB: use tool | 1/2/3: select, then fresh click | Wheel: zoom | Home: overview | R: reset | F1: debug | F2: view"
+theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.05, 0.95)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "P3 | Hold LMB: use tool | 1/2/3: select, then fresh click | Wheel: zoom | Home: overview | R: reset | F1: debug | F2: view\nDEBUG | Shift+Wheel: power | Ctrl+Wheel: falloff | Alt+Wheel: radius | F6/F7: radius -/+ (Shift: power, Ctrl: falloff)"
