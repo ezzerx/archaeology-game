@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; P4 prêt pour test humain.**
+**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; passe corrective P4 prête pour retest humain.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -53,11 +53,11 @@ P4 ajoute les réactions de matière :
 - sons distincts ;
 - meilleure lisibilité Bone contact.
 
-La fracture est locale et déterministe ; l'argile se détache en plaques, le grès en fragments plus petits après davantage de stress. Les proxies, les quatre familles de particules et les six familles de sons sont des placeholders. Le picking et les règles osseuses restent indépendants des effets.
+Le premier test humain confirme le plaisir de la fracture et du Chisel. La passe corrective ajoute poussière granuleuse et miettes persistantes, nettoyage directionnel sans dégâts, Brush audio continu, sons distincts découverte/hit direct et pan au clic droit. Les effets restent des placeholders ; picking, fracture et réglages des outils sont préservés.
 
-**495 checks fonctionnels passent.** La sonde attentive révèle 49,9 % du crâne à 100 % de condition ; elle ne remplace pas le jugement humain sur l'équité et le plaisir de fouiller. Aucune marge de sécurité ni bonus Brush ajouté.
+**585 checks fonctionnels passent**, ainsi que les tests graphiques à environ 240 FPS. La sonde attentive révèle 49,9 % du crâne à 100 % de condition ; elle ne remplace pas le jugement humain sur l'équité et le plaisir de fouiller. Aucune marge de sécurité ni bonus Brush ajouté.
 
-Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Tester 3–5 minutes selon la [checklist P4](docs/dev/P4_REPORT.md#test-humain--35-minutes). **PR à garder non mergée ; P5 interdit.**
+Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Tester 10–15 minutes selon la [checklist P4](docs/dev/P4_REPORT.md#retest-humain--10-à-15-minutes). **PR #5 en brouillon, non mergée ; P5 interdit.**
 
 Brief :
 

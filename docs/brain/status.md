@@ -2,9 +2,9 @@
 
 - Date : **2026-10-02**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 implémenté, test humain attendu ; P5 interdit**.
+- Phase : **préproduction — passe corrective P4 livrée, nouveau test humain attendu ; P5 interdit**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation `42ec46d`).
+- Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation initiale `42ec46d`, puis correctifs documentés dans le rapport).
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -62,7 +62,17 @@ Rapports :
 - Le Chisel actuel reste encore trop proche d'un effacement local de heightfield : P4 doit introduire une vraie réaction de matière avant de décider d'une mécanique de protection supplémentaire.
 - Les valeurs de vitesse/puissance actuelles peuvent sembler lentes ; ne pas faire le tuning final avant P7, sauf nécessité de test.
 
-## P4 — Implémenté, validation humaine attendue ▶
+## P4 — Correctifs après premier test humain ▶
+
+Le premier test humain est **très positif** : Antoine a continué environ 15 minutes alors qu'il devait arrêter, et juge le Chisel très fun. Fractures Clay/Sandstone, profondeur, lisibilité, condition, zoom et picking à préserver. Ce retour n'autorise aucun merge.
+
+Passe corrective livrée : Fine Dust granuleuse persistante ; Loose Debris sparse nettoyable sans danger ; souffle directionnel avec hook d'éjection monde ; Brush audio continu ; sons distincts découverte osseuse / hit direct ; pan RMB borné, Home/R cohérents. Ressources de tuning et fracture inchangées. Aucune nouvelle protection osseuse.
+
+**585 checks fonctionnels passent**, ainsi que l'oracle GPU de 194 955 pixels. Derniers scénarios graphiques : **239,13–240,00 FPS**, P95 maximal **11,190 ms**, frame maximale **13,602 ms** sur RTX 5080 / 1080p. Blower : zéro upload height. Cap 240 FPS / physique 60 Hz.
+
+Prochaine action : **retest humain 10–15 minutes** selon [P4_REPORT](../dev/P4_REPORT.md#retest-humain--10-à-15-minutes), notamment avant/après nettoyage, finition d'un os, Brush audio, distinction découverte/erreur et pan à 3×. **PR #5 reste en brouillon, non mergée ; P5 interdit.**
+
+### Livraison initiale conservée comme historique
 
 P4 vise à faire passer le prototype de :
 
@@ -92,7 +102,7 @@ Vérifications : **495 checks fonctionnels** (439 historiques + 56 P4), dix scé
 
 Condition : sonde attentive de 1 004 impacts → 4 105 cellules osseuses, **49,87 % du crâne**, condition **100 %**. Elle reconnaît parfaitement les centres visibles ; ce n'est pas un test humain. Maintenir le Chisel sur un centre exposé inflige toujours −3 par impact. Aucun mécanisme de protection ajouté.
 
-Prochaine action : Antoine joue 3–5 minutes selon [P4_REPORT](../dev/P4_REPORT.md), puis juge matériaux, fracture, changement d'outil, contact osseux, condition et plaisir. Si les dégâts restent structurellement injustes, documenter le geste précis et attendre une revue avant toute protection supplémentaire. **Ne pas merger cette livraison ni commencer P5.**
+Le test humain initial a ensuite conduit à la passe corrective ci-dessus. Si un nouveau test relève encore un dommage jugé inévitable, documenter le geste précis avant toute protection supplémentaire. **Ne pas merger cette livraison ni commencer P5.**
 
 Architecture et limites : [P4_MATERIAL_REACTION_DECISION](../dev/P4_MATERIAL_REACTION_DECISION.md).
 
