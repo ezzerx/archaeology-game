@@ -136,23 +136,25 @@ func on_action(event: Dictionary) -> void:
 		if not event.chunks.is_empty(): layer = event.chunks[0].layer
 		elif removed.z > removed.y: layer = 2
 		elif block.working_map.value_at(Vector2i(point.round())) <= block.working_map.strata.sample_limits((point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)).y: layer = 2
-		if not event.bone_contact:
+		if not event.bone_revealed and not event.direct_bone_hit:
 			audio.play_family(&"chisel_clay" if layer == 1 else &"chisel_stone", 0.72 if event.chunks.is_empty() else 1.0, true)
 		for chunk in event.chunks:
 			_emit(chunk.layer, chunk.point, clampi(ceili(chunk.cells / 10.0), 1, 5))
 	elif event.tool == &"soft_brush":
 		sweep_remaining = 0.12
-		if removed.x + removed.y > 0:
-			var intensity := clampf(sqrt((removed.x + removed.y) / 12.0) + minf(event.movement / 1200.0, 0.35), 0.2, 1.0)
-			audio.play_family(&"brush_soil" if removed.x > removed.y else &"brush_clay", intensity)
+		if removed.x + removed.y + event.residue_cleared > 0:
+			audio.update_brush(event.movement, removed.x + removed.y + event.residue_cleared,
+				removed.y > removed.x)
 			if removed.y > removed.x: _emit(0, point, 1)
 	elif event.tool == &"air_blower" and event.residue_cleared > 0:
 		sweep_remaining = 0.12
 		audio.play_family(&"air", clampf(event.residue_cleared, 0.25, 0.8))
 		_emit(3, point, clampi(ceili(event.residue_cleared * 3), 1, 5))
 	if removed.x > 0: _emit(0, point, clampi(ceili(removed.x / 8.0), 1, 5))
-	if event.bone_contact:
-		audio.play_family(&"bone", 1.0, event.tool == &"chisel")
+	if event.bone_revealed or event.direct_bone_hit:
+		# A damaging centre hit wins if that same impact also reveals nearby cells.
+		audio.play_family(&"direct_bone_hit" if event.direct_bone_hit else &"bone_revealed",
+			1.0 if event.direct_bone_hit else 0.42, event.direct_bone_hit)
 		bone_ring.position = point_world(point)
 		bone_remaining = 0.55
 

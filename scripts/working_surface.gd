@@ -178,7 +178,8 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	residue.last_cleared = 0.0
 	var changed := 0
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
-	var direct_bone := fossil != null and fossil.exposed[fossil.field.index_at_map(to)] != 0
+	var direct_bone_hit := fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
+		and tool.power > 0.0 and tool.bone_damage > 0.0 and fossil.exposed[fossil.field.index_at_map(to)] != 0
 	var is_fracture := fracture != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT
 	if is_fracture:
 		changed = fracture.apply(self, to, tool)
@@ -190,11 +191,11 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount)
 		last_residue_edit_usec = Time.get_ticks_usec() - start
 	var marks := fracture.last_marks if is_fracture else 0
-	var bone_contact := (fossil != null and fossil.exposed_cells > exposed_before) or (direct_bone and tool.power > 0.0)
-	if changed > 0 or marks > 0 or changed_residue_cells > 0 or bone_contact:
+	var bone_revealed := fossil != null and fossil.exposed_cells > exposed_before
+	if changed > 0 or marks > 0 or changed_residue_cells > 0 or bone_revealed or direct_bone_hit:
 		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
 			"changed": changed, "marks": marks, "chunks": fracture.last_chunks.duplicate(true) if is_fracture else [],
-			"residue_cleared": residue.last_cleared, "bone_contact": bone_contact,
-			"direct_bone": direct_bone, "movement": from.distance_to(to) / maxf(amount, 0.0001)}
+			"residue_cleared": residue.last_cleared, "bone_revealed": bone_revealed,
+			"direct_bone_hit": direct_bone_hit, "movement": from.distance_to(to) / maxf(amount, 0.0001)}
 		material_action.emit(last_action)
 	return changed
