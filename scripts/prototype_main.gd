@@ -46,6 +46,7 @@ func _ready() -> void:
 	camera.size = camera_size
 	camera.initialize_view()
 	camera.zoom_started.connect(controller.cancel_stroke)
+	camera.pan_started.connect(controller.cancel_stroke)
 	camera.view_changed.connect(controller.refresh_view)
 	bone_panel.visible = debug_panel.visible
 	bone_notice.hide()
@@ -93,7 +94,7 @@ func _process(delta: float) -> void:
 			+ "Effectiveness %.2f | Base rate %.4f depth/s (%.2f mm/s), before fracture\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
 			+ "Residue %.3f | grey overlay in SHADED view" % block.working_map.residue.value_at(hit.uv))
 	debug_label.text = ("P4 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
-		+ "Zoom %.2fx | Wheel: zoom | Home: overview\n" % camera.zoom_factor
+		+ "Zoom %.2fx | Wheel: zoom | RMB drag: pan | Home: overview\n" % camera.zoom_factor
 		+ "Radius %.0f texels | Power %.2f %s | Falloff %.2f\n" % [config.radius, config.power, "/impact" if config.interaction_mode == ToolDefinition.InteractionMode.IMPACT else "/s", config.falloff]
 		+ "Screen: %s | %s\n" % [hit.screen, "IN BOUNDS" if hit.inside else "OUT OF BOUNDS"]
 		+ "World: %s\nLocal: %s\n" % [hit.get("world", "—"), hit.get("local", "—")]

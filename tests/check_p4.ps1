@@ -18,6 +18,7 @@ function Invoke-P4Check([string]$Name, [string[]]$EngineArguments) {
 }
 
 Invoke-P4Check 'p4-tests' @('--headless', '--script', 'res://tests/run_p4_tests.gd')
+Invoke-P4Check 'p4-pan-tests' @('--headless', '--script', 'res://tests/run_p4_pan_tests.gd')
 Invoke-P4Check 'p4-condition' @('--headless', '--script', 'res://tests/run_p4_condition_probe.gd')
 if ($Graphical) {
     Invoke-P4Check 'p4-benchmark' @('--script', 'res://tests/run_p4_benchmark.gd')
