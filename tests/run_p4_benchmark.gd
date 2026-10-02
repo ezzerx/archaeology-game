@@ -9,6 +9,8 @@ func prepare_fixture(kind: String) -> void:
 				var index := y * block.map_resolution.x + x
 				block.working_map._heights[index] = 0.55 if kind == "clay" else 0.22
 				if kind == "blower": block.working_map.residue.deposit_removed(x, y, 0.65)
+				if kind == "blower" and x % 8 == 0 and y % 8 == 0:
+					block.working_map.loose_debris.deposit_removed(x, y, 8, 2)
 		block.working_map.image.set_data(1024, 640, false, Image.FORMAT_RF, block.working_map._heights.to_byte_array())
 		block.working_map.dirty = true
 		if kind == "blower": block.working_map.residue.apply_segment(Vector2(620, 140), Vector2(820, 140), 90, 1, 0)
@@ -31,6 +33,7 @@ func scenario(kind: String, zoom: float) -> void:
 		(camera as PrecisionZoom)._focused = true
 		(camera as PrecisionZoom).request_zoom(log(zoom) / log((camera as PrecisionZoom).wheel_step), controller._screen)
 	for i in range(90): await physics_frame
+	if kind == "blower": await screenshot("p4-dirty-before-%dx" % int(zoom))
 	var initial_height := block.working_map.image.get_data()
 	var uploads := block.upload_count
 	var fracture_uploads := block.fracture_upload_count
@@ -73,6 +76,8 @@ func scenario(kind: String, zoom: float) -> void:
 		"cpu_edit_ms": stats(edits), "cpu_active_edit_ms": stats(active), "cpu_pick_ms": stats(picks),
 		"upload_submit_ms": stats(upload_times), "changed_texels": changed, "marks": marked, "chunks": detached,
 		"particles_emitted": Array(main.feedback.emitted), "audio_events": main.feedback.audio.played,
+		"loose_bins": block.working_map.loose_debris.cells.size(), "flying_debris": block.working_map.loose_debris.flying.size(),
+		"brush_loop_starts": main.feedback.audio.brush_starts,
 		"impacts": controller.total_impacts, "height_uploads": block.upload_count - uploads,
 		"fracture_uploads": block.fracture_upload_count - fracture_uploads,
 		"exposed_cells": block.working_map.fossil.exposed_cells, "condition": block.working_map.fossil.condition,
@@ -118,6 +123,36 @@ func comparison_captures() -> void:
 	await screenshot("p4-stone-chip")
 	check(block.fracture_texture.get_image().get_data() == block.working_map.fracture.image.get_data(), "fracture atlas GPU byte equality")
 
+func cleanup_captures() -> void:
+	controller.reset_surface()
+	(camera as PrecisionZoom).reset_view()
+	var p := Vector2(286, 194)
+	block.working_map.apply_segment(p, p, 70, 100, 1.5, 1, Vector3.ONE, 8)
+	block.working_map.residue.apply_segment(p, p, 75, 1, 0)
+	block.flush_texture()
+	var structural := block.working_map.image.get_data()
+	var condition := block.working_map.fossil.condition
+	move_to((p + Vector2.ONE * 0.5) / Vector2(block.map_resolution))
+	(camera as PrecisionZoom)._focused = true
+	(camera as PrecisionZoom).request_zoom(30, controller._screen)
+	for i in range(90): await physics_frame
+	controller.hit = {"inside": false}
+	block.show_cursor({"inside": false}, 60)
+	main.get_node("Debug/BoneNotice").hide()
+	await screenshot("p4-fix-bone-dirty")
+	var blower := controller.tools[2]
+	for i in range(240):
+		var point := p + Vector2(25 * sin(i * 0.03), 15 * cos(i * 0.02))
+		block.working_map.apply_continuous(point - Vector2.RIGHT, point, blower, 1.0 / 60.0)
+		block.working_map.loose_debris.advance(1.0 / 60.0)
+	block.working_map.loose_debris.advance(20)
+	block.flush_texture()
+	main.feedback._process(4)
+	main.feedback.loose_view._process(0)
+	await screenshot("p4-fix-bone-clean")
+	check(block.working_map.image.get_data() == structural and block.working_map.fossil.condition == condition,
+		"dirty/clean bone comparison changes neither geometry nor condition")
+
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute("res://work/test-logs")
 	if DisplayServer.get_name() == "headless":
@@ -144,6 +179,7 @@ func run() -> void:
 		for kind in ["soil", "clay", "stone", "bone", "blower"]:
 			await scenario(kind, zoom)
 	await comparison_captures()
+	await cleanup_captures()
 	report["gpu"] = RenderingServer.get_video_adapter_name()
 	report["cpu"] = OS.get_processor_name()
 	report["engine"] = Engine.get_version_info().string

@@ -24,6 +24,10 @@ uniform bool cursor_visible = false;
 uniform vec4 cursor_color : source_color = vec4(0.95, 0.8, 0.2, 1.0);
 varying float surface_height;
 
+float grain_hash(vec2 p) {
+	return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+}
+
 void vertex() {
 	float height = textureLod(working_map, UV, 0.0).r;
 	surface_height = height * (is_skirt ? VERTEX.y : 1.0);
@@ -43,10 +47,10 @@ void fragment() {
 	vec2 bone = texelFetch(fossil_map, cell, 0).rg;
 	bool exposed_bone = !is_skirt && bone.g > 0.5 && texelFetch(working_map, cell, 0).r <= bone.r + bone_exposure_epsilon;
 	if (exposed_bone) { color = bone_color.rgb; }
-	// Flat grey debug overlay only. Never affects height, normals or picking.
+	float dust_cover = 0.0;
+	// Persistent dirt is shaded only; geometry, debug views and picking stay exact.
 	if (debug_view == 0 && !is_skirt) {
 		float residue = texture(residue_map, UV).r;
-		color = mix(color, vec3(0.52, 0.43, 0.31), residue * (exposed_bone ? 0.22 : 0.5));
 		if (!exposed_bone && surface_height <= limits.r) {
 			bool clay = surface_height > limits.g;
 			vec2 p = vec2(cell);
@@ -60,6 +64,19 @@ void fragment() {
 			float crack = 1.0 - smoothstep(0.03, 0.11, min(edge.x, edge.y));
 			color *= 1.0 - tension * (0.15 + 0.62 * crack);
 		}
+		// Stable grains and larger patch variations reveal clean gaps between dust
+		// accumulations. Dust lies over cracks/bone and does not evaporate with FX.
+		vec2 grains = UV * map_size * 1.4;
+		float seed = grain_hash(floor(grains));
+		float patch = grain_hash(floor(UV * map_size / 5.0));
+		float density = pow(residue, 0.55) * (0.55 + patch * 0.45);
+		vec2 grain_center = vec2(seed, grain_hash(floor(grains) + vec2(19.0, 7.0))) * 0.5 + 0.25;
+		vec2 grain_local = fract(grains) - grain_center;
+		float radius = mix(0.28, 0.48, grain_hash(floor(grains) + vec2(3.0, 29.0)));
+		float shape = 1.0 - smoothstep(radius * 0.45, radius, length(grain_local));
+		dust_cover = smoothstep(seed - 0.12, seed + 0.12, density) * shape * min(residue * 30.0, 1.0);
+		vec3 dust_color = mix(vec3(0.29, 0.265, 0.22), vec3(0.65, 0.60, 0.48), seed);
+		color = mix(color, dust_color, dust_cover * 0.90);
 	}
 	float distance_texels = length((UV - cursor_uv) * map_size);
 	float ring = 1.0 - smoothstep(0.7, 1.6, abs(distance_texels - cursor_radius));
@@ -70,8 +87,8 @@ void fragment() {
 	if (debug_view == 1) { color = vec3(0.25 + 0.75 * surface_height); }
 	if (debug_view == 3) { color = relief_normal * 0.5 + 0.5; }
 	ALBEDO = mix(color, cursor_color.rgb, marker);
-	ROUGHNESS = exposed_bone ? 0.43 : 1.0;
-	SPECULAR = exposed_bone ? 0.38 : 0.15;
+	ROUGHNESS = mix(exposed_bone ? 0.43 : 0.85, 1.0, dust_cover);
+	SPECULAR = mix(exposed_bone ? 0.38 : 0.15, 0.06, dust_cover);
 	if (debug_view != 0) {
 		SPECULAR = 0.0;
 		EMISSION = ALBEDO;

@@ -1,6 +1,8 @@
 class_name ExcavationBlock
 extends Node3D
 
+signal debris_ejected(world_position: Vector3, direction: Vector3, amount: float, material_type: StringName)
+
 @export var surface_size := Vector2(1.1, 0.7)
 @export_range(0.01, 0.5) var thickness := 0.12
 @export_range(0.001, 0.1) var base_height := 0.018
@@ -30,10 +32,19 @@ var debug_view := 0
 @onready var surface: MeshInstance3D = $SurfaceMesh
 @onready var body: StaticBody3D = $Body
 
+func _on_debris_ejected(point: Vector2, direction: Vector2, amount: float, layer: int) -> void:
+	var uv := (point + Vector2.ONE * 0.5) / Vector2(map_resolution)
+	var position_world := to_global(Vector3((uv.x - 0.5) * surface_size.x,
+		relief.height_at(uv) + 0.005, (uv.y - 0.5) * surface_size.y))
+	var direction_world := (global_basis * Vector3(direction.x * surface_size.x / map_resolution.x,
+		0, direction.y * surface_size.y / map_resolution.y)).normalized()
+	debris_ejected.emit(position_world, direction_world, amount, material_definitions[layer].id)
+
 func _ready() -> void:
 	assert(surface_size.x > 0.0 and surface_size.y > 0.0 and thickness > base_height)
 	var strata := Stratigraphy.new(map_resolution, material_definitions)
 	working_map = WorkingSurface.new(map_resolution, strata, FossilField.new(map_resolution), reactions)
+	working_map.loose_debris.ejected.connect(_on_debris_ejected)
 	relief = ReliefSurface.new(working_map.image, surface_size, map_resolution, base_height, thickness)
 	texture = ImageTexture.create_from_image(working_map.image)
 	layer_texture = ImageTexture.create_from_image(strata.boundaries)

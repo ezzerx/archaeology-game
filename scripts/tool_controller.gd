@@ -140,6 +140,8 @@ func _render_cursor() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN if hit.inside else Input.MOUSE_MODE_VISIBLE
 
 func _physics_process(delta: float) -> void:
+	if block.working_map.loose_debris != null:
+		block.working_map.loose_debris.advance(delta)
 	if get_window().size != _window_size:
 		_update_pointer_position()
 	var pick_start := Time.get_ticks_usec()

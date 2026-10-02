@@ -5,6 +5,8 @@ var block: ExcavationBlock
 var controller: ToolController
 var profile: ReactionProfile
 var audio: MaterialAudio
+var loose_view: LooseDebrisView
+var airflow := Vector3(-0.07, 0.02, -0.06)
 var proxies: Array[Node3D] = []
 var pools: Array[MultiMesh] = []
 var particles: Array[Array] = [[], [], [], []]
@@ -30,6 +32,10 @@ func setup(target: ExcavationBlock, input: ToolController) -> void:
 	audio.setup(profile)
 	_create_proxies()
 	_create_particles()
+	loose_view = LooseDebrisView.new()
+	loose_view.name = "PersistentLooseDebris"
+	add_child(loose_view)
+	loose_view.setup(block)
 	bone_ring = MeshInstance3D.new()
 	var ring := TorusMesh.new()
 	ring.inner_radius = 0.013
@@ -121,7 +127,7 @@ func _emit(family: int, point: Vector2, count: int) -> void:
 		var scale_value := rng.randf_range(0.001, 0.0025) if family in [0, 3] else rng.randf_range(0.003, 0.006)
 		var shape := Vector3(scale_value, scale_value * (0.24 if family == 1 else 0.7), scale_value)
 		var velocity := Vector3(rng.randf_range(-0.04, 0.04), rng.randf_range(0.035, 0.10), rng.randf_range(-0.04, 0.04))
-		if family == 3: velocity += Vector3(-0.07, 0.02, -0.06)
+		if family == 3: velocity += airflow
 		particles[family].append({"position": origin, "velocity": velocity, "life": profile.particle_lifetime * rng.randf_range(0.65, 1.2),
 			"shape": shape, "rotation": rng.randf_range(-PI, PI), "floor": origin.y})
 		emitted[family] += 1
@@ -130,6 +136,7 @@ func on_action(event: Dictionary) -> void:
 	action_count += 1
 	var removed: Vector3 = event.removed
 	var point: Vector2 = event.point
+	var loose_cleared: float = event.get("loose_cleared", 0.0)
 	if event.tool == &"chisel":
 		recoil_remaining = 0.14
 		var layer := 1
@@ -142,13 +149,15 @@ func on_action(event: Dictionary) -> void:
 			_emit(chunk.layer, chunk.point, clampi(ceili(chunk.cells / 10.0), 1, 5))
 	elif event.tool == &"soft_brush":
 		sweep_remaining = 0.12
-		if removed.x + removed.y + event.residue_cleared > 0:
-			audio.update_brush(event.movement, removed.x + removed.y + event.residue_cleared,
+		if removed.x + removed.y + event.residue_cleared + loose_cleared > 0:
+			audio.update_brush(event.movement, removed.x + removed.y + event.residue_cleared + loose_cleared,
 				removed.y > removed.x)
 			if removed.y > removed.x: _emit(0, point, 1)
-	elif event.tool == &"air_blower" and event.residue_cleared > 0:
+	elif event.tool == &"air_blower" and event.residue_cleared + loose_cleared > 0:
 		sweep_remaining = 0.12
-		audio.play_family(&"air", clampf(event.residue_cleared, 0.25, 0.8))
+		var direction: Vector2 = event.get("direction", Vector2(-1, -1).normalized())
+		airflow = Vector3(direction.x * 0.14, 0.02, direction.y * 0.14)
+		audio.play_family(&"air", clampf(event.residue_cleared + loose_cleared, 0.25, 0.8))
 		_emit(3, point, clampi(ceili(event.residue_cleared * 3), 1, 5))
 	if removed.x > 0: _emit(0, point, clampi(ceili(removed.x / 8.0), 1, 5))
 	if event.bone_revealed or event.direct_bone_hit:
@@ -201,12 +210,14 @@ func _process(delta: float) -> void:
 	_warmup_frames = maxi(0, _warmup_frames - 1)
 
 func reset() -> void:
+	if loose_view != null: loose_view._process(0)
 	for family in range(4):
 		particles[family].clear()
 		pools[family].visible_instance_count = 0
 	for proxy in proxies: proxy.hide()
 	audio.reset()
 	rng.seed = profile.seed
+	airflow = Vector3(-0.07, 0.02, -0.06)
 	recoil_remaining = 0
 	sweep_remaining = 0
 	bone_remaining = 0

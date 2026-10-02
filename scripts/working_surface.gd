@@ -12,6 +12,7 @@ var fossil: FossilState
 signal material_action(event: Dictionary)
 signal surface_reset
 var fracture: MaterialFracture
+var loose_debris: LooseDebris
 var last_removed := Vector3.ZERO
 var last_action: Dictionary = {}
 var last_residue_edit_usec := 0
@@ -28,6 +29,7 @@ func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null,
 	if reactions != null:
 		assert(strata != null)
 		fracture = MaterialFracture.new(size, reactions)
+		loose_debris = LooseDebris.new(size)
 	if fossil_field != null:
 		assert(fossil_field.size == size)
 		fossil = FossilState.new(fossil_field)
@@ -40,6 +42,7 @@ func reset() -> void:
 	residue.reset()
 	if fracture != null:
 		fracture.reset()
+	if loose_debris != null: loose_debris.reset()
 	last_removed = Vector3.ZERO
 	last_action = {}
 	if fossil != null:
@@ -143,6 +146,8 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				_heights[index] = next_value
 				var layer := Stratigraphy.index_at(old_value, Vector2(limits[index * 2], limits[index * 2 + 1])) if strata != null else 0
 				last_removed[layer] += old_value - _heights[index]
+				if loose_debris != null:
+					loose_debris.deposit_removed(x, y, old_value - _heights[index], layer)
 				if residue_generation > 0.0:
 					residue.deposit_removed(x, y, (old_value - next_value) * residue_generation)
 				changed += 1
@@ -176,6 +181,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	if amount <= 0.0:
 		return 0
 	residue.last_cleared = 0.0
+	if loose_debris != null: loose_debris.clean(from, to, tool, amount)
 	var changed := 0
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
 	var direct_bone_hit := fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
@@ -192,10 +198,12 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		last_residue_edit_usec = Time.get_ticks_usec() - start
 	var marks := fracture.last_marks if is_fracture else 0
 	var bone_revealed := fossil != null and fossil.exposed_cells > exposed_before
-	if changed > 0 or marks > 0 or changed_residue_cells > 0 or bone_revealed or direct_bone_hit:
+	var loose_cleared := loose_debris.last_cleared if loose_debris != null else 0.0
+	if changed > 0 or marks > 0 or changed_residue_cells > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
 		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
 			"changed": changed, "marks": marks, "chunks": fracture.last_chunks.duplicate(true) if is_fracture else [],
-			"residue_cleared": residue.last_cleared, "bone_revealed": bone_revealed,
+			"residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
+			"direction": loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized(), "bone_revealed": bone_revealed,
 			"direct_bone_hit": direct_bone_hit, "movement": from.distance_to(to) / maxf(amount, 0.0001)}
 		material_action.emit(last_action)
 	return changed

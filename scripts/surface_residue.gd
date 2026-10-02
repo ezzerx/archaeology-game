@@ -1,6 +1,6 @@
 class_name SurfaceResidue
 extends RefCounted
-## Debug-only scalar, one cell per 4x4 height texels. No geometry or physics.
+## Persistent Fine Dust, one cell per 4x4 height texels. No geometry or physics.
 ## Float CPU accumulation avoids losing sub-byte edits; only R8 goes to the GPU.
 
 const STRIDE := 4

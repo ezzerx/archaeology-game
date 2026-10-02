@@ -128,6 +128,9 @@ func _remove(surface: WorkingSurface, index: int, next: float, layer: int,
 	if removed <= 0:
 		return 0
 	surface.last_removed[layer] += removed
+	if surface.loose_debris != null:
+		@warning_ignore("integer_division")
+		surface.loose_debris.deposit_removed(index % surface.size.x, index / surface.size.x, removed, layer)
 	@warning_ignore("integer_division")
 	surface.residue.deposit_removed(index % surface.size.x, index / surface.size.x, removed * tool.residue_generation)
 	if surface.fossil != null and surface.fossil.field.ceilings[index] > 0.0 \
