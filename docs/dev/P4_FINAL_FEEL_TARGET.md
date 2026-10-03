@@ -1,6 +1,7 @@
 # P4 Final Feel — A/B Composition Target
 
-**Status:** authorized human-design pass on `prototype/p4-game-feel`  
+**Status:** Final Feel composition implemented; human retest pending on `prototype/p4-game-feel`
+
 **Date:** 2026-10-03  
 **PR:** #5 remains draft / unmerged  
 **P5 remains blocked**
@@ -167,3 +168,23 @@ Do not:
 - start P6 art work.
 
 PR #5 stays draft and unmerged until human validation.
+
+## Implementation — 2026-10-04
+
+The local A/B worktrees identify **A = `42ec46d`**, **B = `c25b44f`**, and the recent simplification **E = `f527139`**. These are the composition references, not branches to merge or reset over the current work.
+
+| Source | Final Feel composition |
+|---|---|
+| A: Chisel spectacle | 3–6 mm transient pieces, Clay height 24% / Stone 70% of width, depth 100%; 1–5 pieces per broken patch according to removed cells (`ceil(cells / 10)`). |
+| B: visible cleanup | Hard crumbs use 4.5 mm nominal maximum width and 32% height; existing directional flight and boundary ejection retained. |
+| A/B: tool silhouette | Fixed Euler `(0.5, 0, -0.62)` for every tool; recent exact tip and vertical body-clearance solver retained. |
+| Recent E | Soil/Brush/audio, contextual dust and dirty Bone ivory, Pick micro-impacts, local retention budget, camera, fracture and Bone Condition preserved. |
+| New locked rule | Small Bone tik only on specimen first discovery per reset. Large Bone clack only when direct Chisel contact actually reduces condition. Other reveals keep worked-material audio; mixed removal uses the dominant material. |
+
+Transient pieces start at the estimated top of the removed plate (`volume / cells` above the new floor), move outward at 0.09–0.14 m/s and upward at 0.035–0.10 m/s, then expire after **0.51–0.69 s**. Four existing MultiMesh pools, 48 slots each; no persistent conversion or new physics. This replaces E's at-most-three 1.2–2.4 mm chips.
+
+Persistent **quantities are unchanged**: at most two crumbs per 24×24-texel bucket, 8% retention, 0.02 capacity per crumb; overflow feeds fine dust. Only hard-crumb presentation grows. Soil keeps its 1.4 mm / 14% dimensions. Blower still changes zero structural height and zero condition; `debris_ejected` is intact.
+
+Limits: transient launch height is an average from the removed patch, not reconstructed fragments; flight does not collide with changing terrain. At the restored angle, the deepest synthetic vertical-sided cavity requires up to **84.90 mm body clearance**; the tip and rigid handle angle stay exact. Placeholder connector appearance and actual satisfaction require the seven-point human retest in [P4_REPORT](P4_REPORT.md#retest-humain--exactement-sept-points).
+
+Measurements and evidence: [P4_REPORT](P4_REPORT.md). **STOP after delivery. P4-V and P5 remain blocked; PR #5 remains draft and unmerged.**

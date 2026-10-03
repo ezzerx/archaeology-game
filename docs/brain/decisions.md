@@ -296,3 +296,17 @@ Vérifié au code `f62fccf` : **1 376 checks fonctionnels + 62 contrôles graphi
 Leçons : conserver l’identité du matériau sous les effets de saleté ; séparer la petite aire d’un outil de son efficacité locale ; un manche rigide à orientation fixe et une pointe raccordée permettent le dégagement sans suivre les micronormales. Les bornes visuelles doivent être examinées sur les cas extrêmes, pas seulement sur le plat.
 
 Prochaine action : les **huit points exacts** de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--exactement-huit-points), dont la boucle Brush → Chisel → Pick → Blower et 10–15 minutes libres. **STOP après livraison. PR #5 en brouillon, aucun merge ni P5.**
+
+## P4 FINAL FEEL — composition issue du test A/B, 2026-10-04
+
+Antoine choisit le spectacle Chisel A (`42ec46d`), le cleanup Blower B (`c25b44f`), Soil/Pick récents et l’ancien angle fixe. La réduction du nombre et de la taille des éclats avait diminué le plaisir : le problème à traiter était l’accumulation persistante. Décision confirmée : **séparer puissance du spectacle transitoire et quantité de saleté durable**. La cible canonique est [P4_FINAL_FEEL_TARGET](../dev/P4_FINAL_FEEL_TARGET.md).
+
+Implémentation : éclats 3–6 mm, 1–5 par plaque réelle, expiration courte dans les pools existants ; naissance au dessus estimé de la plaque enlevée. Miettes dures jusqu’à 4,5 mm pour rendre le souffle visible, sans augmenter la rétention 8 %, le plafond de deux dépôts/zone ou leur capacité. Soil, Pick micro-Chisel, fracture, condition et caméra restent inchangés. Angle A/B fixe `(0.5, 0, -0.62)`, pointe précise et dégagement du corps conservés.
+
+Nouvelle règle audio : **un petit tik Bone à la première détection du spécimen par reset ; un gros clack uniquement sur hit direct qui diminue la condition ; tous les autres reveals gardent le son de matière**. `bone_revealed` reste le compteur d’exposition supplémentaire ; `bone_first_contact` et la perte réelle transportée dans l’événement gouvernent seulement le feedback. Aucun changement de dommage ou protection supplémentaire.
+
+Leçons vérifiées : des fragments créés après le retrait peuvent disparaître dans les parois si on les fait naître au nouveau fond ; utiliser le volume/cellules pour estimer le dessus retiré rend leur projection visible, sans physique terrain. Restaurer un angle plus oblique augmente le coût du dégagement local et la longueur du raccord de pointe dans une cavité extrême ; documenter ces compromis, sans refaire tourner le manche selon la normale.
+
+Code `8394ee9` : **1 395 checks fonctionnels + 90 contrôles graphiques**, oracle GPU et 28 WAV historiques exacts ; **28 scénarios à 96,56–239,97 FPS**, P95 maximal 19,249 ms. Les valeurs persistantes restent 29/27 miettes après une minute simulée de Chisel, zéro après Blower. Ces preuves ne valident pas le plaisir humain.
+
+Prochaine action : les **sept points exacts** de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--exactement-sept-points). **STOP, PR #5 brouillon, aucun merge. P4-V (macro-stratigraphie / profondeur variable / vraie physique de débris) reste une proposition bloquée jusqu’au test humain et à une nouvelle autorisation ; P5 interdit.**

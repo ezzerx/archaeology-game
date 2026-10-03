@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; simplification finale P4 prête pour retest humain.**
+**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; P4 FINAL FEEL prête pour retest humain.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -53,13 +53,15 @@ P4 ajoute les réactions de matière :
 - sons distincts ;
 - meilleure lisibilité Bone contact.
 
-Les tests humains confirment le plaisir du Chisel/fracture, les sons osseux et la caméra. La passe finale simplifie la lecture : **matière attachée / saleté**. Soil → Brush ; matrice dure → Chisel ; détails → Precision Pick ; mess → Brush/Blower. Bone reste ivoire même poussiéreux ; dépôts teintés selon la matière locale ; souffle conservé. Proxies à angle fixe et corps dégagé, éclats petits et éjectés hors du centre.
+La composition [FINAL FEEL](docs/dev/P4_FINAL_FEEL_TARGET.md) reprend le spectacle Chisel de P4-A (éclats transitoires 3–6 mm) et le nettoyage visible de P4-B (miettes projetées hors du bloc), avec la quantité persistante récente toujours plafonnée. Soil, Pick et ivoire Bone sous la poussière sont préservés. Les outils retrouvent l’ancien angle fixe, pointe exacte et corps dégagé. Grammaire joueur : **matière attachée / saleté**.
 
-**[4] Precision Pick** : clic ou maintien immobile, six micro-impacts/s, rayon 3 texels, puissance 0,24, retrait rapide et précis sans grosses plaques. Zéro dégât provisoire P4, plafond osseux intact. Réglages Brush/Chisel/Blower, fracture, audio et caméra préservés.
+**Bone audio** : petit tik uniquement à la première découverte du spécimen par reset ; gros clack uniquement sur hit Chisel direct avec perte réelle de condition. Les révélations supplémentaires gardent le son Clay/Sandstone travaillé. Condition, exposition et timbres historiques inchangés.
 
-**1 376 checks fonctionnels, 62 contrôles graphiques et l’oracle GPU passent. 24 scénarios : 169–240 FPS**, P95 maximal 13,365 ms sur RTX 5080 / 1080p. Les retours de plaisir, l’identité des os sales et la silhouette des outils attendent le retest humain.
+**[4] Precision Pick** : clic ou maintien immobile, six micro-impacts/s, rayon 3 texels, puissance 0,24, retrait rapide et précis sans grosses plaques. Zéro dégât provisoire P4, plafond osseux intact. Réglages Brush/Chisel/Blower/Pick, fracture et caméra préservés.
 
-Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Tester 10–15 minutes selon la [checklist P4](docs/dev/P4_REPORT.md#retest-humain--exactement-huit-points). **PR #5 en brouillon, non mergée ; P5 interdit.**
+**1 395 checks fonctionnels, 90 contrôles graphiques et l’oracle GPU passent. 28 scénarios : 97–240 FPS**, P95 maximal 19,249 ms sur RTX 5080 / 1080p. Casse dense et Blower proches de 240 FPS ; la pose Brush à l’ancien angle coûte davantage sur Soil. Le plaisir de casser ET nettoyer attend le retest humain.
+
+Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Tester 10–15 minutes selon les [sept points P4](docs/dev/P4_REPORT.md#retest-humain--exactement-sept-points). **STOP. PR #5 en brouillon, non mergée ; P4-V et P5 interdits.**
 
 Brief :
 

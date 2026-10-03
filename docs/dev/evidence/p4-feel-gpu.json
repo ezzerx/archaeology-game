@@ -1,0 +1,42 @@
+{
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"failures": 0,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"gpu_oracle": {
+		"bone_material_max_error": 0.0108823478221893,
+		"bone_pixels": 6864,
+		"boundary_alternatives": 0,
+		"boundary_tolerance_texels": 0.01,
+		"height_max_error": 0.00467886410507495,
+		"matrix_pixels": 58121,
+		"raw_material_max_error": 0.0108823478221893,
+		"textures_byte_exact": true,
+		"zoom": 1.0
+	},
+	"gpu_oracle-2x": {
+		"bone_material_max_error": 0.0108823478221893,
+		"bone_pixels": 15176,
+		"boundary_alternatives": 4,
+		"boundary_tolerance_texels": 0.01,
+		"height_max_error": 0.00472461242301793,
+		"matrix_pixels": 49809,
+		"raw_material_max_error": 0.291568636894226,
+		"textures_byte_exact": true,
+		"zoom": 2.0
+	},
+	"gpu_oracle-3x": {
+		"bone_material_max_error": 0.00156861543655396,
+		"bone_pixels": 18632,
+		"boundary_alternatives": 4,
+		"boundary_tolerance_texels": 0.01,
+		"height_max_error": 0.00482505326177561,
+		"matrix_pixels": 46353,
+		"raw_material_max_error": 0.291568636894226,
+		"textures_byte_exact": true,
+		"zoom": 3.00000010518467
+	},
+	"physics_hz": 60,
+	"static_fossil_payload_bytes": 5242880,
+	"viewport": "(1920.0, 1080.0)"
+}

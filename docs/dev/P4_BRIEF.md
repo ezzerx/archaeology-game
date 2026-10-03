@@ -12,6 +12,8 @@
 
 ## Goal
 
+**Final Feel composition addendum — 2026-10-04:** [P4_FINAL_FEEL_TARGET](P4_FINAL_FEEL_TARGET.md) now takes precedence: restore P4-A transient Chisel spectacle and the old fixed tool angle; restore P4-B visible Blower cleanup while keeping recent retention caps, Soil and micro-impact Pick. Bone audio becomes specimen-first-discovery only, or actual direct-hit damage; other reveals retain material sound. This supersedes the fewer/smaller hard-chip target above. Seven-point retest in [P4_REPORT](P4_REPORT.md); PR #5 stays draft. No merge, P4-V or P5 without new explicit authorization.
+
 P4 must answer:
 
 > **Does excavating the block begin to feel tactile, readable and satisfying rather than like editing a heightmap?**

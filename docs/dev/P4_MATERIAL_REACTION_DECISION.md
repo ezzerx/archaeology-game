@@ -1,6 +1,6 @@
-# Décision P4 — Matière attachée et saleté
+# Décision P4 — Final Feel, spectacle transitoire et nettoyage
 
-2026-10-03. Passe finale de simplification autorisée après test humain. Elle remplace le Pick SCRAPE, les proxies orientés par la normale et la classification joueur des débris. [Brief initial](P4_BRIEF.md), [résultats et retest](P4_REPORT.md). PR #5 reste en brouillon ; aucun merge ni P5.
+2026-10-04. Composition autorisée après A/B humain : [P4_FINAL_FEEL_TARGET](P4_FINAL_FEEL_TARGET.md) prévaut sur les anciennes attentes de réduction du spectacle. Références vérifiées dans les worktrees : **A `42ec46d`**, **B `c25b44f`**, version récente **E `f527139`**. [Résultats et retest](P4_REPORT.md). PR #5 reste en brouillon ; aucun merge, P4-V ou P5.
 
 ## Grammaire joueur
 
@@ -15,7 +15,7 @@ Deux états visibles : **matière attachée / saleté**. Aucun choix Loose Debri
 
 ## Socle préservé
 
-Fracture Chisel, profondeur, condition plus juste, sons de découverte/hit direct, Brush audio et caméra sont validés humainement. Ressources Brush/Chisel/Blower, résistances, partition, stress, seuils, profondeur des fractures, audio, contrôleur d’entrée et picking inchangés.
+Fracture Chisel, profondeur, condition plus juste, timbres découverte/hit direct, Brush audio et caméra sont validés humainement. Ressources Brush/Chisel/Blower/Pick, résistances, partition, stress, seuils, profondeur des fractures, samples audio, contrôleur d’entrée et picking inchangés. Seul le routage des signaux Bone change selon la nouvelle règle humaine.
 
 Heightfield RF autoritaire, picking DDA sur ses triangles, fracture locale seedée et sparse, atlas RG8 de 242×133. Premier contact osseux sûr, puis −3 points par impact Chisel dont le centre était déjà exposé, une pénalité maximum par impact. Aucun auto-stop, marge osseuse ou bonus Brush.
 
@@ -31,23 +31,27 @@ Amas larges, taches intermédiaires et speckles stables ; couverture croissante 
 
 ## Orientation fixe des outils
 
-Normale et profondeur ne contrôlent plus l’orientation. Base constante relative à la caméra fixe : Euler **(0,10 ; 0 ; −0,20 rad)**, Blower **−0,18 rad** sur Z. Le manche reste du même côté du curseur. Silhouettes Brush/Chisel/Blower resserrées pour dégager la vue et entrer dans les cavités.
+Normale et profondeur ne contrôlent pas l’orientation. Base ancienne A/B restaurée pour les quatre outils : Euler **(0,50 ; 0 ; −0,62 rad)**, constante relative à la caméra fixe. Elle remplace l’angle plus vertical E `(0,10 ; 0 ; −0,20)`, Blower `−0,18`. Silhouettes récentes resserrées et pointe précise conservées. Priorité humaine : stabilité, zone de travail visible, puis anti-clipping raisonnable.
 
 Pointe réelle et pivot exactement au hit. `ToolProxyPose` calcule un **déplacement vertical minimal du corps** depuis les sommets et des sondes intérieures de chaque face proche du relief. Manche rigide : même translation de tous ses sommets, aucun changement d’angle ou déplacement horizontal. Les quatre premiers millimètres de la pointe raccordent ce déplacement à zéro au contact. Recul par translation verticale du corps : Chisel 12 mm maximum, Pick 2 mm, sans déplacer le hit.
 
-Aucun soulèvement au repos sur le plat. Marge locale 0,1 mm plus réserve 0,4 mm seulement en présence d’un obstacle. Le cas synthétique extrême d’une cavité quasi verticale profonde de 10 cm demande **36,32 mm** de dégagement hors recul ; sa lecture reste à juger en jeu. Aucun plafond arbitraire qui laisserait le mesh traverser la paroi.
+Aucun soulèvement au repos sur le plat. Marge locale 0,1 mm plus réserve 0,4 mm seulement en présence d’un obstacle. Le cas synthétique extrême d’une cavité quasi verticale profonde de 10 cm demande désormais **84,90 mm** de dégagement hors recul ; le connecteur de pointe s’allonge, le manche garde son angle. Cette limite visuelle est documentée pour le retest. Le solveur récent est conservé : aucune nouvelle rotation corrective.
 
 Topologie fixe, au plus 2 592 sommets rendus pour Brush ; sommets uniques et relief local mémorisés pendant la pose, faces dégagées exclues. Contact/height/recul inchangés = pose réutilisée. Aucun collider ou scan global. Les tests inspectent `surface_get_arrays` ; `Mesh.get_faces()` quantifie son maillage dérivé.
 
-## Éclats discrets
+## Spectacle Chisel transitoire, repris de A
 
-Événements de fracture inchangés. Le consommateur visuel émet **au plus trois éclats par impact aux paramètres par défaut**, un par événement retenu. Largeur **1,2–2,4 mm**, hauteur **18 % Clay / 32 % Sandstone**, profondeur 75 % de la largeur. Départ à ≥4 mm du centre, vitesse radiale sortante **0,09–0,14 m/s**, extinction **0,51–0,69 s**. Aucun gros cube posé sur le marqueur.
+Événements de fracture inchangés. Le consommateur visuel reprend A : **1–5 éclats par plaque réellement cassée**, `clamp(ceil(cells / 10), 1, 5)`, puis saturation du pool. Largeur **3–6 mm**, hauteur **24 % Clay / 70 % Sandstone**, profondeur 100 % de la largeur. Les anciennes bornes E — trois éclats par impact, 1,2–2,4 mm, hauteur 18/32 %, profondeur 75 % — sont explicitement abandonnées.
+
+Départ à ≥4 mm du centre, vitesse radiale sortante **0,09–0,14 m/s** conservée, vitesse ascendante A **0,035–0,10 m/s**, durée récente **0,51–0,69 s**. Le point de naissance est relevé de `chunk.volume / chunk.cells × profondeur du bloc` : l’événement arrive après le retrait, donc un départ au nouveau fond cachait les fragments dans les parois. Cette estimation statique remet les morceaux au niveau de la plaque arrachée. Le plan de rebond simple reste celui de la source ; aucun échantillonnage de terrain sous les morceaux en vol.
 
 Quatre pools MultiMesh de 48 instances, **192 FX maximum**, sans rigid body. Envol, rebond et expiration n’ont aucune autorité sur la structure ou la saleté persistante.
 
 ## Mess : un seul geste de nettoyage
 
-Deux états internes restent utiles pour leur faible coût : poussière dominante R8 + fractions CPU ; `LooseDebris` en minuscules écailles irrégulières **≤1,4 × 0,196 × 1,05 mm**, deux par zone 24×24 texels, toutes matières confondues. Au plus 2 322 miettes, aucune simulation au repos. Rétention ≤8 %, capacité 0,02 ; excédent vers la poussière. Le nettoyage libère le budget.
+Deux états internes restent utiles pour leur faible coût : poussière dominante R8 + fractions CPU ; `LooseDebris` en écailles irrégulières. **Quantités E inchangées** : deux par zone 24×24 texels, toutes matières confondues ; au plus 2 322 miettes ; rétention ≤8 %, capacité 0,02 ; excédent vers la poussière. Aucune simulation au repos. Le nettoyage libère le budget. Les gros morceaux transitoires ne deviennent jamais des dépôts.
+
+Pour retrouver le vol visible B, les miettes **Clay/Sandstone** ont une échelle nominale maximale **4,5 × 1,44 × 3,375 mm**, au lieu de 1,4 × 0,196 × 1,05 mm ; la quantité fait varier leur taille via la racine carrée. Elles sont posées à mi-hauteur +0,1 mm au-dessus du substrat. On reprend la largeur B de 4,5 mm et la hauteur 32 %, avec le plafond récent : B permettait jusqu’à 6,75 mm et beaucoup plus de dépôts. **Soil reste strictement à la représentation récente**, au plus 1,4 × 0,196 × 1,05 mm, offset 0,18 mm.
 
 Brush nettoie poussière et miettes localement, Blower largement. Les miettes sont plates, sans silhouette de brique. La matière attachée reste une hauteur modifiable au Pick ; aucune conversion en saleté nettoyable près de Bone.
 
@@ -72,12 +76,19 @@ Disque minuscule, au plus 25 centres de texels modifiés dans le test centré. M
 
 Un clic central retire **0,08 Clay / 0,045 Sandstone** de hauteur normalisée, soit **8,16 / 4,59 mm**, si la couche disponible le permet. L’efficacité locale est forte ; le volume reste faible grâce au rayon. Le test d’une seconde mesure un rapport de volume Chisel/Pick **17,80**. Géométrie, exposition, dépôt et événements restent synchronisés dans le noyau commun.
 
-Petit recul et son Pick discret à l’impact ; nouveaux contacts pouvant jouer la découverte, jamais le hit direct. **Zéro dégât est provisoire P4 pour tester la finition, pas le tuning P7.** Règles Chisel intactes.
+Petit recul et son Pick discret à l’impact ; seule la première détection du spécimen peut jouer la découverte, jamais le hit direct. **Zéro dégât est provisoire P4 pour tester la finition, pas le tuning P7.** Règles Chisel intactes.
 
 ## Audio, caméra et limites
 
-28 WAV historiques protégés par SHA-256 de référence `c25b44f`. La huitième famille Pick garde ses samples ; seul son déclenchement suit les impacts. Boucles Brush, découverte et hit direct inchangés.
+28 WAV historiques protégés par SHA-256 de référence `c25b44f`. Famille Pick et boucles Brush conservées. Nouvelle sémantique Bone :
+
+- `bone_revealed` garde sa signification d’exposition supplémentaire ; le décompte des cellules/composants reste inchangé.
+- `bone_first_contact` capture la transition du spécimen non détecté → détecté et se réarme au reset. **Un petit tik + signal visuel**, sans dommage, seulement à cette transition.
+- `bone_damage` transporte la baisse réelle de condition déjà calculée par la règle existante. **Gros clack + signal visuel** seulement si hit direct et perte >0 ; à condition zéro, aucun faux signal de dommage supplémentaire.
+- Autres impacts : Clay/Sandstone travaillé, y compris lors d’expositions supplémentaires. Si les deux sont retirés, le volume dominant choisit le son. Le premier contact et un hit dommageable ont priorité sur ce son de matière.
+
+Le nom historique du sample `bone_revealed` est conservé ; il n’est plus déclenché par chaque nouvelle cellule. Aucune marge, auto-stop ou modification de `FossilState.damage_at`.
 
 Caméra orthographique 84°, zoom 1–3× au curseur, RMB pan borné, Home vue initiale et R reset conservés. Changement d’outil, focus/resize annulent le geste ; nouveau clic requis. Debug Shift/Ctrl/Alt+molette et F6/F7 conservés. Cap 240 FPS, physique 60 Hz.
 
-Visuels placeholders, quantités agrégées et saturées, sans collisions fines ou historique de pigment. Les contrôles de géométrie, pixels et débit ne valident pas le plaisir ou la reconnaissance humaine instantanée. **Prochain gate : les huit points du rapport ; aucun merge ni P5 automatique.**
+Visuels placeholders, quantités agrégées et saturées, sans collisions fines ou historique de pigment. Les contrôles de géométrie, pixels et débit ne valident pas le plaisir ou la reconnaissance humaine instantanée. **Prochain gate : les sept points du rapport. STOP ; aucun merge, P4-V ou P5 automatique.** Macro-stratigraphie, profondeur fossile variable et vraie gravité des débris dans les cavités restent hors périmètre.

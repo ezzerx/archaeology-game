@@ -12,6 +12,8 @@
 
 ## 1. Objectif du prototype
 
+**P4 FINAL FEEL — 2026-10-04 :** la composition issue du test A/B restaure les éclats transitoires Chisel A et le souffle visible Blower B, avec quantité persistante plafonnée, Soil/Pick récents et ancien angle fixe. Le petit son Bone ne marque plus chaque reveal : uniquement la première découverte par reset ; gros son uniquement au hit direct avec perte de condition ; sinon son du matériau travaillé. Source de vérité : [P4_FINAL_FEEL_TARGET](dev/P4_FINAL_FEEL_TARGET.md). Retest en sept points ; aucun merge, P4-V ou P5 autorisé.
+
 La V0.1 n'est **pas une vertical slice** d'ArchaeologyGame.
 
 Elle ne doit répondre qu'à une seule question :
