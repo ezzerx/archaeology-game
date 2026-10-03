@@ -2,7 +2,7 @@
 
 - Date : **2026-10-03**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — troisième passe corrective P4 livrée, nouveau test humain attendu ; P5 interdit**.
+- Phase : **préproduction — simplification finale P4 livrée, retest humain attendu ; P5 interdit**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation initiale `42ec46d`, puis correctifs documentés dans le rapport).
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -62,17 +62,17 @@ Rapports :
 - Le Chisel actuel reste encore trop proche d'un effacement local de heightfield : P4 doit introduire une vraie réaction de matière avant de décider d'une mécanique de protection supplémentaire.
 - Les valeurs de vitesse/puissance actuelles peuvent sembler lentes ; ne pas faire le tuning final avant P7, sauf nécessité de test.
 
-## P4 — Troisième passe corrective après test humain ▶
+## P4 — Simplification finale après test humain ▶
 
-Les tests humains sont **très positifs** : environ 15 minutes supplémentaires, Chisel très fun, fracture Clay/Sandstone, profondeur, lisibilité Bone/matrice, condition moins punitive et zoom/pan validés. Les sons découverte osseuse/hit direct sont jugés parfaits ; le Brush audio suffit pour P4. Ce retour n’autorise aucun merge.
+Le core est validé humainement : Chisel très fun, marks → cracks → chunks, Clay/Sandstone, profondeur, condition plus juste, sons découverte/hit direct, Brush audio acceptable, zoom/pan/picking et envie de continuer. Aucun merge n’est autorisé.
 
-Troisième passe livrée : pointe réelle des proxies au hit, repère issu de la normale et protection visuelle locale contre les pentes/cavités ; Fine Dust en amas persistants lisibles à 1×/3× ; bouffées du Blower issues des cellules effectivement nettoyées, soulevées puis entraînées dans le jet. Loose Debris en écailles **≤1,4 × 0,196 mm**, toujours deux par zone 24×24 texels ; F1 distingue surface attachée et débris/FX proches. Les gros éclats restent transitoires. Aucun nouveau système de saleté.
+**Livré : matière attachée / saleté**, sans classification Loose Debris à apprendre. Soil → Brush ; matrice dure → Chisel ; détails attachés → Pick ; mess → Brush/Blower. Bone garde au moins 76,08 % de son ivoire dans le mélange poussiéreux et une roughness/specular distincte. Dust liée au substrat local, souffle depuis les sources nettoyées conservé. Proxies à angle fixe et pointe ancrée ; corps dégagé verticalement. Éclats 1,2–2,4 mm, trois maximum par impact par défaut, éjectés hors du centre, 0,51–0,69 s.
 
-**Seul le Pick est retuné**, avec autorisation explicite : puissance 0,22, efficacités Clay 0,75 / Sandstone 1,00, référence 40 texels/s ; rayon 3 et retrait maximal 0,004 inchangés. Le grès reste deux fois plus lent que la Clay au centre ; geste de 0,4 s à 30 texels/s : 1,68 / 0,84 mm de retrait. LMB + mouvement, aucun forage immobile, interfaces/plafond osseux respectés, zéro dégât provisoire P4. Aucun auto-stop Chisel ni bonus Brush. Fracture, sons, caméra et paramètres des trois outils historiques préservés.
+**Pick seul retuné** sur décision explicite : IMPACT, clic ou maintien immobile, 6 Hz, rayon 3, puissance 0,24, efficacités Soil/Clay/Stone 0,30/1,00/1,50. Retrait direct local sans grosses plaques, arrêt de couche et plafond osseux ; zéro dégât provisoire P4. Un clic central : 8,16 mm Clay / 4,59 mm grès si la couche le permet ; volume environ 18 fois inférieur au Chisel dans le test d’une seconde. Réglages historiques, fracture, audio et caméra inchangés.
 
-**1 093 checks fonctionnels + 16 contrôles graphiques passent**, 28 WAV historiques identiques à l’octet, oracle GPU de 194 955 pixels. **22 scénarios : 122,91–239,98 FPS**, P95 maximal **14,039 ms**, frame maximale **17,927 ms**, RTX 5080 / 1080p. Les poses ont un coût supplémentaire au Brush continu, tout en tenant le budget ≥60 FPS. Cap 240 FPS / physique 60 Hz. Bloc saturé au repos : 2 322 miettes, zéro édition/upload height. Deux sessions de 60 secondes simulées gardent 29/27 miettes, puis zéro après souffle.
+**1 376 checks fonctionnels + 62 contrôles graphiques passent**, 28 WAV historiques exacts, oracle GPU de 194 955 pixels conservé. **24 scénarios 1×/3× : 169,27–240,01 FPS**, P95 maximal 13,365 ms, frame maximale 20,944 ms sur RTX 5080 / 1080p. Cap 240 FPS / physique 60 Hz. Code vérifié : `f62fccfb3f6d1572e42f8ad3a3ec98b9691a3e14` ; documentation/preuves dans les commits suivants.
 
-Prochaine action : **retest humain 10–15 minutes**, sept points de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--10-à-15-minutes) : clipping, poussière au dézoom, souffle « ça souffle ou ça efface ? », Pick Clay, Pick Sandstone, distinction attaché/détaché, boucle complète. Les proxies peuvent se déformer localement dans les cavités extrêmes ; rendu et transitions restent à juger en jeu. **STOP. PR #5 reste en brouillon, non mergée ; P5 interdit.**
+Prochaine action : **exactement huit points du [P4_REPORT](../dev/P4_REPORT.md#retest-humain--exactement-huit-points)** : Chisel ; Bone + dust ; outil fixe sur pente/cavité/os ; éclats non obstructifs ; Pick rapide/précis/safe ; nettoyage évident ; boucle Brush → Chisel → Pick → Blower ; jeu libre 10–15 minutes. Le dégagement du corps peut atteindre 36,32 mm dans la cavité synthétique extrême ; contact et lecture restent à juger en jeu. **STOP. PR #5 BROUILLON, NON MERGÉE ; P5 interdit.**
 
 ### Livraison initiale conservée comme historique
 

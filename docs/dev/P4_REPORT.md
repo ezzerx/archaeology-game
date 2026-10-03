@@ -1,130 +1,122 @@
-# Rapport P4 — Game Feel / Material Reactions
+# Rapport P4 — Simplification finale après test humain
 
-**2026-10-03 · troisième passe corrective · `prototype/p4-game-feel` · Godot 4.7.2 stable / Compatibility.**
+**2026-10-03 · `prototype/p4-game-feel` · Godot 4.7.2 stable / Compatibility.**
 
-Code validé : `dbdc2170a23053f1970c48f0b1f69016d4afadf0` ; les commits suivants ne portent que la documentation et les preuves.
+Code vérifié : **`f62fccfb3f6d1572e42f8ad3a3ec98b9691a3e14`**. Les commits suivants ne portent que documentation et preuves. [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) **en brouillon, non mergée**. Nouveau test humain attendu ; **P5 interdit**.
 
-[PR #5](https://github.com/ezzerx/archaeology-game/pull/5) **en brouillon, non mergée**. P4 attend le nouveau test humain ; **P5 interdit**. Le [brief initial](P4_BRIEF.md) est complété par les autorisations correctives consignées dans [l’architecture](P4_MATERIAL_REACTION_DECISION.md).
+## Résultat de la passe
 
-## Retour humain et périmètre
+Le core validé reste intact : Chisel fun, marks → cracks → chunks, Clay/Sandstone, profondeur, condition plus juste, sons de découverte/hit direct, Brush audio, zoom, pan et picking. Cette passe simplifie la lecture : **matière attachée / saleté**, avec quatre rôles évidents.
 
-Le Chisel reste très fun. Fracture Clay/Sandstone, Brush audio, sons de découverte/hit direct, Bone Condition, zoom, pan RMB, Home et picking sont à préserver. La réduction des gros débris et le concept Precision Pick sont conservés.
-
-Cette passe traite cinq problèmes : proxy qui traverse le relief, poussière trop proche d’un bruit de shader au dézoom, Blower qui semble effacer, Pick trop discret dans le grès, confusion entre restes attachés et miettes. **Seuls les paramètres du Pick sont retunés.** Aucun changement des ressources Brush/Chisel/Blower, résistances, fracture, audio ou caméra.
-
-## Contact des outils
-
-**Diagnostic confirmé :** la pointe était placée au hit, mais le corps gardait une rotation quasi fixe. Le recul pouvait aussi déplacer le proxy entier. Orienter seulement selon la normale ne suffit pas : dans une cavité concave, le manche peut atteindre la paroi opposée.
-
-**Nouvelle pose :** repère continu construit depuis la normale du hit, redressement progressif en profondeur, inclinaison minimale pour garder la pointe visible. La pointe réelle du mesh et le pivot restent au hit ; les extrémités sont effilées vers ce contact. Le recul du Chisel agit depuis ce pivot, sans déplacer le contact.
-
-Une protection locale ajuste uniquement le mesh visuel : sommets du côté positif du plan de contact, dégagement du relief, contrôles dans les faces pour éviter une traversée entre leurs sommets. Marge de 0,1 mm et réserve de 0,9 mm seulement sur une face en conflit ; pointe protégée. Les sommets partagés restent liés. Le proxy peut se déformer dans une cavité extrême ; aucune donnée de fouille n’en dépend.
-
-Topologie fixe, au plus **2 592 sommets rendus** pour le Brush. Échantillons du relief local réutilisés, faces déjà dégagées exclues, pose inchangée conservée exactement. Aucun scan global, collider ou changement de picking. Les contrôles utilisent les vrais tableaux de sommets : `Mesh.get_faces()` quantifie sa représentation dérivée et ne convient pas à cette précision.
-
-## Saleté et souffle
-
-| Catégorie | Comportement actuel |
+| Besoin | Outil |
 |---|---|
-| **Structural** | Heightfield attaché ; plaques, crêtes et petits restes répondent au Chisel/Pick selon leur matière. |
-| **Transient Chunks** | Éclats Clay/Stone de 3–6 mm, durée **1,275–1,725 s**, envol/rebond visuels. Expiration sans effet sur la vraie saleté. |
-| **Loose Debris** | Écailles asymétriques à six côtés, **≤1,4 mm** de large et **≤0,196 mm** de haut. Deux miettes maximum par zone 24×24 texels, toutes matières confondues ; au plus 2 322 sur le bloc. |
-| **Fine Dust** | Trace persistante principale : amas irréguliers, taches intermédiaires et speckles, teinte beige/grise et rugosité. La couverture augmente avec l’accumulation ; visible à 1×/3×, sans expiration. |
+| Soil | Brush |
+| Matrice dure en volume | Chisel |
+| Détails attachés près de Bone | Precision Pick |
+| Saleté, poussière et minuscules miettes | Brush local / Blower large |
 
-Carte de poussière **R8 256×160** et accumulation float CPU conservées. Aucun node de poussière supplémentaire. La rétention des miettes reste plafonnée à 8 % et 0,02 par miette ; l’excédent alimente Fine Dust. Nettoyage/reset libèrent le budget local. Aucune simulation des miettes au repos.
+Les anciens états internes restent utiles, mais Loose Debris n’est plus un concept à apprendre. F1 et le rappel d’outils suivent cette grammaire. Les écailles déjà réduites restent ≤1,4 × 0,196 mm, deux par zone 24×24 texels ; elles se nettoient comme le reste de la saleté.
 
-**Blower : sale → soulèvement → dérive dans le jet → propre.** Le nettoyage produit au plus **16 packets temporaires `{point, amount}`**, dont chaque source est une cellule réellement nettoyée. Leur somme correspond à la quantité retirée, y compris quand le curseur lui-même est sur une zone propre. Pas de nuage générique au curseur.
+## Bone et couleur de poussière
 
-Ces packets alimentent le pool AirDust existant : **48 bouffées maximum**, toujours 192 FX au total. Départ au relief source, soulèvement, vitesse horizontale 0,13–0,19 m/s dans le jet, dispersion, expansion et extinction après 0,55–0,9 s. La surface visuelle dépend de la quantité retirée, avec plafonds de taille/opacité et omission des émissions lorsque le pool est plein. Les FX ne détiennent aucune quantité gameplay.
+**Règle verrouillée : “Dust may obscure detail, never material identity.”**
 
-Les miettes restent poussées puis éjectées ; hook monde `debris_ejected` conservé. Zéro retrait structurel et zéro dégât au nettoyage. Aucune table salissable.
+La poussière sur Bone couvre au maximum **23,92 %** du mélange et garde une teinte ivoire terni. Au moins **76,08 %** de l’ivoire original demeure ; roughness/specular restent distincts de la pierre même à saturation. Aucune conséquence sur l’exposition ou Bone Condition.
 
-**Diagnostic des blocs orange :** une plaque orange persistante après expiration des éclats appartient à la Clay structurelle. Une miette détachée est maintenant une petite écaille, nettoyable au Brush/Blower ; le Pick travaille le substrat attaché et ne nettoie pas la miette. F1 affiche STRUCTURAL/BONE au vrai hit, plus les miettes et FX proches. Ces compteurs de voisinage permettent de lever l’ambiguïté sans changer le picking ni créer d’UI joueur finale.
+Poussière contextuelle : **Soil brun terreux ; Clay ocre/rouge brun atténué ; Sandstone beige/crème chaud ; Bone ivoire sali**. Le matériau actuellement sous le dépôt sert d’approximation locale, sans map supplémentaire ou historique de pigment. Les amas persistants restent visibles à 1×/3×. Le Blower conserve son soulèvement depuis les cellules réellement nettoyées et reprend leur teinte locale.
 
-## Precision Pick : avant / après
+## Outils et éclats
 
-| Paramètre | Deuxième passe | Troisième passe |
-|---|---:|---:|
-| Puissance | 0,16 | **0,22** |
-| Efficacité Soil / Clay / Sandstone | 0,30 / 0,60 / 0,45 | **0,30 / 0,75 / 1,00** |
-| Vitesse de référence | 100 texels/s | **40 texels/s** |
-| Rayon / falloff | 3 texels / 1,5 | inchangés |
-| Retrait maximal par texel/passage | 0,004 | inchangé |
-| Génération poussière / nettoyage | 1,25 / 0 | inchangés |
-| Dégât osseux | 0 | inchangé, provisoire P4 |
+Orientation fixe, indépendante des normales et de la profondeur. Pointe réelle au hit ; manche gardant la même direction à l’écran. Silhouettes resserrées. Le contrôle local soulève uniquement le corps, rigidement en Y ; les quatre premiers millimètres de la pointe raccordent ce déplacement au contact. Recul vertical du corps, sans rotation ni déplacement du picking.
 
-Les petits mouvements lents à 3× étaient fortement atténués par la vitesse de référence de 100 texels/s. La puissance augmente de 37,5 %, et les efficacités/référence sont adaptées à la finition. Aucune multiplication brute par dix.
+Aucun lift au repos sur le plat. Les contacts ordinaires demandent peu ou pas de dégagement ; le cas synthétique extrême d’une cavité quasi verticale de 10 cm atteint **36,32 mm hors recul**. Il reste explicitement dans le retest visuel. Topologie/cache locaux conservés, aucune simulation physique supplémentaire.
 
-Avec les résistances historiques, débit central nominal : **Clay 0,055 profondeur/s**, **Sandstone 0,0275**, donc grès deux fois plus lent. Le test de **0,4 s à 30 texels/s** mesure **0,01650 / 0,00825** de profondeur, soit **1,68 / 0,84 mm**. Avec les anciens paramètres, le calcul donne environ 0,39 / 0,11 mm pour ce même geste idéal. Le grès réagit donc rapidement tout en restant plus résistant.
+Éclats Chisel : **trois maximum par impact par défaut**, **1,2–2,4 mm**, aplatis. Départ à ≥4 mm du centre, vitesse sortante 0,09–0,14 m/s ; au-delà de 12 mm après 100 ms dans le test. Durée **0,51–0,69 s**, pools inchangés à 192 FX maximum. **Fracture et retrait structurel inchangés.**
 
-**[4] Pick = LMB maintenu + mouvement**, aucun forage immobile, pas de stress ni plaques de Chisel. Rayon minuscule, limite de passage, arrêt à la couche initiale et bone ceiling conservés. Les tests de volume gardent le Chisel nettement supérieur. Rôles : **Chisel volume/fracture → Pick restes attachés → Brush miettes → Blower poussière/nettoyage large**.
+## Precision Pick : micro-Chisel sûr
 
-## Vérifications
+**Clic court ou LMB maintenu, même immobile.** Cadence existante du contrôleur, six impacts par seconde. L’ancien SCRAPE, la vitesse minimale et le retrait lent limité à 0,004 par passage sont supprimés.
 
-**1 093 checks fonctionnels, zéro échec** : P0 45, P1 52, P2 97, P3 85, zoom 160, P4 61, pan 43, audio 18, saleté 27, budget débris 16, Pick 38, nouveau feedback 25, proxy 426. Cas et tolérances historiques conservés.
+| Paramètre | Nouvelle valeur |
+|---|---:|
+| Mode / cadence | IMPACT / 6 Hz |
+| Rayon / falloff | 3 texels / 1,5 |
+| Puissance par impact | 0,24 |
+| Efficacités Soil / Clay / Sandstone | 0,30 / 1,00 / 1,50 |
+| Poussière / nettoyage | 1,25 / 0 |
+| Dégât Bone | 0, provisoire P4 |
 
-- Proxies : **35 contacts × quatre outils** sur plat, pente, cavité profonde, os et fracture. Pointe réelle/pivot à moins de 1 µm du hit ; sommets hors plan/relief à 2 µm près ; **161 280 sommets et 107 520 points intérieurs de face** contrôlés, tolérance intérieure 0,1 mm. Pose fixe exactement stable ; géométrie, plafonds et condition inchangés.
-- Dust/Blower : persistance, accumulation/reset exacts, sources réellement nettoyées, somme des quantités, déplacement dans le jet avant expiration, absence de modification de hauteur/condition et pool borné. Les miettes répondent au Brush/Blower et les gros éclats expirent.
-- Pick : Clay/grès perceptibles, résistance relative, volume inférieur au Chisel, zéro forage immobile, interfaces et limites de passage, finition de vrais restes sur crâne/côtes au plafond osseux, zéro dégât.
-- **28 WAV historiques identiques à l’octet** à la référence `c25b44f` ; boucle Brush et sémantique découverte/hit direct préservées.
-- Picking : **4 432 rayons zoom**, **387 rayons pan**, **225 roundtrips de fracture** ; oracle GPU P3 sur **194 955 pixels**, tolérances historiques conservées et cartes CPU/GPU exactes.
-- **16 contrôles graphiques** complémentaires : accumulation réellement rendue à 1×/3×, persistance au-delà des FX, nettoyage visible à géométrie/condition identiques, sessions de Chisel et dimensions des miettes. Sur la région contrôlée, le dépôt léger affecte environ 56 % des points sondés, le dépôt dense environ 75 %. Ces différences de pixels ne valent pas validation humaine du rendu.
+Retrait direct sur un disque minuscule, sans stress ni grosses cellules/chunks. Chaque coup respecte l’interface de départ et le plafond osseux, sans marge. **Un clic central : 0,08 Clay / 0,045 Sandstone**, soit **8,16 / 4,59 mm** si la couche disponible le permet. La petite surface rend le Pick mauvais en volume : test d’environ une seconde, Chisel **17,80 fois** supérieur, malgré le retrait rapide au centre. Crâne et côtes peuvent être finis jusqu’au plafond sans dommage.
 
-La sonde Chisel attentive reste identique : **1 004 impacts**, 4 105 cellules exposées, **49,87 % du crâne à 100 %** ; dix hits directs → 70 %. Elle suppose une reconnaissance parfaite des centres visibles et ne remplace pas un test humain.
+Petit recul, son discret à chaque impact utile. Les sons historiques, la règle Chisel, les résistances et les ressources Brush/Chisel/Blower n’ont pas changé. Seul le Pick a été retuné.
 
-Commande complète reproductible :
+## Tests vérifiés
+
+**1 376 checks fonctionnels + 62 contrôles graphiques, zéro échec**, plus benchmark et oracle GPU. Les attentes obsolètes « Pick immobile inactif », « grattage à profondeur limitée », « outil suivant le plan tangent » et « gros éclat durant 1–2 s » ont été remplacées explicitement par les décisions de cette passe ; les régressions historiques restent vertes.
+
+- Pick : cadence réelle immobile, trois clics courts, Clay/grès immédiats, petit footprint, absence de plaque, couche initiale, plafonds crâne/côtes, découverte distincte du hit, zéro dégât et reset.
+- Proxies : 35 positions × quatre outils, **161 280 sommets et 107 520 points intérieurs de face**, plat/pente/cavité/os/fracture. Pointe à moins de 1 µm du hit, sommets dégagés à 2 µm près, faces à 0,1 mm près. Manche rigide, angle/mesh identiques quand seule la normale change. Aucune modification du gameplay.
+- Chunks : taille, budget, vitesse radiale, dégagement du centre, extinction sans perte de saleté persistante.
+- Mess : Brush/Blower nettoient les miettes ; Pick retire les vrais restes attachés ; sources et quantités du dust lift-off conservées.
+- Graphique : 16 contrôles accumulation/persistance/nettoyage, **46 contrôles de matière à 1×/3×**. Shader de production rendu, puis copie temporaire sans éclairage pour lire roughness/specular/couverture. Aucun mode de test ajouté au jeu.
+- **28 WAV historiques identiques à l’octet** à `c25b44f` ; Brush continu et sons osseux conservés.
+- **4 432 rayons zoom, 387 pan, 225 roundtrips fracture** ; oracle GPU **194 955 pixels**, cartes byte exactes, erreur height maximale 0,004825 < 0,01 et matériau corrigé 0,010882 < 0,02. Tolérances P3 inchangées.
+
+Sonde Chisel attentive identique : **1 004 impacts**, 4 105 cellules osseuses, **49,87 % du crâne à 100 %** ; dix hits directs → 70 %. Cette sonde reconnaît parfaitement les centres exposés ; ce n’est pas une preuve de confort humain.
+
+Commande complète :
 
 ```powershell
 & tests/check_p4.ps1 -GodotBin 'C:\Users\antoi\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe' -Graphical
 ```
 
-## Performances et preuves
+## Performance
 
-RTX 5080 / Ryzen 7 9800X3D, 1920×1080, Compatibility, **cap 240 FPS / physique 60 Hz**. **22 scénarios** de six secondes à 1×/3×, FX actifs, mixer réel avec bus muet. Préparation, warmup et captures exclus du timing.
+RTX 5080 / Ryzen 7 9800X3D, 1920×1080, Compatibility. **24 scénarios de six secondes**, FX/mixer actifs, bus muet, fixtures et captures hors timing. **Cap 240 FPS / physique 60 Hz** conservés.
 
-| Scénario | FPS 1× / 3× | Frame P95 1× / 3×, ms |
+| Scénario | FPS 1× / 3× | P95 1× / 3×, ms |
 |---|---:|---:|
-| Brush / Soil | 122,91 / 133,69 | 14,039 / 13,041 |
-| Chisel / Clay | 239,87 / 239,87 | 4,307 / 4,314 |
-| Chisel / Sandstone | 239,87 / 239,87 | 4,304 / 4,307 |
-| Chisel près de l’os | 239,87 / 239,87 | 4,312 / 4,295 |
-| Blower massif | 239,98 / 239,91 | 4,783 / 4,757 |
-| Bloc sale au repos | 239,87 / 239,87 | 4,269 / 4,269 |
-| Pick / os | 239,85 / 239,85 | 4,892 / 4,879 |
-| Pick / Clay | 239,84 / 239,85 | 4,877 / 4,883 |
-| Pick / Sandstone | 239,85 / 239,84 | 4,908 / 4,919 |
-| Proxy Brush / cavité | 238,47 / 238,36 | 7,205 / 7,368 |
-| Proxy Brush / relief osseux | 239,57 / 239,58 | 5,385 / 5,256 |
+| Brush / Soil | 190,25 / 169,27 | 12,322 / 13,365 |
+| Chisel / Clay | 239,87 / 239,87 | 4,309 / 4,300 |
+| Chisel / Sandstone | 239,87 / 239,87 | 4,306 / 4,327 |
+| Chisel près de Bone | 239,87 / 239,87 | 4,329 / 4,299 |
+| Blower cleanup | 240,01 / 239,91 | 4,763 / 4,812 |
+| Bloc sale au repos | 239,87 / 239,87 | 4,271 / 4,273 |
+| Pick / Bone | 239,87 / 239,87 | 4,355 / 4,295 |
+| Pick / Clay | 239,87 / 239,87 | 4,303 / 4,305 |
+| Pick / Sandstone | 239,87 / 239,87 | 4,335 / 4,380 |
+| Proxy / cavité profonde | 238,37 / 238,27 | 6,316 / 6,439 |
+| Proxy / Bone | 239,23 / 239,38 | 4,398 / 4,404 |
+| Dusty Bone | 239,87 / 239,87 | 4,313 / 4,317 |
 
-**122,91–239,98 FPS**, P95 maximal **14,039 ms**, frame maximale **17,927 ms**, zéro échec graphique. Le contrôle visuel augmente le coût du Brush continu par rapport à la deuxième passe ; l’objectif de confort ≥60 FPS est tenu sur cette machine. Coût moyen de pose pendant Brush/Soil : environ 3,2–3,3 ms ; au repos, pose conservée. Aucun scan full-map par frame.
+**169,27–240,01 FPS**, P95 maximal **13,365 ms**, frame maximale **20,944 ms**. Budget d’interaction ≥60 FPS tenu sur cette machine ; la mesure sur une fenêtre finie peut légèrement dépasser 240. Le coût moyen de pose Brush/Soil passe à environ **0,89–1,10 ms**, contre 3,2–3,3 ms à la passe précédente.
 
-Bloc entièrement sali au repos : **2 322 miettes**, zéro édition/upload height. Blower massif : zéro upload height. Pick : condition 100 %, zéro fracture. Deux sessions contrôlées de **270 impacts = 60 secondes simulées** sans nettoyage gardent **29 miettes Clay / 27 Sandstone**, puis zéro après souffle. Elles démarrent sur une couche pré-exposée ; elles ne mesurent pas la cadence humaine.
+Pick : 36 impacts sur chaque run de six secondes, condition 100 %, aucun stress/chunk. Bloc saturé au repos : 2 322 miettes et aucun upload height. Blower : géométrie exacte. Sessions de 60 secondes simulées de Chisel : 29 miettes Clay / 27 Sandstone, puis zéro après souffle. Elles ne prédisent pas la cadence de nettoyage humaine.
 
-Preuves : [benchmark](evidence/p4-fix3-benchmark.json), [rendu poussière](evidence/p4-fix3-feedback-visual.json), [oracle GPU](evidence/p4-fix3-gpu.json). Logs détaillés locaux dans `work/test-logs/`. Les preuves des passes précédentes restent versionnées.
+## Preuves et limites
 
-Captures du vrai renderer :
+[Validation](evidence/p4-final-validation.json) · [benchmark](evidence/p4-final-benchmark.json) · [rendu/cleanup](evidence/p4-final-feedback-visual.json) · [matières](evidence/p4-final-material-visual.json) · [oracle GPU](evidence/p4-final-gpu.json) · [condition](evidence/p4-final-condition.json).
 
-- Dust 1× : [sale](evidence/p4-fix3-dust-before-1x.png) → [soulèvement](evidence/p4-fix3-dust-lift-1x.png) → [propre](evidence/p4-fix3-dust-clean-1x.png).
-- Dust 3× : [sale](evidence/p4-fix3-dust-before-3x.png) → [soulèvement](evidence/p4-fix3-dust-lift-3x.png) → [dérive](evidence/p4-fix3-dust-drift-3x.png) → [propre](evidence/p4-fix3-dust-clean-3x.png).
-- Chisel, 60 s simulées : Clay [1×](evidence/p4-fix3-clay-60s-dirty-1x.png) / [3×](evidence/p4-fix3-clay-60s-dirty-3x.png), Sandstone [1×](evidence/p4-fix3-stone-60s-dirty-1x.png) / [3×](evidence/p4-fix3-stone-60s-dirty-3x.png).
-- Contact : [Brush en cavité](evidence/p4-fix3-deep-proxy-0.png), [Pick sur os](evidence/p4-fix3-bone-proxy-3.png), [Chisel en pente](evidence/p4-fix3-slope-proxy-1.png).
+Captures du renderer :
 
-## Limites
+- Bone 1× [propre](evidence/p4-final-bone-clean-1x.png) / [saturé](evidence/p4-final-bone-dirty-1x.png) ; 3× [propre](evidence/p4-final-bone-clean-3x.png) / [saturé](evidence/p4-final-bone-dirty-3x.png).
+- Poussière [Soil](evidence/p4-final-soil-dirty-3x.png) / [Clay](evidence/p4-final-clay-dirty-3x.png) / [Sandstone](evidence/p4-final-stone-dirty-3x.png).
+- Blower [sale](evidence/p4-final-dust-before-3x.png) → [soulèvement](evidence/p4-final-dust-lift-3x.png) → [dérive](evidence/p4-final-dust-drift-3x.png) → [propre](evidence/p4-final-dust-clean-3x.png).
+- Proxies [Brush en cavité](evidence/p4-final-deep-proxy-0.png), [Chisel sur paroi](evidence/p4-final-deep-edge-proxy-1.png), [Pick sur Bone](evidence/p4-final-bone-proxy-3.png) ; éclats [Clay](evidence/p4-final-clay-chip.png) / [Sandstone](evidence/p4-final-stone-chip.png).
 
-Proxies, poussière et sons restent des placeholders. Le contrôle des faces repose sur des sondes locales ; le retest doit encore juger les silhouettes et transitions de pose dans les reliefs irréguliers. Quantités visuelles saturées, poussière à résolution réduite, transport des miettes sans collisions fines. Le débit et la sécurité du Pick restent des choix P4, pas le tuning P7. Les mesures ne constituent ni un verdict de plaisir ni une garantie sur un autre GPU.
+Proxies/FX restent placeholders, saleté agrégée et saturée, pigment approximé par substrat courant. La silhouette en cavité extrême, l’identité instantanée et le plaisir restent à valider humainement. DA P6 et tuning P7 non commencés. La modification locale préexistante de `project.godot` reste préservée et **exclue des commits** ; runtime mesuré à 60 Hz.
 
-La modification locale préexistante de `project.godot` (suppression de la valeur explicite 60 Hz, égale au défaut Godot) est préservée et **exclue des commits**. Runtime mesuré : 60 Hz.
+## Retest humain — exactement huit points
 
-## Retest humain — 10 à 15 minutes
+Ouvrir `project.godot` dans Godot 4.7.2, **F5**, masquer les panneaux **F1**, garder les réglages par défaut. Outils **1/2/3/4**, nouveau clic après changement ; Pick fonctionne en clic ou maintien immobile.
 
-Ouvrir `project.godot` dans Godot 4.7.2, **F5**, masquer les panneaux avec **F1**, garder les réglages par défaut. Outils **1/2/3/4**, nouveau clic après changement ; Pick = maintenir LMB et bouger.
+1. **CHISEL** — Le Chisel doit rester aussi fun.
+2. **BONE + DUST** — Salir un os avec Clay/Sandstone dust. « Est-ce que je vois immédiatement que c’est toujours un os ? » Réponse cible : **oui**.
+3. **TOOL VISUAL** — Creuser pente/cavity/os. L’outil ne traverse pas, ne change pas constamment d’orientation et ne cache pas le point travaillé.
+4. **CHUNKS** — Chiseler Clay/Sandstone. « Est-ce que les éclats donnent du feedback sans bloquer ma vue ? »
+5. **PICK** — Trouver les petits restes structurels proches d’un os. Le Pick doit les enlever rapidement, être précis et safe, sans demander 10 secondes par morceau.
+6. **CLEANUP** — Brush/Blower. Ne pas devoir se demander « Est-ce loose debris ou dust ? » ; penser simplement « c’est sale → je nettoie ».
+7. **FULL LOOP** — **Brush → Chisel → Precision Pick → Blower**. « Est-ce que les quatre outils ont maintenant chacun une raison évidente d’exister ? »
+8. **10–15 MINUTES** — Jouer librement. « Est-ce que j’ai envie de continuer à nettoyer/révéler alors que personne ne m’y oblige ? »
 
-1. **TOOL CLIPPING** — Creuser pentes/cavités, passer les quatre outils sur parois, os et bords fracturés. Pointe au contact, corps dégagé, pas de flottement/jitter visible.
-2. **DUST GENERATION** — Creuser Clay/Sandstone **30–60 s**. La zone doit sembler sale même à **1×**, sans piles de cubes.
-3. **BLOWER** — Souffler : voir la poussière se lever et partir dans le jet. « Ça souffle ou ça efface ? » Réponse cible : **ça souffle**.
-4. **PICK CLAY** — Finir les détails attachés autour d’un os avec de petits mouvements.
-5. **PICK SANDSTONE** — Retrait perceptible rapidement, plus lent que Clay, sans devenir un outil de volume ; condition intacte.
-6. **LOOSE DEBRIS** — Distinguer immédiatement matière attachée et miette détachée. Brush/Blower déplacent ou retirent les miettes ; F1 peut aider au diagnostic.
-7. **FULL LOOP** — **Chisel → Pick → Brush → Blower** : chaque outil remplit-il maintenant un rôle évident ?
-
-**STOP après livraison. PR #5 reste BROUILLON, NON MERGÉE. Aucun P5 sans nouvelle autorisation explicite.**
+**STOP après livraison. PR #5 BROUILLON, NON MERGÉE. Aucun P5 sans nouvelle autorisation explicite.**

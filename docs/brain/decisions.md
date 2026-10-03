@@ -282,3 +282,17 @@ Pick seul retuné : puissance 0,16 → 0,22 ; efficacités Clay 0,60 → 0,75 / 
 Leçons vérifiées : une normale ne suffit pas contre une paroi opposée concave ; contrôler aussi l’intérieur des faces. `Mesh.get_faces()` quantifie son maillage dérivé : les tests précis doivent lire `surface_get_arrays`. Réutiliser sommets/échantillons locaux et borner la topologie pour éviter que le contrôle visuel dépasse le budget. Le billboard MultiMesh doit conserver explicitement l’échelle des instances.
 
 Vérifié : **1 093 checks fonctionnels**, 16 contrôles graphiques, oracle GPU conservé, 28 WAV historiques identiques ; **22 scénarios à 123–240 FPS**, P95 maximal 14,039 ms. Les captures montrent la saleté/son nettoyage, sans valider subjectivement « ça souffle ». Sept points de retest dans [P4_REPORT](../dev/P4_REPORT.md). **STOP après livraison ; PR #5 brouillon, aucun merge ni P5.**
+
+## Simplification finale P4 après nouveau test humain — 2026-10-03
+
+Décisions explicites d’Antoine : le joueur ne distingue que **matière attachée / saleté**. Soil → Brush, matrice dure en volume → Chisel, détails près de Bone → Precision Pick, mess → Brush/Blower. La distinction Loose Debris/Fine Dust reste interne ; les petites écailles sont une composante de la saleté.
+
+Règle verrouillée : **Dust may obscure detail, never material identity.** Bone conserve son ivoire et sa réponse lumineuse même poussiéreux. Dépôts colorés selon le matériau local, sans map supplémentaire. Orientation visuelle fixe des outils, pointe ancrée, dégagement vertical du corps ; éclats plus petits/rares, rapidement éjectés hors du centre. Le suivi de normale de la troisième passe est abandonné conformément au retour humain.
+
+Le Pick devient un **micro-Chisel sûr** : clic/maintien immobile, 6 Hz, rayon 3, puissance 0,24, efficacités 0,30/1,00/1,50. Retrait direct sans grosses fractures, arrêt de couche et plafond osseux intact ; zéro dégât provisoire P4. Le faible débit en volume vient de la surface minuscule, plus d’un grattage lent obligatoire. Le mode SCRAPE est retiré. Chisel, Brush, Blower, résistances, fracture, audio et caméra sont préservés.
+
+Vérifié au code `f62fccf` : **1 376 checks fonctionnels + 62 contrôles graphiques**, oracle GPU et 28 WAV historiques exacts ; **24 scénarios à 169–240 FPS**, P95 maximal 13,365 ms sur la machine de référence. Point de vigilance réel : dégagement de corps jusqu’à 36,32 mm dans la cavité synthétique quasi verticale. Les tests ne remplacent pas le verdict humain sur la silhouette ou le plaisir.
+
+Leçons : conserver l’identité du matériau sous les effets de saleté ; séparer la petite aire d’un outil de son efficacité locale ; un manche rigide à orientation fixe et une pointe raccordée permettent le dégagement sans suivre les micronormales. Les bornes visuelles doivent être examinées sur les cas extrêmes, pas seulement sur le plat.
+
+Prochaine action : les **huit points exacts** de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--exactement-huit-points), dont la boucle Brush → Chisel → Pick → Blower et 10–15 minutes libres. **STOP après livraison. PR #5 en brouillon, aucun merge ni P5.**

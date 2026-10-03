@@ -8,6 +8,8 @@
 
 **Addendum P4 — 2026-10-03 :** la deuxième passe corrective autorise explicitement un quatrième outil prototype, **Precision Pick [4]**, pour la finition des restes attachés, sûr sur l’os à titre provisoire. Cette exception au périmètre initial de trois outils est décrite dans [P4_REPORT](dev/P4_REPORT.md) et [P4_MATERIAL_REACTION_DECISION](dev/P4_MATERIAL_REACTION_DECISION.md). Aucun P5 ni merge P4 autorisé.
 
+**Simplification finale P4 — 2026-10-03 :** Pick devient un micro-Chisel sûr à impacts immobiles (clic/maintien). Grammaire joueur : matière attachée / saleté ; Soil → Brush, matrice dure → Chisel, détails → Pick, mess → Brush/Blower. Règle verrouillée : **Dust may obscure detail, never material identity**. L’ivoire Bone reste identifiable sous la poussière ; outils à orientation fixe et éclats peu obstructifs. Cette décision remplace les attentes antérieures de grattage du Pick et de classification des débris, sans lancer P5.
+
 ## 1. Objectif du prototype
 
 La V0.1 n'est **pas une vertical slice** d'ArchaeologyGame.
