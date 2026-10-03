@@ -1,0 +1,54 @@
+{
+	"checks": 16,
+	"dust_1x": {
+		"clean": {
+			"changed_fraction": 0.0,
+			"mean_rgb_delta": 0.00000389044483502706,
+			"samples": 1008
+		},
+		"high": {
+			"changed_fraction": 0.749007936507937,
+			"mean_rgb_delta": 0.182566916732679,
+			"samples": 1008
+		},
+		"low": {
+			"changed_fraction": 0.555555555555556,
+			"mean_rgb_delta": 0.0471210697044929,
+			"samples": 1008
+		}
+	},
+	"dust_3x": {
+		"clean": {
+			"changed_fraction": 0.0,
+			"mean_rgb_delta": 0.0,
+			"samples": 1008
+		},
+		"high": {
+			"changed_fraction": 0.756944444444444,
+			"mean_rgb_delta": 0.183193278336336,
+			"samples": 1008
+		},
+		"low": {
+			"changed_fraction": 0.56547619047619,
+			"mean_rgb_delta": 0.0476579511508582,
+			"samples": 1008
+		}
+	},
+	"failures": 0,
+	"session_clay": {
+		"crumbs": 29,
+		"crumbs_after_blower": 0,
+		"impacts": 270,
+		"occupied_buckets": 15,
+		"peak_dust": 1.0,
+		"simulated_seconds": 60
+	},
+	"session_stone": {
+		"crumbs": 27,
+		"crumbs_after_blower": 0,
+		"impacts": 270,
+		"occupied_buckets": 14,
+		"peak_dust": 1.0,
+		"simulated_seconds": 60
+	}
+}

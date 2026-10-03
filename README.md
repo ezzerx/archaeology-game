@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; deuxième passe corrective P4 prête pour retest humain.**
+**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; troisième passe corrective P4 prête pour retest humain.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -53,9 +53,9 @@ P4 ajoute les réactions de matière :
 - sons distincts ;
 - meilleure lisibilité Bone contact.
 
-Les tests humains confirment le plaisir de la fracture/Chisel, les sons osseux et la caméra. La deuxième passe corrective réduit les miettes persistantes à deux par zone locale ; les gros éclats expirent en 1–2 secondes et la poussière fine devient la trace dominante. **[4] Precision Pick** finit les petits restes structurels avec **LMB maintenu + mouvement**, sans dégât pour ce prototype. Brush nettoie les miettes détachées, Blower souffle poussière et miettes. Réglages des trois outils historiques, fracture, audio validé et caméra préservés.
+Les tests humains confirment le plaisir de la fracture/Chisel, les sons osseux et la caméra. La troisième passe corrige le contact visuel des outils, rend Fine Dust lisible par amas à 1×/3× et fait partir les bouffées du Blower des zones réellement nettoyées. Les miettes persistantes deviennent des écailles plus petites et plates, toujours deux par zone locale. **[4] Precision Pick**, réglé uniquement sur autorisation, finit les restes attachés avec **LMB maintenu + mouvement** ; Sandstone réagit tout en restant plus lent que Clay. Réglages des trois outils historiques, fracture, audio validé et caméra préservés.
 
-**642 checks fonctionnels passent**, ainsi que l’oracle GPU et 14 scénarios graphiques entre 222 et 240 FPS sur RTX 5080 / 1080p. La sécurité du Pick reste provisoire P4. Aucune marge de sécurité, protection automatique du Chisel ni bonus Brush ; le plaisir de finir un os et la fréquence du Blower attendent le retest humain.
+**1 093 checks fonctionnels et 16 contrôles graphiques passent**, ainsi que l’oracle GPU et **22 scénarios entre 123 et 240 FPS**, P95 maximal 14,039 ms sur RTX 5080 / 1080p. La sécurité du Pick reste provisoire P4. Aucune marge de sécurité osseuse, protection automatique du Chisel ni bonus Brush ; le contact visuel, le souffle et la finition attendent le retest humain.
 
 Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Tester 10–15 minutes selon la [checklist P4](docs/dev/P4_REPORT.md#retest-humain--10-à-15-minutes). **PR #5 en brouillon, non mergée ; P5 interdit.**
 

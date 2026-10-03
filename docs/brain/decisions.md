@@ -270,3 +270,15 @@ La correction autorisée sépare **Transient Chunks / Loose Debris / Fine Dust**
 Vérifié : 642 checks, 28 WAV historiques identiques à l’octet, oracle GPU conservé ; 14 scénarios à 222–240 FPS sur la machine de référence, y compris bloc entièrement sali au repos et Pick autour des os. Les sessions de 60 secondes simulées de Chisel gardent 29/27 miettes dans leurs zones ; ce résultat technique ne valide pas à lui seul la cadence humaine du nettoyage.
 
 Prochaine action : huit points de retest dans [P4_REPORT](../dev/P4_REPORT.md). **STOP après livraison, PR #5 en brouillon, aucun merge ni P5 sans nouvelle autorisation explicite.**
+
+## Troisième test humain et corrections ciblées P4 — 2026-10-03
+
+Le Chisel reste très fun ; fracture, audio Brush/osseux, condition, picking et caméra restent validés. Antoine autorise uniquement cinq corrections : contact du proxy, lisibilité Fine Dust, soulèvement directionnel de la poussière nettoyée, réglage du Pick et distinction attaché/détaché/transitoire. La réduction du budget de miettes est conservée.
+
+Choix livrés : pointe réelle au hit, repère continu de normale, protection du mesh visuel contre le relief ; amas de poussière stables dans le shader R8 ; packets temporaires issus de cellules effectivement nettoyées, transformés en bouffées dans le pool AirDust existant. Écailles détachées ≤1,4 × 0,196 mm, deux par zone locale, F1 avec compteurs de voisinage. Aucun changement de géométrie gameplay par les proxies/FX.
+
+Pick seul retuné : puissance 0,16 → 0,22 ; efficacités Clay 0,60 → 0,75 / Sandstone 0,45 → 1,00 ; vitesse de référence 100 → 40 texels/s. Rayon, limite par passage, interfaces et plafond osseux conservés. Clay deux fois plus rapide que grès au débit central nominal ; zéro dégât reste provisoire P4.
+
+Leçons vérifiées : une normale ne suffit pas contre une paroi opposée concave ; contrôler aussi l’intérieur des faces. `Mesh.get_faces()` quantifie son maillage dérivé : les tests précis doivent lire `surface_get_arrays`. Réutiliser sommets/échantillons locaux et borner la topologie pour éviter que le contrôle visuel dépasse le budget. Le billboard MultiMesh doit conserver explicitement l’échelle des instances.
+
+Vérifié : **1 093 checks fonctionnels**, 16 contrôles graphiques, oracle GPU conservé, 28 WAV historiques identiques ; **22 scénarios à 123–240 FPS**, P95 maximal 14,039 ms. Les captures montrent la saleté/son nettoyage, sans valider subjectivement « ça souffle ». Sept points de retest dans [P4_REPORT](../dev/P4_REPORT.md). **STOP après livraison ; PR #5 brouillon, aucun merge ni P5.**

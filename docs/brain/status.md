@@ -2,7 +2,7 @@
 
 - Date : **2026-10-03**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — deuxième passe corrective P4 livrée, nouveau test humain attendu ; P5 interdit**.
+- Phase : **préproduction — troisième passe corrective P4 livrée, nouveau test humain attendu ; P5 interdit**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation initiale `42ec46d`, puis correctifs documentés dans le rapport).
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -62,15 +62,17 @@ Rapports :
 - Le Chisel actuel reste encore trop proche d'un effacement local de heightfield : P4 doit introduire une vraie réaction de matière avant de décider d'une mécanique de protection supplémentaire.
 - Les valeurs de vitesse/puissance actuelles peuvent sembler lentes ; ne pas faire le tuning final avant P7, sauf nécessité de test.
 
-## P4 — Deuxième passe corrective après test humain ▶
+## P4 — Troisième passe corrective après test humain ▶
 
 Les tests humains sont **très positifs** : environ 15 minutes supplémentaires, Chisel très fun, fracture Clay/Sandstone, profondeur, lisibilité Bone/matrice, condition moins punitive et zoom/pan validés. Les sons découverte osseuse/hit direct sont jugés parfaits ; le Brush audio suffit pour P4. Ce retour n’autorise aucun merge.
 
-Deuxième passe livrée : Transient Chunks de 1–2 s ; Loose Debris limités à **deux miettes ≤1,6 mm par zone 24×24 texels**, toutes matières confondues ; excédent vers Fine Dust persistante dominante. Blower directionnel et hook monde conservés. **Precision Pick [4]**, quatrième outil explicitement autorisé : grattage LMB + mouvement, petit rayon, restes structurels Clay/Sandstone, zéro dégât provisoire P4 et plafond osseux intact. Aucun auto-stop Chisel ni bonus Brush. Ressources et comportement des trois outils historiques, fracture, sons et caméra inchangés.
+Troisième passe livrée : pointe réelle des proxies au hit, repère issu de la normale et protection visuelle locale contre les pentes/cavités ; Fine Dust en amas persistants lisibles à 1×/3× ; bouffées du Blower issues des cellules effectivement nettoyées, soulevées puis entraînées dans le jet. Loose Debris en écailles **≤1,4 × 0,196 mm**, toujours deux par zone 24×24 texels ; F1 distingue surface attachée et débris/FX proches. Les gros éclats restent transitoires. Aucun nouveau système de saleté.
 
-**642 checks fonctionnels passent**, 28 WAV historiques identiques à l’octet, oracle GPU de 194 955 pixels. Quatorze scénarios graphiques : **222,30–240,01 FPS**, P95 maximal **13,243 ms**, frame maximale **17,892 ms**, RTX 5080 / 1080p. Bloc saturé au repos : 2 322 miettes, zéro upload height ; Blower : zéro modification de hauteur ; Pick : condition 100 %, zéro fracture. Deux sessions de 60 secondes simulées sans nettoyage gardent 29/27 miettes, puis zéro après souffle. Cap 240 FPS / physique 60 Hz.
+**Seul le Pick est retuné**, avec autorisation explicite : puissance 0,22, efficacités Clay 0,75 / Sandstone 1,00, référence 40 texels/s ; rayon 3 et retrait maximal 0,004 inchangés. Le grès reste deux fois plus lent que la Clay au centre ; geste de 0,4 s à 30 texels/s : 1,68 / 0,84 mm de retrait. LMB + mouvement, aucun forage immobile, interfaces/plafond osseux respectés, zéro dégât provisoire P4. Aucun auto-stop Chisel ni bonus Brush. Fracture, sons, caméra et paramètres des trois outils historiques préservés.
 
-Prochaine action : **retest humain 10–15 minutes** selon les huit points de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--10-à-15-minutes), surtout densité après 30–60 s de Chisel, poussière, avant/après Blower et finition des côtes/crâne au Pick. La cadence du nettoyage et le débit du Pick demandent un jugement humain. **PR #5 reste en brouillon, non mergée ; P5 interdit.**
+**1 093 checks fonctionnels + 16 contrôles graphiques passent**, 28 WAV historiques identiques à l’octet, oracle GPU de 194 955 pixels. **22 scénarios : 122,91–239,98 FPS**, P95 maximal **14,039 ms**, frame maximale **17,927 ms**, RTX 5080 / 1080p. Les poses ont un coût supplémentaire au Brush continu, tout en tenant le budget ≥60 FPS. Cap 240 FPS / physique 60 Hz. Bloc saturé au repos : 2 322 miettes, zéro édition/upload height. Deux sessions de 60 secondes simulées gardent 29/27 miettes, puis zéro après souffle.
+
+Prochaine action : **retest humain 10–15 minutes**, sept points de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--10-à-15-minutes) : clipping, poussière au dézoom, souffle « ça souffle ou ça efface ? », Pick Clay, Pick Sandstone, distinction attaché/détaché, boucle complète. Les proxies peuvent se déformer localement dans les cavités extrêmes ; rendu et transitions restent à juger en jeu. **STOP. PR #5 reste en brouillon, non mergée ; P5 interdit.**
 
 ### Livraison initiale conservée comme historique
 
