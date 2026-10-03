@@ -143,15 +143,18 @@ func point_world(point: Vector2) -> Vector3:
 	return block.to_global(Vector3((uv.x - 0.5) * block.surface_size.x,
 		block.relief.height_at(uv) + 0.001, (uv.y - 0.5) * block.surface_size.y))
 
-func _emit(family: int, point: Vector2, count: int, impact := Vector2(INF, INF)) -> void:
+func _emit(family: int, point: Vector2, count: int, impact := Vector2(INF, INF), detached_depth := 0.0) -> void:
 	if not particles_enabled or profile.particle_amount <= 0:
 		return
 	var origin := point_world(point)
 	var center := point_world(impact if impact.is_finite() else point)
+	var debris := block.working_map.loose_debris.profile
 	for i in range(mini(ceili(count * profile.particle_amount), 16)):
 		if particles[family].size() >= profile.particles_per_family: break
-		var scale_value := rng.randf_range(0.001, 0.0025) if family in [0, 3] else rng.randf_range(0.0012, 0.0024)
-		var shape := Vector3(scale_value, scale_value * (0.18 if family == 1 else 0.32), scale_value * 0.75)
+		var scale_value := rng.randf_range(0.001, 0.0025) if family in [0, 3] else rng.randf_range(debris.chunk_width.x, debris.chunk_width.y)
+		# P4-A plate/shard proportions for hard material; recent Soil unchanged.
+		var shape := Vector3(scale_value, scale_value * 0.32, scale_value * 0.75)
+		if family in [1, 2]: shape = Vector3(scale_value, scale_value * (0.24 if family == 1 else 0.7), scale_value)
 		var velocity := Vector3(rng.randf_range(-0.04, 0.04), rng.randf_range(0.035, 0.10), rng.randf_range(-0.04, 0.04))
 		var spawn := origin
 		if family in [1, 2]:
@@ -160,11 +163,14 @@ func _emit(family: int, point: Vector2, count: int, impact := Vector2(INF, INF))
 				var angle := rng.randf_range(-PI, PI)
 				away = Vector3(cos(angle), 0, sin(angle))
 			away = away.normalized()
-			# Start beyond the marker, already travelling outwards; no cube parked
-			# on the newly exposed crack. Cosmetic only, no fracture changes.
+			# Substantial P4-A break-off pieces, still clearing the contact centre.
 			var distance := maxf(Vector2(origin.x - center.x, origin.z - center.z).length(), 0.004)
 			spawn = Vector3(center.x, origin.y, center.z) + away * distance
-			velocity = away * rng.randf_range(0.09, 0.14) + Vector3.UP * rng.randf_range(0.025, 0.05)
+			# The event arrives after excavation: launch from the removed plate's
+			# top, not its new floor where outward pieces would vanish into walls.
+			# Static source estimate only; no moving-terrain physics or sampling.
+			spawn.y += detached_depth * (block.relief.top_height - block.relief.floor_height)
+			velocity = away * rng.randf_range(0.09, 0.14) + Vector3.UP * rng.randf_range(0.035, 0.10)
 		if family == 3: velocity += airflow
 		var lifetime := block.working_map.loose_debris.profile.chunk_lifetime * rng.randf_range(0.85, 1.15) \
 			if family in [1, 2] else profile.particle_lifetime * rng.randf_range(0.65, 1.2)
@@ -205,16 +211,22 @@ func on_action(event: Dictionary) -> void:
 	var removed: Vector3 = event.removed
 	var point: Vector2 = event.point
 	var loose_cleared: float = event.get("loose_cleared", 0.0)
+	var first_contact: bool = event.get("bone_first_contact", false)
+	var damaging_hit: bool = event.direct_bone_hit and event.get("bone_damage", 0.0) > 0.0
 	if event.tool == &"chisel":
 		recoil_remaining = 0.14
 		var layer := 1
-		if not event.chunks.is_empty(): layer = event.chunks[0].layer
-		elif removed.z > removed.y: layer = 2
+		if removed.y + removed.z > 0:
+			# Mixed footprints sound like the material actually removed most, not
+			# whichever fracture patch happened to be iterated first.
+			layer = 2 if removed.z > removed.y else 1
 		elif block.working_map.value_at(Vector2i(point.round())) <= block.working_map.strata.sample_limits((point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)).y: layer = 2
-		if not event.bone_revealed and not event.direct_bone_hit:
+		if not first_contact and not damaging_hit and (not event.direct_bone_hit or removed.length_squared() > 0 or event.marks > 0):
 			audio.play_family(&"chisel_clay" if layer == 1 else &"chisel_stone", 0.72 if event.chunks.is_empty() else 1.0, true)
-		for chunk in event.chunks.slice(0, 3):
-			_emit(chunk.layer, chunk.point, 1, point)
+		var debris := block.working_map.loose_debris.profile
+		for chunk in event.chunks:
+			_emit(chunk.layer, chunk.point, clampi(ceili(float(chunk.cells) / debris.chunk_cells_per_particle), 1, debris.chunk_particles_per_patch),
+				point, chunk.volume / chunk.cells)
 	elif event.tool == &"soft_brush":
 		sweep_remaining = 0.12
 		if removed.x + removed.y + event.residue_cleared + loose_cleared > 0:
@@ -231,10 +243,10 @@ func on_action(event: Dictionary) -> void:
 		audio.play_family(&"air", clampf(event.residue_cleared + loose_cleared, 0.25, 0.8))
 		_lift_dust(event.get("cleared_dust", []), direction)
 	if removed.x > 0: _emit(0, point, clampi(ceili(removed.x / 8.0), 1, 5))
-	if event.bone_revealed or event.direct_bone_hit:
+	if first_contact or damaging_hit:
 		# A damaging centre hit wins if that same impact also reveals nearby cells.
-		audio.play_family(&"direct_bone_hit" if event.direct_bone_hit else &"bone_revealed",
-			1.0 if event.direct_bone_hit else 0.42, event.direct_bone_hit)
+		audio.play_family(&"direct_bone_hit" if damaging_hit else &"bone_revealed",
+			1.0 if damaging_hit else 0.42, damaging_hit)
 		bone_ring.position = point_world(point)
 		bone_remaining = 0.55
 

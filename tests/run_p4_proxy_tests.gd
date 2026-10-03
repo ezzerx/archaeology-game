@@ -15,6 +15,9 @@ func run() -> void:
 	var faces_checked := 0
 	var maximum_lift := 0.0
 	var maximum_clearance := 0.0
+	for tool in range(4):
+		check(ToolProxyPose.fixed_basis(tool).is_equal_approx(Basis.from_euler(Vector3(0.5, 0, -0.62))),
+			"restored P4-A/B camera-relative angle for tool %d" % tool)
 	for kind in ["flat", "slope", "deep", "bone", "fracture"]:
 		control.reset_surface()
 		var p := Vector2(286, 194) if kind == "bone" else Vector2(700, 140)
@@ -88,7 +91,10 @@ func run() -> void:
 					"normal changes cannot rotate the proxy or move its handle")
 		check(block.working_map.image.get_data() == geometry and block.working_map.fossil.condition == condition
 			and block.working_map.fossil.field.ceilings == ceiling, "proxy fitting cannot modify gameplay: " + kind)
-	check(maximum_clearance < 0.037, "even the near-vertical test cavity needs less than 37 mm clearance, not an unbounded lift")
+	# The old 37 mm ceiling depended on the near-vertical E angle. The restored
+	# A/B angle needs a longer tip connector in this deliberately extreme hole.
+	check(maximum_clearance < block.relief.top_height - block.relief.floor_height,
+		"clearance remains bounded by block depth, even at the restored oblique angle")
 	main.queue_free()
 	await process_frame
 	print("P4 PROXY TESTS: %d checks, %d failures; %d contacts, %d rendered vertices, %d face probes" % [checks, failures, hits, vertices_checked, faces_checked])

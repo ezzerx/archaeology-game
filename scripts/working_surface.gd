@@ -173,11 +173,12 @@ func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 	if point.x < -0.5 or point.y < -0.5 or point.x >= size.x - 0.5 or point.y >= size.y - 0.5:
 		last_action = {}
 		return 0
+	var condition_before := fossil.condition if fossil != null else 0.0
 	if fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT and tool.power > 0.0:
 		fossil.damage_at(fossil.field.index_at_map(point), tool.bone_damage)
-	return _apply_tool(point, point, tool, 1.0)
+	return _apply_tool(point, point, tool, 1.0, condition_before - fossil.condition if fossil != null else 0.0)
 
-func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float) -> int:
+func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float, bone_damage := 0.0) -> int:
 	last_residue_edit_usec = 0
 	changed_residue_cells = 0
 	last_removed = Vector3.ZERO
@@ -189,6 +190,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	if loose_debris != null: loose_debris.clean(from, to, tool, amount)
 	var changed := 0
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
+	var discovered_before := fossil.first_contact if fossil != null else false
 	var direct_bone_hit := fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
 		and tool.power > 0.0 and tool.bone_damage > 0.0 and fossil.exposed[fossil.field.index_at_map(to)] != 0
 	# Pick shares the impact clock, but removes only its tiny footprint directly.
@@ -206,6 +208,8 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		last_residue_edit_usec = Time.get_ticks_usec() - start
 	var marks := fracture.last_marks if is_fracture else 0
 	var bone_revealed := fossil != null and fossil.exposed_cells > exposed_before
+	# Exposure remains per-cell; the discovery cue belongs to the specimen once.
+	var bone_first_contact := fossil != null and fossil.first_contact and not discovered_before
 	var loose_cleared := loose_debris.last_cleared if loose_debris != null else 0.0
 	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
 		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
@@ -213,6 +217,8 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 			"residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
 			"cleared_dust": residue.cleared_packets.duplicate(true),
 			"direction": loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized(), "bone_revealed": bone_revealed,
+			"bone_first_contact": bone_first_contact,
+			"bone_damage": bone_damage,
 			"direct_bone_hit": direct_bone_hit, "movement": from.distance_to(to) / maxf(amount, 0.0001)}
 		material_action.emit(last_action)
 	return changed

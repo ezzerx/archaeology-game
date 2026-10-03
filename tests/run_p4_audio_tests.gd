@@ -1,6 +1,62 @@
 extends "res://tests/run_p4_tests.gd"
 ## Additional P4 regressions: semantic bone feedback and continuous brush audio.
 
+func test_material_reveals(fx: MaterialFeedback, layer: int) -> void:
+	# Two controlled slabs around the real authored specimen. Only this fixture
+	# moves the Clay/Stone interface, to exercise the same reveal in each material.
+	var size := Vector2i(128, 80)
+	var strata := Stratigraphy.new(size, definitions)
+	for i in range(size.x * size.y):
+		strata.packed_limits[i * 2] = 0.8
+		strata.packed_limits[i * 2 + 1] = 0.15 if layer == 1 else 0.6
+	var surface := WorkingSurface.new(size, strata, FossilField.new(size), profile)
+	var strong := chisel.duplicate() as ToolDefinition
+	strong.power = 5
+	strong.radius = 12
+	var family := &"chisel_clay" if layer == 1 else &"chisel_stone"
+	for cycle in range(2):
+		surface.reset()
+		fx.reset()
+		surface._heights.fill(0.4)
+		surface.image.set_data(size.x, size.y, false, Image.FORMAT_RF, surface._heights.to_byte_array())
+		var discoveries := 0
+		var later_reveals := 0
+		var bone_sounds := 0
+		var material_correct := true
+		var first_correct := true
+		var exposure_increases := true
+		var mixed_correct := true
+		for y in range(18, 59, 5):
+			for x in range(20, 106, 5):
+				var at := Vector2(x, y)
+				# Adjacent matrix only: no direct centre hit can obscure this test.
+				if surface.fossil.field.ceilings[y * size.x + x] > 0: continue
+				for impact in range(3):
+					var exposed := surface.fossil.exposed_cells
+					surface.apply_impact(at, strong)
+					var event := surface.last_action
+					if event.is_empty(): continue
+					var played := fx.audio.played
+					fx.on_action(event)
+					if fx.audio.played > played and fx.audio.last_family in [&"bone_revealed", &"direct_bone_hit"]:
+						bone_sounds += 1
+					if event.bone_first_contact:
+						discoveries += 1
+						first_correct = first_correct and fx.audio.last_family == &"bone_revealed" and fx.audio.played == played + 1
+					elif event.bone_revealed and event.removed[layer] > 0 and event.removed[3 - layer] == 0:
+						later_reveals += 1
+						material_correct = material_correct and fx.audio.last_family == family and fx.audio.played == played + 1
+						exposure_increases = exposure_increases and surface.fossil.exposed_cells > exposed
+					elif event.bone_revealed and event.removed.y > 0 and event.removed.z > 0:
+						var dominant := &"chisel_stone" if event.removed.z > event.removed.y else &"chisel_clay"
+						mixed_correct = mixed_correct and fx.audio.last_family == dominant
+		check(discoveries == 1 and bone_sounds == 1 and first_correct and surface.fossil.condition == 100,
+			"first protected discovery has one small tik per reset: layer %d cycle %d" % [layer, cycle])
+		check(later_reveals >= 2 and material_correct and exposure_increases,
+			"additional adjacent reveals keep material audio AND count exposure: layer %d cycle %d" % [layer, cycle])
+		check(mixed_correct, "mixed fracture keeps the dominant worked material, never repeated Bone audio")
+		print("P4 AUDIO MATERIAL: layer=", layer, " reset=", cycle, " later reveals=", later_reveals, " Bone sounds=", bone_sounds)
+
 func run() -> void:
 	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
 	root.add_child(main)
@@ -56,6 +112,8 @@ func run() -> void:
 		and surface.fossil.condition == 100 and counters[1] == 0, "adjacent fracture reveals bone without direct-hit event or damage")
 	fx.on_action(surface.last_action)
 	check(audio.last_family == &"bone_revealed", "adjacent discovery selects only delicate reveal sound")
+	check(surface.last_action.bone_first_contact and surface.last_action.bone_damage == 0,
+		"first specimen discovery is distinct from per-cell reveal and actual damage")
 	for i in range(surface.fossil.exposed.size()):
 		if surface.fossil.exposed[i] != 0:
 			contact = Vector2(i % size.x, i / size.x)
@@ -65,6 +123,8 @@ func run() -> void:
 		"one direct Chisel impact emits one damage event")
 	fx.on_action(surface.last_action)
 	check(audio.last_family == &"direct_bone_hit", "damage sound takes precedence over any simultaneous adjacent reveal")
+	check(surface.last_action.bone_damage == 3 and not surface.last_action.bone_first_contact,
+		"direct cue reports the existing three condition points, never another discovery")
 	check(audio.samples[&"bone_revealed"][0].data != audio.samples[&"direct_bone_hit"][0].data,
 		"reveal tik and direct-hit clack have different timbres")
 	surface.apply_continuous(contact, contact, brush, 1)
@@ -73,6 +133,17 @@ func run() -> void:
 	surface.apply_continuous(contact, contact, blower, 1)
 	check(not surface.last_action.get("direct_bone_hit", false) and surface.fossil.condition == 97 and counters[0] == 1,
 		"Blower safe; specimen discovery remains once per reset")
+	test_material_reveals(fx, 1)
+	test_material_reveals(fx, 2)
+	# A direct contact at zero condition is still recorded, but cannot claim
+	# another damaging Bone cue. No change to the pre-existing damage policy.
+	for i in range(40): surface.apply_impact(contact, strong)
+	surface.apply_impact(contact, strong)
+	audio.reset()
+	fx.on_action(surface.last_action)
+	check(surface.last_action.direct_bone_hit and surface.last_action.bone_damage == 0
+		and audio.last_family != &"direct_bone_hit" and audio.last_family != &"bone_revealed",
+		"Bone sounds are reserved for discovery or actual condition loss")
 	audio.reset()
 	check(audio.brush_level == 0 and audio.brush_starts == 0 and audio.brush_voices[0].stream == null,
 		"reset immediately clears continuous audio")

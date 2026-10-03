@@ -9,6 +9,8 @@ $enginePath = (Resolve-Path -LiteralPath $GodotBin).Path
 
 function Invoke-P4Check([string]$Name, [string[]]$EngineArguments) {
     $logPath = Join-Path $projectRoot "work/test-logs/$Name.log"
+    # Keep graphical readbacks on-screen, independent of an old editor window placement.
+    if ('--headless' -notin $EngineArguments) { $EngineArguments += @('--position', '100,100') }
     & $enginePath @EngineArguments --path $projectRoot --log-file $logPath
     if ($LASTEXITCODE -ne 0) { throw "$Name failed with exit code $LASTEXITCODE" }
     if (Select-String -LiteralPath $logPath -Pattern 'SCRIPT ERROR|ERROR:|Parse Error|SHADER ERROR' -Quiet) {
@@ -29,6 +31,7 @@ Invoke-P4Check 'p4-condition' @('--headless', '--script', 'res://tests/run_p4_co
 if ($Graphical) {
     Invoke-P4Check 'p4-benchmark' @('--script', 'res://tests/run_p4_benchmark.gd')
     Invoke-P4Check 'p4-feedback-visual' @('--script', 'res://tests/run_p4_feedback_visual.gd')
+    Invoke-P4Check 'p4-final-feel-visual' @('--script', 'res://tests/run_p4_final_feel_visual.gd')
     Invoke-P4Check 'p4-material-visual' @('--script', 'res://tests/run_p4_material_visual.gd')
     Invoke-P4Check 'p3-on-p4-gpu' @('--script', 'res://tests/run_p3_benchmark.gd', '--', '--gpu-only')
 }

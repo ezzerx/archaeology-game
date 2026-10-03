@@ -51,13 +51,13 @@ func material_capture(kind: String, zoom: int) -> Dictionary:
 			points.append(Vector2(x, y))
 	check(points.size() > 30, "material readback has enough interior samples: " + kind)
 	var geometry := block.working_map.image.get_data()
-	var clean := await screenshot("p4-final-%s-clean-%dx" % [kind, zoom])
+	var clean := await screenshot("p4-feel-%s-clean-%dx" % [kind, zoom])
 	# Saturate all nearby dust cells: strongest possible identity test.
 	for y in range(int(p.y) - 80, int(p.y) + 81):
 		for x in range(int(p.x) - 80, int(p.x) + 81): block.working_map.residue.deposit_removed(x, y, 1.0)
 	block.working_map.residue.apply_segment(p, p, 120, 1, 0)
 	block.flush_texture()
-	var dirty := await screenshot("p4-final-%s-dirty-%dx" % [kind, zoom])
+	var dirty := await screenshot("p4-feel-%s-dirty-%dx" % [kind, zoom])
 	var before := sample_color(clean, points)
 	var after := sample_color(dirty, points)
 	if kind == "bone":
@@ -76,7 +76,7 @@ func material_capture(kind: String, zoom: int) -> Dictionary:
 	# so that reflected specular cannot contaminate the diagnostic RGB channels.
 	diagnostic.code = code.substr(0, end) + "\n ALBEDO = vec3(ROUGHNESS, SPECULAR, dust_cover); EMISSION = vec3(0.0);\n}"
 	block.material.shader = diagnostic
-	var metrics_image := await screenshot("p4-final-%s-metrics-%dx" % [kind, zoom])
+	var metrics_image := await screenshot("p4-feel-%s-metrics-%dx" % [kind, zoom])
 	var metrics := sample_color(metrics_image, points)
 	block.material.shader = original
 	if kind == "bone":

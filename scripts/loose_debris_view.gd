@@ -37,10 +37,14 @@ static func crumb_mesh() -> ArrayMesh:
 
 func draw_item(slot: int, point: Vector2, amount: float, layer: int, lift := 0.0) -> void:
 	var uv := (point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
+	# P4-B-sized hard crumbs make the existing directional flight readable.
+	# Keep recent Soil geometry and all retention/cleanup quantities unchanged.
+	var width := (state.profile.crumb_width if layer == 0 else state.profile.matrix_crumb_width) \
+		* clampf(sqrt(amount / state.profile.crumb_capacity), 0.08, 1.0)
+	var height := width * (0.14 if layer == 0 else 0.32)
 	var pos := block.to_global(Vector3((uv.x - 0.5) * block.surface_size.x,
-		block.relief.height_at(uv) + 0.00018 + lift, (uv.y - 0.5) * block.surface_size.y))
-	var width := state.profile.crumb_width * clampf(sqrt(amount / state.profile.crumb_capacity), 0.08, 1.0)
-	var basis := Basis(Vector3.UP, point.x * 1.7 + point.y * 2.3).scaled(Vector3(width, width * 0.14, width * 0.75))
+		block.relief.height_at(uv) + (0.00018 if layer == 0 else height * 0.5 + 0.0001) + lift, (uv.y - 0.5) * block.surface_size.y))
+	var basis := Basis(Vector3.UP, point.x * 1.7 + point.y * 2.3).scaled(Vector3(width, height, width * 0.75))
 	multimesh.set_instance_transform(slot, Transform3D(basis, pos))
 	multimesh.set_instance_color(slot, colors[layer])
 

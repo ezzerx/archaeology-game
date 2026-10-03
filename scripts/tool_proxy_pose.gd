@@ -8,8 +8,9 @@ var last_upload := -1
 var last_recoil := -1.0
 var body_lift := 0.0
 
-static func fixed_basis(tool: int) -> Basis:
-	return Basis.from_euler(Vector3(0.10, 0, -0.20 if tool != 2 else -0.18))
+static func fixed_basis(_tool: int) -> Basis:
+	# P4-A/B angle, fixed relative to the non-rotating tabletop camera.
+	return Basis.from_euler(Vector3(0.5, 0, -0.62))
 
 func register_part(part: MeshInstance3D, tip_length: float) -> void:
 	# Read render arrays directly: get_faces() quantizes its derived triangle

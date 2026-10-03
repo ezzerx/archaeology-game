@@ -2,12 +2,20 @@ extends "res://tests/run_p2_benchmark.gd"
 ## Production input + FX at 1x/3x, 1080p, 240 cap / 60 physics.
 
 var proxy_frame_times: Array[float] = []
+var peak_particles := PackedInt32Array([0, 0, 0, 0])
+var peak_flying := 0
 
 func on_frame() -> void:
 	super.on_frame()
-	if measuring: proxy_frame_times.append(main.feedback.last_proxy_usec / 1000.0)
+	if measuring:
+		proxy_frame_times.append(main.feedback.last_proxy_usec / 1000.0)
+		for family in range(4): peak_particles[family] = maxi(peak_particles[family], main.feedback.particles[family].size())
+		peak_flying = maxi(peak_flying, block.working_map.loose_debris.flying.size())
 
 func prepare_fixture(kind: String) -> void:
+	if kind.ends_with("_dense"):
+		prepare_fixture(kind.trim_suffix("_dense"))
+		return
 	if kind in ["pick_clay", "pick_stone"]:
 		prepare_fixture("clay" if kind == "pick_clay" else "stone")
 		return
@@ -78,6 +86,8 @@ func scenario(kind: String, zoom: float) -> void:
 	var detached := 0
 	frame_times.clear()
 	proxy_frame_times.clear()
+	peak_particles.fill(0)
+	peak_flying = 0
 	previous_frame = 0
 	measuring = true
 	var started := Time.get_ticks_usec()
@@ -89,6 +99,10 @@ func scenario(kind: String, zoom: float) -> void:
 		controller._held = kind not in ["dirty_idle", "proxy_cavity", "proxy_bone", "dusty_bone"]
 		var p := Vector2(655 + (tick / 40 as int % 5) * 29, 115 + (tick / 200 as int) * 32)
 		var uv := (p + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
+		if kind.ends_with("_dense"):
+			# Nine held impacts per position, enough to repeatedly break the hard
+			# material instead of mostly marking fresh patches while moving.
+			uv = (Vector2(655 + (tick / 120 as int) * 58, 140) + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
 		if kind in ["soil", "blower"]: uv = center + Vector2(0.065 * sin(tick / 80.0), 0.07 * cos(tick / 67.0))
 		if kind == "bone": uv = center + Vector2(0.012 * sin(tick / 100.0), 0.006 * cos(tick / 90.0))
 		# Stationary bursts, then move to the next small remnant.
@@ -114,6 +128,7 @@ func scenario(kind: String, zoom: float) -> void:
 		"cpu_edit_ms": stats(edits), "cpu_active_edit_ms": stats(active), "cpu_pick_ms": stats(picks), "cpu_proxy_ms": stats(proxy_frame_times),
 		"upload_submit_ms": stats(upload_times), "changed_texels": changed, "marks": marked, "chunks": detached,
 		"particles_emitted": Array(main.feedback.emitted), "audio_events": main.feedback.audio.played,
+		"peak_particles": Array(peak_particles), "peak_flying": peak_flying,
 		"loose_bins": block.working_map.loose_debris.cells.size(), "flying_debris": block.working_map.loose_debris.flying.size(),
 		"brush_loop_starts": main.feedback.audio.brush_starts,
 		"impacts": controller.total_impacts, "height_uploads": block.upload_count - uploads,
@@ -123,7 +138,7 @@ func scenario(kind: String, zoom: float) -> void:
 	check(report[label].render_fps >= 58 and report[label].frame_ms.p95 < 20, "60 FPS budget: " + label)
 	check(report[label].render_fps < 242, "cap respected: " + label)
 	if kind not in ["dirty_idle", "proxy_cavity", "proxy_bone", "dusty_bone"]: check(main.feedback.audio.played > 0, "audio event routing active: " + label)
-	if kind in ["clay", "stone"]: check(marked > 0 and detached > 0, "actual marks AND chunks measured: " + label)
+	if kind in ["clay", "stone", "clay_dense", "stone_dense"]: check(marked > 0 and detached > 0, "actual marks AND chunks measured: " + label)
 	if kind == "blower": check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads, "Blower structural state exact: " + label)
 	if kind == "dirty_idle":
 		check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads
@@ -225,18 +240,19 @@ func debris_session_captures() -> void:
 		var small := true
 		for i in range(main.feedback.loose_view.keys.size()):
 			var basis: Basis = main.feedback.loose_view.multimesh.get_instance_transform(i).basis
-			small = small and basis.x.length() <= 0.001401 and basis.y.length() < 0.000197
-		check(small, "actual rendered flakes remain at most 1.4 mm wide and 0.196 mm tall")
+			small = small and basis.x.length() <= 0.004501 and basis.y.length() < 0.001441
+		check(small and state.cells.size() <= state.occupancy.size() * 2,
+			"visible hard cleanup flakes <=4.5 mm remain bounded to two per local bucket")
 		var snapshot := block.working_map.image.get_data()
 		report["session_" + kind] = {"simulated_seconds": 60, "impacts": 270, "crumbs": state.cells.size(),
 			"occupied_buckets": state.occupancy.size(), "peak_dust": Array(block.working_map.residue._values).max()}
-		await screenshot("p4-final-" + kind + "-60s-dirty-3x")
+		await screenshot("p4-feel-" + kind + "-60s-dirty-3x")
 		(camera as PrecisionZoom).reset_view()
 		for i in range(90): await physics_frame
 		controller.hit = {"inside": false}
 		block.show_cursor({"inside": false}, 12)
 		main.feedback._process(0)
-		await screenshot("p4-final-" + kind + "-60s-dirty-1x")
+		await screenshot("p4-feel-" + kind + "-60s-dirty-1x")
 		move_to((p + Vector2.ONE * 0.5) / Vector2(block.map_resolution))
 		(camera as PrecisionZoom)._focused = true
 		(camera as PrecisionZoom).request_zoom(30, controller._screen)
@@ -253,7 +269,7 @@ func debris_session_captures() -> void:
 		main.feedback.loose_view._process(0)
 		check(snapshot == block.working_map.image.get_data(), "60s dirt cleanup preserves exact geometry")
 		report["session_" + kind].crumbs_after_blower = state.cells.size()
-		await screenshot("p4-final-" + kind + "-60s-clean-3x")
+		await screenshot("p4-feel-" + kind + "-60s-clean-3x")
 
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute("res://work/test-logs")
@@ -277,12 +293,15 @@ func run() -> void:
 	main.get_node("Debug/Panel").hide()
 	main.get_node("Debug/BonePanel").hide()
 	for i in range(90): await physics_frame
+	var dense_only := "--dense-only" in OS.get_cmdline_user_args()
+	var kinds := ["clay_dense", "stone_dense"] if dense_only else ["soil", "clay", "stone", "bone", "blower", "dirty_idle", "pick", "pick_clay", "pick_stone", "proxy_cavity", "proxy_bone", "dusty_bone", "clay_dense", "stone_dense"]
 	for zoom in [1.0, 3.0]:
-		for kind in ["soil", "clay", "stone", "bone", "blower", "dirty_idle", "pick", "pick_clay", "pick_stone", "proxy_cavity", "proxy_bone", "dusty_bone"]:
+		for kind in kinds:
 			await scenario(kind, zoom)
-	await comparison_captures()
-	await cleanup_captures()
-	await debris_session_captures()
+	if not dense_only:
+		await comparison_captures()
+		await cleanup_captures()
+		await debris_session_captures()
 	report["gpu"] = RenderingServer.get_video_adapter_name()
 	report["cpu"] = OS.get_processor_name()
 	report["engine"] = Engine.get_version_info().string
@@ -292,7 +311,7 @@ func run() -> void:
 	report["runtime_cap"] = Engine.max_fps
 	report["physics_hz"] = Engine.physics_ticks_per_second
 	report["failures"] = failures
-	FileAccess.open("res://work/test-logs/p4-benchmark.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
+	FileAccess.open("res://work/test-logs/p4-dense-benchmark.json" if dense_only else "res://work/test-logs/p4-benchmark.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("P4 GRAPHICAL: %d failures" % failures)
 	controller.reset_surface()
 	main.queue_free()

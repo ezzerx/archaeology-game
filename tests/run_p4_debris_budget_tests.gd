@@ -55,16 +55,18 @@ func run() -> void:
 		and fx.particles[2].size() == profile.particles_per_family, "repeated chunk emission respects fixed family pools")
 	var lifetime_ok := true
 	var outward := true
-	var small := true
+	var substantial := true
 	for family in [1, 2]:
 		for particle in fx.particles[family]:
 			lifetime_ok = lifetime_ok and particle.life >= 0.50 and particle.life <= 0.70
 			var radial: Vector3 = particle.position - particle.impact
 			radial.y = 0
 			outward = outward and radial.length() >= 0.00399 and radial.normalized().dot(particle.velocity) >= 0.089
-			small = small and particle.shape.x <= 0.0024 and particle.shape.y <= 0.00077
+			substantial = substantial and particle.shape.x >= 0.003 and particle.shape.x <= 0.006
+			substantial = substantial and is_equal_approx(particle.shape.y / particle.shape.x, 0.24 if family == 1 else 0.7)
+			substantial = substantial and is_equal_approx(particle.shape.z, particle.shape.x)
 	check(lifetime_ok, "short hard-chip lifetime: 0.51 to 0.69 seconds")
-	check(small and outward, "flat chips <=2.4 mm start outside the marker with >=0.09 m/s outward velocity")
+	check(substantial and outward, "P4-A 3-6 mm plates/shards start outside the marker with >=0.09 m/s outward velocity")
 	fx._process(0.1)
 	var clear_center := true
 	for family in [1, 2]:
@@ -78,12 +80,20 @@ func run() -> void:
 		"transient creation/bounce/expiry never owns gameplay geometry, dirt or damage")
 	var p := Vector2(700, 140)
 	block.working_map.apply_segment(p, p, 65, 1.15, 1.5, 1)
-	var limited := true
+	var peak_emission := 0
+	var proportional := true
 	for i in range(12):
+		fx._process(1) # Independent impacts: do not let pool saturation hide the count.
 		var before := fx.emitted[1] + fx.emitted[2]
 		block.working_map.apply_impact(p, chisel)
-		limited = limited and fx.emitted[1] + fx.emitted[2] - before <= 3
-	check(limited, "real Chisel fracture emits at most three small hard chips per impact")
+		var expected := PackedInt32Array([0, 0, 0])
+		for chunk in block.working_map.last_action.get("chunks", []):
+			expected[chunk.layer] += clampi(ceili(chunk.cells / 10.0), 1, 5)
+		var emitted_now := fx.emitted[1] + fx.emitted[2] - before
+		proportional = proportional and emitted_now == mini(expected[1], 48) + mini(expected[2], 48)
+		peak_emission = maxi(peak_emission, emitted_now)
+	check(proportional and peak_emission > 3, "P4-A emission scales with actual broken cells (1-5 per patch) within existing pools")
+	print("P4 FINAL FEEL peak hard particles per ordinary impact: ", peak_emission)
 	block.working_map.reset()
 	block.working_map.loose_debris.deposit_removed(700, 140, 1000, 2)
 	fx.loose_view._process(0)
