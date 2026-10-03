@@ -51,7 +51,7 @@ func press_at(uv: Vector2) -> void:
 
 func select(index: int) -> void:
 	var key := InputEventKey.new()
-	key.physical_keycode = [KEY_1, KEY_2, KEY_3][index]
+	key.physical_keycode = [KEY_1, KEY_2, KEY_3, KEY_4][index]
 	key.pressed = true
 	root.push_input(key, true)
 
