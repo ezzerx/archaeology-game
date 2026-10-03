@@ -148,10 +148,10 @@ func test_scene_and_audio() -> void:
 	await process_frame
 	check(block.working_map.fracture != null and block.reactions == profile, "normal scene activates production fracture profile")
 	check(Engine.max_fps == 240 and Engine.physics_ticks_per_second == 60, "240 FPS / 60 Hz runtime preserved")
-	check(fx.proxies.size() == 3 and fx.pools.size() == 4, "three tool proxies and four bounded particle families")
+	check(fx.proxies.size() == 4 and fx.pools.size() == 4, "four tool proxies and four bounded particle families")
 	var initial := block.working_map.image.get_data()
 	control.hit = {"inside": true, "world": Vector3(0, 0.12, 0)}
-	for i in range(3):
+	for i in range(4):
 		control.select_tool(i)
 		fx._process(0.01)
 		check(fx.proxies[i].visible and fx.proxies[i].global_position.distance_to(control.hit.world) < 0.000001, "proxy follows exact hit without simulation offset")

@@ -259,7 +259,7 @@ func test_input() -> void:
 		key(pair[0])
 		check(controller.selected_index == pair[1], "keyboard selects slot %d" % (pair[1] + 1))
 		check(main.get_node("Debug/Toolbar").get_child(pair[1]).button_pressed, "toolbar selected state follows key")
-	check(not controller.select_tool(-1) and not controller.select_tool(3) and controller.selected_index == 0, "invalid selections are harmless")
+	check(not controller.select_tool(-1) and not controller.select_tool(controller.tools.size()) and controller.selected_index == 0, "invalid selections are harmless")
 	check(controller.config != brush, "scene duplicates shared tool resources")
 	press(left)
 	tick()

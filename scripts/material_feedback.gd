@@ -70,9 +70,9 @@ func _part(parent: Node3D, size: Vector3, at: Vector3, color: Color) -> void:
 func _create_proxies() -> void:
 	var wood := Color(0.30, 0.17, 0.07)
 	var metal := Color(0.36, 0.40, 0.41)
-	for i in range(3):
+	for i in range(4):
 		var proxy := Node3D.new()
-		proxy.name = ["BrushProxy", "ChiselProxy", "BlowerProxy"][i]
+		proxy.name = ["BrushProxy", "ChiselProxy", "BlowerProxy", "PrecisionPickProxy"][i]
 		add_child(proxy)
 		proxies.append(proxy)
 		# Tip at origin; the handle extends away from the precise contact marker.
@@ -84,9 +84,13 @@ func _create_proxies() -> void:
 		elif i == 1:
 			_part(proxy, Vector3(0.007, 0.035, 0.004), Vector3(0, 0.0175, 0), Color(0.28, 0.34, 0.38))
 			_part(proxy, Vector3(0.014, 0.04, 0.012), Vector3(0, 0.055, 0), wood)
-		else:
+		elif i == 2:
 			_part(proxy, Vector3(0.008, 0.038, 0.008), Vector3(0, 0.027, 0), metal)
 			_part(proxy, Vector3(0.031, 0.041, 0.022), Vector3(0, 0.065, 0), Color(0.14, 0.26, 0.24))
+		else:
+			_part(proxy, Vector3(0.0015, 0.013, 0.0015), Vector3(0, 0.0065, 0), Color(0.72, 0.76, 0.77))
+			_part(proxy, Vector3(0.003, 0.025, 0.003), Vector3(0, 0.0255, 0), metal)
+			_part(proxy, Vector3(0.007, 0.032, 0.007), Vector3(0, 0.054, 0), Color(0.27, 0.36, 0.25))
 		proxy.hide()
 
 func _create_particles() -> void:
@@ -155,6 +159,9 @@ func on_action(event: Dictionary) -> void:
 			audio.update_brush(event.movement, removed.x + removed.y + event.residue_cleared + loose_cleared,
 				removed.y > removed.x)
 			if removed.y > removed.x: _emit(0, point, 1)
+	elif event.tool == &"precision_pick" and removed.length_squared() > 0:
+		sweep_remaining = 0.12
+		audio.play_family(&"precision_pick", 0.3)
 	elif event.tool == &"air_blower" and event.residue_cleared + loose_cleared > 0:
 		sweep_remaining = 0.12
 		var direction: Vector2 = event.get("direction", Vector2(-1, -1).normalized())

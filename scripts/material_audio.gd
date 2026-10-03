@@ -1,7 +1,8 @@
 class_name MaterialAudio
 extends Node
 ## Original procedural placeholder sounds, generated once. No external assets.
-const FAMILIES := [&"brush_soil", &"brush_clay", &"chisel_clay", &"chisel_stone", &"bone_revealed", &"direct_bone_hit", &"air"]
+# Append only: existing sound seeds depend on these indices.
+const FAMILIES := [&"brush_soil", &"brush_clay", &"chisel_clay", &"chisel_stone", &"bone_revealed", &"direct_bone_hit", &"air", &"precision_pick"]
 const SAMPLE_RATE := 22050
 var samples: Dictionary = {}
 var voices: Array[AudioStreamPlayer] = []
@@ -91,6 +92,7 @@ static func synthesize(family: StringName, variant: int) -> AudioStreamWAV:
 			&"bone_revealed": signal_value = (0.25 * sin(TAU * 3900 * variation * t) + 0.09 * sin(TAU * 5800 * variation * t)) * exp(-t * 65)
 			&"direct_bone_hit": signal_value = (0.55 * sin(TAU * 1850 * variation * t) + 0.16 * sin(TAU * 2770 * variation * t) + 0.2 * noise * exp(-t * 80)) * exp(-t * 26)
 			&"air": signal_value = (filtered * 1.5 + noise * 0.05) * sin(PI * t / duration)
+			&"precision_pick": signal_value = (filtered * 0.23 + (noise - previous) * 0.035) * sin(PI * t / duration)
 		previous = noise
 		var pcm := roundi(clampf(signal_value * attack * minf((duration - t) / 0.012, 1.0), -0.95, 0.95) * 32767.0)
 		data.encode_s16(i * 2, pcm)

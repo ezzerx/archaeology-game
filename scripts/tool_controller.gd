@@ -4,7 +4,7 @@ extends Node
 @export var block: ExcavationBlock
 @export var camera: Camera3D
 @export var tools: Array[ToolDefinition] = [preload("res://config/soft_brush.tres"),
-	preload("res://config/chisel.tres"), preload("res://config/air_blower.tres")]
+	preload("res://config/chisel.tres"), preload("res://config/air_blower.tres"), preload("res://config/precision_pick.tres")]
 @export var toolbar: Control
 
 signal tool_selected(index: int)
@@ -60,6 +60,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_1, KEY_KP_1: index = 0
 			KEY_2, KEY_KP_2: index = 1
 			KEY_3, KEY_KP_3: index = 2
+			KEY_4, KEY_KP_4: index = 3
 		if index >= 0:
 			select_tool(index)
 			get_viewport().set_input_as_handled()
@@ -135,7 +136,7 @@ func refresh_view() -> void:
 	_render_cursor()
 
 func _render_cursor() -> void:
-	var color := [Color(0.95, 0.8, 0.2), Color(1.0, 0.45, 0.18), Color(0.3, 0.85, 1.0)][selected_index] as Color
+	var color := [Color(0.95, 0.8, 0.2), Color(1.0, 0.45, 0.18), Color(0.3, 0.85, 1.0), Color(0.75, 0.9, 0.65)][selected_index] as Color
 	block.show_cursor(hit, config.radius, color.lerp(Color.WHITE, _impact_flash / 0.07))
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN if hit.inside else Input.MOUSE_MODE_VISIBLE
 

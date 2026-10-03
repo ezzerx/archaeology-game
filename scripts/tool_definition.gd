@@ -1,9 +1,9 @@
 class_name ToolDefinition
 extends Resource
-## P2 tuning only. Power = work/second for strokes, work/impact for the chisel.
+## Prototype resources. Power = work/second for strokes, work/impact for Chisel.
 ## Effectiveness vector order follows the three fixed P1 layers: Soil, Clay, Stone.
 
-enum InteractionMode { CONTINUOUS, IMPACT }
+enum InteractionMode { CONTINUOUS, IMPACT, SCRAPE }
 
 @export var id: StringName
 @export var display_name: String
@@ -27,6 +27,9 @@ enum InteractionMode { CONTINUOUS, IMPACT }
 ## Percentage points per direct impact on a centre cell exposed BEFORE the hit.
 @export_range(0.0, 100.0, 0.1) var bone_damage := 0.0:
 	set(value): bone_damage = clampf(value, 0.0, 100.0)
+## P4 Precision Pick prototype only: motion gates work; each pass is shallow.
+@export_range(1.0, 1000.0, 1.0) var scrape_reference_speed := 100.0
+@export_range(0.0001, 0.02, 0.0001) var scrape_max_depth := 0.004
 
 func effectiveness_for(material_id: StringName) -> float:
 	match material_id:
@@ -40,4 +43,5 @@ func structural_rate(material: MaterialDefinition) -> float:
 	return rate * cadence if interaction_mode == InteractionMode.IMPACT else rate
 
 func mode_name() -> String:
+	if interaction_mode == InteractionMode.SCRAPE: return "SCRAPE (MOVE)"
 	return "IMPACTS" if interaction_mode == InteractionMode.IMPACT else "CONTINUOUS"
