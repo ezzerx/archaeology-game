@@ -1,8 +1,8 @@
 # Statut canonique
 
-- Date : **2026-10-02**.
+- Date : **2026-10-03**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — passe corrective P4 livrée, nouveau test humain attendu ; P5 interdit**.
+- Phase : **préproduction — deuxième passe corrective P4 livrée, nouveau test humain attendu ; P5 interdit**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation initiale `42ec46d`, puis correctifs documentés dans le rapport).
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -62,15 +62,15 @@ Rapports :
 - Le Chisel actuel reste encore trop proche d'un effacement local de heightfield : P4 doit introduire une vraie réaction de matière avant de décider d'une mécanique de protection supplémentaire.
 - Les valeurs de vitesse/puissance actuelles peuvent sembler lentes ; ne pas faire le tuning final avant P7, sauf nécessité de test.
 
-## P4 — Correctifs après premier test humain ▶
+## P4 — Deuxième passe corrective après test humain ▶
 
-Le premier test humain est **très positif** : Antoine a continué environ 15 minutes alors qu'il devait arrêter, et juge le Chisel très fun. Fractures Clay/Sandstone, profondeur, lisibilité, condition, zoom et picking à préserver. Ce retour n'autorise aucun merge.
+Les tests humains sont **très positifs** : environ 15 minutes supplémentaires, Chisel très fun, fracture Clay/Sandstone, profondeur, lisibilité Bone/matrice, condition moins punitive et zoom/pan validés. Les sons découverte osseuse/hit direct sont jugés parfaits ; le Brush audio suffit pour P4. Ce retour n’autorise aucun merge.
 
-Passe corrective livrée : Fine Dust granuleuse persistante ; Loose Debris sparse nettoyable sans danger ; souffle directionnel avec hook d'éjection monde ; Brush audio continu ; sons distincts découverte osseuse / hit direct ; pan RMB borné, Home/R cohérents. Ressources de tuning et fracture inchangées. Aucune nouvelle protection osseuse.
+Deuxième passe livrée : Transient Chunks de 1–2 s ; Loose Debris limités à **deux miettes ≤1,6 mm par zone 24×24 texels**, toutes matières confondues ; excédent vers Fine Dust persistante dominante. Blower directionnel et hook monde conservés. **Precision Pick [4]**, quatrième outil explicitement autorisé : grattage LMB + mouvement, petit rayon, restes structurels Clay/Sandstone, zéro dégât provisoire P4 et plafond osseux intact. Aucun auto-stop Chisel ni bonus Brush. Ressources et comportement des trois outils historiques, fracture, sons et caméra inchangés.
 
-**585 checks fonctionnels passent**, ainsi que l'oracle GPU de 194 955 pixels. Derniers scénarios graphiques : **239,13–240,00 FPS**, P95 maximal **11,190 ms**, frame maximale **13,602 ms** sur RTX 5080 / 1080p. Blower : zéro upload height. Cap 240 FPS / physique 60 Hz.
+**642 checks fonctionnels passent**, 28 WAV historiques identiques à l’octet, oracle GPU de 194 955 pixels. Quatorze scénarios graphiques : **222,30–240,01 FPS**, P95 maximal **13,243 ms**, frame maximale **17,892 ms**, RTX 5080 / 1080p. Bloc saturé au repos : 2 322 miettes, zéro upload height ; Blower : zéro modification de hauteur ; Pick : condition 100 %, zéro fracture. Deux sessions de 60 secondes simulées sans nettoyage gardent 29/27 miettes, puis zéro après souffle. Cap 240 FPS / physique 60 Hz.
 
-Prochaine action : **retest humain 10–15 minutes** selon [P4_REPORT](../dev/P4_REPORT.md#retest-humain--10-à-15-minutes), notamment avant/après nettoyage, finition d'un os, Brush audio, distinction découverte/erreur et pan à 3×. **PR #5 reste en brouillon, non mergée ; P5 interdit.**
+Prochaine action : **retest humain 10–15 minutes** selon les huit points de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--10-à-15-minutes), surtout densité après 30–60 s de Chisel, poussière, avant/après Blower et finition des côtes/crâne au Pick. La cadence du nettoyage et le débit du Pick demandent un jugement humain. **PR #5 reste en brouillon, non mergée ; P5 interdit.**
 
 ### Livraison initiale conservée comme historique
 

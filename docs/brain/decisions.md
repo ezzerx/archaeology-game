@@ -258,3 +258,15 @@ Décisions confirmées : Fine Dust et Loose Debris persistants séparés ; miett
 Implémentation vérifiée : carte de poussière R8 conservée, bins sparse 8×8 et MultiMesh, paquets de miettes regroupés localement pour éviter un objet par tick. 585 checks passent, oracle GPU et budget graphique conservés. La masse des paquets est une quantité visuelle normalisée ; la physique fine reste une limite explicite.
 
 Le premier retour positif ne valide pas encore les corrections : attendre le nouveau test humain du rapport. PR #5 reste en brouillon et non mergée.
+
+## Deuxième test humain et finition P4 — 2026-10-03
+
+Antoine confirme Chisel/fracture, profondeur, lisibilité, condition moins punitive et zoom/pan. Sons découverte/hit direct jugés parfaits, Brush audio suffisant pour P4. La boucle suscite encore environ 15 minutes de jeu supplémentaires. Préserver ces acquis.
+
+La correction autorisée sépare **Transient Chunks / Loose Debris / Fine Dust**. Les gros éclats expirent en 1–2 secondes ; les miettes persistantes sont plafonnées localement (deux par 24×24 texels, toutes matières partagées, taille ≤1,6 mm). Au plus 8 % du retrait nourrit les miettes, l’excédent retourne à Fine Dust. Le nettoyage libère le budget. Ce choix vise un Blower périodique satisfaisant sans timer ni retuning de ses paramètres.
+
+**Exception explicite au périmètre initial : quatrième outil Precision Pick [4].** LMB maintenu + mouvement, rayon 3 texels, retrait structurel lent et local de Clay/Sandstone, sans fracture de plaques. Un passage respecte l’interface initiale, une profondeur maximale et le bone ceiling. Zéro dégât **provisoire P4** pour pouvoir finir les restes attachés ; aucune protection supplémentaire du Chisel et aucun bonus Brush. Les paramètres du nouvel outil sont des valeurs de départ, pas le tuning P7.
+
+Vérifié : 642 checks, 28 WAV historiques identiques à l’octet, oracle GPU conservé ; 14 scénarios à 222–240 FPS sur la machine de référence, y compris bloc entièrement sali au repos et Pick autour des os. Les sessions de 60 secondes simulées de Chisel gardent 29/27 miettes dans leurs zones ; ce résultat technique ne valide pas à lui seul la cadence humaine du nettoyage.
+
+Prochaine action : huit points de retest dans [P4_REPORT](../dev/P4_REPORT.md). **STOP après livraison, PR #5 en brouillon, aucun merge ni P5 sans nouvelle autorisation explicite.**

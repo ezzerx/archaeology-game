@@ -6,6 +6,8 @@
 **Engine:** Godot 4.x, version stable à figer au démarrage du développement  
 **Purpose:** Valider le cœur de gameplay avant toute production du jeu complet.
 
+**Addendum P4 — 2026-10-03 :** la deuxième passe corrective autorise explicitement un quatrième outil prototype, **Precision Pick [4]**, pour la finition des restes attachés, sûr sur l’os à titre provisoire. Cette exception au périmètre initial de trois outils est décrite dans [P4_REPORT](dev/P4_REPORT.md) et [P4_MATERIAL_REACTION_DECISION](dev/P4_MATERIAL_REACTION_DECISION.md). Aucun P5 ni merge P4 autorisé.
+
 ## 1. Objectif du prototype
 
 La V0.1 n'est **pas une vertical slice** d'ArchaeologyGame.

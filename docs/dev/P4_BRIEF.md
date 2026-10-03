@@ -6,6 +6,8 @@
 **Renderer:** keep current Compatibility renderer unless a concrete P4 blocker requires a documented decision  
 **Gate:** P5 must not start before human validation of P4
 
+**Corrective addendum — 2026-10-03:** Antoine explicitly authorized a fourth prototype tool, Precision Pick, and a split between transient chunks, locally budgeted persistent crumbs and dominant fine dust. This supersedes the original three-tool scope below. Preserve the human-validated Chisel fracture, existing tool values, bone sounds, Brush audio and camera. Current implementation, tests and retest gate: [P4_REPORT](P4_REPORT.md) and [P4_MATERIAL_REACTION_DECISION](P4_MATERIAL_REACTION_DECISION.md). PR #5 stays draft; no merge or P5.
+
 ## Goal
 
 P4 must answer:

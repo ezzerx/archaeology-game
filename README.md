@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; passe corrective P4 prête pour retest humain.**
+**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; deuxième passe corrective P4 prête pour retest humain.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -53,9 +53,9 @@ P4 ajoute les réactions de matière :
 - sons distincts ;
 - meilleure lisibilité Bone contact.
 
-Le premier test humain confirme le plaisir de la fracture et du Chisel. La passe corrective ajoute poussière granuleuse et miettes persistantes, nettoyage directionnel sans dégâts, Brush audio continu, sons distincts découverte/hit direct et pan au clic droit. Les effets restent des placeholders ; picking, fracture et réglages des outils sont préservés.
+Les tests humains confirment le plaisir de la fracture/Chisel, les sons osseux et la caméra. La deuxième passe corrective réduit les miettes persistantes à deux par zone locale ; les gros éclats expirent en 1–2 secondes et la poussière fine devient la trace dominante. **[4] Precision Pick** finit les petits restes structurels avec **LMB maintenu + mouvement**, sans dégât pour ce prototype. Brush nettoie les miettes détachées, Blower souffle poussière et miettes. Réglages des trois outils historiques, fracture, audio validé et caméra préservés.
 
-**585 checks fonctionnels passent**, ainsi que les tests graphiques à environ 240 FPS. La sonde attentive révèle 49,9 % du crâne à 100 % de condition ; elle ne remplace pas le jugement humain sur l'équité et le plaisir de fouiller. Aucune marge de sécurité ni bonus Brush ajouté.
+**642 checks fonctionnels passent**, ainsi que l’oracle GPU et 14 scénarios graphiques entre 222 et 240 FPS sur RTX 5080 / 1080p. La sécurité du Pick reste provisoire P4. Aucune marge de sécurité, protection automatique du Chisel ni bonus Brush ; le plaisir de finir un os et la fréquence du Blower attendent le retest humain.
 
 Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Tester 10–15 minutes selon la [checklist P4](docs/dev/P4_REPORT.md#retest-humain--10-à-15-minutes). **PR #5 en brouillon, non mergée ; P5 interdit.**
 
