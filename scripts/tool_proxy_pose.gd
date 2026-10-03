@@ -1,11 +1,15 @@
 class_name ToolProxyPose
 extends RefCounted
-## Visual frame only. Continuous on the upper hemisphere: no look-at pole/roll
-## switch. All proxy geometry lives at local y >= 0, outside the contact plane.
+## Fixed orientation, anchored tip, minimal vertical body lift. No normal frame.
 
 var parts: Array[Dictionary] = []
 var last_transform := Transform3D.IDENTITY
 var last_upload := -1
+var last_recoil := -1.0
+var body_lift := 0.0
+
+static func fixed_basis(tool: int) -> Basis:
+	return Basis.from_euler(Vector3(0.10, 0, -0.20 if tool != 2 else -0.18))
 
 func register_part(part: MeshInstance3D, tip_length: float) -> void:
 	# Read render arrays directly: get_faces() quantizes its derived triangle
@@ -46,82 +50,66 @@ static func normals_for(vertices: PackedVector3Array) -> PackedVector3Array:
 		for j in range(3): normals[i + j] = normal
 	return normals
 
-func fit(proxy: Node3D, block: ExcavationBlock, world_normal := Vector3.UP) -> void:
-	# Contact-normal orientation solves the tangent plane. Concave cavities can
-	# still intersect the distant handle: lift ONLY visual vertices above local
-	# relief. The origin/tip and every gameplay query remain untouched.
-	if proxy.global_transform == last_transform and block.upload_count == last_upload: return
+func fit(proxy: Node3D, block: ExcavationBlock, recoil := 0.0) -> void:
+	if proxy.global_transform == last_transform and block.upload_count == last_upload and recoil == last_recoil: return
 	last_transform = proxy.global_transform
 	last_upload = block.upload_count
-	var contact := block.to_local(proxy.global_position)
-	var normal := (block.global_basis.transposed() * world_normal).normalized()
-	# A pose only touches a small patch. Reuse its relief lattice samples across
-	# parts; no global scan/cache and no change to the authoritative picking code.
+	last_recoil = recoil
+	# One translation for the rigid body/handle. Only the first 4 mm of the
+	# shaft blends that lift to zero at the exact tip. XY and global angle never
+	# change. Probe the fixed geometry once, solve the required lift directly.
+	body_lift = 0.0
 	var lattice: Dictionary = {}
+	var prepared: Array[Dictionary] = []
 	for item in parts:
 		var part: MeshInstance3D = item.node
 		var to_block := block.global_transform.affine_inverse() * part.global_transform
-		var from_block := to_block.affine_inverse()
 		var vertices: PackedVector3Array = item.source.duplicate()
-		var changed := false
+		var weights := PackedFloat32Array()
 		var low := Vector3(INF, INF, INF)
 		var high := Vector3(-INF, -INF, -INF)
 		for i in range(vertices.size()):
-			var point := to_block * vertices[i]
-			var signed_distance := (point - contact).dot(normal)
-			if signed_distance < 0:
-				point -= normal * signed_distance
-				changed = true
-			var raised := contact if point.distance_squared_to(contact) < 0.000000000001 else _raise(point, block.relief, lattice)
-			changed = changed or raised != point
-			vertices[i] = raised
-			low = low.min(raised)
-			high = high.max(raised)
+			weights.append(clampf((vertices[i].y + part.position.y) / 0.004, 0, 1))
+			vertices[i] = to_block * vertices[i]
+			low = low.min(vertices[i])
+			high = high.max(vertices[i])
 		var upper := _maximum_height(block.relief, low, high, lattice)
-		changed = _clear_faces(vertices, item.indices, block.relief, lattice, upper, contact) or changed
-		if changed or item.fitted:
+		for i in range(vertices.size()):
+			body_lift = maxf(body_lift, _required_lift(vertices[i], weights[i], block.relief, lattice))
+		for i in range(0, item.indices.size(), 3):
+			var ids := Vector3i(item.indices[i], item.indices[i + 1], item.indices[i + 2])
+			if minf(vertices[ids.x].y, minf(vertices[ids.y].y, vertices[ids.z].y)) >= upper + 0.0001: continue
+			for bary: Vector3 in [Vector3.ONE / 3, Vector3(0.5, 0.5, 0), Vector3(0, 0.5, 0.5), Vector3(0.5, 0, 0.5),
+					Vector3(4, 1, 1) / 6, Vector3(1, 4, 1) / 6, Vector3(1, 1, 4) / 6]:
+				var point := vertices[ids.x] * bary.x + vertices[ids.y] * bary.y + vertices[ids.z] * bary.z
+				var weight := weights[ids.x] * bary.x + weights[ids.y] * bary.y + weights[ids.z] * bary.z
+				body_lift = maxf(body_lift, _required_lift(point, weight, block.relief, lattice))
+		prepared.append({"vertices": vertices, "weights": weights, "inverse": to_block.affine_inverse()})
+	body_lift += maxf(recoil, 0)
+	for index in range(parts.size()):
+		var item := parts[index]
+		var pose := prepared[index]
+		if body_lift > 0 or item.fitted:
 			var expanded := PackedVector3Array()
 			expanded.resize(item.indices.size())
-			for i in range(expanded.size()): expanded[i] = from_block * vertices[item.indices[i]]
+			for i in range(expanded.size()):
+				var id: int = item.indices[i]
+				expanded[i] = pose.inverse * (pose.vertices[id] + Vector3.UP * body_lift * pose.weights[id])
 			var arrays := []
 			arrays.resize(Mesh.ARRAY_MAX)
 			arrays[Mesh.ARRAY_VERTEX] = expanded
 			arrays[Mesh.ARRAY_NORMAL] = normals_for(expanded)
 			item.mesh.clear_surfaces()
 			item.mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays, [], {}, Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE)
-		item.fitted = changed
+		item.fitted = body_lift > 0
 
-static func _raise(point: Vector3, relief: ReliefSurface, lattice: Dictionary) -> Vector3:
-	if point.y >= relief.top_height + 0.0001: return point
+static func _required_lift(point: Vector3, weight: float, relief: ReliefSurface, lattice: Dictionary) -> float:
+	if weight < 0.00001 or point.y >= relief.top_height + 0.0001: return 0.0
 	var uv := SurfaceMapping.local_to_uv(point, relief.dimensions)
-	if uv.x < 0 or uv.y < 0 or uv.x > 1 or uv.y > 1: return point
-	point.y = maxf(point.y, _height_at(relief, uv, lattice) + 0.0001)
-	return point
-
-static func _clear_faces(vertices: PackedVector3Array, indices: PackedInt32Array, relief: ReliefSurface,
-		lattice: Dictionary, upper: float, contact: Vector3) -> bool:
-	# Increasing Y cannot invalidate an earlier clearance. Shared vertices keep
-	# the visual skin closed, with fixed topology and bounded local work.
-	var changed := false
-	for i in range(0, indices.size(), 3):
-		var ids := Vector3i(indices[i], indices[i + 1], indices[i + 2])
-		if minf(vertices[ids.x].y, minf(vertices[ids.y].y, vertices[ids.z].y)) >= upper + 0.000098: continue
-		for weights: Vector3 in [Vector3.ONE / 3.0, Vector3(0.5, 0.5, 0), Vector3(0, 0.5, 0.5), Vector3(0.5, 0, 0.5),
-				Vector3(4, 1, 1) / 6, Vector3(1, 4, 1) / 6, Vector3(1, 1, 4) / 6]:
-			var point := vertices[ids.x] * weights.x + vertices[ids.y] * weights.y + vertices[ids.z] * weights.z
-			var lift := _raise(point, relief, lattice).y - point.y
-			if lift <= 0.000002: continue
-			# Sub-mm reserve only on a face that actually intersects a cavity.
-			# The contact tip is protected below; flat/free parts get no offset.
-			lift += 0.0009
-			var movable := Vector3.ONE
-			for j in range(3):
-				if vertices[ids[j]].distance_to(contact) < 0.0006: movable[j] = 0
-			var share := weights.dot(movable)
-			if share <= 0: continue
-			for j in range(3): vertices[ids[j]].y += lift * movable[j] / share
-			changed = true
-	return changed
+	if uv.x < 0 or uv.y < 0 or uv.x > 1 or uv.y > 1: return 0.0
+	var deficit := _height_at(relief, uv, lattice) + 0.0001 - point.y
+	# A small reserve only at an actual obstruction, never a blanket float.
+	return (deficit + 0.0004) / weight if deficit > 0.000002 else 0.0
 
 static func _maximum_height(relief: ReliefSurface, low: Vector3, high: Vector3, lattice: Dictionary) -> float:
 	if low.y >= relief.top_height: return relief.top_height
@@ -151,10 +139,3 @@ static func _height_at(relief: ReliefSurface, uv: Vector2, lattice: Dictionary) 
 	if fraction.x + fraction.y <= 1.0:
 		return a + (b - a) * fraction.x + (c - a) * fraction.y
 	return d + (c - d) * (1.0 - fraction.x) + (b - d) * (1.0 - fraction.y)
-
-static func contact_basis(normal: Vector3, twist := 0.0) -> Basis:
-	var n := normal.normalized() if normal.length_squared() > 0.5 else Vector3.UP
-	var denominator := maxf(1.0 + n.y, 0.0001)
-	var x := Vector3(1.0 - n.x * n.x / denominator, -n.x, -n.x * n.z / denominator)
-	var basis := Basis(x, n, x.cross(n)).orthonormalized()
-	return basis * Basis(Vector3.UP, twist)

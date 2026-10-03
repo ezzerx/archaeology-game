@@ -36,14 +36,14 @@ func test_pick_readability_and_semantics() -> void:
 	for height in [0.6, 0.25]:
 		var surface := dirty_fixture(height)
 		var original := surface.value_at(cell)
-		# Short slow passes representative of finishing at 3x, 30 texels/s.
-		for i in range(24): surface.apply_continuous(point - Vector2.RIGHT * 0.5, point, pick, 1.0 / 60.0)
+		# One click must work immediately, without movement or long scraping.
+		surface.apply_impact(point, pick)
 		var removal := original - surface.value_at(cell)
 		removals.append(removal)
-		check(removal > 0.004, "less than half a second of slow Pick movement produces visible depth: %.2f" % height)
+		check(removal > 0.035, "one stationary Pick click produces immediately visible depth: %.2f" % height)
 		check(surface.fracture.stress.is_empty() and surface.last_action.chunks.is_empty(), "visible Pick removal still creates no plate fracture")
 	check(removals[0] > removals[1] * 1.5 and removals[1] > 0, "Sandstone remains distinctly harder than Clay with the same finishing gesture")
-	print("P4 PICK READABILITY: 0.4 s at 30 texels/s; Clay depth=", removals[0], "; Sandstone depth=", removals[1])
+	print("P4 PICK READABILITY: one stationary impact; Clay depth=", removals[0], "; Sandstone depth=", removals[1])
 	var flake := LooseDebrisView.crumb_mesh().surface_get_arrays(0)
 	var outward := true
 	for i in range(flake[Mesh.ARRAY_VERTEX].size()):
@@ -56,7 +56,7 @@ func test_pick_readability_and_semantics() -> void:
 	var at := surface.loose_debris.point_for(key)
 	var crumbs := surface.loose_debris.cells.duplicate()
 	var before := surface.image.get_data()
-	surface.apply_continuous(at - Vector2.RIGHT, at + Vector2.RIGHT, pick, 0.1)
+	surface.apply_impact(at, pick)
 	check(surface.image.get_data() != before and surface.loose_debris.cells[key] >= crumbs[key],
 		"Pick works the attached substrate below a crumb without pretending to clean that crumb")
 	check(surface.loose_debris.nearby_count(at) > 0, "bounded dev inspection detects a detached crumb at its actual position")

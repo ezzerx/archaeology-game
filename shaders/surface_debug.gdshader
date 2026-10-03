@@ -85,7 +85,19 @@ void fragment() {
 		float islands = smoothstep(0.64 - accumulation * 0.38, 0.79 - accumulation * 0.38, patch);
 		float speckles = smoothstep(0.51, 0.74, medium * 0.6 + fine * 0.4) * smoothstep(0.35, 0.62, broad);
 		dust_cover = clamp((islands * 0.88 + speckles * 0.30) * accumulation, 0.0, 0.92);
-		vec3 dust_color = mix(vec3(0.34, 0.305, 0.235), vec3(0.67, 0.62, 0.50), broad * 0.65 + medium * 0.35);
+		// Local substrate is the deliberate source approximation: no extra map.
+		vec3 dust_low = surface_height > limits.r ? vec3(0.29, 0.145, 0.063) :
+			(surface_height > limits.g ? vec3(0.42, 0.20, 0.105) : vec3(0.56, 0.46, 0.31));
+		vec3 dust_high = surface_height > limits.r ? vec3(0.60, 0.40, 0.21) :
+			(surface_height > limits.g ? vec3(0.73, 0.46, 0.28) : vec3(0.86, 0.76, 0.58));
+		if (exposed_bone) {
+			// Locked rule: dust may obscure detail, never material identity.
+			// Ivory remains dominant even at saturated residue; never stone grey.
+			dust_cover *= 0.26; // <= 0.2392, leaving at least 76% original ivory.
+			dust_low = bone_color.rgb * vec3(0.80, 0.78, 0.72);
+			dust_high = bone_color.rgb * vec3(0.98, 0.96, 0.91);
+		}
+		vec3 dust_color = mix(dust_low, dust_high, broad * 0.65 + medium * 0.35);
 		color = mix(color, dust_color, dust_cover);
 	}
 	float distance_texels = length((UV - cursor_uv) * map_size);
@@ -97,8 +109,8 @@ void fragment() {
 	if (debug_view == 1) { color = vec3(0.25 + 0.75 * surface_height); }
 	if (debug_view == 3) { color = relief_normal * 0.5 + 0.5; }
 	ALBEDO = mix(color, cursor_color.rgb, marker);
-	ROUGHNESS = mix(exposed_bone ? 0.43 : 0.85, 1.0, dust_cover);
-	SPECULAR = mix(exposed_bone ? 0.38 : 0.15, 0.06, dust_cover);
+	ROUGHNESS = mix(exposed_bone ? 0.43 : 0.85, exposed_bone ? 0.65 : 1.0, dust_cover);
+	SPECULAR = mix(exposed_bone ? 0.38 : 0.15, exposed_bone ? 0.28 : 0.06, dust_cover);
 	if (debug_view != 0) {
 		SPECULAR = 0.0;
 		EMISSION = ALBEDO;

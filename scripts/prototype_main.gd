@@ -92,7 +92,7 @@ func _process(delta: float) -> void:
 		var definition: MaterialDefinition = hit.material
 		surface_info = ("Height %.4f | Depth %.1f mm\n%s | Resistance %.1f\n" % [hit.height, hit.depth * 1000.0, definition.display_name, definition.resistance]
 			+ "Effectiveness %.2f | Base rate %.4f depth/s (%.2f mm/s), before fracture\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
-			+ "Fine Dust %.3f | Loose Debris %d bins" % [block.working_map.residue.value_at(hit.uv), block.working_map.loose_debris.cells.size()])
+			+ "Mess %.3f" % block.working_map.residue.value_at(hit.uv))
 		surface_info += feedback.contact_debug(hit)
 	debug_label.text = ("P4 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
 		+ "Zoom %.2fx | Wheel: zoom | RMB drag: pan | Home: overview\n" % camera.zoom_factor

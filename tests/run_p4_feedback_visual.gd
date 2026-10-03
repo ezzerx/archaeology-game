@@ -50,18 +50,18 @@ func dust_captures(zoom: int) -> void:
 	main.feedback._process(0)
 	await process_frame
 	var geometry := block.working_map.image.get_data()
-	var empty := await screenshot("p4-fix3-dust-empty-%dx" % zoom)
+	var empty := await screenshot("p4-final-dust-empty-%dx" % zoom)
 	deposit(0.08)
-	var low := await screenshot("p4-fix3-dust-low-%dx" % zoom)
+	var low := await screenshot("p4-final-dust-low-%dx" % zoom)
 	deposit(0.52)
-	var high := await screenshot("p4-fix3-dust-before-%dx" % zoom)
+	var high := await screenshot("p4-final-dust-before-%dx" % zoom)
 	var low_diff := difference(empty, low)
 	var high_diff := difference(empty, high)
 	check(low_diff.changed_fraction > 0.10, "light accumulation is rendered at %dx" % zoom)
 	check(high_diff.changed_fraction > 0.65 and high_diff.mean_rgb_delta > low_diff.mean_rgb_delta * 1.5,
 		"heavier accumulation visibly increases patch coverage/intensity at %dx" % zoom)
 	await create_timer(2).timeout
-	var persistent := await screenshot("p4-fix3-dust-persistent-%dx" % zoom)
+	var persistent := await screenshot("p4-final-dust-persistent-%dx" % zoom)
 	check(difference(high, persistent).mean_rgb_delta < 0.001, "dust stays visible after all transient lifetimes")
 	select(2)
 	controller.refresh_view()
@@ -69,9 +69,9 @@ func dust_captures(zoom: int) -> void:
 	block.working_map.apply_continuous(CENTER - Vector2.RIGHT * 6, CENTER, controller.tools[2], 0.15)
 	block.flush_texture()
 	await create_timer(0.08).timeout
-	await screenshot("p4-fix3-dust-lift-%dx" % zoom)
+	await screenshot("p4-final-dust-lift-%dx" % zoom)
 	await create_timer(0.25).timeout
-	await screenshot("p4-fix3-dust-drift-%dx" % zoom)
+	await screenshot("p4-final-dust-drift-%dx" % zoom)
 	for i in range(90):
 		await physics_frame
 		block.working_map.apply_continuous(CENTER - Vector2.RIGHT * 6, CENTER, controller.tools[2], 1.0 / 60.0)
@@ -81,7 +81,7 @@ func dust_captures(zoom: int) -> void:
 	block.show_cursor({"inside": false}, 60)
 	main.feedback._process(0)
 	await process_frame
-	var clean := await screenshot("p4-fix3-dust-clean-%dx" % zoom)
+	var clean := await screenshot("p4-final-dust-clean-%dx" % zoom)
 	var clean_diff := difference(empty, clean)
 	check(clean_diff.mean_rgb_delta < high_diff.mean_rgb_delta * 0.1, "Blower leaves a visibly clean swept region")
 	check(geometry == block.working_map.image.get_data() and condition == block.working_map.fossil.condition,
@@ -105,7 +105,12 @@ func contact_captures() -> void:
 		for tool in range(4):
 			select(tool)
 			controller.refresh_view()
-			await screenshot("p4-fix3-%s-proxy-%d" % [kind, tool])
+			await screenshot("p4-final-%s-proxy-%d" % [kind, tool])
+		if kind == "deep":
+			move_to((p + Vector2(24.5, 0.5)) / Vector2(block.map_resolution))
+			select(1)
+			controller.refresh_view()
+			await screenshot("p4-final-deep-edge-proxy-1")
 
 func run() -> void:
 	if DisplayServer.get_name() == "headless":

@@ -6,12 +6,11 @@
 script = ExtResource("1")
 id = &"precision_pick"
 display_name = "Precision Pick"
-interaction_mode = 2
+interaction_mode = 1
 radius = 3.0
-power = 0.22
+power = 0.24
 falloff = 1.5
-effectiveness = Vector3(0.3, 0.75, 1.0)
+cadence = 6.0
+effectiveness = Vector3(0.3, 1.0, 1.5)
 residue_generation = 1.25
 bone_damage = 0.0
-scrape_reference_speed = 40.0
-scrape_max_depth = 0.004

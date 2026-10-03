@@ -62,7 +62,7 @@ static func weight(distance_ratio: float, falloff: float) -> float:
 
 func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 		falloff: float, delta: float, effectiveness := Vector3.ONE,
-		residue_generation := 0.0, stop_at_initial_layer := false, max_cell_depth := 1.0) -> int:
+		residue_generation := 0.0, stop_at_initial_layer := false) -> int:
 	if radius <= 0.0 or strength <= 0.0 or delta <= 0.0:
 		return 0
 	# Sweep a capsule: the entire segment is covered, including fast movements.
@@ -135,10 +135,6 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				if stop_at_initial_layer:
 					var initial_floor := upper if old_value > upper else (lower if old_value > lower else 0.0)
 					next_value = maxf(next_value, initial_floor)
-			if stop_at_initial_layer:
-				# Pick only: bound a delayed/fast scraping pass without changing the
-				# historical continuous Brush kernel or the Chisel fracture path.
-				next_value = maxf(next_value, old_value - max_cell_depth)
 			if next_value < old_value:
 				if next_value <= bone_limit and bone_ceilings[index] > 0.0:
 					# Discard remaining work at bone. Ineffective strokes do not
@@ -195,18 +191,15 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
 	var direct_bone_hit := fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
 		and tool.power > 0.0 and tool.bone_damage > 0.0 and fossil.exposed[fossil.field.index_at_map(to)] != 0
-	var is_fracture := fracture != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT
-	var is_scrape := tool.interaction_mode == ToolDefinition.InteractionMode.SCRAPE
-	var working_time := amount
-	if is_scrape:
-		# A stationary held pick never drills. Faster motion cannot exceed the
-		# nominal work/second; the capsule still covers fast pointer movements.
-		working_time *= clampf(from.distance_to(to) / amount / maxf(tool.scrape_reference_speed, 1.0), 0.0, 1.0)
+	# Pick shares the impact clock, but removes only its tiny footprint directly.
+	# No broad fracture cells, motion gate, or weak per-pass scraping limit.
+	var is_pick := tool.id == &"precision_pick"
+	var is_fracture := fracture != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT and not is_pick
 	if is_fracture:
 		changed = fracture.apply(self, to, tool)
 	elif tool.effectiveness != Vector3.ZERO:
 		changed = apply_segment(from, to, tool.radius, tool.power, tool.falloff,
-			working_time, tool.effectiveness, tool.residue_generation, is_scrape, tool.scrape_max_depth)
+			amount, tool.effectiveness, tool.residue_generation, is_pick)
 	if tool.residue_clear > 0.0 or (changed > 0 and (tool.residue_generation > 0.0 or loose_debris != null)):
 		var start := Time.get_ticks_usec()
 		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount, tool.id == &"air_blower")

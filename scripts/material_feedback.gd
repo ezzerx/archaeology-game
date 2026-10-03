@@ -84,16 +84,16 @@ func _create_proxies() -> void:
 		proxy_poses.append(ToolProxyPose.new())
 		# Tip at origin; the handle extends away from the precise contact marker.
 		if i == 0:
-			_part(proxy, Vector3(0.012, 0.055, 0.010), Vector3(0, 0.059, 0), wood)
-			_part(proxy, Vector3(0.025, 0.015, 0.008), Vector3(0, 0.024, 0), metal)
+			_part(proxy, Vector3(0.009, 0.055, 0.008), Vector3(0, 0.059, 0), wood)
+			_part(proxy, Vector3(0.014, 0.015, 0.006), Vector3(0, 0.024, 0), metal)
 			for bristle in range(7):
-				_part(proxy, Vector3(0.003, 0.017, 0.005), Vector3((bristle - 3) * 0.0035, 0.009, 0), Color(0.76, 0.63, 0.38))
+				_part(proxy, Vector3(0.0017, 0.017, 0.004), Vector3((bristle - 3) * 0.0018, 0.009, 0), Color(0.76, 0.63, 0.38))
 		elif i == 1:
 			_part(proxy, Vector3(0.007, 0.035, 0.004), Vector3(0, 0.0175, 0), Color(0.28, 0.34, 0.38))
-			_part(proxy, Vector3(0.014, 0.04, 0.012), Vector3(0, 0.055, 0), wood)
+			_part(proxy, Vector3(0.010, 0.04, 0.008), Vector3(0, 0.055, 0), wood)
 		elif i == 2:
 			_part(proxy, Vector3(0.008, 0.046, 0.008), Vector3(0, 0.023, 0), metal)
-			_part(proxy, Vector3(0.031, 0.041, 0.022), Vector3(0, 0.065, 0), Color(0.14, 0.26, 0.24))
+			_part(proxy, Vector3(0.016, 0.028, 0.012), Vector3(0, 0.060, 0), Color(0.14, 0.26, 0.24))
 		else:
 			_part(proxy, Vector3(0.0015, 0.013, 0.0015), Vector3(0, 0.0065, 0), Color(0.72, 0.76, 0.77))
 			_part(proxy, Vector3(0.003, 0.025, 0.003), Vector3(0, 0.0255, 0), metal)
@@ -143,20 +143,33 @@ func point_world(point: Vector2) -> Vector3:
 	return block.to_global(Vector3((uv.x - 0.5) * block.surface_size.x,
 		block.relief.height_at(uv) + 0.001, (uv.y - 0.5) * block.surface_size.y))
 
-func _emit(family: int, point: Vector2, count: int) -> void:
+func _emit(family: int, point: Vector2, count: int, impact := Vector2(INF, INF)) -> void:
 	if not particles_enabled or profile.particle_amount <= 0:
 		return
 	var origin := point_world(point)
+	var center := point_world(impact if impact.is_finite() else point)
 	for i in range(mini(ceili(count * profile.particle_amount), 16)):
 		if particles[family].size() >= profile.particles_per_family: break
-		var scale_value := rng.randf_range(0.001, 0.0025) if family in [0, 3] else rng.randf_range(0.003, 0.006)
-		var shape := Vector3(scale_value, scale_value * (0.24 if family == 1 else 0.7), scale_value)
+		var scale_value := rng.randf_range(0.001, 0.0025) if family in [0, 3] else rng.randf_range(0.0012, 0.0024)
+		var shape := Vector3(scale_value, scale_value * (0.18 if family == 1 else 0.32), scale_value * 0.75)
 		var velocity := Vector3(rng.randf_range(-0.04, 0.04), rng.randf_range(0.035, 0.10), rng.randf_range(-0.04, 0.04))
+		var spawn := origin
+		if family in [1, 2]:
+			var away := Vector3(origin.x - center.x, 0, origin.z - center.z)
+			if away.length_squared() < 0.000001:
+				var angle := rng.randf_range(-PI, PI)
+				away = Vector3(cos(angle), 0, sin(angle))
+			away = away.normalized()
+			# Start beyond the marker, already travelling outwards; no cube parked
+			# on the newly exposed crack. Cosmetic only, no fracture changes.
+			var distance := maxf(Vector2(origin.x - center.x, origin.z - center.z).length(), 0.004)
+			spawn = Vector3(center.x, origin.y, center.z) + away * distance
+			velocity = away * rng.randf_range(0.09, 0.14) + Vector3.UP * rng.randf_range(0.025, 0.05)
 		if family == 3: velocity += airflow
 		var lifetime := block.working_map.loose_debris.profile.chunk_lifetime * rng.randf_range(0.85, 1.15) \
 			if family in [1, 2] else profile.particle_lifetime * rng.randf_range(0.65, 1.2)
-		particles[family].append({"position": origin, "velocity": velocity, "life": lifetime,
-			"shape": shape, "rotation": rng.randf_range(-PI, PI), "floor": origin.y})
+		particles[family].append({"position": spawn, "velocity": velocity, "life": lifetime,
+			"shape": shape, "rotation": rng.randf_range(-PI, PI), "floor": origin.y, "impact": center})
 		emitted[family] += 1
 
 func _lift_dust(packets: Array, direction: Vector2) -> void:
@@ -174,8 +187,18 @@ func _lift_dust(packets: Array, direction: Vector2) -> void:
 		var lifetime := rng.randf_range(0.55, 0.9)
 		particles[3].append({"position": origin, "velocity": velocity, "life": lifetime, "duration": lifetime,
 			"shape": Vector3.ONE * width, "rotation": 0.0, "floor": origin.y,
-			"source": point, "amount": amount, "dust": true})
+			"source": point, "amount": amount, "dust": true, "color": dust_color_at(point)})
 		emitted[3] += 1
+
+func dust_color_at(point: Vector2) -> Color:
+	# Match the shader's local-material approximation, including dirty ivory.
+	var surface := block.working_map
+	var cell := Vector2i(point.round()).clamp(Vector2i.ZERO, surface.size - Vector2i.ONE)
+	var index := cell.y * surface.size.x + cell.x
+	if surface.fossil != null and surface.fossil.exposed[index] != 0:
+		return Color(0.87, 0.79, 0.63)
+	var layer := Stratigraphy.index_at(surface.value_at(cell), Vector2(surface.strata.packed_limits[index * 2], surface.strata.packed_limits[index * 2 + 1]))
+	return [Color(0.48, 0.30, 0.14), Color(0.62, 0.36, 0.20), Color(0.76, 0.65, 0.47)][layer]
 
 func on_action(event: Dictionary) -> void:
 	action_count += 1
@@ -190,8 +213,8 @@ func on_action(event: Dictionary) -> void:
 		elif block.working_map.value_at(Vector2i(point.round())) <= block.working_map.strata.sample_limits((point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)).y: layer = 2
 		if not event.bone_revealed and not event.direct_bone_hit:
 			audio.play_family(&"chisel_clay" if layer == 1 else &"chisel_stone", 0.72 if event.chunks.is_empty() else 1.0, true)
-		for chunk in event.chunks:
-			_emit(chunk.layer, chunk.point, clampi(ceili(chunk.cells / 10.0), 1, 5))
+		for chunk in event.chunks.slice(0, 3):
+			_emit(chunk.layer, chunk.point, 1, point)
 	elif event.tool == &"soft_brush":
 		sweep_remaining = 0.12
 		if removed.x + removed.y + event.residue_cleared + loose_cleared > 0:
@@ -199,8 +222,8 @@ func on_action(event: Dictionary) -> void:
 				removed.y > removed.x)
 			if removed.y > removed.x: _emit(0, point, 1)
 	elif event.tool == &"precision_pick" and removed.length_squared() > 0:
-		sweep_remaining = 0.12
-		audio.play_family(&"precision_pick", 0.3)
+		recoil_remaining = 0.14
+		audio.play_family(&"precision_pick", 0.3, true)
 	elif event.tool == &"air_blower" and event.residue_cleared + loose_cleared > 0:
 		sweep_remaining = 0.12
 		var direction: Vector2 = event.get("direction", Vector2(-1, -1).normalized())
@@ -230,19 +253,11 @@ func _process(delta: float) -> void:
 		proxy.visible = controller.hit.inside and i == controller.selected_index
 		if not proxy.visible: continue
 		proxy.global_position = controller.hit.world
-		var twist := 0.0 if i == 1 else sin(sweep_remaining * 85) * 0.035
-		var normal: Vector3 = controller.hit.get("normal", Vector3.UP)
-		var depth := maxf(0, block.thickness - block.to_local(controller.hit.world).y)
-		var axis := (normal + Vector3.UP * minf(depth / 0.015, 2.5)).normalized()
-		# Stand more upright inside cavities, retaining enough lean to see the tip
-		# from the tabletop camera. The normal frame still controls contact sides.
-		var lean := clampf(1.0 - depth / 0.03, 0.35, 1.0)
-		proxy.global_basis = ToolProxyPose.contact_basis(axis, twist) * Basis.from_euler(Vector3(0.5, 0, -0.62) * lean)
-		if i == 1:
-			# Recoil stays visual; stretch away from the anchored tip, never move
-			# the contact marker or drive the head into the local contact plane.
-			proxy.scale.y *= 1.0 + sin(recoil_remaining / 0.14 * PI) * profile.recoil / 0.075
-		proxy_poses[i].fit(proxy, block, normal)
+		# Camera orientation is fixed: the handle always goes to the same screen
+		# side. Neither micronormals, depth nor recoil rotate this frame.
+		proxy.global_basis = ToolProxyPose.fixed_basis(i)
+		var recoil := sin(recoil_remaining / 0.14 * PI) * (profile.recoil if i == 1 else 0.002 if i == 3 else 0.0)
+		proxy_poses[i].fit(proxy, block, recoil)
 	last_proxy_usec = Time.get_ticks_usec() - proxy_started
 	for family in range(4):
 		var active: Array = particles[family]
@@ -268,20 +283,14 @@ func _process(delta: float) -> void:
 			var expansion: float = 1.0 + (1.0 - particle.life / particle.duration) * 1.6 if dust else fade
 			var basis := Basis(Vector3(0.3, 1, 0.2).normalized(), particle.rotation + particle.life * 4).scaled(particle.shape * expansion)
 			pools[family].set_instance_transform(i, Transform3D(basis, particle.position))
-			var color: Color = colors[family]
+			var color: Color = particle.get("color", colors[family])
 			if dust: color.a = fade * clampf(sqrt(particle.amount) * 1.5, 0.08, 0.8)
 			pools[family].set_instance_color(i, color)
 		pools[family].visible_instance_count = maxi(active.size(), 1 if _warmup_frames > 0 else 0)
 	_warmup_frames = maxi(0, _warmup_frames - 1)
 
 func contact_debug(hit: Dictionary) -> String:
-	var loose := block.working_map.loose_debris.nearby_count(hit.map)
-	var transient := 0
-	for family in particles:
-		for particle in family:
-			if particle.position.distance_to(hit.world) < 0.004: transient += 1
-	return "\nContact: %s | Loose nearby: %d | Transient FX nearby: %d" % [
-		"BONE" if hit.bone_exposed else "STRUCTURAL (attached)", loose, transient]
+	return "\nContact: %s | Mess: Brush / Blower" % ["BONE" if hit.bone_exposed else "ATTACHED MATERIAL"]
 
 func reset() -> void:
 	if loose_view != null: loose_view._process(0)

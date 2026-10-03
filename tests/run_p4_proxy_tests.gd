@@ -13,6 +13,8 @@ func run() -> void:
 	var hits := 0
 	var vertices_checked := 0
 	var faces_checked := 0
+	var maximum_lift := 0.0
+	var maximum_clearance := 0.0
 	for kind in ["flat", "slope", "deep", "bone", "fracture"]:
 		control.reset_surface()
 		var p := Vector2(286, 194) if kind == "bone" else Vector2(700, 140)
@@ -34,16 +36,20 @@ func run() -> void:
 				fx.recoil_remaining = 0.07 if tool == 1 else 0.0
 				fx._process(0)
 				var proxy := fx.proxies[tool]
-				var plane_ok := true
 				var terrain_ok := true
 				var faces_ok := true
 				var nearest_tip := INF
+				var rigid_handle := true
+				var pose := fx.proxy_poses[tool]
+				maximum_clearance = maxf(maximum_clearance, pose.body_lift - (0.012 if tool == 1 else 0.0))
+				if pose.body_lift > maximum_lift:
+					maximum_lift = pose.body_lift
+					print("P4 PROXY LIFT CASE: ", kind, " tool ", tool, " offset ", offset, ": ", maximum_lift * 1000, " mm")
 				for part: MeshInstance3D in proxy.get_children():
 					var vertices: PackedVector3Array = part.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX]
 					for vertex: Vector3 in vertices:
 						var world := part.to_global(vertex)
 						nearest_tip = minf(nearest_tip, world.distance_to(control.hit.world))
-						plane_ok = plane_ok and (world - control.hit.world).dot(control.hit.normal) >= -0.000002
 						var v := block.to_local(world)
 						var at := SurfaceMapping.local_to_uv(v, block.surface_size)
 						terrain_ok = terrain_ok and v.y >= block.relief.height_at(at) - 0.000002
@@ -54,20 +60,38 @@ func run() -> void:
 							var face_point := block.to_local(part.to_global(vertices[i] * weights.x + vertices[i + 1] * weights.y + vertices[i + 2] * weights.z))
 							faces_ok = faces_ok and face_point.y >= block.relief.height_at(SurfaceMapping.local_to_uv(face_point, block.surface_size)) - 0.0001
 							faces_checked += 1
-				check(proxy.global_position.distance_to(control.hit.world) < 0.000001 and nearest_tip < 0.000001 and plane_ok and terrain_ok,
-					"tip anchored; real visual body outside contact plane/relief: %s tool %d" % [kind, tool])
+				check(proxy.global_position.distance_to(control.hit.world) < 0.000001 and nearest_tip < 0.000001 and terrain_ok,
+					"tip anchored; real visual body outside relief: %s tool %d" % [kind, tool])
 				check(faces_ok, "face interiors stay outside cavity walls within 0.1 mm: %s tool %d" % [kind, tool])
+				for item in pose.parts:
+					var part: MeshInstance3D = item.node
+					var fitted: PackedVector3Array = part.mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX]
+					for i in range(fitted.size()):
+						var source: Vector3 = item.source[item.indices[i]]
+						if source.y + part.position.y < 0.004: continue
+						var shift := part.to_global(fitted[i]) - part.to_global(source)
+						rigid_handle = rigid_handle and absf(shift.x) < 0.000002 and absf(shift.z) < 0.000002
+						rigid_handle = rigid_handle and absf(shift.y - pose.body_lift) < 0.000002
+				check(rigid_handle and (kind != "flat" or tool == 1 or pose.body_lift == 0),
+					"body lift is a rigid vertical translation; no blanket float on flat ground")
 				var transform := proxy.global_transform
 				var first: PackedVector3Array = proxy.get_child(0).mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX].duplicate()
 				fx._process(0)
 				check(proxy.global_transform == transform and proxy.get_child(0).mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX] == first,
 					"unchanged contact is exactly stable without pose jitter")
+				# The previous tangent-plane/normal-following expectation is retired:
+				# only actual relief clearance matters, never the infinite tangent.
+				control.hit.normal = Vector3(0.99999, 0.0001, 0.00001).normalized()
+				fx._process(0)
+				check(proxy.global_basis == ToolProxyPose.fixed_basis(tool) and proxy.global_transform == transform
+					and proxy.get_child(0).mesh.surface_get_arrays(0)[Mesh.ARRAY_VERTEX] == first,
+					"normal changes cannot rotate the proxy or move its handle")
 		check(block.working_map.image.get_data() == geometry and block.working_map.fossil.condition == condition
 			and block.working_map.fossil.field.ceilings == ceiling, "proxy fitting cannot modify gameplay: " + kind)
-	var a := ToolProxyPose.contact_basis(Vector3(0.99999, 0.0001, 0).normalized())
-	var b := ToolProxyPose.contact_basis(Vector3(0.99999, 0.0001, 0.000001).normalized())
-	check(a.x.distance_to(b.x) < 0.0001 and a.z.distance_to(b.z) < 0.0001, "steep normal has no look-at roll pole")
+	check(maximum_clearance < 0.037, "even the near-vertical test cavity needs less than 37 mm clearance, not an unbounded lift")
 	main.queue_free()
 	await process_frame
 	print("P4 PROXY TESTS: %d checks, %d failures; %d contacts, %d rendered vertices, %d face probes" % [checks, failures, hits, vertices_checked, faces_checked])
+	print("P4 PROXY MAX BODY LIFT: ", maximum_lift * 1000, " mm including recoil")
+	print("P4 PROXY MAX CLEARANCE: ", maximum_clearance * 1000, " mm excluding recoil")
 	quit(0 if failures == 0 else 1)

@@ -5,52 +5,48 @@ var pick: ToolDefinition = preload("res://config/precision_pick.tres")
 func sync(surface: WorkingSurface) -> void:
 	surface.image.set_data(surface.size.x, surface.size.y, false, Image.FORMAT_RF, surface._heights.to_byte_array())
 
-func test_scrape() -> void:
-	check(pick.id == &"precision_pick" and pick.interaction_mode == ToolDefinition.InteractionMode.SCRAPE
+func test_micro_impacts() -> void:
+	# Final human decision supersedes SCRAPE/movement and 0.004 per-pass limits.
+	check(pick.id == &"precision_pick" and pick.interaction_mode == ToolDefinition.InteractionMode.IMPACT
 		and pick.radius < chisel.radius / 3 and pick.bone_damage == 0 and pick.residue_clear == 0,
 		"data-driven Pick has a small structural footprint, provisional zero damage and no cleanup bonus")
 	for height in [0.9, 0.6, 0.25]:
 		var surface := dirty_fixture(height)
 		var before := surface.image.get_data()
 		var before_values := before.to_float32_array()
-		surface.apply_continuous(point, point, pick, 10)
-		check(surface.image.get_data() == before and surface.last_action.is_empty(), "held stationary Pick never drills any material")
-		var changed := surface.apply_continuous(point - Vector2.RIGHT * 2, point, pick, 1.0 / 60.0)
-		check(changed > 0 and surface.value_at(cell) < height, "moving Pick slowly removes structural material: %.2f" % height)
+		var changed := surface.apply_impact(point, pick)
+		check(changed > 0 and surface.value_at(cell) < height - 0.02, "one stationary Pick impact visibly removes material: %.2f" % height)
 		var precise := true
 		for y in range(surface.size.y):
 			for x in range(surface.size.x):
-				var distance := Vector2(x, y).distance_to(Vector2(clampf(x, point.x - 2, point.x), point.y))
+				var distance := Vector2(x, y).distance_to(point)
 				if distance >= pick.radius: precise = precise and surface._heights[y * surface.size.x + x] == before_values[y * surface.size.x + x]
-		check(precise and changed < 50, "Pick work stays in a narrow capsule without broad collateral fracture")
+		check(precise and changed <= 25, "Pick work stays inside a tiny disk without a swept bridge or broad fracture")
 		check(surface.fracture.stress.is_empty() and surface.last_action.chunks.is_empty()
 			and surface.last_action.marks == 0, "Pick never triggers Chisel plate stress or chunks")
 	var bulk := fixture(0.6)
 	var fine := fixture(0.6)
-	for i in range(60):
-		fine.apply_continuous(point - Vector2.RIGHT, point + Vector2.RIGHT, pick, 1.0 / 60.0)
-		if i % 14 == 0: bulk.apply_impact(point, chisel)
+	for i in range(6): fine.apply_impact(point, pick)
+	for i in range(5): bulk.apply_impact(point, chisel)
 	var fine_removed := 0.0
 	var bulk_removed := 0.0
 	for i in range(fine._heights.size()):
 		fine_removed += 0.6 - fine._heights[i]
 		bulk_removed += 0.6 - bulk._heights[i]
-	check(fine_removed > 0 and bulk_removed > fine_removed * 10, "default Pick is much slower at bulk removal than Chisel")
+	check(fine_removed > 0 and bulk_removed > fine_removed * 10, "one second: Chisel removes over ten times the bulk despite fast local Pick work")
+	check(0.6 - fine.value_at(cell) > 0.25, "six stationary micro-impacts quickly clear a substantial attached Clay cap")
+	print("P4 PICK BULK: Pick=", fine_removed, "; Chisel=", bulk_removed, "; ratio=", bulk_removed / fine_removed)
 	var strong := pick.duplicate() as ToolDefinition
 	strong.power = 5
-	strong.scrape_reference_speed = 1
 	for boundary in [0, 1]:
 		var layer := dirty_fixture(0.6)
 		for i in range(layer._heights.size()): layer._heights[i] = layer.strata.packed_limits[i * 2 + boundary] + 0.0005
 		sync(layer)
-		layer.apply_continuous(point - Vector2.RIGHT * 2, point, strong, 10)
+		layer.apply_impact(point, strong)
 		var bounded := true
 		for i in range(layer._heights.size()): bounded = bounded and layer._heights[i] >= layer.strata.packed_limits[i * 2 + boundary]
 		check(bounded and layer.value_at(cell) == layer.strata.packed_limits[(cell.y * layer.size.x + cell.x) * 2 + boundary],
-			"a delayed/strong Pick pass stops exactly at its initial material interface")
-	var delayed := fixture(0.6)
-	delayed.apply_continuous(point - Vector2.RIGHT * 2, point, strong, 10)
-	check(0.6 - delayed.value_at(cell) <= pick.scrape_max_depth + 0.000001, "one delayed Pick pass has a bounded depth")
+			"even a debug-strength Pick impact stops exactly at its initial material interface")
 
 func test_bone_finish() -> void:
 	var size := Vector2i(128, 80)
@@ -68,11 +64,13 @@ func test_bone_finish() -> void:
 		var before := surface._heights[index]
 		surface.apply_continuous(target, target, brush, 2)
 		check(surface._heights[index] == before, "Brush cannot remove the attached Sandstone remnant on bone")
-		for i in range(90): surface.apply_continuous(target - Vector2.RIGHT, target + Vector2.RIGHT, pick, 1.0 / 60.0)
+		surface.apply_impact(target, pick)
 		check(surface._heights[index] == field.ceilings[index] and surface.fossil.exposed[index] != 0,
 			"Pick finishes an attached remnant exactly down to skull/rib bone ceiling")
+		check(surface.last_action.bone_revealed and not surface.last_action.direct_bone_hit, "Pick reveal event remains distinct from damaging bone hit")
+		for i in range(30): surface.apply_impact(target, pick)
 		check(surface.fossil.condition == 100 and not surface.last_action.get("direct_bone_hit", false),
-			"repeated Pick strokes over visible bone cause no damage in this P4 prototype")
+			"repeated Pick impacts over visible bone cause no damage in this P4 prototype")
 	var bounded := true
 	for i in range(field.ceilings.size()): bounded = bounded and surface._heights[i] >= field.ceilings[i]
 	check(bounded, "Pick never tunnels below any bone ceiling")
@@ -134,14 +132,29 @@ func test_input_and_sound() -> void:
 			unchanged = unchanged and hash.finish().hex_encode() == validated[family][variant]
 	check(unchanged, "all 28 human-validated audio variants remain byte-identical to c25b44f")
 	var surface: WorkingSurface = control.block.working_map
-	surface.apply_continuous(Vector2(700, 140), Vector2(702, 140), control.config, 1.0 / 60.0)
+	surface.apply_impact(Vector2(702, 140), control.config)
 	check(fx.audio.last_family == &"precision_pick" and fx.emitted[1] == 0 and fx.emitted[2] == 0,
 		"real Pick action routes its quiet sound without emitting hard fracture chunks")
+	# Exercise the production controller clock, holding still in screen space.
+	control._screen = main.camera.unproject_position(fx.point_world(Vector2(702, 140)))
+	control._focused = true
+	control._pointer_inside = true
+	control._held = true
+	control.impact_clock.reset()
+	var impacts := control.total_impacts
+	for tick in range(60): control._physics_process(1.0 / 60.0)
+	check(control.total_impacts - impacts == 6, "stationary held Pick produces six real impacts in one second")
+	control.cancel_stroke()
+	for tap in range(3):
+		control._held = true
+		control._physics_process(1.0 / 60.0)
+		control.cancel_stroke()
+	check(control.total_impacts - impacts == 9, "three fresh short clicks each produce an immediate micro-impact")
 	main.queue_free()
 	await process_frame
 
 func run() -> void:
-	test_scrape()
+	test_micro_impacts()
 	test_bone_finish()
 	await test_input_and_sound()
 	print("P4 PICK TESTS: %d checks, %d failures" % [checks, failures])

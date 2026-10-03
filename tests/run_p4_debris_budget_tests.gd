@@ -54,16 +54,37 @@ func run() -> void:
 	check(fx.particles[1].size() == profile.particles_per_family
 		and fx.particles[2].size() == profile.particles_per_family, "repeated chunk emission respects fixed family pools")
 	var lifetime_ok := true
+	var outward := true
+	var small := true
 	for family in [1, 2]:
-		for particle in fx.particles[family]: lifetime_ok = lifetime_ok and particle.life >= 1 and particle.life <= 2
-	check(lifetime_ok, "all transient hard chunks live between one and two seconds")
-	fx._process(0.9)
-	check(not fx.particles[1].is_empty() and not fx.particles[2].is_empty(), "chunks remain visible long enough to fly and bounce")
-	fx._process(1.1)
-	check(fx.particles[1].is_empty() and fx.particles[2].is_empty(), "hard chunks leave no persistent pile after two seconds")
+		for particle in fx.particles[family]:
+			lifetime_ok = lifetime_ok and particle.life >= 0.50 and particle.life <= 0.70
+			var radial: Vector3 = particle.position - particle.impact
+			radial.y = 0
+			outward = outward and radial.length() >= 0.00399 and radial.normalized().dot(particle.velocity) >= 0.089
+			small = small and particle.shape.x <= 0.0024 and particle.shape.y <= 0.00077
+	check(lifetime_ok, "short hard-chip lifetime: 0.51 to 0.69 seconds")
+	check(small and outward, "flat chips <=2.4 mm start outside the marker with >=0.09 m/s outward velocity")
+	fx._process(0.1)
+	var clear_center := true
+	for family in [1, 2]:
+		for particle in fx.particles[family]:
+			clear_center = clear_center and Vector2(particle.position.x - particle.impact.x, particle.position.z - particle.impact.z).length() >= 0.012
+	check(clear_center, "all emitted chips are at least 12 mm from impact after 100 ms")
+	fx._process(0.6)
+	check(fx.particles[1].is_empty() and fx.particles[2].is_empty(), "hard chips leave no persistent pile after 0.7 seconds")
 	check(block.working_map.image.get_data() == structural and block.working_map.residue.image.get_data() == dust
 		and block.working_map.loose_debris.cells.is_empty() and block.working_map.fossil.condition == 100,
 		"transient creation/bounce/expiry never owns gameplay geometry, dirt or damage")
+	var p := Vector2(700, 140)
+	block.working_map.apply_segment(p, p, 65, 1.15, 1.5, 1)
+	var limited := true
+	for i in range(12):
+		var before := fx.emitted[1] + fx.emitted[2]
+		block.working_map.apply_impact(p, chisel)
+		limited = limited and fx.emitted[1] + fx.emitted[2] - before <= 3
+	check(limited, "real Chisel fracture emits at most three small hard chips per impact")
+	block.working_map.reset()
 	block.working_map.loose_debris.deposit_removed(700, 140, 1000, 2)
 	fx.loose_view._process(0)
 	check(fx.loose_view.multimesh.visible_instance_count == 1, "saturated persistent deposit renders one crumb")

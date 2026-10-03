@@ -15,6 +15,10 @@ func prepare_fixture(kind: String) -> void:
 		block.working_map.apply_segment(Vector2(710, 140), Vector2(710, 140), 25, 100, 1.5, 1)
 	if kind == "proxy_bone":
 		block.working_map.apply_segment(Vector2(286, 194), Vector2(286, 194), 65, 100, 1.5, 1)
+	if kind == "dusty_bone":
+		var p := Vector2(286, 194)
+		block.working_map.apply_segment(p, p, 70, 100, 1.5, 1, Vector3.ONE, 8)
+		block.working_map.residue.apply_segment(p, p, 80, 1, 0)
 	if kind == "dirty_idle":
 		# Worst resting case: every local bucket across the block is occupied.
 		for y in range(0, block.map_resolution.y, 8):
@@ -53,9 +57,9 @@ func scenario(kind: String, zoom: float) -> void:
 	(camera as PrecisionZoom).reset_view()
 	controller._focused = true
 	controller._pointer_inside = true
-	select(3 if kind.begins_with("pick") else (0 if kind in ["soil", "dirty_idle", "proxy_cavity", "proxy_bone"] else (2 if kind == "blower" else 1)))
+	select(3 if kind.begins_with("pick") else (0 if kind in ["soil", "dirty_idle", "proxy_cavity", "proxy_bone", "dusty_bone"] else (2 if kind == "blower" else 1)))
 	prepare_fixture(kind)
-	var center := Vector2(0.28, 0.305) if kind in ["bone", "pick", "proxy_bone"] else Vector2(0.70, 0.22)
+	var center := Vector2(0.28, 0.305) if kind in ["bone", "pick", "proxy_bone", "dusty_bone"] else Vector2(0.70, 0.22)
 	move_to(center)
 	if zoom > 1:
 		(camera as PrecisionZoom)._focused = true
@@ -82,12 +86,14 @@ func scenario(kind: String, zoom: float) -> void:
 		await physics_frame
 		controller._focused = true
 		controller._pointer_inside = true
-		controller._held = kind not in ["dirty_idle", "proxy_cavity", "proxy_bone"]
+		controller._held = kind not in ["dirty_idle", "proxy_cavity", "proxy_bone", "dusty_bone"]
 		var p := Vector2(655 + (tick / 40 as int % 5) * 29, 115 + (tick / 200 as int) * 32)
 		var uv := (p + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
 		if kind in ["soil", "blower"]: uv = center + Vector2(0.065 * sin(tick / 80.0), 0.07 * cos(tick / 67.0))
 		if kind == "bone": uv = center + Vector2(0.012 * sin(tick / 100.0), 0.006 * cos(tick / 90.0))
-		if kind.begins_with("pick"): uv = center + Vector2(0.005 * sin(tick / 5.0), 0.003 * cos(tick / 9.0))
+		# Stationary bursts, then move to the next small remnant.
+		if kind.begins_with("pick"): uv = center + Vector2((tick / 60 as int % 3 - 1) * 0.008, (tick / 180 as int) * 0.008)
+		if kind == "dusty_bone": uv = center
 		if kind == "proxy_cavity": uv = (Vector2(710 + 24 * sin(tick / 15.0), 140 + 24 * cos(tick / 21.0)) + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
 		if kind == "proxy_bone": uv = (Vector2(286 + 24 * sin(tick / 15.0), 194 + 24 * cos(tick / 21.0)) + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
 		move_to(uv)
@@ -98,8 +104,8 @@ func scenario(kind: String, zoom: float) -> void:
 		upload_times.append((block.last_upload_usec + block.last_residue_upload_usec + block.last_fracture_upload_usec) / 1000.0)
 		changed += controller.changed_texels
 		if controller.impacts_this_tick > 0:
-			marked += block.working_map.fracture.last_marks
-			detached += block.working_map.fracture.last_chunks.size()
+			marked += block.working_map.last_action.get("marks", 0)
+			detached += block.working_map.last_action.get("chunks", []).size()
 	measuring = false
 	var seconds := (Time.get_ticks_usec() - started) / 1e6
 	controller.cancel_stroke()
@@ -116,16 +122,17 @@ func scenario(kind: String, zoom: float) -> void:
 		"zoom": (camera as PrecisionZoom).zoom_factor}
 	check(report[label].render_fps >= 58 and report[label].frame_ms.p95 < 20, "60 FPS budget: " + label)
 	check(report[label].render_fps < 242, "cap respected: " + label)
-	if kind not in ["dirty_idle", "proxy_cavity", "proxy_bone"]: check(main.feedback.audio.played > 0, "audio event routing active: " + label)
+	if kind not in ["dirty_idle", "proxy_cavity", "proxy_bone", "dusty_bone"]: check(main.feedback.audio.played > 0, "audio event routing active: " + label)
 	if kind in ["clay", "stone"]: check(marked > 0 and detached > 0, "actual marks AND chunks measured: " + label)
 	if kind == "blower": check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads, "Blower structural state exact: " + label)
 	if kind == "dirty_idle":
 		check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads
 			and block.working_map.loose_debris.cells.size() == 2322, "fully dirtied resting block is stable: " + label)
 	if kind.begins_with("pick"):
-		check(changed > 0 and controller.total_impacts == 0 and block.working_map.fossil.condition == 100
+		check(changed > 0 and controller.total_impacts == 36 and block.working_map.fossil.condition == 100
 			and detached == 0 and marked == 0, "real Pick input removes caps without damage or fracture: " + label)
 	if kind.begins_with("proxy_"): check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads, "visual cavity sweep changes no gameplay geometry")
+	if kind == "dusty_bone": check(initial_height == block.working_map.image.get_data() and block.working_map.fossil.exposed_cells > 0, "dirty exposed Bone remains stable")
 	print("P4 BENCH ", label, " ", JSON.stringify(report[label]))
 	await screenshot("p4-" + label)
 
@@ -223,13 +230,13 @@ func debris_session_captures() -> void:
 		var snapshot := block.working_map.image.get_data()
 		report["session_" + kind] = {"simulated_seconds": 60, "impacts": 270, "crumbs": state.cells.size(),
 			"occupied_buckets": state.occupancy.size(), "peak_dust": Array(block.working_map.residue._values).max()}
-		await screenshot("p4-fix3-" + kind + "-60s-dirty-3x")
+		await screenshot("p4-final-" + kind + "-60s-dirty-3x")
 		(camera as PrecisionZoom).reset_view()
 		for i in range(90): await physics_frame
 		controller.hit = {"inside": false}
 		block.show_cursor({"inside": false}, 12)
 		main.feedback._process(0)
-		await screenshot("p4-fix3-" + kind + "-60s-dirty-1x")
+		await screenshot("p4-final-" + kind + "-60s-dirty-1x")
 		move_to((p + Vector2.ONE * 0.5) / Vector2(block.map_resolution))
 		(camera as PrecisionZoom)._focused = true
 		(camera as PrecisionZoom).request_zoom(30, controller._screen)
@@ -246,7 +253,7 @@ func debris_session_captures() -> void:
 		main.feedback.loose_view._process(0)
 		check(snapshot == block.working_map.image.get_data(), "60s dirt cleanup preserves exact geometry")
 		report["session_" + kind].crumbs_after_blower = state.cells.size()
-		await screenshot("p4-fix3-" + kind + "-60s-clean-3x")
+		await screenshot("p4-final-" + kind + "-60s-clean-3x")
 
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute("res://work/test-logs")
@@ -271,7 +278,7 @@ func run() -> void:
 	main.get_node("Debug/BonePanel").hide()
 	for i in range(90): await physics_frame
 	for zoom in [1.0, 3.0]:
-		for kind in ["soil", "clay", "stone", "bone", "blower", "dirty_idle", "pick", "pick_clay", "pick_stone", "proxy_cavity", "proxy_bone"]:
+		for kind in ["soil", "clay", "stone", "bone", "blower", "dirty_idle", "pick", "pick_clay", "pick_stone", "proxy_cavity", "proxy_bone", "dusty_bone"]:
 			await scenario(kind, zoom)
 	await comparison_captures()
 	await cleanup_captures()
