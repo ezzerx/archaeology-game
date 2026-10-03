@@ -189,6 +189,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	if amount <= 0.0:
 		return 0
 	residue.last_cleared = 0.0
+	residue.cleared_packets = []
 	if loose_debris != null: loose_debris.clean(from, to, tool, amount)
 	var changed := 0
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
@@ -208,15 +209,16 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 			working_time, tool.effectiveness, tool.residue_generation, is_scrape, tool.scrape_max_depth)
 	if tool.residue_clear > 0.0 or (changed > 0 and (tool.residue_generation > 0.0 or loose_debris != null)):
 		var start := Time.get_ticks_usec()
-		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount)
+		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount, tool.id == &"air_blower")
 		last_residue_edit_usec = Time.get_ticks_usec() - start
 	var marks := fracture.last_marks if is_fracture else 0
 	var bone_revealed := fossil != null and fossil.exposed_cells > exposed_before
 	var loose_cleared := loose_debris.last_cleared if loose_debris != null else 0.0
-	if changed > 0 or marks > 0 or changed_residue_cells > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
+	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
 		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
 			"changed": changed, "marks": marks, "chunks": fracture.last_chunks.duplicate(true) if is_fracture else [],
 			"residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
+			"cleared_dust": residue.cleared_packets.duplicate(true),
 			"direction": loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized(), "bone_revealed": bone_revealed,
 			"direct_bone_hit": direct_bone_hit, "movement": from.distance_to(to) / maxf(amount, 0.0001)}
 		material_action.emit(last_action)

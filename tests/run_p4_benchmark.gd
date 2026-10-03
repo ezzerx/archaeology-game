@@ -1,7 +1,20 @@
 extends "res://tests/run_p2_benchmark.gd"
 ## Production input + FX at 1x/3x, 1080p, 240 cap / 60 physics.
 
+var proxy_frame_times: Array[float] = []
+
+func on_frame() -> void:
+	super.on_frame()
+	if measuring: proxy_frame_times.append(main.feedback.last_proxy_usec / 1000.0)
+
 func prepare_fixture(kind: String) -> void:
+	if kind in ["pick_clay", "pick_stone"]:
+		prepare_fixture("clay" if kind == "pick_clay" else "stone")
+		return
+	if kind == "proxy_cavity":
+		block.working_map.apply_segment(Vector2(710, 140), Vector2(710, 140), 25, 100, 1.5, 1)
+	if kind == "proxy_bone":
+		block.working_map.apply_segment(Vector2(286, 194), Vector2(286, 194), 65, 100, 1.5, 1)
 	if kind == "dirty_idle":
 		# Worst resting case: every local bucket across the block is occupied.
 		for y in range(0, block.map_resolution.y, 8):
@@ -40,9 +53,9 @@ func scenario(kind: String, zoom: float) -> void:
 	(camera as PrecisionZoom).reset_view()
 	controller._focused = true
 	controller._pointer_inside = true
-	select(3 if kind == "pick" else (0 if kind in ["soil", "dirty_idle"] else (2 if kind == "blower" else 1)))
+	select(3 if kind.begins_with("pick") else (0 if kind in ["soil", "dirty_idle", "proxy_cavity", "proxy_bone"] else (2 if kind == "blower" else 1)))
 	prepare_fixture(kind)
-	var center := Vector2(0.28, 0.305) if kind in ["bone", "pick"] else Vector2(0.70, 0.22)
+	var center := Vector2(0.28, 0.305) if kind in ["bone", "pick", "proxy_bone"] else Vector2(0.70, 0.22)
 	move_to(center)
 	if zoom > 1:
 		(camera as PrecisionZoom)._focused = true
@@ -60,6 +73,7 @@ func scenario(kind: String, zoom: float) -> void:
 	var marked := 0
 	var detached := 0
 	frame_times.clear()
+	proxy_frame_times.clear()
 	previous_frame = 0
 	measuring = true
 	var started := Time.get_ticks_usec()
@@ -68,16 +82,18 @@ func scenario(kind: String, zoom: float) -> void:
 		await physics_frame
 		controller._focused = true
 		controller._pointer_inside = true
-		controller._held = kind != "dirty_idle"
+		controller._held = kind not in ["dirty_idle", "proxy_cavity", "proxy_bone"]
 		var p := Vector2(655 + (tick / 40 as int % 5) * 29, 115 + (tick / 200 as int) * 32)
 		var uv := (p + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
 		if kind in ["soil", "blower"]: uv = center + Vector2(0.065 * sin(tick / 80.0), 0.07 * cos(tick / 67.0))
 		if kind == "bone": uv = center + Vector2(0.012 * sin(tick / 100.0), 0.006 * cos(tick / 90.0))
-		if kind == "pick": uv = center + Vector2(0.005 * sin(tick / 5.0), 0.003 * cos(tick / 9.0))
+		if kind.begins_with("pick"): uv = center + Vector2(0.005 * sin(tick / 5.0), 0.003 * cos(tick / 9.0))
+		if kind == "proxy_cavity": uv = (Vector2(710 + 24 * sin(tick / 15.0), 140 + 24 * cos(tick / 21.0)) + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
+		if kind == "proxy_bone": uv = (Vector2(286 + 24 * sin(tick / 15.0), 194 + 24 * cos(tick / 21.0)) + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
 		move_to(uv)
 		controller._physics_process(1.0 / 60.0)
 		edits.append(controller.last_edit_usec / 1000.0)
-		if controller.impacts_this_tick > 0 or kind in ["soil", "blower", "pick"]: active.append(controller.last_edit_usec / 1000.0)
+		if controller.impacts_this_tick > 0 or kind in ["soil", "blower"] or kind.begins_with("pick"): active.append(controller.last_edit_usec / 1000.0)
 		picks.append(controller.last_pick_usec / 1000.0)
 		upload_times.append((block.last_upload_usec + block.last_residue_upload_usec + block.last_fracture_upload_usec) / 1000.0)
 		changed += controller.changed_texels
@@ -89,7 +105,7 @@ func scenario(kind: String, zoom: float) -> void:
 	controller.cancel_stroke()
 	var label := "%s_%dx" % [kind, int(zoom)]
 	report[label] = {"render_fps": frame_times.size() / seconds, "frame_ms": stats(frame_times),
-		"cpu_edit_ms": stats(edits), "cpu_active_edit_ms": stats(active), "cpu_pick_ms": stats(picks),
+		"cpu_edit_ms": stats(edits), "cpu_active_edit_ms": stats(active), "cpu_pick_ms": stats(picks), "cpu_proxy_ms": stats(proxy_frame_times),
 		"upload_submit_ms": stats(upload_times), "changed_texels": changed, "marks": marked, "chunks": detached,
 		"particles_emitted": Array(main.feedback.emitted), "audio_events": main.feedback.audio.played,
 		"loose_bins": block.working_map.loose_debris.cells.size(), "flying_debris": block.working_map.loose_debris.flying.size(),
@@ -100,15 +116,16 @@ func scenario(kind: String, zoom: float) -> void:
 		"zoom": (camera as PrecisionZoom).zoom_factor}
 	check(report[label].render_fps >= 58 and report[label].frame_ms.p95 < 20, "60 FPS budget: " + label)
 	check(report[label].render_fps < 242, "cap respected: " + label)
-	if kind != "dirty_idle": check(main.feedback.audio.played > 0, "audio event routing active: " + label)
+	if kind not in ["dirty_idle", "proxy_cavity", "proxy_bone"]: check(main.feedback.audio.played > 0, "audio event routing active: " + label)
 	if kind in ["clay", "stone"]: check(marked > 0 and detached > 0, "actual marks AND chunks measured: " + label)
 	if kind == "blower": check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads, "Blower structural state exact: " + label)
 	if kind == "dirty_idle":
 		check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads
 			and block.working_map.loose_debris.cells.size() == 2322, "fully dirtied resting block is stable: " + label)
-	if kind == "pick":
+	if kind.begins_with("pick"):
 		check(changed > 0 and controller.total_impacts == 0 and block.working_map.fossil.condition == 100
 			and detached == 0 and marked == 0, "real Pick input removes caps without damage or fracture: " + label)
+	if kind.begins_with("proxy_"): check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads, "visual cavity sweep changes no gameplay geometry")
 	print("P4 BENCH ", label, " ", JSON.stringify(report[label]))
 	await screenshot("p4-" + label)
 
@@ -201,12 +218,24 @@ func debris_session_captures() -> void:
 		var small := true
 		for i in range(main.feedback.loose_view.keys.size()):
 			var basis: Basis = main.feedback.loose_view.multimesh.get_instance_transform(i).basis
-			small = small and basis.x.length() <= 0.001601 and basis.y.length() < 0.00036
-		check(small, "actual rendered crumbs remain at most 1.6 mm wide and 0.36 mm tall")
+			small = small and basis.x.length() <= 0.001401 and basis.y.length() < 0.000197
+		check(small, "actual rendered flakes remain at most 1.4 mm wide and 0.196 mm tall")
 		var snapshot := block.working_map.image.get_data()
 		report["session_" + kind] = {"simulated_seconds": 60, "impacts": 270, "crumbs": state.cells.size(),
 			"occupied_buckets": state.occupancy.size(), "peak_dust": Array(block.working_map.residue._values).max()}
-		await screenshot("p4-fix2-" + kind + "-60s-dirty")
+		await screenshot("p4-fix3-" + kind + "-60s-dirty-3x")
+		(camera as PrecisionZoom).reset_view()
+		for i in range(90): await physics_frame
+		controller.hit = {"inside": false}
+		block.show_cursor({"inside": false}, 12)
+		main.feedback._process(0)
+		await screenshot("p4-fix3-" + kind + "-60s-dirty-1x")
+		move_to((p + Vector2.ONE * 0.5) / Vector2(block.map_resolution))
+		(camera as PrecisionZoom)._focused = true
+		(camera as PrecisionZoom).request_zoom(30, controller._screen)
+		for i in range(90): await physics_frame
+		controller.hit = {"inside": false}
+		block.show_cursor({"inside": false}, 12)
 		for i in range(240):
 			var target := p + Vector2(42 * sin(i * 0.04), 18 * cos(i * 0.02))
 			block.working_map.apply_continuous(target - Vector2.RIGHT, target, controller.tools[2], 1.0 / 60.0)
@@ -217,7 +246,7 @@ func debris_session_captures() -> void:
 		main.feedback.loose_view._process(0)
 		check(snapshot == block.working_map.image.get_data(), "60s dirt cleanup preserves exact geometry")
 		report["session_" + kind].crumbs_after_blower = state.cells.size()
-		await screenshot("p4-fix2-" + kind + "-60s-clean")
+		await screenshot("p4-fix3-" + kind + "-60s-clean-3x")
 
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute("res://work/test-logs")
@@ -242,7 +271,7 @@ func run() -> void:
 	main.get_node("Debug/BonePanel").hide()
 	for i in range(90): await physics_frame
 	for zoom in [1.0, 3.0]:
-		for kind in ["soil", "clay", "stone", "bone", "blower", "dirty_idle", "pick"]:
+		for kind in ["soil", "clay", "stone", "bone", "blower", "dirty_idle", "pick", "pick_clay", "pick_stone", "proxy_cavity", "proxy_bone"]:
 			await scenario(kind, zoom)
 	await comparison_captures()
 	await cleanup_captures()

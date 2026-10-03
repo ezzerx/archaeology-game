@@ -57,6 +57,17 @@ func point_for(key: Vector3i) -> Vector2:
 	return ((Vector2(key.x, key.y) + Vector2.ONE * 0.15 + jitter * 0.7) * STRIDE - Vector2.ONE * 0.5).clamp(
 		Vector2.ZERO, Vector2(height_size) - Vector2.ONE)
 
+func nearby_count(point: Vector2, radius := 2.0) -> int:
+	# F1 inspection only: bounded neighbours, never a scan of persistent dirt.
+	var cell := Vector2i((point / STRIDE).floor())
+	var count := 0
+	for y in range(cell.y - 1, cell.y + 2):
+		for x in range(cell.x - 1, cell.x + 2):
+			for layer in range(3):
+				var key := Vector3i(x, y, layer)
+				if cells.has(key) and point_for(key).distance_to(point) <= radius: count += 1
+	return count
+
 func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> void:
 	last_cleared = 0.0
 	if tool.residue_clear <= 0 or tool.radius <= 0 or delta <= 0: return

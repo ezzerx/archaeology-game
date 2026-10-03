@@ -28,6 +28,14 @@ float grain_hash(vec2 p) {
 	return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 }
 
+float dust_noise(vec2 p) {
+	vec2 cell = floor(p);
+	vec2 f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(grain_hash(cell), grain_hash(cell + vec2(1.0, 0.0)), f.x),
+		mix(grain_hash(cell + vec2(0.0, 1.0)), grain_hash(cell + vec2(1.0)), f.x), f.y);
+}
+
 void vertex() {
 	float height = textureLod(working_map, UV, 0.0).r;
 	surface_height = height * (is_skirt ? VERTEX.y : 1.0);
@@ -64,19 +72,21 @@ void fragment() {
 			float crack = 1.0 - smoothstep(0.03, 0.11, min(edge.x, edge.y));
 			color *= 1.0 - tension * (0.15 + 0.62 * crack);
 		}
-		// Stable grains and larger patch variations reveal clean gaps between dust
-		// accumulations. Dust lies over cracks/bone and does not evaporate with FX.
-		vec2 grains = UV * map_size * 1.4;
-		float seed = grain_hash(floor(grains));
-		float patch = grain_hash(floor(UV * map_size / 5.0));
-		float density = pow(residue, 0.55) * (0.55 + patch * 0.45);
-		vec2 grain_center = vec2(seed, grain_hash(floor(grains) + vec2(19.0, 7.0))) * 0.5 + 0.25;
-		vec2 grain_local = fract(grains) - grain_center;
-		float radius = mix(0.28, 0.48, grain_hash(floor(grains) + vec2(3.0, 29.0)));
-		float shape = 1.0 - smoothstep(radius * 0.45, radius, length(grain_local));
-		dust_cover = smoothstep(seed - 0.12, seed + 0.12, density) * shape * min(residue * 30.0, 1.0);
-		vec3 dust_color = mix(vec3(0.29, 0.265, 0.22), vec3(0.65, 0.60, 0.48), seed);
-		color = mix(color, dust_color, dust_cover * 0.90);
+		// Centimetre-scale deposits survive overview zoom. Warped, broken edges
+		// expand with accumulation; smaller speckles belong to those same patches.
+		vec2 p = UV * map_size;
+		vec2 warp = vec2(dust_noise(p / 31.0), dust_noise(p / 29.0 + vec2(17.0))) * 9.0;
+		vec2 q = p + warp;
+		float broad = dust_noise(q / 23.0);
+		float medium = dust_noise(q / 6.0 + vec2(9.0));
+		float fine = dust_noise(q / 1.7);
+		float accumulation = pow(residue, 0.55);
+		float patch = broad * 0.62 + medium * 0.30 + fine * 0.08;
+		float islands = smoothstep(0.64 - accumulation * 0.38, 0.79 - accumulation * 0.38, patch);
+		float speckles = smoothstep(0.51, 0.74, medium * 0.6 + fine * 0.4) * smoothstep(0.35, 0.62, broad);
+		dust_cover = clamp((islands * 0.88 + speckles * 0.30) * accumulation, 0.0, 0.92);
+		vec3 dust_color = mix(vec3(0.34, 0.305, 0.235), vec3(0.67, 0.62, 0.50), broad * 0.65 + medium * 0.35);
+		color = mix(color, dust_color, dust_cover);
 	}
 	float distance_texels = length((UV - cursor_uv) * map_size);
 	float ring = 1.0 - smoothstep(0.7, 1.6, abs(distance_texels - cursor_radius));

@@ -8,5 +8,5 @@ bucket_tiles = 3
 crumbs_per_bucket = 2
 retained_fraction = 0.08
 crumb_capacity = 0.02
-crumb_width = 0.0016
+crumb_width = 0.0014
 chunk_lifetime = 1.5

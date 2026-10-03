@@ -13,12 +13,7 @@ func setup(target: ExcavationBlock) -> void:
 	multimesh = MultiMesh.new()
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh.use_colors = true
-	var chip := SphereMesh.new()
-	chip.radius = 0.5
-	chip.height = 1.0
-	chip.radial_segments = 5
-	chip.rings = 2
-	multimesh.mesh = chip
+	multimesh.mesh = crumb_mesh()
 	multimesh.instance_count = 256
 	multimesh.visible_instance_count = 0
 	var material := StandardMaterial3D.new()
@@ -27,12 +22,25 @@ func setup(target: ExcavationBlock) -> void:
 	material_override = material
 	cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
+static func crumb_mesh() -> ArrayMesh:
+	# An asymmetric thin flake, visually distinct from attached fracture plates.
+	var outline := [Vector2(-0.50, -0.15), Vector2(-0.24, -0.45), Vector2(0.24, -0.39),
+		Vector2(0.45, 0.07), Vector2(0.19, 0.48), Vector2(-0.34, 0.32)]
+	var mesh := SurfaceTool.new()
+	mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for i in range(outline.size()):
+		var a := Vector3(outline[i].x, 0, outline[i].y)
+		var b := Vector3(outline[(i + 1) % outline.size()].x, 0, outline[(i + 1) % outline.size()].y)
+		for vertex in [Vector3(-0.06, 0.5, 0.03), a, b, Vector3(0, -0.5, 0), b, a]: mesh.add_vertex(vertex)
+	mesh.generate_normals()
+	return mesh.commit()
+
 func draw_item(slot: int, point: Vector2, amount: float, layer: int, lift := 0.0) -> void:
 	var uv := (point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
 	var pos := block.to_global(Vector3((uv.x - 0.5) * block.surface_size.x,
-		block.relief.height_at(uv) + 0.0005 + lift, (uv.y - 0.5) * block.surface_size.y))
+		block.relief.height_at(uv) + 0.00018 + lift, (uv.y - 0.5) * block.surface_size.y))
 	var width := state.profile.crumb_width * clampf(sqrt(amount / state.profile.crumb_capacity), 0.08, 1.0)
-	var basis := Basis(Vector3.UP, point.x * 1.7 + point.y * 2.3).scaled(Vector3(width, width * 0.22, width * 0.75))
+	var basis := Basis(Vector3.UP, point.x * 1.7 + point.y * 2.3).scaled(Vector3(width, width * 0.14, width * 0.75))
 	multimesh.set_instance_transform(slot, Transform3D(basis, pos))
 	multimesh.set_instance_color(slot, colors[layer])
 

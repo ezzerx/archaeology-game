@@ -9,6 +9,9 @@ var height_size: Vector2i
 var image: Image
 var dirty := true
 var last_cleared := 0.0
+## Ephemeral feedback for the last cleanup only. At most 16 source packets.
+## Each position is an actually cleared cell, never a centroid over clean gaps.
+var cleared_packets: Array[Dictionary] = []
 var _values := PackedFloat32Array()
 var _bytes := PackedByteArray()
 
@@ -20,6 +23,7 @@ func _init(resolution: Vector2i) -> void:
 
 func reset() -> void:
 	last_cleared = 0.0
+	cleared_packets = []
 	_values.resize(size.x * size.y)
 	_values.fill(0.0)
 	_bytes.resize(size.x * size.y)
@@ -50,8 +54,9 @@ func _cell_value(cell: Vector2i) -> float:
 	cell = cell.clamp(Vector2i.ZERO, size - Vector2i.ONE)
 	return _values[cell.y * size.x + cell.x]
 
-func apply_segment(from: Vector2, to: Vector2, radius: float, falloff: float, clear_amount: float) -> int:
+func apply_segment(from: Vector2, to: Vector2, radius: float, falloff: float, clear_amount: float, collect_cleared := false) -> int:
 	last_cleared = 0.0
+	cleared_packets = []
 	if radius <= 0.0:
 		return 0
 	var low := Vector2i(((from.min(to) - Vector2.ONE * radius) / STRIDE).floor()).max(Vector2i.ZERO)
@@ -59,6 +64,8 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, falloff: float, cl
 	var segment := to - from
 	var inverse_length := 1.0 / segment.length_squared() if segment.length_squared() > 0.0 else 0.0
 	var changed := 0
+	var packets: Dictionary = {}
+	var span := (high - low + Vector2i.ONE).max(Vector2i.ONE)
 	for y in range(low.y, high.y + 1):
 		for x in range(low.x, high.x + 1):
 			var index := y * size.x + x
@@ -68,7 +75,16 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, falloff: float, cl
 				var weight := WorkingSurface.weight(point.distance_to(from + segment * t) / radius, falloff)
 				var before := _values[index]
 				_values[index] = maxf(0.0, before - clear_amount * weight)
-				last_cleared += before - _values[index]
+				var removed := before - _values[index]
+				last_cleared += removed
+				if collect_cleared and removed > 0:
+					var bucket := Vector2i((Vector2(Vector2i(x, y) - low) * 4.0 / Vector2(span)).floor())
+					if not packets.has(bucket):
+						packets[bucket] = {"point": point, "amount": 0.0, "peak": 0.0}
+					packets[bucket].amount += removed
+					if removed > packets[bucket].peak:
+						packets[bucket].point = point
+						packets[bucket].peak = removed
 			var encoded := roundi(_values[index] * 255.0)
 			if encoded != _bytes[index]:
 				_bytes[index] = encoded
@@ -76,4 +92,5 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, falloff: float, cl
 	if changed > 0:
 		image.set_data(size.x, size.y, false, Image.FORMAT_R8, _bytes)
 		dirty = true
+	for packet in packets.values(): cleared_packets.append({"point": packet.point, "amount": packet.amount})
 	return changed

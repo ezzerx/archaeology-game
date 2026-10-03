@@ -8,6 +8,7 @@ var audio: MaterialAudio
 var loose_view: LooseDebrisView
 var airflow := Vector3(-0.07, 0.02, -0.06)
 var proxies: Array[Node3D] = []
+var proxy_poses: Array[ToolProxyPose] = []
 var pools: Array[MultiMesh] = []
 var particles: Array[Array] = [[], [], [], []]
 var rng := RandomNumberGenerator.new()
@@ -18,6 +19,7 @@ var bone_ring: MeshInstance3D
 var action_count := 0
 var emitted := PackedInt32Array([0, 0, 0, 0])
 var particles_enabled := true
+var last_proxy_usec := 0
 var _warmup_frames := 2
 var colors := [Color(0.48, 0.30, 0.14), Color(0.57, 0.27, 0.12), Color(0.76, 0.62, 0.39), Color(0.72, 0.67, 0.53)]
 
@@ -61,11 +63,15 @@ func _part(parent: Node3D, size: Vector3, at: Vector3, color: Color) -> void:
 	var part := MeshInstance3D.new()
 	var mesh := BoxMesh.new()
 	mesh.size = size
+	mesh.subdivide_width = 1
+	mesh.subdivide_height = 4
+	mesh.subdivide_depth = 1
 	part.mesh = mesh
 	part.position = at
 	part.material_override = _material(color)
 	part.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	parent.add_child(part)
+	proxy_poses.back().register_part(part, 0.017 if proxies.size() == 1 else 0.004)
 
 func _create_proxies() -> void:
 	var wood := Color(0.30, 0.17, 0.07)
@@ -75,6 +81,7 @@ func _create_proxies() -> void:
 		proxy.name = ["BrushProxy", "ChiselProxy", "BlowerProxy", "PrecisionPickProxy"][i]
 		add_child(proxy)
 		proxies.append(proxy)
+		proxy_poses.append(ToolProxyPose.new())
 		# Tip at origin; the handle extends away from the precise contact marker.
 		if i == 0:
 			_part(proxy, Vector3(0.012, 0.055, 0.010), Vector3(0, 0.059, 0), wood)
@@ -85,7 +92,7 @@ func _create_proxies() -> void:
 			_part(proxy, Vector3(0.007, 0.035, 0.004), Vector3(0, 0.0175, 0), Color(0.28, 0.34, 0.38))
 			_part(proxy, Vector3(0.014, 0.04, 0.012), Vector3(0, 0.055, 0), wood)
 		elif i == 2:
-			_part(proxy, Vector3(0.008, 0.038, 0.008), Vector3(0, 0.027, 0), metal)
+			_part(proxy, Vector3(0.008, 0.046, 0.008), Vector3(0, 0.023, 0), metal)
 			_part(proxy, Vector3(0.031, 0.041, 0.022), Vector3(0, 0.065, 0), Color(0.14, 0.26, 0.24))
 		else:
 			_part(proxy, Vector3(0.0015, 0.013, 0.0015), Vector3(0, 0.0065, 0), Color(0.72, 0.76, 0.77))
@@ -100,7 +107,7 @@ func _create_particles() -> void:
 		multi.use_colors = true
 		var chip := BoxMesh.new()
 		chip.size = Vector3.ONE
-		multi.mesh = chip
+		multi.mesh = QuadMesh.new() if family == 3 else chip
 		multi.instance_count = profile.particles_per_family
 		# Draw a sub-pixel instance below the opaque block for two startup frames.
 		# This compiles the instanced material before the first real interaction.
@@ -113,6 +120,20 @@ func _create_particles() -> void:
 		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		var mat := _material(Color.WHITE)
 		mat.vertex_color_use_as_albedo = true
+		if family == 3:
+			var gradient := Gradient.new()
+			gradient.offsets = PackedFloat32Array([0, 0.3, 1])
+			gradient.colors = PackedColorArray([Color(1, 1, 1, 0.7), Color(1, 1, 1, 0.45), Color(1, 1, 1, 0)])
+			var texture := GradientTexture2D.new()
+			texture.gradient = gradient
+			texture.fill = GradientTexture2D.FILL_RADIAL
+			texture.fill_from = Vector2(0.5, 0.5)
+			texture.fill_to = Vector2(1.0, 0.5)
+			mat.albedo_texture = texture
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+			mat.billboard_keep_scale = true
+			mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 		node.material_override = mat
 		add_child(node)
 		pools.append(multi)
@@ -137,6 +158,24 @@ func _emit(family: int, point: Vector2, count: int) -> void:
 		particles[family].append({"position": origin, "velocity": velocity, "life": lifetime,
 			"shape": shape, "rotation": rng.randf_range(-PI, PI), "floor": origin.y})
 		emitted[family] += 1
+
+func _lift_dust(packets: Array, direction: Vector2) -> void:
+	if not particles_enabled or profile.particle_amount <= 0: return
+	for packet in packets:
+		if particles[3].size() >= profile.particles_per_family: break
+		var amount: float = packet.amount
+		if amount <= 0: continue
+		var point: Vector2 = packet.point
+		var origin := point_world(point)
+		var side := Vector3(-direction.y, 0, direction.x)
+		var velocity := Vector3(direction.x, 0, direction.y) * rng.randf_range(0.13, 0.19) \
+			+ side * rng.randf_range(-0.018, 0.018) + Vector3.UP * rng.randf_range(0.018, 0.035)
+		var width := clampf(sqrt(amount) * 0.014, 0.001, 0.025)
+		var lifetime := rng.randf_range(0.55, 0.9)
+		particles[3].append({"position": origin, "velocity": velocity, "life": lifetime, "duration": lifetime,
+			"shape": Vector3.ONE * width, "rotation": 0.0, "floor": origin.y,
+			"source": point, "amount": amount, "dust": true})
+		emitted[3] += 1
 
 func on_action(event: Dictionary) -> void:
 	action_count += 1
@@ -167,7 +206,7 @@ func on_action(event: Dictionary) -> void:
 		var direction: Vector2 = event.get("direction", Vector2(-1, -1).normalized())
 		airflow = Vector3(direction.x * 0.14, 0.02, direction.y * 0.14)
 		audio.play_family(&"air", clampf(event.residue_cleared + loose_cleared, 0.25, 0.8))
-		_emit(3, point, clampi(ceili(event.residue_cleared * 3), 1, 5))
+		_lift_dust(event.get("cleared_dust", []), direction)
 	if removed.x > 0: _emit(0, point, clampi(ceili(removed.x / 8.0), 1, 5))
 	if event.bone_revealed or event.direct_bone_hit:
 		# A damaging centre hit wins if that same impact also reveals nearby cells.
@@ -185,16 +224,26 @@ func _process(delta: float) -> void:
 	bone_remaining = maxf(0.0, bone_remaining - delta)
 	bone_ring.visible = bone_remaining > 0
 	bone_ring.scale = Vector3.ONE * (1.0 + (0.55 - bone_remaining) * 0.7)
+	var proxy_started := Time.get_ticks_usec()
 	for i in range(proxies.size()):
 		var proxy := proxies[i]
 		proxy.visible = controller.hit.inside and i == controller.selected_index
 		if not proxy.visible: continue
 		proxy.global_position = controller.hit.world
-		proxy.rotation = Vector3(0.5, 0, -0.62)
+		var twist := 0.0 if i == 1 else sin(sweep_remaining * 85) * 0.035
+		var normal: Vector3 = controller.hit.get("normal", Vector3.UP)
+		var depth := maxf(0, block.thickness - block.to_local(controller.hit.world).y)
+		var axis := (normal + Vector3.UP * minf(depth / 0.015, 2.5)).normalized()
+		# Stand more upright inside cavities, retaining enough lean to see the tip
+		# from the tabletop camera. The normal frame still controls contact sides.
+		var lean := clampf(1.0 - depth / 0.03, 0.35, 1.0)
+		proxy.global_basis = ToolProxyPose.contact_basis(axis, twist) * Basis.from_euler(Vector3(0.5, 0, -0.62) * lean)
 		if i == 1:
-			proxy.position.y += sin(recoil_remaining / 0.14 * PI) * profile.recoil
-		else:
-			proxy.rotation.z += sin(sweep_remaining * 85) * 0.035
+			# Recoil stays visual; stretch away from the anchored tip, never move
+			# the contact marker or drive the head into the local contact plane.
+			proxy.scale.y *= 1.0 + sin(recoil_remaining / 0.14 * PI) * profile.recoil / 0.075
+		proxy_poses[i].fit(proxy, block, normal)
+	last_proxy_usec = Time.get_ticks_usec() - proxy_started
 	for family in range(4):
 		var active: Array = particles[family]
 		for i in range(active.size() - 1, -1, -1):
@@ -203,7 +252,10 @@ func _process(delta: float) -> void:
 			if particle.life <= 0:
 				active.remove_at(i)
 				continue
-			particle.velocity.y -= delta * (0.18 if family in [0, 3] else 0.65)
+			if particle.get("dust", false):
+				particle.velocity *= exp(-delta * 0.55)
+			else:
+				particle.velocity.y -= delta * (0.18 if family in [0, 3] else 0.65)
 			particle.position += particle.velocity * delta
 			# One inexpensive visual bounce against the original impact height.
 			if particle.position.y < particle.floor:
@@ -212,11 +264,24 @@ func _process(delta: float) -> void:
 		for i in range(active.size()):
 			var particle: Dictionary = active[i]
 			var fade := minf(1.0, particle.life / 0.15)
-			var basis := Basis(Vector3(0.3, 1, 0.2).normalized(), particle.rotation + particle.life * 4).scaled(particle.shape * fade)
+			var dust: bool = particle.get("dust", false)
+			var expansion: float = 1.0 + (1.0 - particle.life / particle.duration) * 1.6 if dust else fade
+			var basis := Basis(Vector3(0.3, 1, 0.2).normalized(), particle.rotation + particle.life * 4).scaled(particle.shape * expansion)
 			pools[family].set_instance_transform(i, Transform3D(basis, particle.position))
-			pools[family].set_instance_color(i, colors[family])
+			var color: Color = colors[family]
+			if dust: color.a = fade * clampf(sqrt(particle.amount) * 1.5, 0.08, 0.8)
+			pools[family].set_instance_color(i, color)
 		pools[family].visible_instance_count = maxi(active.size(), 1 if _warmup_frames > 0 else 0)
 	_warmup_frames = maxi(0, _warmup_frames - 1)
+
+func contact_debug(hit: Dictionary) -> String:
+	var loose := block.working_map.loose_debris.nearby_count(hit.map)
+	var transient := 0
+	for family in particles:
+		for particle in family:
+			if particle.position.distance_to(hit.world) < 0.004: transient += 1
+	return "\nContact: %s | Loose nearby: %d | Transient FX nearby: %d" % [
+		"BONE" if hit.bone_exposed else "STRUCTURAL (attached)", loose, transient]
 
 func reset() -> void:
 	if loose_view != null: loose_view._process(0)

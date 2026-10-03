@@ -23,8 +23,11 @@ Invoke-P4Check 'p4-audio-tests' @('--headless', '--script', 'res://tests/run_p4_
 Invoke-P4Check 'p4-dirt-tests' @('--headless', '--script', 'res://tests/run_p4_dirt_tests.gd')
 Invoke-P4Check 'p4-debris-budget-tests' @('--headless', '--script', 'res://tests/run_p4_debris_budget_tests.gd')
 Invoke-P4Check 'p4-pick-tests' @('--headless', '--script', 'res://tests/run_p4_pick_tests.gd')
+Invoke-P4Check 'p4-feedback-tests' @('--headless', '--script', 'res://tests/run_p4_feedback_tests.gd')
+Invoke-P4Check 'p4-proxy-tests' @('--headless', '--script', 'res://tests/run_p4_proxy_tests.gd')
 Invoke-P4Check 'p4-condition' @('--headless', '--script', 'res://tests/run_p4_condition_probe.gd')
 if ($Graphical) {
     Invoke-P4Check 'p4-benchmark' @('--script', 'res://tests/run_p4_benchmark.gd')
+    Invoke-P4Check 'p4-feedback-visual' @('--script', 'res://tests/run_p4_feedback_visual.gd')
     Invoke-P4Check 'p3-on-p4-gpu' @('--script', 'res://tests/run_p3_benchmark.gd', '--', '--gpu-only')
 }
