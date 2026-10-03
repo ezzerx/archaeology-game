@@ -1,0 +1,9 @@
+class_name DebrisProfile
+extends Resource
+## P4 presentation/retention only. Never changes tool work or fracture thresholds.
+@export_range(1, 8, 1) var bucket_tiles := 3 # 3 * 8 = 24 height texels.
+@export_range(1, 8, 1) var crumbs_per_bucket := 2 # Shared across all materials.
+@export_range(0.0, 1.0, 0.01) var retained_fraction := 0.08
+@export_range(0.001, 0.1, 0.001) var crumb_capacity := 0.02
+@export_range(0.0005, 0.003, 0.0001) var crumb_width := 0.0016
+@export_range(1.0, 2.0, 0.1) var chunk_lifetime := 1.5

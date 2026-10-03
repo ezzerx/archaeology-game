@@ -128,7 +128,9 @@ func _emit(family: int, point: Vector2, count: int) -> void:
 		var shape := Vector3(scale_value, scale_value * (0.24 if family == 1 else 0.7), scale_value)
 		var velocity := Vector3(rng.randf_range(-0.04, 0.04), rng.randf_range(0.035, 0.10), rng.randf_range(-0.04, 0.04))
 		if family == 3: velocity += airflow
-		particles[family].append({"position": origin, "velocity": velocity, "life": profile.particle_lifetime * rng.randf_range(0.65, 1.2),
+		var lifetime := block.working_map.loose_debris.profile.chunk_lifetime * rng.randf_range(0.85, 1.15) \
+			if family in [1, 2] else profile.particle_lifetime * rng.randf_range(0.65, 1.2)
+		particles[family].append({"position": origin, "velocity": velocity, "life": lifetime,
 			"shape": shape, "rotation": rng.randf_range(-PI, PI), "floor": origin.y})
 		emitted[family] += 1
 

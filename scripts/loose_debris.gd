@@ -5,32 +5,50 @@ extends RefCounted
 signal ejected(point: Vector2, direction: Vector2, amount: float, layer: int)
 const STRIDE := 8
 var height_size: Vector2i
+var profile: DebrisProfile
 var cells: Dictionary = {}
+var occupancy: Dictionary = {}
 var dirty_cells: Dictionary = {}
 var flying: Array[Dictionary] = []
 var _packets: Dictionary = {}
 var last_cleared := 0.0
 var jet := Vector2(-1, -1).normalized()
 
-func _init(resolution: Vector2i) -> void:
+func _init(resolution: Vector2i, settings: DebrisProfile = preload("res://config/debris_profile.tres")) -> void:
 	height_size = resolution
+	profile = settings
 
 func reset() -> void:
 	for key in cells: dirty_cells[key] = true
 	cells.clear()
+	occupancy.clear()
 	flying.clear()
 	_packets.clear()
 	last_cleared = 0.0
 	jet = Vector2(-1, -1).normalized()
 
-func deposit_removed(x: int, y: int, amount: float, layer: int) -> void:
+func bucket_for(key: Vector3i) -> Vector2i:
+	@warning_ignore("integer_division")
+	return Vector2i(key.x / profile.bucket_tiles, key.y / profile.bucket_tiles)
+
+func deposit_removed(x: int, y: int, amount: float, layer: int) -> float:
+	# Return unretained depth to the caller for Fine Dust deposition at the exact
+	# excavation pixel. A bucket cannot acquire more or larger persistent chunks.
 	@warning_ignore("integer_division")
 	var key := Vector3i(x / STRIDE, y / STRIDE, layer)
-	cells[key] = minf(1.0, cells.get(key, 0.0) + amount / (STRIDE * STRIDE))
+	var bucket := bucket_for(key)
+	var accepted := 0.0
+	if cells.has(key) or occupancy.get(bucket, 0) < profile.crumbs_per_bucket:
+		accepted = minf(amount * profile.retained_fraction / (STRIDE * STRIDE),
+			maxf(0.0, profile.crumb_capacity - cells.get(key, 0.0)))
+		if accepted > 0:
+			if not cells.has(key): occupancy[bucket] = occupancy.get(bucket, 0) + 1
+			cells[key] = cells.get(key, 0.0) + accepted
 	# All material crumbs in this bin settle on the newly excavated substrate.
 	for material in range(3):
 		var other := Vector3i(key.x, key.y, material)
 		if cells.has(other): dirty_cells[other] = true
+	return maxf(0.0, amount - accepted * STRIDE * STRIDE)
 
 func point_for(key: Vector3i) -> Vector2:
 	# Stable irregular placement; no frame RNG and no shared gameplay state.
@@ -62,6 +80,9 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 				if cells[key] < 0.000001:
 					amount += cells[key]
 					cells.erase(key)
+					var bucket := bucket_for(key)
+					occupancy[bucket] -= 1
+					if occupancy[bucket] == 0: occupancy.erase(bucket)
 				dirty_cells[key] = true
 				last_cleared += amount
 				if tool.id == &"air_blower":

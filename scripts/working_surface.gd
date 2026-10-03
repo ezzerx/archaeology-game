@@ -146,10 +146,11 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				_heights[index] = next_value
 				var layer := Stratigraphy.index_at(old_value, Vector2(limits[index * 2], limits[index * 2 + 1])) if strata != null else 0
 				last_removed[layer] += old_value - _heights[index]
+				var fine_dust := (old_value - next_value) * residue_generation
 				if loose_debris != null:
-					loose_debris.deposit_removed(x, y, old_value - _heights[index], layer)
-				if residue_generation > 0.0:
-					residue.deposit_removed(x, y, (old_value - next_value) * residue_generation)
+					fine_dust += loose_debris.deposit_removed(x, y, old_value - _heights[index], layer)
+				if fine_dust > 0.0:
+					residue.deposit_removed(x, y, fine_dust)
 				changed += 1
 	if changed > 0:
 		# Image is the synchronized RF staging buffer, also used by CPU picking.
@@ -192,7 +193,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	elif tool.effectiveness != Vector3.ZERO:
 		changed = apply_segment(from, to, tool.radius, tool.power, tool.falloff,
 			amount, tool.effectiveness, tool.residue_generation)
-	if tool.residue_clear > 0.0 or (changed > 0 and tool.residue_generation > 0.0):
+	if tool.residue_clear > 0.0 or (changed > 0 and (tool.residue_generation > 0.0 or loose_debris != null)):
 		var start := Time.get_ticks_usec()
 		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount)
 		last_residue_edit_usec = Time.get_ticks_usec() - start

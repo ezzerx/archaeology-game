@@ -21,6 +21,7 @@ Invoke-P4Check 'p4-tests' @('--headless', '--script', 'res://tests/run_p4_tests.
 Invoke-P4Check 'p4-pan-tests' @('--headless', '--script', 'res://tests/run_p4_pan_tests.gd')
 Invoke-P4Check 'p4-audio-tests' @('--headless', '--script', 'res://tests/run_p4_audio_tests.gd')
 Invoke-P4Check 'p4-dirt-tests' @('--headless', '--script', 'res://tests/run_p4_dirt_tests.gd')
+Invoke-P4Check 'p4-debris-budget-tests' @('--headless', '--script', 'res://tests/run_p4_debris_budget_tests.gd')
 Invoke-P4Check 'p4-condition' @('--headless', '--script', 'res://tests/run_p4_condition_probe.gd')
 if ($Graphical) {
     Invoke-P4Check 'p4-benchmark' @('--script', 'res://tests/run_p4_benchmark.gd')
