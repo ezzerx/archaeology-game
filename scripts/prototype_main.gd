@@ -18,7 +18,7 @@ var _notice_remaining := 0.0
 var feedback: MaterialFeedback
 
 func _ready() -> void:
-	get_window().title = "ArchaeologyGame — P4 Material Reactions"
+	get_window().title = "ArchaeologyGame — P4-V1 Verticality"
 	feedback = MaterialFeedback.new()
 	feedback.name = "MaterialFeedback"
 	add_child(feedback)
@@ -94,7 +94,8 @@ func _process(delta: float) -> void:
 			+ "Effectiveness %.2f | Base rate %.4f depth/s (%.2f mm/s), before fracture\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
 			+ "Mess %.3f" % block.working_map.residue.value_at(hit.uv))
 		surface_info += feedback.contact_debug(hit)
-	debug_label.text = ("P4 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+		surface_info += verticality_debug(hit)
+	debug_label.text = ("P4-V1 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
 		+ "Zoom %.2fx | Wheel: zoom | RMB drag: pan | Home: overview\n" % camera.zoom_factor
 		+ "Radius %.0f texels | Power %.2f %s | Falloff %.2f\n" % [config.radius, config.power, "/impact" if config.interaction_mode == ToolDefinition.InteractionMode.IMPACT else "/s", config.falloff]
 		+ "Screen: %s | %s\n" % [hit.screen, "IN BOUNDS" if hit.inside else "OUT OF BOUNDS"]
@@ -124,3 +125,18 @@ func _process(delta: float) -> void:
 			"READY" if fossil.is_direct_contact_protected(component) else "USED"]
 	bone_label.text += "Contact: %s\nDamage: %s\nCap %d FPS | Physics %d Hz" % [fossil.last_bone_event,
 		fossil.last_damage_event, Engine.max_fps, Engine.physics_ticks_per_second]
+
+func verticality_debug(hit: Dictionary) -> String:
+	# F1 only: O(1) reads from the same static layer map used by CPU/GPU.
+	var limits := block.working_map.strata.sample_limits(hit.uv)
+	var depth_mm := (block.thickness - block.base_height) * 1000.0
+	var current := "Bone" if hit.bone_exposed else (hit.material as MaterialDefinition).display_name
+	var text := "\nCurrent Material: %s\nSoil thickness: %.1f mm | Clay thickness: %.1f mm" % [
+		current, (1.0 - limits.x) * depth_mm, (limits.x - limits.y) * depth_mm]
+	if hit.bone:
+		text += "\nBone depth from intact top: %.1f mm\nSandstone to Bone: %.1f mm | Matrix below Soil: %.1f mm" % [
+			(1.0 - hit.bone_ceiling) * depth_mm, maxf(0.0, limits.y - hit.bone_ceiling) * depth_mm,
+			(limits.x - hit.bone_ceiling) * depth_mm]
+	else:
+		text += "\nBone depth: — | Sandstone / matrix to Bone: —"
+	return text

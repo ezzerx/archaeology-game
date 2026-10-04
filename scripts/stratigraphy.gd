@@ -14,10 +14,9 @@ func _init(size: Vector2i, definitions: Array[MaterialDefinition]) -> void:
 		var v := (y + 0.5) / size.y
 		for x in range(size.x):
 			var u := (x + 0.5) / size.x
-			# Authored gentle folds, same in every run and at every resolution.
-			var soil_bottom := 0.70 + 0.026 * sin(u * 13.0 + v * 5.0) + 0.012 * cos(v * 17.0 - u * 4.0)
-			var clay_bottom := 0.36 + 0.022 * sin(u * 9.0 - v * 11.0) + 0.010 * cos(u * 21.0 + v * 8.0)
-			boundaries.set_pixel(x, y, Color(soil_bottom, clay_bottom, 0.0, 1.0))
+			var limits := BlockVerticalityProfile.layer_limits(Vector2(u, v))
+			assert(1.0 > limits.x and limits.x > limits.y and limits.y > 0.0)
+			boundaries.set_pixel(x, y, Color(limits.x, limits.y, 0.0, 1.0))
 	packed_limits = boundaries.get_data().to_float32_array()
 
 static func index_at(height: float, limits: Vector2) -> int:

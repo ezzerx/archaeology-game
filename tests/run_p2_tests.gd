@@ -66,15 +66,18 @@ func test_definitions() -> void:
 	check(bounded.radius == 128 and bounded.power == 5 and bounded.falloff == 8 and bounded.cadence == 20, "upper parameter bounds")
 
 func test_materials_and_residue() -> void:
+	# P4-V layers are no longer near fixed 0.70/0.36 heights. Start within
+	# local Clay with enough thickness for the unchanged 0.64/3 work check.
+	var clay_height := surface_at().strata.boundaries.get_pixelv(cell).r - 0.01
 	var soil := surface_at()
-	var clay := surface_at(0.55)
+	var clay := surface_at(clay_height)
 	var stone := surface_at(0.2)
 	var stone_bytes := stone.image.get_data()
 	soil.apply_continuous(centre, centre, brush, 0.1)
 	clay.apply_continuous(centre, centre, brush, 0.1)
 	stone.apply_continuous(centre, centre, brush, 30)
 	var soil_removed := 1.0 - soil.value_at(cell)
-	var clay_removed := 0.55 - clay.value_at(cell)
+	var clay_removed := clay_height - clay.value_at(cell)
 	check(absf(soil_removed - 0.07) < 0.000001, "brush removes soil at P4 baseline 0.70 depth/s")
 	check(absf(clay_removed - 0.0014) < 0.000001 and soil_removed / clay_removed > 49, "brush Soil is 50x Clay")
 	check(stone.image.get_data() == stone_bytes and not stone.dirty, "brush never excavates Sandstone, even a long tick")
@@ -84,28 +87,28 @@ func test_materials_and_residue() -> void:
 	var floor_limit := crossing.strata.boundaries.get_pixelv(cell).g
 	check(crossing.value_at(cell) == floor_limit, "long brush tick stops exactly at Sandstone interface")
 	soil = surface_at()
-	clay = surface_at(0.55)
+	clay = surface_at(clay_height)
 	stone = surface_at(0.2)
 	soil.apply_impact(centre, chisel)
 	clay.apply_impact(centre, chisel)
 	stone.apply_impact(centre, chisel)
 	check(absf(1.0 - soil.value_at(cell) - 0.0768) < 0.000001, "chisel weak on soil")
-	check(absf(0.55 - clay.value_at(cell) - 0.64 / 3.0) < 0.000001, "chisel suited to clay")
+	check(absf(clay_height - clay.value_at(cell) - 0.64 / 3.0) < 0.000001, "chisel suited to clay")
 	check(absf(0.2 - stone.value_at(cell) - 0.12) < 0.000001, "chisel useful on Sandstone")
 	check(chisel.structural_rate(definitions[1]) > brush.structural_rate(definitions[1]) * 20, "chisel clay rate over 20x brush")
 	var initial_residue := surface_at().residue.image.get_data()
 	check(clay.residue.image.get_data() != initial_residue, "actual excavation creates visible residue")
-	var twin := surface_at(0.55)
+	var twin := surface_at(clay_height)
 	twin.apply_impact(centre, chisel)
 	check(clay.residue.image.get_data() == twin.residue.image.get_data() and clay.residue._values == twin.residue._values, "residue deterministic including sub-byte accumulation")
 	# Keep both deposits below saturation to compare generation per removed depth.
 	var residue_tool := chisel.duplicate() as ToolDefinition
 	residue_tool.power = 0.12
-	var rich_deposit := surface_at(0.55)
+	var rich_deposit := surface_at(clay_height)
 	rich_deposit.apply_impact(centre, residue_tool)
 	var weak_deposit := residue_tool.duplicate() as ToolDefinition
 	weak_deposit.residue_generation = brush.residue_generation
-	twin = surface_at(0.55)
+	twin = surface_at(clay_height)
 	twin.apply_impact(centre, weak_deposit)
 	var uv := (Vector2(cell) + Vector2.ONE * 0.5) / Vector2(clay.size)
 	check(rich_deposit.residue.value_at(uv) > twin.residue.value_at(uv) * 5, "chisel produces more residue per removed depth")
@@ -115,7 +118,7 @@ func test_materials_and_residue() -> void:
 	var before := clay.residue.value_at(uv)
 	var slow_cleaner := brush.duplicate() as ToolDefinition
 	slow_cleaner.power = 0
-	var lightly_cleaned := surface_at(0.55)
+	var lightly_cleaned := surface_at(clay_height)
 	lightly_cleaned.apply_impact(centre, chisel)
 	lightly_cleaned.apply_continuous(centre, centre, slow_cleaner, 0.1)
 	check(lightly_cleaned.residue.value_at(uv) < before and lightly_cleaned.residue.value_at(uv) > before - 0.02, "brush can gently clean existing residue")

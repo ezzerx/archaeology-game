@@ -51,23 +51,35 @@ func normalized_height_at(uv: Vector2) -> float:
 static func intersect_triangle(origin: Vector3, direction: Vector3, a: Vector3, b: Vector3, c: Vector3) -> Variant:
 	# Godot's general ray helper has an absolute epsilon larger than these mm²
 	# triangles. Moller-Trumbore with a scale-relative parallel tolerance instead.
-	var edge_b := b - a
-	var edge_c := c - a
-	var cross_direction := direction.cross(edge_c)
-	var determinant := edge_b.dot(cross_direction)
-	if absf(determinant) <= edge_b.length() * cross_direction.length() * 0.0000001:
+	# Scalar GDScript floats are 64-bit; Vector3 intermediates are 32-bit.
+	# Grazing rays amplify their cancellation error beyond the 5 µm budget.
+	var bx: float = float(b.x) - a.x
+	var by: float = float(b.y) - a.y
+	var bz: float = float(b.z) - a.z
+	var cx: float = float(c.x) - a.x
+	var cy: float = float(c.y) - a.y
+	var cz: float = float(c.z) - a.z
+	var px := direction.y * cz - direction.z * cy
+	var py := direction.z * cx - direction.x * cz
+	var pz := direction.x * cy - direction.y * cx
+	var determinant := bx * px + by * py + bz * pz
+	if absf(determinant) <= sqrt((bx * bx + by * by + bz * bz) * (px * px + py * py + pz * pz)) * 0.0000001:
 		return null
 	var inverse := 1.0 / determinant
-	var offset := origin - a
-	var u := offset.dot(cross_direction) * inverse
+	var ox: float = float(origin.x) - a.x
+	var oy: float = float(origin.y) - a.y
+	var oz: float = float(origin.z) - a.z
+	var u := (ox * px + oy * py + oz * pz) * inverse
 	if u < -0.0001 or u > 1.0001:
 		return null
-	var cross_offset := offset.cross(edge_b)
-	var v := direction.dot(cross_offset) * inverse
+	var qx := oy * bz - oz * by
+	var qy := oz * bx - ox * bz
+	var qz := ox * by - oy * bx
+	var v := (direction.x * qx + direction.y * qy + direction.z * qz) * inverse
 	if v < -0.0001 or u + v > 1.0001:
 		return null
-	var t := edge_c.dot(cross_offset) * inverse
-	return origin + direction * t if t >= 0.0 else null
+	var t := (cx * qx + cy * qy + cz * qz) * inverse
+	return Vector3(origin.x + direction.x * t, origin.y + direction.y * t, origin.z + direction.z * t) if t >= 0.0 else null
 
 func ray_hit(origin: Vector3, direction: Vector3, far_distance: float) -> Dictionary:
 	var bounds_min := Vector3(-dimensions.x * 0.5, floor_height, -dimensions.y * 0.5)

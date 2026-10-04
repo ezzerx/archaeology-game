@@ -162,9 +162,15 @@ func test_contact_damage_and_reset() -> void:
 	# Hard bound independent of material resistance or any reasonable power/delta.
 	surface.apply_segment(point, point, 20, 1e30, 1.0, 1e5)
 	check(surface.value_at(cell) == field.ceilings[index], "enormous work cannot tunnel through bone")
-	var free_cell := cell + Vector2i(0, -18)
-	check(field.component_ids[free_cell.y * field.size.x + free_cell.x] == 0
-		and surface.value_at(free_cell) == 0 and surface.value_at(free_cell) < surface.value_at(cell), "nearby non-bone matrix reaches floor below bone")
+	# Burial can move the highest Skull point used above. Find actual adjacent
+	# matrix inside the same 20-texel footprint instead of assuming a fixed offset.
+	var free_matrix_at_floor := false
+	for y in range(cell.y - 18, cell.y + 19):
+		for x in range(cell.x - 18, cell.x + 19):
+			var free_cell := Vector2i(x, y)
+			if Vector2(free_cell - cell).length() >= 19 or field.component_ids[y * field.size.x + x] != 0: continue
+			free_matrix_at_floor = free_matrix_at_floor or (surface.value_at(free_cell) == 0 and surface.value_at(cell) > 0)
+	check(free_matrix_at_floor, "nearby non-bone matrix reaches floor below bone")
 	var before := fossil.condition
 	var residue_before := surface.residue.value_at((point + Vector2.ONE * 0.5) / Vector2(field.size))
 	for repeat in range(10): surface.apply_continuous(point, point, brush, 1)

@@ -11,6 +11,7 @@ uniform float fracture_seed = 0.0;
 uniform float bone_exposure_epsilon = 0.0000152587890625;
 uniform vec4 bone_color : source_color = vec4(0.94, 0.87, 0.72, 1.0);
 uniform vec2 map_size = vec2(1024.0, 640.0);
+uniform vec2 surface_size = vec2(1.1, 0.7);
 uniform float base_height = 0.018;
 uniform float excavatable_height = 0.102;
 uniform bool is_skirt = false;
@@ -37,6 +38,9 @@ float dust_noise(vec2 p) {
 }
 
 void vertex() {
+	// PlaneMesh accumulates float32 X/Z increments. Reconstruct from UV like
+	// the CPU grid: micrometer drift otherwise moves grazing occlusion edges.
+	if (!is_skirt) { VERTEX.xz = (UV - vec2(0.5)) * surface_size; }
 	float height = textureLod(working_map, UV, 0.0).r;
 	surface_height = height * (is_skirt ? VERTEX.y : 1.0);
 	VERTEX.y = base_height + surface_height * excavatable_height;

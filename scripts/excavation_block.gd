@@ -64,6 +64,7 @@ func _ready() -> void:
 	material.set_shader_parameter("fracture_seed", float(posmod(reactions.seed, 97)) / 97.0)
 	material.set_shader_parameter("bone_exposure_epsilon", FossilField.EXPOSURE_EPSILON)
 	material.set_shader_parameter("map_size", Vector2(map_resolution))
+	material.set_shader_parameter("surface_size", surface_size)
 	material.set_shader_parameter("base_height", base_height)
 	material.set_shader_parameter("excavatable_height", thickness - base_height)
 	for i in range(3):

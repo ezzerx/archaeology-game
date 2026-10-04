@@ -1,4 +1,5 @@
-class_name FossilField
+## Frozen P4 oracle: scripts/fossil_field.gd at 7ae0fec3c004d207c99f4713111a240f8d5f2e9a.
+## Only the global class_name is removed. Never used by the playable scene.
 extends RefCounted
 ## One authored B-17, rasterized once. No random seed or content generation.
 ## Coordinates below are authoring coordinates on the canonical 1024 x 640 map.
@@ -28,11 +29,6 @@ func _init(resolution := Vector2i(1024, 640)) -> void:
 		var component := component_ids[index]
 		if component == Component.NONE:
 			continue
-		# Resolve overlaps in the original authoring space first. Translating the
-		# winner is equivalent to adding the same offset to every candidate, and
-		# keeps ownership exact even if a safety clamp would tie two candidates.
-		var uv := (Vector2(index % size.x, index / size.x) + Vector2.ONE * 0.5) / Vector2(size)
-		ceilings[index] = BlockVerticalityProfile.buried_ceiling(ceilings[index], uv)
 		component_totals[component] += 1
 		total_cells += 1
 		highest_ceiling = maxf(highest_ceiling, ceilings[index])
