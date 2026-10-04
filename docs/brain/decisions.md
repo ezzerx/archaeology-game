@@ -357,4 +357,14 @@ Implémentation : nappe Clay à épaules douces, gradient et deux lobes larges. 
 
 Leçon validée : les seules fixtures A/B/C ne détectent pas les colonnes extrêmes ailleurs sur le fossile. Figer la référence avant correction et contrôler la population entière évite ce biais. Les anciens contrastes Clay/Stone des fixtures sont actualisés pour refléter la redistribution ; les seuils géométriques et matériaux restent inchangés. Outils, résistances, fracture, protection, audio, caméra et rendu ne sont pas retunés.
 
-Preuves, résultats de régression et performances : [P4V_REPORT, section V1.1](../dev/P4V_REPORT.md#v11--vérification-et-performance). **Le ressenti V1.1 reste à tester** avec les cinq questions exactes du rapport. PR #6 brouillon, push sans merge ; aucun P4-V2, procgen ou P5.
+Preuves, résultats de régression et performances : [P4V_REPORT, section V1.1](../dev/P4V_REPORT.md#v11--vérification-et-performance). La livraison demandait les cinq questions V1.1 ; le retour humain et le prochain protocole sont actualisés ci-dessous. PR #6 brouillon, aucun P4-V2, procgen ou P5.
+
+## P4-V1.2 — interfaces et lecture des morceaux, 2026-10-04
+
+**Antoine juge la base verticale V1.1 meilleure et conserve cette direction.** Seul un cleanup visuel est autorisé : grille orange Clay/Sandstone et séparation des blocs/éclats/miettes. Aucune nouvelle passe de géologie, retuning outil, modification Bone ou physique de débris.
+
+Cause vérifiée : une hauteur interpolée sur triangles comparée à une limite bilinéaire peut afficher une fausse matière, même quand les deux cartes sont identiques. Calculer leur différence aux mêmes sommets puis interpoler la différence supprime l'artefact ; le picking doit utiliser les mêmes triangles. Tolérance commune de présentation `1e-6` normalisée, sans toucher les seuils de travail par cellule. Les cartes V1.1 gardent leurs empreintes exactes ; les cinq fixtures GPU n'ont plus de couleur parasite, y compris avec une pellicule Clay réelle de 0,051 mm.
+
+Lisibilité : légère différence de valeur entre dessus/parois dures et couleurs de faces précalculées dans les meshes de morceaux existants. Pas de silhouette, trajectoire, quantité ou durée nouvelle. Le contraste augmente dans les fixtures, mais le jugement de profondeur/plaisir appartient au test humain.
+
+Leçon de validation : figer l'état de simulation et attendre des frames complètes après un échange de mesh/shader avant lecture GPU ; une capture trop précoce peut confondre absence temporaire et contraste. [Preuves et trois questions V1.2](../dev/P4V_REPORT.md). **STOP après push, PR #6 DRAFT ; aucun merge, P4-V2, procgen ou P5.**

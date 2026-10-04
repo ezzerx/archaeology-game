@@ -1,13 +1,21 @@
-# P4-V1.1 — Effort-aware Verticality
+# P4-V1.2 — Visual Cleanup
 
-**Status:** principe V1 validé humainement ; correction de distribution V1.1 autorisée, nouveau test humain requis
+**Status:** base verticale V1.1 jugée meilleure ; micro-passe visuelle V1.2, puis test humain
 
 **Date:** 2026-10-04  
 **Base:** `main@7ae0fec3c004d207c99f4713111a240f8d5f2e9a`  
 **Branch:** `prototype/p4v-verticality`  
-**Scope:** deterministic macro-verticality only. Debris physics is **not** part of V1.
+**Scope:** interfaces et lisibilité des blocs uniquement ; distribution V1.1 conservée. Aucune physique de débris.
 
-## Passe courante V1.1 — prioritaire sur les cibles historiques ci-dessous
+## Passe courante V1.2 — prioritaire
+
+Référence : `36bd665b2fdf3362875c55803dc184dad84056b3`. Le retour humain est positif sur la base verticale : conserver cette direction sans nouvelle passe de géologie. Deux objectifs : supprimer la grille/les stries Clay parasites sur Sandstone ; améliorer la séparation et la profondeur perçues des blocs, éclats et miettes.
+
+Diagnostiquer d'abord la présence réelle de Clay et le sampling des interfaces. Une couche fine doit rester propre ; rendu, matériau du curseur et CPU doivent rester cohérents. Contraste local ou clarification légère des faces autorisés, sans changer la logique des morceaux. Préserver outils, résistances, fracture, Bone, audio, caméra et cap 240 FPS / physique 60 Hz. Tous les tests existants restent verts ; ajouter des vérifications ciblées CPU/GPU, couches fines, lisibilité et une sanity de performance.
+
+Commit/push sur la même branche, **PR #6 reste DRAFT, aucun merge**, puis STOP. Antoine vérifie les interfaces (grille orange encore visible ? **NON**), les blocs/profondeur au Chisel (plus lisibles ? **OUI**), puis 5–10 minutes libres (base toujours aussi agréable ? **OUI**). Checklist exacte et preuves dans [P4V_REPORT](P4V_REPORT.md). Aucun P4-V2, procgen, P5 ou retuning.
+
+## Distribution V1.1 — conservée, contexte de la correction précédente
 
 Référence avant correction : `122e9b1cf6dfacad721f9af240ef30592de8491c`. Antoine valide l'intérêt de la variation de profondeur, mais certaines colonnes Sandstone sont trop longues à traverser. Modifier **uniquement la distribution des couches** : descendre l'interface Clay/Sandstone avec un champ large et lisse en UV. Aucun masque Bone, clamp sur la silhouette ou correctif par cellule. Les cellules Bone servent à mesurer et valider le résultat.
 
@@ -28,11 +36,11 @@ Mesurer avant/après min, médiane, P90, P95 et max de Sandstone et de l'effort,
 
 Règle confirmée pour la suite : **“Verticality / generation must be effort-aware, not depth-only.”** Une future seed devra respecter des budgets de travail pondérés par la matière, en plus des invariants géométriques. Aucun générateur n'est implémenté maintenant.
 
-Livrer les mesures, tests et performances dans [P4V_REPORT](P4V_REPORT.md), actualiser le Brain, commit/push sur la branche actuelle ; **PR #6 reste DRAFT, aucun merge**. Puis **STOP pour le test humain** : reset, jeu libre autour du squelette, cinq questions de la section V1.1 du rapport. Réponses cibles : **NON / OUI / OUI / OUI / OUI**.
+La livraison V1.1 et ses mesures restent dans [P4V_REPORT](P4V_REPORT.md). Son protocole à cinq questions est historique ; le prochain test est celui de V1.2 ci-dessus. **PR #6 reste DRAFT, aucun merge**.
 
 ## Brief initial V1 — contexte conservé
 
-Les objectifs de verticalité et les invariants ci-dessous restent applicables ; les budgets Sandstone, la composition Clay et le prochain protocole humain sont remplacés par V1.1 ci-dessus.
+Les invariants ci-dessous restent applicables ; budgets Sandstone et composition Clay sont ceux de V1.1, le prochain protocole humain est celui de V1.2 ci-dessus.
 
 ## Why this spike exists
 

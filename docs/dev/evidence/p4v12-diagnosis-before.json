@@ -1,0 +1,82 @@
+{
+	"p4v12-before-clay-floor-0.0-1x": {
+		"cpu_counts": [
+			0,
+			28844,
+			22501
+		],
+		"gpu_counts": [
+			0,
+			28235,
+			23110
+		],
+		"height_minus_boundary": [
+			-0.0000027990809030598,
+			0.00000628186216999893
+		]
+	},
+	"p4v12-before-clay-floor-0.0-3x": {
+		"cpu_counts": [
+			0,
+			16874,
+			34471
+		],
+		"gpu_counts": [
+			0,
+			22198,
+			29147
+		],
+		"height_minus_boundary": [
+			-0.00000188105241250014,
+			0.00000108310985069693
+		]
+	},
+	"p4v12-before-clay-floor-0.0005-3x": {
+		"cpu_counts": [
+			0,
+			51345,
+			0
+		],
+		"gpu_counts": [
+			0,
+			51345,
+			0
+		],
+		"height_minus_boundary": [
+			0.00049812946235761,
+			0.000501073431223631
+		]
+	},
+	"p4v12-before-soil-floor-0.0-1x": {
+		"cpu_counts": [
+			35372,
+			15973,
+			0
+		],
+		"gpu_counts": [
+			13967,
+			37378,
+			0
+		],
+		"height_minus_boundary": [
+			-0.00000149771278756816,
+			0.0000014661574141428
+		]
+	},
+	"p4v12-before-soil-floor-0.0-3x": {
+		"cpu_counts": [
+			28564,
+			22781,
+			0
+		],
+		"gpu_counts": [
+			25174,
+			26171,
+			0
+		],
+		"height_minus_boundary": [
+			-0.000000794144227711513,
+			0.000001096842311199
+		]
+	}
+}

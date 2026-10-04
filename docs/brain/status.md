@@ -2,7 +2,7 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 FINAL FEEL validé humainement et mergé ; principe de verticalité V1 validé humainement ; redistribution P4-V1.1, nouveau test humain attendu ; P4-V2 debris physics et P5 bloqués**.
+- Phase : **préproduction — P4 FINAL FEEL validé humainement et mergé ; base verticale V1.1 jugée meilleure ; cleanup visuel P4-V1.2, test humain attendu ; P4-V2 debris physics et P5 bloqués**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. Spike actif : `prototype/p4v-verticality`, [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) en brouillon, non mergée.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -122,9 +122,9 @@ Brief canonique :
 
 [P4_BRIEF.md](../dev/P4_BRIEF.md)
 
-**La validation P4 ne lance pas P5 : seule la passe corrective P4-V1.1 est actuellement autorisée.**
+**La validation P4 ne lance pas P5 : seule la micro-passe visuelle P4-V1.2 est actuellement autorisée.**
 
-## P4-V1.1 — Effort-aware Verticality : nouveau test humain attendu
+## P4-V1.1 — Effort-aware Verticality : base conservée
 
 Source de vérité : [P4V_BRIEF](../dev/P4V_BRIEF.md). Architecture, mesures, preuves et checklist : [P4V_REPORT](../dev/P4V_REPORT.md).
 
@@ -142,11 +142,19 @@ Source de vérité : [P4V_BRIEF](../dev/P4V_BRIEF.md). Architecture, mesures, pr
 
 Les ressources P4 Final Feel sont inchangées. Bone Condition globale et protection par composant préservées : **Skull → Skull → Ribs → Ribs = tik/100 → DING/97 → tik/97 → DING/94**. F1 donne épaisseurs/profondeurs et **hard work index = Clay au-dessus de Bone ×3 + Stone ×5,333…** ; cet indice n'est pas une durée. Précision V1 conservée : grille X/Z depuis UV, picking en scalaires float64 ; aucun changement de shader, parcours, tolérance ou mesh dans V1.1.
 
-Code/tests V1.1 : **`997132ba6297c065903f0b0cdaba05f416bf7166`**. Validation complète : **1 654 contrôles fonctionnels +90 visuels**, neuf empreintes identiques entre processus, **60 scénarios de performance**, zéro échec. Série A/C : 221,35–239,87 FPS moyens, minimum sur une seconde 212,28 FPS, P95 maximal 13,251 ms ; frame isolée maximale 17,484 ms. Oracle rasant 1,650 µm, pan 0,194 µm, 250 065 pixels GPU et mêmes tolérances numériques que V1. Formule, distributions avant/après et preuves dans le rapport ; le ressenti corrigé reste à juger humainement.
+Code/tests V1.1 : **`997132ba6297c065903f0b0cdaba05f416bf7166`**. Validation complète historique : **1 654 contrôles fonctionnels +90 visuels**, neuf empreintes identiques entre processus, **60 scénarios de performance**, zéro échec. Série A/C : 221,35–239,87 FPS moyens, minimum sur une seconde 212,28 FPS, P95 maximal 13,251 ms ; frame isolée maximale 17,484 ms. Oracle rasant 1,650 µm, pan 0,194 µm, 250 065 pixels GPU et mêmes tolérances numériques que V1. **Antoine juge ensuite la base verticale meilleure et demande de conserver cette direction.**
 
 Règle confirmée : **Verticality / generation must be effort-aware, not depth-only.** Les futures seeds devront respecter des budgets de travail par matériau, en plus des invariants géométriques. Le contrôle porte sur toute la population Bone, pas seulement A/B/C.
 
-Prochaine action : **reset et jeu libre, puis les cinq questions V1.1 du rapport**, réponses cibles NON/OUI/OUI/OUI/OUI. Les mesures V1 restent conservées comme historique. PR #6 reste brouillon/non mergée. **STOP : aucun merge, seed/procgen, P4-V2 debris physics ni P5 sans nouvelle autorisation.**
+## P4-V1.2 — Visual Cleanup : test humain attendu
+
+Référence : `36bd665b2fdf3362875c55803dc184dad84056b3`. La grille orange venait d'une comparaison entre hauteur triangulée et interface bilinéaire, même à zéro Clay restante. Le shader interpole maintenant le delta aux sommets ; le curseur suit les mêmes triangles, avec `1e-6` de tolérance d'arrondi (0,102 µm). Cartes V1.1 et travail par cellule exacts. Sur cinq cas /256 725 pixels : zéro couleur parasite et zéro désaccord curseur ; une vraie pellicule de 0,051 mm reste visible.
+
+Parois dures légèrement assombries, dessus plats conservés ; contraste de faces statique sur les meshes d'éclats/miettes. Séparation mesurée accrue sur huit fixtures, sans changer leur mouvement, forme, nombre ou durée. Les protections Bone, ressources outils, résistances, fracture, audio et caméra restent préservées. Détails et validation dans [P4V_REPORT](../dev/P4V_REPORT.md#v12--vérification-et-performance).
+
+Code/tests : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Validation finale : **1 691 contrôles fonctionnels +128 visuels**, neuf empreintes identiques entre processus, **60 scénarios de performance**, zéro échec. Verticalité **222,40–239,87 FPS**, pire P95 **13,237 ms**, minimum sur une seconde **210,74 FPS** ; performance soutenue quasi inchangée, frames isolées jusqu'à 18,527 ms. Les paramètres et les règles du jeu restent conservés ; seul le harnais Brush stabilise la continuité de son geste synthétique face aux notifications natives.
+
+Prochaine action : **les trois questions V1.2 du rapport**, cibles **NON/OUI/OUI** : grille orange, blocs/profondeur, agrément après 5–10 minutes libres. PR #6 reste brouillon/non mergée. **STOP : aucun merge, nouvelle passe de géologie, seed/procgen, P4-V2 debris physics ni P5 sans nouvelle autorisation.**
 
 ## Watchpoints techniques
 
@@ -159,4 +167,4 @@ Prochaine action : **reset et jeu libre, puis les cinq questions V1.1 du rapport
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → **P4-V1 : principe validé ; V1.1 : test humain** → P4-V2 éventuel sur autorisation → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → **P4-V1.1 : base appréciée ; V1.2 : test humain** → P4-V2 éventuel sur autorisation → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.

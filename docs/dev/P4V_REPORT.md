@@ -1,6 +1,68 @@
-# P4-V1.1 — Effort-aware Verticality
+# P4-V1.2 — Visual Cleanup
 
-2026-10-04. Branche `prototype/p4v-verticality`, [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) **brouillon, non mergée**. Source de vérité : [P4V_BRIEF](P4V_BRIEF.md), section V1.1. **Antoine valide le principe de verticalité V1** ; cette correction réduit les colonnes Sandstone trop longues. Le ressenti de V1.1 attend un nouveau test humain.
+2026-10-04. Branche `prototype/p4v-verticality`, [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) **brouillon, non mergée**. **Antoine juge la base verticale V1.1 meilleure et conserve cette direction.** Cette micro-passe traite seulement les interfaces parasites et la lecture des faces/morceaux. Source de vérité : [P4V_BRIEF](P4V_BRIEF.md), section V1.2.
+
+Référence BEFORE : **`36bd665b2fdf3362875c55803dc184dad84056b3`**. Les cartes géologiques, Bone et les paramètres P4 sont conservés ; les mesures de distribution V1.1 ci-dessous restent applicables.
+
+Code et tests AFTER : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Le commit de documentation suivant ajoute les preuves de la suite complète et le contexte de reprise.
+
+## V1.2 — cause et correction des interfaces
+
+L'orange parasite ne correspondait pas à une nouvelle couche Clay. Il est reproduit avec un champ de hauteur RF **exactement égal** à la limite Clay/Sandstone, sans résidu ni fissure : le shader comparait la hauteur interpolée sur les **triangles** du relief à une limite échantillonnée en **bilinéaire au fragment**. Les courbes de l'interface et les arrondis suffisaient à alterner Clay/Stone. L'écart positif maximal relevé sur cette fixture était de seulement **0,641 µm** ; le même problème existe à Soil/Clay.
+
+Le shader calcule désormais le delta hauteur/limite aux mêmes sommets avant interpolation. Le matériau du curseur utilise les trois mêmes sommets et la même diagonale ; une tolérance commune `1e-6` normalisée (**0,102 µm**) absorbe l'arrondi float32. Le retrait par cellule garde ses seuils stricts, les cartes restent exactes, la géométrie et le rayon de picking sont inchangés. Aucune couche de plusieurs millimètres n'est fusionnée et aucune matière n'est retirée par le correctif.
+
+Comparaison avec le shader V1.1 figé dans `tests/fixtures/p4v11_surface.gdshader` ; **51 345 pixels par cas**, même RF et même vue :
+
+| Surface / zoom | Mauvaise couleur BEFORE | AFTER | Désaccord curseur AFTER |
+|---|---:|---:|---:|
+| Limite Soil/Clay, 1× | 13 967 | **0** | **0** |
+| Limite Soil/Clay, 3× | 25 174 | **0** | **0** |
+| Limite Clay/Stone, 1× | 28 235 | **0** | **0** |
+| Limite Clay/Stone, 3× | 22 198 | **0** | **0** |
+| Vraie pellicule Clay de 0,051 mm, 3× | 0 | **0** | **0** |
+
+La pellicule réelle reste uniformément Clay. Les essais CPU couvrent aussi les deux interfaces, avec/sans pellicule, à trois résolutions (**29 484 points hors centres**). Le seuil de travail brut distingue toujours une épaisseur positive `1e-8`. [Résultats CPU](evidence/p4v12-tests.json) · [Readbacks GPU](evidence/p4v12-visual.json) · [Interface avant](evidence/p4v12-clay-floor-before.png) / [après](evidence/p4v12-clay-floor-after.png).
+
+## V1.2 — lisibilité des blocs et morceaux
+
+Les faces inclinées/verticales de matrice dure reçoivent une légère baisse de valeur, bornée à 24 % dans le shader ; les dessus plats conservent leur palette. Sur une cavité issue de douze frappes réelles : **1 328 échantillons de paroi**, valeur rendue moyenne **−15,1 %** ; **29 599 échantillons plats**, différence maximale **0**. Bone, Soil et les vues debug ne reçoivent pas cet effet.
+
+Les meshes existants d'éclats Clay/Stone et de miettes reçoivent des couleurs de face grises, calculées **une fois au chargement** (dessus 1, côtés 0,62/0,72, dessous 0,50). Leur couleur de matériau reste appliquée par instance. Géométrie, silhouette, quantités, trajectoires, expiration et transport Blower sont identiques ; aucun nouvel effet physique, shadow map ou texture AO.
+
+Huit paires à simulation figée, Clay/Stone à 1×/3×, comparées au même fond sans le pool concerné : contraste pixel cumulé **+8 à +32 % pour les éclats**, **+17 à +58 % pour les miettes**. Il s'agit d'une mesure de séparation sur ces fixtures, pas d'une validation de l'agrément. Le harnais attend deux frames complètes après un changement de mesh/shader avant lecture GPU ; la simulation demeure figée. [Blocs avant](evidence/p4v12-walls-before.png) / [après](evidence/p4v12-walls-after.png) · [Morceaux Stone avant](evidence/p4v12-stone-chunks-before.png) / [après](evidence/p4v12-stone-chunks-after.png).
+
+## V1.2 — vérification et performance
+
+Suite complète `tests/check_p4v.ps1 -GodotBin <Godot 4.7.2 console> -Graphical` réussie : **1 691 contrôles fonctionnels uniques** (1 654 existants +37 nouveaux), **128 visuels** (90 existants +38 nouveaux), **60 scénarios de performance**, zéro échec. Les 90 contrôles V1 sont rejoués dans un second processus : **neuf empreintes identiques**. Aucun seuil historique assoupli. [Journal complet](evidence/p4v12-validation.txt) · [Invariants V1](evidence/p4v12-verticality-tests.json) · [Budgets d'effort](evidence/p4v12-effort-tests.json).
+
+Les **256 725 pixels** des interfaces ciblées s'ajoutent aux **250 065 pixels** de l'oracle V1.1 conservé : erreur couleur maximale 0,010883, erreur hauteur corrigée maximale 0,004685 et mêmes deux cas d'occlusion à 1×, résolus spatialement avec les tolérances historiques. Oracle natif rasant **1,650 µm / seuil 5 µm**, pan **0,194 µm**. Protection reconfirmée : **tik/100 → DING/97 → tik/97 → DING/94**. [Régression GPU P3](evidence/p4v12-p3-gpu.json) · [Protection par composant](evidence/p4v12-component-contact.json).
+
+Même machine/protocole que V1.1 : **Godot 4.7.2, RTX 5080 / Ryzen 7 9800X3D**, Compatibility, 1920×1080, cap **240 FPS / physique 60 Hz**. Préparations et readbacks hors chronométrage ; rendu/FX actifs, bus audio muet. [Synthèse et comparaison par scénario](evidence/p4v12-performance-summary.json).
+
+| Série | Cas | FPS moyens (plage) | Pire P95 frame | Plus longue frame |
+|---|---:|---:|---:|---:|
+| Verticalité A/C | 20 | **222,40–239,87** | **13,237 ms** | **18,527 ms** |
+| Brush, dont gestes de 30 s | 12 | **215,58–225,94** | **13,764 ms** | **19,856 ms** |
+| Régression P4 | 28 | **218,65–240,00** | **13,437 ms** | **16,803 ms** |
+
+Verticalité : minimum sur une seconde **210,74 FPS** ; FPS médians par scénario inchangés par rapport à V1.1 (écarts individuels −3,0 % à +2,1 %). Brush : médiane +0,5 %, cas individuels −5,8 % à +3,8 % ; P95 maximal 13,754 →13,764 ms. Picking vertical : pire P95 **0,147 ms**, max **0,322 ms**, contre 0,146/0,323 ms. Performance soutenue quasi inchangée ; quelques frames isolées restent au-dessus de 16,67 ms. [Verticalité](evidence/p4v12-benchmark.json) · [Brush](evidence/p4v12-brush-regression.json) · [P4](evidence/p4v12-p4-benchmark.json).
+
+Une première exécution a relevé une discontinuité du balayage synthétique Brush entre les paires A/B. Le harnais conserve désormais son état de continuité autour de l'attente d'un tick, comme celui des impacts conserve déjà son horloge face aux notifications natives ; le contrôleur de production reste inchangé. L'assertion d'état final **strictement identique** avec/sans proxy est conservée et passe sur la série finale. Les sources outils/résistances/fracture/audio/Bone/caméra sont inchangées. `project.godot` conserve exactement la modification locale antérieure, exclue des commits. Les preuves V1.1 ci-dessous restent historiques.
+
+## V1.2 — test humain
+
+Godot 4.7.2, **F5**, puis **R** pour repartir du bloc intact ; réglages P4 par défaut, **F1 masqué** pour juger la lecture. Regarder plusieurs zones Clay/Sandstone à 1× et 3×, creuser au Chisel, puis jouer librement 5–10 minutes.
+
+1. « Est-ce que je vois encore cet effet grille orange / fine couche bizarre ? » → **NON**.
+2. « Est-ce que je perçois mieux les blocs et la profondeur quand la matière casse ? » → **OUI**.
+3. « Est-ce que la base reste aussi agréable qu'avant le cleanup ? » → **OUI**.
+
+**STOP pour Antoine. PR #6 reste DRAFT ; aucun merge, nouvelle passe de géologie, P4-V2, procgen ou P5.**
+
+## Distribution et preuves V1.1 — conservées
+
+La correction V1.1 réduit les colonnes Sandstone trop longues. Son retour humain est désormais positif sur la base verticale ; sa distribution reste inchangée dans V1.2. Les chiffres et le protocole suivants documentent cette livraison antérieure.
 
 ## V1.1 — correction et formule
 
@@ -80,7 +142,7 @@ Les deux anciennes assertions de contraste des fixtures V1 sont actualisées : B
 
 Les ressources `ToolDefinition`, résistances et réactions, la fracture, les shaders, le picking, le contrôleur, les proxies et les sons n'ont aucune modification dans V1.1. Calcul statique uniquement ; la métrique F1 effectue une lecture locale O(1), sans carte ni simulation supplémentaire. `project.godot` conserve exactement la modification locale antérieure et reste exclu des commits.
 
-## V1.1 — test humain demandé
+## V1.1 — protocole humain précédent
 
 Lancer avec Godot 4.7.2 (**F5**), **R** pour reset, puis jouer librement autour du squelette avec les réglages P4. F1 permet de repérer A/B/C et de lire l'indice ; le masquer pour juger le ressenti.
 
@@ -96,7 +158,7 @@ Règle future confirmée : **“Verticality / generation must be effort-aware, n
 
 ## Historique V1 — preuves avant la correction V1.1
 
-Les sections suivantes décrivent la livraison V1 de référence, ses formules et ses anciennes mesures. Le principe a depuis été validé humainement ; **la formule Clay, les valeurs et la checklist courantes sont celles de V1.1 ci-dessus**. Base P4 : `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`.
+Les sections suivantes décrivent la livraison V1 de référence, ses formules et ses anciennes mesures. **La formule Clay et les valeurs sont celles de V1.1 ; le prochain test humain est celui de V1.2 en tête du rapport.** Base P4 : `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`.
 
 Implémentation et tests : `e18cf1262e12738ba09a52761395e01a27a96970` ; isolation du harnais graphique : `c8dc92c2c6f7c2da8a865ffa3a08146184812b5a`. Le commit de documentation conserve ce code et ajoute le présent rapport, les preuves et le contexte de reprise.
 
