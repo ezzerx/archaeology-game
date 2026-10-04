@@ -1,7 +1,6 @@
 class_name DebrisPhysicsProfile
 extends Resource
-## Experimental feedback only. Units: metres, seconds; never tool work or dirt.
-@export_range(1, 48, 1) var fragment_cap := 48
+## Persistent crumb motion only. Units: metres, seconds; never structural work.
 @export var gravity := 0.65
 @export var restitution := Vector2(0.12, 0.22) # Clay / Sandstone.
 @export var friction := Vector2(14.0, 9.0) # Contact drag, per second.
@@ -16,10 +15,10 @@ extends Resource
 @export var sleep_delay := 0.15
 @export var bounce_min_speed := 0.018 # Post-restitution speed.
 @export var contact_skin := 0.00015
-@export var sleep_hold := 1.65
-@export var fade_duration := 0.4
+@export var spawn_lateral_speed := 0.035
+@export var spawn_lift := 0.025
 # Integrated over the actual tool delta; independent of frame/tick frequency.
-@export var blower_fragment_impulse := 1.8 # m/s of lateral velocity per second.
-@export var blower_fragment_lift := 1.1 # m/s of upward velocity per second.
-@export var blower_speed_limit := 0.45
-@export var blower_lift_limit := 0.30
+@export var crumb_blower_impulse := 5.0 # m/s of lateral velocity per second.
+@export var crumb_blower_lift := 1.8 # m/s of upward velocity per second.
+@export var blower_speed_limit := 0.80
+@export var blower_lift_limit := 0.22

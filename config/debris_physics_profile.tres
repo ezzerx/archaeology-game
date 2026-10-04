@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1")
-fragment_cap = 48
 gravity = 0.65
 restitution = Vector2(0.12, 0.22)
 friction = Vector2(14, 9)
@@ -19,9 +18,9 @@ sleep_angular_speed = 0.4
 sleep_delay = 0.15
 bounce_min_speed = 0.018
 contact_skin = 0.00015
-sleep_hold = 1.65
-fade_duration = 0.4
-blower_fragment_impulse = 1.8
-blower_fragment_lift = 1.1
-blower_speed_limit = 0.45
-blower_lift_limit = 0.30
+spawn_lateral_speed = 0.035
+spawn_lift = 0.025
+crumb_blower_impulse = 5.0
+crumb_blower_lift = 1.8
+blower_speed_limit = 0.80
+blower_lift_limit = 0.22

@@ -40,12 +40,17 @@ func _on_debris_ejected(point: Vector2, direction: Vector2, amount: float, layer
 		0, direction.y * surface_size.y / map_resolution.y)).normalized()
 	debris_ejected.emit(position_world, direction_world, amount, material_definitions[layer].id)
 
+func _on_physical_crumb_ejected(at: Vector3, direction: Vector3, amount: float, layer: int) -> void:
+	debris_ejected.emit(to_global(at), (global_basis * direction).normalized(), amount, material_definitions[layer].id)
+
 func _ready() -> void:
 	assert(surface_size.x > 0.0 and surface_size.y > 0.0 and thickness > base_height)
 	var strata := Stratigraphy.new(map_resolution, material_definitions)
 	working_map = WorkingSurface.new(map_resolution, strata, FossilField.new(map_resolution), reactions)
 	working_map.loose_debris.ejected.connect(_on_debris_ejected)
 	relief = ReliefSurface.new(working_map.image, surface_size, map_resolution, base_height, thickness)
+	working_map.loose_debris.setup_physics(relief)
+	working_map.loose_debris.physical_ejected.connect(_on_physical_crumb_ejected)
 	texture = ImageTexture.create_from_image(working_map.image)
 	layer_texture = ImageTexture.create_from_image(strata.boundaries)
 	residue_texture = ImageTexture.create_from_image(working_map.residue.image)

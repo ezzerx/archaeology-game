@@ -152,4 +152,4 @@ mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.05, 0.95)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 18
-text = "P4 | LMB: hold / click | 1 Brush: soil + mess | 2 Chisel: hard matrix | 3 Blower: mess | 4 Pick: details | Wheel: zoom | RMB: pan | Home: overview | R: reset | F1: debug | F2: view\nDEBUG | Shift+Wheel: power | Ctrl+Wheel: falloff | Alt+Wheel: radius | F6/F7: radius -/+ (Shift: power, Ctrl: falloff) | F3: debris physics ON/OFF"
+text = "P4 | LMB: hold / click | 1 Brush: soil + mess | 2 Chisel: hard matrix | 3 Blower: mess | 4 Pick: details | Wheel: zoom | RMB: pan | Home: overview | R: reset | F1: debug | F2: view\nDEBUG | Shift+Wheel: power | Ctrl+Wheel: falloff | Alt+Wheel: radius | F6/F7: radius -/+ (Shift: power, Ctrl: falloff) | F3: crumb physics ON/OFF"

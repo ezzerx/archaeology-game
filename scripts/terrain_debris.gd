@@ -1,13 +1,15 @@
 class_name TerrainDebris
 extends RefCounted
-## Read-only relief consumer. Fixed slots, no per-impact Nodes/meshes/colliders.
-signal debris_ejected(position_local: Vector3, direction_local: Vector3, layer: int)
+## Motion kernel for persistent LooseDebris crumbs, not transient Chisel chunks.
+## Read-only relief, fixed slots. Ownership/amount/spawn budgets live in LooseDebris.
+signal debris_ejected(source: Vector3i, position_local: Vector3, direction_local: Vector3)
 enum State { AIRBORNE, CONTACT, SLEEPING }
 const ROTATION_AXIS := Vector3(0.3, 1, 0.2) / 1.063014581273465
 const SUBSTEPS := 2
 
 class Fragment extends RefCounted:
 	var active := false
+	var source := Vector3i.ZERO
 	var position := Vector3.ZERO
 	var velocity := Vector3.ZERO
 	var rotation := 0.0
@@ -22,7 +24,7 @@ class Fragment extends RefCounted:
 	var contacts := 0
 
 	func support_height() -> float:
-		# Bottom of the rendered oriented box, not half its unrotated thickness.
+		# Conservative oriented envelope of the flake, not its unrotated thickness.
 		var basis := Basis(ROTATION_AXIS, rotation)
 		return (absf(basis.x.y) * size.x + absf(basis.y.y) * size.y + absf(basis.z.y) * size.z) * 0.5
 
@@ -37,38 +39,30 @@ var last_step_usec := 0
 var last_blower_usec := 0
 var emitted_count := 0
 var skipped_count := 0
-var recycled_count := 0
 var ejected_count := 0
 
-func _init(terrain: ReliefSurface, settings: DebrisPhysicsProfile = preload("res://config/debris_physics_profile.tres")) -> void:
+func _init(terrain: ReliefSurface, settings: DebrisPhysicsProfile = preload("res://config/debris_physics_profile.tres"), capacity := 128) -> void:
 	relief = terrain
 	map_size = relief.image.get_size()
 	profile = settings
-	for i in range(clampi(profile.fragment_cap, 1, 48)):
+	for i in range(clampi(capacity, 1, 192)):
 		fragments.append(Fragment.new())
 
-func spawn(at: Vector3, velocity: Vector3, size: Vector3, layer: int, rotation: float) -> int:
+func spawn(at: Vector3, velocity: Vector3, size: Vector3, layer: int, rotation: float, source := Vector3i.ZERO) -> int:
 	if layer not in [1, 2] or not _inside(at): return -1
 	var slot := -1
-	var oldest := -1.0
 	for i in range(fragments.size()):
 		var fragment := fragments[i]
 		if not fragment.active:
 			slot = i
 			break
-		# Never remove an airborne piece to make room. Reuse oldest resting FX.
-		if fragment.state == State.SLEEPING and fragment.age > oldest:
-			oldest = fragment.age
-			slot = i
 	if slot < 0:
 		skipped_count += 1
 		return -1
 	var f := fragments[slot]
-	if f.active:
-		recycled_count += 1
-		sleeping_count -= 1
-	else: active_count += 1
+	active_count += 1
 	f.active = true
+	f.source = source
 	f.position = at
 	f.velocity = velocity
 	f.size = size
@@ -105,26 +99,32 @@ func _wake(f: Fragment) -> void:
 	f.sleeping_time = 0.0
 
 func _release(f: Fragment) -> void:
+	if not f.active: return
 	f.active = false
 	active_count -= 1
+	if f.state == State.SLEEPING: sleeping_count = maxi(0, sleeping_count - 1)
+
+func remove(slot: int) -> void:
+	_release(fragments[slot])
 
 func advance(delta: float) -> void:
 	var started := Time.get_ticks_usec()
 	last_samples = 0
-	sleeping_count = 0
+	if active_count == 0:
+		last_step_usec = Time.get_ticks_usec() - started
+		return
 	for f in fragments:
 		if not f.active: continue
 		f.age += delta
 		if f.state == State.SLEEPING:
-			# Excavation under a settled chunk must remove its support immediately.
+			# Excavation under a settled crumb must remove its support immediately.
 			var floor_y := _height(f.position) + f.support_height() + profile.contact_skin
 			if absf(f.position.y - floor_y) > profile.contact_skin * 2.0:
+				sleeping_count -= 1
 				_wake(f)
 			else:
 				f.sleeping_time += delta
-				if f.sleeping_time >= profile.sleep_hold + profile.fade_duration:
-					_release(f)
-				else: sleeping_count += 1
+				# Persistent dirt: no expiry, fade or oldest-sleeper recycling.
 				continue
 		for step in range(SUBSTEPS):
 			_step(f, delta / SUBSTEPS)
@@ -148,7 +148,7 @@ func _step(f: Fragment, delta: float) -> void:
 		f.position = previous + movement * fraction
 		_release(f)
 		ejected_count += 1
-		debris_ejected.emit(f.position, f.velocity.normalized(), f.material)
+		debris_ejected.emit(f.source, f.position, f.velocity.normalized())
 		return
 	var floor_y := _height(f.position) + f.support_height() + profile.contact_skin
 	# floor_y already includes the skin. An extra tolerance here would swallow
@@ -201,19 +201,15 @@ func blow(from: Vector2, to: Vector2, radius: float, falloff: float, delta: floa
 		if weight <= 0: continue
 		if f.state == State.SLEEPING: sleeping_count -= 1
 		_wake(f)
-		var lateral := Vector3(f.velocity.x, 0, f.velocity.z) + jet * profile.blower_fragment_impulse * weight * delta
+		var lateral := Vector3(f.velocity.x, 0, f.velocity.z) + jet * profile.crumb_blower_impulse * weight * delta
 		lateral = lateral.limit_length(profile.blower_speed_limit)
 		f.velocity.x = lateral.x
 		f.velocity.z = lateral.z
-		f.velocity.y = minf(profile.blower_lift_limit, f.velocity.y + profile.blower_fragment_lift * weight * delta)
+		f.velocity.y = minf(profile.blower_lift_limit, f.velocity.y + profile.crumb_blower_lift * weight * delta)
 		f.angular_velocity = maxf(f.angular_velocity, weight * 4.0)
 		affected += 1
 	last_blower_usec = Time.get_ticks_usec() - started
 	return affected
-
-func visibility_scale(f: Fragment) -> float:
-	if f.state != State.SLEEPING: return 1.0
-	return 1.0 - clampf((f.sleeping_time - profile.sleep_hold) / profile.fade_duration, 0.0, 1.0)
 
 func reset() -> void:
 	for f in fragments: f.active = false
@@ -224,5 +220,4 @@ func reset() -> void:
 	last_blower_usec = 0
 	emitted_count = 0
 	skipped_count = 0
-	recycled_count = 0
 	ejected_count = 0

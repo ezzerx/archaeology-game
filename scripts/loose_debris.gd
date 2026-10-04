@@ -1,8 +1,9 @@
 class_name LooseDebris
 extends RefCounted
-## Secondary dirt only: sparse 8x8 bins by source material, never structural.
+## Secondary dirt only. Spawn keys own amount/budget, physical XYZ owns position.
 ## Amount is normalized visual accumulation, not a physical mass measurement.
 signal ejected(point: Vector2, direction: Vector2, amount: float, layer: int)
+signal physical_ejected(position_local: Vector3, direction_local: Vector3, amount: float, layer: int)
 const STRIDE := 8
 var height_size: Vector2i
 var profile: DebrisProfile
@@ -13,10 +14,89 @@ var flying: Array[Dictionary] = []
 var _packets: Dictionary = {}
 var last_cleared := 0.0
 var jet := Vector2(-1, -1).normalized()
+var physics: TerrainDebris
+var physical_slots: Dictionary = {}
+var _rest_points: Dictionary = {} # Preserve current positions when F3 turns OFF.
+var _size_dirty: Dictionary = {}
+var last_blown := 0
+var samples_pending := 0
+var samples_last_frame := 0
+var refused_count := 0
+var physics_enabled := true:
+	set(value):
+		if physics_enabled == value: return
+		physics_enabled = value
+		if physics == null: return
+		if value:
+			for key: Vector3i in cells:
+				if key.z > 0: _spawn_physical(key, false)
+		else:
+			for key: Vector3i in physical_slots:
+				_rest_points[key] = _map_point(physics.fragments[physical_slots[key]].position)
+			physical_slots.clear()
+			physics.reset()
+		for key in cells: dirty_cells[key] = true
+		samples_pending = 0
+		samples_last_frame = 0
 
 func _init(resolution: Vector2i, settings: DebrisProfile = preload("res://config/debris_profile.tres")) -> void:
 	height_size = resolution
 	profile = settings
+
+func setup_physics(terrain: ReliefSurface) -> void:
+	assert(physics == null)
+	physics = TerrainDebris.new(terrain, preload("res://config/debris_physics_profile.tres"), profile.global_crumb_cap)
+	physics.debris_ejected.connect(_on_physical_exit)
+	if physics_enabled:
+		for key: Vector3i in cells:
+			if key.z > 0: _spawn_physical(key, false)
+
+func persistent_count() -> int:
+	return cells.size() + flying.size()
+
+func moving_count() -> int:
+	return flying.size() + (physics.active_count - physics.sleeping_count if physics != null else 0)
+
+func size_for(key: Vector3i) -> Vector3:
+	var width := (profile.crumb_width if key.z == 0 else profile.matrix_crumb_width) \
+		* clampf(sqrt(cells[key] / profile.crumb_capacity), 0.08, 1.0)
+	return Vector3(width, width * (0.14 if key.z == 0 else 0.32), width * 0.75)
+
+func _map_point(at: Vector3) -> Vector2:
+	return SurfaceMapping.local_to_uv(at, physics.relief.dimensions) * Vector2(height_size) - Vector2.ONE * 0.5
+
+func _spawn_physical(key: Vector3i, hop := true) -> void:
+	var point := point_for(key)
+	var uv := (point + Vector2.ONE * 0.5) / Vector2(height_size)
+	var shape := size_for(key)
+	var at := Vector3((uv.x - 0.5) * physics.relief.dimensions.x,
+		physics.relief.height_at(uv) + shape.length() * 0.5 + physics.profile.contact_skin,
+		(uv.y - 0.5) * physics.relief.dimensions.y)
+	# Stable independent motion; never consume the Chisel/audio/gameplay RNG.
+	var rotation := point.x * 1.7 + point.y * 2.3
+	var velocity := Vector3(cos(rotation), 0, sin(rotation)) * physics.profile.spawn_lateral_speed \
+		+ Vector3.UP * physics.profile.spawn_lift if hop else Vector3.ZERO
+	var slot := physics.spawn(at, velocity, shape, key.z, rotation, key)
+	assert(slot >= 0, "global spawn budget reserves a physical slot")
+	physical_slots[key] = slot
+	_rest_points.erase(key)
+
+func _erase_cell(key: Vector3i) -> void:
+	if physical_slots.has(key):
+		physics.remove(physical_slots[key])
+		physical_slots.erase(key)
+	cells.erase(key)
+	_rest_points.erase(key)
+	_size_dirty.erase(key)
+	var bucket := bucket_for(key)
+	occupancy[bucket] -= 1
+	if occupancy[bucket] == 0: occupancy.erase(bucket)
+	dirty_cells[key] = true
+
+func _on_physical_exit(key: Vector3i, at: Vector3, direction: Vector3) -> void:
+	var amount: float = cells[key]
+	_erase_cell(key) # Free persistent state and spawn budget before notifying.
+	physical_ejected.emit(at, direction, amount, key.z)
 
 func reset() -> void:
 	for key in cells: dirty_cells[key] = true
@@ -26,6 +106,14 @@ func reset() -> void:
 	_packets.clear()
 	last_cleared = 0.0
 	jet = Vector2(-1, -1).normalized()
+	physical_slots.clear()
+	_rest_points.clear()
+	_size_dirty.clear()
+	last_blown = 0
+	samples_pending = 0
+	samples_last_frame = 0
+	refused_count = 0
+	if physics != null: physics.reset()
 
 func bucket_for(key: Vector3i) -> Vector2i:
 	@warning_ignore("integer_division")
@@ -34,16 +122,25 @@ func bucket_for(key: Vector3i) -> Vector2i:
 func deposit_removed(x: int, y: int, amount: float, layer: int) -> float:
 	# Return unretained depth to the caller for Fine Dust deposition at the exact
 	# excavation pixel. A bucket cannot acquire more or larger persistent chunks.
+	if amount <= 0: return 0.0
 	@warning_ignore("integer_division")
 	var key := Vector3i(x / STRIDE, y / STRIDE, layer)
 	var bucket := bucket_for(key)
 	var accepted := 0.0
-	if cells.has(key) or occupancy.get(bucket, 0) < profile.crumbs_per_bucket:
+	var existing := cells.has(key)
+	# A departed crumb must not absorb fresh matter from a distant source cell.
+	var at_source := not physical_slots.has(key) or point_for(key).distance_to(_spawn_point(key)) < STRIDE
+	if (existing and at_source) or (not existing and occupancy.get(bucket, 0) < profile.crumbs_per_bucket
+			and persistent_count() < profile.global_crumb_cap):
 		accepted = minf(amount * profile.retained_fraction / (STRIDE * STRIDE),
 			maxf(0.0, profile.crumb_capacity - cells.get(key, 0.0)))
 		if accepted > 0:
 			if not cells.has(key): occupancy[bucket] = occupancy.get(bucket, 0) + 1
 			cells[key] = cells.get(key, 0.0) + accepted
+			if physics_enabled and physics != null and layer > 0:
+				if not existing: _spawn_physical(key)
+				_size_dirty[key] = true
+	if accepted == 0: refused_count += 1
 	# All material crumbs in this bin settle on the newly excavated substrate.
 	for material in range(3):
 		var other := Vector3i(key.x, key.y, material)
@@ -51,6 +148,10 @@ func deposit_removed(x: int, y: int, amount: float, layer: int) -> float:
 	return maxf(0.0, amount - accepted * STRIDE * STRIDE)
 
 func point_for(key: Vector3i) -> Vector2:
+	if physical_slots.has(key): return _map_point(physics.fragments[physical_slots[key]].position)
+	return _rest_points.get(key, _spawn_point(key))
+
+func _spawn_point(key: Vector3i) -> Vector2:
 	# Stable irregular placement; no frame RNG and no shared gameplay state.
 	var code := absi(key.x * 73856093 ^ key.y * 19349663 ^ key.z * 83492791)
 	var jitter := Vector2(float(code % 101) / 100.0, float((code / 101 as int) % 103) / 102.0)
@@ -58,59 +159,66 @@ func point_for(key: Vector3i) -> Vector2:
 		Vector2.ZERO, Vector2(height_size) - Vector2.ONE)
 
 func nearby_count(point: Vector2, radius := 2.0) -> int:
-	# F1 inspection only: bounded neighbours, never a scan of persistent dirt.
-	var cell := Vector2i((point / STRIDE).floor())
+	# Bounded by the global crumb cap; spawn buckets no longer imply location.
 	var count := 0
-	for y in range(cell.y - 1, cell.y + 2):
-		for x in range(cell.x - 1, cell.x + 2):
-			for layer in range(3):
-				var key := Vector3i(x, y, layer)
-				if cells.has(key) and point_for(key).distance_to(point) <= radius: count += 1
+	for key: Vector3i in cells:
+		if point_for(key).distance_to(point) <= radius: count += 1
 	return count
 
 func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> void:
 	last_cleared = 0.0
+	last_blown = 0
 	if tool.residue_clear <= 0 or tool.radius <= 0 or delta <= 0: return
 	var segment := to - from
 	if segment.length_squared() > 0.01: jet = segment.normalized()
-	var low := Vector2i(((from.min(to) - Vector2.ONE * tool.radius) / STRIDE).floor()).max(Vector2i.ZERO)
-	var high := Vector2i(((from.max(to) + Vector2.ONE * tool.radius) / STRIDE).floor()).min(
-		Vector2i((Vector2(height_size) / STRIDE).ceil()) - Vector2i.ONE)
 	var inv_length := 1.0 / segment.length_squared() if segment.length_squared() > 0 else 0.0
-	for y in range(low.y, high.y + 1):
-		for x in range(low.x, high.x + 1):
-			for layer in range(3):
-				var key := Vector3i(x, y, layer)
-				if not cells.has(key): continue
-				var point := point_for(key)
-				var t := clampf((point - from).dot(segment) * inv_length, 0, 1)
-				var weight := WorkingSurface.weight(point.distance_to(from + segment * t) / tool.radius, tool.falloff)
-				var amount := minf(cells[key], tool.residue_clear * delta * weight)
-				if amount <= 0: continue
-				cells[key] -= amount
-				if cells[key] < 0.000001:
-					amount += cells[key]
-					cells.erase(key)
-					var bucket := bucket_for(key)
-					occupancy[bucket] -= 1
-					if occupancy[bucket] == 0: occupancy.erase(bucket)
-				dirty_cells[key] = true
-				last_cleared += amount
-				if tool.id == &"air_blower":
-					# Nearby portions in the same jet share one visual packet. Cleaning
-					# still accounts for every fraction; no tiny particle per physics tick.
-					var packet: Dictionary = _packets.get(key, {})
-					if not packet.is_empty() and packet.point.distance_to(point) < STRIDE * 2 \
-							and packet.direction.dot(jet) > 0.9:
-						packet.amount += amount
-					else:
-						packet = {"point": point, "direction": jet, "amount": amount, "layer": layer,
-							"speed": tool.radius * tool.residue_clear, "travel": 0.0, "source": key}
-						_packets[key] = packet
-						flying.append(packet)
+	if physics_enabled and physics != null and tool.id == &"air_blower":
+		last_blown = physics.blow(from, to, tool.radius, tool.falloff, delta, jet)
+	# All positions are queried at their current location, including moved sleepers.
+	# At most 128 keys; no heightfield scan or destination occupancy bookkeeping.
+	for key: Vector3i in cells.keys():
+		if tool.id == &"air_blower" and physical_slots.has(key): continue
+		var point := point_for(key)
+		var t := clampf((point - from).dot(segment) * inv_length, 0, 1)
+		var weight := WorkingSurface.weight(point.distance_to(from + segment * t) / tool.radius, tool.falloff)
+		var amount := minf(cells[key], tool.residue_clear * delta * weight)
+		if amount <= 0: continue
+		var packet: Dictionary = _packets.get(key, {})
+		var merge_packet: bool = not packet.is_empty() and packet.point.distance_to(point) < STRIDE * 2 \
+			and packet.direction.dot(jet) > 0.9
+		# OFF/Soil flight also obeys the total cap. A partial transfer waits for a
+		# free slot instead of destroying mass or silently exceeding the budget.
+		if tool.id == &"air_blower" and not merge_packet and amount < cells[key] - 0.000001 \
+				and persistent_count() >= profile.global_crumb_cap: continue
+		cells[key] -= amount
+		if cells[key] < 0.000001:
+			amount += cells[key]
+			_erase_cell(key)
+		elif physical_slots.has(key): _size_dirty[key] = true
+		dirty_cells[key] = true
+		last_cleared += amount
+		if tool.id == &"air_blower":
+			# Historical 2D flight for OFF/Soil. Quantity remains accounted until exit.
+			if merge_packet: packet.amount += amount
+			else:
+				packet = {"point": point, "direction": jet, "amount": amount, "layer": key.z,
+					"speed": tool.radius * tool.residue_clear, "travel": 0.0, "source": key}
+				_packets[key] = packet
+				flying.append(packet)
 
 func advance(delta: float) -> void:
-	# Only moving debris is visited. Resting dirt has no per-frame simulation.
+	if physics != null and physics_enabled:
+		for key: Vector3i in _size_dirty:
+			if physical_slots.has(key): physics.fragments[physical_slots[key]].size = size_for(key)
+		_size_dirty.clear()
+		# Mark moving pieces before the step, including their final settling frame.
+		for f in physics.fragments:
+			if f.active and f.state != TerrainDebris.State.SLEEPING: dirty_cells[f.source] = true
+		physics.advance(delta)
+		samples_pending += physics.last_samples
+		for f in physics.fragments:
+			if f.active and f.state != TerrainDebris.State.SLEEPING: dirty_cells[f.source] = true
+	# Legacy flying crumbs have no expiry either; they exit through the block edge.
 	for i in range(flying.size() - 1, -1, -1):
 		var item: Dictionary = flying[i]
 		var previous: Vector2 = item.point

@@ -18,7 +18,7 @@ var _notice_remaining := 0.0
 var feedback: MaterialFeedback
 
 func _ready() -> void:
-	get_window().title = "ArchaeologyGame — P4-V2 Terrain-aware debris (F3 A/B)"
+	get_window().title = "ArchaeologyGame — P4-V2 Persistent crumbs (F3 A/B)"
 	feedback = MaterialFeedback.new()
 	feedback.name = "MaterialFeedback"
 	add_child(feedback)
@@ -77,7 +77,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.physical_keycode == KEY_F2:
 			block.set_debug_view(block.debug_view + 1)
 		elif OS.is_debug_build() and event.physical_keycode == KEY_F3:
-			feedback.debris_physics_enabled = not feedback.debris_physics_enabled
+			feedback.crumb_physics_enabled = not feedback.crumb_physics_enabled
 
 func _process(delta: float) -> void:
 	_notice_remaining = maxf(0.0, _notice_remaining - delta)
