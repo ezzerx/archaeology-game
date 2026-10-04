@@ -87,8 +87,8 @@ func blower_capture(zoom: int) -> void:
 	for i in range(fx.loose_view.keys.size()):
 		var basis := fx.loose_view.multimesh.get_instance_transform(i).basis
 		max_width = maxf(max_width, basis.x.length())
-		widths_ok = widths_ok and basis.x.length() <= 0.004501 and basis.y.length() <= 0.001441
-	check(widths_ok and max_width > 0.003, "actual hard crumbs are visible at B scale, bounded to 4.5 mm")
+		widths_ok = widths_ok and basis.x.length() <= 0.002201 and basis.y.length() <= 0.000705
+	check(widths_ok and max_width > 0.0015, "small persistent crumbs are visible and bounded to 2.2 mm")
 	check(state.cells.size() <= state.occupancy.size() * 2, "larger visible mess retains the recent local occupancy bound")
 	var geometry := block.working_map.image.get_data()
 	var condition := block.working_map.fossil.condition
@@ -156,7 +156,7 @@ func run() -> void:
 	AudioServer.set_bus_mute(0, true)
 	main = load("res://scenes/prototype_main.tscn").instantiate()
 	root.add_child(main)
-	main.feedback.debris_physics_enabled = false # Exact validated spectacle A/B reference.
+	main.feedback.crumb_physics_enabled = false # Exact validated spectacle A/B reference.
 	block = main.block
 	controller = main.controller
 	camera = main.camera

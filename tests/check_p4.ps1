@@ -10,8 +10,9 @@ $enginePath = (Resolve-Path -LiteralPath $GodotBin).Path
 function Invoke-P4Check([string]$Name, [string[]]$EngineArguments) {
     $logPath = Join-Path $projectRoot "work/test-logs/$Name.log"
     # Keep graphical readbacks on-screen, independent of an old editor window placement.
-    if ('--headless' -notin $EngineArguments) { $EngineArguments += @('--position', '100,100') }
-    & $enginePath @EngineArguments --path $projectRoot --log-file $logPath
+    $commonArguments = @('--path', $projectRoot, '--log-file', $logPath)
+    if ('--headless' -notin $EngineArguments) { $commonArguments += @('--position', '100,100') }
+    & $enginePath @commonArguments @EngineArguments
     if ($LASTEXITCODE -ne 0) { throw "$Name failed with exit code $LASTEXITCODE" }
     if (Select-String -LiteralPath $logPath -Pattern 'SCRIPT ERROR|ERROR:|Parse Error|SHADER ERROR' -Quiet) {
         throw "$Name contains an error; inspect $logPath"

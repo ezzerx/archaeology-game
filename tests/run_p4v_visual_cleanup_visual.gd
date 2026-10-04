@@ -113,6 +113,13 @@ func chunk_capture(kind: String, zoom: float) -> void:
 	fx.bone_ring.hide()
 	var family := 1 if kind == "clay" else 2
 	for detached in [false, true]:
+		if detached:
+			# V2 crumbs are <=2.2 mm. Use two genuine fracture patches so the
+			# 1x face-contrast sample stays above the original >8 pixel floor.
+			# Clear transient occluders before the persistent-only comparison.
+			for i in range(4): block.working_map.apply_impact(p + Vector2(40, 0), controller.tools[1])
+			block.flush_texture()
+			step(0.8)
 		var node: MultiMeshInstance3D = fx.loose_view if detached else fx.get_node("ClayChips" if family == 1 else "StoneFragments")
 		var current := node.multimesh.mesh
 		var state := fx.particles[family].duplicate(true)
@@ -177,7 +184,7 @@ func run() -> void:
 	AudioServer.set_bus_mute(0, true)
 	main = load("res://scenes/prototype_main.tscn").instantiate()
 	root.add_child(main)
-	main.feedback.debris_physics_enabled = false # Static P4-V1 contrast oracle.
+	main.feedback.crumb_physics_enabled = false # Static P4-V1 contrast oracle.
 	block = main.block
 	controller = main.controller
 	camera = main.camera

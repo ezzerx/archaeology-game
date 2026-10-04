@@ -6,8 +6,8 @@ var active_peak := 0
 func on_frame() -> void:
 	super.on_frame()
 	if measuring:
-		simulation_us.append(main.feedback.terrain_debris.last_step_usec)
-		active_peak = maxi(active_peak, main.feedback.terrain_debris.active_count)
+		simulation_us.append(block.working_map.loose_debris.physics.last_step_usec)
+		active_peak = maxi(active_peak, block.working_map.loose_debris.physics.active_count)
 
 func run() -> void:
 	if DisplayServer.get_name() == "headless": quit(1); return
@@ -28,7 +28,7 @@ func run() -> void:
 	for zoom in [1.0, 3.0]:
 		for repeat in range(2):
 			for enabled in [true, false]:
-				main.feedback.debris_physics_enabled = enabled
+				main.feedback.crumb_physics_enabled = enabled
 				simulation_us.clear()
 				active_peak = 0
 				await scenario("soil", zoom)
