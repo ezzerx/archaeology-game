@@ -40,8 +40,14 @@ func run() -> void:
 			direct = Vector2(i % size.x, i / size.x)
 			break
 	var before := surface.fossil.condition
-	for i in range(10): surface.apply_impact(direct, chisel)
-	report["held_on_visible_bone"] = {"impacts": 10, "condition_before": before, "condition_after": surface.fossil.condition}
+	var protection_available := not surface.fossil.first_direct_contact_consumed
+	surface.apply_impact(direct, chisel)
+	var protected_condition := surface.fossil.condition
+	var protected_event: bool = surface.last_action.bone_protected_contact
+	for i in range(9): surface.apply_impact(direct, chisel)
+	report["held_on_visible_bone"] = {"impacts": 10, "condition_before": before, "condition_after": surface.fossil.condition,
+		"protection_available_before": protection_available, "first_hit_condition": protected_condition, "first_hit_protected": protected_event}
 	FileAccess.open("res://work/test-logs/p4-condition.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("P4 CONDITION ", JSON.stringify(report))
-	quit(0 if surface.fossil.exposed_cells > 0 and before == 100 and surface.fossil.condition == 70 else 1)
+	quit(0 if surface.fossil.exposed_cells > 0 and before == 100 and protection_available
+		and protected_event and protected_condition == 100 and surface.fossil.condition == 73 else 1)

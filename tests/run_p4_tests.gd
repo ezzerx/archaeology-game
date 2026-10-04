@@ -30,19 +30,24 @@ func fixture(height := 0.6, settings: ReactionProfile = profile) -> WorkingSurfa
 func on_action(_event: Dictionary) -> void: events += 1
 
 func test_fracture() -> void:
+	# Fixed historical workload isolates fracture semantics from resource tuning.
+	var fracture_tool := chisel.duplicate() as ToolDefinition
+	fracture_tool.radius = 12
+	fracture_tool.power = 0.24
+	fracture_tool.falloff = 2.0
 	var clay := fixture()
 	var stone := fixture(0.25)
 	var clay_initial := clay.image.get_data()
 	var stone_initial := stone.image.get_data()
-	clay.apply_impact(point, chisel)
-	stone.apply_impact(point, chisel)
+	clay.apply_impact(point, fracture_tool)
+	stone.apply_impact(point, fracture_tool)
 	check(clay.image.get_data() == clay_initial and stone.image.get_data() == stone_initial, "default first impact marks hard materials before removal")
 	check(clay.fracture.last_marks > 0 and stone.fracture.last_marks > clay.fracture.last_marks, "stone partition smaller than clay plates")
 	check(clay.fracture.image.get_data() != fixture().fracture.image.get_data(), "stress has a visible atlas representation")
-	clay.apply_impact(point, chisel)
-	stone.apply_impact(point, chisel)
+	clay.apply_impact(point, fracture_tool)
+	stone.apply_impact(point, fracture_tool)
 	check(clay.value_at(cell) < 0.5 and stone.image.get_data() == stone_initial, "second clay impact detaches; stone resists")
-	stone.apply_impact(point, chisel)
+	stone.apply_impact(point, fracture_tool)
 	check(stone.value_at(cell) < 0.2 and stone.fracture.last_chunks.size() > 0, "third stone impact releases small hard fragments")
 	check(absf(0.6 - clay.value_at(cell) - profile.clay_chunk_depth) < 0.00001, "clay removal is discrete configured plate depth")
 	check(absf(0.25 - stone.value_at(cell) - profile.stone_chunk_depth) < 0.00001, "stone depth differs from clay")
@@ -53,25 +58,25 @@ func test_fracture() -> void:
 			var before := clay_initial.to_float32_array()[y * clay.size.x + x]
 			var removed := before - clay.value_at(Vector2i(x, y))
 			if absf(removed - profile.clay_chunk_depth) < 0.00001: equal_depth_cells += 1
-			if Vector2(x, y).distance_to(point) >= chisel.radius and removed != 0: changed_outside = true
+			if Vector2(x, y).distance_to(point) >= fracture_tool.radius and removed != 0: changed_outside = true
 	check(equal_depth_cells > 15, "many adjacent texels drop as a plate, not a smooth radial kernel")
 	check(not changed_outside, "all structural fracture remains strictly inside footprint")
 	var twin := fixture()
-	for i in range(2): twin.apply_impact(point, chisel)
+	for i in range(2): twin.apply_impact(point, fracture_tool)
 	check(twin.image.get_data() == clay.image.get_data() and twin.fracture.stress == clay.fracture.stress, "same inputs reproduce geometry and stress exactly")
 	check(twin.fracture.image.get_data() == clay.fracture.image.get_data() and twin.residue._values == clay.residue._values, "same seed gives exact marks and dust")
 	var different_profile := profile.duplicate() as ReactionProfile
 	different_profile.seed += 23
 	var different := fixture(0.6, different_profile)
-	for i in range(2): different.apply_impact(point, chisel)
+	for i in range(2): different.apply_impact(point, fracture_tool)
 	check(different.image.get_data() != clay.image.get_data(), "seed changes the fracture partition")
 	var initial := fixture()
 	var initial_bytes := initial.image.get_data()
 	for i in range(4):
-		initial.apply_impact(Vector2(16, 32), chisel)
-		initial.apply_impact(Vector2(80, 32), chisel)
+		initial.apply_impact(Vector2(16, 32), fracture_tool)
+		initial.apply_impact(Vector2(80, 32), fracture_tool)
 	check(initial.value_at(cell) == initial_bytes.to_float32_array()[cell.y * initial.size.x + cell.x], "separate Chisel impacts do not bridge")
-	var powerful := chisel.duplicate() as ToolDefinition
+	var powerful := fracture_tool.duplicate() as ToolDefinition
 	powerful.power = 5
 	var layered := fixture(0.71)
 	var before_values := layered.image.get_data().to_float32_array()
@@ -102,6 +107,11 @@ func test_bone_and_events() -> void:
 		surface.apply_impact(contact, strong)
 		impacts += 1
 	check(surface.fossil.exposed[index] != 0 and surface.fossil.condition == 100, "P4 fracture first hidden contact protected")
+	check(not surface.fossil.first_direct_contact_consumed and not surface.last_action.bone_protected_contact,
+		"P4 centre reveal never consumes the visible-contact protection")
+	surface.apply_impact(contact, strong)
+	check(surface.fossil.condition == 100 and surface.last_action.bone_protected_contact,
+		"first subsequent contact on visible Bone is protected")
 	surface.apply_impact(contact, strong)
 	check(surface.fossil.condition == 97, "P4 exposed centre pays at most one event per impact")
 	strong.radius = 128
@@ -146,6 +156,13 @@ func test_scene_and_audio() -> void:
 	control.set_physics_process(false)
 	var fx: MaterialFeedback = main.feedback
 	await process_frame
+	# P4 human-validated baseline — tuning final deferred to P7.
+	var baseline := [Vector3(40, 0.70, 1.25), Vector3(22, 0.64, 2.25), Vector3(60, 0, 1), Vector3(7, 0.24, 1.50)]
+	for tool in range(4):
+		check(Vector3(control.tools[tool].radius, control.tools[tool].power, control.tools[tool].falloff).is_equal_approx(baseline[tool]),
+			"fresh scene uses human-validated resource baseline without debug input: tool %d" % tool)
+	check(control.tools[1].cadence == 4.5 and control.tools[3].cadence == 6 and control.tools[1].bone_damage == 3
+		and control.tools[3].bone_damage == 0 and control.tools[2].residue_clear == 2.5, "cadences, damage and Blower cleanup remain locked")
 	check(block.working_map.fracture != null and block.reactions == profile, "normal scene activates production fracture profile")
 	check(Engine.max_fps == 240 and Engine.physics_ticks_per_second == 60, "240 FPS / 60 Hz runtime preserved")
 	check(fx.proxies.size() == 4 and fx.pools.size() == 4, "four tool proxies and four bounded particle families")
@@ -198,6 +215,9 @@ func test_scene_and_audio() -> void:
 		check(peak < 32767 and energy > 100000, "audio non-silent and unclipped: %s" % family)
 	var before_particles := fx.emitted.duplicate()
 	control.reset_surface()
+	for tool in range(4):
+		check(Vector3(control.tools[tool].radius, control.tools[tool].power, control.tools[tool].falloff).is_equal_approx(baseline[tool]),
+			"specimen reset keeps the launch baseline without debug adjustment: tool %d" % tool)
 	check(fx.emitted == PackedInt32Array([0, 0, 0, 0]) and fx.action_count == 0 and before_particles[0] > 0, "R clears particle counters and transient actions")
 	var all_clear := fx.audio.played == 0 and fx.recoil_remaining == 0 and fx.bone_remaining == 0
 	for family in range(4): all_clear = all_clear and fx.particles[family].is_empty() and fx.pools[family].visible_instance_count == 0

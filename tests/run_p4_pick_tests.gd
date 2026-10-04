@@ -17,11 +17,14 @@ func test_micro_impacts() -> void:
 		var changed := surface.apply_impact(point, pick)
 		check(changed > 0 and surface.value_at(cell) < height - 0.02, "one stationary Pick impact visibly removes material: %.2f" % height)
 		var precise := true
+		var footprint_cells := 0
 		for y in range(surface.size.y):
 			for x in range(surface.size.x):
 				var distance := Vector2(x, y).distance_to(point)
+				if distance < pick.radius: footprint_cells += 1
 				if distance >= pick.radius: precise = precise and surface._heights[y * surface.size.x + x] == before_values[y * surface.size.x + x]
-		check(precise and changed <= 25, "Pick work stays inside a tiny disk without a swept bridge or broad fracture")
+		check(precise and changed <= footprint_cells and changed <= 145,
+			"radius-7 baseline stays inside its 145-cell disk without a swept bridge or broad fracture")
 		check(surface.fracture.stress.is_empty() and surface.last_action.chunks.is_empty()
 			and surface.last_action.marks == 0, "Pick never triggers Chisel plate stress or chunks")
 	var bulk := fixture(0.6)

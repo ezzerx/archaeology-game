@@ -185,13 +185,24 @@ func run() -> void:
 		surface.apply_impact(contact, center_reveal)
 		if surface.fossil.exposed[field.index_at_map(contact)] != 0: break
 	fx.on_action(surface.last_action)
-	check(surface.last_action.bone_revealed and surface.last_action.bone_protected_contact
-		and surface.last_action.direct_bone_hit and surface.fossil.first_direct_contact_consumed
-		and surface.fossil.condition == 100 and audio.last_family == &"bone_revealed",
-		"hidden centre reached by this impact consumes the one protection with a safe tik")
+	check(surface.last_action.bone_revealed and not surface.last_action.bone_protected_contact
+		and not surface.last_action.direct_bone_hit and not surface.fossil.first_direct_contact_consumed
+		and surface.fossil.condition == 100 and surface.last_action.bone_damage == 0 and audio.last_family == &"chisel_stone",
+		"hidden centre reveal keeps material sound, zero damage and protection STILL available")
 	surface.apply_impact(contact, center_reveal)
-	check(surface.fossil.condition == 97 and surface.last_action.bone_damage == 3,
-		"next hit after a protected centre reveal damages normally")
+	fx.on_action(surface.last_action)
+	check(surface.last_action.bone_protected_contact and surface.last_action.direct_bone_hit
+		and surface.fossil.condition == 100 and surface.last_action.bone_damage == 0
+		and surface.fossil.first_direct_contact_consumed and audio.last_family == &"bone_revealed",
+		"first following hit on now-visible Bone is the protected tik at condition 100")
+	surface.apply_impact(contact, center_reveal)
+	fx.on_action(surface.last_action)
+	check(surface.fossil.condition == 97 and surface.last_action.bone_damage == 3
+		and not surface.last_action.bone_protected_contact and audio.last_family == &"direct_bone_hit",
+		"second visible-Bone hit gives DING and three damage, after reveal then protected contact")
+	surface.reset()
+	check(surface.fossil.condition == 100 and not surface.fossil.first_direct_contact_consumed,
+		"reset rearms protection after the complete hidden-visible-protected-damage sequence")
 	audio.reset()
 	check(audio.brush_level == 0 and audio.brush_starts == 0 and audio.brush_voices[0].stream == null,
 		"reset immediately clears continuous audio")

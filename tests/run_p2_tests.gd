@@ -36,7 +36,7 @@ func test_definitions() -> void:
 	check([brush.id, chisel.id, blower.id] == [&"soft_brush", &"chisel", &"air_blower"], "three named resource profiles")
 	check(brush.interaction_mode == ToolDefinition.InteractionMode.CONTINUOUS and blower.interaction_mode == ToolDefinition.InteractionMode.CONTINUOUS, "continuous brush and blower")
 	check(chisel.interaction_mode == ToolDefinition.InteractionMode.IMPACT, "chisel impact profile")
-	check(brush.radius >= 35 and brush.radius <= 45 and chisel.radius >= 8 and chisel.radius <= 16 and blower.radius >= 45, "distinct nominal footprints")
+	check(brush.radius == 40 and chisel.radius == 22 and blower.radius == 60, "P4 human-validated nominal footprints")
 	check(chisel.cadence >= 4 and chisel.cadence <= 5, "nominal chisel cadence")
 	check(brush.effectiveness == Vector3(1, 0.06, 0), "brush material table")
 	check(chisel.effectiveness.y > chisel.effectiveness.x and chisel.effectiveness.z > 0, "chisel material table")
@@ -75,8 +75,8 @@ func test_materials_and_residue() -> void:
 	stone.apply_continuous(centre, centre, brush, 30)
 	var soil_removed := 1.0 - soil.value_at(cell)
 	var clay_removed := 0.55 - clay.value_at(cell)
-	check(absf(soil_removed - 0.08) < 0.000001, "brush removes soil at 0.8 depth/s")
-	check(absf(clay_removed - 0.0016) < 0.000001 and soil_removed / clay_removed > 49, "brush Soil is 50x Clay")
+	check(absf(soil_removed - 0.07) < 0.000001, "brush removes soil at P4 baseline 0.70 depth/s")
+	check(absf(clay_removed - 0.0014) < 0.000001 and soil_removed / clay_removed > 49, "brush Soil is 50x Clay")
 	check(stone.image.get_data() == stone_bytes and not stone.dirty, "brush never excavates Sandstone, even a long tick")
 	check(stone.residue.value_at(Vector2(0.5, 0.5)) == 0, "ineffective brush creates no residue")
 	var crossing := surface_at()
@@ -89,21 +89,26 @@ func test_materials_and_residue() -> void:
 	soil.apply_impact(centre, chisel)
 	clay.apply_impact(centre, chisel)
 	stone.apply_impact(centre, chisel)
-	check(absf(1.0 - soil.value_at(cell) - 0.0288) < 0.000001, "chisel weak on soil")
-	check(absf(0.55 - clay.value_at(cell) - 0.08) < 0.000001, "chisel suited to clay")
-	check(absf(0.2 - stone.value_at(cell) - 0.045) < 0.000001, "chisel useful on Sandstone")
+	check(absf(1.0 - soil.value_at(cell) - 0.0768) < 0.000001, "chisel weak on soil")
+	check(absf(0.55 - clay.value_at(cell) - 0.64 / 3.0) < 0.000001, "chisel suited to clay")
+	check(absf(0.2 - stone.value_at(cell) - 0.12) < 0.000001, "chisel useful on Sandstone")
 	check(chisel.structural_rate(definitions[1]) > brush.structural_rate(definitions[1]) * 20, "chisel clay rate over 20x brush")
 	var initial_residue := surface_at().residue.image.get_data()
 	check(clay.residue.image.get_data() != initial_residue, "actual excavation creates visible residue")
 	var twin := surface_at(0.55)
 	twin.apply_impact(centre, chisel)
 	check(clay.residue.image.get_data() == twin.residue.image.get_data() and clay.residue._values == twin.residue._values, "residue deterministic including sub-byte accumulation")
-	var weak_deposit := chisel.duplicate() as ToolDefinition
+	# Keep both deposits below saturation to compare generation per removed depth.
+	var residue_tool := chisel.duplicate() as ToolDefinition
+	residue_tool.power = 0.12
+	var rich_deposit := surface_at(0.55)
+	rich_deposit.apply_impact(centre, residue_tool)
+	var weak_deposit := residue_tool.duplicate() as ToolDefinition
 	weak_deposit.residue_generation = brush.residue_generation
 	twin = surface_at(0.55)
 	twin.apply_impact(centre, weak_deposit)
 	var uv := (Vector2(cell) + Vector2.ONE * 0.5) / Vector2(clay.size)
-	check(clay.residue.value_at(uv) > twin.residue.value_at(uv) * 5, "chisel produces more residue per removed depth")
+	check(rich_deposit.residue.value_at(uv) > twin.residue.value_at(uv) * 5, "chisel produces more residue per removed depth")
 	var height_bytes := clay.image.get_data()
 	var boundaries := clay.strata.boundaries.get_data()
 	var dirty_height := clay.dirty

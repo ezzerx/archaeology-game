@@ -137,8 +137,13 @@ func test_contact_damage_and_reset() -> void:
 	check(first_events == 1 and fossil.first_contact and cell_events == 1, "first and per-cell contact emitted once")
 	check(fossil.exposed_cells == 1 and fossil.exposure_percent() < 0.01, "one-cell reveal is a tiny fraction of fossil")
 	check(component_events == 1, "component change emitted once per affected component per operation")
+	check(not fossil.first_direct_contact_consumed and not surface.last_action.bone_protected_contact,
+		"hidden centre reveal leaves direct protection available")
 	surface.apply_impact(point, strong)
-	check(fossil.condition == 97 and damage_events == 1, "second direct impact subtracts three points exactly once")
+	check(fossil.condition == 100 and surface.last_action.bone_protected_contact and damage_events == 0,
+		"first impact on previously visible centre consumes protection without damage")
+	surface.apply_impact(point, strong)
+	check(fossil.condition == 97 and damage_events == 1, "second visible-centre impact subtracts three points exactly once")
 	check(first_events == 1 and cell_events == 1 and component_events == 1, "no repeat reveal events when hitting exposed cell")
 	strong.radius = 50
 	surface.apply_impact(point, strong)

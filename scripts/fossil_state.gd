@@ -68,16 +68,14 @@ func expose_cells(indices: PackedInt32Array) -> void:
 			bone_component_exposure_changed.emit(component, component_exposed[component], field.component_totals[component])
 
 func contact_at(index: int, amount: float, was_exposed: bool) -> bool:
-	# Discovery/exposure never spends this specimen-wide protection. The caller
-	# checks the exact impact centre after removal, including a newly reached cap.
-	if index < 0 or index >= exposed.size() or exposed[index] == 0 or amount <= 0.0:
+	# The snapshot is taken by apply_impact BEFORE any surface mutation. Even a
+	# centre reveal leaves protection available for the next, visible-Bone hit.
+	if not was_exposed or index < 0 or index >= exposed.size() or exposed[index] == 0 or amount <= 0.0:
 		return false
 	if not first_direct_contact_consumed:
 		first_direct_contact_consumed = true
 		return true
-	# Preserve the historical rule: a previously hidden centre takes no damage
-	# on the impact that uncovers it, even after the one protected cue was spent.
-	if was_exposed: damage_at(index, amount)
+	damage_at(index, amount)
 	return false
 
 func damage_at(index: int, amount: float) -> void:

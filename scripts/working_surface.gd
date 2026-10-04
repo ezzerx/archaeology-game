@@ -173,9 +173,12 @@ func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 	if point.x < -0.5 or point.y < -0.5 or point.x >= size.x - 0.5 or point.y >= size.y - 0.5:
 		last_action = {}
 		return 0
-	return _apply_tool(point, point, tool, 1.0, true)
+	# Only Bone visible BEFORE this impact is a direct-contact candidate.
+	# Snapshot before fracture, exposure signals, cleanup or any other mutation.
+	var was_exposed_before_impact := fossil != null and fossil.exposed[fossil.field.index_at_map(point)] != 0
+	return _apply_tool(point, point, tool, 1.0, was_exposed_before_impact)
 
-func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float, impact := false) -> int:
+func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float, was_exposed_before_impact := false) -> int:
 	var edit_started := Time.get_ticks_usec()
 	last_edit_usec = 0
 	last_residue_edit_usec = 0
@@ -190,10 +193,9 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	var changed := 0
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
 	var discovered_before := fossil.first_contact if fossil != null else false
-	var can_damage := impact and fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
+	var can_damage := was_exposed_before_impact and fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
 		and tool.power > 0.0 and tool.bone_damage > 0.0
 	var center_index := fossil.field.index_at_map(to) if can_damage else -1
-	var center_was_exposed := can_damage and fossil.exposed[center_index] != 0
 	# Pick shares the impact clock, but removes only its tiny footprint directly.
 	# No broad fracture cells, motion gate, or weak per-pass scraping limit.
 	var is_pick := tool.id == &"precision_pick"
@@ -211,13 +213,13 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	var bone_revealed := fossil != null and fossil.exposed_cells > exposed_before
 	# Exposure remains per-cell; the discovery cue belongs to the specimen once.
 	var bone_first_contact := fossil != null and fossil.first_contact and not discovered_before
-	# Resolve only the centre, never the footprint's newly_exposed collection.
-	var direct_bone_hit := can_damage and fossil.exposed[center_index] != 0
+	# Never infer contact from post-impact exposure, even at the exact centre.
+	var direct_bone_hit := can_damage
 	var bone_protected_contact := false
 	var bone_damage := 0.0
 	if direct_bone_hit:
 		var condition_before := fossil.condition
-		bone_protected_contact = fossil.contact_at(center_index, tool.bone_damage, center_was_exposed)
+		bone_protected_contact = fossil.contact_at(center_index, tool.bone_damage, was_exposed_before_impact)
 		bone_damage = condition_before - fossil.condition
 	var loose_cleared := loose_debris.last_cleared if loose_debris != null else 0.0
 	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
