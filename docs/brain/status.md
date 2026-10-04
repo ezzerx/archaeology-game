@@ -2,9 +2,9 @@
 
 - Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4/P4-V1 validés et mergés ; look Matrix/physique P4-V2 validés ; passe de clôture livrée, retest final attendu ; P5 bloqué**.
+- Phase : **préproduction — P4 Game Feel + verticalité + préparation Bone validés humainement et mergés ; P5 UI & Progression est la prochaine phase, non commencée**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Spike actif : `prototype/p4v2-debris-physics`, PR #7 en brouillon.
+- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -171,6 +171,38 @@ Le cœur P4 est apprécié ; gameplay et teinte du Bone Film sont validés. Cett
 [Rapport courant, preuves/perf](../dev/P4V2_REPORT.md) · [Brief](../dev/P4V2_BRIEF.md) · [Passe dust-only désormais historique](../dev/P4V2_DUST_ONLY_REPORT.md). `project.godot` préexistant préservé hors commits.
 
 **Prochaine action : retest humain final** Soil10–20 s, Brush sur micro-restes, Pick sur vrais morceaux attachés, compteur qui baisse avec vol visible sous Blower, reprise Chisel, puis boucle10 min sans deviner l’outil attendu. **STOP, PR #7 DRAFT ; aucun merge ni P5.**
+
+## P4 — Clôture humaine finale ✅
+
+Validation humaine confirmée le **2026-10-05**. La base de gameplay d'excavation/préparation est considérée suffisante pour avancer.
+
+Boucle retenue :
+- **Brush** pour Soil et nettoyage / Bone Film ;
+- **Chisel** pour excavation bulk Clay/Sandstone et spectacle de fracture ;
+- **Precision Pick** pour finition structurelle précise autour des os ;
+- **Blower** pour évacuer Fine Dust et Matrix crumbs ;
+- **Bone Film** pour transformer la découverte en vraie étape de préparation ;
+- **verticalité effort-aware** pour éviter un script de profondeur trop prédictible.
+
+Derniers choix de clôture :
+- Soil : pas de grains ni dust persistante pour l'instant ; feedback à revisiter plus tard ;
+- Matrix crumbs Clay/Sandstone : persistantes, bornées, physique légère et évacuation par engagement du Blower ;
+- micro-restes hard très fins : peuvent se détacher en mess brushable selon la règle locale bornée ;
+- Pick baseline : **11 / 0,44 / 1,75**, 6 Hz, Bone safe ;
+- Exposure, Cleanliness et Condition restent séparés.
+
+### 20 % volontairement différés
+
+Non-blockers connus, à revisiter avec davantage de contexte :
+- Soil encore trop provisoire pour une version finale ;
+- débris/mess satisfaisants mais probablement perfectibles ;
+- ambiguïté visuelle ponctuelle **Pick vs Brush** sur les micro-restes ;
+- **Bone dirt vs Sandstone** encore trop proches visuellement sur certains cas ;
+- Dust pouvant réduire la lecture des arêtes avant Blower.
+
+Première stratégie P6 pour la lisibilité : **tester uniquement la couleur** du Bone Film avant de changer pattern/densité/forme, car les taches actuelles plaisent.
+
+Ces sujets ne rouvrent pas P4 maintenant. S'ils restent importants après P5/P6, ils recevront une **phase dédiée de polish gameplay/excavation avec un nouveau nom (TBD), pas “P4.2”**.
 
 ## Watchpoints techniques
 
