@@ -41,8 +41,14 @@ func brush_case(kind: String, zoom: float, enabled: bool) -> void:
 	measuring = true
 	var started := Time.get_ticks_usec()
 	var changed := 0
+	var cancelled_sweeps := 0
 	for tick in range(ticks):
+		# Preserve the fixed synthetic sweep across native focus/mouse-exit
+		# notifications, just as the impact harness preserves its held clock.
+		var previous_valid := controller._previous_valid
 		await physics_frame
+		if previous_valid and not controller._previous_valid: cancelled_sweeps += 1
+		controller._previous_valid = previous_valid
 		controller._focused = true
 		controller._pointer_inside = true
 		controller._held = true
@@ -64,7 +70,7 @@ func brush_case(kind: String, zoom: float, enabled: bool) -> void:
 	controller.cancel_stroke()
 	var label := "%s_%dx_%s" % [kind, int(zoom), "on" if enabled else "off"]
 	var data := {"render_fps": frame_times.size() / seconds, "frame_ms": stats(frame_times), "ticks": ticks,
-		"elapsed_seconds": seconds, "changed_texels": changed}
+		"elapsed_seconds": seconds, "changed_texels": changed, "native_sweep_resets_ignored": cancelled_sweeps}
 	for key in cpu: data[key] = stats(cpu[key])
 	var endpoint := {"height": hash(block.working_map.image.get_data()), "residue": hash(block.working_map.residue.image.get_data()),
 		"exposure": block.working_map.fossil.exposed_cells, "condition": block.working_map.fossil.condition,

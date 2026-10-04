@@ -63,6 +63,7 @@ func _ready() -> void:
 	material.set_shader_parameter("fracture_sizes", Vector2(reactions.patch_size(1), reactions.patch_size(2)))
 	material.set_shader_parameter("fracture_seed", float(posmod(reactions.seed, 97)) / 97.0)
 	material.set_shader_parameter("bone_exposure_epsilon", FossilField.EXPOSURE_EPSILON)
+	material.set_shader_parameter("surface_layer_epsilon", Stratigraphy.SURFACE_EPSILON)
 	material.set_shader_parameter("map_size", Vector2(map_resolution))
 	material.set_shader_parameter("surface_size", surface_size)
 	material.set_shader_parameter("base_height", base_height)
@@ -119,7 +120,7 @@ func pick(screen: Vector2, camera: Camera3D) -> Dictionary:
 		"map": SurfaceMapping.uv_to_map(uv, map_resolution),
 		"cell": SurfaceMapping.uv_to_cell(uv, map_resolution),
 		"height": height, "depth": thickness - hit.local.y,
-		"material": working_map.strata.material_at(uv, height)}, true)
+		"material": working_map.strata.surface_material_at(uv, height)}, true)
 	var cell: Vector2i = result.cell
 	var index := cell.y * map_resolution.x + cell.x
 	var component := working_map.fossil.field.component_ids[index]

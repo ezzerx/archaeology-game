@@ -113,6 +113,7 @@ func _create_particles() -> void:
 		var chip := BoxMesh.new()
 		chip.size = Vector3.ONE
 		multi.mesh = QuadMesh.new() if family == 3 else chip
+		if family in [1, 2]: multi.mesh = DebrisVisualMesh.with_face_contrast(chip)
 		multi.instance_count = profile.particles_per_family
 		# Draw a sub-pixel instance below the opaque block for two startup frames.
 		# This compiles the instanced material before the first real interaction.
