@@ -28,6 +28,11 @@ func _init(resolution := Vector2i(1024, 640)) -> void:
 		var component := component_ids[index]
 		if component == Component.NONE:
 			continue
+		# Resolve overlaps in the original authoring space first. Translating the
+		# winner is equivalent to adding the same offset to every candidate, and
+		# keeps ownership exact even if a safety clamp would tie two candidates.
+		var uv := (Vector2(index % size.x, index / size.x) + Vector2.ONE * 0.5) / Vector2(size)
+		ceilings[index] = BlockVerticalityProfile.buried_ceiling(ceilings[index], uv)
 		component_totals[component] += 1
 		total_cells += 1
 		highest_ceiling = maxf(highest_ceiling, ceilings[index])

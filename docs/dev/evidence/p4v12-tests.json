@@ -1,0 +1,82 @@
+{
+	"(1024, 640)": [
+		{
+			"layer": 0,
+			"max_roundoff": 0.0000000765733548790948,
+			"offset": 0.0,
+			"samples": 2457
+		},
+		{
+			"layer": 0,
+			"max_roundoff": 0.000000141136595355629,
+			"offset": 0.0005,
+			"samples": 2457
+		},
+		{
+			"layer": 1,
+			"max_roundoff": 0.000000079682899500888,
+			"offset": 0.0,
+			"samples": 2457
+		},
+		{
+			"layer": 1,
+			"max_roundoff": 0.000000132206106340672,
+			"offset": 0.0005,
+			"samples": 2457
+		}
+	],
+	"(256, 160)": [
+		{
+			"layer": 0,
+			"max_roundoff": 0.0000000801893275115262,
+			"offset": 0.0,
+			"samples": 2457
+		},
+		{
+			"layer": 0,
+			"max_roundoff": 0.000000155725733031343,
+			"offset": 0.0005,
+			"samples": 2457
+		},
+		{
+			"layer": 1,
+			"max_roundoff": 0.0000000852201350598492,
+			"offset": 0.0,
+			"samples": 2457
+		},
+		{
+			"layer": 1,
+			"max_roundoff": 0.000000136714694510143,
+			"offset": 0.0005,
+			"samples": 2457
+		}
+	],
+	"(512, 320)": [
+		{
+			"layer": 0,
+			"max_roundoff": 0.000000086178225333633,
+			"offset": 0.0,
+			"samples": 2457
+		},
+		{
+			"layer": 0,
+			"max_roundoff": 0.000000151617113031566,
+			"offset": 0.0005,
+			"samples": 2457
+		},
+		{
+			"layer": 1,
+			"max_roundoff": 0.0000000841070562085378,
+			"offset": 0.0,
+			"samples": 2457
+		},
+		{
+			"layer": 1,
+			"max_roundoff": 0.000000140078063870942,
+			"offset": 0.0005,
+			"samples": 2457
+		}
+	],
+	"checks": 37,
+	"failures": 0
+}

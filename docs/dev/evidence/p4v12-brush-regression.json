@@ -1,0 +1,837 @@
+{
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"dug_1x_off": {
+		"action_feedback_usec": {
+			"max": 163.0,
+			"mean": 25.0388888888889,
+			"p95": 36.0
+		},
+		"changed_texels": 1754700,
+		"debris_view_usec": {
+			"max": 449.0,
+			"mean": 34.0059523809524,
+			"p95": 143.0
+		},
+		"edit_usec": {
+			"max": 11279.0,
+			"mean": 8346.16388888889,
+			"p95": 9518.0
+		},
+		"elapsed_seconds": 6.023143,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 1462955794,
+			"exposure": 0,
+			"height": 3455515872,
+			"residue": 1762697555
+		},
+		"frame_ms": {
+			"max": 15.876,
+			"mean": 4.47507371556217,
+			"p95": 13.192
+		},
+		"height_upload_usec": {
+			"max": 246.0,
+			"mean": 136.763888888889,
+			"p95": 176.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 284.0,
+			"mean": 62.2321428571429,
+			"p95": 92.0
+		},
+		"pick_usec": {
+			"max": 221.0,
+			"mean": 119.505555555556,
+			"p95": 165.0
+		},
+		"proxy_usec": {
+			"max": 21.0,
+			"mean": 1.53869047619048,
+			"p95": 2.0
+		},
+		"render_fps": 222.973288198537,
+		"residue_upload_usec": {
+			"max": 35.0,
+			"mean": 11.8194444444444,
+			"p95": 22.0
+		},
+		"surface_edit_usec": {
+			"max": 11246.0,
+			"mean": 8315.13888888889,
+			"p95": 9480.0
+		},
+		"ticks": 360,
+		"upload_usec": {
+			"max": 263.0,
+			"mean": 148.583333333333,
+			"p95": 193.0
+		}
+	},
+	"dug_1x_on": {
+		"action_feedback_usec": {
+			"max": 67.0,
+			"mean": 23.9583333333333,
+			"p95": 36.0
+		},
+		"changed_texels": 1754700,
+		"debris_view_usec": {
+			"max": 252.0,
+			"mean": 34.0457957957958,
+			"p95": 145.0
+		},
+		"edit_usec": {
+			"max": 12785.0,
+			"mean": 8365.28333333333,
+			"p95": 10384.0
+		},
+		"elapsed_seconds": 6.01103,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 1462955794,
+			"exposure": 0,
+			"height": 3455515872,
+			"residue": 1762697555
+		},
+		"frame_ms": {
+			"max": 17.08,
+			"mean": 4.50632231404959,
+			"p95": 13.213
+		},
+		"height_upload_usec": {
+			"max": 321.0,
+			"mean": 136.227777777778,
+			"p95": 172.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 271.0,
+			"mean": 62.4256756756757,
+			"p95": 95.0
+		},
+		"pick_usec": {
+			"max": 302.0,
+			"mean": 119.938888888889,
+			"p95": 163.0
+		},
+		"proxy_usec": {
+			"max": 137.0,
+			"mean": 17.8866366366366,
+			"p95": 46.0
+		},
+		"render_fps": 221.426278025563,
+		"residue_upload_usec": {
+			"max": 54.0,
+			"mean": 12.1555555555556,
+			"p95": 23.0
+		},
+		"surface_edit_usec": {
+			"max": 12746.0,
+			"mean": 8335.20833333333,
+			"p95": 10352.0
+		},
+		"ticks": 360,
+		"upload_usec": {
+			"max": 346.0,
+			"mean": 148.383333333333,
+			"p95": 189.0
+		}
+	},
+	"dug_3x_off": {
+		"action_feedback_usec": {
+			"max": 75.0,
+			"mean": 25.0527777777778,
+			"p95": 38.0
+		},
+		"changed_texels": 1754702,
+		"debris_view_usec": {
+			"max": 267.0,
+			"mean": 33.8848484848485,
+			"p95": 140.0
+		},
+		"edit_usec": {
+			"max": 11641.0,
+			"mean": 8561.8,
+			"p95": 9847.0
+		},
+		"elapsed_seconds": 6.017692,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 2096751380,
+			"exposure": 0,
+			"height": 785269705,
+			"residue": 1762697555
+		},
+		"frame_ms": {
+			"max": 16.221,
+			"mean": 4.55297649734648,
+			"p95": 13.498
+		},
+		"height_upload_usec": {
+			"max": 264.0,
+			"mean": 139.080555555556,
+			"p95": 178.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 227.0,
+			"mean": 62.7113636363636,
+			"p95": 96.0
+		},
+		"pick_usec": {
+			"max": 217.0,
+			"mean": 120.897222222222,
+			"p95": 163.0
+		},
+		"proxy_usec": {
+			"max": 33.0,
+			"mean": 1.63484848484848,
+			"p95": 2.0
+		},
+		"render_fps": 219.187023862305,
+		"residue_upload_usec": {
+			"max": 92.0,
+			"mean": 12.7555555555556,
+			"p95": 23.0
+		},
+		"surface_edit_usec": {
+			"max": 11603.0,
+			"mean": 8530.23055555556,
+			"p95": 9816.0
+		},
+		"ticks": 360,
+		"upload_usec": {
+			"max": 278.0,
+			"mean": 151.836111111111,
+			"p95": 199.0
+		}
+	},
+	"dug_3x_on": {
+		"action_feedback_usec": {
+			"max": 82.0,
+			"mean": 26.0944444444444,
+			"p95": 41.0
+		},
+		"changed_texels": 1754702,
+		"debris_view_usec": {
+			"max": 297.0,
+			"mean": 36.3248652809854,
+			"p95": 155.0
+		},
+		"edit_usec": {
+			"max": 13328.0,
+			"mean": 8705.75277777778,
+			"p95": 10842.0
+		},
+		"elapsed_seconds": 6.020861,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 2096751380,
+			"exposure": 0,
+			"height": 785269705,
+			"residue": 1762697555
+		},
+		"frame_ms": {
+			"max": 17.93,
+			"mean": 4.62868644067798,
+			"p95": 13.764
+		},
+		"height_upload_usec": {
+			"max": 403.0,
+			"mean": 142.886111111111,
+			"p95": 193.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 274.0,
+			"mean": 65.3687451886066,
+			"p95": 105.0
+		},
+		"pick_usec": {
+			"max": 289.0,
+			"mean": 129.302777777778,
+			"p95": 184.0
+		},
+		"proxy_usec": {
+			"max": 124.0,
+			"mean": 18.8475750577367,
+			"p95": 50.0
+		},
+		"render_fps": 215.583784445447,
+		"residue_upload_usec": {
+			"max": 60.0,
+			"mean": 14.0222222222222,
+			"p95": 26.0
+		},
+		"surface_edit_usec": {
+			"max": 13272.0,
+			"mean": 8673.05277777778,
+			"p95": 10790.0
+		},
+		"ticks": 360,
+		"upload_usec": {
+			"max": 426.0,
+			"mean": 156.908333333333,
+			"p95": 213.0
+		}
+	},
+	"engine": "4.7.2-stable (official)",
+	"failures": 0,
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"moving_soil_1x_off": {
+		"action_feedback_usec": {
+			"max": 157.0,
+			"mean": 24.4594444444444,
+			"p95": 36.0
+		},
+		"changed_texels": 9152794,
+		"debris_view_usec": {
+			"max": 375.0,
+			"mean": 32.8853820598007,
+			"p95": 135.0
+		},
+		"edit_usec": {
+			"max": 12893.0,
+			"mean": 8552.42222222222,
+			"p95": 10062.0
+		},
+		"elapsed_seconds": 30.011678,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 2514210739,
+			"exposure": 0,
+			"height": 1490254273,
+			"residue": 4126428011
+		},
+		"frame_ms": {
+			"max": 17.681,
+			"mean": 4.53088022957257,
+			"p95": 13.447
+		},
+		"height_upload_usec": {
+			"max": 321.0,
+			"mean": 135.311111111111,
+			"p95": 174.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 238.0,
+			"mean": 58.7334642102084,
+			"p95": 90.0
+		},
+		"pick_usec": {
+			"max": 310.0,
+			"mean": 119.164444444444,
+			"p95": 162.0
+		},
+		"proxy_usec": {
+			"max": 134.0,
+			"mean": 1.53714889761401,
+			"p95": 2.0
+		},
+		"render_fps": 220.614122276002,
+		"residue_upload_usec": {
+			"max": 149.0,
+			"mean": 12.3077777777778,
+			"p95": 23.0
+		},
+		"surface_edit_usec": {
+			"max": 12843.0,
+			"mean": 8522.02222222222,
+			"p95": 10024.0
+		},
+		"ticks": 1800,
+		"upload_usec": {
+			"max": 349.0,
+			"mean": 147.618888888889,
+			"p95": 194.0
+		}
+	},
+	"moving_soil_1x_on": {
+		"action_feedback_usec": {
+			"max": 108.0,
+			"mean": 24.0522222222222,
+			"p95": 35.0
+		},
+		"changed_texels": 9152794,
+		"debris_view_usec": {
+			"max": 354.0,
+			"mean": 32.3774733637747,
+			"p95": 131.0
+		},
+		"edit_usec": {
+			"max": 14649.0,
+			"mean": 8661.50666666667,
+			"p95": 9898.0
+		},
+		"elapsed_seconds": 30.009265,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 2514210739,
+			"exposure": 0,
+			"height": 1490254273,
+			"residue": 4126428011
+		},
+		"frame_ms": {
+			"max": 19.856,
+			"mean": 4.56636367788094,
+			"p95": 13.511
+		},
+		"height_upload_usec": {
+			"max": 305.0,
+			"mean": 132.301666666667,
+			"p95": 166.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 286.0,
+			"mean": 58.1257229832572,
+			"p95": 90.0
+		},
+		"pick_usec": {
+			"max": 400.0,
+			"mean": 118.089444444444,
+			"p95": 157.0
+		},
+		"proxy_usec": {
+			"max": 170.0,
+			"mean": 17.3922374429224,
+			"p95": 43.0
+		},
+		"render_fps": 218.899063339272,
+		"residue_upload_usec": {
+			"max": 102.0,
+			"mean": 12.1216666666667,
+			"p95": 22.0
+		},
+		"surface_edit_usec": {
+			"max": 14526.0,
+			"mean": 8631.615,
+			"p95": 9863.0
+		},
+		"ticks": 1800,
+		"upload_usec": {
+			"max": 329.0,
+			"mean": 144.423333333333,
+			"p95": 186.0
+		}
+	},
+	"moving_soil_3x_off": {
+		"action_feedback_usec": {
+			"max": 141.0,
+			"mean": 24.2533333333333,
+			"p95": 34.0
+		},
+		"changed_texels": 9152793,
+		"debris_view_usec": {
+			"max": 362.0,
+			"mean": 33.06146607983,
+			"p95": 136.0
+		},
+		"edit_usec": {
+			"max": 13850.0,
+			"mean": 8616.85,
+			"p95": 9701.0
+		},
+		"elapsed_seconds": 30.017885,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 4175914175,
+			"exposure": 0,
+			"height": 648208984,
+			"residue": 4126428011
+		},
+		"frame_ms": {
+			"max": 18.063,
+			"mean": 4.55440224650881,
+			"p95": 13.505
+		},
+		"height_upload_usec": {
+			"max": 313.0,
+			"mean": 133.320555555556,
+			"p95": 165.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 247.0,
+			"mean": 58.7797844893003,
+			"p95": 89.0
+		},
+		"pick_usec": {
+			"max": 303.0,
+			"mean": 119.826111111111,
+			"p95": 154.0
+		},
+		"proxy_usec": {
+			"max": 119.0,
+			"mean": 1.57793291850053,
+			"p95": 2.0
+		},
+		"render_fps": 219.469159802564,
+		"residue_upload_usec": {
+			"max": 153.0,
+			"mean": 12.345,
+			"p95": 23.0
+		},
+		"surface_edit_usec": {
+			"max": 13798.0,
+			"mean": 8586.93277777778,
+			"p95": 9668.0
+		},
+		"ticks": 1800,
+		"upload_usec": {
+			"max": 323.0,
+			"mean": 145.665555555556,
+			"p95": 183.0
+		}
+	},
+	"moving_soil_3x_on": {
+		"action_feedback_usec": {
+			"max": 212.0,
+			"mean": 24.6372222222222,
+			"p95": 35.0
+		},
+		"changed_texels": 9152793,
+		"debris_view_usec": {
+			"max": 339.0,
+			"mean": 33.4024483550115,
+			"p95": 138.0
+		},
+		"edit_usec": {
+			"max": 14316.0,
+			"mean": 8673.69722222222,
+			"p95": 9791.0
+		},
+		"elapsed_seconds": 30.015443,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 4175914175,
+			"exposure": 0,
+			"height": 648208984,
+			"residue": 4126428011
+		},
+		"frame_ms": {
+			"max": 17.696,
+			"mean": 4.59161646770739,
+			"p95": 13.578
+		},
+		"height_upload_usec": {
+			"max": 358.0,
+			"mean": 135.052777777778,
+			"p95": 169.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 243.0,
+			"mean": 59.1328232593726,
+			"p95": 91.0
+		},
+		"pick_usec": {
+			"max": 317.0,
+			"mean": 120.972777777778,
+			"p95": 158.0
+		},
+		"proxy_usec": {
+			"max": 179.0,
+			"mean": 17.8553940321347,
+			"p95": 45.0
+		},
+		"render_fps": 217.687941503978,
+		"residue_upload_usec": {
+			"max": 119.0,
+			"mean": 12.5044444444444,
+			"p95": 23.0
+		},
+		"surface_edit_usec": {
+			"max": 14267.0,
+			"mean": 8643.18388888889,
+			"p95": 9763.0
+		},
+		"ticks": 1800,
+		"upload_usec": {
+			"max": 381.0,
+			"mean": 147.557222222222,
+			"p95": 190.0
+		}
+	},
+	"physics_hz": 60,
+	"runtime_cap": 240,
+	"stationary_1x_off": {
+		"action_feedback_usec": {
+			"max": 65.0,
+			"mean": 22.5777777777778,
+			"p95": 31.0
+		},
+		"changed_texels": 1810800,
+		"debris_view_usec": {
+			"max": 317.0,
+			"mean": 34.5817912657291,
+			"p95": 135.0
+		},
+		"edit_usec": {
+			"max": 10945.0,
+			"mean": 8339.67222222222,
+			"p95": 9516.0
+		},
+		"elapsed_seconds": 6.01644,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 3522769755,
+			"exposure": 0,
+			"height": 3278256357,
+			"residue": 773355273
+		},
+		"frame_ms": {
+			"max": 15.548,
+			"mean": 4.44696814814814,
+			"p95": 13.133
+		},
+		"height_upload_usec": {
+			"max": 285.0,
+			"mean": 130.538888888889,
+			"p95": 155.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 300.0,
+			"mean": 53.1339748334567,
+			"p95": 75.0
+		},
+		"pick_usec": {
+			"max": 273.0,
+			"mean": 119.788888888889,
+			"p95": 149.0
+		},
+		"proxy_usec": {
+			"max": 3.0,
+			"mean": 1.46632124352332,
+			"p95": 2.0
+		},
+		"render_fps": 224.385184594212,
+		"residue_upload_usec": {
+			"max": 62.0,
+			"mean": 11.6277777777778,
+			"p95": 21.0
+		},
+		"surface_edit_usec": {
+			"max": 10905.0,
+			"mean": 8311.68888888889,
+			"p95": 9487.0
+		},
+		"ticks": 360,
+		"upload_usec": {
+			"max": 312.0,
+			"mean": 142.166666666667,
+			"p95": 172.0
+		}
+	},
+	"stationary_1x_on": {
+		"action_feedback_usec": {
+			"max": 95.0,
+			"mean": 24.3777777777778,
+			"p95": 38.0
+		},
+		"changed_texels": 1810800,
+		"debris_view_usec": {
+			"max": 255.0,
+			"mean": 37.7368821292776,
+			"p95": 161.0
+		},
+		"edit_usec": {
+			"max": 12926.0,
+			"mean": 8593.38333333333,
+			"p95": 10589.0
+		},
+		"elapsed_seconds": 6.019849,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 3522769755,
+			"exposure": 0,
+			"height": 3278256357,
+			"residue": 773355273
+		},
+		"frame_ms": {
+			"max": 17.55,
+			"mean": 4.57116210045662,
+			"p95": 13.388
+		},
+		"height_upload_usec": {
+			"max": 333.0,
+			"mean": 137.983333333333,
+			"p95": 179.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 202.0,
+			"mean": 54.5543726235741,
+			"p95": 84.0
+		},
+		"pick_usec": {
+			"max": 225.0,
+			"mean": 126.088888888889,
+			"p95": 182.0
+		},
+		"proxy_usec": {
+			"max": 190.0,
+			"mean": 18.1475285171103,
+			"p95": 48.0
+		},
+		"render_fps": 218.277900326071,
+		"residue_upload_usec": {
+			"max": 46.0,
+			"mean": 12.0166666666667,
+			"p95": 24.0
+		},
+		"surface_edit_usec": {
+			"max": 12878.0,
+			"mean": 8562.75833333333,
+			"p95": 10549.0
+		},
+		"ticks": 360,
+		"upload_usec": {
+			"max": 364.0,
+			"mean": 150.0,
+			"p95": 201.0
+		}
+	},
+	"stationary_3x_off": {
+		"action_feedback_usec": {
+			"max": 81.0,
+			"mean": 24.2583333333333,
+			"p95": 35.0
+		},
+		"changed_texels": 1810800,
+		"debris_view_usec": {
+			"max": 317.0,
+			"mean": 37.6813353566009,
+			"p95": 154.0
+		},
+		"edit_usec": {
+			"max": 13405.0,
+			"mean": 8557.87777777778,
+			"p95": 9943.0
+		},
+		"elapsed_seconds": 6.004315,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 4165628479,
+			"exposure": 0,
+			"height": 2064008701,
+			"residue": 773355273
+		},
+		"frame_ms": {
+			"max": 18.2,
+			"mean": 4.54896583143507,
+			"p95": 13.408
+		},
+		"height_upload_usec": {
+			"max": 377.0,
+			"mean": 135.980555555556,
+			"p95": 176.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 194.0,
+			"mean": 55.386191198786,
+			"p95": 86.0
+		},
+		"pick_usec": {
+			"max": 262.0,
+			"mean": 126.811111111111,
+			"p95": 177.0
+		},
+		"proxy_usec": {
+			"max": 100.0,
+			"mean": 1.61684370257967,
+			"p95": 2.0
+		},
+		"render_fps": 219.342256360634,
+		"residue_upload_usec": {
+			"max": 38.0,
+			"mean": 12.2027777777778,
+			"p95": 23.0
+		},
+		"surface_edit_usec": {
+			"max": 13346.0,
+			"mean": 8527.69166666667,
+			"p95": 9904.0
+		},
+		"ticks": 360,
+		"upload_usec": {
+			"max": 397.0,
+			"mean": 148.183333333333,
+			"p95": 194.0
+		}
+	},
+	"stationary_3x_on": {
+		"action_feedback_usec": {
+			"max": 147.0,
+			"mean": 22.6611111111111,
+			"p95": 30.0
+		},
+		"changed_texels": 1810800,
+		"debris_view_usec": {
+			"max": 338.0,
+			"mean": 34.2857142857143,
+			"p95": 135.0
+		},
+		"edit_usec": {
+			"max": 11613.0,
+			"mean": 8160.96111111111,
+			"p95": 9287.0
+		},
+		"elapsed_seconds": 6.00599,
+		"endpoint": {
+			"condition": 100.0,
+			"debris": 4165628479,
+			"exposure": 0,
+			"height": 2064008701,
+			"residue": 773355273
+		},
+		"frame_ms": {
+			"max": 16.215,
+			"mean": 4.417134119381,
+			"p95": 12.971
+		},
+		"height_upload_usec": {
+			"max": 304.0,
+			"mean": 131.136111111111,
+			"p95": 159.0
+		},
+		"native_sweep_resets_ignored": 0,
+		"particles_usec": {
+			"max": 225.0,
+			"mean": 52.3100147275405,
+			"p95": 77.0
+		},
+		"pick_usec": {
+			"max": 318.0,
+			"mean": 118.786111111111,
+			"p95": 148.0
+		},
+		"proxy_usec": {
+			"max": 110.0,
+			"mean": 16.9727540500736,
+			"p95": 41.0
+		},
+		"render_fps": 225.941102133037,
+		"residue_upload_usec": {
+			"max": 155.0,
+			"mean": 12.0638888888889,
+			"p95": 22.0
+		},
+		"surface_edit_usec": {
+			"max": 11568.0,
+			"mean": 8133.03333333333,
+			"p95": 9257.0
+		},
+		"ticks": 360,
+		"upload_usec": {
+			"max": 320.0,
+			"mean": 143.2,
+			"p95": 179.0
+		}
+	},
+	"viewport": "(1920, 1080)"
+}

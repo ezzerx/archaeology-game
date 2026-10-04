@@ -29,13 +29,14 @@ func test_micro_impacts() -> void:
 			and surface.last_action.marks == 0, "Pick never triggers Chisel plate stress or chunks")
 	var bulk := fixture(0.6)
 	var fine := fixture(0.6)
+	var initial := fine._heights.duplicate()
 	for i in range(6): fine.apply_impact(point, pick)
 	for i in range(5): bulk.apply_impact(point, chisel)
 	var fine_removed := 0.0
 	var bulk_removed := 0.0
 	for i in range(fine._heights.size()):
-		fine_removed += 0.6 - fine._heights[i]
-		bulk_removed += 0.6 - bulk._heights[i]
+		fine_removed += initial[i] - fine._heights[i]
+		bulk_removed += initial[i] - bulk._heights[i]
 	check(fine_removed > 0 and bulk_removed > fine_removed * 10, "one second: Chisel removes over ten times the bulk despite fast local Pick work")
 	check(0.6 - fine.value_at(cell) > 0.25, "six stationary micro-impacts quickly clear a substantial attached Clay cap")
 	print("P4 PICK BULK: Pick=", fine_removed, "; Chisel=", bulk_removed, "; ratio=", bulk_removed / fine_removed)

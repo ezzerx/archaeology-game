@@ -24,6 +24,15 @@ func fixture(height := 0.6, settings: ReactionProfile = profile) -> WorkingSurfa
 	var surface := WorkingSurface.new(Vector2i(96, 64))
 	surface.apply_segment(point, point, 100000, 1, 1, 1.0 - height)
 	surface.strata = Stratigraphy.new(surface.size, definitions)
+	if is_equal_approx(height, 0.6):
+		# Keep the historical center height/workload, but follow the authored
+		# Clay roof: a flat 0.6 slab can now contain Soil at the footprint edge.
+		var cover := surface.strata.boundaries.get_pixelv(cell).r - height
+		for i in range(surface._heights.size()):
+			var upper := surface.strata.packed_limits[i * 2]
+			var lower := surface.strata.packed_limits[i * 2 + 1]
+			surface._heights[i] = upper - minf(cover, (upper - lower) * 0.5)
+		surface.image.set_data(surface.size.x, surface.size.y, false, Image.FORMAT_RF, surface._heights.to_byte_array())
 	surface.fracture = MaterialFracture.new(surface.size, settings)
 	return surface
 

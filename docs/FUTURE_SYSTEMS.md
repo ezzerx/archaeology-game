@@ -1,6 +1,6 @@
 # Future Systems — Confirmed Post-Core Directions
 
-**Status:** confirmed future product directions, intentionally not implemented during the current V0.1 core validation.
+**Status:** confirmed future product directions. The deterministic verticality foundation is advanced to P4-V1; seeded generation and progression remain post-core.
 
 These systems are considered part of the intended game direction if the excavation core passes validation. Their detailed design, balancing and production scope remain open and will receive dedicated brainstorming/specification later.
 
@@ -43,11 +43,15 @@ The player should learn to identify materials and choose tools, not learn a fixe
 
 ### When to prototype
 
-Do not implement during P3/P4/P5 core validation.
+**Decision, 2026-10-04:** prototype the **deterministic macro-verticality foundation** in P4-V1, because layer thickness and fossil burial directly change core excavation. One authored B-17 block, broad smooth interfaces and a shared burial field; identical every launch/reset. [Brief](dev/P4V_BRIEF.md) · [Report](dev/P4V_REPORT.md).
+
+This exception does not move procedural generation into P4. Do not add seeds, random variants, multiple blocks or a site generator during P4-V1/P5. P4-V2 debris physics requires a separate authorization after the V1 human test.
 
 After the core V0.1 is proven, create a dedicated variability prototype using multiple seeds / authored variants and test whether repeated excavation stays interesting.
 
 A likely validation set is approximately 10–20 generated test blocks before scaling content production.
+
+**Effort-aware rule confirmed in P4-V1.1, 2026-10-04:** “Verticality / generation must be effort-aware, not depth-only.” A future seed must satisfy material-weighted work budgets as well as geometric invariants. Measure the entire Bone population (median, P90, P95, maximum), not just selected discovery points. Deeper Bone can mean more Soil/Clay rather than an excessive column of the slowest material. Keep the geological field broad and independent of the fossil mask; use Bone only to validate its distribution. The current relative oracle is Clay above Bone ×3 + Sandstone above Bone ×5.333… in mm, not a time prediction. P4-V prototype budgets are documented in [P4V_BRIEF](dev/P4V_BRIEF.md); final tuning remains P7.
 
 ## 2. Equipment Progression — confirmed future pillar
 
@@ -112,7 +116,7 @@ The systems should reinforce one another without turning the excavation into a g
 
 These directions are **certain future product pillars**, but their implementation is conditional on the core loop succeeding.
 
-Do not pull them into P3, P4 or P5 simply because they are now documented.
+Do not pull seeded generation or progression into P3, P4 or P5 simply because they are documented. Only the deterministic macro-verticality foundation is explicitly authorized early, in P4-V1.
 
 First validate:
 

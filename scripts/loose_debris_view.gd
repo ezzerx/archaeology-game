@@ -14,7 +14,7 @@ func setup(target: ExcavationBlock) -> void:
 	multimesh = MultiMesh.new()
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh.use_colors = true
-	multimesh.mesh = crumb_mesh()
+	multimesh.mesh = DebrisVisualMesh.with_face_contrast(crumb_mesh())
 	multimesh.instance_count = 256
 	multimesh.visible_instance_count = 0
 	var material := StandardMaterial3D.new()

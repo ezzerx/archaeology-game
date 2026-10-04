@@ -9,8 +9,10 @@ uniform sampler2D fracture_map : filter_nearest, repeat_disable;
 uniform vec2 fracture_sizes = vec2(9.0, 5.0);
 uniform float fracture_seed = 0.0;
 uniform float bone_exposure_epsilon = 0.0000152587890625;
+uniform float surface_layer_epsilon = 0.000001;
 uniform vec4 bone_color : source_color = vec4(0.94, 0.87, 0.72, 1.0);
 uniform vec2 map_size = vec2(1024.0, 640.0);
+uniform vec2 surface_size = vec2(1.1, 0.7);
 uniform float base_height = 0.018;
 uniform float excavatable_height = 0.102;
 uniform bool is_skirt = false;
@@ -23,6 +25,8 @@ uniform float cursor_radius = 40.0;
 uniform bool cursor_visible = false;
 uniform vec4 cursor_color : source_color = vec4(0.95, 0.8, 0.2, 1.0);
 varying float surface_height;
+varying vec2 surface_layer_delta;
+varying vec3 surface_up;
 
 float grain_hash(vec2 p) {
 	return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
@@ -37,8 +41,16 @@ float dust_noise(vec2 p) {
 }
 
 void vertex() {
+	// PlaneMesh accumulates float32 X/Z increments. Reconstruct from UV like
+	// the CPU grid: micrometer drift otherwise moves grazing occlusion edges.
+	if (!is_skirt) { VERTEX.xz = (UV - vec2(0.5)) * surface_size; }
 	float height = textureLod(working_map, UV, 0.0).r;
 	surface_height = height * (is_skirt ? VERTEX.y : 1.0);
+	// Subtract at the same grid vertices BEFORE raster interpolation. Comparing
+	// triangle height with bilinear fragment limits made a clean floor flicker
+	// between materials even when its RF values exactly matched the interface.
+	surface_layer_delta = vec2(surface_height) - textureLod(layer_boundaries, UV, 0.0).rg;
+	surface_up = normalize((MODELVIEW_MATRIX * vec4(0.0, 1.0, 0.0, 0.0)).xyz);
 	VERTEX.y = base_height + surface_height * excavatable_height;
 }
 
@@ -47,8 +59,8 @@ void fragment() {
 	vec3 relief_normal = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
 	if (relief_normal.z < 0.0) { relief_normal = -relief_normal; }
 	NORMAL = relief_normal;
-	vec2 limits = texture(layer_boundaries, UV).rg;
-	vec3 color = surface_height > limits.r ? soil_color.rgb : (surface_height > limits.g ? clay_color.rgb : sandstone_color.rgb);
+	int layer = surface_layer_delta.r > surface_layer_epsilon ? 0 : (surface_layer_delta.g > surface_layer_epsilon ? 1 : 2);
+	vec3 color = layer == 0 ? soil_color.rgb : (layer == 1 ? clay_color.rgb : sandstone_color.rgb);
 	// Discrete exposure agrees with CPU cell accounting. Geometry/picking retain
 	// P1's interpolated heightfield; no coplanar second bone mesh or dynamic mask.
 	ivec2 cell = clamp(ivec2(UV * map_size), ivec2(0), ivec2(map_size) - ivec2(1));
@@ -59,8 +71,8 @@ void fragment() {
 	// Persistent dirt is shaded only; geometry, debug views and picking stay exact.
 	if (debug_view == 0 && !is_skirt) {
 		float residue = texture(residue_map, UV).r;
-		if (!exposed_bone && surface_height <= limits.r) {
-			bool clay = surface_height > limits.g;
+		if (!exposed_bone && layer > 0) {
+			bool clay = layer == 1;
 			vec2 p = vec2(cell);
 			vec2 warped = vec2(p.x + 0.25 * p.y + 3.0 * abs(mod(p.y / 7.0 + fracture_seed, 2.0) - 1.0),
 				p.y + 2.0 * abs(mod(p.x / 11.0 + fracture_seed, 2.0) - 1.0));
@@ -86,10 +98,10 @@ void fragment() {
 		float speckles = smoothstep(0.51, 0.74, medium * 0.6 + fine * 0.4) * smoothstep(0.35, 0.62, broad);
 		dust_cover = clamp((islands * 0.88 + speckles * 0.30) * accumulation, 0.0, 0.92);
 		// Local substrate is the deliberate source approximation: no extra map.
-		vec3 dust_low = surface_height > limits.r ? vec3(0.29, 0.145, 0.063) :
-			(surface_height > limits.g ? vec3(0.42, 0.20, 0.105) : vec3(0.56, 0.46, 0.31));
-		vec3 dust_high = surface_height > limits.r ? vec3(0.60, 0.40, 0.21) :
-			(surface_height > limits.g ? vec3(0.73, 0.46, 0.28) : vec3(0.86, 0.76, 0.58));
+		vec3 dust_low = layer == 0 ? vec3(0.29, 0.145, 0.063) :
+			(layer == 1 ? vec3(0.42, 0.20, 0.105) : vec3(0.56, 0.46, 0.31));
+		vec3 dust_high = layer == 0 ? vec3(0.60, 0.40, 0.21) :
+			(layer == 1 ? vec3(0.73, 0.46, 0.28) : vec3(0.86, 0.76, 0.58));
 		if (exposed_bone) {
 			// Locked rule: dust may obscure detail, never material identity.
 			// Ivory remains dominant even at saturated residue; never stone grey.
@@ -99,6 +111,12 @@ void fragment() {
 		}
 		vec3 dust_color = mix(dust_low, dust_high, broad * 0.65 + medium * 0.35);
 		color = mix(color, dust_color, dust_cover);
+		// A small face-value separation makes existing hard plate walls readable.
+		// No AO texture taps, new geometry, cast shadows or change to Bone/Soil.
+		if (!exposed_bone && layer > 0) {
+			float upright = clamp(abs(dot(relief_normal, normalize(surface_up))), 0.0, 1.0);
+			color *= mix(0.76, 1.0, upright);
+		}
 	}
 	float distance_texels = length((UV - cursor_uv) * map_size);
 	float ring = 1.0 - smoothstep(0.7, 1.6, abs(distance_texels - cursor_radius));

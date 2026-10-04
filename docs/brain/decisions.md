@@ -334,3 +334,37 @@ Antoine remplace la protection globale des passes précédentes par **une protec
 Précondition inchangée : le centre doit être **déjà exposé avant l’impact** et l’outil dommageable. Première frappe du composant : tik et zéro dégât ; suivantes sur ce composant : DING/−3. **Bone Condition reste globale** : Skull → Skull → Ribs → Ribs = 100 → 97 → 97 → 94. Révélation centrale/adjacente, Pick, Brush et Blower ne consomment jamais. Seul ajout debug : READY/USED dans les lignes F1 existantes. Cette règle est une **baseline P4 réévaluable en P7**.
 
 Code `0c549f5` : **1 517 contrôles fonctionnels + 90 graphiques**, zéro échec ; 72 nouveaux vérifient aussi une autre côte, une autre vertèbre, reset et outils sûrs. Sanity de quatre scénarios à **239,86–239,87 FPS**, P95 maximal 4,325 ms. Baselines outils, ressources et tout le reste du feel inchangés. **P4 Final Feel ready for human closure / P4-V authorization.** STOP après push ; PR #5 brouillon, aucun merge ni P4-V/P5 sans nouvelle autorisation.
+
+## P4 validé et fondation de verticalité avancée à P4-V1 — 2026-10-04
+
+Antoine confirme la validation humaine et le merge P4 Final Feel (`7ae0fec3c004d207c99f4713111a240f8d5f2e9a`), puis autorise uniquement **P4-V1 Verticality**, [brief](../dev/P4V_BRIEF.md), PR #6 brouillon. La fondation de macro-verticalité déterministe est avancée car elle modifie le core gameplay. **Génération par seed, multiples blocs et systèmes de sites restent post-core.** P4-V2 debris physics exige un test humain V1 puis une autorisation séparée ; P5 reste bloqué.
+
+Choix implémenté : profil pur en UV, pente Soil, lentille large Clay indépendante et enfouissement incliné/warpé commun à B-17. Résoudre les overlaps dans l’authoring P4 puis translater le gagnant conserve les IDs même si un clamp devenait actif. Cartes statiques construites une fois, aucun calcul vertical par tick ; reset exact. La silhouette de 32 290 cellules et les totaux de composants restent inchangés. Bone passe de 65,79–77,85 à 55,35–85,34 mm de profondeur. Les outils, fracture, sons, protections et budgets P4 restent verrouillés.
+
+Leçons vérifiées : tester les anciennes fixtures avec la matière réellement sous le point, plutôt qu’une hauteur fixe supposée « Clay » ; comparer la silhouette à un oracle figé avant la modification ; contrôler la composante ajoutée du champ pour sa douceur, sans confondre les bords anatomiques avec du bruit. Le `PlaneMesh` natif accumule des pas float32 : aligner X/Z depuis UV dans le shader évite sa dérive par rapport à la grille CPU, surtout sur les rayons rasants. Les intermédiaires de l’intersection Möller–Trumbore passent en scalaires float64, avec les mêmes tolérances, pour tenir le budget de 5 µm. L’oracle indépendant utilise une équation de plan et des barycentriques float64, afin de ne pas recopier cet algorithme ni introduire sa propre erreur de tangence.
+
+Validation finale : 1 604 contrôles fonctionnels, 90 visuels, neuf empreintes reproductibles et 60 scénarios de performance, zéro échec dans les phases finales. V1 : P95 maximal 12,757 ms, minimum sur une seconde 210,54 FPS ; pointe isolée de 18,728 ms documentée. Le harnais graphique conserve l’horloge de son maintien synthétique face aux notifications Windows ; le comportement de focus du jeu et ses cadences restent inchangés.
+
+Formules, mesures, limites de rasterisation et checklist humaine dans [P4V_REPORT](../dev/P4V_REPORT.md). Aucun intérêt humain de V1 n’est inféré de l’automatisation. **STOP après livraison : attendre Antoine, ne pas merger ni lancer P4-V2.**
+
+## P4-V1.1 — verticalité sensible à l'effort, 2026-10-04
+
+**Antoine valide humainement le principe de verticalité V1**, mais certaines colonnes Sandstone rendent la fouille trop longue. Correction autorisée uniquement sur la distribution des couches, depuis `122e9b1cf6dfacad721f9af240ef30592de8491c`. Garder les profondeurs Bone et les paramètres P4 ; remplacer une partie de Stone par Clay avec un champ large en UV, sans masque de squelette ni correction par cellule.
+
+Règle confirmée : **“Verticality / generation must be effort-aware, not depth-only.”** Une future seed devra respecter des budgets de travail pondérés par la matière et des quantiles/maxima sur toute la population Bone, en plus des contraintes géométriques. Clay coûte 3/1 =3 par mm ; Stone 8/1,5 =5,333… : une profondeur identique ne représente pas un effort identique. L'oracle debug/test compte uniquement la matrice au-dessus du plafond Bone et ne prédit pas le temps réel.
+
+Implémentation : nappe Clay à épaules douces, gradient et deux lobes larges. Soil et tous les plafonds/IDs/totaux Bone restent exacts à trois résolutions ; amplitude 29,99 mm conservée. Sur 32 290 cellules, Stone médiane/P95/max : **23,28/31,48/36,94 →11,59/17,12/21,49 mm**. Effort médiane/P95/max : **174,18/207,47/231,88 →147,28/175,70/199,65**. 90,11 % des cellules conservent 5–18 mm de Stone. Les budgets sont provisoires P4-V, tuning final P7.
+
+Leçon validée : les seules fixtures A/B/C ne détectent pas les colonnes extrêmes ailleurs sur le fossile. Figer la référence avant correction et contrôler la population entière évite ce biais. Les anciens contrastes Clay/Stone des fixtures sont actualisés pour refléter la redistribution ; les seuils géométriques et matériaux restent inchangés. Outils, résistances, fracture, protection, audio, caméra et rendu ne sont pas retunés.
+
+Preuves, résultats de régression et performances : [P4V_REPORT, section V1.1](../dev/P4V_REPORT.md#v11--vérification-et-performance). La livraison demandait les cinq questions V1.1 ; le retour humain et le prochain protocole sont actualisés ci-dessous. PR #6 brouillon, aucun P4-V2, procgen ou P5.
+
+## P4-V1.2 — interfaces et lecture des morceaux, 2026-10-04
+
+**Antoine juge la base verticale V1.1 meilleure et conserve cette direction.** Seul un cleanup visuel est autorisé : grille orange Clay/Sandstone et séparation des blocs/éclats/miettes. Aucune nouvelle passe de géologie, retuning outil, modification Bone ou physique de débris.
+
+Cause vérifiée : une hauteur interpolée sur triangles comparée à une limite bilinéaire peut afficher une fausse matière, même quand les deux cartes sont identiques. Calculer leur différence aux mêmes sommets puis interpoler la différence supprime l'artefact ; le picking doit utiliser les mêmes triangles. Tolérance commune de présentation `1e-6` normalisée, sans toucher les seuils de travail par cellule. Les cartes V1.1 gardent leurs empreintes exactes ; les cinq fixtures GPU n'ont plus de couleur parasite, y compris avec une pellicule Clay réelle de 0,051 mm.
+
+Lisibilité : légère différence de valeur entre dessus/parois dures et couleurs de faces précalculées dans les meshes de morceaux existants. Pas de silhouette, trajectoire, quantité ou durée nouvelle. Le contraste augmente dans les fixtures, mais le jugement de profondeur/plaisir appartient au test humain.
+
+Leçon de validation : figer l'état de simulation et attendre des frames complètes après un échange de mesh/shader avant lecture GPU ; une capture trop précoce peut confondre absence temporaire et contraste. [Preuves et trois questions V1.2](../dev/P4V_REPORT.md). **STOP après push, PR #6 DRAFT ; aucun merge, P4-V2, procgen ou P5.**

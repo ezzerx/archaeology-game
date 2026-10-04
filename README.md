@@ -63,7 +63,7 @@ La composition [FINAL FEEL](docs/dev/P4_FINAL_FEEL_TARGET.md) reprend le spectac
 
 **Bugfix Brush conservé** : Tip/Body statiques, douze sondes terrain maximum, aucune reconstruction de mesh pendant le jeu. Avec la baseline du lock, geste de 30 s à 1×/3× : **235–236 FPS**, proxy P95 **31 µs**. Diagnostic, tests et limites dans le [rapport P4](docs/dev/P4_REPORT.md).
 
-Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer ; aucun réglage debug préalable nécessaire. [Trois vérifications avant fermeture P4](docs/dev/P4_REPORT.md#retest-humain--exactement-trois-points) : Brush 30–60 s, contacts protégés par composant, sanity Chisel/Blower/Pick. **P4 Final Feel ready for human closure / P4-V authorization.** STOP ; PR #5 en brouillon, non mergée, aucune ouverture automatique de P4-V/P5.
+Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer ; aucun réglage debug préalable nécessaire. P4 Final Feel est validé et mergé. La base verticale V1.1 est jugée meilleure ; [trois vérifications du cleanup V1.2](docs/dev/P4V_REPORT.md#v12--test-humain) : interfaces propres, blocs/profondeur lisibles, agrément préservé après 5–10 minutes libres. **STOP ; PR #6 reste en brouillon, non mergée. Aucun P4-V2 ou P5 automatique.**
 
 Brief :
 

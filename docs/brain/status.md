@@ -2,9 +2,9 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — micro-fix P4 FINAL FEEL par composant livré, prêt pour décision de fermeture ; P4-V et P5 non autorisés**.
+- Phase : **préproduction — P4 FINAL FEEL validé humainement et mergé ; base verticale V1.1 jugée meilleure ; cleanup visuel P4-V1.2, test humain attendu ; P4-V2 debris physics et P5 bloqués**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation initiale `42ec46d`, puis correctifs documentés dans le rapport).
+- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. Spike actif : `prototype/p4v-verticality`, [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) en brouillon, non mergée.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -62,7 +62,7 @@ Rapports :
 - Le Chisel actuel reste encore trop proche d'un effacement local de heightfield : P4 doit introduire une vraie réaction de matière avant de décider d'une mécanique de protection supplémentaire.
 - Les valeurs de vitesse/puissance actuelles peuvent sembler lentes ; ne pas faire le tuning final avant P7, sauf nécessité de test.
 
-## P4 — FINAL FEEL, micro-fix par composant ▶
+## P4 — FINAL FEEL ✅
 
 Source de vérité : [P4_FINAL_FEEL_TARGET](../dev/P4_FINAL_FEEL_TARGET.md). Micro-fix autorisé : **une protection indépendante par composant anatomique**, toujours sur cellule déjà exposée **avant** l’impact. Les baselines humaines déjà persistées, Chisel A (`42ec46d`), Blower B (`c25b44f`), mécaniques Soil/Pick et correctif FPS restent inchangés.
 
@@ -83,7 +83,7 @@ Livré : éclats Chisel **3–6 mm, 1–5 par plaque cassée**, projection depui
 
 **Brush avec baselines du lock** : geste de 30 s, **235,24 FPS à 1×**, **236,17 à 3×**, P95 frame **12,264/12,202 ms**, proxy P95 **31 µs**. Coût de pose CPU borné à douze sondes/48 lectures, meshes immuables. L’ancien surcoût proxy reste corrigé ; aucune chute <10 FPS reproduite dans ces mesures. Cap 240 FPS / physique 60 Hz conservés.
 
-Code du micro-fix : **`0c549f58d6c2c27e21251a854c2e18a39d389ee2`**. **1 517 checks fonctionnels + 90 graphiques verts**, dont 72 nouveaux couvrant les quatre composants, autre côte/vertèbre, reset et outils sûrs. Oracle GPU 194 955 pixels ; sanity de quatre cas Clay/Stone à 1×/3× : **239,86–239,87 FPS**, P95 maximal 4,325 ms. Les benchmarks longs du lock précédent ne sont pas relancés ; preuves historiques conservées. [P4_REPORT](../dev/P4_REPORT.md). **P4 Final Feel ready for human closure / P4-V authorization.** Prochaine action : décision humaine. **STOP. PR #5 BROUILLON, NON MERGÉE. P4-V et P5 nécessitent une nouvelle autorisation explicite.**
+Code du micro-fix : **`0c549f58d6c2c27e21251a854c2e18a39d389ee2`**. **1 517 checks fonctionnels + 90 graphiques verts**, dont 72 nouveaux couvrant les quatre composants, autre côte/vertèbre, reset et outils sûrs. Oracle GPU 194 955 pixels ; sanity de quatre cas Clay/Stone à 1×/3× : **239,86–239,87 FPS**, P95 maximal 4,325 ms. Les benchmarks longs du lock précédent ne sont pas relancés ; preuves historiques conservées. [P4_REPORT](../dev/P4_REPORT.md). **Clôture humaine et merge PR #5 confirmés ensuite par Antoine**, au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a` ; les travaux P4-V autorisés sont décrits ci-dessous.
 ### Livraison initiale conservée comme historique
 
 P4 vise à faire passer le prototype de :
@@ -114,7 +114,7 @@ Vérifications : **495 checks fonctionnels** (439 historiques + 56 P4), dix scé
 
 Condition : sonde attentive de 1 004 impacts → 4 105 cellules osseuses, **49,87 % du crâne**, condition **100 %**. Elle reconnaît parfaitement les centres visibles ; ce n'est pas un test humain. Maintenir le Chisel sur un centre exposé inflige toujours −3 par impact. Aucun mécanisme de protection ajouté.
 
-Le test humain initial a ensuite conduit à la passe corrective ci-dessus. Si un nouveau test relève encore un dommage jugé inévitable, documenter le geste précis avant toute protection supplémentaire. **Ne pas merger cette livraison ni commencer P5.**
+Le test humain initial a ensuite conduit à la passe corrective ci-dessus, puis à la clôture humaine P4 du 2026-10-04. Si un nouveau test relève un dommage jugé inévitable, documenter le geste précis avant toute protection supplémentaire.
 
 Architecture et limites : [P4_MATERIAL_REACTION_DECISION](../dev/P4_MATERIAL_REACTION_DECISION.md).
 
@@ -122,7 +122,39 @@ Brief canonique :
 
 [P4_BRIEF.md](../dev/P4_BRIEF.md)
 
-**P5 reste interdit avant validation humaine de P4.**
+**La validation P4 ne lance pas P5 : seule la micro-passe visuelle P4-V1.2 est actuellement autorisée.**
+
+## P4-V1.1 — Effort-aware Verticality : base conservée
+
+Source de vérité : [P4V_BRIEF](../dev/P4V_BRIEF.md). Architecture, mesures, preuves et checklist : [P4V_REPORT](../dev/P4V_REPORT.md).
+
+**Antoine valide le principe V1** mais juge certaines colonnes Sandstone trop longues. Référence avant correction : `122e9b1cf6dfacad721f9af240ef30592de8491c`. V1.1 redistribue Clay/Sandstone par une nappe avec gradient et deux lobes larges en UV, sans masque Bone. Soil et plafonds Bone restent exacts. Un seul B-17 déterministe ; cartes précalculées au chargement, inchangées au reset ; aucune procgen ni simulation verticale en jeu.
+
+| Mesure | Valeur V1.1 |
+|---|---:|
+| Soil | 16,32–43,86 mm |
+| Clay | 11,22–40,98 mm, médiane 25,12 mm sur le bloc |
+| Bone depuis top | 55,35–85,34 mm, amplitude 29,99 mm ; exact V1 |
+| Sandstone au-dessus de Bone | médiane 23,28 →11,59 ; P95 31,48 →17,12 ; max 36,94 →21,49 mm |
+| Effort relatif Clay/Stone | médiane 174,18 →147,28 ; P95 207,47 →175,70 ; max 231,88 →199,65 |
+| Cellules Bone | 32 290, silhouette/IDs/totaux P4 exacts |
+| A / B / C | Skull (250,230), Spine (510,307), Hind Limb (646,441) |
+
+Les ressources P4 Final Feel sont inchangées. Bone Condition globale et protection par composant préservées : **Skull → Skull → Ribs → Ribs = tik/100 → DING/97 → tik/97 → DING/94**. F1 donne épaisseurs/profondeurs et **hard work index = Clay au-dessus de Bone ×3 + Stone ×5,333…** ; cet indice n'est pas une durée. Précision V1 conservée : grille X/Z depuis UV, picking en scalaires float64 ; aucun changement de shader, parcours, tolérance ou mesh dans V1.1.
+
+Code/tests V1.1 : **`997132ba6297c065903f0b0cdaba05f416bf7166`**. Validation complète historique : **1 654 contrôles fonctionnels +90 visuels**, neuf empreintes identiques entre processus, **60 scénarios de performance**, zéro échec. Série A/C : 221,35–239,87 FPS moyens, minimum sur une seconde 212,28 FPS, P95 maximal 13,251 ms ; frame isolée maximale 17,484 ms. Oracle rasant 1,650 µm, pan 0,194 µm, 250 065 pixels GPU et mêmes tolérances numériques que V1. **Antoine juge ensuite la base verticale meilleure et demande de conserver cette direction.**
+
+Règle confirmée : **Verticality / generation must be effort-aware, not depth-only.** Les futures seeds devront respecter des budgets de travail par matériau, en plus des invariants géométriques. Le contrôle porte sur toute la population Bone, pas seulement A/B/C.
+
+## P4-V1.2 — Visual Cleanup : test humain attendu
+
+Référence : `36bd665b2fdf3362875c55803dc184dad84056b3`. La grille orange venait d'une comparaison entre hauteur triangulée et interface bilinéaire, même à zéro Clay restante. Le shader interpole maintenant le delta aux sommets ; le curseur suit les mêmes triangles, avec `1e-6` de tolérance d'arrondi (0,102 µm). Cartes V1.1 et travail par cellule exacts. Sur cinq cas /256 725 pixels : zéro couleur parasite et zéro désaccord curseur ; une vraie pellicule de 0,051 mm reste visible.
+
+Parois dures légèrement assombries, dessus plats conservés ; contraste de faces statique sur les meshes d'éclats/miettes. Séparation mesurée accrue sur huit fixtures, sans changer leur mouvement, forme, nombre ou durée. Les protections Bone, ressources outils, résistances, fracture, audio et caméra restent préservées. Détails et validation dans [P4V_REPORT](../dev/P4V_REPORT.md#v12--vérification-et-performance).
+
+Code/tests : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Validation finale : **1 691 contrôles fonctionnels +128 visuels**, neuf empreintes identiques entre processus, **60 scénarios de performance**, zéro échec. Verticalité **222,40–239,87 FPS**, pire P95 **13,237 ms**, minimum sur une seconde **210,74 FPS** ; performance soutenue quasi inchangée, frames isolées jusqu'à 18,527 ms. Les paramètres et les règles du jeu restent conservés ; seul le harnais Brush stabilise la continuité de son geste synthétique face aux notifications natives.
+
+Prochaine action : **les trois questions V1.2 du rapport**, cibles **NON/OUI/OUI** : grille orange, blocs/profondeur, agrément après 5–10 minutes libres. PR #6 reste brouillon/non mergée. **STOP : aucun merge, nouvelle passe de géologie, seed/procgen, P4-V2 debris physics ni P5 sans nouvelle autorisation.**
 
 ## Watchpoints techniques
 
@@ -135,4 +167,4 @@ Brief canonique :
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → **P4 Game Feel** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → **P4-V1.1 : base appréciée ; V1.2 : test humain** → P4-V2 éventuel sur autorisation → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.

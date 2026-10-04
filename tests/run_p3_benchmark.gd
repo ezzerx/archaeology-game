@@ -100,9 +100,8 @@ func validate_bone_pixels(zoom := 1.0) -> void:
 	block.flush_texture()
 	if zoom > 1:
 		move_to(target_uv())
-		(camera as PrecisionZoom)._focused = true
-		(camera as PrecisionZoom).request_zoom(log(zoom) / log((camera as PrecisionZoom).wheel_step), controller._screen)
-		for i in range(90): await physics_frame
+		await settle_zoom(zoom)
+	check(absf((camera as PrecisionZoom).zoom_factor - zoom) < 0.001, "GPU oracle reaches requested %sx zoom" % zoom)
 	var suffix := "" if zoom == 1 else "-%dx" % zoom
 	main.get_node("Debug/Panel").hide()
 	main.get_node("Debug/BonePanel").hide()
@@ -118,15 +117,19 @@ func validate_bone_pixels(zoom := 1.0) -> void:
 	var raw_color_error := 0.0
 	var boundary_alternatives := 0
 	var height_error := 0.0
+	var raw_height_error := 0.0
+	var raster_alternatives := []
 	var bone_samples := 0
 	var matrix_samples := 0
 	var color_mismatches := []
+	var height_mismatches := []
 	for y in range(270, 885, 3):
 		for x in range(480, 1430, 3):
 			var pixel := Vector2i(x, y)
 			var hit := block.pick(Vector2(pixel) + Vector2.ONE * 0.5, camera)
 			if not hit.inside: continue
-			height_error = maxf(height_error, absf((height_picture.get_pixelv(pixel).r - 0.25) / 0.75 - hit.height))
+			var pixel_height_error := absf((height_picture.get_pixelv(pixel).r - 0.25) / 0.75 - hit.height)
+			raw_height_error = maxf(raw_height_error, pixel_height_error)
 			# Compare the CPU texel criterion against the GPU's flat layer rendering.
 			var expected: Color = bone_color if hit.bone_exposed else hit.material.debug_color
 			var actual := material_picture.get_pixelv(pixel)
@@ -146,10 +149,24 @@ func validate_bone_pixels(zoom := 1.0) -> void:
 						var neighbour: Color = bone_color if exposed else hit.material.debug_color
 						error = minf(error, color_distance(actual, neighbour))
 				if error <= 0.02: boundary_alternatives += 1
+			# The same historical +/-0.01 texel spatial tolerance also applies
+			# at projected occlusion edges: a subpixel raster shift can switch
+			# the first visible triangle from Bone to the much deeper floor.
+			# Require ONE nearby ray to explain BOTH height and material. Never
+			# discard a pixel, expand a numerical tolerance or mix two rays.
+			if error > 0.02 or pixel_height_error > 0.01:
+				var alternative := raster_probe(Vector2(pixel) + Vector2.ONE * 0.5, height_picture.get_pixelv(pixel), actual)
+				if alternative.score <= 1.0:
+					error = alternative.color_error
+					pixel_height_error = alternative.height_error
+					raster_alternatives.append(alternative)
+			height_error = maxf(height_error, pixel_height_error)
 			color_error = maxf(color_error, error)
 			if error > 0.02 and color_mismatches.size() < 20:
 				color_mismatches.append({"pixel": str(pixel), "uv_cells": str(hit.uv * Vector2(block.map_resolution)),
 					"bone": hit.bone_exposed, "expected": str(expected), "actual": str(actual)})
+			if pixel_height_error > 0.01 and height_mismatches.size() < 20:
+				height_mismatches.append({"pixel": [x, y], "error": pixel_height_error})
 			if hit.bone_exposed: bone_samples += 1
 			else: matrix_samples += 1
 	check(bone_samples > 2000 and matrix_samples > 10000, "GPU oracle samples both bone and adjacent cavity")
@@ -160,11 +177,14 @@ func validate_bone_pixels(zoom := 1.0) -> void:
 	check(block.residue_texture.get_image().get_data() == block.working_map.residue.image.get_data(), "residue GPU/CPU byte equality")
 	var oracle_key := "gpu_oracle" + suffix
 	report[oracle_key] = {"bone_pixels": bone_samples, "matrix_pixels": matrix_samples, "zoom": (camera as PrecisionZoom).zoom_factor,
-		"height_max_error": height_error, "bone_material_max_error": color_error, "raw_material_max_error": raw_color_error,
+		"height_max_error": height_error, "raw_height_max_error": raw_height_error,
+		"bone_material_max_error": color_error, "raw_material_max_error": raw_color_error,
+		"raster_alternatives": raster_alternatives,
 		"boundary_alternatives": boundary_alternatives, "boundary_tolerance_texels": 0.01, "textures_byte_exact":
 		block.fossil_texture.get_image().get_data() == block.working_map.fossil.field.image.get_data()}
 	print("P3 GPU ORACLE: ", JSON.stringify(report[oracle_key]))
 	if not color_mismatches.is_empty(): print("P3 COLOR DIAGNOSTICS: ", JSON.stringify(color_mismatches))
+	if not height_mismatches.is_empty(): print("P3 HEIGHT DIAGNOSTICS: ", JSON.stringify(height_mismatches))
 	block.set_debug_view(0)
 	main.get_node("Debug/Panel").show()
 	main.get_node("Debug/BonePanel").show()
@@ -174,6 +194,35 @@ func validate_bone_pixels(zoom := 1.0) -> void:
 
 func color_distance(a: Color, b: Color) -> float:
 	return maxf(absf(a.r - b.r), maxf(absf(a.g - b.g), absf(a.b - b.b)))
+
+func settle_zoom(zoom: float) -> void:
+	# Native focus/enter events may cancel the first transition during window
+	# startup. Retry a bounded number of times; never label a 1x capture as 3x.
+	var precision := camera as PrecisionZoom
+	for attempt in range(3):
+		precision._focused = true
+		precision.request_zoom(log(zoom / precision.target_zoom) / log(precision.wheel_step), controller._screen)
+		for i in range(90): await physics_frame
+		if absf(precision.zoom_factor - zoom) < 0.001: break
+
+func raster_probe(screen: Vector2, height_color: Color, actual: Color) -> Dictionary:
+	# Orthographic camera: these basis vectors convert a map-texel offset to
+	# screen pixels at ANY depth. Bound each axis exactly as the original oracle.
+	var origin := camera.unproject_position(block.to_global(Vector3.ZERO))
+	var sx := camera.unproject_position(block.to_global(Vector3(block.surface_size.x / block.map_resolution.x, 0, 0))) - origin
+	var sy := camera.unproject_position(block.to_global(Vector3(0, 0, block.surface_size.y / block.map_resolution.y))) - origin
+	var best := {"score": INF}
+	for y in range(-4, 5):
+		for x in range(-4, 5):
+			var offset := Vector2(x, y) * 0.0025
+			var hit := block.pick(screen + sx * offset.x + sy * offset.y, camera)
+			if not hit.inside: continue
+			var expected: Color = block.material.get_shader_parameter("bone_color") if hit.bone_exposed else hit.material.debug_color
+			var he := absf((height_color.r - 0.25) / 0.75 - hit.height)
+			var ce := color_distance(actual, expected)
+			var score := maxf(he / 0.01, ce / 0.02)
+			if score < best.score: best = {"screen": str(screen), "offset_texels": str(offset), "height_error": he, "color_error": ce, "score": score}
+	return best
 
 func initial_and_first_reveal() -> void:
 	controller.reset_surface()
