@@ -449,3 +449,14 @@ Pick **11 / 0,44 / 1,75**,6 Hz, dégâts0, efficacités intactes reste la baseli
 **Matrix crumbs can be removed by cleanup commitment, not only literal block-edge crossing.** Abandon de l’exigence de vraie sortie au bord : un souffle significatif évacue le mess dès son engagement. Poids≥0,25, dose0,075 seconde pondérée, oubli0,15 s ; un effleurement d’une frame ne suffit pas. Au seuil, libérer les budgets avant notification, lancer un FX0,35 s borné (0,65 m/s horizontal,0,08 m/s vertical, rétrécissement final). Un FX n’est jamais une unité Matrix logique. Cette règle vaut également pour Matrix déplacée/camouflée sur Soil et pour F3 OFF.
 
 Fréquence3/4 et cap256 conservés, sans nouveau retuning. Bone Film, Pick11/0,44/1,75, autres baselines numériques et géologie restent verrouillés. Le test de reprise immédiate Chisel pendant les FX est plus pertinent que la seule distance parcourue par les débris. [Preuves, limites et retest](../dev/P4V2_REPORT.md). **STOP après push, PR #7 DRAFT, aucun merge.**
+
+
+## Baseline narrative musée et P6 contact patina — 2026-10-04
+
+Antoine canonise comme **base narrative actuelle tant qu'une meilleure piste n'émerge pas** : le joueur travaille dans les coulisses d'un musée d'histoire naturelle comme préparateur / restaurateur de spécimens. Le musée confie blocs et fragments, l'atelier est le lieu de gameplay, puis les pièces préparées rejoignent réserves, collection ou exposition. Aucun avatar contrôlable n'est ajouté.
+
+Mise en scène retenue comme direction : **façade du musée au menu principal → atelier intérieur pendant le gameplay → galerie/collection comme destination du travail**. Le musée devient donc à la fois contexte narratif, employeur diégétique et méta-progression.
+
+Le naming définitif reste ouvert. **Bone by Bone** est un candidat haut de shortlist, sans validation comme titre final.
+
+P6 reçoit aussi une idée DA canonisée : **layer contact patina**. La frontière Soil → Clay doit pouvoir montrer une fine peau de Clay salie/brunie par son contact avec le Soil ; dès qu'on la creuse, la Clay intérieure apparaît plus franche/orangée. Une version plus légère Clay → Sandstone est à tester en P6A. Cette patine est visuelle uniquement : elle ne change ni épaisseur structurelle, ni résistance, ni picking.
