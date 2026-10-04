@@ -93,7 +93,13 @@ func scenario(kind: String, zoom: float) -> void:
 	var started := Time.get_ticks_usec()
 	press_at(center)
 	for tick in range(360):
+		# The harness re-arms a synthetic continuous hold below. Preserve its
+		# clock across native focus/mouse-exit notifications between fixed ticks.
+		var held_elapsed := controller.impact_clock.elapsed
+		var held_emitted := controller.impact_clock.emitted
 		await physics_frame
+		controller.impact_clock.elapsed = held_elapsed
+		controller.impact_clock.emitted = held_emitted
 		controller._focused = true
 		controller._pointer_inside = true
 		controller._held = kind not in ["dirty_idle", "proxy_cavity", "proxy_bone", "dusty_bone"]

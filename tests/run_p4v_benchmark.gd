@@ -82,7 +82,12 @@ func zone_scenario(zone: int, kind: String, zoom: float) -> void:
 	var start := Time.get_ticks_usec()
 	press_at(uv)
 	for tick in range(ticks):
+		# Native focus loss must not restart this fixed synthetic held stroke.
+		var held_elapsed := controller.impact_clock.elapsed
+		var held_emitted := controller.impact_clock.emitted
 		await physics_frame
+		controller.impact_clock.elapsed = held_elapsed
+		controller.impact_clock.emitted = held_emitted
 		controller._focused = true
 		controller._pointer_inside = true
 		controller._held = true
@@ -113,7 +118,7 @@ func zone_scenario(zone: int, kind: String, zoom: float) -> void:
 		"edit_ms": stats(edits), "active_edit_ms": stats(active_edits), "pick_ms": stats(picks),
 		"proxy_ms": stats(proxy_times), "feedback_ms": stats(feedback_times), "upload_ms": stats(uploads),
 		"changed_cells": changed, "chunks": chunks, "removed": [removed.x, removed.y, removed.z], "dust_cleared": cleaned,
-		"elapsed_seconds": seconds, "ticks": ticks, "zoom": (camera as PrecisionZoom).zoom_factor,
+		"elapsed_seconds": seconds, "ticks": ticks, "impacts": controller.total_impacts, "zoom": (camera as PrecisionZoom).zoom_factor,
 		"bone_exposed": block.working_map.fossil.exposed_cells, "condition": block.working_map.fossil.condition,
 		"cell": [center.x, center.y]}
 	check(data.render_fps >= 60 and data.min_1s_fps >= 60 and data.frame_ms.p95 < 1000.0 / 60,
@@ -124,6 +129,8 @@ func zone_scenario(zone: int, kind: String, zoom: float) -> void:
 	else:
 		check(changed > 0, "benchmark actually excavates: " + label)
 	if kind.begins_with("chisel"): check(chunks > 0, "benchmark fractures hard matrix: " + label)
+	if kind == "pick" or kind.begins_with("chisel"):
+		check(controller.total_impacts == (36 if kind == "pick" else 27), "locked cadence on a six-second held stroke: " + label)
 	check(layer_bytes == block.layer_texture.get_image().get_data() and bone_bytes == block.fossil_texture.get_image().get_data(),
 		"layer/fossil GPU maps immutable after workload: " + label)
 	report[label] = data
