@@ -2,9 +2,9 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — micro-fix P4 FINAL FEEL par composant livré, prêt pour décision de fermeture ; P4-V et P5 non autorisés**.
+- Phase : **préproduction — P4 FINAL FEEL validé humainement et mergé ; P4-V1 Verticality actif ; P4-V2 debris physics et P5 bloqués**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation initiale `42ec46d`, puis correctifs documentés dans le rapport).
+- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. Spike actif : `prototype/p4v-verticality`, [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) en brouillon, non mergée.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -62,7 +62,7 @@ Rapports :
 - Le Chisel actuel reste encore trop proche d'un effacement local de heightfield : P4 doit introduire une vraie réaction de matière avant de décider d'une mécanique de protection supplémentaire.
 - Les valeurs de vitesse/puissance actuelles peuvent sembler lentes ; ne pas faire le tuning final avant P7, sauf nécessité de test.
 
-## P4 — FINAL FEEL, micro-fix par composant ▶
+## P4 — FINAL FEEL ✅
 
 Source de vérité : [P4_FINAL_FEEL_TARGET](../dev/P4_FINAL_FEEL_TARGET.md). Micro-fix autorisé : **une protection indépendante par composant anatomique**, toujours sur cellule déjà exposée **avant** l’impact. Les baselines humaines déjà persistées, Chisel A (`42ec46d`), Blower B (`c25b44f`), mécaniques Soil/Pick et correctif FPS restent inchangés.
 
@@ -123,6 +123,24 @@ Brief canonique :
 [P4_BRIEF.md](../dev/P4_BRIEF.md)
 
 **P5 reste interdit avant validation humaine de P4.**
+
+## P4-V1 — Verticality ▶
+
+Source de vérité : [P4V_BRIEF](../dev/P4V_BRIEF.md).
+
+Objectif : remplacer la micro-ondulation quasi plate par une **macro-stratigraphie déterministe** et une **profondeur d'enfouissement B-17 variable**, sans génération procédurale.
+
+Le bloc reste identique à chaque run/reset. Le joueur doit lire la matière et la cavité au lieu d'apprendre un script de profondeur fixe.
+
+V1 uniquement :
+- épaisseurs Soil/Clay/Sandstone nettement variables ;
+- burial plane B-17 doucement incliné/warpé ;
+- trois zones de test shallow/medium/deep ;
+- CPU/GPU/picking et P4 Final Feel préservés.
+
+**Interdits jusqu'au test humain V1** : seed/procgen, debris gravity, collision terrain des chunks, sliding/bounce, P5.
+
+PR #6 reste brouillon/non mergée. Après automatisation verte : **STOP pour test humain**, puis décision éventuelle P4-V2 terrain-aware debris physics.
 
 ## Watchpoints techniques
 
