@@ -1,10 +1,38 @@
-# P4-V1 — Verticality Spike
+# P4-V1.1 — Effort-aware Verticality
 
-**Status:** authorized after human closure of P4 Final Feel  
+**Status:** principe V1 validé humainement ; correction de distribution V1.1 autorisée, nouveau test humain requis
+
 **Date:** 2026-10-04  
 **Base:** `main@7ae0fec3c004d207c99f4713111a240f8d5f2e9a`  
 **Branch:** `prototype/p4v-verticality`  
 **Scope:** deterministic macro-verticality only. Debris physics is **not** part of V1.
+
+## Passe courante V1.1 — prioritaire sur les cibles historiques ci-dessous
+
+Référence avant correction : `122e9b1cf6dfacad721f9af240ef30592de8491c`. Antoine valide l'intérêt de la variation de profondeur, mais certaines colonnes Sandstone sont trop longues à traverser. Modifier **uniquement la distribution des couches** : descendre l'interface Clay/Sandstone avec un champ large et lisse en UV. Aucun masque Bone, clamp sur la silhouette ou correctif par cellule. Les cellules Bone servent à mesurer et valider le résultat.
+
+Conserver les plafonds Bone autant que possible, environ **55–85 mm / 30 mm d'amplitude**, les variations Soil/Clay et les chemins distincts A/B/C. Les ressources outils, résistances, efficacités, cadences, fracture, audio, protections et contrôles P4 restent verrouillés. Pas de procgen, P4-V2 ou P5.
+
+Budgets prototype sur **toutes les 32 290 cellules Bone**, pas seulement les fixtures : Sandstone typique **5–18 mm**, **P95 ≤18–20 mm**, maximum **≤22 mm**. Zéro Sandstone est acceptable si Bone arrive naturellement dans Clay. A Skull `(250,230)` et C Hind Limb `(646,441)` visent environ 10–18 mm ; B Spine `(510,307)` conserve un chemin plus court. La distribution globale prime sur l'ajustement exact de ces trois points.
+
+Ajouter un oracle debug/test depuis le top intact :
+
+```text
+hard_work_index = Clay_au-dessus_de_Bone_mm × (3 / 1.0)
+                + Sandstone_au-dessus_de_Bone_mm × (8 / 1.5)
+```
+
+Lire les poids dans les ressources production. Si Bone est dans Clay, exclure la Clay sous son plafond. Cet indice exclut Soil, puissance/cadence, fracture et gestes : **comparaison relative, aucune prédiction de temps réel**. F1 suffit, sans nouvelle interface joueur.
+
+Mesurer avant/après min, médiane, P90, P95 et max de Sandstone et de l'effort, conserver les profondeurs Bone et les profils A/B/C. Tester également trois résolutions, interfaces, amplitudes Soil/Clay/Bone, IDs/silhouette/totaux exacts, CPU/GPU/picking et la séquence **tik/100 → DING/97 → tik/97 → DING/94**. Les anciennes attentes de contraste A/B/C doivent refléter la redistribution ; conserver les seuils numériques des oracles géométriques et matériaux.
+
+Règle confirmée pour la suite : **“Verticality / generation must be effort-aware, not depth-only.”** Une future seed devra respecter des budgets de travail pondérés par la matière, en plus des invariants géométriques. Aucun générateur n'est implémenté maintenant.
+
+Livrer les mesures, tests et performances dans [P4V_REPORT](P4V_REPORT.md), actualiser le Brain, commit/push sur la branche actuelle ; **PR #6 reste DRAFT, aucun merge**. Puis **STOP pour le test humain** : reset, jeu libre autour du squelette, cinq questions de la section V1.1 du rapport. Réponses cibles : **NON / OUI / OUI / OUI / OUI**.
+
+## Brief initial V1 — contexte conservé
+
+Les objectifs de verticalité et les invariants ci-dessous restent applicables ; les budgets Sandstone, la composition Clay et le prochain protocole humain sont remplacés par V1.1 ci-dessus.
 
 ## Why this spike exists
 

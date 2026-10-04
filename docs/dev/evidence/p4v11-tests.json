@@ -1,0 +1,255 @@
+{
+	"(1024, 640)": {
+		"bone_after_mm": [
+			55.3484623432159,
+			85.3372009992599
+		],
+		"bone_before_mm": [
+			65.7899980545044,
+			77.8478636741638
+		],
+		"clay_mm": [
+			11.2249047160149,
+			40.9798799157143
+		],
+		"component_totals_after": [
+			0,
+			7756,
+			7243,
+			10771,
+			6520
+		],
+		"component_totals_before": [
+			0,
+			7756,
+			7243,
+			10771,
+			6520
+		],
+		"fossil_build_ms": 44.491,
+		"fossil_cells": 32290,
+		"fossil_sha256": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+		"ids_sha256": "9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21",
+		"layer_build_ms": 303.379,
+		"layers_sha256": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9",
+		"max_layer_step": 0.00140118598937988,
+		"max_offset_curvature": 0.00000344426100744311,
+		"max_offset_error": 0.0000000148998223203911,
+		"max_offset_step": 0.000510097950413727,
+		"soil_bone_gap_min_mm": 31.3305652141571,
+		"soil_mm": [
+			16.3200026750565,
+			43.8600007295609
+		]
+	},
+	"(256, 160)": {
+		"bone_after_mm": [
+			55.368507027626,
+			84.7150254249573
+		],
+		"bone_before_mm": [
+			65.7900102138519,
+			77.3288540840149
+		],
+		"clay_mm": [
+			11.2274642586708,
+			40.9794543385506
+		],
+		"component_totals_after": [
+			0,
+			481,
+			466,
+			668,
+			419
+		],
+		"component_totals_before": [
+			0,
+			481,
+			466,
+			668,
+			419
+		],
+		"fossil_build_ms": 3.031,
+		"fossil_cells": 2034,
+		"fossil_sha256": "e55c4fd9fa63e3d57ac06d9091d6a0a2c031ed2fe17ee9a00e8ce97cbc9cb654",
+		"ids_sha256": "2225aa432fcd3d72d9abe6ff6660d71ebd8b40244244457ab2e7fab7af38b4d0",
+		"layer_build_ms": 18.712,
+		"layers_sha256": "77513e381318f1a2141e0c4c0a6fb6ef876284a555ec1428be664f19e3f5b7ce",
+		"max_layer_step": 0.00558501482009888,
+		"max_offset_curvature": 0.0000546014592502225,
+		"max_offset_error": 0.0000000148982373313067,
+		"max_offset_step": 0.00204032391329973,
+		"soil_bone_gap_min_mm": 31.4193041324615,
+		"soil_mm": [
+			16.3200026750565,
+			43.8600007295609
+		]
+	},
+	"(512, 320)": {
+		"bone_after_mm": [
+			55.3500612974167,
+			84.7247407436371
+		],
+		"bone_before_mm": [
+			65.7899980545044,
+			77.8646557331085
+		],
+		"clay_mm": [
+			11.2254458069801,
+			40.9798707962036
+		],
+		"component_totals_after": [
+			0,
+			1923,
+			1872,
+			2678,
+			1635
+		],
+		"component_totals_before": [
+			0,
+			1923,
+			1872,
+			2678,
+			1635
+		],
+		"fossil_build_ms": 12.186,
+		"fossil_cells": 8108,
+		"fossil_sha256": "50d62858055c8ec5f4f6af232c6e34d5e492c7a7e648e0c52be291e9a0879372",
+		"ids_sha256": "5b8bb650c4284b922679090fad4f54bee9c6b79bce2261512b1dbd4d0b6bc3b3",
+		"layer_build_ms": 75.567,
+		"layers_sha256": "4202c2c583c03c944338ccf46657e2428b13d68755e85a27480f75620adc0cf2",
+		"max_layer_step": 0.00279897451400757,
+		"max_offset_curvature": 0.0000137305700705359,
+		"max_offset_error": 0.0000000149009244526654,
+		"max_offset_step": 0.00102018946993311,
+		"soil_bone_gap_min_mm": 31.3031002879143,
+		"soil_mm": [
+			16.3200026750565,
+			43.8600007295609
+		]
+	},
+	"checks": 90,
+	"failures": 0,
+	"fracture": [
+		{
+			"cell": [
+				250,
+				230
+			],
+			"changed_cells": 2919,
+			"chunks": 68,
+			"initial_layers": [
+				1
+			],
+			"mode": "clay"
+		},
+		{
+			"cell": [
+				543,
+				192
+			],
+			"changed_cells": 3277,
+			"chunks": 61,
+			"initial_layers": [
+				1
+			],
+			"mode": "clay"
+		},
+		{
+			"cell": [
+				250,
+				230
+			],
+			"changed_cells": 1201,
+			"chunks": 48,
+			"initial_layers": [
+				2
+			],
+			"mode": "stone"
+		},
+		{
+			"cell": [
+				646,
+				441
+			],
+			"changed_cells": 1336,
+			"chunks": 58,
+			"initial_layers": [
+				2
+			],
+			"mode": "stone"
+		},
+		{
+			"cell": [
+				440,
+				320
+			],
+			"changed_cells": 5766,
+			"chunks": 68,
+			"initial_layers": [
+				1,
+				0
+			],
+			"mode": "soil_interface"
+		},
+		{
+			"cell": [
+				610,
+				295
+			],
+			"changed_cells": 1991,
+			"chunks": 73,
+			"initial_layers": [
+				2,
+				1
+			],
+			"mode": "clay_interface"
+		}
+	],
+	"native_mesh": {
+		"max_error_m": 0.00000164991354267841,
+		"original_native_xz_drift_m": 0.00000141372686357499,
+		"rays": 10,
+		"tolerance_m": 0.000005
+	},
+	"resolution": {
+		"max_burial_offset_error": 0.00000366506265049582,
+		"max_layer_error": 0.0000383257865905762,
+		"tolerance": 0.00008
+	},
+	"zones": [
+		{
+			"bone_mm": 56.6412137746811,
+			"cell": [
+				250,
+				230
+			],
+			"clay_mm": 28.4348287582397,
+			"component": "Skull",
+			"sandstone_mm": 11.8863823413849,
+			"soil_mm": 16.3200026750565
+		},
+		{
+			"bone_mm": 66.6947963833809,
+			"cell": [
+				510,
+				307
+			],
+			"clay_mm": 30.1671710014343,
+			"component": "Spine / Vertebrae",
+			"sandstone_mm": 4.88644963502884,
+			"soil_mm": 31.6411757469177
+		},
+		{
+			"bone_mm": 78.7541788816452,
+			"cell": [
+				646,
+				441
+			],
+			"clay_mm": 25.3000425696373,
+			"component": "Hind Limb",
+			"sandstone_mm": 10.2684443593025,
+			"soil_mm": 43.1856919527054
+		}
+	]
+}

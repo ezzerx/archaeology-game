@@ -346,3 +346,15 @@ Leçons vérifiées : tester les anciennes fixtures avec la matière réellement
 Validation finale : 1 604 contrôles fonctionnels, 90 visuels, neuf empreintes reproductibles et 60 scénarios de performance, zéro échec dans les phases finales. V1 : P95 maximal 12,757 ms, minimum sur une seconde 210,54 FPS ; pointe isolée de 18,728 ms documentée. Le harnais graphique conserve l’horloge de son maintien synthétique face aux notifications Windows ; le comportement de focus du jeu et ses cadences restent inchangés.
 
 Formules, mesures, limites de rasterisation et checklist humaine dans [P4V_REPORT](../dev/P4V_REPORT.md). Aucun intérêt humain de V1 n’est inféré de l’automatisation. **STOP après livraison : attendre Antoine, ne pas merger ni lancer P4-V2.**
+
+## P4-V1.1 — verticalité sensible à l'effort, 2026-10-04
+
+**Antoine valide humainement le principe de verticalité V1**, mais certaines colonnes Sandstone rendent la fouille trop longue. Correction autorisée uniquement sur la distribution des couches, depuis `122e9b1cf6dfacad721f9af240ef30592de8491c`. Garder les profondeurs Bone et les paramètres P4 ; remplacer une partie de Stone par Clay avec un champ large en UV, sans masque de squelette ni correction par cellule.
+
+Règle confirmée : **“Verticality / generation must be effort-aware, not depth-only.”** Une future seed devra respecter des budgets de travail pondérés par la matière et des quantiles/maxima sur toute la population Bone, en plus des contraintes géométriques. Clay coûte 3/1 =3 par mm ; Stone 8/1,5 =5,333… : une profondeur identique ne représente pas un effort identique. L'oracle debug/test compte uniquement la matrice au-dessus du plafond Bone et ne prédit pas le temps réel.
+
+Implémentation : nappe Clay à épaules douces, gradient et deux lobes larges. Soil et tous les plafonds/IDs/totaux Bone restent exacts à trois résolutions ; amplitude 29,99 mm conservée. Sur 32 290 cellules, Stone médiane/P95/max : **23,28/31,48/36,94 →11,59/17,12/21,49 mm**. Effort médiane/P95/max : **174,18/207,47/231,88 →147,28/175,70/199,65**. 90,11 % des cellules conservent 5–18 mm de Stone. Les budgets sont provisoires P4-V, tuning final P7.
+
+Leçon validée : les seules fixtures A/B/C ne détectent pas les colonnes extrêmes ailleurs sur le fossile. Figer la référence avant correction et contrôler la population entière évite ce biais. Les anciens contrastes Clay/Stone des fixtures sont actualisés pour refléter la redistribution ; les seuils géométriques et matériaux restent inchangés. Outils, résistances, fracture, protection, audio, caméra et rendu ne sont pas retunés.
+
+Preuves, résultats de régression et performances : [P4V_REPORT, section V1.1](../dev/P4V_REPORT.md#v11--vérification-et-performance). **Le ressenti V1.1 reste à tester** avec les cinq questions exactes du rapport. PR #6 brouillon, push sans merge ; aucun P4-V2, procgen ou P5.

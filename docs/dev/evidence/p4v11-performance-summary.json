@@ -1,0 +1,150 @@
+{
+  "verticality": {
+    "scenarios": 20,
+    "fps_min": 221.353856774734,
+    "fps_max": 239.868707646622,
+    "p95_max_ms": 13.251,
+    "frame_max_ms": 17.484,
+    "min_1s_fps": 212.275926813639,
+    "min_instant_fps": 57.1951498512926,
+    "pick_p95_max_ms": 0.146,
+    "pick_max_ms": 0.323,
+    "macro_gpu": {
+      "layers_byte_exact": true,
+      "material_pixels": [
+        24565,
+        26286,
+        4259
+      ],
+      "max_color_error": 0.0108823478221893,
+      "raster_alternatives": []
+    },
+    "gpu_oracles": {
+      "gpu_oracle": {
+        "bone_material_max_error": 0.0108823478221893,
+        "bone_pixels": 6860,
+        "boundary_alternatives": 12,
+        "boundary_tolerance_texels": 0.01,
+        "height_max_error": 0.00465471253675574,
+        "matrix_pixels": 58125,
+        "raster_alternatives": [
+          {
+            "color_error": 0.00156861543655396,
+            "height_error": 0.000192258287878555,
+            "offset_texels": "(0.01, -0.005)",
+            "score": 0.0784307718276978,
+            "screen": "(996.5, 414.5)"
+          },
+          {
+            "color_error": 0.00137254595756531,
+            "height_error": 0.00392156839370728,
+            "offset_texels": "(-0.01, -0.01)",
+            "score": 0.392156839370728,
+            "screen": "(633.5, 468.5)"
+          }
+        ],
+        "raw_height_max_error": 0.386496712471925,
+        "raw_material_max_error": 0.291568636894226,
+        "textures_byte_exact": true,
+        "zoom": 1.0
+      },
+      "gpu_oracle-2x": {
+        "bone_material_max_error": 0.0108823478221893,
+        "bone_pixels": 15299,
+        "boundary_alternatives": 1,
+        "boundary_tolerance_texels": 0.01,
+        "height_max_error": 0.00463760176710055,
+        "matrix_pixels": 49686,
+        "raster_alternatives": [],
+        "raw_height_max_error": 0.00463760176710055,
+        "raw_material_max_error": 0.291568636894226,
+        "textures_byte_exact": true,
+        "zoom": 2.0
+      },
+      "gpu_oracle-3x": {
+        "bone_material_max_error": 0.00156861543655396,
+        "bone_pixels": 18777,
+        "boundary_alternatives": 2,
+        "boundary_tolerance_texels": 0.01,
+        "height_max_error": 0.00468425920196609,
+        "matrix_pixels": 46208,
+        "raster_alternatives": [],
+        "raw_height_max_error": 0.00468425920196609,
+        "raw_material_max_error": 0.291568636894226,
+        "textures_byte_exact": true,
+        "zoom": 3.00000010518467
+      }
+    }
+  },
+  "brush": {
+    "scenarios": 12,
+    "fps_min": 215.740904102302,
+    "fps_max": 228.737928505434,
+    "p95_max_ms": 13.754,
+    "frame_max_ms": 19.055
+  },
+  "p4": {
+    "scenarios": 28,
+    "fps_min": 218.226844561157,
+    "fps_max": 239.974195596701,
+    "p95_max_ms": 13.461,
+    "frame_max_ms": 17.877
+  },
+  "functional_checks": 1654,
+  "native_mesh": {
+    "max_error_m": 1.64991354267841e-06,
+    "original_native_xz_drift_m": 1.41372686357499e-06,
+    "rays": 10,
+    "tolerance_m": 5e-06
+  },
+  "ranges_and_build": {
+    "bone_after_mm": [
+      55.3484623432159,
+      85.3372009992599
+    ],
+    "bone_before_mm": [
+      65.7899980545044,
+      77.8478636741638
+    ],
+    "clay_mm": [
+      11.2249047160149,
+      40.9798799157143
+    ],
+    "component_totals_after": [
+      0,
+      7756,
+      7243,
+      10771,
+      6520
+    ],
+    "component_totals_before": [
+      0,
+      7756,
+      7243,
+      10771,
+      6520
+    ],
+    "fossil_build_ms": 44.491,
+    "fossil_cells": 32290,
+    "fossil_sha256": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+    "ids_sha256": "9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21",
+    "layer_build_ms": 303.379,
+    "layers_sha256": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9",
+    "max_layer_step": 0.00140118598937988,
+    "max_offset_curvature": 3.44426100744311e-06,
+    "max_offset_error": 1.48998223203911e-08,
+    "max_offset_step": 0.000510097950413727,
+    "soil_bone_gap_min_mm": 31.3305652141571,
+    "soil_mm": [
+      16.3200026750565,
+      43.8600007295609
+    ]
+  },
+  "pan": {
+    "checks": 43,
+    "failures": 0,
+    "rays": 387,
+    "roundtrip_max_m": 1.93858326724694e-07
+  },
+  "cross_process_determinism": true
+}

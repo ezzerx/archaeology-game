@@ -51,6 +51,8 @@ After the core V0.1 is proven, create a dedicated variability prototype using mu
 
 A likely validation set is approximately 10–20 generated test blocks before scaling content production.
 
+**Effort-aware rule confirmed in P4-V1.1, 2026-10-04:** “Verticality / generation must be effort-aware, not depth-only.” A future seed must satisfy material-weighted work budgets as well as geometric invariants. Measure the entire Bone population (median, P90, P95, maximum), not just selected discovery points. Deeper Bone can mean more Soil/Clay rather than an excessive column of the slowest material. Keep the geological field broad and independent of the fossil mask; use Bone only to validate its distribution. The current relative oracle is Clay above Bone ×3 + Sandstone above Bone ×5.333… in mm, not a time prediction. P4-V prototype budgets are documented in [P4V_BRIEF](dev/P4V_BRIEF.md); final tuning remains P7.
+
 ## 2. Equipment Progression — confirmed future pillar
 
 Collection alone should not carry the entire long-term motivation.
