@@ -51,7 +51,9 @@ Questions to answer:
 - Soil / Clay / Sandstone / Bone material authoring;
 - warm natural-history lighting setup;
 - table, tools, notebook and scientific prop pipeline;
+- museum façade/menu → preparation workshop → collection/gallery visual continuity;
 - cavity / layer-boundary visual treatment;
+- contact patina / weathering at layer interfaces, with Soil → Clay as the primary P6 target and Clay → Sandstone as a subtler experiment;
 - integration of dust/particles without hiding discoveries;
 - UI language: paper / wood / brass / field notebook;
 - asset workflow: Blender, image generation, texture tools, manual paintover, Higgsfield or alternatives;
