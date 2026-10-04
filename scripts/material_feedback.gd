@@ -6,6 +6,11 @@ var controller: ToolController
 var profile: ReactionProfile
 var audio: MaterialAudio
 var loose_view: LooseDebrisView
+var terrain_debris: TerrainDebris
+var terrain_view: TerrainDebrisView
+var debris_physics_enabled := true # F3 changes newly emitted hard chunks only.
+var terrain_samples_last_frame := 0
+var _terrain_samples_pending := 0
 var airflow := Vector3(-0.07, 0.02, -0.06)
 var proxies: Array[Node3D] = []
 var proxy_poses: Array[ToolProxyPose] = []
@@ -37,6 +42,12 @@ func setup(target: ExcavationBlock, input: ToolController) -> void:
 	audio.setup(profile)
 	_create_proxies()
 	_create_particles()
+	terrain_debris = TerrainDebris.new(block.relief)
+	terrain_debris.debris_ejected.connect(_on_fragment_ejected)
+	terrain_view = TerrainDebrisView.new()
+	terrain_view.name = "TerrainHardFragments"
+	add_child(terrain_view)
+	terrain_view.setup(block, terrain_debris, pools[1].mesh, colors)
 	loose_view = LooseDebrisView.new()
 	loose_view.name = "PersistentLooseDebris"
 	add_child(loose_view)
@@ -53,6 +64,7 @@ func setup(target: ExcavationBlock, input: ToolController) -> void:
 	bone_ring.hide()
 	add_child(bone_ring)
 	block.working_map.material_action.connect(on_action)
+	block.working_map.air_jet_applied.connect(on_air_jet)
 	block.working_map.surface_reset.connect(reset)
 	controller.tool_selected.connect(func(_index: int): recoil_remaining = 0.0)
 
@@ -156,7 +168,7 @@ func _emit(family: int, point: Vector2, count: int, impact := Vector2(INF, INF),
 	var center := point_world(impact if impact.is_finite() else point)
 	var debris := block.working_map.loose_debris.profile
 	for i in range(mini(ceili(count * profile.particle_amount), 16)):
-		if particles[family].size() >= profile.particles_per_family: break
+		if not (debris_physics_enabled and family in [1, 2]) and particles[family].size() >= profile.particles_per_family: break
 		var scale_value := rng.randf_range(0.001, 0.0025) if family in [0, 3] else rng.randf_range(debris.chunk_width.x, debris.chunk_width.y)
 		# P4-A plate/shard proportions for hard material; recent Soil unchanged.
 		var shape := Vector3(scale_value, scale_value * 0.32, scale_value * 0.75)
@@ -174,15 +186,43 @@ func _emit(family: int, point: Vector2, count: int, impact := Vector2(INF, INF),
 			spawn = Vector3(center.x, origin.y, center.z) + away * distance
 			# The event arrives after excavation: launch from the removed plate's
 			# top, not its new floor where outward pieces would vanish into walls.
-			# Static source estimate only; no moving-terrain physics or sampling.
+			# Source estimate only. V2 landing samples the current terrain instead.
 			spawn.y += detached_depth * (block.relief.top_height - block.relief.floor_height)
 			velocity = away * rng.randf_range(0.09, 0.14) + Vector3.UP * rng.randf_range(0.035, 0.10)
 		if family == 3: velocity += airflow
 		var lifetime := block.working_map.loose_debris.profile.chunk_lifetime * rng.randf_range(0.85, 1.15) \
 			if family in [1, 2] else profile.particle_lifetime * rng.randf_range(0.65, 1.2)
+		var rotation := rng.randf_range(-PI, PI)
+		if debris_physics_enabled and family in [1, 2]:
+			if terrain_debris.spawn(block.to_local(spawn), block.global_basis.inverse() * velocity,
+					shape, family, rotation) >= 0: emitted[family] += 1
+			continue # Never also emit the legacy chunk for this piece.
 		particles[family].append({"position": spawn, "velocity": velocity, "life": lifetime,
-			"shape": shape, "rotation": rng.randf_range(-PI, PI), "floor": origin.y, "impact": center})
+			"shape": shape, "rotation": rotation, "floor": origin.y, "impact": center})
 		emitted[family] += 1
+
+func _physics_process(delta: float) -> void:
+	if terrain_debris == null: return
+	terrain_debris.advance(delta)
+	_terrain_samples_pending += terrain_debris.last_samples
+
+func on_air_jet(from: Vector2, to: Vector2, radius: float, falloff: float, delta: float, direction: Vector2) -> void:
+	if terrain_debris.blow(from, to, radius, falloff, delta, direction) > 0:
+		sweep_remaining = 0.12
+		# Existing dirt events already play this sound. Clean terrain needs it too.
+		if block.working_map.last_action.is_empty(): audio.play_family(&"air", 0.25)
+
+func _on_fragment_ejected(at: Vector3, direction: Vector3, layer: int) -> void:
+	# Feedback carries no persistent dirt quantity: amount=0 distinguishes these
+	# transient chunks from LooseDebris, without inventing gameplay mass.
+	block.debris_ejected.emit(block.to_global(at), (block.global_basis * direction).normalized(),
+		0.0, block.material_definitions[layer].id)
+
+func debris_debug() -> String:
+	return ("Debris Physics: %s [F3] | Active fragments: %d / %d | Sleeping: %d\n" % [
+		"ON" if debris_physics_enabled else "OFF", terrain_debris.active_count, terrain_debris.fragments.size(), terrain_debris.sleeping_count]
+		+ "Terrain samples last frame: %d (tick %d) | Debris physics CPU: %d us | MultiMesh: %d us\n" % [
+		terrain_samples_last_frame, terrain_debris.last_samples, terrain_debris.last_step_usec, terrain_view.last_update_usec])
 
 func _lift_dust(packets: Array, direction: Vector2) -> void:
 	if not particles_enabled or profile.particle_amount <= 0: return
@@ -260,6 +300,9 @@ func on_action(event: Dictionary) -> void:
 
 func _process(delta: float) -> void:
 	if controller == null: return
+	terrain_view.sync()
+	terrain_samples_last_frame = _terrain_samples_pending
+	_terrain_samples_pending = 0
 	# Data views must show only the authoritative surface, unobstructed by FX.
 	visible = block.debug_view == 0
 	recoil_remaining = maxf(0.0, recoil_remaining - delta)
@@ -315,6 +358,11 @@ func contact_debug(hit: Dictionary) -> String:
 	return "\nContact: %s | Mess: Brush / Blower" % ["BONE" if hit.bone_exposed else "ATTACHED MATERIAL"]
 
 func reset() -> void:
+	if terrain_debris != null:
+		terrain_debris.reset()
+		terrain_view.multimesh.visible_instance_count = 0
+		_terrain_samples_pending = 0
+		terrain_samples_last_frame = 0
 	if loose_view != null: loose_view._process(0)
 	for family in range(4):
 		particles[family].clear()

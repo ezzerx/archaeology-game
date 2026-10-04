@@ -18,7 +18,7 @@ var _notice_remaining := 0.0
 var feedback: MaterialFeedback
 
 func _ready() -> void:
-	get_window().title = "ArchaeologyGame — P4-V1.1 Effort-aware Verticality"
+	get_window().title = "ArchaeologyGame — P4-V2 Terrain-aware debris (F3 A/B)"
 	feedback = MaterialFeedback.new()
 	feedback.name = "MaterialFeedback"
 	add_child(feedback)
@@ -76,6 +76,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			bone_panel.visible = debug_panel.visible
 		elif event.physical_keycode == KEY_F2:
 			block.set_debug_view(block.debug_view + 1)
+		elif OS.is_debug_build() and event.physical_keycode == KEY_F3:
+			feedback.debris_physics_enabled = not feedback.debris_physics_enabled
 
 func _process(delta: float) -> void:
 	_notice_remaining = maxf(0.0, _notice_remaining - delta)
@@ -95,7 +97,8 @@ func _process(delta: float) -> void:
 			+ "Mess %.3f" % block.working_map.residue.value_at(hit.uv))
 		surface_info += feedback.contact_debug(hit)
 		surface_info += verticality_debug(hit)
-	debug_label.text = ("P4-V1 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+	debug_label.text = ("P4-V2 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+		+ feedback.debris_debug()
 		+ "Zoom %.2fx | Wheel: zoom | RMB drag: pan | Home: overview\n" % camera.zoom_factor
 		+ "Radius %.0f texels | Power %.2f %s | Falloff %.2f\n" % [config.radius, config.power, "/impact" if config.interaction_mode == ToolDefinition.InteractionMode.IMPACT else "/s", config.falloff]
 		+ "Screen: %s | %s\n" % [hit.screen, "IN BOUNDS" if hit.inside else "OUT OF BOUNDS"]

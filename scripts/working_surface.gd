@@ -10,6 +10,8 @@ var strata: Stratigraphy
 var residue: SurfaceResidue
 var fossil: FossilState
 signal material_action(event: Dictionary)
+## Feedback-only jet, including clean terrain. It never changes the action/state.
+signal air_jet_applied(from: Vector2, to: Vector2, radius: float, falloff: float, delta: float, direction: Vector2)
 signal surface_reset
 var fracture: MaterialFracture
 var loose_debris: LooseDebris
@@ -236,4 +238,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		material_action.emit(last_action)
 	else:
 		last_edit_usec = Time.get_ticks_usec() - edit_started
+	if tool.id == &"air_blower":
+		air_jet_applied.emit(from, to, tool.radius, tool.falloff, amount,
+			loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized())
 	return changed

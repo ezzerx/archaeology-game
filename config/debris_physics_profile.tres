@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DebrisPhysicsProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/debris_physics_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+fragment_cap = 48
+gravity = 0.65
+restitution = Vector2(0.12, 0.22)
+friction = Vector2(14, 9)
+angular_damping = 12.0
+slope_sample_distance = 0.002
+slide_threshold = 0.08
+slide_acceleration = 0.65
+slide_speed_limit = 0.06
+slide_duration = 0.65
+sleep_speed = 0.008
+sleep_angular_speed = 0.4
+sleep_delay = 0.15
+bounce_min_speed = 0.018
+contact_skin = 0.00015
+sleep_hold = 1.65
+fade_duration = 0.4
+blower_fragment_impulse = 1.8
+blower_fragment_lift = 1.1
+blower_speed_limit = 0.45
+blower_lift_limit = 0.30
