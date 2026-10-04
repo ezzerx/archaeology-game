@@ -28,6 +28,7 @@ foreach ($size in @('(1024, 640)', '(512, 320)', '(256, 160)')) {
     }
 }
 Write-Output 'P4V cross-process determinism: 9 hashes identical'
+Invoke-P4VCheck 'p4v-effort-tests' @('--headless', '--script', 'res://tests/run_p4v_effort_tests.gd')
 if ($Graphical) {
     Invoke-P4VCheck 'p4v-benchmark' @('--script', 'res://tests/run_p4v_benchmark.gd')
 }

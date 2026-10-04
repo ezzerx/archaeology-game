@@ -156,12 +156,14 @@ func test_zones() -> void:
 			"sandstone_mm": maxf(0, limits.g - field.ceilings[index]) * DEPTH_MM})
 	check(rows[0].soil_mm < 21 and rows[2].soil_mm > 39 and rows[1].soil_mm > rows[0].soil_mm + 8,
 		"A / B / C offer clearly different Soil paths")
-	check(rows[1].clay_mm > rows[0].clay_mm + 10 and rows[1].clay_mm > rows[2].clay_mm + 10,
-		"Clay varies independently: central lens thicker than both endpoints")
+	# V1.1 redistributes Stone into Clay at A/C; the old >10 mm central contrast
+	# would require preserving the excessive Stone columns this pass removes.
+	check(rows[1].clay_mm > rows[0].clay_mm + 1 and rows[0].clay_mm > rows[2].clay_mm + 2,
+		"Clay still varies independently of the progressively deeper Bone")
 	check(rows[1].bone_mm > rows[0].bone_mm + 7 and rows[2].bone_mm > rows[1].bone_mm + 7,
 		"real Bone centers are progressively deeper in A / B / C")
-	check(absf(rows[0].sandstone_mm - rows[1].sandstone_mm) > 8 \
-		and absf(rows[2].sandstone_mm - rows[1].sandstone_mm) > 8, "hard matrix above Bone is not constant")
+	check(rows[0].sandstone_mm > rows[1].sandstone_mm + 5 \
+		and rows[2].sandstone_mm > rows[1].sandstone_mm + 5, "hard matrix above Bone is not constant")
 	report["zones"] = rows
 
 func test_fracture() -> void:
@@ -217,6 +219,8 @@ func test_debug() -> void:
 		var label: String = main.verticality_debug(hit)
 		check(label.contains("Current Material: Loose Soil") and label.contains("Soil thickness:") and label.contains("Clay thickness:"), "F1 actual cursor layer diagnostics")
 		check(label.contains("Bone depth from intact top:") if hit.bone else label.contains("Bone depth: —"), "F1 Bone depth or empty marker")
+		check(label.contains("Hard work index (above Bone): ") and (not label.ends_with("—") if hit.bone else label.ends_with("—")),
+			"F1 relative hard-work metric or empty marker")
 		if hit.bone:
 			main.block.working_map.apply_segment(Vector2(cell), Vector2(cell), 12, 100, 1, 1)
 			local.y = main.block.relief.height_at(uv)

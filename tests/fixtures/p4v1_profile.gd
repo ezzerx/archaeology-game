@@ -1,4 +1,5 @@
-class_name BlockVerticalityProfile
+## Frozen P4-V1 profile at 122e9b1cf6dfacad721f9af240ef30592de8491c.
+## Only class_name removed. Before/after oracle; never used by the playable scene.
 extends RefCounted
 ## Authored B-17 data in normalized UV. Evaluated only while building static maps.
 ## No seed, cell noise, runtime geology or per-bone height decisions.
@@ -13,12 +14,9 @@ static func layer_limits(uv: Vector2) -> Vector2:
 	# A broad diagonal slope, with a gentle bend across the whole block.
 	var slope := 0.65 * uv.x + 0.35 * uv.y + 0.05 * sin(PI * (uv.x - uv.y))
 	var soil_depth := 0.16 + 0.27 * smoothstep(0.28, 0.68, slope)
-	# Effort-aware clay bed: broad shoulders, a gentle gradient and two soft folds.
-	# UV only: Bone cells validate the work budget, never define the geology.
-	var bed := smoothstep(0.0, 0.20, uv.x) * (1.0 - smoothstep(0.80, 1.0, uv.x)) * (1.0 - 0.55 * uv.y)
-	var upper_lens := (uv - Vector2(0.53, 0.20)) / Vector2(0.20, 0.22)
-	var lower_fold := (uv - Vector2(0.42, 0.67)) / Vector2(0.25, 0.28)
-	var clay_depth := 0.11 + 0.19 * bed + 0.12 * exp(-upper_lens.length_squared()) + 0.04 * exp(-lower_fold.length_squared())
+	# Independent upper-central clay lens, hundreds of texels wide, never a thin seam.
+	var lens := (uv - Vector2(0.53, 0.30)) / Vector2(0.17, 0.27)
+	var clay_depth := 0.11 + 0.26 * exp(-lens.length_squared())
 	var soil_bottom := 1.0 - clampf(soil_depth, MIN_SOIL_THICKNESS,
 		1.0 - MIN_CLAY_THICKNESS - MIN_STONE_THICKNESS)
 	var clay_bottom := soil_bottom - clampf(clay_depth, MIN_CLAY_THICKNESS,

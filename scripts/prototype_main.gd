@@ -18,7 +18,7 @@ var _notice_remaining := 0.0
 var feedback: MaterialFeedback
 
 func _ready() -> void:
-	get_window().title = "ArchaeologyGame — P4-V1 Verticality"
+	get_window().title = "ArchaeologyGame — P4-V1.1 Effort-aware Verticality"
 	feedback = MaterialFeedback.new()
 	feedback.name = "MaterialFeedback"
 	add_child(feedback)
@@ -137,6 +137,8 @@ func verticality_debug(hit: Dictionary) -> String:
 		text += "\nBone depth from intact top: %.1f mm\nSandstone to Bone: %.1f mm | Matrix below Soil: %.1f mm" % [
 			(1.0 - hit.bone_ceiling) * depth_mm, maxf(0.0, limits.y - hit.bone_ceiling) * depth_mm,
 			(limits.x - hit.bone_ceiling) * depth_mm]
+		text += "\nHard work index (above Bone): %.1f" % block.working_map.strata.hard_work_to_bone(
+			limits, hit.bone_ceiling, depth_mm, controller.tools[1])
 	else:
-		text += "\nBone depth: — | Sandstone / matrix to Bone: —"
+		text += "\nBone depth: — | Sandstone / matrix to Bone: —\nHard work index (above Bone): —"
 	return text

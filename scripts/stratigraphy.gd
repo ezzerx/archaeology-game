@@ -32,6 +32,20 @@ func sample_limits(uv: Vector2) -> Vector2:
 	var color := ReliefSurface.sample_image(boundaries, uv)
 	return Vector2(color.r, color.g)
 
+func hard_work_to_bone(limits: Vector2, bone_ceiling: float, depth_mm: float, chisel: ToolDefinition) -> float:
+	# Debug/test oracle from the intact top, not a time prediction or gameplay rule.
+	# Clay below a Bone ceiling inside Clay is inaccessible and must not be charged.
+	var clay_mm := maxf(0.0, limits.x - maxf(limits.y, bone_ceiling)) * depth_mm
+	var stone_mm := maxf(0.0, limits.y - bone_ceiling) * depth_mm
+	var effort := 0.0
+	for layer in [1, 2]:
+		var thickness: float = clay_mm if layer == 1 else stone_mm
+		if thickness <= 0.0: continue
+		var effectiveness := chisel.effectiveness_for(materials[layer].id)
+		if effectiveness <= 0.0: return INF
+		effort += thickness * materials[layer].resistance / effectiveness
+	return effort
+
 func remove_work(height: float, work: float, cell: Vector2i, effectiveness := Vector3.ONE) -> float:
 	var limits := boundaries.get_pixelv(cell)
 	# Consume work piecewise at each interface. A long tick cannot skip resistance.
