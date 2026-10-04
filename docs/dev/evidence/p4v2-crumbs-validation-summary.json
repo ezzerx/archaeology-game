@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-04",
+  "implementation_commit": "03803e50bec79ca96c57bb7f66f255965c21b170",
+  "baseline_commit": "ce014d0c2dd311ed2fbac0f37e0001be707a74a7",
+  "functional": {
+    "crumbs_checks": 89,
+    "failures": 0,
+    "unique_checks": 1780,
+    "historical_checks": 1691,
+    "repeat_hashes_exact": true
+  },
+  "crumbs_graphical": {
+    "failures": 0,
+    "benchmark_checks": 202,
+    "visual_checks": 8,
+    "benchmark_scenarios": 36
+  },
+  "historical_visual": {
+    "feedback": 16,
+    "final_feel": 28,
+    "material": 46,
+    "interface": 38,
+    "failures": 0,
+    "interface_provenance": "First fixture sampled only 8 Stone crumb pixels at 1x after reduction to 2.2 mm. A second real fracture patch and removal of transient occluders increase the sample. Original >8 pixels and >1.03 contrast ratio retained. All 38 checks replayed."
+  },
+  "historical_performance": {
+    "brush": {
+      "scenarios": 12,
+      "fps_min": 194.473443165636,
+      "fps_max": 213.168000475848,
+      "worst_frame_p95_ms": 15.302,
+      "maximum_frame_ms": 20.831
+    },
+    "p4": {
+      "scenarios": 28,
+      "fps_min": 206.957839446596,
+      "fps_max": 239.887570562584,
+      "worst_frame_p95_ms": 14.115,
+      "maximum_frame_ms": 19.822
+    },
+    "verticality": {
+      "scenarios": 20,
+      "fps_min": 194.884964221599,
+      "fps_max": 239.866714784474,
+      "worst_frame_p95_ms": 15.256,
+      "maximum_frame_ms": 19.332
+    },
+    "p4_provenance": "26 successful scenarios from full run + 2 targeted dirty_idle replays after fixture settling correction. Original full-run file deliberately retains failures=2; targeted replay has failures=0. No performance threshold changed.",
+    "brush_provenance": "First run failed stationary_3x proxy ratio with 180.983 ms frame. All 12 scenarios replayed successfully without production or threshold change. Cause not established."
+  },
+  "gpu_oracles": {
+    "bone_p3": "p4v2-crumbs-bone-gpu-regression.json",
+    "failures": 0,
+    "verticality_macro_and_bone": "p4v2-crumbs-verticality-regression.json"
+  },
+  "measurement_context": "1920x1080, Godot 4.7.2 Compatibility, RTX 5080 / Ryzen 7 9800X3D, cap 240 FPS / physics 60 Hz. User editor and another game instance left open.",
+  "pending": "Human KEEP / SIMPLIFY / DROP; PR #7 stays DRAFT, no merge or P5."
+}

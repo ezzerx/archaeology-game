@@ -1,138 +1,162 @@
-# P4-V2 — Terrain-aware debris physics
+# P4-V2 — Physical Persistent Crumbs
 
-2026-10-04 · `prototype/p4v2-debris-physics` · [PR #7](https://github.com/ezzerx/archaeology-game/pull/7), **DRAFT, aucun merge**. Base validée : `main@ce014d0c2dd311ed2fbac0f37e0001be707a74a7` ; préparation : `d587f208350e9b49c75824abbaccac53d38f609d` ; implémentation : **`38cc404`**. Source de vérité : [P4V2_BRIEF](P4V2_BRIEF.md).
+2026-10-04 · `prototype/p4v2-debris-physics` · [PR #7](https://github.com/ezzerx/archaeology-game/pull/7), **DRAFT, aucun merge**. Implémentation : **`03803e5`** ; tests : **`4d71405`**. Baseline P4/V1 validée : `main@ce014d0c2dd311ed2fbac0f37e0001be707a74a7`. [Brief corrigé](P4V2_BRIEF.md).
 
-**Spike expérimental : KEEP / SIMPLIFY / DROP restent une décision humaine.** Il vérifie la chute dans les cavités et le plaisir Chisel + Blower ; aucune décision de conserver cette physique n'est prise par les tests.
+## Verdict humain et correction de cible
 
-Harnais/tests : **`b63ab45`**. [Synthèse de validation](evidence/p4v2-validation-summary.json) · [journal fonctionnel complet](evidence/p4v2-functional-validation.txt). Livraison prête pour A/B ; le commit de documentation ajoute les preuves sans changer l'implémentation testée.
+**SIMPLIFY**, confirmé par Antoine sur la première V2 `d8224ec`. Le mot « debris » avait été interprété comme les gros éclats transitoires du Chisel. La cible voulue est la petite saleté persistante laissée après excavation.
 
-## Architecture et périmètre
+> Debris physics target = persistent crumbs, not transient Chisel chunks.
 
-`TerrainDebris`, consommateur en lecture seule de `ReliefSurface`, préalloue **48 enregistrements** réutilisables. Ils contiennent position locale, vitesse, rotation/vitesse angulaire, taille, matériau, âge et état AIRBORNE / CONTACT / SLEEPING. Un seul `TerrainDebrisView` possède un **MultiMesh fixe de 48 instances**, partageant le mesh dur et ses couleurs de faces P4-V1. Aucun nœud par impact, RigidBody, collider dynamique, reconstruction de mesh ou parcours de carte.
+La correction conserve le noyau technique utile, le rattache aux miettes et restaure les gros éclats P4-V1. Le verdict humain sur cette nouvelle composition reste **KEEP / SIMPLIFY / DROP à donner** ; aucun gain de fun n'est déduit des tests.
 
-`MaterialFeedback._emit` dirige chaque éclat Clay/Sandstone vers **une seule** trajectoire : V2 lorsque ON, P4-V1 lorsque OFF. Largeur **3–6 mm**, proportions Clay **0,24 × largeur** / Stone **0,7 × largeur**, couleurs, mesh, vitesse initiale et calcul **1–5 par plaque** sont conservés. La limite globale 48 peut réduire les nouvelles émissions sous saturation : on recycle d'abord le plus vieux fragment endormi, ou on refuse le nouvel effet si tous bougent. Un éclat en vol n'est jamais sacrifié pour libérer une place.
+## Architecture avant / après
 
-Soil grains, Fine Dust, LooseDebris, son Chisel, fracture, ressources outils et géologie restent inchangés. Les miettes persistantes gardent leurs deux places par zone 24×24, rétention 8 %, capacité 0,02. Les nouveaux fragments ne sont pas convertis en saleté persistante et ne comptent dans aucun objectif.
+| Famille | Première V2 | Correction actuelle |
+|---|---|---|
+| Gros éclats Chisel | Pool physique 48, contact relief, sommeil puis fade | Chemin **P4-V1 exact** dans les deux modes, effet transitoire seulement |
+| Petites miettes | `LooseDebris` sparse, placement/vol 2D | `LooseDebris` possède quantité/budget et le noyau physique XYZ ; sommeil sans expiration |
+| Fine Dust | État et shader persistants séparés | Conservés ; excédent des budgets reçu par le chemin existant |
+| Rendu persistant | Vue des miettes + vue physique des gros éclats | **Une seule `LooseDebrisView`, MultiMesh fixe 128** ; ancienne `TerrainDebrisView` retirée |
 
-## Contact avec le relief
+`TerrainDebris` reste le nom du noyau de mouvement, désormais exclusivement créé par `LooseDebris`. Ses **128 enregistrements sont préalloués**, sans RigidBody, Node par miette, collider dynamique, nouvelle carte, parcours du heightfield ou reconstruction de mesh. La physique avance depuis le tick existant du `ToolController` via `LooseDebris.advance` : aucune seconde boucle physique de feedback.
 
-À **60 Hz**, deux sous-pas intègrent gravité et mouvement. X/Z → UV utilise `SurfaceMapping.local_to_uv`, puis `relief.height_at(uv)` lit la **hauteur courante à cette position**, interpolée sur les triangles du rendu. Le bas du fragment tient compte de son orientation ; il est corrigé au-dessus du terrain. La rotation reçoit de l'amortissement au contact.
+### Transient Chisel chunks
 
-En contact, quatre sondes supplémentaires ±X/±Z à **2 mm** estiment le gradient. L'accélération ajoutée pointe uniquement downhill ; elle est bornée et s'arrête après un court budget de contact. Un fragment endormi conserve une sonde par tick : creuser sous lui le réveille immédiatement. Maximum théorique **11 appels height_at par fragment/tick**, soit **528 pour 48** lorsqu'un endormi se réveille ; deux contacts ordinaires utilisent au plus 480. Un appel height_at lit quatre sommets, chacun issu de quatre texels RF. Aucun appel ne parcourt le champ entier.
+Les fonctions de génération `_emit` et d'animation `_process` de `MaterialFeedback` sont revenues **à l'identique de la baseline P4-V1**. Même RNG, nombre **1–5 par plaque**, largeur **3–6 mm**, proportions Clay **0,24** / Stone **0,7**, vitesse outward **0,09–0,14 m/s**, couleurs/contraste et durée **0,51–0,69 s**. Ils disparaissent rapidement, ne reçoivent aucune impulsion Blower et n'ont ni quantité persistante ni enregistrement `TerrainDebris`. Aucun doublon de gros morceau.
 
-La fixture haute **95 mm** / cavité **25 mm** produit un centre posé vers **28,7 mm**, soit une chute d'environ **66,3 mm** sous le plan de naissance. Le dessous repose à **25,15 mm**, marge de contact comprise. Aucun plan permanent à la hauteur d'impact. Les captures du harnais montrent le lancement, la chute, le repos et le réveil par le Blower ; les grandes coupes rectangulaires sont des préparations de test, pas un geste humain.
+### Quantité, naissance et position
 
-[Lancement](evidence/p4v2-cavity-launch.png) · [chute](evidence/p4v2-cavity-fall.png) · [repos](evidence/p4v2-cavity-sleep.png) · [Blower](evidence/p4v2-cavity-blower.png) · [F1](evidence/p4v2-debug.png).
+- `cells[source_key]` reste l'autorité de quantité normalisée (pas une masse SI). Rétention **0,08**, capacité **0,02**, deux places partagées entre matériaux par zone de **24×24 texels**.
+- **Budget local de naissance** : la miette garde sa clé/bucket en roulant. Pas d'occupation recalculée à destination ; plusieurs miettes peuvent s'y rejoindre. Sortie/Brush/reset libèrent le bucket d'origine.
+- **Cap global 128**, incluant miettes Soil, Clay, Stone, au repos, physiques ou en vol 2D historique. Jamais d'éviction d'un déchet visible. Le dépôt refusé retourne intégralement à Fine Dust.
+- Un dépôt proche peut compléter une miette existante jusqu'à sa capacité. Une miette physique partie à plus de huit texels de son point de naissance n'absorbe plus de matière distante ; ce supplément retourne à Dust.
+- `physical_slots[source_key]` associe chaque miette dure ON à un seul enregistrement. **XYZ courant** donne sa position de rendu, sa coordonnée map pour Brush/Blower et sa sortie du bloc. Les petits montants nettoyés sont retirés progressivement, comme auparavant.
+- Le renderer met seulement à jour les clés sales/mobiles ; les miettes endormies gardent leur transform GPU. Aucune croissance de MultiMesh.
 
-## Paramètres provisoires
+Les miettes dures utilisent l'écaille asymétrique à six côtés et le contraste de faces P4-V1, avec **2,2 mm maximum**, épaisseur nominale **0,704 mm maximum**, profondeur **75 % de la largeur**. La taille suit la quantité par racine carrée. Ces dimensions sont communes ON/OFF : l'A/B isole le mouvement, pas une différence de taille. Les miettes Soil gardent leur géométrie **1,4 mm / 0,14 d'épaisseur** et leur mouvement historique.
 
-Tous résident dans `config/debris_physics_profile.tres`, indépendamment des ToolDefinition.
+## Physique et persistance
 
-| Paramètre | Valeur |
+Deux sous-pas à **60 Hz**. X/Z → UV utilise `SurfaceMapping.local_to_uv`, puis `relief.height_at` à la position courante, sur les triangles du relief. Le dessous est une enveloppe orientée conservatrice de l'écaille. Un contact corrige Y, amortit la vitesse et autorise un petit rebond. Quatre sondes supplémentaires ±X/±Z à 2 mm estiment une pente downhill bornée.
+
+| Paramètre (`config/debris_physics_profile.tres`) | Valeur provisoire |
 |---|---:|
-| Cap global | **48** Clay + Sandstone |
 | Gravité | **0,65 m/s²** |
-| Restitution Clay / Sandstone | **0,12 / 0,22** |
-| Freinage tangent Clay / Sandstone | **14 / 9 s⁻¹**, multiplicateur `exp(-friction × dt)` |
-| Amortissement angulaire | **12 s⁻¹** au contact |
-| Pente minimale | gradient **0,08** (~4,6°) |
-| Accélération de glissement | `−gradient × 0,65 / (1 + gradient²)` m/s² |
-| Vitesse / durée de glissement | **0,06 m/s / 0,65 s** de contact |
+| Restitution Clay / Stone | **0,12 / 0,22** |
+| Freinage tangent Clay / Stone | **14 / 9 s⁻¹**, exponentiel |
+| Amortissement angulaire | **12 s⁻¹** |
+| Petit saut initial : latéral / vertical | **0,035 / 0,025 m/s** |
+| Échantillonnage pente / seuil | **±2 mm / gradient 0,08** (~4,6°) |
+| Glissement : vitesse / durée de contact | **0,06 m/s / 0,65 s** |
+| Accélération downhill | `−gradient × 0,65 / (1 + gradient²)` |
 | Sommeil | vitesse <**0,008 m/s**, rotation <**0,4 rad/s**, pendant **0,15 s** |
-| Rebond secondaire minimal | **0,018 m/s** après restitution |
-| Marge de contact | **0,15 mm** |
-| Maintien endormi / disparition | **1,65 s / 0,40 s** |
-| Blower impulse / lift | **1,8 / 1,1 m/s par seconde** de souffle, pondérés par distance |
-| Plafonds Blower latéral / vertical | **0,45 / 0,30 m/s** |
+| Minimum de rebond secondaire / marge de contact | **0,018 m/s / 0,15 mm** |
+| `crumb_blower_impulse` / `crumb_blower_lift` | **5,0 / 1,8 m/s par seconde de souffle** |
+| Plafonds Blower latéral / Y | **0,80 / 0,22 m/s** |
 
-Le cycle usuel dure environ 2–3,5 s. La durée est gouvernée par le repos, sans timer d'expiration en vol. La disparition réduit la taille vers le point de contact, comme le feedback opaque précédent ; elle ne crée pas de matériau transparent. Le Blower réveille, remet le maintien à zéro et restitue la taille entière si le fragment commençait à disparaître.
+**Aucun timer d'expiration, fade ou recyclage d'un endormi.** Le cycle est petit saut → chute/contact → sommeil → reste là. Le support d'un endormi est échantillonné une fois par tick ; creuser dessous le réveille. Maximum théorique **11 sondes par miette/tick**, soit **1 408**, lorsque le réveil se combine à deux contacts. Les sondes ne parcourent pas la carte.
 
-## Blower et événements
+Cavité de test : plan haut **95 mm**, fond **25 mm** ; centre final **26,23 mm**, soit **68,77 mm sous le plan de naissance**. Dessous à **25,15 mm**, marge comprise. Tests de sommeil sans mouvement/disparition sur **30 s au cap** et **100 s sur le plat** ; capture GPU après 30 s avec les mêmes huit miettes. Les grandes coupes et alignements des captures sont des préparations synthétiques, pas des gestes humains.
 
-Un signal secondaire `WorkingSurface.air_jet_applied` transmet le segment du geste, le rayon/falloff courants, la durée réelle et la direction existante du jet. Il est émis **même sur une surface propre**, sans fabriquer d'événement `material_action` ni modifier son contenu. Les fragments reçoivent l'impulsion selon la même capsule et `WorkingSurface.weight`. Intégration par durée : pas de multiplication involontaire de la puissance avec le FPS.
+[Éclats en vol](evidence/p4v2-crumbs-chisel-flight.png) · [après la casse](evidence/p4v2-crumbs-aftermath.png) · [chute](evidence/p4v2-crumbs-cavity-fall.png) · [repos](evidence/p4v2-crumbs-cavity-sleep.png) · [30 s plus tard](evidence/p4v2-crumbs-cavity-30s.png).
 
-Un test à **60 Hz** vérifie explicitement le décollage depuis le repos. La marge est déjà incluse dans la hauteur de contact : l'appliquer une seconde fois aurait absorbé les petites impulsions positives du souffle. La ressource Air Blower reste **60 / 0 / 1,0 / clear 2,5**.
+## Blower, Brush et sorties
 
-Une sortie X/Z intersecte le bord puis libère le slot **avant** notification. `block.debris_ejected` reçoit une seule fois la position mondiale et la direction réelle. **amount = 0** pour ces fragments visuels : ils ne représentent aucune quantité de LooseDebris. Les éjections historiques des miettes conservent leur quantité normalisée. Aucun dépôt de table P6.
+Le Blower applique l'impulsion pondérée par la capsule et `WorkingSurface.weight`, à la **position actuelle**, en intégrant la durée réelle. Le corps de l'outil reste **60 / 0 / 1,0 / residue_clear 2,5**. Un endormi est réveillé ; le même état persistant se déplace avec toute sa quantité. **Aucune suppression directe, aucun paquet 2D supplémentaire pour la même miette dure ON.** Un test à 60 Hz vérifie le véritable décollage, en plus de l'invariance à 30/60/120 appels/s.
 
-## A/B disponible
+Brush retire progressivement la quantité au point réel, sans physique de balayage ajoutée. Un Brush passé uniquement au point de naissance ne touche pas une miette éloignée. Les captures et tests GPU contrôlent la correspondance exacte entre rendu et position physique.
 
-- **ON au lancement** ; **F3** (debug) choisit la trajectoire des **nouveaux** éclats. Ceux déjà actifs finissent leur cycle, sans disparition artificielle au toggle.
-- **F1** : ON/OFF, fragments /48, endormis, sondes par dernière frame et dernier tick, CPU de simulation et soumission MultiMesh en µs.
-- **R** : vide tous les fragments, compteurs et pools, réinitialise le RNG existant ; **conserve le mode ON/OFF choisi**.
-- **OFF → R → test**, puis **ON → R → même test**. OFF garde le rebond sur hauteur de naissance et la durée P4-V1 **0,51–0,69 s**.
+À la sortie X/Z, le noyau intersecte le bord, libère son slot, puis `LooseDebris` retire l'état et libère le budget de naissance **avant** la notification publique. `block.debris_ejected` reçoit XYZ réel, direction, matériau et **quantité restante réelle**, une seule fois. Aucun déchet sur la table P6.
 
-## Validation automatisée
+OFF conserve le transport 2D historique, Soil aussi. Ces paquets participent au cap global ; au cap, une scission partielle attend une place libre au lieu de perdre une quantité ou de dépasser la limite. Le départ d'une miette entière transfère sa place au paquet. Le nettoyage Dust, les sources audio et le signal de souffle existant restent conservés.
 
-**1 750 contrôles fonctionnels verts** : 1 691 P0–P4-V1 conservés + **59 V2**. Les neuf empreintes géologiques V1 et la trajectoire V2 sont rejouées dans des processus distincts. **128 contrôles graphiques historiques**, oracles GPU P3/V1, puis **121 assertions V2** (dont cinq de capture/debug) : zéro échec dans les séries finales. Aucun seuil historique assoupli. La séquence Bone est toujours **tik/100 → DING/97 → tik/97 → DING/94**, quatre protections maximum et reset exact.
+[Réveil Blower](evidence/p4v2-crumbs-cavity-blower.png) · [Brush au point déplacé](evidence/p4v2-crumbs-cavity-brush.png).
 
-Les tests V2 couvrent : gravité, dessous orienté sans pénétration, rebond/settle Clay et Stone, cavité, rebord, retrait de support sous un endormi, pentes opposées, réveil Blower à 60 Hz, distance et hors rayon, invariance de l'impulsion à 30/60/120 appels/s, vitesse bornée, sortie unique, saturation/réutilisation des slots, reset, aucune expiration en vol, répétition déterministe, F3/F1/R, aucun double spawn, dimensions/mesh préservés, nœuds/pool fixes et connexion du Blower sur terrain propre.
+## A/B et invariants
 
-La même séquence des quatre outils compare les SHA-256 de RF et données packed, couches, carte/IDs Bone, stress/fractures, exposition, protections, Fine Dust et miettes ; Bone Condition est comparée exactement. **Quinze états intermédiaires**, puis l'état final, doivent correspondre ON/OFF : une saturation finale ne peut pas cacher une divergence antérieure.
+- **ON au lancement** ; **F3** compare désormais **Crumb Physics OFF / ON**. Le spectacle Chisel est toujours P4-V1.
+- Un toggle conserve quantités et X/Z actuels ; OFF arrête la physique et repose la miette sur le relief selon le rendu historique. Un paquet 2D déjà lancé finit sa sortie. **R reste la frontière recommandée pour une comparaison propre.**
+- **R** vide les trois familles, reset état/RNG/budgets et conserve le mode choisi.
+- **F1** affiche persistent crumbs /128, Moving, Sleeping, sondes dernière frame/dernier tick, CPU du noyau et MultiMesh. [Capture](evidence/p4v2-crumbs-debug.png).
 
-Les anciens oracles dédiés à la durée et au rendu exacts P4-V1 sélectionnent explicitement **OFF**, sans changer leurs assertions. Les autres régressions de gameplay, relief, protection, caméra, rendu des matériaux et performance utilisent le lancement **ON**.
+Le RF, les hauteurs packed, géologie, IDs/silhouette Bone, stress/fracture, exposition, protections et Bone Condition sont strictement identiques ON/OFF sur **15 checkpoints intermédiaires et un état final**. Les quantités de saleté nettoyées peuvent différer selon la position des miettes et la saturation ; l'algorithme et le shader Fine Dust ne sont pas modifiés. Ne plus revendiquer une identité de l'état des miettes ON/OFF, qui serait contradictoire avec le but du correctif.
 
-[59 contrôles V2 et empreintes ON/OFF](evidence/p4v2-tests.json). Sources des outils, réactions, résistances, géologie, Bone, fracture, relief, contrôleur, proxies, audio et saleté comparées à la baseline Git : **aucune modification**. La suppression locale préexistante de la ligne de physique explicite dans `project.godot` reste conservée, hors commits ; le moteur utilise toujours sa valeur par défaut **60 Hz**, vérifiée par les régressions.
+Les sources des outils, résistances, géologie, fracture, Bone, relief, Dust, proxies, contrôleur et audio ont été comparées à la baseline Git : inchangées. Bone conserve **tik/100 → DING/97 → tik/97 → DING/94**, quatre protections par reset. `project.godot` conserve sa modification locale préexistante, hors commits ; physique effective **60 Hz** inchangée.
 
-[Protection par composant](evidence/p4v2-component-contact.json) · [spectacle OFF](evidence/p4v2-legacy-visual.json) · [dust/cleanup](evidence/p4v2-feedback-visual.json) · [matériaux](evidence/p4v2-material-visual.json) · [interfaces V1.2](evidence/p4v2-interface-visual.json).
+## Validation et performance
 
-Reproduction complète (Godot 4.7.2 console) :
+- **1 780 contrôles fonctionnels uniques verts** : 1 691 historiques +89 miettes. Rejeux interprocessus exacts, sans doubler leur compte ; neuf empreintes géologiques identiques.
+- **128 contrôles visuels historiques verts** : feedback 16, final feel 28, matériaux 46, interfaces/contraste 38. Oracles GPU Bone P3 et géologie/Bone V1 à 1×/2×/3× passent avec leurs tolérances historiques et textures exactes.
+- **202 assertions sur les 36 scénarios V2**, plus **8 contrôles GPU dédiés** : taille/XYZ réel, chute, sommeil persistant, réveil, nettoyage et F1. Zéro échec dans ces exécutions finales.
+- **60 scénarios de performance historiques couverts** : Brush 12, P4 28, verticalité 20. Provenance des rejeux ciblés et limites des mesures ci-dessous.
+
+[Synthèse de validation et provenance](evidence/p4v2-crumbs-validation-summary.json).
+
+Seules deux attentes historiques sont actualisées pour la demande explicite : l'oracle visuel de taille des miettes passe de 4,5 à **2,2 mm** ; le stress idle passe de 2 322 bins non bornés au **cap global 128**. Les tests de trajectoire 2D/contraste historique sélectionnent OFF. Aucun seuil structurel, Bone, géologique ou de performance n'est assoupli. Les nouveaux tests ON couvrent l'autorité physique et sa persistance.
+
+Deux préparations de test sont adaptées : l'idle pose effectivement ses miettes avant de mesurer, sans leur saut initial au bord ; le contraste utilise deux vraies petites fractures et attend la disparition des effets transitoires. À 1×, l'ancienne fixture Stone n'échantillonnait que **8 pixels** avec les petites miettes ; la nouvelle en échantillonne **13**, ratio **1,291**. Seuils **>8 pixels** et **ratio >1,03** conservés, les 38 contrôles rejoués. Le premier résultat reste archivé, sans le présenter comme vert.
+
+Machine : **Godot 4.7.2, Compatibility, RTX 5080 / Ryzen 7 9800X3D**, 1920×1080, cap240/physique60. L'éditeur et une autre instance du prototype étaient ouverts pendant les mesures ; ils sont restés intacts. Les temps mesurés sont ceux de ce contexte local, pas d'une machine isolée.
+
+**36 scénarios** : neuf cas × ON/OFF × 1×/3× ; 360 ticks (~6 s) chacun. Cas : 0/32/64/128 miettes, chute en cavité au cap, Blower sur 128 endormies, Brush sur cap, Chisel Clay, Chisel Stone. Les sources respectent le budget local ; les fixtures de nettoyage regroupent ensuite les positions dans le rayon pour exercer le cas extrême de 128 miettes arrivées au même endroit. Les préparations/readbacks sont exclus du chronométrage.
+
+| Sur les 18 cas de chaque mode | OFF | ON |
+|---|---:|---:|
+| FPS moyens, plage | 239,80–239,87 | **239,80–239,87** |
+| Minimum sur une seconde | 238,63 | **238,74** |
+| Pire P95 frame | 6,209 ms | **6,342 ms** |
+| Frame maximale | 11,839 ms | **11,446 ms** |
+| Noyau physique, pire P95 / max | 0 /0 µs | **1 072 /4 137 µs** |
+| Impulsion Blower, pire P95 / max | — | **13 /192 µs** |
+| MultiMesh, pire P95 / max | 210 /763 µs | **15 /231 µs** |
+| Sondes max par tick / frame | 0 /0 | **1 280 /1 280** |
+| Persistent crumbs max | 128 | **128** |
+
+Tous les cas finaux passent **≥60 FPS et P95 <16,67 ms** ; aucune frame dédiée ne dépasse 16,67 ms. Le noyau physique coûte au pire P95 **1 /215 /390 /622 µs** pour **0 /32 /64 /128** miettes sur plat ; **1 072 µs** en cavité au cap. Ces temps isolent `TerrainDebris.advance` ; le bookkeeping de `LooseDebris`, outils et rendu sont aussi inclus dans le FPS complet, pas dans ce compteur de noyau.
+
+Le Blower réveille **128 endormies**, puis éjecte **128/128 à chaque zoom**, conservant exactement les **2,56 unités normalisées** de la fixture. Brush nettoie également les 128. Les cas Chisel utilisent **27 impacts en six secondes**, et laissent **20 miettes Clay /16 Stone** après cette séquence, dans les deux modes. Quantité totale éventuellement différente, car une miette physique éloignée cesse d'absorber de la matière à son ancien emplacement.
+
+[Résumé des mesures](evidence/p4v2-crumbs-performance-summary.json). Le premier passage contenait des cas vers **145 FPS** aussi bien ON qu'OFF, avant la stabilisation observée au passage final ; aucune cause certaine attribuée. Les 36 mesures de ce passage interrompu sont conservées séparément, sans les présenter comme une exécution de tests terminée.
+
+| Régressions historiques | Cas | FPS moyens | Pire P95 frame | Frame max |
+|---|---:|---:|---:|---:|
+| Brush, proxy ON/OFF | 12 | 194,47–213,17 | 15,302 ms | 20,831 ms |
+| P4, outils/proxies/idle | 28 | 206,96–239,89 | 14,115 ms | 19,822 ms |
+| Verticalité A/C, cinq outils/cas | 20 | 194,88–239,87 | 15,256 ms | 19,332 ms |
+
+Ces scénarios passent leurs seuils historiques ; les frames maximales >16,67 ms sont conservées, sans promettre un minimum instantané de 60 FPS. Le premier passage Brush avait échoué au ratio proxy de `stationary_3x` avec une frame **180,983 ms**. **Les douze cas ont été rejoués**, sans changement de production ni de seuil ; max final **20,831 ms**, ratio conforme. Cause de l'écart initial non établie. [Premier passage](evidence/p4v2-crumbs-brush-first-failure.json) · [rejeu complet](evidence/p4v2-crumbs-brush-regression.json).
+
+P4 : **26 cas verts du passage complet +2 rejeux ciblés idle corrigés**. Le fichier du passage complet conserve honnêtement ses deux échecs de préparation au repos ; seuls ces deux cas sont rejoués après stabilisation de la fixture, avec **128 miettes**, zéro modification structurelle et zéro échec. [Passage initial](evidence/p4v2-crumbs-p4-before-idle-fix.json) · [idle corrigé](evidence/p4v2-crumbs-p4-idle-regression.json) · [verticalité](evidence/p4v2-crumbs-verticality-regression.json).
+
+Le premier passage V2 a achevé ses 36 mesures puis attendu indéfiniment la capture GPU finale. Ses données brutes sont conservées comme passage interrompu ; le harnais final enregistre chaque scénario et sépare les captures du profiling. La validation V2 finale utilise les exécutions complètes séparées. Les captures ne représentent pas les phases chronométrées.
+
+Reproduction :
 
 ```powershell
 & tests/check_p4v2.ps1 -GodotBin '<chemin Godot 4.7.2 console>' -Graphical
 ```
 
-`-SkipRegression` rejoue seulement V2 et ses 24 scénarios graphiques. Les sorties brutes vont dans `work/test-logs/` ; les preuves finales sélectionnées sont versionnées dans `docs/dev/evidence/`.
+`-SkipRegression` cible les tests de miettes et leurs benchmarks/captures. [Preuves fonctionnelles](evidence/p4v2-crumbs-tests.json) · [journal complet](evidence/p4v2-crumbs-functional-validation.txt) · [benchmark](evidence/p4v2-crumbs-benchmark.json) · [captures et assertions GPU](evidence/p4v2-crumbs-visual.json).
 
-## Performance V2
+## Limites et retour humain attendu
 
-**Godot 4.7.2, Compatibility, RTX 5080 / Ryzen 7 9800X3D, 1920×1080, cap 240 FPS / physique 60 Hz.** Six scénarios × ON/OFF × 1×/3× = **24**, six secondes chacun, préparation/readbacks exclus. Chisel Clay plat, Chisel Stone plat, cavité profonde au cap, cap sur plat, Chisel au bord d'une cavité, Blower sur 48 fragments initialement endormis. Les fixtures de stress conservent les plafonds Bone. Blower utilise une cavité qui débouche sur le bord ; une petite zone centrale ne permettrait pas de mesurer honnêtement l'éjection.
+- Heightfield sous le centre et enveloppe orientée conservatrice : aucune collision latérale volumique ou entre miettes. Une paroi haute peut provoquer une projection verticale simplifiée ; pas d'occlusion aérodynamique du jet.
+- Le cap inclut Soil. Une zone très sale peut refuser toute nouvelle miette dure jusqu'au nettoyage ; l'excédent va alors à Dust. Aucune promesse de miette à chaque coup.
+- Budget de naissance : une miette éloignée garde sa place d'origine jusqu'au nettoyage. Les destinations peuvent concentrer davantage de deux miettes.
+- Les petits montants donnent des miettes plus petites que 2,2 mm ; leur lisibilité, le déplacement rapide du Blower et le clutter restent à juger humainement.
+- Aucun nouveau chantier Dust/arêtes : état et shader conservés, watchpoint P6/P7 à surveiller pendant le test humain.
+- Les preuves `p4v2-*` **sans `crumbs`** et les premiers commits de cette PR documentent l'ancien spike à gros éclats, désormais **SIMPLIFY**. Elles ne valident pas cette nouvelle composition.
 
-| Mesure sur les 12 cas de chaque mode | OFF | ON |
-|---|---:|---:|
-| FPS moyens, plage | 239,81–239,89 | **239,83–240,14** |
-| Minimum sur une seconde | 238,87 | **239,67** |
-| Pire P95 frame | 4,438 ms | **5,581 ms** |
-| Frame maximale | 11,150 ms | **11,555 ms** |
-| Simulation : pire P95 / maximum | 5 / 47 µs | **1 434 / 2 072 µs** |
-| MultiMesh : pire P95 / maximum | 8 / 143 µs | **69 / 193 µs** |
-| Fragments actifs max | 0 terrain-aware | **48** |
-| Sondes max par tick / frame | 0 / 0 | **480 / 480** |
+## Checklist humaine exacte
 
-Tous les cas V2 dépassent 60 FPS ; aucune frame V2 mesurée ne dépasse 16,67 ms. Le léger résultat >240 sur certains intervalles vient des frontières de mesure entre tick et rendu, pas d'un changement du cap. Les trois cas Chisel effectuent chacun **27 impacts en six secondes**, sans changer 4,5 Hz. Blower réveille depuis 48 endormis et éjecte **37 fragments à chaque zoom** ; CPU du jet mesuré séparément du tick de gravité.
+Lancer F5, masquer F1 pour juger le ressenti. Refaire **OFF → R → zone**, puis **ON → R → même zone**, à 1× et 3×.
 
-Le maximum de sondes/frame Blower a été rejoué après exclusion de ses 90 ticks préparatoires de mise au repos. La physique est identique entre les deux séries ; seules les quatre mesures Blower actualisées alimentent la synthèse. Les 20 autres cas sont conservés. Les refus/recyclages sous saturation sont consignés dans les JSON, sans les masquer par un pool plus grand. **121 assertions du harnais V2**, dont cinq de capture/debug, passent ; les quatre cas Blower répétés ne sont pas comptés deux fois.
+1. **A — CHISEL.** Casser Clay/Sandstone. « Est-ce que j'ai retrouvé le punch P4-V1 des gros morceaux qui explosent ? » Cible : **OUI**.
+2. **B — AFTERMATH.** Attendre la fin des gros chunks transitoires. « Est-ce qu'il reste uniquement quelques petites saletés crédibles ? » Cible : **OUI**.
+3. **C — CAVITY.** Observer une petite miette générée au bord d'un trou. « Est-ce qu'elle tombe/se pose naturellement dans le relief ? » Cible : **OUI**.
+4. **D — BLOWER.** Souffler plusieurs petites miettes. « Est-ce que j'ai vraiment l'impression de chasser les déchets hors du trou ? » Cible : **OUI**.
+5. **E — PERSISTENCE.** Ne pas nettoyer et attendre plusieurs secondes. « Les petites miettes restent-elles en place jusqu'à ce que je décide de nettoyer ? » Cible : **OUI**.
+6. **F — A/B.** Crumb Physics OFF → R → même zone ; Crumb Physics ON → R. « La physique des PETITES miettes améliore-t-elle clairement le nettoyage ? » Cible KEEP : **OUI**.
 
-[Synthèse des 24 cas](evidence/p4v2-performance-summary.json) · [série brute](evidence/p4v2-benchmark.json) · [Blower, mesures corrigées](evidence/p4v2-blower-benchmark.json).
-
-La suite historique ajoute **60 scénarios**, tous verts, avec V2 ON :
-
-| Série | Cas | FPS moyens | Pire P95 | Frame maximale |
-|---|---:|---:|---:|---:|
-| Brush, dont quatre gestes de 30 s | 12 | 222,60–229,94 | 13,322 ms | 17,886 ms |
-| P4 | 28 | 200,80–240,00 | 13,334 ms | **207,738 ms** |
-| Verticalité A/C | 20 | 213,66–239,87 | 13,936 ms | 20,111 ms |
-
-Les frames isolées au-dessus de 16,67 ms restent visibles dans les preuves. La pointe **207,738 ms** concerne le premier cas Soil/Brush 1×, **sans fragment terrain-aware actif** ; CPU d'édition max 13,17 ms, proxy max 0,126 ms. Elle n'est pas retirée de la série. **Non reproduite sur huit rejeux ciblés** (deux fois ON/OFF à 1×/3×) : 208,86–224,97 FPS, pire P95 **14,166 ms**, max **18,729 ms**, zéro fragment dur, simulation inactive max **42 µs**. Aucune cause certaine attribuée ; ce rejeu ne garantit pas l'absence de toute future pointe système/rendu. [Sonde Soil reproductible](../../tests/run_p4v2_soil_probe.gd) · [huit résultats](evidence/p4v2-soil-probe.json).
-
-[Brush](evidence/p4v2-brush-regression.json) · [P4](evidence/p4v2-p4-regression.json) · [verticalité et GPU](evidence/p4v2-verticality-regression.json). Le minimum sur une seconde des vingt cas de verticalité est **193,84 FPS**. Les empreintes de fin de geste Brush correspondent avec/sans proxy.
-
-## Limites et décision humaine
-
-- Collision par hauteur sous le centre, dessous orienté ; pas de contact volumique contre toutes les faces, ni collision entre fragments. Les arêtes étroites peuvent être traversées latéralement ; remonter un relief plus haut utilise une projection verticale simplifiée.
-- Le glissement possède une durée maximale, puis s'amortit : ce n'est pas un modèle physique de friction statique.
-- Pool plein : émission partiellement refusée ou endormi recyclé ; la quantité P4 par plaque est conservée en amont de cette limite. Le spectacle sous spam intense reste à juger humainement.
-- Souffle pondéré dans le plan de travail, sans occlusion aérodynamique des parois.
-- Quelques fragments peuvent se superposer ou couvrir brièvement un détail. Leur impact sur Bone/curseur appartient au test humain. Le shader Dust reste inchangé ; son watchpoint de lecture des arêtes demeure différé P6/P7.
-- Les performances et captures ne valident pas le plaisir. **STOP après livraison ; aucun merge, P5, fusion avec les miettes persistantes ou nouveau chantier poussière.**
-
-## Checklist humaine exacte — dix minutes
-
-Lancer **F5**, conserver les outils P4, masquer F1 pour juger le ressenti. Utiliser F3/F1 pour choisir le mode puis **R** à chaque comparaison, et répéter aux zooms **1× / 3×**.
-
-1. **A — CHISEL.** Physics OFF → R → casser Clay/Sandstone. Physics ON → R → même zone. « Les morceaux physiques rendent-ils clairement le Chisel plus satisfaisant ? »
-2. **B — CAVITY, test principal.** Créer un trou profond, puis casser au bord. « Est-ce que je vois naturellement le morceau tomber plus bas dans le trou ? »
-3. **C — BLOWER.** Laisser quelques chunks se poser, puis souffler rapidement pendant leur maintien. « Est-ce que le Blower donne vraiment l’impression de chasser des morceaux physiques hors de la fouille ? »
-4. **D — DEPTH.** Regarder des fragments tomber à des profondeurs différentes. « Est-ce que ça renforce ma perception de verticalité ? »
-5. **E — CLUTTER.** « Est-ce que ces morceaux gênent la lecture du Bone / curseur ? » Cible : **NON**. Vérifier aussi que la poussière ne paraît pas plus gênante.
-6. **F — VERDICT, après dix minutes.** « Physics ON est-il clairement plus fun, ou juste plus compliqué ? » **KEEP** seulement si clairement plus fun ; **SIMPLIFY** si une partie suffit ; **DROP** si le gain ne justifie pas la complexité. La suite sera décidée séparément.
+**STOP après livraison. PR #7 DRAFT, aucun merge, aucune étape P5.** Décision suivante : KEEP / SIMPLIFY / DROP par Antoine.

@@ -386,3 +386,16 @@ Choix expérimental livré dans `38cc404` : 48 enregistrements préalloués, un 
 Leçon vérifiée : l'événement de nettoyage existant ne suffit pas pour souffler un morceau posé sur terrain propre. Un signal de jet indépendant transporte la capsule et la durée réelle sans créer d'action matière fictive. Le contact ne doit pas appliquer sa marge deux fois : cela absorbait les petites impulsions positives à 60 Hz. Le test de décollage utilise donc la cadence réelle, en plus des impulsions isolées.
 
 Leçon de validation : comparer quinze états intermédiaires ON/OFF, ainsi que le résultat final, évite qu'une saturation de Bone Condition ou du terrain masque une divergence. La fixture cavité doit vérifier la hauteur finale relativement au plan de naissance. Le rendu, la performance et l'intérêt humain restent trois preuves différentes. Paramètres, limites et checklist : [P4V2_REPORT](../dev/P4V2_REPORT.md). Aucun KEEP acquis.
+
+
+## P4-V2 — SIMPLIFY et cible persistent crumbs, 2026-10-04
+
+**Décision humaine confirmée : SIMPLIFY** sur `d8224ec`. Il y avait un malentendu de vocabulaire : Antoine désignait les petites saletés persistantes, pas les gros éclats de casse. Règle canonique : **“Debris physics target = persistent crumbs, not transient Chisel chunks.”** La nouvelle autorisation couvre le correctif, ses tests/perfs, la documentation et le push de la PR #7 **DRAFT**, puis STOP. Aucun merge/P5.
+
+Choix implémenté dans **`03803e5`** : restaurer le chemin des gros éclats P4-V1 à l'identique et réutiliser le seul noyau de mouvement pour `LooseDebris`. La quantité et l'occupation restent attachées à la clé de naissance ; la position physique actuelle est commune au rendu et au nettoyage. Deux miettes/24×24, 8 % retenus, capacité 0,02, cap global 128. Une miette partie de sa source garde sa place jusqu'au nettoyage ; les destinations ne sont pas rebucketées. Saturation = refus + surplus Dust, jamais recyclage visible. Dimensions communes ON/OFF 2,2 mm maximum pour la matrice ; aucun gros cube persistant. **Le sommeil n'est plus une condition d'expiration.**
+
+Blower réveille et transporte la miette complète ; Brush garde un retrait progressif simple au point actuel. Sortie unique avec quantité restante réelle, état et budget libérés avant émission. Deux paramètres dédiés au système de miettes (5,0 /1,8 par seconde) donnent une réponse légère, sans toucher la ressource outil. Ces paramètres physiques restent expérimentaux, non validés humainement.
+
+Leçons vérifiées : ne pas utiliser le bucket de naissance comme position de nettoyage après transport ; tester le vrai renderer pour les transforms MultiMesh (le backend headless renvoie des données factices) ; séparer mesure de performance et attente d'une capture GPU, sauvegarder les scénarios achevés. L'oracle ON/OFF doit comparer la structure, la fracture et Bone, **pas imposer des miettes identiques alors que leur mouvement/nettoyage est précisément la variable étudiée**. La conservation de leur quantité est contrôlée séparément jusqu'à l'éjection, y compris après nettoyage partiel.
+
+Résultats et checklist canoniques : [P4V2_REPORT](../dev/P4V2_REPORT.md). La technique prouve la chute, la persistance, l'autorité de position et les budgets ; elle ne prouve pas le fun. **Attendre le nouvel A/B humain KEEP / SIMPLIFY / DROP.**

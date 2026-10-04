@@ -2,7 +2,7 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4/P4-V1 validés et mergés ; P4-V2 terrain-aware debris physics livré pour A/B humain ; verdict KEEP / SIMPLIFY / DROP attendu ; P5 bloqué**.
+- Phase : **préproduction — P4/P4-V1 validés et mergés ; première P4-V2 SIMPLIFY ; correctif Physical Persistent Crumbs livré pour un nouvel A/B humain ; P5 bloqué**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Spike actif : `prototype/p4v2-debris-physics`, PR #7 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -156,21 +156,23 @@ Code/tests : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Validation finale :
 
 Validation humaine : **NON/OUI/OUI** obtenus — grille orange absente, blocs/profondeur mieux lisibles, base toujours agréable. P4-V1 est validé et mergé via PR #6. Watchpoint différé : la poussière réduit encore la lisibilité des arêtes/blocs avant Blower ; après nettoyage, les bords noirs et la profondeur se lisent mieux. À reprendre en polish visuel/P6-P7, pas comme blocker gameplay. **P4-V2 debris physics peut être ouvert séparément ; P5 reste bloqué tant que ce spike n'est pas cadré/validé.**
 
-## P4-V2 — Terrain-aware Debris Physics ▶
+## P4-V2 — Physical Persistent Crumbs ▶
 
-Source de vérité : [P4V2_BRIEF](../dev/P4V2_BRIEF.md). Architecture, preuves et checklist : [P4V2_REPORT](../dev/P4V2_REPORT.md).
+Sources canoniques : [P4V2_BRIEF](../dev/P4V2_BRIEF.md), [P4V2_REPORT](../dev/P4V2_REPORT.md).
 
-Hypothèse à tester : des fragments durs bornés qui tombent dans les cavités, rebondissent/glissent légèrement sur le heightfield et reçoivent une impulsion du Blower rendent **Chisel + cleanup** clairement plus satisfaisants.
+**Retour humain confirmé : SIMPLIFY sur la première V2 (`d8224ec`).** La physique visait par erreur les gros éclats transitoires ; Antoine parlait des petites saletés persistantes. **Debris physics target = persistent crumbs, not transient Chisel chunks.** Aucun KEEP sur la correction n'est acquis.
 
-Règle : simulation secondaire seulement. RF heightfield, matériaux, Bone, fracture et mess P4 restent autoritaires. Pas de swarm `RigidBody3D` ; simulation custom bornée, MultiMesh/pools, terrain échantillonné localement.
+Correction : **`03803e5`**. Les fonctions de génération et d'animation des gros éclats sont restaurées à l'identique P4-V1 dans les deux modes : 3–6 mm, 1–5 par plaque, 0,51–0,69 s, aucun état physique/persistant pour eux. `LooseDebris` possède maintenant les petites écailles Clay/Stone (2,2 mm max) et le noyau physique V2 réutilisé. Un seul MultiMesh fixe, 128 enregistrements préalloués ; aucune seconde physique d'éclats.
 
-Implémentation : **`38cc404`**, 48 slots préalloués Clay/Sandstone, un MultiMesh fixe, deux sous-pas à 60 Hz. Gravité 0,65 m/s², restitution 0,12/0,22, glissement court et sommeil/fade ; aucune autorité sur le gameplay. Blower réveille même sur terrain propre via un signal séparé ; sortie unique au bord, sans quantité de saleté persistante ajoutée. F3 ON/OFF pour nouveaux éclats, ON au lancement, R conserve le mode et vide tous les fragments. OFF conserve les éclats P4-V1. Paramètres physiques provisoires, aucun retuning ToolDefinition.
+Quantité et budget par **clé de naissance** ; XYZ physique actuel commun au rendu/Brush/Blower/sortie. Deux miettes par zone 24×24, rétention 8 %, capacité 0,02 ; **cap global 128** partagé avec Soil et vol historique. Saturation → excédent Dust ; aucune éviction automatique. Après petit saut/contact/glissement : sommeil **sans expiration ni fade**, jusqu'au nettoyage, sortie ou reset. Brush retire progressivement ; Blower impulse/lift dédiés **5,0/1,8 par seconde**, caps **0,80/0,22 m/s**, réveille et transporte la quantité entière. Éjection unique avec quantité restante réelle et libération du bucket d'origine.
 
-Validation : **1 750 contrôles fonctionnels**, 128 visuels historiques, 121 assertions V2, neuf empreintes géologiques et replay physique interprocessus identiques. Quinze états intermédiaires + état final exacts ON/OFF ; séquence Bone **100/97/97/94** conservée. Cavité : centre du fragment posé environ **66,3 mm sous son plan de naissance**. **24 scénarios V2** à 1×/3× : 239,81–240,14 FPS, pire P95 **5,581 ms**, max **11,555 ms** ; 48 actifs max, 480 sondes/tick max, simulation max **2 072 µs**, MultiMesh max **193 µs**. Blower : 37 éjections par zoom depuis 48 endormis. **60 scénarios historiques verts**, pire P95 13,936 ms ; une frame Soil/1× à 207,738 ms sans éclat actif reste documentée, non reproduite sur huit rejeux ON/OFF (max 18,729 ms). Captures, limites et preuves dans le rapport. `project.godot` local conservé et exclu des commits.
+F3 compare **Crumb Physics OFF / ON**, ON au lancement ; gros éclats P4-V1 dans les deux modes. R vide tout en conservant le mode. F1 expose persistent/moving/sleeping, sondes et CPU. OFF garde la trajectoire 2D historique des petites miettes avec la même taille et les mêmes budgets. RF/fracture/Bone/outils/géologie/audio/proxies/Dust inchangés ; seules les quantités de saleté nettoyées peuvent différer avec la position.
 
-Si l'effet est subtil, distrayant ou coûteux, **DROP** est un résultat acceptable et P4-V1 reste canonique. **STOP après validation automatique pour les six questions humaines du rapport ; PR #7 DRAFT, aucun merge.**
+Validation acquise : **1 780 contrôles fonctionnels** (1 691 historiques +89), neuf empreintes géologiques et replay physique interprocessus identiques ; 15 checkpoints structurels ON/OFF + état final exacts, séquence Bone **100/97/97/94**. Chute en cavité **68,77 mm** sous le plan de naissance, persistance 30 s au cap et 100 s sur plat. **36 scénarios V2 /202 assertions** : 239,80–239,87 FPS, pire P95 **6,342 ms**, max frame **11,839 ms** tous modes ; noyau physique max **4 137 µs**, 1 280 sondes/tick/frame. Blower éjecte les 128 miettes endormies à chaque zoom avec quantité exacte. Captures GPU séparées ; contexte de mesure, limites et premier passage interrompu conservés dans le rapport. `project.godot` local reste préservé hors commits.
 
-P5 reste bloqué jusqu'au verdict humain V2.
+Validation graphique finale : **128 contrôles visuels historiques +8 dédiés**, oracles GPU géologie/Bone exacts à leurs tolérances historiques. **60 scénarios historiques couverts** (12 Brush, 28 P4, 20 verticalité), FPS moyens minimum **194,47**, pire P95 **15,302 ms** ; frames isolées jusqu'à **20,831 ms**. P4 combine 26 cas du passage complet et deux rejeux idle après préparation réellement au repos. Une fixture de contraste est agrandie pour obtenir assez de pixels à 2,2 mm, sans relâcher les seuils. Premier passage Brush avec une frame 180,983 ms et rejeu complet vert documentés ; cause non établie. Tests commit **`4d71405`** ; preuves et provenance détaillées dans le rapport.
+
+**STOP pour les six questions humaines du rapport. PR #7 reste DRAFT ; aucun merge ni P5.** Le prochain verdict KEEP / SIMPLIFY / DROP porte sur la physique des **petites miettes et le nettoyage**. Watchpoint Dust/arêtes toujours différé P6/P7.
 
 ## Watchpoints techniques
 
@@ -183,4 +185,4 @@ P5 reste bloqué jusqu'au verdict humain V2.
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → P4-V1 ✅ → **P4-V2 : A/B humain, KEEP / SIMPLIFY / DROP attendu** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → P4-V1 ✅ → **P4-V2 : SIMPLIFY initial, nouvel A/B sur petites miettes persistantes** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.

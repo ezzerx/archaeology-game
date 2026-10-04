@@ -1,0 +1,48 @@
+{
+	"cavity": {
+		"bottom_y": 0.0251499994459291,
+		"drop_mm": 68.7693543732166,
+		"final_y": 0.0262306444346905,
+		"spawn_floor_y": 0.0949999988079071
+	},
+	"checks": 89,
+	"failures": 0,
+	"flat_1": {
+		"contacts": 2,
+		"max_samples_tick": 10,
+		"peak_bounce_m_s": 0.0264333207160234,
+		"penetration_m": 0.0,
+		"settled_y": 0.0462928377091885
+	},
+	"flat_2": {
+		"contacts": 2,
+		"max_samples_tick": 10,
+		"peak_bounce_m_s": 0.0529749765992165,
+		"penetration_m": 0.0,
+		"settled_y": 0.0462939962744713
+	},
+	"intermediate_state_checks": 15,
+	"replay_sha256": "23c473c10c47c68ab33794252168191cb18cc9e157661e22ae95c362af819520",
+	"structural_off": {
+		"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+		"condition": 0.0,
+		"exposure": "81d587984e3f468065678f7a1753ffd8e8d9d16d836afef094c8c1a830757e56",
+		"fracture": "0c85c5fc895166757678f7ae83bcc956c8f8b19325aa6dcca5820e0bd8aa1c81",
+		"height": "d48b85b940a1e8281df7b62bd8997c85225a4058da4bb1325019ecd0bad10385",
+		"ids": "9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21",
+		"layers": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9",
+		"packed_height": "d48b85b940a1e8281df7b62bd8997c85225a4058da4bb1325019ecd0bad10385",
+		"protection": "cc6cd9b042500b2a1374d40ddfeb605aa5ebde2214067bbb761e85d4f0ab20b9"
+	},
+	"structural_on": {
+		"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+		"condition": 0.0,
+		"exposure": "81d587984e3f468065678f7a1753ffd8e8d9d16d836afef094c8c1a830757e56",
+		"fracture": "0c85c5fc895166757678f7ae83bcc956c8f8b19325aa6dcca5820e0bd8aa1c81",
+		"height": "d48b85b940a1e8281df7b62bd8997c85225a4058da4bb1325019ecd0bad10385",
+		"ids": "9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21",
+		"layers": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9",
+		"packed_height": "d48b85b940a1e8281df7b62bd8997c85225a4058da4bb1325019ecd0bad10385",
+		"protection": "cc6cd9b042500b2a1374d40ddfeb605aa5ebde2214067bbb761e85d4f0ab20b9"
+	}
+}

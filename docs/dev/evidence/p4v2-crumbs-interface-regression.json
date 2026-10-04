@@ -1,0 +1,93 @@
+{
+	"checks": 38,
+	"failures": 0,
+	"p4v12-clay-chunks-1x": {
+		"after_contrast": 1.75686280056834,
+		"before_contrast": 1.62745099887252,
+		"pixels": 30,
+		"ratio": 1.07951809411496
+	},
+	"p4v12-clay-chunks-3x": {
+		"after_contrast": 14.5960787348449,
+		"before_contrast": 13.0274512544274,
+		"pixels": 253,
+		"ratio": 1.12040939165935
+	},
+	"p4v12-clay-crumbs-1x": {
+		"after_contrast": 7.0627451390028,
+		"before_contrast": 5.72941182926297,
+		"pixels": 26,
+		"ratio": 1.23271731016609
+	},
+	"p4v12-clay-crumbs-3x": {
+		"after_contrast": 59.2549023032188,
+		"before_contrast": 48.9568631611764,
+		"pixels": 206,
+		"ratio": 1.21034924374421
+	},
+	"p4v12-clay-floor-0.0-1x": {
+		"after_wrong": 0,
+		"before_wrong": 28235,
+		"cursor_wrong": 0,
+		"max_color_error": 0.00137254595756531,
+		"pixels": 51345
+	},
+	"p4v12-clay-floor-0.0-3x": {
+		"after_wrong": 0,
+		"before_wrong": 22198,
+		"cursor_wrong": 0,
+		"max_color_error": 0.00137254595756531,
+		"pixels": 51345
+	},
+	"p4v12-clay-floor-0.0005-3x": {
+		"after_wrong": 0,
+		"before_wrong": 0,
+		"cursor_wrong": 0,
+		"max_color_error": 0.00882352888584137,
+		"pixels": 51345
+	},
+	"p4v12-soil-floor-0.0-1x": {
+		"after_wrong": 0,
+		"before_wrong": 13967,
+		"cursor_wrong": 0,
+		"max_color_error": 0.00882352888584137,
+		"pixels": 51345
+	},
+	"p4v12-soil-floor-0.0-3x": {
+		"after_wrong": 0,
+		"before_wrong": 25174,
+		"cursor_wrong": 0,
+		"max_color_error": 0.00882352888584137,
+		"pixels": 51345
+	},
+	"p4v12-stone-chunks-1x": {
+		"after_contrast": 22.72156727314,
+		"before_contrast": 17.3411754369736,
+		"pixels": 69,
+		"ratio": 1.31026684758028
+	},
+	"p4v12-stone-chunks-3x": {
+		"after_contrast": 204.407830953598,
+		"before_contrast": 155.10587310791,
+		"pixels": 625,
+		"ratio": 1.31786003236246
+	},
+	"p4v12-stone-crumbs-1x": {
+		"after_contrast": 2.72941169142723,
+		"before_contrast": 2.11372552812099,
+		"pixels": 13,
+		"ratio": 1.29128009058657
+	},
+	"p4v12-stone-crumbs-3x": {
+		"after_contrast": 22.0627445429564,
+		"before_contrast": 16.3568626791239,
+		"pixels": 93,
+		"ratio": 1.34883718080698
+	},
+	"walls": {
+		"max_top_difference": 0.0,
+		"mean_wall_ratio": 0.849421512430922,
+		"top_samples": 29599,
+		"wall_samples": 1328
+	}
+}

@@ -1,0 +1,113 @@
+{
+  "source": "p4v2-crumbs-benchmark.json",
+  "scenarios": 36,
+  "checks": 202,
+  "failures": 0,
+  "godot": "4.7.2-stable (official)",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "render_cap": 240,
+  "physics_hz": 60,
+  "off": {
+    "cases": 18,
+    "fps_min": 239.797283808334,
+    "fps_max": 239.868308638985,
+    "min_1s_fps": 238.628273588801,
+    "p95_ms_max": 6.209,
+    "frame_ms_max": 11.839,
+    "max_crumbs": 128,
+    "samples_tick_max": 0,
+    "samples_frame_max": 0.0,
+    "simulation_us": {
+      "p95_max": 0.0,
+      "max": 0.0
+    },
+    "multimesh_us": {
+      "p95_max": 210.0,
+      "max": 763.0
+    },
+    "blower_us": {
+      "p95_max": 0.0,
+      "max": 0.0
+    },
+    "zero": {
+      "simulation_p95_max_us": 0.0,
+      "simulation_max_us": 0.0,
+      "frame_p95_max_ms": 4.348
+    },
+    "count32": {
+      "simulation_p95_max_us": 0.0,
+      "simulation_max_us": 0.0,
+      "frame_p95_max_ms": 4.369
+    },
+    "count64": {
+      "simulation_p95_max_us": 0.0,
+      "simulation_max_us": 0.0,
+      "frame_p95_max_ms": 4.375
+    },
+    "cap": {
+      "simulation_p95_max_us": 0.0,
+      "simulation_max_us": 0.0,
+      "frame_p95_max_ms": 4.373
+    },
+    "cavity": {
+      "simulation_p95_max_us": 0.0,
+      "simulation_max_us": 0.0,
+      "frame_p95_max_ms": 4.339
+    }
+  },
+  "on": {
+    "cases": 18,
+    "fps_min": 239.795965128767,
+    "fps_max": 239.867034651702,
+    "min_1s_fps": 238.737957849377,
+    "p95_ms_max": 6.342,
+    "frame_ms_max": 11.446,
+    "max_crumbs": 128,
+    "samples_tick_max": 1280,
+    "samples_frame_max": 1280.0,
+    "simulation_us": {
+      "p95_max": 1072.0,
+      "max": 4137.0
+    },
+    "multimesh_us": {
+      "p95_max": 15.0,
+      "max": 231.0
+    },
+    "blower_us": {
+      "p95_max": 13.0,
+      "max": 192.0
+    },
+    "zero": {
+      "simulation_p95_max_us": 1.0,
+      "simulation_max_us": 1.0,
+      "frame_p95_max_ms": 4.385
+    },
+    "count32": {
+      "simulation_p95_max_us": 215.0,
+      "simulation_max_us": 1205.0,
+      "frame_p95_max_ms": 4.512
+    },
+    "count64": {
+      "simulation_p95_max_us": 390.0,
+      "simulation_max_us": 2317.0,
+      "frame_p95_max_ms": 4.699
+    },
+    "cap": {
+      "simulation_p95_max_us": 622.0,
+      "simulation_max_us": 4137.0,
+      "frame_p95_max_ms": 4.839
+    },
+    "cavity": {
+      "simulation_p95_max_us": 1072.0,
+      "simulation_max_us": 3829.0,
+      "frame_p95_max_ms": 4.995
+    }
+  },
+  "blower_ejections": {
+    "blower_cap_off_1x": 128,
+    "blower_cap_off_3x": 128,
+    "blower_cap_on_1x": 128,
+    "blower_cap_on_3x": 128
+  }
+}
