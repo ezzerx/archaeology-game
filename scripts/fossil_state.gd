@@ -13,6 +13,7 @@ var exposed := PackedByteArray()
 var component_exposed := PackedInt32Array([0, 0, 0, 0, 0])
 var exposed_cells := 0
 var first_contact := false
+var first_direct_contact_consumed := false
 var condition: float:
 	get: return _condition
 var _condition := 100.0
@@ -29,6 +30,7 @@ func reset() -> void:
 	component_exposed.fill(0)
 	exposed_cells = 0
 	first_contact = false
+	first_direct_contact_consumed = false
 	_condition = 100.0
 	last_bone_event = "—"
 	last_damage_event = "—"
@@ -64,6 +66,19 @@ func expose_cells(indices: PackedInt32Array) -> void:
 	for component in range(1, changed_components.size()):
 		if changed_components[component] != 0:
 			bone_component_exposure_changed.emit(component, component_exposed[component], field.component_totals[component])
+
+func contact_at(index: int, amount: float, was_exposed: bool) -> bool:
+	# Discovery/exposure never spends this specimen-wide protection. The caller
+	# checks the exact impact centre after removal, including a newly reached cap.
+	if index < 0 or index >= exposed.size() or exposed[index] == 0 or amount <= 0.0:
+		return false
+	if not first_direct_contact_consumed:
+		first_direct_contact_consumed = true
+		return true
+	# Preserve the historical rule: a previously hidden centre takes no damage
+	# on the impact that uncovers it, even after the one protected cue was spent.
+	if was_exposed: damage_at(index, amount)
+	return false
 
 func damage_at(index: int, amount: float) -> void:
 	if index < 0 or index >= exposed.size() or exposed[index] == 0 or amount <= 0.0:

@@ -278,7 +278,12 @@ func test_scene() -> void:
 	controller._pointer_inside = true
 	mouse(root, screen, true)
 	controller._physics_process(1.0 / 60.0)
-	check(fossil.condition == 97 and controller.total_impacts == 1, "production input schedules one direct bone penalty")
+	check(fossil.condition == 100 and controller.total_impacts == 1 and block.working_map.last_action.bone_protected_contact,
+		"P4 correction: first direct input after indirect exposure is protected")
+	controller.cancel_stroke()
+	mouse(root, screen, true)
+	controller._physics_process(1.0 / 60.0)
+	check(fossil.condition == 97 and controller.total_impacts == 2, "next production input schedules one direct bone penalty")
 	controller.select_tool(0)
 	for i in range(30): controller._physics_process(1.0 / 60.0)
 	check(fossil.condition == 97 and not controller._held, "tool switch on bone cancels held stroke")

@@ -20,6 +20,9 @@ var action_count := 0
 var emitted := PackedInt32Array([0, 0, 0, 0])
 var particles_enabled := true
 var last_proxy_usec := 0
+var proxies_enabled := true # Diagnostic A/B switch; does not disable other feedback.
+var last_action_usec := 0
+var last_particles_usec := 0
 var _warmup_frames := 2
 var colors := [Color(0.48, 0.30, 0.14), Color(0.57, 0.27, 0.12), Color(0.76, 0.62, 0.39), Color(0.72, 0.67, 0.53)]
 
@@ -82,6 +85,7 @@ func _create_proxies() -> void:
 		add_child(proxy)
 		proxies.append(proxy)
 		proxy_poses.append(ToolProxyPose.new())
+		proxy_poses.back().setup(proxy)
 		# Tip at origin; the handle extends away from the precise contact marker.
 		if i == 0:
 			_part(proxy, Vector3(0.009, 0.055, 0.008), Vector3(0, 0.059, 0), wood)
@@ -98,6 +102,7 @@ func _create_proxies() -> void:
 			_part(proxy, Vector3(0.0015, 0.013, 0.0015), Vector3(0, 0.0065, 0), Color(0.72, 0.76, 0.77))
 			_part(proxy, Vector3(0.003, 0.025, 0.003), Vector3(0, 0.0255, 0), metal)
 			_part(proxy, Vector3(0.007, 0.032, 0.007), Vector3(0, 0.054, 0), Color(0.27, 0.36, 0.25))
+		proxy_poses.back().finish()
 		proxy.hide()
 
 func _create_particles() -> void:
@@ -207,11 +212,12 @@ func dust_color_at(point: Vector2) -> Color:
 	return [Color(0.48, 0.30, 0.14), Color(0.62, 0.36, 0.20), Color(0.76, 0.65, 0.47)][layer]
 
 func on_action(event: Dictionary) -> void:
+	var action_started := Time.get_ticks_usec()
 	action_count += 1
 	var removed: Vector3 = event.removed
 	var point: Vector2 = event.point
 	var loose_cleared: float = event.get("loose_cleared", 0.0)
-	var first_contact: bool = event.get("bone_first_contact", false)
+	var protected_contact: bool = event.get("bone_protected_contact", false)
 	var damaging_hit: bool = event.direct_bone_hit and event.get("bone_damage", 0.0) > 0.0
 	if event.tool == &"chisel":
 		recoil_remaining = 0.14
@@ -221,7 +227,7 @@ func on_action(event: Dictionary) -> void:
 			# whichever fracture patch happened to be iterated first.
 			layer = 2 if removed.z > removed.y else 1
 		elif block.working_map.value_at(Vector2i(point.round())) <= block.working_map.strata.sample_limits((point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)).y: layer = 2
-		if not first_contact and not damaging_hit and (not event.direct_bone_hit or removed.length_squared() > 0 or event.marks > 0):
+		if not protected_contact and not damaging_hit and (not event.direct_bone_hit or removed.length_squared() > 0 or event.marks > 0):
 			audio.play_family(&"chisel_clay" if layer == 1 else &"chisel_stone", 0.72 if event.chunks.is_empty() else 1.0, true)
 		var debris := block.working_map.loose_debris.profile
 		for chunk in event.chunks:
@@ -243,12 +249,13 @@ func on_action(event: Dictionary) -> void:
 		audio.play_family(&"air", clampf(event.residue_cleared + loose_cleared, 0.25, 0.8))
 		_lift_dust(event.get("cleared_dust", []), direction)
 	if removed.x > 0: _emit(0, point, clampi(ceili(removed.x / 8.0), 1, 5))
-	if first_contact or damaging_hit:
+	if protected_contact or damaging_hit:
 		# A damaging centre hit wins if that same impact also reveals nearby cells.
 		audio.play_family(&"direct_bone_hit" if damaging_hit else &"bone_revealed",
 			1.0 if damaging_hit else 0.42, damaging_hit)
 		bone_ring.position = point_world(point)
 		bone_remaining = 0.55
+	last_action_usec = Time.get_ticks_usec() - action_started
 
 func _process(delta: float) -> void:
 	if controller == null: return
@@ -262,7 +269,7 @@ func _process(delta: float) -> void:
 	var proxy_started := Time.get_ticks_usec()
 	for i in range(proxies.size()):
 		var proxy := proxies[i]
-		proxy.visible = controller.hit.inside and i == controller.selected_index
+		proxy.visible = proxies_enabled and controller.hit.inside and i == controller.selected_index
 		if not proxy.visible: continue
 		proxy.global_position = controller.hit.world
 		# Camera orientation is fixed: the handle always goes to the same screen
@@ -271,6 +278,7 @@ func _process(delta: float) -> void:
 		var recoil := sin(recoil_remaining / 0.14 * PI) * (profile.recoil if i == 1 else 0.002 if i == 3 else 0.0)
 		proxy_poses[i].fit(proxy, block, recoil)
 	last_proxy_usec = Time.get_ticks_usec() - proxy_started
+	var particles_started := Time.get_ticks_usec()
 	for family in range(4):
 		var active: Array = particles[family]
 		for i in range(active.size() - 1, -1, -1):
@@ -300,6 +308,7 @@ func _process(delta: float) -> void:
 			pools[family].set_instance_color(i, color)
 		pools[family].visible_instance_count = maxi(active.size(), 1 if _warmup_frames > 0 else 0)
 	_warmup_frames = maxi(0, _warmup_frames - 1)
+	last_particles_usec = Time.get_ticks_usec() - particles_started
 
 func contact_debug(hit: Dictionary) -> String:
 	return "\nContact: %s | Mess: Brush / Blower" % ["BONE" if hit.bone_exposed else "ATTACHED MATERIAL"]

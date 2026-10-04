@@ -5,6 +5,7 @@ var block: ExcavationBlock
 var state: LooseDebris
 var keys: Array[Vector3i] = []
 var slots: Dictionary = {}
+var last_update_usec := 0
 var colors := [Color(0.32, 0.24, 0.15), Color(0.49, 0.34, 0.22), Color(0.67, 0.61, 0.47)]
 
 func setup(target: ExcavationBlock) -> void:
@@ -49,6 +50,7 @@ func draw_item(slot: int, point: Vector2, amount: float, layer: int, lift := 0.0
 	multimesh.set_instance_color(slot, colors[layer])
 
 func _process(_delta: float) -> void:
+	var update_started := Time.get_ticks_usec()
 	if state == null: return
 	visible = block.debug_view == 0
 	# Capacity grows geometrically; unchanged bins retain their GPU transforms.
@@ -77,3 +79,4 @@ func _process(_delta: float) -> void:
 		draw_item(keys.size() + i, item.point, item.amount, item.layer,
 			0.004 + absf(sin(item.travel * 0.09)) * 0.003)
 	multimesh.visible_instance_count = keys.size() + state.flying.size()
+	last_update_usec = Time.get_ticks_usec() - update_started

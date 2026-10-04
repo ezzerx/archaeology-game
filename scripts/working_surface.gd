@@ -16,6 +16,7 @@ var loose_debris: LooseDebris
 var last_removed := Vector3.ZERO
 var last_action: Dictionary = {}
 var last_residue_edit_usec := 0
+var last_edit_usec := 0 # Surface work, excluding synchronous feedback consumers.
 var changed_residue_cells := 0
 var _heights := PackedFloat32Array()
 
@@ -168,17 +169,15 @@ func apply_continuous(from: Vector2, to: Vector2, tool: ToolDefinition, delta: f
 
 func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 	# Impacts deliberately have no previous point and cannot form a capsule.
-	# Snapshot the centre BEFORE removal: the impact revealing it is always safe.
 	# Calls outside the map never clamp into a valid edge-cell damage decision.
 	if point.x < -0.5 or point.y < -0.5 or point.x >= size.x - 0.5 or point.y >= size.y - 0.5:
 		last_action = {}
 		return 0
-	var condition_before := fossil.condition if fossil != null else 0.0
-	if fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT and tool.power > 0.0:
-		fossil.damage_at(fossil.field.index_at_map(point), tool.bone_damage)
-	return _apply_tool(point, point, tool, 1.0, condition_before - fossil.condition if fossil != null else 0.0)
+	return _apply_tool(point, point, tool, 1.0, true)
 
-func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float, bone_damage := 0.0) -> int:
+func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float, impact := false) -> int:
+	var edit_started := Time.get_ticks_usec()
+	last_edit_usec = 0
 	last_residue_edit_usec = 0
 	changed_residue_cells = 0
 	last_removed = Vector3.ZERO
@@ -191,8 +190,10 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	var changed := 0
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
 	var discovered_before := fossil.first_contact if fossil != null else false
-	var direct_bone_hit := fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
-		and tool.power > 0.0 and tool.bone_damage > 0.0 and fossil.exposed[fossil.field.index_at_map(to)] != 0
+	var can_damage := impact and fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
+		and tool.power > 0.0 and tool.bone_damage > 0.0
+	var center_index := fossil.field.index_at_map(to) if can_damage else -1
+	var center_was_exposed := can_damage and fossil.exposed[center_index] != 0
 	# Pick shares the impact clock, but removes only its tiny footprint directly.
 	# No broad fracture cells, motion gate, or weak per-pass scraping limit.
 	var is_pick := tool.id == &"precision_pick"
@@ -210,6 +211,14 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	var bone_revealed := fossil != null and fossil.exposed_cells > exposed_before
 	# Exposure remains per-cell; the discovery cue belongs to the specimen once.
 	var bone_first_contact := fossil != null and fossil.first_contact and not discovered_before
+	# Resolve only the centre, never the footprint's newly_exposed collection.
+	var direct_bone_hit := can_damage and fossil.exposed[center_index] != 0
+	var bone_protected_contact := false
+	var bone_damage := 0.0
+	if direct_bone_hit:
+		var condition_before := fossil.condition
+		bone_protected_contact = fossil.contact_at(center_index, tool.bone_damage, center_was_exposed)
+		bone_damage = condition_before - fossil.condition
 	var loose_cleared := loose_debris.last_cleared if loose_debris != null else 0.0
 	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
 		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
@@ -218,7 +227,11 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 			"cleared_dust": residue.cleared_packets.duplicate(true),
 			"direction": loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized(), "bone_revealed": bone_revealed,
 			"bone_first_contact": bone_first_contact,
+			"bone_protected_contact": bone_protected_contact,
 			"bone_damage": bone_damage,
 			"direct_bone_hit": direct_bone_hit, "movement": from.distance_to(to) / maxf(amount, 0.0001)}
+		last_edit_usec = Time.get_ticks_usec() - edit_started
 		material_action.emit(last_action)
+	else:
+		last_edit_usec = Time.get_ticks_usec() - edit_started
 	return changed
