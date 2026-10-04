@@ -50,6 +50,7 @@ func _ready() -> void:
 	assert(surface_size.x > 0.0 and surface_size.y > 0.0 and thickness > base_height)
 	var strata := Stratigraphy.new(map_resolution, material_definitions)
 	working_map = WorkingSurface.new(map_resolution, strata, FossilField.new(map_resolution), reactions)
+	working_map.excavatable_depth = thickness - base_height
 	working_map.loose_debris.ejected.connect(_on_debris_ejected)
 	relief = ReliefSurface.new(working_map.image, surface_size, map_resolution, base_height, thickness)
 	working_map.loose_debris.setup_physics(relief)

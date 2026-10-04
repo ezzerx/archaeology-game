@@ -1,0 +1,14 @@
+{
+	"checks": 64,
+	"failures": 0,
+	"local_cap_reuse": {
+		"after": 0,
+		"before": 256,
+		"flight": 256,
+		"new_chisel_crumbs": 13
+	},
+	"soil_20s": {
+		"created_matrix": 0,
+		"dust_byte_exact": true
+	}
+}

@@ -162,7 +162,7 @@ func test_production() -> void:
 		removed += s.last_removed.x
 		dirt.advance(DT)
 	check(dirt.layer_counts[0] == 0 and main.feedback.emitted[0] == 0 and main.feedback.pools[0] == null, "five seconds of Soil Brush creates no persistent/transient Soil particle or GPU pool")
-	check(Array(s.residue._values).max() > 0.1, "Soil still creates distinct Fine Dust patches")
+	check(Array(s.residue._values).max() == 0, "Soil creates no persistent Fine Dust")
 	var matrix_only := true
 	for f in dirt.physics.fragments:
 		if f.active: matrix_only = matrix_only and f.material in [1, 2]
@@ -209,18 +209,18 @@ func test_production() -> void:
 	dirt.physical_ejected.connect(capture_exit)
 	var geometry_before := s.image.get_data()
 	for y in range(24, 640, 64):
-		for tick in range(90):
-			var p := Vector2(-40 + tick * 12, y)
-			s.apply_continuous(p - Vector2.RIGHT * 12, p, main.controller.tools[2], DT)
+		for tick in range(180):
+			var p := Vector2(-40 + tick * 6, y)
+			s.apply_continuous(p - Vector2.RIGHT * 6, p, main.controller.tools[2], DT)
 			dirt.advance(DT)
 	step_dirt(dirt, 180)
 	var after_sweep := dirt.persistent_count()
 	var borders := true
 	for event in exit_events:
 		var at: Vector3 = event[0]
-		borders = borders and (absf(absf(at.x) - 0.55) < 0.00001 or absf(absf(at.z) - 0.35) < 0.00001)
+		borders = borders and (absf(at.x) <= 0.55 and absf(at.z) <= 0.35)
 	check(before_sweep == 256 and after_sweep <= 25, "prolonged native sweep really frees at least 90% of a full Matrix cap")
-	check(borders and exit_events.size() == before_sweep - after_sweep and dirt.physics.active_count == after_sweep, "each departure crosses the true block edge and frees state exactly once")
+	check(borders and exit_events.size() == before_sweep - after_sweep and dirt.physics.active_count == after_sweep, "each cleanup commitment inside the block frees state exactly once")
 	check(s.image.get_data() == geometry_before and s.fossil.condition == 100, "full-cap cleanup preserves structural bytes and Bone Condition")
 	# A real new Chisel excavation must spawn before the budget refill stress.
 	for y in range(80, 201):
@@ -234,7 +234,7 @@ func test_production() -> void:
 	seed_layer(dirt, 1, 256)
 	seed_layer(dirt, 2, 256)
 	check(dirt.persistent_count() == 256 and dirt.physics.active_count == 256, "fresh excavation can refill every freed physical and ownership slot")
-	report["production_full_cap_sweep"] = {"before": before_sweep, "after": after_sweep, "ejected": exit_events.size(), "refilled": dirt.persistent_count(), "sweep_seconds": 15, "transport_seconds": 3}
+	report["production_full_cap_sweep"] = {"before": before_sweep, "after": after_sweep, "ejected": exit_events.size(), "refilled": dirt.persistent_count(), "sweep_seconds": 30, "transport_seconds": 3}
 	dirt.physical_ejected.disconnect(capture_exit)
 	s.reset()
 	var point := Vector2(250, 230)

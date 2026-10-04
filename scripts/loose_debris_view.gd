@@ -15,7 +15,7 @@ func setup(target: ExcavationBlock) -> void:
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh.use_colors = true
 	multimesh.mesh = DebrisVisualMesh.with_face_contrast(crumb_mesh())
-	multimesh.instance_count = state.profile.matrix_crumb_cap
+	multimesh.instance_count = state.profile.matrix_crumb_cap + state.profile.eject_fx_cap
 	multimesh.visible_instance_count = 0
 	var material := StandardMaterial3D.new()
 	material.vertex_color_use_as_albedo = true
@@ -80,7 +80,9 @@ func _process(_delta: float) -> void:
 	state.dirty_cells.clear()
 	for i in range(state.flying.size()):
 		var item: Dictionary = state.flying[i]
-		draw_item(keys.size() + i, item.point, item.amount, item.layer,
-			0.004 + absf(sin(item.travel * 0.09)) * 0.003)
+		var fade := 1.0 - smoothstep(0.60, 1.0, item.age / state.profile.eject_fx_lifetime)
+		var basis := Basis(TerrainDebris.ROTATION_AXIS, item.rotation + item.age * 5).scaled_local(item.size * fade)
+		multimesh.set_instance_transform(keys.size() + i, block.global_transform * Transform3D(basis, item.position))
+		multimesh.set_instance_color(keys.size() + i, colors[item.layer])
 	multimesh.visible_instance_count = keys.size() + state.flying.size()
 	last_update_usec = Time.get_ticks_usec() - update_started

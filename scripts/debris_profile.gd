@@ -12,3 +12,17 @@ extends Resource
 @export_range(1, 30, 1) var chunk_cells_per_particle := 10
 @export_range(1, 8, 1) var chunk_particles_per_patch := 5
 @export_range(0.1, 2.0, 0.1) var chunk_lifetime := 0.6
+
+# Small disconnected remnants only; no general hard-material Brush work.
+@export var micro_depth_m := 0.0015
+@export var micro_max_cells := 4
+@export var micro_probe_budget := 64
+@export var micro_min_weight := 0.25
+# Cleanup commitment, independent from the diagnostic terrain motion kernel.
+@export var eject_min_weight := 0.25
+@export var eject_exposure := 0.075 # Weighted seconds; centred pass ~0.08-0.1 s.
+@export var eject_memory := 0.15 # Forget disconnected glances.
+@export var eject_fx_lifetime := 0.35
+@export var eject_fx_speed := 0.65
+@export var eject_fx_lift := 0.08
+@export var eject_fx_cap := 256

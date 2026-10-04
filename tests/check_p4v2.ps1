@@ -30,10 +30,11 @@ $second = Get-Content -LiteralPath (Join-Path $projectRoot 'work/test-logs/p4v2-
 if ($first.replay_sha256 -ne $second.replay_sha256) { throw 'V2 cross-process physics replay differs' }
 Write-Output 'P4V2 cross-process replay: identical'
 Invoke-P4V2Check 'p4-closure-tests' @('--headless', '--script', 'res://tests/run_p4_closure_tests.gd')
+Invoke-P4V2Check 'p4-micro-tests' @('--headless', '--script', 'res://tests/run_p4_micro_tests.gd')
 if ($Graphical) {
     Invoke-P4V2Check 'p4v2-benchmark' @('--script', 'res://tests/run_p4v2_benchmark.gd')
     Invoke-P4V2Check 'p4v2-crumbs-visual' @('--script', 'res://tests/run_p4v2_benchmark.gd', '--', '--visual-only')
     Invoke-P4V2Check 'p4v2-look-visual' @('--script', 'res://tests/run_p4v2_look_visual.gd')
-    Invoke-P4V2Check 'p4-closure-visual' @('--script', 'res://tests/run_p4_closure_visual.gd')
+    Invoke-P4V2Check 'p4-micro-visual' @('--script', 'res://tests/run_p4_micro_visual.gd')
     Invoke-P4V2Check 'p4-closure-benchmark' @('--script', 'res://tests/run_p4_closure_benchmark.gd')
 }

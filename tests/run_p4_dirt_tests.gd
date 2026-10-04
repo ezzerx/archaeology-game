@@ -13,7 +13,7 @@ func run() -> void:
 		for i in range(4):
 			surface.apply_impact(point, chisel)
 			twin.apply_impact(point, chisel)
-		check(not surface.loose_debris.cells.is_empty(), "all three materials create detached crumbs")
+		check(not surface.loose_debris.cells.is_empty(), "excavation reaching hard material creates detached crumbs")
 		check(surface.loose_debris.cells == twin.loose_debris.cells and surface.residue._values == twin.residue._values,
 			"identical excavation produces deterministic persistent dirt")
 		var cells := surface.loose_debris.cells.duplicate()
@@ -51,21 +51,21 @@ func run() -> void:
 	check(surface.loose_debris.flying[0].point.x > flying_before.x
 		and surface.loose_debris.flying[0].point.y == flying_before.y, "jet follows tool movement in map space")
 	surface.loose_debris.advance(10)
-	check(surface.loose_debris.flying.is_empty() and not ejections.is_empty(), "airborne debris leaves through a boundary, not a lifetime fade")
+	check(surface.loose_debris.flying.is_empty() and not ejections.is_empty(), "EJECTING flight expires after logical evacuation")
 	var exited_mass := 0.0
 	var valid_exits := true
 	for event in ejections:
 		exited_mass += event[2]
-		valid_exits = valid_exits and absf(event[0].x - 95.5) < 0.001 and event[1] == Vector2.RIGHT and event[2] > 0 and event[3] in [0, 1, 2]
+		valid_exits = valid_exits and event[0].x >= -0.5 and event[0].x <= 95.5 and event[1] == Vector2.RIGHT and event[2] > 0 and event[3] in [0, 1, 2]
 	for value in surface.loose_debris.cells.values(): exited_mass += value
 	check(valid_exits and absf(mass - exited_mass) < 0.0001, "ejection position/direction/material and accumulated amount are coherent")
 	var packets := LooseDebris.new(Vector2i(1024, 640))
 	packets.deposit_removed(512, 320, 64, 2)
-	for i in range(25):
+	for i in range(12):
 		packets.clean(Vector2(511, 320), Vector2(512, 320), blower, 1.0 / 60.0)
 		packets.advance(1.0 / 60.0)
 	check(packets.flying.size() < 8 and not packets.flying.is_empty(),
-		"nearby sub-tick dust portions coalesce into a few directional packets")
+		"one logical evacuation creates one temporary directional flight")
 
 	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
 	root.add_child(main)
@@ -77,8 +77,8 @@ func run() -> void:
 	var dust := block.working_map.residue.image.get_data()
 	fx._process(4)
 	fx.loose_view._process(0)
-	check(fx.particles[0].is_empty() and cells.is_empty() and fx.loose_view.multimesh.visible_instance_count == 0 and Array(block.working_map.residue._values).max() > 0,
-		"Soil Brush leaves Fine Dust only, no transient or persistent grains")
+	check(fx.particles[0].is_empty() and cells.is_empty() and fx.loose_view.multimesh.visible_instance_count == 0 and Array(block.working_map.residue._values).max() == 0,
+		"Soil Brush leaves no persistent dust or grains")
 	check(block.working_map.loose_debris.cells == cells and block.working_map.residue.image.get_data() == dust,
 		"transient FX cannot erase persistent dirt")
 	block.flush_texture() # Commit the preceding Brush edit before measuring Blower.
@@ -94,9 +94,9 @@ func run() -> void:
 	block.flush_texture()
 	check(block.upload_count == uploads and block.working_map.fossil.condition == condition,
 		"production blower emits no height upload and causes no bone damage")
-	check(not world_events.is_empty() and absf(world_events[0][0].x - block.surface_size.x * 0.5) < 0.001
+	check(not world_events.is_empty() and absf(world_events[0][0].x) < block.surface_size.x * 0.5
 		and world_events[0][1].is_equal_approx(Vector3.RIGHT) and world_events[0][3] == &"compact_clay",
-		"future debris_ejected hook uses boundary world coordinates and material id")
+		"future debris_ejected hook uses cleanup world coordinates and material id")
 	block.working_map.reset()
 	check(fx.loose_view.multimesh.visible_instance_count == 0 and block.working_map.loose_debris.flying.is_empty(),
 		"R clears settled and airborne visuals immediately")

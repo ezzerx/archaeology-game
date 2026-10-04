@@ -128,12 +128,14 @@ func _remove(surface: WorkingSurface, index: int, next: float, layer: int,
 	if removed <= 0:
 		return 0
 	surface.last_removed[layer] += removed
-	var fine_dust := removed * tool.residue_generation
-	if surface.loose_debris != null:
+	# Soil feedback has no persistent dust. Hard-material dust remains unchanged.
+	if layer > 0:
+		var fine_dust := removed * tool.residue_generation
+		if surface.loose_debris != null:
+			@warning_ignore("integer_division")
+			fine_dust += surface.loose_debris.deposit_removed(index % surface.size.x, index / surface.size.x, removed, layer)
 		@warning_ignore("integer_division")
-		fine_dust += surface.loose_debris.deposit_removed(index % surface.size.x, index / surface.size.x, removed, layer)
-	@warning_ignore("integer_division")
-	surface.residue.deposit_removed(index % surface.size.x, index / surface.size.x, fine_dust)
+		surface.residue.deposit_removed(index % surface.size.x, index / surface.size.x, fine_dust)
 	if surface.fossil != null and surface.fossil.field.ceilings[index] > 0.0 \
 			and surface._heights[index] <= surface.fossil.field.ceilings[index] + FossilField.EXPOSURE_EPSILON \
 			and surface.fossil.exposed[index] == 0:

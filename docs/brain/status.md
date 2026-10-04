@@ -1,6 +1,6 @@
 # Statut canonique
 
-- Date : **2026-10-04**.
+- Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
 - Phase : **préproduction — P4/P4-V1 validés et mergés ; look Matrix/physique P4-V2 validés ; passe de clôture livrée, retest final attendu ; P5 bloqué**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
@@ -156,19 +156,21 @@ Code/tests : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Validation finale :
 
 Validation humaine : **NON/OUI/OUI** obtenus — grille orange absente, blocs/profondeur mieux lisibles, base toujours agréable. P4-V1 est validé et mergé via PR #6. Watchpoint différé : la poussière réduit encore la lisibilité des arêtes/blocs avant Blower ; après nettoyage, les bords noirs et la profondeur se lisent mieux. À reprendre en polish visuel/P6-P7, pas comme blocker gameplay. **P4-V2 debris physics peut être ouvert séparément ; P5 reste bloqué tant que ce spike n'est pas cadré/validé.**
 
-## P4 — Dernière clôture livrée, retest humain attendu ▶
+## P4 — Micro-passe finale livrée, retest humain attendu ▶
 
-Retours humains acquis : P4 Final Feel/P4-V1, look Matrix 4,5 mm, physique persistante, spectacle Chisel, gameplay Bone Film et Pick **11 / 0,44 / 1,75**. Le dernier retour retire Soil grains et demande plus de Matrix crumbs, une évacuation franche et un film plus distinct du Sandstone.
+Le cœur P4 est apprécié ; gameplay et teinte du Bone Film sont validés. Cette passe ne traite que trois irritants : micro-restes hard ambigus, Matrix camouflée conservant le cap, Dust Soil persistante sans valeur suffisante.
 
-- **Soil particles removed for now; Soil uses dust-only feedback.** Plus de grains persistants/transitoires, de cap Soil, de hop ni de pool GPU Soil. Fine Dust et Brush/Blower préservés.
-- **Matrix cap 256**, Clay3 / Stone4 places par zone24×24, rétention8 %, capacité0,02, look inchangé. Même excavation contrôlée : **45→66 Clay (+47 %), 38→65 Stone (+71 %)**, aucun refus au cap.
-- **Blower** : pop0,055 m/s, push12 m/s², max1,6 m/s conservés ; traînée0,2 s⁻¹ pendant2 s. Balayage prolongé sur relief réel : **256→0**, sorties au bord exact, nouveaux impacts Chisel produisent des miettes, budget rechargeable à256. Aucune suppression arbitraire en milieu de bloc.
-- **Bone Film** : mécanique validée conservée, patches désormais brun terreux plus sombre avec zones ivoire. Brush seul nettoie ; Blower/Pick n’enlèvent pas le film. Exposure/Condition/protections indépendantes.
-- Pick natif humain inchangé, aucune fracture/gros chunks Chisel. Géologie, autres outils, proxies et audio conservés.
+- **Soil : aucun mess persistant.** Ni grains ni nouveau dépôt SurfaceResidue Soil. Retrait/audio/couleur/relief préservés ; **Soil persistent dust deferred to P6/P7 redesign**. Hard Dust reste active.
+- **Micro-restes** : ≤1,5 mm, composante8-connectée ≤4 cellules entièrement reconnue dans5×5, sans voisin épais/prolongement. Maximum64 inspections/action. Brush convertit l’îlot en une miette puis le nettoie ; plafond Bone respecté, aucun dégât ou spectacle Chisel. Efficacité Clay générale du Brush0,06→0 pour appliquer la règle produit ; radius/power/falloff restent40/0,70/1,25.
+- **Blower** : poids≥0,25, dose≥0,075 seconde pondérée, oubli après0,15 s sans influence. EJECTING libère immédiatement les slots logique/local/physique. Vol visuel0,35 s, petit lift, puis disparition ; aucun besoin d’atteindre le vrai bord. FX plafonnés séparément à256.
+- **Cap/reprise** :256 miettes posées sur Soil→souffle local→0 logique +256 FX ;4 impacts Chisel recréent13 miettes avant expiration des FX. Fréquence Clay3/Stone4, cap256 et look conservés.
+- **Bone Film et Pick inchangés** : film sombre, Brush seul, Exposure/Condition/protections indépendantes ; Pick11/0,44/1,75,6 Hz, dégâts0, aucune fracture/gros chunk Chisel.
 
-[Rapport courant, tests et performances](../dev/P4V2_REPORT.md) · [Brief](../dev/P4V2_BRIEF.md) · [Première clôture archivée](../dev/P4V2_FIRST_CLOSURE_REPORT.md). Le `project.godot` local préexistant reste hors commits.
+**Vérification de cette micro-passe** :1 895 assertions fonctionnelles uniques ; performances ciblées à1×/3×, zéro upload de résidu sur les gestes Soil20 s. Une répétition Soil atteint239,9 FPS ; la première série avait un pic isolé104 ms non reproduit, conservé dans le rapport. Retest humain requis.
 
-**Prochaine action : retest humain** Soil dust-only/fluidité, quantité Clay/Stone, Blower hors bloc et compteur, teinte Bone distincte, découverte→Brush→Pick→Bone propre. **STOP, PR #7 DRAFT ; aucun merge ni P5.** Cette dernière passe n’est pas déclarée validée humainement par les seuls tests automatiques.
+[Rapport courant, preuves/perf](../dev/P4V2_REPORT.md) · [Brief](../dev/P4V2_BRIEF.md) · [Passe dust-only désormais historique](../dev/P4V2_DUST_ONLY_REPORT.md). `project.godot` préexistant préservé hors commits.
+
+**Prochaine action : retest humain final** Soil10–20 s, Brush sur micro-restes, Pick sur vrais morceaux attachés, compteur qui baisse avec vol visible sous Blower, reprise Chisel, puis boucle10 min sans deviner l’outil attendu. **STOP, PR #7 DRAFT ; aucun merge ni P5.**
 
 ## Watchpoints techniques
 

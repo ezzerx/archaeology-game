@@ -288,7 +288,7 @@ func test_persistent_state() -> void:
 	check(dirt.cells[key] < amount, "partial Brush cleanup precedes quantity-conserving physical ejection")
 	amount = dirt.cells[key]
 	dirt.clean(current - Vector2.RIGHT, current, blower, DT)
-	check(f.velocity.x > 0 and f.velocity.y > 0 and dirt.last_blown == 1, "real LooseDebris Blower wakes/lifts current crumb")
+	check(f.state == TerrainDebris.State.SLEEPING and dirt.last_blown == 1, "single Blower frame charges cleanup without an instant disappearance")
 	check(dirt.cells[key] == amount and dirt.last_cleared == 0 and dirt.flying.is_empty(),
 		"ON Blower moves the full crumb without deleting quantity or emitting duplicate 2D flight")
 	# Ejection has actual XYZ and retained amount, released before signal delivery.
@@ -374,7 +374,7 @@ func test_scene() -> void:
 		fx._process(0.6)
 		check(fx.particles[1].is_empty() and fx.particles[2].is_empty(), "no large cubes survive 0.7 seconds in either mode")
 	check(transient_states[0] == transient_states[1], "transient trajectories and RNG identical ON/OFF after 100ms")
-	check(get_node_count() == node_count and fx.loose_view.multimesh.instance_count == dirt.profile.matrix_crumb_cap
+	check(get_node_count() == node_count and fx.loose_view.multimesh.instance_count == dirt.profile.matrix_crumb_cap + dirt.profile.eject_fx_cap
 		and fx.loose_view.multimesh.mesh.get_rid() == mesh and not fx.has_node("TerrainHardFragments"),
 		"one fixed persistent renderer, no parallel hard-fragment physics or node/mesh allocation")
 	# Fracture generates its ordinary spectacle and exactly the retained dirty state.
@@ -442,8 +442,8 @@ func test_scene() -> void:
 	var amount: float = dirt.cells[source]
 	p = dirt.point_for(source)
 	s.apply_continuous(p - Vector2.RIGHT, p, main.controller.tools[2], DT)
-	check(s.last_action.is_empty() and f.velocity.x > 0 and dirt.cells[source] == amount,
-		"real Blower on dust-free terrain moves persistent dirt, no fictitious structural action")
+	check(s.last_action.is_empty() and dirt._jet_charge.has(source) and dirt.cells[source] == amount,
+		"real Blower charges cleanup on dust-free terrain, no fictitious structural action")
 	check(before == state_hashes(s), "real Blower changes no structural/damage state")
 	var exits: Array = []
 	block.debris_ejected.connect(func(pos, direction, mass, material): exits.append([pos, direction, mass, material]))

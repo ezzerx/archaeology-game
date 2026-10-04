@@ -436,3 +436,16 @@ Le Blower doit **libérer le budget par une vraie sortie**, pas seulement dégag
 Le **gameplay Bone Film est validé humainement**. Seule sa teinte change : brun terreux plus sombre, patches ivoire encore visibles, distinction Sandstone à retester. Brush seul retire le film ; pas d’autorité sur Exposure, Condition ou protections. Boucle canonique : excavation→chunks ; aftermath→Matrix crumbs + Dust ; découverte→film ; préparation→Brush film→Pick matrice attachée→Bone propre.
 
 Pick **11 / 0,44 / 1,75**,6 Hz, dégâts0, efficacités intactes reste la baseline humaine. **P4 human-validated baseline — final fine tuning still deferred to P7.** [Preuves et retest final](../dev/P4V2_REPORT.md). **PR #7 DRAFT, STOP, aucun merge ni P5.**
+
+
+## P4 — Micro-passe finale : lisibilité et nettoyage, 2026-10-05
+
+**Retour humain : le cœur P4 est apprécié, le Bone Film actuel (gameplay et couleur) est validé.** Trois irritants seulement restent autorisés, sans nouvelle feature ni P5.
+
+**Soil persistent dust deferred to P6/P7 redesign.** Après suppression des grains, supprimer également le dépôt persistant SurfaceResidue Soil : pas assez de valeur gameplay/feel pour fermer P4. La décision remplace « Soil dust-only ». Le retrait, l’audio, la couleur et le relief restent ; la Dust hard n’est pas supprimée.
+
+**Micro structural remnant→detached Matrix crumb** : un reste fin et presque détaché ne doit pas obliger à deviner Pick quand il ressemble à une saleté. Helper local5×5,8-connexité,≤4 cellules,≤1,5 mm au-dessus de l’interface ou du plafond Bone, sans voisin épais/prolongement ;64 inspections maximum/action. Toute quantité convertie appartient réellement à une miette, sans grosse fracture, réaction Chisel ni dégât. Si l’admission échoue, ne pas effacer la structure. Le Brush historique pouvait encore éroder Clay à0,06 d’efficacité : cette valeur est corrigée à0 pour que l’exception reste une conversion explicite, pas du déblaiement général. Pick conserve les vrais morceaux attachés.
+
+**Matrix crumbs can be removed by cleanup commitment, not only literal block-edge crossing.** Abandon de l’exigence de vraie sortie au bord : un souffle significatif évacue le mess dès son engagement. Poids≥0,25, dose0,075 seconde pondérée, oubli0,15 s ; un effleurement d’une frame ne suffit pas. Au seuil, libérer les budgets avant notification, lancer un FX0,35 s borné (0,65 m/s horizontal,0,08 m/s vertical, rétrécissement final). Un FX n’est jamais une unité Matrix logique. Cette règle vaut également pour Matrix déplacée/camouflée sur Soil et pour F3 OFF.
+
+Fréquence3/4 et cap256 conservés, sans nouveau retuning. Bone Film, Pick11/0,44/1,75, autres baselines numériques et géologie restent verrouillés. Le test de reprise immédiate Chisel pendant les FX est plus pertinent que la seule distance parcourue par les débris. [Preuves, limites et retest](../dev/P4V2_REPORT.md). **STOP après push, PR #7 DRAFT, aucun merge.**

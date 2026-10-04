@@ -98,8 +98,8 @@ func blower_capture(zoom: int) -> void:
 	await screenshot(label + "-before")
 	var exits: Array = []
 	var capture_exit := func(at, direction, amount, layer): exits.append([at, direction, amount, layer])
-	state.ejected.connect(capture_exit)
-	block.working_map.apply_continuous(p - Vector2.RIGHT * 6, p, controller.tools[2], 0.1)
+	state.physical_ejected.connect(capture_exit)
+	block.working_map.apply_continuous(p - Vector2.RIGHT * 6, p, controller.tools[2], 0.2)
 	block.flush_texture()
 	var initial := state.flying.duplicate(true)
 	check(initial.size() >= 8 and not fx.particles[3].is_empty(), "real cleanup launches multiple crumbs AND source dust")
@@ -109,9 +109,9 @@ func blower_capture(zoom: int) -> void:
 		all_moving = all_moving and state.flying[i].point.x > initial[i].point.x + 14.9
 		all_moving = all_moving and is_equal_approx(state.flying[i].point.y, initial[i].point.y)
 		var rendered := fx.loose_view.multimesh.get_instance_transform(fx.loose_view.keys.size() + i)
-		var uv: Vector2 = (state.flying[i].point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
-		all_moving = all_moving and block.to_local(rendered.origin).y > block.relief.height_at(uv) + 0.004
-	check(all_moving, "rendered crumbs lift and move 150 texels/s in the jet direction")
+		# EJECTING is a short ballistic visual, not a terrain-following body.
+		all_moving = all_moving and block.to_local(rendered.origin).y > initial[i].position.y + 0.001
+	check(all_moving, "rendered EJECTING crumbs lift and fly in the jet direction")
 	var airborne := await screenshot(label + "-airborne")
 	fx.loose_view.hide()
 	var without_crumbs := await screenshot(label + "-without-crumbs")
@@ -120,7 +120,7 @@ func blower_capture(zoom: int) -> void:
 	check(pixels > 12, "crumbs make a measurable rendered contribution alongside lifted dust")
 	step(0.4)
 	await screenshot(label + "-travel")
-	# Finish the real local sweep, then track the same packets through the edge.
+	# Finish local cleanup and confirm visual expiry without a second removal.
 	for i in range(120):
 		block.working_map.apply_continuous(p - Vector2.RIGHT * 6, p, controller.tools[2], 1.0 / 60.0)
 		step(1.0 / 60.0)
@@ -130,13 +130,13 @@ func blower_capture(zoom: int) -> void:
 	fx.loose_view._process(0)
 	var coherent := not exits.is_empty()
 	for event in exits:
-		coherent = coherent and absf(event[0].x - 1023.5) < 0.001 and event[1] == Vector2.RIGHT and event[2] > 0 and event[3] == 2
-	check(coherent and state.flying.is_empty(), "crumbs exit at the block edge with coherent amount/material, not a lifetime fade")
+		coherent = coherent and absf(event[0].x) < 0.55 and event[1].is_equal_approx(Vector3.RIGHT) and event[2] > 0 and event[3] == 2
+	check(coherent and state.flying.is_empty(), "cleanup releases crumbs locally with coherent amount/material, visual flight expires")
 	check(block.working_map.image.get_data() == geometry and block.working_map.fossil.condition == condition,
 		"visible cleanup changes no height byte or Bone Condition")
 	await screenshot(label + "-clean")
 	report["blower_%dx" % zoom] = {"initial_airborne": initial.size(), "ejections": exits.size(), "crumb_pixel_samples": pixels, "max_crumb_width_m": max_width}
-	state.ejected.disconnect(capture_exit)
+	state.physical_ejected.disconnect(capture_exit)
 	controller.reset_surface()
 	state.deposit_removed(700, 140, 1000, 0)
 	fx.loose_view._process(0)

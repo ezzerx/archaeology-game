@@ -202,8 +202,9 @@ func debris_debug() -> String:
 	return ("Crumb Physics: %s [F3] | Matrix crumbs: %d / %d\n" % [
 		"ON" if crumb_physics_enabled else "OFF",
 		state.count_for(1), state.profile.matrix_crumb_cap]
-		+ "Clay crumbs: %d | Sandstone crumbs: %d | Moving: %d | Sleeping: %d | Fine Dust: separate\n" % [
+		+ "Clay crumbs: %d | Sandstone crumbs: %d | Moving: %d | Sleeping: %d\n" % [
 		state.layer_counts[1], state.layer_counts[2], state.moving_count(), state.physics.sleeping_count]
+		+ "Ejecting FX: %d (outside cap) | Fine Dust: separate\n" % state.flying.size()
 		+ "Terrain samples: %d (tick %d) | CPU: %d us | MultiMesh: %d us\n" % [
 		state.samples_last_frame, state.physics.last_samples, state.physics.last_step_usec, loose_view.last_update_usec])
 

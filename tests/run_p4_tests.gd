@@ -153,6 +153,8 @@ func test_bone_and_events() -> void:
 	check(events == count, "clean blower produces no fictitious material particles")
 	surface.apply_continuous(contact, contact, brush, 0.1)
 	check(events == count + 1 and surface.last_action.removed.x > 0, "actual brush removal emits one aggregated action")
+	surface.residue.deposit_removed(int(contact.x), int(contact.y), 8) # Independent hard-dust fixture.
+	surface.residue.apply_segment(contact, contact, 20, 1, 0)
 	var dust_before := surface.residue.value_at((contact + Vector2.ONE * 0.5) / Vector2(size))
 	surface.apply_continuous(contact, contact, blower, 0.1)
 	check(surface.last_action.residue_cleared > 0 and surface.residue.value_at((contact + Vector2.ONE * 0.5) / Vector2(size)) < dust_before, "actual residue clearing emits airflow/dust work")
@@ -207,6 +209,7 @@ func test_scene_and_audio() -> void:
 	var p := Vector2(200, 200)
 	block.working_map.apply_continuous(p, p, brush, 0.1)
 	check(fx.emitted[0] == 0 and fx.pools[0] == null and fx.audio.last_family == &"brush_soil", "real Soil action keeps sound without grain emission")
+	block.working_map.residue.deposit_removed(200, 200, 8) # Hard dust cleanup fixture.
 	block.working_map.apply_continuous(p, p, blower, 0.1)
 	check(fx.emitted[3] > 0 and fx.audio.last_family == &"air", "real blower clearing emits dust and air sound")
 	for family in MaterialAudio.FAMILIES:

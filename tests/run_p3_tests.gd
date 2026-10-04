@@ -172,6 +172,8 @@ func test_contact_damage_and_reset() -> void:
 			free_matrix_at_floor = free_matrix_at_floor or (surface.value_at(free_cell) == 0 and surface.value_at(cell) > 0)
 	check(free_matrix_at_floor, "nearby non-bone matrix reaches floor below bone")
 	var before := fossil.condition
+	surface.residue.deposit_removed(cell.x, cell.y, 8) # Existing hard dust on exposed Bone.
+	surface.residue.apply_segment(point, point, 20, 1, 0)
 	var residue_before := surface.residue.value_at((point + Vector2.ONE * 0.5) / Vector2(field.size))
 	for repeat in range(10): surface.apply_continuous(point, point, brush, 1)
 	check(fossil.condition == before and surface.value_at(cell) == field.ceilings[index], "Brush safe with fixed bone height")

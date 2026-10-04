@@ -144,7 +144,7 @@ func v2_scenario(kind: String, zoom: float, enabled: bool) -> void:
 			controller._previous_valid = true
 		controller._physics_process(1.0 / 60)
 		sim_times.append(dirt.physics.last_step_usec)
-		if kind == "blower_cap": jet_times.append(dirt.physics.last_blower_usec)
+		if kind == "blower_cap": jet_times.append(dirt.last_clean_usec)
 		max_samples = maxi(max_samples, dirt.physics.last_samples)
 		max_count = maxi(max_count, dirt.persistent_count())
 		max_moving = maxi(max_moving, dirt.moving_count())
@@ -158,7 +158,6 @@ func v2_scenario(kind: String, zoom: float, enabled: bool) -> void:
 	for event in exits: exited_amount += event[2]
 	var remaining_amount := 0.0
 	for amount in dirt.cells.values(): remaining_amount += amount
-	for packet in dirt.flying: remaining_amount += packet.amount
 	var label := "%s_%s_%dx" % [kind, "on" if enabled else "off", int(zoom)]
 	var data := {"fps": frame_times.size() / seconds, "min_1s_fps": minimum_1s_fps(), "frame_ms": stats(frame_times),
 		"simulation_us": stats(sim_times), "blower_us": stats(jet_times), "multimesh_us": stats(multi_times),
@@ -178,7 +177,7 @@ func v2_scenario(kind: String, zoom: float, enabled: bool) -> void:
 	if kind == "blower_cap":
 		check(exits.size() > 0 and dirt.persistent_count() == 0, "Blower expels the full persistent cap: " + label)
 		check(absf(initial_amount - exited_amount - remaining_amount) < 0.00001, "ejection amount conservation: " + label)
-		if enabled: check(initial_sleeping == 128 and max_moving == 128, "full cap wakes from sleep: " + label)
+		if enabled: check(initial_sleeping == 128 and dirt.physics.active_count == 0, "sleeping cap releases all physical slots on cleanup: " + label)
 	if kind == "brush_cleanup": check(dirt.persistent_count() == 0, "Brush cleans the cap: " + label)
 	if kind in ["count32", "count64", "cap", "cavity"]: check(dirt.persistent_count() == count, "no timed disappearance: " + label)
 	report[label] = data
@@ -266,11 +265,17 @@ func visual_sequence() -> void:
 	check(stable, "rendered persistent crumbs stay unchanged after 30 seconds without cleanup")
 	await screenshot("p4v2-crumbs-cavity-30s")
 	var point := dirt.point_for(first.source)
+	var flight_origin := first.position
 	block.working_map.apply_continuous(point - Vector2.RIGHT, point, controller.tools[2], 0.12)
 	step_visual(8)
-	check(first.velocity.x > 0 and first.state != TerrainDebris.State.SLEEPING, "real clean-cavity Blower wakes and displaces crumbs")
+	check(not first.active and not dirt.flying.is_empty() and dirt.flying[0].position.x > flight_origin.x,
+		"real cavity cleanup frees physical ownership while EJECTING FX moves right")
 	await screenshot("p4v2-crumbs-cavity-blower")
 	# Moved-location Brush test, visible on the same GPU-backed scene.
+	seed_crumbs(1, "cap")
+	first = dirt.physics.fragments[dirt.physical_slots[dirt.cells.keys()[0]]]
+	first.position = flight_origin + Vector3.RIGHT * 0.02
+	dirt.dirty_cells[first.source] = true
 	point = dirt.point_for(first.source)
 	var shape: ToolDefinition = controller.tools[0].duplicate()
 	shape.radius = 4

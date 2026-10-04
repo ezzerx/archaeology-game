@@ -37,13 +37,13 @@ func soil_visual(zoom: float) -> void:
 	main.feedback.reset()
 	hide_pointer()
 	main.feedback.loose_view._process(0)
-	var label := "p4-final-soil-%dx" % int(zoom)
-	var dusty := await screenshot(label + "-dust-only")
+	var label := "p4-micro-soil-%dx" % int(zoom)
+	var dusty := await screenshot(label + "-clean")
 	var empty := Image.create(s.residue.image.get_width(), s.residue.image.get_height(), false, Image.FORMAT_R8)
 	block.material.set_shader_parameter("residue_map", ImageTexture.create_from_image(empty))
 	var bare := await screenshot(label + "-no-dust-reference")
 	block.material.set_shader_parameter("residue_map", block.residue_texture)
-	check(coverage(dusty, bare) > 100, "Soil Fine Dust retains measurable visible patches: " + label)
+	check(coverage(dusty, bare) == 0, "Soil removal has no persistent Dust pixels: " + label)
 	check(s.loose_debris.layer_counts[0] == 0 and main.feedback.pools[0] == null, "no Soil instance or GPU pool: " + label)
 	report[label] = {"dust_pixels": coverage(dusty, bare), "matrix_count": s.loose_debris.persistent_count()}
 
@@ -64,7 +64,7 @@ func film_visual(zoom: float) -> void:
 	main.feedback.reset()
 	hide_pointer()
 	var film_before := s.bone_film._bytes.duplicate()
-	var label := "p4-final-bone-%dx" % int(zoom)
+	var label := "p4-micro-bone-%dx" % int(zoom)
 	await screenshot(label + "-dirty")
 	for y in range(130, 521, 35):
 		s.apply_continuous(Vector2(130, y), Vector2(915, y), controller.tools[2], 1)
@@ -123,7 +123,7 @@ func run() -> void:
 	controller._pointer_inside = true
 	controller.refresh_view()
 	main._process(0.2)
-	await screenshot("p4-final-debug")
+	await screenshot("p4-micro-debug")
 	check(main.debug_panel.get_global_rect().end.y < 960 and not "Soil grains:" in main.debug_label.text and "Matrix crumbs:" in main.debug_label.text and "Bone Film" in main.debug_label.text, "Matrix-only F1 counters/film fit above toolbar")
 	report["checks"] = bench_checks
 	report["failures"] = failures
