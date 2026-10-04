@@ -38,7 +38,7 @@ static func crumb_mesh() -> ArrayMesh:
 
 func draw_item(slot: int, point: Vector2, amount: float, layer: int, lift := 0.0) -> void:
 	var uv := (point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
-	# Small asymmetric flakes in BOTH A/B modes. Soil geometry stays unchanged.
+	# P4-V1 hard-crumb dimensions in BOTH A/B modes. Soil geometry stays unchanged.
 	var width := (state.profile.crumb_width if layer == 0 else state.profile.matrix_crumb_width) \
 		* clampf(sqrt(amount / state.profile.crumb_capacity), 0.08, 1.0)
 	var height := width * (0.14 if layer == 0 else 0.32)

@@ -4,7 +4,7 @@ var checks := 0
 var failures := 0
 var report := {}
 const DT := 1.0 / 60.0
-const SIZE := Vector3(0.0022, 0.000704, 0.00165)
+const SIZE := Vector3(0.0045, 0.00144, 0.003375)
 
 func _initialize() -> void:
 	call_deferred("run")
@@ -217,6 +217,11 @@ func step_dirt(dirt: LooseDebris, count: int) -> void:
 
 func test_persistent_state() -> void:
 	var dirt := dirt_fixture()
+	check(is_equal_approx(dirt.profile.matrix_crumb_width, 0.0045) and is_equal_approx(dirt.profile.crumb_width, 0.0014),
+		"human-validated P4-V1 crumb scale restored: hard 4.5 mm, Soil 1.4 mm")
+	check(dirt.profile.crumbs_per_bucket == 2 and dirt.profile.bucket_tiles * LooseDebris.STRIDE == 24
+		and is_equal_approx(dirt.profile.retained_fraction, 0.08) and is_equal_approx(dirt.profile.crumb_capacity, 0.02),
+		"P4-V1 local density and retained amount unchanged by physics")
 	check(dirt.deposit_removed(96, 80, 0, 2) == 0 and dirt.cells.is_empty(), "zero removal never generates a crumb")
 	var supplied := 0.0
 	var overflow := 0.0
@@ -397,7 +402,7 @@ func test_scene() -> void:
 	var tiny := true
 	for k: Vector3i in dirt.physical_slots:
 		var f := dirt.physics.fragments[dirt.physical_slots[k]]
-		tiny = tiny and f.size.x <= 0.002201 and f.size.y <= 0.000705
+		tiny = tiny and f.size.x <= 0.004501 and f.size.y <= 0.001441
 	check(tiny and fx.particles[1].is_empty() and fx.particles[2].is_empty(),
 		"aftermath contains only small physical flakes, no transient chunks")
 	# Exact structural replay. Dirt movement/cleanup may differ by design.

@@ -32,4 +32,5 @@ Write-Output 'P4V2 cross-process replay: identical'
 if ($Graphical) {
     Invoke-P4V2Check 'p4v2-benchmark' @('--script', 'res://tests/run_p4v2_benchmark.gd')
     Invoke-P4V2Check 'p4v2-crumbs-visual' @('--script', 'res://tests/run_p4v2_benchmark.gd', '--', '--visual-only')
+    Invoke-P4V2Check 'p4v2-look-visual' @('--script', 'res://tests/run_p4v2_look_visual.gd')
 }

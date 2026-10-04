@@ -251,8 +251,8 @@ func visual_sequence() -> void:
 		var f := dirt.physics.fragments[dirt.physical_slots[key]]
 		var pose: Transform3D = main.feedback.loose_view.multimesh.get_instance_transform(main.feedback.loose_view.slots[key])
 		poses_match = poses_match and block.to_local(pose.origin).is_equal_approx(f.position)
-		small = small and pose.basis.x.length() <= 0.002201 and pose.basis.y.length() <= 0.000705
-	check(poses_match and small, "GPU crumb transforms match physical XYZ, width <=2.2 mm, no cuboids")
+		small = small and absf(pose.basis.x.length() - 0.0045) < 0.000001 and absf(pose.basis.y.length() - 0.00144) < 0.000001
+	check(poses_match and small, "full-amount GPU crumbs match physical XYZ and P4-V1 4.5 mm width / 1.44 mm thickness")
 	var positions: Array[Vector3] = []
 	for f in dirt.physics.fragments:
 		if f.active: positions.append(f.position)
