@@ -26,29 +26,27 @@ func place_matrix(kind: String, tick := 0) -> void:
 		dirt.dirty_cells[f.source] = true
 		n += 1
 
-func closure_scenario(kind: String, count: int, soil_cap: int, zoom: float) -> void:
+func closure_scenario(kind: String, count: int, zoom: float) -> void:
 	controller.reset_surface()
 	camera.reset_view()
 	var s := block.working_map
 	var dirt := s.loose_debris
 	dirt.profile = dirt.profile.duplicate()
-	dirt.profile.matrix_crumb_cap = maxi(count, 128)
-	dirt.profile.soil_grain_cap = soil_cap
+	dirt.profile.matrix_crumb_cap = 256
 	dirt.physics = null
 	dirt.setup_physics(block.relief)
 	if kind == "film": expose_bone_fixture()
-	elif kind != "soil_brush": prepare_v2("cavity" if kind == "cavity" else "chisel_stone")
+	elif kind != "soil_brush": prepare_v2(kind if kind in ["cavity", "chisel_clay"] else "chisel_stone")
 	select(0)
 	move_to((Vector2(740, 140) + Vector2.ONE * 0.5) / Vector2(block.map_resolution))
 	await settle_zoom(zoom)
-	fill_layer(0, soil_cap)
 	fill_layer(1, count / 2)
 	fill_layer(2, count / 2)
 	place_matrix(kind)
 	if kind in ["sleeping", "blower", "brush"]:
 		for tick in range(120): dirt.advance(1.0 / 60)
 	var initial := dirt.layer_counts.duplicate()
-	check(initial == PackedInt32Array([soil_cap, count / 2, count / 2]), "requested independent caps populated before timing")
+	check(initial == PackedInt32Array([0, count / 2, count / 2]), "requested Matrix occupancy populated before timing")
 	main.feedback.loose_view._process(0)
 	for frame in range(8): await physics_frame
 	frame_times.clear()
@@ -64,18 +62,20 @@ func closure_scenario(kind: String, count: int, soil_cap: int, zoom: float) -> v
 	var max_count := dirt.persistent_count()
 	var start := Time.get_ticks_usec()
 	measuring = true
-	for tick in range(180):
+	for tick in range(360):
 		await physics_frame
 		if kind in ["moving", "cavity"] and tick % 60 == 0: place_matrix(kind, tick + 1)
 		if kind == "blower":
 			var p := Vector2(740 + mini(tick, 59) * 5, 140)
 			s.apply_continuous(p - Vector2.RIGHT * 5, p, controller.tools[2], 1.0 / 60)
 			jet_times.append(dirt.physics.last_blower_usec)
+		elif kind.begins_with("chisel_") and floori(tick * 4.5 / 60) != floori((tick - 1) * 4.5 / 60):
+			s.apply_impact(Vector2(600 + tick * 0.95, 140), controller.tools[1])
 		elif kind == "brush":
 			s.apply_continuous(Vector2(735, 140), Vector2(740, 140), controller.tools[0], 1.0 / 60)
 		elif kind == "soil_brush":
-			var p := Vector2(120 + tick * 4, 120 + 35 * sin(tick / 20.0))
-			s.apply_continuous(p - Vector2.RIGHT * 4, p, controller.tools[0], 1.0 / 60)
+			var p := Vector2(120 + tick * 2.15, 120 + 35 * sin(tick / 20.0))
+			s.apply_continuous(p - Vector2.RIGHT * 2.15, p, controller.tools[0], 1.0 / 60)
 		elif kind == "film":
 			var p := Vector2(180 + (tick % 120) * 5, 180 + (tick / 60 as int) * 90)
 			s.apply_continuous(p - Vector2.RIGHT * 5, p, controller.tools[0], 1.0 / 60)
@@ -89,11 +89,13 @@ func closure_scenario(kind: String, count: int, soil_cap: int, zoom: float) -> v
 		max_count = maxi(max_count, dirt.persistent_count())
 	measuring = false
 	var seconds := (Time.get_ticks_usec() - start) / 1e6
-	var label := "%s_matrix%d_soil%d_%dx" % [kind, count, soil_cap, int(zoom)]
-	var data := {"fps": frame_times.size() / seconds, "min_1s_fps": minimum_1s_fps(), "frame_ms": stats(frame_times), "physics_us": stats(sim_times), "blower_us": stats(jet_times), "multimesh_us": stats(multi_times), "film_upload_us": stats(film_uploads), "film_uploads": film_uploads.size(), "edit_us": stats(edit_times), "initial_counts": Array(initial), "final_counts": Array(dirt.layer_counts), "max_moving": maximum_moving, "max_samples_tick": maximum_samples, "max_count": max_count, "zoom": camera.zoom_factor}
+	var label := "%s_matrix%d_%dx" % [kind, count, int(zoom)]
+	var data := {"fps": frame_times.size() / seconds, "min_1s_fps": minimum_1s_fps(), "frame_ms": stats(frame_times), "physics_us": stats(sim_times), "blower_us": stats(jet_times), "multimesh_us": stats(multi_times), "film_upload_us": stats(film_uploads), "film_uploads": film_uploads.size(), "edit_us": stats(edit_times), "initial_counts": Array(initial), "final_counts": Array(dirt.layer_counts), "max_moving": maximum_moving, "max_samples_tick": maximum_samples, "matrix_cap": 256, "cap_refused_attempts": Array(dirt.cap_refusals), "max_count": max_count, "zoom": camera.zoom_factor}
 	check(data.fps >= 60 and data.min_1s_fps >= 60 and data.frame_ms.p95 < 16.67, "frame budget: " + label)
-	check(maximum_samples <= count * 11 and max_count <= soil_cap + maxi(count, 128), "bounded state and terrain probes: " + label)
+	check(maximum_samples <= 256 * 11 and max_count <= 256, "bounded state and terrain probes: " + label)
 	if kind in ["moving", "cavity"]: check(maximum_moving == count, "all Matrix records move in stress fixture: " + label)
+	if kind == "blower": check(dirt.persistent_count() == 0, "all swept Matrix crumbs really leave state: " + label)
+	if kind == "soil_brush": check(dirt.layer_counts[0] == 0 and main.feedback.emitted[0] == 0, "Soil stays dust-only: " + label)
 	if kind == "film": check(film_uploads.size() > 20, "film uploads exercised during real large-zone Brush: " + label)
 	report[label] = data
 	FileAccess.open("res://work/test-logs/p4-closure-benchmark.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
@@ -112,15 +114,10 @@ func run() -> void:
 	controller = main.controller
 	camera = main.camera
 	controller.set_physics_process(false)
-	# Benchmark compares Soil128/192; one fixed maximum pool for those fixtures.
-	main.feedback.loose_view.multimesh.instance_count = 448
 	for node in ["Debug/Panel", "Debug/BonePanel", "Debug/BoneNotice"]: main.get_node(node).hide()
 	for zoom in [1.0, 3.0]:
-		for count in [128, 192, 256]:
-			if "--soil-only" in OS.get_cmdline_user_args(): continue
-			for kind in ["sleeping", "moving", "blower", "cavity", "brush"]: await closure_scenario(kind, count, 128, zoom)
-		for cap in [128, 192]: await closure_scenario("soil_brush", 256, cap, zoom)
-		if not "--soil-only" in OS.get_cmdline_user_args(): await closure_scenario("film", 256, 128, zoom)
+		for kind in ["soil_brush", "chisel_clay", "chisel_stone", "blower", "film", "moving", "cavity", "sleeping"]:
+			await closure_scenario(kind, 256 if kind in ["blower", "moving", "cavity", "sleeping"] else 0, zoom)
 	report["checks"] = bench_checks
 	report["failures"] = failures
 	report["gpu"] = RenderingServer.get_video_adapter_name()

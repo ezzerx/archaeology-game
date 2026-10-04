@@ -23,5 +23,5 @@ spawn_lift = 0.025
 crumb_blower_pop = 0.055
 crumb_blower_acceleration = 12.0
 crumb_blower_speed_limit = 1.6
-blown_drag = 0.8
-blown_duration = 0.4
+blown_drag = 0.2
+blown_duration = 2.0

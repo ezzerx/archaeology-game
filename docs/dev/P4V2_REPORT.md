@@ -1,109 +1,100 @@
-# P4 — Passe de clôture
+# P4 — Dernière clôture : Soil dust-only, Matrix et préparation Bone
 
-2026-10-04 · `prototype/p4v2-debris-physics` · [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) **DRAFT, aucun merge ni P5**. Baseline d'entrée `874edc40c2da398c1693f0cd9dd4b23e7a38ad02`. Code livré : `c775186c12d60e2a2313b2e905c161da6e8310d7`.
+2026-10-04 · `prototype/p4v2-debris-physics` · [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) **DRAFT, aucun merge ni P5**. Baseline d’entrée : `491934e1dae46c6c980a325e2d73f4aaee58cac6`.
 
-Le retour humain valide désormais P4 Final Feel, P4-V1, les Matrix crumbs 4,5 mm avec physique et les chunks Chisel transitoires. **Cette clôture reste à retester humainement.** [Brief](P4V2_BRIEF.md) ; [restauration précédente archivée](P4V2_LOOK_REPORT.md).
+Les retours humains valident le look Matrix 4,5 mm, sa physique légère, le spectacle Chisel, le gameplay Bone Film et le Pick **11 / 0,44 / 1,75**. Cette dernière passe simplifie Soil et corrige la présence/évacuation Matrix ainsi que la teinte du film. **Le retest humain de cette passe reste à faire.** [Brief courant](P4V2_BRIEF.md), [première clôture archivée](P4V2_FIRST_CLOSURE_REPORT.md).
 
-## Débris visibles et budgets indépendants
+## Soil : suppression complète des grains
 
-| État | Budget final | Présentation/comportement |
-|---|---:|---|
-| Soil grains | **128** | Flocons bruns irréguliers 1,80–2,20 mm, épaisseur 14 %, hop ≤0,45 mm durant 0,18 s, puis persistants ; Brush local, Blower directionnel 2D jusqu'au bord |
-| Matrix crumbs | **256** Clay + Sandstone | Look P4-V1 exact : 4,5 mm max, épaisseur 32 %, profondeur 75 %, mêmes mesh/couleurs/contraste et taille selon quantité ; physique terrain |
-| Fine Dust | Aucun slot | Carte R8 et shader diffuse inchangés |
+**Soil particles removed for now; Soil uses dust-only feedback.** La décision remplace l’essai des grains visibles : plus de génération persistante, de cap Soil, de hop, de pool GPU Soil ni d’émission transitoire Soil. Le chemin structurel Soil ne passe plus par l’admission des miettes à chaque pixel ; toute la quantité non structurelle concernée retourne à Fine Dust. La carte R8, sa présentation et son nettoyage Brush/Blower restent les mêmes.
 
-Le budget local est `(bucket_x, bucket_y, matériau)` : deux places par zone 24×24 et par matériau, au lieu d'un quota partagé. Quantité retenue 8 %, capacité 0,02. Comptage O(1), y compris les grains en vol ; refus sans éviction, surplus renvoyé à Fine Dust. 256 enregistrements physiques préalloués et un MultiMesh fixe de 384 instances. Pas de RigidBody ni de reconstruction de mesh.
+Le MultiMesh persistant passe de **384 à 256 instances réservées** ; le pool transitoire Soil de 48 instances disparaît aussi. Aucun nouveau nœud, collider ou mesh dynamique. Les tableaux communs gardent les IDs matériaux historiques ; leur index0 est inutilisé pour les débris, sans compteur Soil affiché.
 
-Les grains Soil n'ont plus une taille presque nulle lorsque la quantité retenue est faible. Leur variation déterministe ne consomme pas le RNG des éclats/audio. Le tableau F1 sépare Soil, Matrix, Clay/Stone, mouvement/sommeil et film ; R réinitialise tout.
+Fixture réelle de 5 s de Brush : **0 grain créé, 0 visible, 0 tentative Soil au cap**, Fine Dust présente. Quand le Brush atteint la Clay, des miettes Clay apparaissent normalement. Soil Dust ne réserve aucune place Matrix.
 
-### Mesures de production
-
-Fixture Brush : outil baseline, 300 ticks à 60 Hz, chemin de 800 texels avec une légère courbe, 5 secondes, surface initiale Soil.
-
-- **1 945 créations, soit 389/s ; 128 grains présents à 5 s**. Il s'agit de créations cumulées, y compris des grains nettoyés/recréés sous le Brush, pas de 389 nouveaux grains persistants par seconde.
-- **977 444 tentatives de dépôt par pixel refusées au cap**, 421 328 par quota local. Ce ne sont pas autant de grains manquants : plusieurs pixels alimentent une même source 8×8. Le cap reste 128 et ne retire aucun slot Matrix.
-- Fine Dust présente, aucun Soil dans TerrainDebris ; des miettes Clay peuvent apparaître quand le Brush atteint réellement la couche suivante.
-- Le Blower transporte les grains avant leur sortie, puis le compteur Soil revient à zéro. Le test remplit aussi Soil 128 puis Clay 128 + Stone 128 dans les mêmes zones sans conflit.
-
-Fixture Matrix : cinq points hors fossile, quatre vrais impacts Chisel par point, démarrage à la limite supérieure du matériau, sans Blower ni avance physique pendant la mesure de rendement.
-
-| Mesure | Clay | Sandstone |
-|---|---:|---:|
-| Crumbs créées/présentes | **45** | **38** |
-| Profondeur normalisée retirée, somme des cellules | 1 328,0022 | 305,1998 |
-| Volume retiré équivalent, mm³ | 159 151,14 | 36 575,91 |
-| Quantité visuelle retenue normalisée | 0,593645 | 0,223300 |
-| Crumbs par unité retirée | 0,033885 | 0,124509 |
-| Dépôts refusés, toutes causes | 7 054 | 1 582 |
-| Refus au cap Matrix | 0 | 0 |
-
-Le rendement Sandstone par volume retiré est supérieur à celui de Clay dans ce protocole. Les budgets séparés suppriment surtout le blocage auparavant possible par Soil : aucun multiplicateur Sandstone ni troisième slot local ajouté sans besoin mesuré. Le jugement « assez de miettes » reste humain.
-
-## Blower : pop unique et poussée horizontale
+## Matrix : fréquence accrue, même look et physique
 
 | Paramètre | Avant | Maintenant |
 |---|---:|---:|
-| Poussée horizontale | `crumb_blower_impulse=5` m/s² | `crumb_blower_acceleration=12` m/s² |
-| Vertical | lift répété 1,8 m/s², limite 0,22 m/s | `crumb_blower_pop=0,055` m/s au sol seulement |
-| Vitesse horizontale max | 0,80 m/s | `crumb_blower_speed_limit=1,60` m/s |
-| Traînée contact après passage | Clay14 / Stone9 s⁻¹ | 0,8 s⁻¹ pendant 0,4 s, puis friction habituelle |
+| Places Clay par zone 24×24 | 2 | **3** |
+| Places Sandstone par zone 24×24 | 2 | **4** |
+| Cap global Clay + Sandstone | 256 | 256 |
+| Rétention / capacité par miette | 8 % / 0,02 | inchangées |
+| Taille maximale | 4,5 mm | inchangée |
 
-Un fragment déjà en vol conserve sa vitesse verticale soumise à la gravité ; le jet ne la recharge pas. Le délai récemment soufflé évite de relancer le pop à chaque contact sous un jet tenu. Petit kick de naissance 0,035/ 0,025 m/s, gravité 0,65, contact orienté, glissement, sommeil sans expiration et nettoyage au XYZ courant conservés.
+Mesh irrégulier, couleurs, contraste, proportions32 %/75 %, taille selon quantité, kick initial0,035 m/s latéral +0,025 vertical, gravité0,65, contact avec relief, settle/sleep sans expiration restent conservés. Les chunks Chisel gardent leur spectacle3–6 mm et leur courte durée ; aucun retuning outil ni géologique.
 
-Fixture ouverte et plate : **80 miettes endormies**, 40 Clay/40 Stone, départ à 52,9–61 cm du bord de sortie, jet correctement balayé pendant **1 s**. **80 affectées, 80 éjectées, zéro restante** ; distance horizontale moyenne **56,95 cm**, max **61,00 cm** ; hauteur maximale au-dessus du support orienté **2,35 mm**. Quantité initiale 1,6 = quantité éjectée 1,6 ; sortie unique, slots libérés. Cela démontre ce cas sans obstacle, pas une garantie pour n'importe quel geste ou cavité.
+Mesure A/B avec le **même retrait structurel byte-exact**, cinq points hors fossile, quatre impacts Chisel par point et matériau, aucun cap atteint :
 
-## Bone Surface Dirt Film
+| Mesure | Clay | Sandstone |
+|---|---:|---:|
+| Crumbs avant → après | **45→66 (+46,7 %)** | **38→65 (+71,1 %)** |
+| Profondeur normalisée retirée, somme | 1 328,0022 | 305,1998 |
+| Volume équivalent retiré, mm³ | 159 151,14 | 36 575,91 |
+| Crumbs / unité retirée avant → après | 0,033885→**0,049699** | 0,124509→**0,212975** |
+| Refus au cap | **0** | **0** |
+| Refus locaux, tentatives de dépôt par pixel | 4 591 | 329 |
 
-`BoneSurfaceFilm` reçoit `FossilState.bone_cell_exposed`. Texture **RGBA8 256×160, 160 KiB**, séparée de Fine Dust : R = quantité du groupe 4×4 ; G/B = masque 16 bits des cellules fines sales. Le CPU conserve aussi les cellules déjà vues. Pas de nouvelle texture dynamique pleine résolution.
+Les refus sont des tentatives par pixel, pas autant de miettes manquantes. Ce protocole mesure le rendement, pas une promesse de nombre constant pour chaque geste. La quantité suffisante à l’écran reste un verdict humain.
 
-Film initial **0,85**. Soft Brush `bone_film_clear=1,0/s` avant falloff : ~0,85 s au centre, une seconde dans la petite zone testée. Autres outils : zéro. Film nettoyé avant l'excavation du tick, donc une révélation nouvelle n'est pas immédiatement effacée. Les événements incluent `bone_film_cleared` et maintiennent l'audio Brush même sur film seul ; aucune nouvelle famille sonore ni émission Matrix.
+## Blower : élan jusqu’au vrai bord et budget libéré
 
-Une cellule fine déjà propre conserve son bit éteint même si sa voisine se révèle. Une cellule nouvelle dans un groupe encore partiellement sale partage la quantité restante du groupe, sans recharger les voisines ; un groupe entièrement propre crée une nouvelle cohorte de film à 0,85. C'est la limite spatiale assumée du stockage compact. Reset réarme exposition/film.
+Le code retirait déjà le state à la frontière ; le problème était l’élan trop court une fois la miette sortie du rayon du jet. La traînée récemment soufflée passe de **0,8 à 0,2 s⁻¹**, sa durée de **0,4 à 2 s**. Pop unique au sol0,055 m/s, accélération horizontale12 m/s², vitesse max1,6 m/s inchangés. Gravité active, aucun lift répété, aucune suppression arbitraire au centre ni disparition au bout d’un timer : le timer rétablit seulement la friction normale.
 
-Shader : patches beige/brun fins sur l'ivoire existant, rugosité accrue, spéculaire atténué. L'identité Bone reste visible. **Exposure ≠ Cleanliness ≠ Condition** ; aucun film dans les décisions de plafonds, protection ou dégâts.
+- **Régression ciblée, court balayage central de0,5 s puis plus de jet** : ancien profil **0/20 sorties,20 restantes** ; nouveau **20/20 sorties,0 restante** après3 s de transport.
+- Balayage ouvert historique de1 s : **80/80 sorties**, déplacement moyen56,95 cm, soulèvement max2,35 mm, quantité conservée jusqu’au bord.
+- **Relief de production, cap plein réparti sur ses sources** : balayage natif de15 s +3 s de transport, **256→0**. Chaque événement est au bord réel, unique ; compteurs logique/physique cohérents. De nouvelles frappes Chisel génèrent immédiatement des miettes ; un remplissage supplémentaire réutilise les256 slots.
+- Les benchmarks GPU Blower à1×/3× passent aussi de256 à0. Le budget n’est jamais libéré avant le franchissement réel, sauf nettoyage explicite Brush.
 
-## Precision Pick — baseline humaine finale P4
+Une miette seulement effleurée ou un geste mal orienté peut encore se poser dans le bloc : cette passe n’ajoute ni attraction automatique vers un bord ni physique de collision volumétrique complète. Le modèle de relief reste le heightfield validé.
 
-Addendum humain positif : **radius 11,0 / power 0,44 / falloff 1,75**, remplace 7/ 0,24/ 1,50. Cadence **6 Hz**, `bone_damage=0`, efficacités **0,30/ 1,00/ 1,50** inchangées. **P4 human-validated baseline — final fine tuning still deferred to P7.**
+## Bone Film : brun plus sombre, identité Bone conservée
 
-Chisel = matrice en masse/fracture/chunks ; Pick = finition structurelle rapide et précise autour de Bone ; Brush = film adhérent et mess ; Blower = débris/Dust libres. Le Pick reste limité à son disque de **373 cellules**, rayon moitié de Chisel donc quart de sa surface, sans plaques de fracture ni gros chunks. Il ne nettoie pas le film. Retrait central observé par impact : **0,146667 Clay / 0,0825 Sandstone**. Le banc six Pick contre cinq Chisel retire 49,0874 contre 218,9618 unités, soit **4,46×** pour Chisel. L'ancienne assertion « >10× » encodait la baseline abandonnée ; elle est remplacée par le footprint exact, les nouvelles valeurs humaines et la supériorité mesurée de Chisel en volume.
+La seule modification de film en production est son multiplicateur de teinte : **(0,66;0,56;0,40)→(0,32;0,25;0,19)**, appliqué à l’ivoire dans les patches existants. Couverture, masque, rugosité, spéculaire et quantité initiale0,85 inchangés. Des zones ivoire restent visibles entre les taches terreuses ; l’inspection des captures montre une séparation avec le Sandstone jaune environnant.
 
-## Vérification et performance
+A/B GPU à caméra/terrain/film identiques : **53 694 / 277 940 pixels plus sombres** à1×/3×, aucun éclaircissement significatif. Le nettoyage progressif change6 141 /55 373 pixels ; le nettoyage complet61 443 /320 025. Ces mesures prouvent le changement et le contraste Brush, pas la préférence visuelle humaine.
 
-- **1 825 contrôles fonctionnels**, zéro échec au passage final avec Pick humain (historique +41 clôture, +2 assertions Pick). Rejeux V1/V2 et neuf empreintes géologiques conservés.
-- **13 contrôles GPU clôture**, plus **28 Final Feel +38 interfaces/contraste +32 présence Matrix +8 physique** : zéro échec. Soil distingue **373 pixels à 1× /1 101 à 3×** de la même scène Dust seule. Le film intact après Blower et ses transitions Brush ont une présence mesurée à caméra/terrain identiques.
-- **36 scénarios GPU / 122 assertions**, tous verts : Matrix 128/192/256, Soil 128 plein, sommeil/mouvement/Blower/cavité/Brush ; Soil 128/192 avec Matrix 256 en mouvement, Brush film sur grande zone exposée, à 1×/3×. Godot 4.7.2 Compatibility, RTX 5080, Ryzen7 9800X3D, 1920×1080, cap 240/physique 60 Hz. Chaque cas chronométré 3 s ; setup et captures exclus. Cas mouvement/cavité relancent les mêmes enregistrements chaque seconde pour maintenir la charge. Les positions groupées constituent un stress de jet/cleanup ; les sondes de relief sont aussi comparées exactement au sampler canonique sur 500 points/fixture.
-- **199,83–240,03 FPS**, minimum sur 1 s **180,35 FPS**, pire **P95 frame 14,896 ms** ; **frame isolée max 21,099 ms** sur Brush Soil +256 Matrix à 3×. Pas de baisse soutenue sous 60 ; le pic isolé reste explicitement hors 16,67 ms.
-- Noyau physique : P95 max **7 335 µs**, max **8 286 µs**, ≤2 560 sondes/tick dans ces scénarios ; MultiMesh P95 max 312 µs, max 1 509 µs. Le cache terrain est borné aux sommets interrogés et vidé chaque tick, sans influencer la géologie ni le prochain creusement.
-- Film : **142 uploads** dans chacun des cas Brush ; soumission+préparation image P95 **31 µs à 1× /62 µs à 3×**, max 41/124 µs ; frame P95 **7,685 /9,228 ms** avec les deux budgets remplis. Cela mesure la soumission CPU, pas un chronométrage GPU isolé.
-- Comparaison Soil : 128 →192 passe aussi le budget ; P95 Brush 1×13,684 →14,024 ms, 3×14,896 →14,355 ms. Écart variable non causal sur cette machine non isolée. **128 retenu pour une présence légère**, avec déjà 128 grains visibles après 5 s, plutôt que pour une prétendue supériorité de FPS.
-- Premier passage archivé : **4/36 cas hors budget** (Brush Soil 128/192 +Matrix 256), P95 jusqu'à 27,855 ms, minimum 1 s 31,61 FPS. Refus Soil accélérés, marquage dirty par série de pixels et cache de sommets par tick corrigent cette charge. Le test compare les quantités/overflow/dirty keys exacts avec le chemin non groupé et les hauteurs au relief de référence. Tous les chiffres ci-dessus sont du passage final ; les échecs initiaux ne sont pas masqués.
-- Mesures locales, éditeur/jeu utilisateur laissés ouverts ; pas une garantie pour toutes les machines. Les anciens 60 benchmarks complets ne sont pas rejoués : toute la régression fonctionnelle, les visuels affectés, les 36 cas de clôture et les 6 cas Pick le sont.
+Brush seul enlève le film, en environ1 s au centre. Blower laisse le film byte-exact, Pick/Chisel ne le nettoient pas. Audio Brush sur film seul, zéro émission Matrix par ce nettoyage, Exposure/Condition/protections inchangées. **Exposure ≠ Cleanliness ≠ Condition.**
 
-Six cas Pick humain (Bone/Clay/Stone, 1×/3×) : **239.86–239.87 FPS**, P95 frame max **4.573 ms**, frame max **7.466 ms**, 36 impacts par 6 s, zéro chunk/marque de fracture/dégât. [Preuve Pick](evidence/p4-closure-pick-human-benchmark.json).
+Séquence3× : [sale](evidence/p4-final-bone-3x-dirty.png) → [Blower](evidence/p4-final-bone-3x-blown.png) → [Brush partiel](evidence/p4-final-bone-3x-brushed.png) → [propre](evidence/p4-final-bone-3x-clean.png). [Ancienne teinte au même état](evidence/p4-final-bone-3x-old-tint-reference.png). Soil : [Dust seule1×](evidence/p4-final-soil-1x-dust-only.png), [3×](evidence/p4-final-soil-3x-dust-only.png). [F1 Matrix uniquement](evidence/p4-final-closure-debug.png).
 
-Preuves : [fonctionnel](evidence/p4-closure-tests.json), [visuel](evidence/p4-closure-visual.json), [performance finale](evidence/p4-closure-benchmark.json), [premier passage avant optimisation](evidence/p4-closure-benchmark-before-optimization.json). Commande reproductible complète : `tests/check_p4v2.ps1 -GodotBin <Godot4.7.2> -Graphical` ; banc Pick ciblé : `--script res://tests/run_p4_benchmark.gd -- --pick-only`.
+## Performance et vérifications
 
-## Captures reproductibles
+Godot4.7.2 Compatibility, RTX5080, Ryzen7 9800X3D,1920×1080, cap240 FPS, physique60 Hz. **16 scénarios de6 s,58 assertions,0 échec**, setup et captures exclus du chronométrage ; travail réel à60 Hz, rendu/FX actifs. Les gestes Chisel utilisent la cadence4,5 Hz. La fixture Soil descend assez pour atteindre ponctuellement Clay : les60 miettes finales sont de la Clay, pas du Soil.
 
-Séquence Bone à 3× : [sale](evidence/p4-closure-bone-3x-dirty.png) → [après Blower](evidence/p4-closure-bone-3x-blown.png) → [Brush partiel, 0,4 s](evidence/p4-closure-bone-3x-brushed.png) → [propre](evidence/p4-closure-bone-3x-clean.png). Même terrain et caméra, nouvelle découverte centrale, aucun changement de Condition.
+| Geste | FPS moyens | P95 frame ms | Max frame ms | Matrix début→fin / cap |
+|---|---:|---:|---:|---:|
+| Brush Soil 1× | 239.68 | 9.868 | 11.411 | 0→60 / 256 |
+| Brush Soil 3× | 239.68 | 9.874 | 11.804 | 0→60 / 256 |
+| Chisel Clay 1× | 239.85 | 4.659 | 10.511 | 0→87 / 256 |
+| Chisel Clay 3× | 239.85 | 4.660 | 10.415 | 0→87 / 256 |
+| Chisel Sandstone 1× | 239.85 | 4.698 | 9.585 | 0→100 / 256 |
+| Chisel Sandstone 3× | 239.85 | 4.688 | 9.739 | 0→100 / 256 |
+| Blower, Matrix plein 1× | 239.89 | 4.332 | 9.066 | 256→0 / 256 |
+| Blower, Matrix plein 3× | 239.89 | 4.360 | 9.012 | 256→0 / 256 |
+| Brush film Bone 1× | 239.82 | 6.214 | 7.360 | 0→0 / 256 |
+| Brush film Bone 3× | 239.82 | 6.228 | 6.740 | 0→0 / 256 |
 
-À 1× : [sale](evidence/p4-closure-bone-1x-dirty.png), [Blower](evidence/p4-closure-bone-1x-blown.png), [Brush partiel](evidence/p4-closure-bone-1x-brushed.png), [propre](evidence/p4-closure-bone-1x-clean.png).
+Stress supplémentaires à256 miettes : sommeil, mouvement et cavité à1×/3×, tous verts ; P95 maximal8,277 ms. Ensemble16 cas : **239,68–239,89 FPS**, minimum sur1 s **238,63 FPS**, P95 max **9,874 ms**, frame max **11,804 ms**. Upload CPU film P95 :30/29 µs à 1×/3×. Pas de chronomètre GPU isolé.
 
-Soil après 5 s : [grains + Dust 1×](evidence/p4-closure-soil-1x-grains-dust.png), [3×](evidence/p4-closure-soil-3x-grains-dust.png), [vol sous Blower](evidence/p4-closure-soil-3x-blowing.png), [après nettoyage](evidence/p4-closure-soil-3x-blown.png). [F1 séparé](evidence/p4-closure-debug.png).
+Le gain structurel est la suppression de128 instances persistantes réservées,48 transitoires, de l’admission Soil et de son animation. Les anciens chiffres de stress Soil+Matrix n’utilisent pas exactement le même protocole : **aucun pourcentage de gain FPS A/B n’est revendiqué**. Mesures locales courtes, pas une garantie sur toutes machines ou sur une session longue.
+
+Régressions : **1 831 contrôles fonctionnels uniques**, dont47 de clôture ; relectures V1/V2 dans des processus distincts identiques. Suite complète exécutée avant l’ajout du dernier test A/B Blower, puis clôture47 relancée verte. Tests natifs Pick40, protection par composant72, Condition100/97/97/94, verticalité/cartes exactes, film et masses conservées. Les anciens oracles de grains Soil et de quota2/2 sont remplacés par les nouveaux contrats explicites ; les oracles géométriques et outils ne sont pas relâchés.
+
+GPU : **119 contrôles verts** — 13 de clôture, 28 Final Feel, 38 interfaces V1.2, 32 présence Matrix ON/OFF et 8 séquence physique. Les autres benchmarks historiques longs ne sont pas relancés. Le test technique ne valide pas le plaisir.
+
+Preuves : [index de vérification](evidence/p4-final-verification.json), [fonctionnel](evidence/p4-final-closure-tests.json), [benchmark16 cas](evidence/p4-final-closure-benchmark.json), [comparaisons GPU](evidence/p4-final-closure-visual.json). `project.godot` préexistant conservé hors commits.
 
 ## Retest humain — cible OUI partout
 
-Reset avant chaque séquence ; tester 1× et zoom de travail.
+Reset, puis tester1× et le zoom de travail :
 
-1. **Soil** : Brush une grande zone 5–10 s. « Est-ce que je vois maintenant à la fois de la poussière ET des petits grains de terre ? » Puis Blower : « Est-ce que les grains disparaissent/s'envolent clairement ? »
-2. **Indépendance** : atteindre Clay/Sandstone sans nettoyer Soil. « Les Matrix crumbs continuent-elles à apparaître normalement ? » Vérifier les deux compteurs F1.
-3. **Sandstone / cap** : « Est-ce qu'il y a assez de petites miettes visibles à nettoyer ? La scène gagne-t-elle en saleté sans devenir illisible ? »
-4. **Blower Matrix** : balayage dirigé vers un bord. « Partent-elles réellement au loin/hors du bloc, plutôt que de léviter puis retomber à côté ? » Le compteur doit baisser.
-5. **Découverte Bone** : « Ressemble-t-il immédiatement à un fossile sale, tout en restant clairement identifiable comme Bone ? »
-6. **Blower Bone** : « Est-il encore visiblement sale après le Blower ? »
-7. **Brush Bone** : « Nettoyer progressivement l'os est-il satisfaisant, avec un avant/après clair et l'audio continu ? »
-8. **Boucle et nouveau Pick 11/ 0,44/ 1,75** : découverte → Brush Film → Pick matrice attachée → Bone propre. « Cette séquence paraît-elle naturelle et satisfaisante ? »
-9. **10–15 min** : Chisel/debris/Blower agréables, Brush/Pick utiles, verticalité préservée, aucun blocage FPS.
+1. **Soil** : Brush5–10 s. « Le Soil reste-t-il lisible uniquement avec la poussière, sans petites particules ? Le Brush évite-t-il les grosses baisses de FPS ? »
+2. **Clay/Sandstone** : excavation réelle. « Y a-t-il maintenant assez de petites miettes visibles à nettoyer ? »
+3. **Blower** : accumuler, balayer vers le bord, regarder F1, puis creuser à nouveau. « Sont-elles vraiment éjectées hors du bloc, le compteur redescend-il et de nouvelles miettes apparaissent-elles ? »
+4. **Dirty Bone** : révéler puis souffler. « L’os sale se distingue-t-il clairement de la Sandstone tout en restant identifiable ? »
+5. **Préparation** : découverte→Brush film→Pick restes attachés→Bone propre. « Cette boucle est-elle naturelle et satisfaisante ? »
 
-**STOP. PR #7 reste DRAFT ; P4 DONE, merge et P5 attendent une nouvelle autorisation humaine.** Le `project.godot` local préexistant est préservé hors commits.
+Pick natif **11 /0,44 /1,75**,6 Hz, dégâts0, efficacités inchangées. **P4 human-validated baseline — final fine tuning still deferred to P7.** Aucun gros chunk ni fracture Chisel pour Pick.
+
+**STOP. PR #7 reste DRAFT. Aucun merge ni P5 sans nouvelle autorisation.**

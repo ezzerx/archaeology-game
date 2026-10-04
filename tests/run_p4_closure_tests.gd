@@ -13,16 +13,16 @@ func test_budgets() -> void:
 	seed_layer(dirt, 0, 128)
 	seed_layer(dirt, 1, 128)
 	seed_layer(dirt, 2, 128)
-	check(dirt.layer_counts == PackedInt32Array([128, 128, 128]), "full Soil cannot starve Clay or Sandstone, including same source buckets")
+	check(dirt.layer_counts == PackedInt32Array([0, 128, 128]), "Soil deposition is dust-only and cannot starve Clay or Sandstone, including same source buckets")
 	for layer in range(3): dirt.deposit_removed(1000, 600, 16, layer)
-	check(dirt.layer_counts == PackedInt32Array([128, 128, 128]) and dirt.cap_refusals == PackedInt32Array([1, 1, 1]), "separate strict Soil128/Matrix256 caps and rejection counters")
-	check(dirt.persistent_count() == 384, "Fine Dust has no debris slot")
+	check(dirt.layer_counts == PackedInt32Array([0, 128, 128]) and dirt.cap_refusals == PackedInt32Array([0, 1, 1]), "strict Matrix256 cap, Soil has no admission attempts")
+	check(dirt.persistent_count() == 256, "Fine Dust has no debris slot")
 	dirt.clean(Vector2(512, 320), Vector2(512, 320), preload("res://config/soft_brush.tres"), 1)
 	var actual := PackedInt32Array([0, 0, 0])
 	for key: Vector3i in dirt.cells: actual[key.z] += 1
 	check(actual == dirt.layer_counts, "local Brush releases exact layer ownership")
 	dirt.reset()
-	check(dirt.layer_counts == PackedInt32Array([0, 0, 0]) and dirt.soil_hops.is_empty(), "reset frees both budgets and Soil animation")
+	check(dirt.layer_counts == PackedInt32Array([0, 0, 0]), "reset frees the Matrix budget")
 	var large := TerrainDebris.new(terrain(), preload("res://config/debris_physics_profile.tres"), 256)
 	check(large.fragments.size() == 256, "no hidden 192 physical clamp")
 	# Batched dirty marking/early saturated admission must preserve all quantities.
@@ -125,6 +125,27 @@ func test_sweep() -> void:
 	sim.blow(Vector2(127.5, 79.5), Vector2(127.5, 79.5), 15, 1, DT, Vector2.RIGHT)
 	check(is_equal_approx(sim.fragments[slot].velocity.y, -0.1) and sim.fragments[slot].velocity.x > 0, "already airborne fragment receives horizontal push with no upward force")
 
+func test_transport_beyond_jet() -> void:
+	var results := {}
+	for baseline in [true, false]:
+		var sim := TerrainDebris.new(terrain())
+		sim.profile = sim.profile.duplicate()
+		if baseline:
+			sim.profile.blown_drag = 0.8
+			sim.profile.blown_duration = 0.4
+		for i in range(20):
+			sim.spawn(Vector3(-0.25 + (i % 5) * 0.008, 0.046, (i / 5 as int - 1.5) * 0.008), Vector3.ZERO, SIZE, 1 + i % 2, 0)
+		for tick in range(120): sim.advance(DT)
+		# A short centre-table sweep, followed by no further jet contact.
+		for i in range(30):
+			var p := Vector2(65 + i * 1.5, 79.5)
+			sim.blow(p - Vector2.RIGHT * 1.5, p, 15, 1, DT, Vector2.RIGHT)
+			sim.advance(DT)
+		for tick in range(180): sim.advance(DT)
+		results["before" if baseline else "after"] = {"ejected": sim.ejected_count, "remaining": sim.active_count}
+	check(results.after.ejected >= 18 and results.after.ejected > results.before.ejected, "short sweep preserves enough horizontal transport to exit after leaving the jet")
+	report["transport_beyond_jet"] = results
+
 func test_production() -> void:
 	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
 	root.add_child(main)
@@ -140,38 +161,81 @@ func test_production() -> void:
 		s.apply_continuous(previous, point, brush, DT)
 		removed += s.last_removed.x
 		dirt.advance(DT)
-	check(dirt.layer_counts[0] >= 20 and dirt.layer_counts[0] <= 128, "five seconds of production Brush leaves visible Soil grains below cap")
+	check(dirt.layer_counts[0] == 0 and main.feedback.emitted[0] == 0 and main.feedback.pools[0] == null, "five seconds of Soil Brush creates no persistent/transient Soil particle or GPU pool")
 	check(Array(s.residue._values).max() > 0.1, "Soil still creates distinct Fine Dust patches")
 	var matrix_only := true
 	for f in dirt.physics.fragments:
 		if f.active: matrix_only = matrix_only and f.material in [1, 2]
 	check(matrix_only, "Soil never allocates TerrainDebris; Brush can also reach underlying Clay")
 	report["soil_5s"] = {"created": dirt.created_counts[0], "created_per_s": dirt.created_counts[0] / 5.0, "visible": dirt.layer_counts[0], "cap_refused_deposition_attempts": dirt.cap_refusals[0], "local_refused_attempts": dirt.local_refusals[0], "removed_normalized_sum": removed}
-	# Follow the entire dirty strip, including its outer grains. Real radius/clear.
-	for key: Vector3i in dirt.cells.keys():
-		if key.z != 0 or not dirt.cells.has(key): continue
-		var point := dirt.point_for(key)
-		s.apply_continuous(point - Vector2.RIGHT, point, main.controller.tools[2], 0.1)
-	check(not dirt.flying.is_empty() and dirt.count_for(0) > 0, "Soil is transported visibly before border exit, not deleted by Blower contact")
-	step_dirt(dirt, 420)
-	check(dirt.count_for(0) == 0, "Blower transports and ejects all Soil grains along the brushed strip")
+	var current_profile := dirt.profile.duplicate()
 	for layer in [1, 2]:
-		s.reset()
-		for y in range(60, 241):
-			for x in range(580, 901):
-				var index := y * s.size.x + x
-				s._heights[index] = s.strata.packed_limits[index * 2 + layer - 1]
-		s.image.set_data(s.size.x, s.size.y, false, Image.FORMAT_RF, s._heights.to_byte_array())
-		var removed_depth := 0.0
-		for x in [620, 680, 740, 800, 860]:
-			for i in range(4):
-				s.apply_impact(Vector2(x, 140), main.controller.tools[1])
-				removed_depth += s.last_removed[layer]
-		var retained := 0.0
-		for key: Vector3i in dirt.cells:
-			if key.z == layer: retained += dirt.cells[key]
-		check(dirt.layer_counts[layer] >= 20 and removed_depth > 0, "controlled Chisel leaves individually visible hard crumbs: %d" % layer)
-		report["matrix_%d" % layer] = {"count": dirt.layer_counts[layer], "created": dirt.created_counts[layer], "refused_attempts": dirt.refused_count, "cap_refused_attempts": dirt.cap_refusals[layer], "removed_normalized_sum": removed_depth, "removed_volume_mm3": removed_depth * 102 * (1100.0 / 1024) * (700.0 / 640), "retained_normalized": retained, "crumbs_per_removed_unit": dirt.layer_counts[layer] / removed_depth}
+		var baseline_count := 0
+		var baseline_height := PackedByteArray()
+		for baseline in [true, false]:
+			s.reset()
+			dirt.profile = current_profile.duplicate()
+			if baseline: dirt.profile.crumbs_per_bucket = Vector2i(2, 2)
+			for y in range(60, 241):
+				for x in range(580, 901):
+					var index := y * s.size.x + x
+					s._heights[index] = s.strata.packed_limits[index * 2 + layer - 1]
+			s.image.set_data(s.size.x, s.size.y, false, Image.FORMAT_RF, s._heights.to_byte_array())
+			var removed_depth := 0.0
+			for x in [620, 680, 740, 800, 860]:
+				for i in range(4):
+					s.apply_impact(Vector2(x, 140), main.controller.tools[1])
+					removed_depth += s.last_removed[layer]
+			if baseline:
+				baseline_count = dirt.layer_counts[layer]
+				baseline_height = s.image.get_data()
+			else:
+				check(dirt.layer_counts[layer] > baseline_count * (1.3 if layer == 1 else 1.6), "more real crumbs per unchanged excavation: material %d" % layer)
+				check(s.image.get_data() == baseline_height and dirt.cap_refusals[layer] == 0, "frequency comparison has identical removed geometry and no cap: %d" % layer)
+				var retained := 0.0
+				for key: Vector3i in dirt.cells:
+					if key.z == layer: retained += dirt.cells[key]
+				report["matrix_%d" % layer] = {"baseline_count": baseline_count, "count": dirt.layer_counts[layer], "created": dirt.created_counts[layer], "cap_refused_attempts": dirt.cap_refusals[layer], "local_refused_attempts": dirt.local_refusals[layer], "removed_normalized_sum": removed_depth, "removed_volume_mm3": removed_depth * 102 * (1100.0 / 1024) * (700.0 / 640), "retained_normalized": retained, "crumbs_per_removed_unit": dirt.layer_counts[layer] / removed_depth}
+	dirt.profile = current_profile
+	# Actual production relief, original distributed sources, full cap; scan the
+	# table with the native Blower radius, then let transport cross the boundary.
+	s.reset()
+	seed_layer(dirt, 1, 128)
+	seed_layer(dirt, 2, 128)
+	step_dirt(dirt, 120)
+	var before_sweep := dirt.persistent_count()
+	var exit_events: Array = []
+	var capture_exit := func(at, direction, amount, layer): exit_events.append([at, direction, amount, layer])
+	dirt.physical_ejected.connect(capture_exit)
+	var geometry_before := s.image.get_data()
+	for y in range(24, 640, 64):
+		for tick in range(90):
+			var p := Vector2(-40 + tick * 12, y)
+			s.apply_continuous(p - Vector2.RIGHT * 12, p, main.controller.tools[2], DT)
+			dirt.advance(DT)
+	step_dirt(dirt, 180)
+	var after_sweep := dirt.persistent_count()
+	var borders := true
+	for event in exit_events:
+		var at: Vector3 = event[0]
+		borders = borders and (absf(absf(at.x) - 0.55) < 0.00001 or absf(absf(at.z) - 0.35) < 0.00001)
+	check(before_sweep == 256 and after_sweep <= 25, "prolonged native sweep really frees at least 90% of a full Matrix cap")
+	check(borders and exit_events.size() == before_sweep - after_sweep and dirt.physics.active_count == after_sweep, "each departure crosses the true block edge and frees state exactly once")
+	check(s.image.get_data() == geometry_before and s.fossil.condition == 100, "full-cap cleanup preserves structural bytes and Bone Condition")
+	# A real new Chisel excavation must spawn before the budget refill stress.
+	for y in range(80, 201):
+		for x in range(660, 801):
+			var index := y * s.size.x + x
+			s._heights[index] = s.strata.packed_limits[index * 2]
+	s.image.set_data(s.size.x, s.size.y, false, Image.FORMAT_RF, s._heights.to_byte_array())
+	var created_before := dirt.created_counts[1]
+	for hit in range(4): s.apply_impact(Vector2(740, 140), main.controller.tools[1])
+	check(dirt.created_counts[1] > created_before and dirt.persistent_count() > after_sweep, "new native Chisel impacts create Matrix crumbs after ejection")
+	seed_layer(dirt, 1, 256)
+	seed_layer(dirt, 2, 256)
+	check(dirt.persistent_count() == 256 and dirt.physics.active_count == 256, "fresh excavation can refill every freed physical and ownership slot")
+	report["production_full_cap_sweep"] = {"before": before_sweep, "after": after_sweep, "ejected": exit_events.size(), "refilled": dirt.persistent_count(), "sweep_seconds": 15, "transport_seconds": 3}
+	dirt.physical_ejected.disconnect(capture_exit)
 	s.reset()
 	var point := Vector2(250, 230)
 	s.apply_segment(point, point, 45, 100, 1, 1)
@@ -198,6 +262,7 @@ func run() -> void:
 	test_budgets()
 	test_film()
 	test_sweep()
+	test_transport_beyond_jet()
 	await test_production()
 	report["checks"] = checks
 	report["failures"] = failures

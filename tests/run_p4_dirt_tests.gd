@@ -77,13 +77,16 @@ func run() -> void:
 	var dust := block.working_map.residue.image.get_data()
 	fx._process(4)
 	fx.loose_view._process(0)
-	check(fx.particles[0].is_empty() and not cells.is_empty() and fx.loose_view.multimesh.visible_instance_count > 0,
-		"temporary Soil particles expire while visible persistent grains remain")
+	check(fx.particles[0].is_empty() and cells.is_empty() and fx.loose_view.multimesh.visible_instance_count == 0 and Array(block.working_map.residue._values).max() > 0,
+		"Soil Brush leaves Fine Dust only, no transient or persistent grains")
 	check(block.working_map.loose_debris.cells == cells and block.working_map.residue.image.get_data() == dust,
 		"transient FX cannot erase persistent dirt")
 	block.flush_texture() # Commit the preceding Brush edit before measuring Blower.
 	var uploads := block.upload_count
 	var condition := block.working_map.fossil.condition
+	# Legacy F3 OFF hook: explicit Matrix dirt, Soil is dust-only.
+	fx.crumb_physics_enabled = false
+	block.working_map.loose_debris.deposit_removed(712, 140, 16, 1)
 	var world_events: Array = []
 	block.debris_ejected.connect(func(p, d, amount, material): world_events.append([p, d, amount, material]))
 	block.working_map.apply_continuous(Vector2(690, 140), Vector2(720, 140), blower, 1)
@@ -92,7 +95,7 @@ func run() -> void:
 	check(block.upload_count == uploads and block.working_map.fossil.condition == condition,
 		"production blower emits no height upload and causes no bone damage")
 	check(not world_events.is_empty() and absf(world_events[0][0].x - block.surface_size.x * 0.5) < 0.001
-		and world_events[0][1].is_equal_approx(Vector3.RIGHT) and world_events[0][3] == &"loose_soil",
+		and world_events[0][1].is_equal_approx(Vector3.RIGHT) and world_events[0][3] == &"compact_clay",
 		"future debris_ejected hook uses boundary world coordinates and material id")
 	block.working_map.reset()
 	check(fx.loose_view.multimesh.visible_instance_count == 0 and block.working_map.loose_debris.flying.is_empty(),

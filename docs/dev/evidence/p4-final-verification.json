@@ -1,0 +1,121 @@
+{
+  "base_commit": "491934e1dae46c6c980a325e2d73f4aaee58cac6",
+  "functional_unique": 1831,
+  "functional": {
+    "P0 TESTS": {
+      "checks": 45,
+      "failures": 0
+    },
+    "P1 TESTS": {
+      "checks": 52,
+      "failures": 0
+    },
+    "P2 TESTS": {
+      "checks": 97,
+      "failures": 0
+    },
+    "P3 TESTS": {
+      "checks": 88,
+      "failures": 0
+    },
+    "P3 ZOOM TESTS": {
+      "checks": 160,
+      "failures": 0
+    },
+    "P4 TESTS": {
+      "checks": 72,
+      "failures": 0
+    },
+    "P4 PAN TESTS": {
+      "checks": 43,
+      "failures": 0
+    },
+    "P4 AUDIO TESTS": {
+      "checks": 42,
+      "failures": 0
+    },
+    "P4 COMPONENT CONTACT TESTS": {
+      "checks": 72,
+      "failures": 0
+    },
+    "P4 DIRT TESTS": {
+      "checks": 27,
+      "failures": 0
+    },
+    "P4 DEBRIS BUDGET TESTS": {
+      "checks": 18,
+      "failures": 0
+    },
+    "P4 PICK TESTS": {
+      "checks": 40,
+      "failures": 0
+    },
+    "P4 FEEDBACK TESTS": {
+      "checks": 26,
+      "failures": 0
+    },
+    "P4 PROXY TESTS": {
+      "checks": 737,
+      "failures": 0
+    },
+    "P4V TESTS": {
+      "checks": 90,
+      "failures": 0
+    },
+    "P4V EFFORT TESTS": {
+      "checks": 47,
+      "failures": 0
+    },
+    "P4V12 TESTS": {
+      "checks": 37,
+      "failures": 0
+    },
+    "P4V2 CRUMBS TESTS": {
+      "checks": 91,
+      "failures": 0
+    },
+    "P4 CLOSURE TESTS": {
+      "checks": 47,
+      "failures": 0
+    }
+  },
+  "visual_regressions": {
+    "p4-final-regression-feel.json": {
+      "checks": 28,
+      "failures": 0
+    },
+    "p4-final-regression-interfaces.json": {
+      "checks": 38,
+      "failures": 0
+    },
+    "p4-final-regression-matrix-look.json": {
+      "checks": 32,
+      "failures": 0
+    },
+    "p4-final-regression-physics.json": {
+      "checks": 8,
+      "failures": 0
+    }
+  },
+  "closure_visual": {
+    "checks": 13,
+    "failures": 0
+  },
+  "benchmark": {
+    "scenarios": 16,
+    "checks": 58,
+    "failures": 0
+  },
+  "replays": "V1 nine hashes and V2 physics exact across processes",
+  "user_project_godot_sha256": "4FF67FF33A59B309C917AB8B74A90CDB4C4C70A1655FDDD8250E39E8E3AE6F5E",
+  "commands": [
+    "tests/check_p4v2.ps1 -GodotBin <Godot4.7.2 console>",
+    "--headless --script res://tests/run_p4_closure_tests.gd (latest A/B regression)",
+    "--script res://tests/run_p4_closure_visual.gd",
+    "--script res://tests/run_p4_closure_benchmark.gd",
+    "--script res://tests/run_p4_final_feel_visual.gd",
+    "--script res://tests/run_p4v_visual_cleanup_visual.gd",
+    "--script res://tests/run_p4v2_look_visual.gd",
+    "--script res://tests/run_p4v2_benchmark.gd -- --visual-only"
+  ]
+}

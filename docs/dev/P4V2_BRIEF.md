@@ -1,33 +1,27 @@
-# P4 — Passe de clôture : aftermath et préparation Bone
+# P4 — Dernière passe de clôture
 
-2026-10-04 · `prototype/p4v2-debris-physics` · PR #7 **DRAFT**.
+2026-10-04 · `prototype/p4v2-debris-physics` · PR #7 **DRAFT**. Entrée : `491934e1dae46c6c980a325e2d73f4aaee58cac6`.
 
-## Autorisation et acquis humains
+Le retour humain valide le look/physique des Matrix crumbs, le spectacle Chisel, le gameplay Bone Film et le Pick 11 / 0,44 / 1,75. Cette passe simplifie les débris et corrige leur fréquence, leur évacuation et la teinte du film. **STOP après livraison pour retest humain, aucun merge ni P5.**
 
-Antoine valide P4 Final Feel, P4-V1, le look Matrix restauré à 4,5 mm, sa physique persistante et le spectacle Chisel transitoire. La nouvelle demande autorise les derniers correctifs ci-dessous, puis impose **STOP pour validation humaine finale**, sans merge ni P5.
+## Contrat courant
 
-## Contrat de cette passe
+- **Soil particles removed for now; Soil uses dust-only feedback.** Plus de grains persistants, de particules transitoires Soil, de budget Soil, de hop ou de pool GPU associé. Fine Dust et nettoyage Brush/Blower conservés. Cette décision remplace l’addendum demandant des grains Soil visibles.
+- **Matrix uniquement Clay/Sandstone** : look 4,5 mm max conservé, physique légère, persistance, nettoyage au point physique courant. Cap global256. Fréquence augmentée par quotas locaux24×24 : **Clay3, Sandstone4**, contre2/2. Rétention8 %, capacité0,02, aucun grossissement ni disparition automatique. Surplus en Dust.
+- **Blower** : garder le pop unique au sol et la poussée horizontale ; prolonger l’élan hors du rayon du jet pour franchir le vrai bord. Une sortie retire le state, décrémente le compteur et libère les slots. Vérifier un cap plein, balayage prolongé, nouvelles frappes Chisel puis remplissage du budget.
+- **Bone Film** : brun terreux plus sombre, distinct du Sandstone ; conserver des zones ivoire et les mêmes patches. Brush seul retire le film ; Blower/Pick ne le retirent pas. Aucune modification de Condition, Exposure ou protection.
+- **F1** : Matrix/cap, Clay crumbs, Sandstone crumbs, Moving, Sleeping ; Fine Dust séparée, film sous curseur. Aucun compteur Soil.
 
-- Soil : Fine Dust inchangée **et** petits grains terreux distincts, plats et irréguliers. Taille nominale variable 1,8–2,2 mm ; léger hop visuel, sommeil rapide, nettoyage Brush et transport Blower. Cap dédié **128**, comparaison profilée avec 192. Aucun slot TerrainDebris.
-- Matrix : Clay/Sandstone conservent exactement leur look validé, maximum 4,5 mm. Cap physique **256**, indépendant de Soil ; deux places de naissance par zone 24×24 **et par matériau**. Rétention 8 %, capacité 0,02, surplus Fine Dust, aucune éviction.
-- Blower : un petit pop au premier contact avec une miette au sol, puis poussée horizontale continue. Pas de lift répété en vol. Mesurer un balayage ouvert d'une seconde, éjection cible ≥70 %, quantités exactes.
-- Bone Surface Dirt Film : dépôt adhérent automatique à la première exposition. Ivoire chaud identifiable, patches beige/brun, moins brillant. **Brush seul** le retire progressivement, environ une seconde au centre ; Blower laisse le film. La boucle audio Brush continue même sur film seul. Aucun crumb Matrix créé par ce nettoyage.
-- F1 : Soil/cap, Matrix/cap, Clay, Sandstone, Matrix en mouvement/en sommeil, Fine Dust séparée, pourcentage de film sous le curseur et coût d'upload.
+## Invariants et boucle humaine
 
-## Invariants
+Pick **11 / 0,44 / 1,75**,6 Hz, dégâts Bone0, efficacités0,30/1,00/1,50 inchangées. **P4 human-validated baseline — final fine tuning still deferred to P7.** Aucune fracture ni gros chunks Chisel donnés au Pick. Autres outils, géologie V1.1, cleanup V1.2, plafonds/protections Bone, caméra, audio et spectacle transitoire dur conservés.
 
-**Addendum humain Pick confirmé** : `radius=11.0`, `power=0.44`, `falloff=1.75`, cadence 6 Hz, dégâts0, efficacités0,30/ 1,00/ 1,50 inchangées. Remplace7/ 0,24/ 1,50 ; finition structurelle rapide autour de Bone, précision assurée par le petit footprint, aucune fracture Chisel ni gros chunks. Autres baselines intactes. Nouveau champ outil : `bone_film_clear=1.0` pour Soft Brush, zéro ailleurs. Chisel transitoire, Dust, verticalité, génération, plafonds Bone, exposition, protections par composant, séquence Condition 100/97/97/94, Pick et proxies conservés. F3 compare uniquement la physique Matrix ; reset vide les deux budgets et le film.
+Excavation structurelle → chunks transitoires → Clay/Sandstone crumbs persistantes + Fine Dust → découverte Bone sale → Brush film → Pick matrice encore attachée → Bone propre.
 
-**Exposure ≠ Cleanliness ≠ Condition.** Une nouvelle cellule révélée ne resalit jamais une cellule déjà nettoyée, même dans le même texel compact de film.
+**Exposure ≠ Cleanliness ≠ Condition.** Le film reste RGBA8 compact160 KiB avec masque fin ; une nouvelle cellule révélée ne resalit pas les voisines nettoyées.
 
-## Boucle finale
+## Validation demandée
 
-Excavation structurelle → gros éclats transitoires → miettes persistantes physiques + Fine Dust.
+Régressions P0–P4/P4-V, comparaison de rendement à quantité excavée identique, Soil sans grains ni compétition de budget, balayage Blower avec compteur avant/après et vraie réapparition, captures Bone sale/Blower/Brush/propre à1×/3×.
 
-Découverte Bone → film adhérent → Brush pour le film → Pick pour la matrice encore attachée → Bone propre. Brush/Blower enlèvent les saletés détachées ; le Blower laisse la préparation adhérente au Brush.
-
-## Livraison et validation
-
-Tests fonctionnels historiques et de clôture, captures Soil et Bone dirty/blown/brushed/clean à 1×/3×, cap Matrix 128/192/256 + Soil plein, cas sommeil/mouvement/cavité/Blower/Brush, comparaison Soil 128/192 et coût film. Cible soutenue ≥60 FPS, P95 <16,67 ms ; publier aussi les frames isolées hors budget.
-
-[Rapport, preuves et checklist humaine](P4V2_REPORT.md). Commits atomiques et push, PR #7 reste DRAFT. P4 ne devient DONE qu'après le verdict humain demandé.
+Benchmark1080p des gestes Brush Soil, Chisel Clay, Chisel Sandstone, Blower à beaucoup de miettes, Brush film : FPS moyens, P95/max frame et occupation Matrix. Cible soutenue≥60 FPS, P95<16,67 ms ; publier les pointes isolées. [Rapport et checklist](P4V2_REPORT.md).

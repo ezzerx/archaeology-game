@@ -217,11 +217,11 @@ func step_dirt(dirt: LooseDebris, count: int) -> void:
 
 func test_persistent_state() -> void:
 	var dirt := dirt_fixture()
-	check(is_equal_approx(dirt.profile.matrix_crumb_width, 0.0045) and is_equal_approx(dirt.profile.crumb_width, 0.0022),
-		"human-validated P4-V1 crumb scale restored: hard 4.5 mm preserved, Soil 1.8–2.2 mm closure addendum")
-	check(dirt.profile.crumbs_per_bucket == 2 and dirt.profile.bucket_tiles * LooseDebris.STRIDE == 24
+	check(is_equal_approx(dirt.profile.matrix_crumb_width, 0.0045),
+		"human-validated P4-V1 crumb scale restored: hard 4.5 mm preserved; Soil uses dust only")
+	check(dirt.profile.crumbs_per_bucket == Vector2i(3, 4) and dirt.profile.bucket_tiles * LooseDebris.STRIDE == 24
 		and is_equal_approx(dirt.profile.retained_fraction, 0.08) and is_equal_approx(dirt.profile.crumb_capacity, 0.02),
-		"P4-V1 local density and retained amount unchanged by physics")
+		"closure Clay3/Stone4 frequency, same retention/capacity")
 	check(dirt.deposit_removed(96, 80, 0, 2) == 0 and dirt.cells.is_empty(), "zero removal never generates a crumb")
 	var supplied := 0.0
 	var overflow := 0.0
@@ -236,8 +236,8 @@ func test_persistent_state() -> void:
 	check(dirt.physical_slots.size() == dirt.cells.size(), "exactly one physical record per persistent hard crumb")
 	check(absf(supplied - retained - overflow) < 0.001, "every rejected portion returns to Fine Dust, no lost mass")
 	var local_ok := true
-	for count in dirt.occupancy.values(): local_ok = local_ok and count <= 2
-	check(local_ok, "spawn bucket budget stays two crumbs per 24x24 texels")
+	for bucket in dirt.occupancy: local_ok = local_ok and dirt.occupancy[bucket] <= dirt.profile.crumbs_per_bucket[bucket.z - 1]
+	check(local_ok, "spawn bucket respects Clay3/Stone4 per 24x24 texels")
 	for f in dirt.physics.fragments:
 		f.velocity = Vector3.ZERO
 		f.angular_velocity = 0
@@ -350,7 +350,7 @@ func test_scene() -> void:
 	check(not fx.crumb_physics_enabled, "R preserves chosen crumb A/B mode")
 	main._unhandled_input(key)
 	check(fx.crumb_physics_enabled and "Crumb Physics: ON" in fx.debris_debug()
-		and "Moving matrix:" in fx.debris_debug(), "F3 + F1 expose the persistent crumb hypothesis")
+		and "Moving:" in fx.debris_debug(), "F3 + F1 expose the persistent crumb hypothesis")
 	var node_count := get_node_count()
 	var mesh := fx.loose_view.multimesh.mesh.get_rid()
 	var transient_states: Array = []
@@ -374,7 +374,7 @@ func test_scene() -> void:
 		fx._process(0.6)
 		check(fx.particles[1].is_empty() and fx.particles[2].is_empty(), "no large cubes survive 0.7 seconds in either mode")
 	check(transient_states[0] == transient_states[1], "transient trajectories and RNG identical ON/OFF after 100ms")
-	check(get_node_count() == node_count and fx.loose_view.multimesh.instance_count == dirt.profile.matrix_crumb_cap + dirt.profile.soil_grain_cap
+	check(get_node_count() == node_count and fx.loose_view.multimesh.instance_count == dirt.profile.matrix_crumb_cap
 		and fx.loose_view.multimesh.mesh.get_rid() == mesh and not fx.has_node("TerrainHardFragments"),
 		"one fixed persistent renderer, no parallel hard-fragment physics or node/mesh allocation")
 	# Fracture generates its ordinary spectacle and exactly the retained dirty state.

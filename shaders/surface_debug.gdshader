@@ -79,7 +79,7 @@ void fragment() {
 			float amount = ((mask & (1 << bit_index)) != 0) ? film.r : 0.0;
 			float patch = dust_noise(vec2(cell) / 5.0) * 0.65 + dust_noise(vec2(cell) / 1.4) * 0.35;
 			film_cover = amount * (0.20 + 0.64 * smoothstep(0.28, 0.72, patch));
-			color = mix(color, bone_color.rgb * vec3(0.66, 0.56, 0.40), film_cover);
+			color = mix(color, bone_color.rgb * vec3(0.32, 0.25, 0.19), film_cover);
 		}
 		float residue = texture(residue_map, UV).r;
 		if (!exposed_bone && layer > 0) {

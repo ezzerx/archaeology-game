@@ -26,7 +26,6 @@ var layer_counts := PackedInt32Array([0, 0, 0]) # Resting + flying, O(1) spawn a
 var created_counts := PackedInt32Array([0, 0, 0])
 var cap_refusals := PackedInt32Array([0, 0, 0]) # Deposition attempts, not physical grains.
 var local_refusals := PackedInt32Array([0, 0, 0])
-var soil_hops: Dictionary = {}
 var _deposit_batch := false
 var _deposit_bin := Vector2i(-1, -1)
 
@@ -70,15 +69,12 @@ func persistent_count() -> int:
 	return cells.size() + flying.size()
 
 func count_for(layer: int) -> int:
-	return layer_counts[0] if layer == 0 else layer_counts[1] + layer_counts[2]
+	return 0 if layer == 0 else layer_counts[1] + layer_counts[2]
 
 func cap_for(layer: int) -> int:
-	return profile.soil_grain_cap if layer == 0 else profile.matrix_crumb_cap
+	return 0 if layer == 0 else profile.matrix_crumb_cap
 
-func visual_width(point: Vector2, amount: float, layer: int) -> float:
-	if layer == 0:
-		# Soil is discrete granules, not subpixel dust. Stable 1.8–2.2 mm variation.
-		return profile.crumb_width * (0.82 + 0.18 * absf(sin(point.x * 1.7 + point.y * 2.3)))
+func visual_width(_point: Vector2, amount: float, _layer: int) -> float:
 	return profile.matrix_crumb_width * clampf(sqrt(amount / profile.crumb_capacity), 0.08, 1.0)
 
 func moving_count() -> int:
@@ -86,7 +82,7 @@ func moving_count() -> int:
 
 func size_for(key: Vector3i) -> Vector3:
 	var width := visual_width(_spawn_point(key), cells[key], key.z)
-	return Vector3(width, width * (0.14 if key.z == 0 else 0.32), width * 0.75)
+	return Vector3(width, width * 0.32, width * 0.75)
 
 func _map_point(at: Vector3) -> Vector2:
 	return SurfaceMapping.local_to_uv(at, physics.relief.dimensions) * Vector2(height_size) - Vector2.ONE * 0.5
@@ -112,7 +108,6 @@ func _erase_cell(key: Vector3i) -> void:
 		physics.remove(physical_slots[key])
 		physical_slots.erase(key)
 	layer_counts[key.z] -= 1
-	soil_hops.erase(key)
 	cells.erase(key)
 	_rest_points.erase(key)
 	_size_dirty.erase(key)
@@ -145,7 +140,6 @@ func reset() -> void:
 	created_counts.fill(0)
 	cap_refusals.fill(0)
 	local_refusals.fill(0)
-	soil_hops.clear()
 	end_deposition()
 	if physics != null: physics.reset()
 
@@ -157,26 +151,24 @@ func deposit_removed(x: int, y: int, amount: float, layer: int) -> float:
 	# Return unretained depth to the caller for Fine Dust deposition at the exact
 	# excavation pixel. A bucket cannot acquire more or larger persistent chunks.
 	if amount <= 0: return 0.0
+	# Soil uses dust only; no admission bookkeeping or rendering work.
+	if layer not in [1, 2]: return amount
 	@warning_ignore("integer_division")
 	var key := Vector3i(x / STRIDE, y / STRIDE, layer)
 	var bin := Vector2i(key.x, key.y)
 	# A stroke edits many pixels in the same 8x8 bin. Mark existing siblings once
 	# per contiguous run, while keeping acceptance and Fine Dust exact per pixel.
 	if not _deposit_batch or bin != _deposit_bin:
-		for material in range(3):
+		for material in [1, 2]:
 			var other := Vector3i(key.x, key.y, material)
 			if cells.has(other): dirty_cells[other] = true
 		_deposit_bin = bin
-	if layer == 0 and layer_counts[0] >= profile.soil_grain_cap and not cells.has(key):
-		refused_count += 1
-		cap_refusals[0] += 1
-		return amount
 	var bucket := bucket_for(key)
 	var accepted := 0.0
 	var existing := cells.has(key)
 	# A departed crumb must not absorb fresh matter from a distant source cell.
 	var at_source := not physical_slots.has(key) or point_for(key).distance_to(_spawn_point(key)) < STRIDE
-	if (existing and at_source) or (not existing and occupancy.get(bucket, 0) < profile.crumbs_per_bucket
+	if (existing and at_source) or (not existing and occupancy.get(bucket, 0) < profile.crumbs_per_bucket[layer - 1]
 			and count_for(layer) < cap_for(layer)):
 		accepted = minf(amount * profile.retained_fraction / (STRIDE * STRIDE),
 			maxf(0.0, profile.crumb_capacity - cells.get(key, 0.0)))
@@ -185,7 +177,6 @@ func deposit_removed(x: int, y: int, amount: float, layer: int) -> float:
 				occupancy[bucket] = occupancy.get(bucket, 0) + 1
 				layer_counts[layer] += 1
 				created_counts[layer] += 1
-				if layer == 0: soil_hops[key] = 0.0
 				dirty_cells[key] = true
 			cells[key] = cells.get(key, 0.0) + accepted
 			if physics_enabled and physics != null and layer > 0:
@@ -195,7 +186,7 @@ func deposit_removed(x: int, y: int, amount: float, layer: int) -> float:
 		refused_count += 1
 		if not existing:
 			if count_for(layer) >= cap_for(layer): cap_refusals[layer] += 1
-			elif occupancy.get(bucket, 0) >= profile.crumbs_per_bucket: local_refusals[layer] += 1
+			elif occupancy.get(bucket, 0) >= profile.crumbs_per_bucket[layer - 1]: local_refusals[layer] += 1
 	return maxf(0.0, amount - accepted * STRIDE * STRIDE)
 
 func point_for(key: Vector3i) -> Vector2:
@@ -226,7 +217,7 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 	if physics_enabled and physics != null and tool.id == &"air_blower":
 		last_blown = physics.blow(from, to, tool.radius, tool.falloff, delta, jet)
 	# All positions are queried at their current location, including moved sleepers.
-	# At most Soil cap + Matrix cap; no heightfield scan or destination occupancy.
+	# At most the Matrix cap; no heightfield scan or destination occupancy.
 	for key: Vector3i in cells.keys():
 		if tool.id == &"air_blower" and physical_slots.has(key): continue
 		var point := point_for(key)
@@ -237,7 +228,7 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 		var packet: Dictionary = _packets.get(key, {})
 		var merge_packet: bool = not packet.is_empty() and packet.point.distance_to(point) < STRIDE * 2 \
 			and packet.direction.dot(jet) > 0.9
-		# OFF/Soil flight also obeys the total cap. A partial transfer waits for a
+		# F3 OFF flight also obeys the total cap. A partial transfer waits for a
 		# free slot instead of destroying mass or silently exceeding the budget.
 		if tool.id == &"air_blower" and not merge_packet and amount < cells[key] - 0.000001 \
 				and count_for(key.z) >= cap_for(key.z): continue
@@ -249,7 +240,7 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 		dirty_cells[key] = true
 		last_cleared += amount
 		if tool.id == &"air_blower":
-			# Historical 2D flight for OFF/Soil. Quantity remains accounted until exit.
+			# Historical 2D flight for F3 OFF. Quantity remains accounted until exit.
 			if merge_packet: packet.amount += amount
 			else:
 				packet = {"point": point, "direction": jet, "amount": amount, "layer": key.z,
@@ -259,10 +250,6 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 				layer_counts[key.z] += 1
 
 func advance(delta: float) -> void:
-	for key: Vector3i in soil_hops.keys():
-		soil_hops[key] += delta
-		dirty_cells[key] = true
-		if soil_hops[key] >= 0.18: soil_hops.erase(key)
 	if physics != null and physics_enabled:
 		for key: Vector3i in _size_dirty:
 			if physical_slots.has(key): physics.fragments[physical_slots[key]].size = size_for(key)

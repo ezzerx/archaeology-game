@@ -159,7 +159,7 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				last_removed[layer] += old_value - _heights[index]
 				var fine_dust := (old_value - next_value) * residue_generation
 				if loose_debris != null:
-					fine_dust += loose_debris.deposit_removed(x, y, old_value - _heights[index], layer)
+					fine_dust += loose_debris.deposit_removed(x, y, old_value - _heights[index], layer) if layer > 0 else old_value - _heights[index]
 				if fine_dust > 0.0:
 					residue.deposit_removed(x, y, fine_dust)
 				changed += 1

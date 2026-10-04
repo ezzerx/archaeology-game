@@ -111,6 +111,9 @@ func _create_proxies() -> void:
 
 func _create_particles() -> void:
 	for family in range(4):
+		if family == 0:
+			pools.append(null) # Material IDs remain stable; no Soil GPU pool.
+			continue
 		var multi := MultiMesh.new()
 		multi.transform_format = MultiMesh.TRANSFORM_3D
 		multi.use_colors = true
@@ -125,7 +128,7 @@ func _create_particles() -> void:
 		multi.set_instance_color(0, colors[family])
 		multi.visible_instance_count = 1
 		var node := MultiMeshInstance3D.new()
-		node.name = ["SoilGrains", "ClayChips", "StoneFragments", "AirDust"][family]
+		node.name = ["Unused", "ClayChips", "StoneFragments", "AirDust"][family]
 		node.multimesh = multi
 		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		var mat := _material(Color.WHITE)
@@ -154,15 +157,15 @@ func point_world(point: Vector2) -> Vector3:
 		block.relief.height_at(uv) + 0.001, (uv.y - 0.5) * block.surface_size.y))
 
 func _emit(family: int, point: Vector2, count: int, impact := Vector2(INF, INF), detached_depth := 0.0) -> void:
-	if not particles_enabled or profile.particle_amount <= 0:
+	if family == 0 or not particles_enabled or profile.particle_amount <= 0:
 		return
 	var origin := point_world(point)
 	var center := point_world(impact if impact.is_finite() else point)
 	var debris := block.working_map.loose_debris.profile
 	for i in range(mini(ceili(count * profile.particle_amount), 16)):
 		if particles[family].size() >= profile.particles_per_family: break
-		var scale_value := rng.randf_range(0.001, 0.0025) if family in [0, 3] else rng.randf_range(debris.chunk_width.x, debris.chunk_width.y)
-		# P4-A plate/shard proportions for hard material; recent Soil unchanged.
+		var scale_value := rng.randf_range(0.001, 0.0025) if family == 3 else rng.randf_range(debris.chunk_width.x, debris.chunk_width.y)
+		# P4-A plate/shard proportions for hard material.
 		var shape := Vector3(scale_value, scale_value * 0.32, scale_value * 0.75)
 		if family in [1, 2]: shape = Vector3(scale_value, scale_value * (0.24 if family == 1 else 0.7), scale_value)
 		var velocity := Vector3(rng.randf_range(-0.04, 0.04), rng.randf_range(0.035, 0.10), rng.randf_range(-0.04, 0.04))
@@ -196,11 +199,11 @@ func on_air_jet(_from: Vector2, _to: Vector2, _radius: float, _falloff: float, _
 
 func debris_debug() -> String:
 	var state := block.working_map.loose_debris
-	return ("Crumb Physics: %s [F3] | Soil grains: %d / %d | Matrix crumbs: %d / %d\n" % [
-		"ON" if crumb_physics_enabled else "OFF", state.count_for(0), state.profile.soil_grain_cap,
+	return ("Crumb Physics: %s [F3] | Matrix crumbs: %d / %d\n" % [
+		"ON" if crumb_physics_enabled else "OFF",
 		state.count_for(1), state.profile.matrix_crumb_cap]
-		+ "Clay: %d | Sandstone: %d | Moving matrix: %d | Sleeping: %d | Fine Dust: separate\n" % [
-		state.layer_counts[1], state.layer_counts[2], state.physics.active_count - state.physics.sleeping_count, state.physics.sleeping_count]
+		+ "Clay crumbs: %d | Sandstone crumbs: %d | Moving: %d | Sleeping: %d | Fine Dust: separate\n" % [
+		state.layer_counts[1], state.layer_counts[2], state.moving_count(), state.physics.sleeping_count]
 		+ "Terrain samples: %d (tick %d) | CPU: %d us | MultiMesh: %d us\n" % [
 		state.samples_last_frame, state.physics.last_samples, state.physics.last_step_usec, loose_view.last_update_usec])
 
@@ -260,7 +263,6 @@ func on_action(event: Dictionary) -> void:
 		if removed.x + removed.y + event.residue_cleared + loose_cleared + film_cleared > 0:
 			audio.update_brush(event.movement, removed.x + removed.y + event.residue_cleared + loose_cleared + film_cleared,
 				removed.y > removed.x)
-			if removed.y > removed.x: _emit(0, point, 1)
 	elif event.tool == &"precision_pick" and removed.length_squared() > 0:
 		recoil_remaining = 0.14
 		audio.play_family(&"precision_pick", 0.3, true)
@@ -270,7 +272,6 @@ func on_action(event: Dictionary) -> void:
 		airflow = Vector3(direction.x * 0.14, 0.02, direction.y * 0.14)
 		audio.play_family(&"air", clampf(event.residue_cleared + loose_cleared, 0.25, 0.8))
 		_lift_dust(event.get("cleared_dust", []), direction)
-	if removed.x > 0: _emit(0, point, clampi(ceili(removed.x / 8.0), 1, 5))
 	if protected_contact or damaging_hit:
 		# A damaging centre hit wins if that same impact also reveals nearby cells.
 		audio.play_family(&"direct_bone_hit" if damaging_hit else &"bone_revealed",
@@ -301,7 +302,7 @@ func _process(delta: float) -> void:
 		proxy_poses[i].fit(proxy, block, recoil)
 	last_proxy_usec = Time.get_ticks_usec() - proxy_started
 	var particles_started := Time.get_ticks_usec()
-	for family in range(4):
+	for family in [1, 2, 3]:
 		var active: Array = particles[family]
 		for i in range(active.size() - 1, -1, -1):
 			var particle: Dictionary = active[i]
@@ -312,7 +313,7 @@ func _process(delta: float) -> void:
 			if particle.get("dust", false):
 				particle.velocity *= exp(-delta * 0.55)
 			else:
-				particle.velocity.y -= delta * (0.18 if family in [0, 3] else 0.65)
+				particle.velocity.y -= delta * (0.18 if family == 3 else 0.65)
 			particle.position += particle.velocity * delta
 			# One inexpensive visual bounce against the original impact height.
 			if particle.position.y < particle.floor:
@@ -337,7 +338,7 @@ func contact_debug(hit: Dictionary) -> String:
 
 func reset() -> void:
 	if loose_view != null: loose_view._process(0)
-	for family in range(4):
+	for family in [1, 2, 3]:
 		particles[family].clear()
 		pools[family].visible_instance_count = 0
 	for proxy in proxies: proxy.hide()

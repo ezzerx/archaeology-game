@@ -1,6 +1,8 @@
 # Rapport P4 — FINAL FEEL, protection par composant
 
-> Addendum humain de clôture, 2026-10-04 : Precision Pick **radius 11.0 / power 0.44 / falloff 1.75**, cadence 6 Hz, `bone_damage=0`, efficacités inchangées. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les mesures plus anciennes ci-dessous décrivent leur baseline datée ; [rapport courant et perf Pick](P4V2_REPORT.md).
+> Dernière décision de clôture : **Soil dust-only**, grains retirés ; débris persistants uniquement Clay/Sandstone. [Contrat courant](P4V2_BRIEF.md). Les réglages historiques de débris ci-dessous ne sont plus la baseline courante.
+
+> Addendum humain de clôture, 2026-10-04 : Precision Pick **radius 11.0 / power 0.44 / falloff 1.75**, cadence 6 Hz, `bone_damage=0`, efficacités inchangées. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les mesures plus anciennes ci-dessous décrivent leur baseline datée ; [rapport courant](P4V2_REPORT.md), [mesures Pick de la première clôture](P4V2_FIRST_CLOSURE_REPORT.md).
 
 **2026-10-04 · `prototype/p4-game-feel` · Godot 4.7.2 / Compatibility.**
 

@@ -89,7 +89,9 @@ func blower_capture(zoom: int) -> void:
 		max_width = maxf(max_width, basis.x.length())
 		widths_ok = widths_ok and basis.x.length() <= 0.004501 and basis.y.length() <= 0.001441
 	check(widths_ok and max_width > 0.003, "P4-V1 persistent crumb presence restored, bounded to 4.5 mm")
-	check(state.cells.size() <= state.occupancy.size() * 2, "larger visible mess retains the recent local occupancy bound")
+	var local_bound := true
+	for bucket in state.occupancy: local_bound = local_bound and state.occupancy[bucket] <= state.profile.crumbs_per_bucket[bucket.z - 1]
+	check(local_bound, "visible Matrix mess respects Clay3/Stone4 local occupancy")
 	var geometry := block.working_map.image.get_data()
 	var condition := block.working_map.fossil.condition
 	var label := "p4-feel-blower-%dx" % zoom
@@ -139,12 +141,7 @@ func blower_capture(zoom: int) -> void:
 	state.deposit_removed(700, 140, 1000, 0)
 	fx.loose_view._process(0)
 	await RenderingServer.frame_post_draw
-	var soil := fx.loose_view.multimesh.get_instance_transform(0).basis
-	var soil_point := state.point_for(Vector3i(87, 17, 0))
-	# Closure explicitly increases only Soil; the six-sided flat mesh stays intact.
-	var width := state.visual_width(soil_point, 0.02, 0)
-	var expected := Basis(Vector3.UP, soil_point.x * 1.7 + soil_point.y * 2.3).scaled(Vector3(width, width * 0.14, width * 0.75))
-	check(soil.is_equal_approx(expected) and width >= 0.0018 and width <= 0.0025, "closure Soil granules are 1.8–2.5 mm, flat, varied; Matrix remains 4.5 mm")
+	check(state.cells.is_empty() and fx.loose_view.multimesh.visible_instance_count == 0, "Soil generates no persistent GPU instance")
 
 func run() -> void:
 	if DisplayServer.get_name() == "headless":

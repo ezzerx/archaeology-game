@@ -423,3 +423,16 @@ Leçon vérifiée de performance : profiler Soil au cap en parallèle de Matrix 
 ## Precision Pick — addendum humain confirmé, 2026-10-04
 
 Nouveau test humain positif : **11 / 0,44 / 1,75** remplace **7 / 0,24 / 1,50** dans la ressource native. Cadence6 Hz, dégâts Bone 0, efficacités0,30/ 1,00/ 1,50 inchangées. Finition structurelle rapide après Chisel ; faible capacité de déblaiement due au petit footprint, pas à un impact local péniblement faible. Aucun stress de fracture ni gros chunks Chisel. Brush prépare le film adhérent, Blower chasse le mess libre. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les anciennes entrées de décision conservent leur valeur historique, pas une baseline concurrente.
+
+
+## P4 — Dernière clôture : simplification et évacuation, 2026-10-04
+
+**Décision produit confirmée : “Soil particles removed for now; Soil uses dust-only feedback.”** Les grains apportent peu de lisibilité et dégradent la sensation de fluidité pendant Brush. Cette décision remplace l’addendum précédent : retirer génération persistante/transitoire, budget, hop et pool GPU Soil ; conserver Dust et son nettoyage. Les index matériau restent stables, la case0 des tableaux communs est inutilisée pour les débris.
+
+Les petits débris persistants sont uniquement Clay/Sandstone, même look4,5 mm et physique légère. Le manque de présence hors cap se corrige par **3/4 places locales Clay/Stone**, contre2/2, sans toucher le retrait structurel ni agrandir les morceaux. Mesure à volume retiré exact :45→66 et38→65, refus cap0. La fréquence est un paramètre de débris, pas un retuning des outils.
+
+Le Blower doit **libérer le budget par une vraie sortie**, pas seulement dégager la zone locale. La traînée réduite dure2 s après contact (0,2 s⁻¹) pour conserver l’élan hors du rayon du jet ; gravité et absence de lift répété conservées. Le state est retiré uniquement au franchissement du bord ou au nettoyage Brush. Tester départ d’un cap plein, sortie unique, nouvelles frappes puis remplissage détecte mieux les blocages qu’un compteur de mouvement seul.
+
+Le **gameplay Bone Film est validé humainement**. Seule sa teinte change : brun terreux plus sombre, patches ivoire encore visibles, distinction Sandstone à retester. Brush seul retire le film ; pas d’autorité sur Exposure, Condition ou protections. Boucle canonique : excavation→chunks ; aftermath→Matrix crumbs + Dust ; découverte→film ; préparation→Brush film→Pick matrice attachée→Bone propre.
+
+Pick **11 / 0,44 / 1,75**,6 Hz, dégâts0, efficacités intactes reste la baseline humaine. **P4 human-validated baseline — final fine tuning still deferred to P7.** [Preuves et retest final](../dev/P4V2_REPORT.md). **PR #7 DRAFT, STOP, aucun merge ni P5.**

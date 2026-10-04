@@ -21,5 +21,7 @@ extends Resource
 @export var crumb_blower_pop := 0.055
 @export var crumb_blower_acceleration := 12.0
 @export var crumb_blower_speed_limit := 1.6
-@export var blown_drag := 0.8
-@export var blown_duration := 0.4
+# Preserve short-lived horizontal transport beyond the jet footprint so a
+# proper sweep reaches the edge and frees ownership; gravity still acts.
+@export var blown_drag := 0.2
+@export var blown_duration := 2.0

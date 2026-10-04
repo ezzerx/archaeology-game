@@ -1,0 +1,60 @@
+{
+	"checks": 32,
+	"failures": 0,
+	"p4v2-look-clay-1x-off": {
+		"amount": 0.513964636959136,
+		"coverage_ratio": 3.78313253012048,
+		"crumbs": 59,
+		"micro_pixels": 83,
+		"restored_pixels": 314
+	},
+	"p4v2-look-clay-1x-on": {
+		"amount": 0.513964636959136,
+		"coverage_ratio": 3.88888888888889,
+		"crumbs": 59,
+		"micro_pixels": 72,
+		"restored_pixels": 280
+	},
+	"p4v2-look-clay-3x-off": {
+		"amount": 0.513964636959136,
+		"coverage_ratio": 3.95850622406639,
+		"crumbs": 59,
+		"micro_pixels": 723,
+		"restored_pixels": 2862
+	},
+	"p4v2-look-clay-3x-on": {
+		"amount": 0.513964636959136,
+		"coverage_ratio": 3.82142857142857,
+		"crumbs": 59,
+		"micro_pixels": 672,
+		"restored_pixels": 2568
+	},
+	"p4v2-look-stone-1x-off": {
+		"amount": 0.199699995536357,
+		"coverage_ratio": 3.875,
+		"crumbs": 36,
+		"micro_pixels": 32,
+		"restored_pixels": 124
+	},
+	"p4v2-look-stone-1x-on": {
+		"amount": 0.199699995536357,
+		"coverage_ratio": 3.65625,
+		"crumbs": 36,
+		"micro_pixels": 32,
+		"restored_pixels": 117
+	},
+	"p4v2-look-stone-3x-off": {
+		"amount": 0.199699995536357,
+		"coverage_ratio": 3.98257839721254,
+		"crumbs": 36,
+		"micro_pixels": 287,
+		"restored_pixels": 1143
+	},
+	"p4v2-look-stone-3x-on": {
+		"amount": 0.199699995536357,
+		"coverage_ratio": 3.99625468164794,
+		"crumbs": 36,
+		"micro_pixels": 267,
+		"restored_pixels": 1067
+	}
+}

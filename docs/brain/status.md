@@ -156,18 +156,19 @@ Code/tests : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Validation finale :
 
 Validation humaine : **NON/OUI/OUI** obtenus — grille orange absente, blocs/profondeur mieux lisibles, base toujours agréable. P4-V1 est validé et mergé via PR #6. Watchpoint différé : la poussière réduit encore la lisibilité des arêtes/blocs avant Blower ; après nettoyage, les bords noirs et la profondeur se lisent mieux. À reprendre en polish visuel/P6-P7, pas comme blocker gameplay. **P4-V2 debris physics peut être ouvert séparément ; P5 reste bloqué tant que ce spike n'est pas cadré/validé.**
 
-## P4 — Clôture livrée, validation finale attendue ▶
+## P4 — Dernière clôture livrée, retest humain attendu ▶
 
-Retour humain confirmé sur la baseline `874edc4` : P4 Final Feel/P4-V1, look Matrix restauré4,5 mm, physique persistante et chunks Chisel transitoires validés. Nouvelle autorisation explicite de clôture ; **P4 n'est pas déclaré DONE avant retest**.
+Retours humains acquis : P4 Final Feel/P4-V1, look Matrix 4,5 mm, physique persistante, spectacle Chisel, gameplay Bone Film et Pick **11 / 0,44 / 1,75**. Le dernier retour retire Soil grains et demande plus de Matrix crumbs, une évacuation franche et un film plus distinct du Sandstone.
 
-- Budgets Soil **128** / Matrix **256**, deux slots locaux par matériau ; Fine Dust indépendante. Soil 128 n'empêche plus Clay/Stone. Grains Soil plats/bruns1,8–2,2 mm : 128 visibles après5 s de Brush dans la fixture ; 45Clay/38Stone sur20 impacts contrôlés par matériau, sans multiplicateur de rétention.
-- Blower : pop 0,055 m/s unique au sol, push12 m/s² horizontal limité1,6 m/s, traînée réduite0,4 s. Banc ouvert1 s : **80/80 éjectées**, déplacement moyen56,95 cm, soulèvement max2,35 mm, quantité exacte.
-- Bone Film : découverte automatique, ivoire sale, seul Brush nettoie (`1,0/s`, initial 0,85) ; nouvelle voisine ne resalit pas une cellule propre. RGBA8 compacte 160 KiB et masque fin ; audio Brush sur film seul. Exposure/Condition/protections restent indépendantes.
-- Optimisation de déposition saturée et sondes terrain après échec du stress initial ; résultats, timings et limites exacts dans le rapport. Aucun changement de géologie/outils structurels/spectacle/Dust.
+- **Soil particles removed for now; Soil uses dust-only feedback.** Plus de grains persistants/transitoires, de cap Soil, de hop ni de pool GPU Soil. Fine Dust et Brush/Blower préservés.
+- **Matrix cap 256**, Clay3 / Stone4 places par zone24×24, rétention8 %, capacité0,02, look inchangé. Même excavation contrôlée : **45→66 Clay (+47 %), 38→65 Stone (+71 %)**, aucun refus au cap.
+- **Blower** : pop0,055 m/s, push12 m/s², max1,6 m/s conservés ; traînée0,2 s⁻¹ pendant2 s. Balayage prolongé sur relief réel : **256→0**, sorties au bord exact, nouveaux impacts Chisel produisent des miettes, budget rechargeable à256. Aucune suppression arbitraire en milieu de bloc.
+- **Bone Film** : mécanique validée conservée, patches désormais brun terreux plus sombre avec zones ivoire. Brush seul nettoie ; Blower/Pick n’enlèvent pas le film. Exposure/Condition/protections indépendantes.
+- Pick natif humain inchangé, aucune fracture/gros chunks Chisel. Géologie, autres outils, proxies et audio conservés.
 
-`c775186c12d60e2a2313b2e905c161da6e8310d7` · [Rapport courant, preuves et mesures](../dev/P4V2_REPORT.md) · [Brief](../dev/P4V2_BRIEF.md). [Ancienne restauration archivée](../dev/P4V2_LOOK_REPORT.md). Modification locale `project.godot` préexistante préservée hors commits.
+[Rapport courant, tests et performances](../dev/P4V2_REPORT.md) · [Brief](../dev/P4V2_BRIEF.md) · [Première clôture archivée](../dev/P4V2_FIRST_CLOSURE_REPORT.md). Le `project.godot` local préexistant reste hors commits.
 
-**Prochaine action : retest humain** Soil grains+Dust, indépendance des caps, quantité Stone, Blower hors bloc, Bone sale après révélation/Blower, nettoyage Brush progressif, boucle avec Pick, session 10–15 min. **STOP, PR #7 DRAFT ; aucun merge ni P5.**
+**Prochaine action : retest humain** Soil dust-only/fluidité, quantité Clay/Stone, Blower hors bloc et compteur, teinte Bone distincte, découverte→Brush→Pick→Bone propre. **STOP, PR #7 DRAFT ; aucun merge ni P5.** Cette dernière passe n’est pas déclarée validée humainement par les seuls tests automatiques.
 
 ## Watchpoints techniques
 

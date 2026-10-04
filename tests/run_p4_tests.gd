@@ -206,7 +206,7 @@ func test_scene_and_audio() -> void:
 	check(error < 0.00001, "225 picking roundtrips on real P4 fracture edges")
 	var p := Vector2(200, 200)
 	block.working_map.apply_continuous(p, p, brush, 0.1)
-	check(fx.emitted[0] > 0 and fx.audio.last_family == &"brush_soil", "real soil action emits grains and soil sound")
+	check(fx.emitted[0] == 0 and fx.pools[0] == null and fx.audio.last_family == &"brush_soil", "real Soil action keeps sound without grain emission")
 	block.working_map.apply_continuous(p, p, blower, 0.1)
 	check(fx.emitted[3] > 0 and fx.audio.last_family == &"air", "real blower clearing emits dust and air sound")
 	for family in MaterialAudio.FAMILIES:
@@ -227,9 +227,9 @@ func test_scene_and_audio() -> void:
 	for tool in range(4):
 		check(Vector3(control.tools[tool].radius, control.tools[tool].power, control.tools[tool].falloff).is_equal_approx(baseline[tool]),
 			"specimen reset keeps the launch baseline without debug adjustment: tool %d" % tool)
-	check(fx.emitted == PackedInt32Array([0, 0, 0, 0]) and fx.action_count == 0 and before_particles[0] > 0, "R clears particle counters and transient actions")
+	check(fx.emitted == PackedInt32Array([0, 0, 0, 0]) and fx.action_count == 0 and before_particles[3] > 0, "R clears particle counters and transient actions")
 	var all_clear := fx.audio.played == 0 and fx.recoil_remaining == 0 and fx.bone_remaining == 0
-	for family in range(4): all_clear = all_clear and fx.particles[family].is_empty() and fx.pools[family].visible_instance_count == 0
+	for family in range(4): all_clear = all_clear and fx.particles[family].is_empty() and (fx.pools[family] == null or fx.pools[family].visible_instance_count == 0)
 	check(all_clear, "R immediately clears all visible particle/audio/recoil state")
 	main.free()
 	await process_frame
