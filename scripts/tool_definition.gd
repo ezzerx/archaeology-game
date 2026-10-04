@@ -24,6 +24,7 @@ enum InteractionMode { CONTINUOUS, IMPACT }
 ## Residue units/second (continuous) or units/impact, before radial falloff.
 @export_range(0.0, 10.0, 0.1) var residue_clear := 0.0:
 	set(value): residue_clear = clampf(value, 0.0, 10.0)
+@export_range(0.0, 4.0, 0.05) var bone_film_clear := 0.0
 ## Percentage points per direct impact on a centre cell exposed BEFORE the hit.
 @export_range(0.0, 100.0, 0.1) var bone_damage := 0.0:
 	set(value): bone_damage = clampf(value, 0.0, 100.0)

@@ -17,6 +17,9 @@ var relief: ReliefSurface
 var texture: ImageTexture
 var layer_texture: ImageTexture
 var residue_texture: ImageTexture
+var bone_film_texture: ImageTexture
+var last_film_upload_usec := 0
+var film_upload_count := 0
 var fossil_texture: ImageTexture
 var fracture_texture: ImageTexture
 var last_fracture_upload_usec := 0
@@ -54,6 +57,7 @@ func _ready() -> void:
 	texture = ImageTexture.create_from_image(working_map.image)
 	layer_texture = ImageTexture.create_from_image(strata.boundaries)
 	residue_texture = ImageTexture.create_from_image(working_map.residue.image)
+	bone_film_texture = ImageTexture.create_from_image(working_map.bone_film.image)
 	fossil_texture = ImageTexture.create_from_image(working_map.fossil.field.image)
 	fracture_texture = ImageTexture.create_from_image(working_map.fracture.image)
 	working_map.fracture.dirty = false
@@ -63,6 +67,7 @@ func _ready() -> void:
 	material.set_shader_parameter("working_map", texture)
 	material.set_shader_parameter("layer_boundaries", layer_texture)
 	material.set_shader_parameter("residue_map", residue_texture)
+	material.set_shader_parameter("bone_film_map", bone_film_texture)
 	material.set_shader_parameter("fossil_map", fossil_texture)
 	material.set_shader_parameter("fracture_map", fracture_texture)
 	material.set_shader_parameter("fracture_sizes", Vector2(reactions.patch_size(1), reactions.patch_size(2)))
@@ -148,6 +153,14 @@ func set_debug_view(view: int) -> void:
 	skirt_material.set_shader_parameter("debug_view", debug_view)
 
 func flush_texture() -> void:
+	last_film_upload_usec = 0
+	if working_map.bone_film.dirty:
+		var start := Time.get_ticks_usec()
+		working_map.bone_film.flush_image()
+		bone_film_texture.update(working_map.bone_film.image)
+		last_film_upload_usec = Time.get_ticks_usec() - start
+		film_upload_count += 1
+		working_map.bone_film.dirty = false
 	last_upload_usec = 0
 	last_residue_upload_usec = 0
 	last_fracture_upload_usec = 0

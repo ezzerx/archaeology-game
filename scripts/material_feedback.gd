@@ -238,6 +238,7 @@ func on_action(event: Dictionary) -> void:
 	var removed: Vector3 = event.removed
 	var point: Vector2 = event.point
 	var loose_cleared: float = event.get("loose_cleared", 0.0)
+	var film_cleared: float = event.get("bone_film_cleared", 0.0)
 	var protected_contact: bool = event.get("bone_protected_contact", false)
 	var damaging_hit: bool = event.direct_bone_hit and event.get("bone_damage", 0.0) > 0.0
 	if event.tool == &"chisel":
@@ -256,8 +257,8 @@ func on_action(event: Dictionary) -> void:
 				point, chunk.volume / chunk.cells)
 	elif event.tool == &"soft_brush":
 		sweep_remaining = 0.12
-		if removed.x + removed.y + event.residue_cleared + loose_cleared > 0:
-			audio.update_brush(event.movement, removed.x + removed.y + event.residue_cleared + loose_cleared,
+		if removed.x + removed.y + event.residue_cleared + loose_cleared + film_cleared > 0:
+			audio.update_brush(event.movement, removed.x + removed.y + event.residue_cleared + loose_cleared + film_cleared,
 				removed.y > removed.x)
 			if removed.y > removed.x: _emit(0, point, 1)
 	elif event.tool == &"precision_pick" and removed.length_squared() > 0:

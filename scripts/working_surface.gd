@@ -9,6 +9,7 @@ var dirty := true
 var strata: Stratigraphy
 var residue: SurfaceResidue
 var fossil: FossilState
+var bone_film: BoneSurfaceFilm
 signal material_action(event: Dictionary)
 ## Feedback-only jet, including clean terrain. It never changes the action/state.
 signal air_jet_applied(from: Vector2, to: Vector2, radius: float, falloff: float, delta: float, direction: Vector2)
@@ -29,6 +30,7 @@ func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null,
 	strata = stratigraphy
 	image = Image.create(size.x, size.y, false, Image.FORMAT_RF)
 	residue = SurfaceResidue.new(size)
+	bone_film = BoneSurfaceFilm.new(size)
 	if reactions != null:
 		assert(strata != null)
 		fracture = MaterialFracture.new(size, reactions)
@@ -36,6 +38,7 @@ func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null,
 	if fossil_field != null:
 		assert(fossil_field.size == size)
 		fossil = FossilState.new(fossil_field)
+		fossil.bone_cell_exposed.connect(bone_film.expose)
 	reset()
 
 func reset() -> void:
@@ -43,6 +46,7 @@ func reset() -> void:
 	_heights.fill(1.0)
 	image.fill(Color(1.0, 0.0, 0.0, 1.0))
 	residue.reset()
+	bone_film.reset()
 	if fracture != null:
 		fracture.reset()
 	if loose_debris != null: loose_debris.reset()
@@ -193,6 +197,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		return 0
 	residue.last_cleared = 0.0
 	residue.cleared_packets = []
+	bone_film.clean(from, to, tool, amount) # Before revelation: newly exposed film survives this stroke.
 	if loose_debris != null: loose_debris.clean(from, to, tool, amount)
 	var changed := 0
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
@@ -226,10 +231,10 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		bone_protected_contact = fossil.contact_at(center_index, tool.bone_damage, was_exposed_before_impact)
 		bone_damage = condition_before - fossil.condition
 	var loose_cleared := loose_debris.last_cleared if loose_debris != null else 0.0
-	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
+	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_film.last_cleared > 0 or bone_revealed or direct_bone_hit:
 		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
 			"changed": changed, "marks": marks, "chunks": fracture.last_chunks.duplicate(true) if is_fracture else [],
-			"residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
+			"bone_film_cleared": bone_film.last_cleared, "residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
 			"cleared_dust": residue.cleared_packets.duplicate(true),
 			"direction": loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized(), "bone_revealed": bone_revealed,
 			"bone_first_contact": bone_first_contact,

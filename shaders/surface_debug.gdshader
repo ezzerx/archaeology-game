@@ -4,6 +4,7 @@ render_mode cull_disabled, diffuse_burley;
 uniform sampler2D working_map : filter_linear, repeat_disable;
 uniform sampler2D layer_boundaries : filter_linear, repeat_disable;
 uniform sampler2D residue_map : filter_linear, repeat_disable;
+uniform sampler2D bone_film_map : filter_nearest, repeat_disable;
 uniform sampler2D fossil_map : filter_nearest, repeat_disable;
 uniform sampler2D fracture_map : filter_nearest, repeat_disable;
 uniform vec2 fracture_sizes = vec2(9.0, 5.0);
@@ -68,8 +69,18 @@ void fragment() {
 	bool exposed_bone = !is_skirt && bone.g > 0.5 && texelFetch(working_map, cell, 0).r <= bone.r + bone_exposure_epsilon;
 	if (exposed_bone) { color = bone_color.rgb; }
 	float dust_cover = 0.0;
+	float film_cover = 0.0;
 	// Persistent dirt is shaded only; geometry, debug views and picking stay exact.
 	if (debug_view == 0 && !is_skirt) {
+		if (exposed_bone) {
+			vec4 film = texelFetch(bone_film_map, cell / 4, 0);
+			int mask = int(round(film.g * 255.0)) | (int(round(film.b * 255.0)) << 8);
+			int bit_index = (cell.y % 4) * 4 + cell.x % 4;
+			float amount = ((mask & (1 << bit_index)) != 0) ? film.r : 0.0;
+			float patch = dust_noise(vec2(cell) / 5.0) * 0.65 + dust_noise(vec2(cell) / 1.4) * 0.35;
+			film_cover = amount * (0.20 + 0.64 * smoothstep(0.28, 0.72, patch));
+			color = mix(color, bone_color.rgb * vec3(0.66, 0.56, 0.40), film_cover);
+		}
 		float residue = texture(residue_map, UV).r;
 		if (!exposed_bone && layer > 0) {
 			bool clay = layer == 1;
@@ -128,7 +139,9 @@ void fragment() {
 	if (debug_view == 3) { color = relief_normal * 0.5 + 0.5; }
 	ALBEDO = mix(color, cursor_color.rgb, marker);
 	ROUGHNESS = mix(exposed_bone ? 0.43 : 0.85, exposed_bone ? 0.65 : 1.0, dust_cover);
+	ROUGHNESS = mix(ROUGHNESS, 0.92, film_cover);
 	SPECULAR = mix(exposed_bone ? 0.38 : 0.15, exposed_bone ? 0.28 : 0.06, dust_cover);
+	SPECULAR *= 1.0 - film_cover * 0.65;
 	if (debug_view != 0) {
 		SPECULAR = 0.0;
 		EMISSION = ALBEDO;
