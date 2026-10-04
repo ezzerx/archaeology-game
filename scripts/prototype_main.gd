@@ -118,7 +118,9 @@ func _process(delta: float) -> void:
 	bone_label.text = ("%s / DEBUG\nExposure %.2f%% | %d / %d cells\nBone Condition %.0f%%\n" % [
 		FossilField.SPECIMEN_NAME, fossil.exposure_percent(), fossil.exposed_cells, fossil.field.total_cells, fossil.condition]
 		+ hovered + "\n")
+	bone_label.text += "Component exposure / Direct protection:\n"
 	for component in range(1, FossilField.COMPONENT_NAMES.size()):
-		bone_label.text += "%s: %.2f%%\n" % [FossilField.COMPONENT_NAMES[component], fossil.exposure_percent(component)]
+		bone_label.text += "%s: %.2f%% | %s\n" % [FossilField.COMPONENT_NAMES[component], fossil.exposure_percent(component),
+			"READY" if fossil.is_direct_contact_protected(component) else "USED"]
 	bone_label.text += "Contact: %s\nDamage: %s\nCap %d FPS | Physics %d Hz" % [fossil.last_bone_event,
 		fossil.last_damage_event, Engine.max_fps, Engine.physics_ticks_per_second]

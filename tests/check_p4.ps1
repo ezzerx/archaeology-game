@@ -22,6 +22,7 @@ function Invoke-P4Check([string]$Name, [string[]]$EngineArguments) {
 Invoke-P4Check 'p4-tests' @('--headless', '--script', 'res://tests/run_p4_tests.gd')
 Invoke-P4Check 'p4-pan-tests' @('--headless', '--script', 'res://tests/run_p4_pan_tests.gd')
 Invoke-P4Check 'p4-audio-tests' @('--headless', '--script', 'res://tests/run_p4_audio_tests.gd')
+Invoke-P4Check 'p4-component-contact-tests' @('--headless', '--script', 'res://tests/run_p4_component_contact_tests.gd')
 Invoke-P4Check 'p4-dirt-tests' @('--headless', '--script', 'res://tests/run_p4_dirt_tests.gd')
 Invoke-P4Check 'p4-debris-budget-tests' @('--headless', '--script', 'res://tests/run_p4_debris_budget_tests.gd')
 Invoke-P4Check 'p4-pick-tests' @('--headless', '--script', 'res://tests/run_p4_pick_tests.gd')

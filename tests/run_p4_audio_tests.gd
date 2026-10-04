@@ -52,7 +52,7 @@ func test_material_reveals(fx: MaterialFeedback, layer: int) -> void:
 						var dominant := &"chisel_stone" if event.removed.z > event.removed.y else &"chisel_clay"
 						mixed_correct = mixed_correct and fx.audio.last_family == dominant
 		check(discoveries == 1 and bone_sounds == 0 and first_correct and surface.fossil.condition == 100
-			and not surface.fossil.first_direct_contact_consumed,
+			and surface.fossil.direct_contact_consumed.count(1) == 0,
 			"all adjacent discoveries keep material audio and direct protection: layer %d cycle %d" % [layer, cycle])
 		check(later_reveals >= 2 and material_correct and exposure_increases,
 			"additional adjacent reveals keep material audio AND count exposure: layer %d cycle %d" % [layer, cycle])
@@ -119,7 +119,7 @@ func run() -> void:
 	check(surface.last_action.get("bone_revealed", false) and not surface.last_action.get("direct_bone_hit", false)
 		and surface.fossil.condition == 100 and counters[1] == 0, "adjacent fracture reveals bone without direct-hit event or damage")
 	fx.on_action(surface.last_action)
-	check(audio.last_family == &"chisel_stone" and not surface.fossil.first_direct_contact_consumed,
+	check(audio.last_family == &"chisel_stone" and surface.fossil.direct_contact_consumed.count(1) == 0,
 		"A: adjacent Sandstone discovery keeps Stone audio and available direct protection")
 	check(surface.last_action.bone_first_contact and surface.last_action.bone_damage == 0,
 		"first specimen discovery is distinct from per-cell reveal and actual damage")
@@ -131,7 +131,7 @@ func run() -> void:
 	fx.on_action(surface.last_action)
 	check(surface.last_action.direct_bone_hit and surface.last_action.bone_protected_contact
 		and surface.last_action.bone_damage == 0 and surface.fossil.condition == 100 and counters[1] == 0
-		and surface.fossil.first_direct_contact_consumed and audio.last_family == &"bone_revealed",
+		and surface.fossil.direct_contact_consumed.count(1) == 1 and audio.last_family == &"bone_revealed",
 		"B: first direct hit after adjacent reveal spends protection, plays small tik, condition stays 100")
 	surface.apply_impact(contact, strong)
 	check(surface.last_action.direct_bone_hit and surface.fossil.condition == 97 and counters[1] == 1,
@@ -160,7 +160,7 @@ func run() -> void:
 		and audio.last_family != &"direct_bone_hit" and audio.last_family != &"bone_revealed",
 		"Bone sounds are reserved for protected direct contact or actual condition loss")
 	surface.reset()
-	check(not surface.fossil.first_direct_contact_consumed and surface.fossil.condition == 100,
+	check(surface.fossil.direct_contact_consumed.count(1) == 0 and surface.fossil.condition == 100,
 		"D: reset rearms direct-contact protection independently of discovery")
 	# Safe tools reveal/visit the cap before Chisel: none may spend protection.
 	var pick := load("res://config/precision_pick.tres").duplicate() as ToolDefinition
@@ -173,7 +173,7 @@ func run() -> void:
 	for i in range(5): surface.apply_impact(contact, pick)
 	surface.apply_continuous(contact, contact, brush, 1)
 	surface.apply_continuous(contact, contact, blower, 1)
-	check(surface.fossil.condition == 100 and not surface.fossil.first_direct_contact_consumed,
+	check(surface.fossil.condition == 100 and surface.fossil.direct_contact_consumed.count(1) == 0,
 		"E: Pick/Brush/Blower direct visits never damage or consume Chisel protection")
 	surface.apply_impact(contact, strong)
 	check(surface.last_action.bone_protected_contact and surface.fossil.condition == 100,
@@ -186,14 +186,14 @@ func run() -> void:
 		if surface.fossil.exposed[field.index_at_map(contact)] != 0: break
 	fx.on_action(surface.last_action)
 	check(surface.last_action.bone_revealed and not surface.last_action.bone_protected_contact
-		and not surface.last_action.direct_bone_hit and not surface.fossil.first_direct_contact_consumed
+		and not surface.last_action.direct_bone_hit and surface.fossil.direct_contact_consumed.count(1) == 0
 		and surface.fossil.condition == 100 and surface.last_action.bone_damage == 0 and audio.last_family == &"chisel_stone",
 		"hidden centre reveal keeps material sound, zero damage and protection STILL available")
 	surface.apply_impact(contact, center_reveal)
 	fx.on_action(surface.last_action)
 	check(surface.last_action.bone_protected_contact and surface.last_action.direct_bone_hit
 		and surface.fossil.condition == 100 and surface.last_action.bone_damage == 0
-		and surface.fossil.first_direct_contact_consumed and audio.last_family == &"bone_revealed",
+		and surface.fossil.direct_contact_consumed.count(1) == 1 and audio.last_family == &"bone_revealed",
 		"first following hit on now-visible Bone is the protected tik at condition 100")
 	surface.apply_impact(contact, center_reveal)
 	fx.on_action(surface.last_action)
@@ -201,7 +201,7 @@ func run() -> void:
 		and not surface.last_action.bone_protected_contact and audio.last_family == &"direct_bone_hit",
 		"second visible-Bone hit gives DING and three damage, after reveal then protected contact")
 	surface.reset()
-	check(surface.fossil.condition == 100 and not surface.fossil.first_direct_contact_consumed,
+	check(surface.fossil.condition == 100 and surface.fossil.direct_contact_consumed.count(1) == 0,
 		"reset rearms protection after the complete hidden-visible-protected-damage sequence")
 	audio.reset()
 	check(audio.brush_level == 0 and audio.brush_starts == 0 and audio.brush_voices[0].stream == null,

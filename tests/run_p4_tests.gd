@@ -107,7 +107,7 @@ func test_bone_and_events() -> void:
 		surface.apply_impact(contact, strong)
 		impacts += 1
 	check(surface.fossil.exposed[index] != 0 and surface.fossil.condition == 100, "P4 fracture first hidden contact protected")
-	check(not surface.fossil.first_direct_contact_consumed and not surface.last_action.bone_protected_contact,
+	check(surface.fossil.direct_contact_consumed.count(1) == 0 and not surface.last_action.bone_protected_contact,
 		"P4 centre reveal never consumes the visible-contact protection")
 	surface.apply_impact(contact, strong)
 	check(surface.fossil.condition == 100 and surface.last_action.bone_protected_contact,

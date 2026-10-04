@@ -40,7 +40,7 @@ func run() -> void:
 			direct = Vector2(i % size.x, i / size.x)
 			break
 	var before := surface.fossil.condition
-	var protection_available := not surface.fossil.first_direct_contact_consumed
+	var protection_available := surface.fossil.direct_contact_consumed.count(1) == 0
 	surface.apply_impact(direct, chisel)
 	var protected_condition := surface.fossil.condition
 	var protected_event: bool = surface.last_action.bone_protected_contact
