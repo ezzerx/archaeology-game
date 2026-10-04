@@ -2,9 +2,9 @@
 
 - Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 Game Feel + verticalité + préparation Bone validés humainement et mergés ; P5 UI & Progression est la prochaine phase, non commencée**.
+- Phase : **préproduction — P4 validé et mergé ; P5 Complete Session Loop / UI & Progression actif ; P6 bloqué jusqu'au test humain P5**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`.
+- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 actif : `prototype/p5-loop-progression`, PR #8 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -203,6 +203,25 @@ Non-blockers connus, à revisiter avec davantage de contexte :
 Première stratégie P6 pour la lisibilité : **tester uniquement la couleur** du Bone Film avant de changer pattern/densité/forme, car les taches actuelles plaisent.
 
 Ces sujets ne rouvrent pas P4 maintenant. S'ils restent importants après P5/P6, ils recevront une **phase dédiée de polish gameplay/excavation avec un nouveau nom (TBD), pas “P4.2”**.
+
+## P5 — Complete Session Loop / UI & Progression ▶
+
+Source de vérité : [P5_BRIEF](../dev/P5_BRIEF.md).
+
+Objectif : faire tenir une préparation B-17 complète de bout en bout autour du cadre musée actuel.
+
+P5 autorise :
+- classification progressive ;
+- objectifs de session ;
+- dossier fonctionnel Exposure / Cleanliness / Condition ;
+- **Forceps [5]** pour deux fragments indépendants récupérables manuellement ;
+- `Preparation Complete` ;
+- **Keep Cleaning** comme test comportemental clé ;
+- **Archive Specimen → Museum records updated → Prepare Another Block** comme fin diégétique légère.
+
+P5 remplace l'ancienne récupération automatique des fragments et le bouton principal `Restart Specimen`. Aucun musée complet, DA finale, progression équipement, procgen ou P6.
+
+PR #8 reste brouillon jusqu'au test humain end-to-end.
 
 ## Watchpoints techniques
 
