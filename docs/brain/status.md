@@ -2,9 +2,9 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 FINAL FEEL et P4-V1 verticality validés humainement et mergés ; P4-V2 debris physics disponible comme prochain spike ; P5 toujours bloqué**.
+- Phase : **préproduction — P4/P4-V1 validés et mergés ; P4-V2 terrain-aware debris physics actif en spike expérimental ; P5 bloqué pendant le test**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`.
+- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Spike actif : `prototype/p4v2-debris-physics`, PR #7 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -155,6 +155,18 @@ Parois dures légèrement assombries, dessus plats conservés ; contraste de fac
 Code/tests : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Validation finale : **1 691 contrôles fonctionnels +128 visuels**, neuf empreintes identiques entre processus, **60 scénarios de performance**, zéro échec. Verticalité **222,40–239,87 FPS**, pire P95 **13,237 ms**, minimum sur une seconde **210,74 FPS** ; performance soutenue quasi inchangée, frames isolées jusqu'à 18,527 ms. Les paramètres et les règles du jeu restent conservés ; seul le harnais Brush stabilise la continuité de son geste synthétique face aux notifications natives.
 
 Validation humaine : **NON/OUI/OUI** obtenus — grille orange absente, blocs/profondeur mieux lisibles, base toujours agréable. P4-V1 est validé et mergé via PR #6. Watchpoint différé : la poussière réduit encore la lisibilité des arêtes/blocs avant Blower ; après nettoyage, les bords noirs et la profondeur se lisent mieux. À reprendre en polish visuel/P6-P7, pas comme blocker gameplay. **P4-V2 debris physics peut être ouvert séparément ; P5 reste bloqué tant que ce spike n'est pas cadré/validé.**
+
+## P4-V2 — Terrain-aware Debris Physics ▶
+
+Source de vérité : [P4V2_BRIEF](../dev/P4V2_BRIEF.md).
+
+Hypothèse à tester : des fragments durs bornés qui tombent dans les cavités, rebondissent/glissent légèrement sur le heightfield et reçoivent une impulsion du Blower rendent **Chisel + cleanup** clairement plus satisfaisants.
+
+Règle : simulation secondaire seulement. RF heightfield, matériaux, Bone, fracture et mess P4 restent autoritaires. Pas de swarm `RigidBody3D` ; simulation custom bornée, MultiMesh/pools, terrain échantillonné localement.
+
+Le spike doit fournir un A/B debug ON/OFF. Si l'effet est subtil, distrayant ou coûteux, **DROP** est un résultat acceptable et P4-V1 reste canonique.
+
+P5 reste bloqué jusqu'au verdict humain V2.
 
 ## Watchpoints techniques
 
