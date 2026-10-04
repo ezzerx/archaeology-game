@@ -1,0 +1,54 @@
+{
+	"cavity": {
+		"bottom_y": 0.0251499999965993,
+		"drop_mm": 66.3127955049276,
+		"final_y": 0.0286872033029795,
+		"spawn_floor_y": 0.0949999988079071
+	},
+	"checks": 59,
+	"failures": 0,
+	"flat_1": {
+		"contacts": 2,
+		"max_samples_tick": 10,
+		"peak_bounce_m_s": 0.0311999879777431,
+		"penetration_m": 0.0,
+		"settled_y": 0.0486610867083073
+	},
+	"flat_2": {
+		"contacts": 2,
+		"max_samples_tick": 10,
+		"peak_bounce_m_s": 0.0571999773383141,
+		"penetration_m": 0.0,
+		"settled_y": 0.048733975738287
+	},
+	"intermediate_state_checks": 15,
+	"replay_sha256": "dfe4ee17358e63710d99f9e1a62eac2e28a0b1d471c2acc0696012f1f8218b5f",
+	"structural_off": {
+		"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+		"condition": 0.0,
+		"crumbs": "a103c7f9c69e25525434e57572a82726c6d3f95946d6584b27a2af07a40b8ef6",
+		"dust": "27b994fd9780f2988b909da2e257c68eb3226fce4d3e114c5acdecfc9ad3b389",
+		"dust_values": "8478be9301b0798b30b2efee99d8c1d9835e16c56b7cd8a4df77d5981b6558eb",
+		"exposure": "81d587984e3f468065678f7a1753ffd8e8d9d16d836afef094c8c1a830757e56",
+		"fracture": "0c85c5fc895166757678f7ae83bcc956c8f8b19325aa6dcca5820e0bd8aa1c81",
+		"height": "d48b85b940a1e8281df7b62bd8997c85225a4058da4bb1325019ecd0bad10385",
+		"ids": "9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21",
+		"layers": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9",
+		"packed_height": "d48b85b940a1e8281df7b62bd8997c85225a4058da4bb1325019ecd0bad10385",
+		"protection": "cc6cd9b042500b2a1374d40ddfeb605aa5ebde2214067bbb761e85d4f0ab20b9"
+	},
+	"structural_on": {
+		"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+		"condition": 0.0,
+		"crumbs": "a103c7f9c69e25525434e57572a82726c6d3f95946d6584b27a2af07a40b8ef6",
+		"dust": "27b994fd9780f2988b909da2e257c68eb3226fce4d3e114c5acdecfc9ad3b389",
+		"dust_values": "8478be9301b0798b30b2efee99d8c1d9835e16c56b7cd8a4df77d5981b6558eb",
+		"exposure": "81d587984e3f468065678f7a1753ffd8e8d9d16d836afef094c8c1a830757e56",
+		"fracture": "0c85c5fc895166757678f7ae83bcc956c8f8b19325aa6dcca5820e0bd8aa1c81",
+		"height": "d48b85b940a1e8281df7b62bd8997c85225a4058da4bb1325019ecd0bad10385",
+		"ids": "9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21",
+		"layers": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9",
+		"packed_height": "d48b85b940a1e8281df7b62bd8997c85225a4058da4bb1325019ecd0bad10385",
+		"protection": "cc6cd9b042500b2a1374d40ddfeb605aa5ebde2214067bbb761e85d4f0ab20b9"
+	}
+}

@@ -376,3 +376,13 @@ Antoine valide **P4-V1 Verticality** après la passe V1.2. La macro-stratigraphi
 Watchpoint différé : avant Blower, la poussière peut encore réduire la lisibilité des arêtes et des blocs ; après nettoyage, les bords sombres et la perception de profondeur sont plus nets. Ce point est **non bloquant** pour P4-V1 et doit être repris lors du polish visuel / P6-P7, en surveillant la relation poussière ↔ lecture du relief.
 
 La verticalité actuelle est jugée suffisante pour avancer. Pas de nouvelle itération géologique avant nécessité observée. Le prochain spike possible est **P4-V2 terrain-aware debris physics** ; la génération procédurale reste future/post-core.
+
+## P4-V2 — spike secondaire borné, 2026-10-04
+
+Autorisation explicite d'Antoine : implémenter et mesurer les éclats Clay/Sandstone terrain-aware, livrer la PR #7 **DRAFT**, puis **STOP pour KEEP / SIMPLIFY / DROP**. P4/V1 sont la baseline ; aucun P5 ni merge automatique. Un DROP est une conclusion valide si le gain de plaisir est insuffisant.
+
+Choix expérimental livré dans `38cc404` : 48 enregistrements préalloués, un MultiMesh, échantillonnage local du relief courant et dessous orienté. Pas de RigidBody ou de collision mesh. L'ancien chemin des éclats demeure en OFF ; les mêmes paramètres de spawn alimentent un seul des deux chemins. À saturation, seul un endormi peut être recyclé ; sinon nouvelle émission refusée. Fragments indépendants de la saleté persistante, du RF, des protections Bone et des outils verrouillés.
+
+Leçon vérifiée : l'événement de nettoyage existant ne suffit pas pour souffler un morceau posé sur terrain propre. Un signal de jet indépendant transporte la capsule et la durée réelle sans créer d'action matière fictive. Le contact ne doit pas appliquer sa marge deux fois : cela absorbait les petites impulsions positives à 60 Hz. Le test de décollage utilise donc la cadence réelle, en plus des impulsions isolées.
+
+Leçon de validation : comparer quinze états intermédiaires ON/OFF, ainsi que le résultat final, évite qu'une saturation de Bone Condition ou du terrain masque une divergence. La fixture cavité doit vérifier la hauteur finale relativement au plan de naissance. Le rendu, la performance et l'intérêt humain restent trois preuves différentes. Paramètres, limites et checklist : [P4V2_REPORT](../dev/P4V2_REPORT.md). Aucun KEEP acquis.

@@ -2,7 +2,7 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4/P4-V1 validés et mergés ; P4-V2 terrain-aware debris physics actif en spike expérimental ; P5 bloqué pendant le test**.
+- Phase : **préproduction — P4/P4-V1 validés et mergés ; P4-V2 terrain-aware debris physics livré pour A/B humain ; verdict KEEP / SIMPLIFY / DROP attendu ; P5 bloqué**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Spike actif : `prototype/p4v2-debris-physics`, PR #7 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -122,7 +122,7 @@ Brief canonique :
 
 [P4_BRIEF.md](../dev/P4_BRIEF.md)
 
-**La validation P4 ne lance pas P5 : seule la micro-passe visuelle P4-V1.2 est actuellement autorisée.**
+**La validation P4 ne lance pas P5. P4-V1 a ensuite été validé ; seul le spike secondaire V2 ci-dessous est autorisé.**
 
 ## P4-V1.1 — Effort-aware Verticality : base conservée
 
@@ -158,13 +158,17 @@ Validation humaine : **NON/OUI/OUI** obtenus — grille orange absente, blocs/pr
 
 ## P4-V2 — Terrain-aware Debris Physics ▶
 
-Source de vérité : [P4V2_BRIEF](../dev/P4V2_BRIEF.md).
+Source de vérité : [P4V2_BRIEF](../dev/P4V2_BRIEF.md). Architecture, preuves et checklist : [P4V2_REPORT](../dev/P4V2_REPORT.md).
 
 Hypothèse à tester : des fragments durs bornés qui tombent dans les cavités, rebondissent/glissent légèrement sur le heightfield et reçoivent une impulsion du Blower rendent **Chisel + cleanup** clairement plus satisfaisants.
 
 Règle : simulation secondaire seulement. RF heightfield, matériaux, Bone, fracture et mess P4 restent autoritaires. Pas de swarm `RigidBody3D` ; simulation custom bornée, MultiMesh/pools, terrain échantillonné localement.
 
-Le spike doit fournir un A/B debug ON/OFF. Si l'effet est subtil, distrayant ou coûteux, **DROP** est un résultat acceptable et P4-V1 reste canonique.
+Implémentation : **`38cc404`**, 48 slots préalloués Clay/Sandstone, un MultiMesh fixe, deux sous-pas à 60 Hz. Gravité 0,65 m/s², restitution 0,12/0,22, glissement court et sommeil/fade ; aucune autorité sur le gameplay. Blower réveille même sur terrain propre via un signal séparé ; sortie unique au bord, sans quantité de saleté persistante ajoutée. F3 ON/OFF pour nouveaux éclats, ON au lancement, R conserve le mode et vide tous les fragments. OFF conserve les éclats P4-V1. Paramètres physiques provisoires, aucun retuning ToolDefinition.
+
+Validation : **1 750 contrôles fonctionnels**, 128 visuels historiques, 121 assertions V2, neuf empreintes géologiques et replay physique interprocessus identiques. Quinze états intermédiaires + état final exacts ON/OFF ; séquence Bone **100/97/97/94** conservée. Cavité : centre du fragment posé environ **66,3 mm sous son plan de naissance**. **24 scénarios V2** à 1×/3× : 239,81–240,14 FPS, pire P95 **5,581 ms**, max **11,555 ms** ; 48 actifs max, 480 sondes/tick max, simulation max **2 072 µs**, MultiMesh max **193 µs**. Blower : 37 éjections par zoom depuis 48 endormis. **60 scénarios historiques verts**, pire P95 13,936 ms ; une frame Soil/1× à 207,738 ms sans éclat actif reste documentée, non reproduite sur huit rejeux ON/OFF (max 18,729 ms). Captures, limites et preuves dans le rapport. `project.godot` local conservé et exclu des commits.
+
+Si l'effet est subtil, distrayant ou coûteux, **DROP** est un résultat acceptable et P4-V1 reste canonique. **STOP après validation automatique pour les six questions humaines du rapport ; PR #7 DRAFT, aucun merge.**
 
 P5 reste bloqué jusqu'au verdict humain V2.
 
@@ -179,4 +183,4 @@ P5 reste bloqué jusqu'au verdict humain V2.
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → P4-V1 ✅ → **P4-V2 debris physics (prochain spike possible)** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → P4-V1 ✅ → **P4-V2 : A/B humain, KEEP / SIMPLIFY / DROP attendu** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.

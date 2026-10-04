@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-04",
+  "implementation_commit": "38cc40420d9c482d77228244d4b7f56e1873d808",
+  "tests_commit": "b63ab4594f4412a2e73efa72ac4979bdd75c6c88",
+  "baseline": "ce014d0c2dd311ed2fbac0f37e0001be707a74a7",
+  "functional_checks": 1750.0,
+  "functional_suites": {
+    "P0 TESTS": {
+      "checks": 45,
+      "failures": 0
+    },
+    "P1 TESTS": {
+      "checks": 52,
+      "failures": 0
+    },
+    "P2 TESTS": {
+      "checks": 97,
+      "failures": 0
+    },
+    "P3 TESTS": {
+      "checks": 88,
+      "failures": 0
+    },
+    "P3 ZOOM TESTS": {
+      "checks": 160,
+      "failures": 0
+    },
+    "P4 TESTS": {
+      "checks": 72,
+      "failures": 0
+    },
+    "P4 PAN TESTS": {
+      "checks": 43,
+      "failures": 0
+    },
+    "P4 AUDIO TESTS": {
+      "checks": 42,
+      "failures": 0
+    },
+    "P4 COMPONENT CONTACT TESTS": {
+      "checks": 72,
+      "failures": 0
+    },
+    "P4 DIRT TESTS": {
+      "checks": 27,
+      "failures": 0
+    },
+    "P4 DEBRIS BUDGET TESTS": {
+      "checks": 18,
+      "failures": 0
+    },
+    "P4 PICK TESTS": {
+      "checks": 39,
+      "failures": 0
+    },
+    "P4 FEEDBACK TESTS": {
+      "checks": 25,
+      "failures": 0
+    },
+    "P4 PROXY TESTS": {
+      "checks": 737,
+      "failures": 0
+    },
+    "P4V TESTS": {
+      "checks": 90,
+      "failures": 0
+    },
+    "P4V EFFORT TESTS": {
+      "checks": 47,
+      "failures": 0
+    },
+    "P4V12 TESTS": {
+      "checks": 37,
+      "failures": 0
+    },
+    "P4V2 TESTS": {
+      "checks": 59,
+      "failures": 0
+    }
+  },
+  "historical_visual_checks": 128,
+  "v2_graphical_assertions": 121,
+  "v2_visual_assertions_included": 5,
+  "dedicated_benchmark_scenarios": 24,
+  "historical_benchmark_scenarios": 60,
+  "targeted_soil_replays": 8,
+  "failures": 0,
+  "final_logs_error_free": true,
+  "v1_cross_process_hashes_identical": 9,
+  "v2_cross_process_replay_identical": true,
+  "physics_replay_sha256": "dfe4ee17358e63710d99f9e1a62eac2e28a0b1d471c2acc0696012f1f8218b5f",
+  "structural_on_off_exact": true,
+  "intermediate_full_state_comparisons": 15,
+  "bone_condition_sequence": [
+    100.0,
+    97.0,
+    97.0,
+    94.0
+  ],
+  "preserved_local_project_godot_sha256": "4FF67FF33A59B309C917AB8B74A90CDB4C4C70A1655FDDD8250E39E8E3AE6F5E",
+  "performance_summary": "p4v2-performance-summary.json",
+  "known_outlier": {
+    "scenario": "P4 soil_1x",
+    "max_frame_ms": 207.738,
+    "hard_fragments_active": 0,
+    "retained_in_evidence": true,
+    "reproduced_in_eight_targeted_replays": false,
+    "replay_max_frame_ms": 18.729,
+    "cause": "Unattributed"
+  },
+  "human_verdict": "PENDING: KEEP / SIMPLIFY / DROP",
+  "pr": 7,
+  "draft": true,
+  "merged": false
+}
