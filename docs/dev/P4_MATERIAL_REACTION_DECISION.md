@@ -33,11 +33,11 @@ Amas larges, taches intermédiaires et speckles stables ; couverture croissante 
 
 Normale et profondeur ne contrôlent pas l’orientation. Base ancienne A/B restaurée pour les quatre outils : Euler **(0,50 ; 0 ; −0,62 rad)**, constante relative à la caméra fixe. Elle remplace l’angle plus vertical E `(0,10 ; 0 ; −0,20)`, Blower `−0,18`. Silhouettes récentes resserrées et pointe précise conservées. Priorité humaine : stabilité, zone de travail visible, puis anti-clipping raisonnable.
 
-Pointe réelle et pivot exactement au hit. `ToolProxyPose` calcule un **déplacement vertical minimal du corps** depuis les sommets et des sondes intérieures de chaque face proche du relief. Manche rigide : même translation de tous ses sommets, aucun changement d’angle ou déplacement horizontal. Les quatre premiers millimètres de la pointe raccordent ce déplacement à zéro au contact. Recul par translation verticale du corps : Chisel 12 mm maximum, Pick 2 mm, sans déplacer le hit.
+Pointe réelle et pivot exactement au hit. Depuis le bugfix ciblé, `ToolRoot` contient un `Tip` statique (les quatre premiers millimètres) et un `Body` statique. La silhouette est découpée une seule fois au démarrage. Au plus **douze sondes de hauteur** déterminent une translation verticale du corps ; aucune reconstruction de mesh, normale ou scan surfacique pendant le jeu. Contact et hauteur inchangés = dégagement réutilisé ; le recul ne relance pas les sondes. Chisel 12 mm, Pick 2 mm, sans déplacer la pointe.
 
-Aucun soulèvement au repos sur le plat. Marge locale 0,1 mm plus réserve 0,4 mm seulement en présence d’un obstacle. Le cas synthétique extrême d’une cavité quasi verticale profonde de 10 cm demande désormais **84,90 mm** de dégagement hors recul ; le connecteur de pointe s’allonge, le manche garde son angle. Cette limite visuelle est documentée pour le retest. Le solveur récent est conservé : aucune nouvelle rotation corrective.
+Aucun soulèvement au repos sur le plat. Marge locale 0,1 mm plus réserve 0,4 mm seulement en présence d’un obstacle, déplacement borné à la profondeur du bloc plus recul. Priorité explicite : **fluidité > angle stable > point lisible > anti-clipping**. De petites intersections rares, ou une séparation pointe/corps dans une cavité extrême, sont acceptées ; la contrainte ancienne de dégagement de toutes les faces est retirée.
 
-Topologie fixe, au plus 2 592 sommets rendus pour Brush ; sommets uniques et relief local mémorisés pendant la pose, faces dégagées exclues. Contact/height/recul inchangés = pose réutilisée. Aucun collider ou scan global. Les tests inspectent `surface_get_arrays` ; `Mesh.get_faces()` quantifie son maillage dérivé.
+Les tests vérifient les ressources et tableaux de sommets/normales inchangés, le nombre réel de lectures terrain et le coût CPU, y compris lorsque la densité du relief double. Mesures avant/après et diagnostic dans [P4_REPORT](P4_REPORT.md).
 
 ## Spectacle Chisel transitoire, repris de A
 
@@ -76,19 +76,21 @@ Disque minuscule, au plus 25 centres de texels modifiés dans le test centré. M
 
 Un clic central retire **0,08 Clay / 0,045 Sandstone** de hauteur normalisée, soit **8,16 / 4,59 mm**, si la couche disponible le permet. L’efficacité locale est forte ; le volume reste faible grâce au rayon. Le test d’une seconde mesure un rapport de volume Chisel/Pick **17,80**. Géométrie, exposition, dépôt et événements restent synchronisés dans le noyau commun.
 
-Petit recul et son Pick discret à l’impact ; seule la première détection du spécimen peut jouer la découverte, jamais le hit direct. **Zéro dégât est provisoire P4 pour tester la finition, pas le tuning P7.** Règles Chisel intactes.
+Petit recul et son Pick discret à l’impact ; le Pick ne déclenche ni tik protégé ni dommage et ne consomme jamais la protection Chisel. **Zéro dégât est provisoire P4 pour tester la finition, pas le tuning P7.**
 
 ## Audio, caméra et limites
 
 28 WAV historiques protégés par SHA-256 de référence `c25b44f`. Famille Pick et boucles Brush conservées. Nouvelle sémantique Bone :
 
 - `bone_revealed` garde sa signification d’exposition supplémentaire ; le décompte des cellules/composants reste inchangé.
-- `bone_first_contact` capture la transition du spécimen non détecté → détecté et se réarme au reset. **Un petit tik + signal visuel**, sans dommage, seulement à cette transition.
+- `bone_first_contact` et `FossilState.first_contact` indiquent seulement la découverte/UI. Même la première révélation adjacente garde le son du matériau travaillé.
+- `first_direct_contact_consumed`, distinct et remis à faux au reset, protège une fois le centre d’un impact Chisel susceptible de faire des dégâts. Premier contact direct : `bone_protected_contact = true`, petit tik, zéro dégât. Pick/Brush/Blower ne consomment rien.
+- Un centre Bone caché atteint par cet impact peut consommer la protection sans dégât. Des cellules révélées ailleurs dans le footprint ne le peuvent pas. Une fois la protection consommée, un nouveau centre précédemment caché reste sans dommage sur sa révélation, conformément à la règle historique.
 - `bone_damage` transporte la baisse réelle de condition déjà calculée par la règle existante. **Gros clack + signal visuel** seulement si hit direct et perte >0 ; à condition zéro, aucun faux signal de dommage supplémentaire.
-- Autres impacts : Clay/Sandstone travaillé, y compris lors d’expositions supplémentaires. Si les deux sont retirés, le volume dominant choisit le son. Le premier contact et un hit dommageable ont priorité sur ce son de matière.
+- Autres impacts : Clay/Sandstone travaillé, y compris lors de toute exposition adjacente. Si les deux sont retirés, le volume dominant choisit le son. Le contact direct protégé et un hit dommageable ont priorité sur ce son de matière.
 
-Le nom historique du sample `bone_revealed` est conservé ; il n’est plus déclenché par chaque nouvelle cellule. Aucune marge, auto-stop ou modification de `FossilState.damage_at`.
+Le sample historique `bone_revealed` est le petit tik de contact protégé ; aucun WAV modifié. Aucune marge, auto-stop ni retuning des outils ; les dégâts ultérieurs restent −3 points, bornés à zéro.
 
 Caméra orthographique 84°, zoom 1–3× au curseur, RMB pan borné, Home vue initiale et R reset conservés. Changement d’outil, focus/resize annulent le geste ; nouveau clic requis. Debug Shift/Ctrl/Alt+molette et F6/F7 conservés. Cap 240 FPS, physique 60 Hz.
 
-Visuels placeholders, quantités agrégées et saturées, sans collisions fines ou historique de pigment. Les contrôles de géométrie, pixels et débit ne valident pas le plaisir ou la reconnaissance humaine instantanée. **Prochain gate : les sept points du rapport. STOP ; aucun merge, P4-V ou P5 automatique.** Macro-stratigraphie, profondeur fossile variable et vraie gravité des débris dans les cavités restent hors périmètre.
+Visuels placeholders, quantités agrégées et saturées, sans collisions fines ou historique de pigment. Les contrôles de géométrie, pixels et débit ne valident pas le plaisir ou la reconnaissance humaine instantanée. **Prochain gate : les trois points du bugfix dans le rapport. STOP ; aucun merge, P4-V ou P5 automatique.** Macro-stratigraphie, profondeur fossile variable et vraie gravité des débris dans les cavités restent hors périmètre.

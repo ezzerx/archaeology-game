@@ -1,6 +1,6 @@
 # P4 Final Feel — A/B Composition Target
 
-**Status:** Final Feel composition implemented; human retest pending on `prototype/p4-game-feel`
+**Status:** Final Feel targeted bugfix: Brush proxy performance and first direct Bone contact; human retest pending on `prototype/p4-game-feel`
 
 **Date:** 2026-10-03  
 **PR:** #5 remains draft / unmerged  
@@ -81,7 +81,7 @@ Solve clipping by offset/lift/shape placement rather than continuous orientation
 
 Replace the current repeated reveal-vs-hit semantics with:
 
-### First protected bone contact only
+### First protected DIRECT bone contact only
 - one small distinct Bone `tik`;
 - zero damage;
 - Bone detected.
@@ -95,7 +95,11 @@ Replace the current repeated reveal-vs-hit semantics with:
 
 Important consequence:
 
-If the player strikes Sandstone beside Bone and the fracture reveals additional Bone cells after the first specimen discovery, the audible impact should remain **Sandstone**, not the small Bone reveal sound.
+If the player strikes Sandstone beside Bone and the fracture reveals Bone cells, including the very first discovery, the audible impact remains **Sandstone**. Discovery never consumes direct-contact protection.
+
+`FossilState.first_contact` remains the discovery/UI state. A separate `first_direct_contact_consumed` starts false and resets with the specimen. Only a powered damaging-tool impact whose exact centre reaches exposed Bone can consume it. Its event sets `bone_protected_contact = true`, with zero damage and the small tik. Later hits on an already exposed centre retain the existing three-point damage and big DING. Pick, Brush and Blower never consume protection.
+
+An impact that first reveals Bone at its own centre may consume protection safely; an off-centre reveal cannot. Once protection is consumed, revealing another previously hidden centre remains damage-free on that uncovering impact, retaining the historical condition rule and worked-material sound.
 
 This prevents near-Bone Sandstone excavation from being dominated by Bone audio.
 
@@ -177,14 +181,22 @@ The local A/B worktrees identify **A = `42ec46d`**, **B = `c25b44f`**, and the r
 |---|---|
 | A: Chisel spectacle | 3–6 mm transient pieces, Clay height 24% / Stone 70% of width, depth 100%; 1–5 pieces per broken patch according to removed cells (`ceil(cells / 10)`). |
 | B: visible cleanup | Hard crumbs use 4.5 mm nominal maximum width and 32% height; existing directional flight and boundary ejection retained. |
-| A/B: tool silhouette | Fixed Euler `(0.5, 0, -0.62)` for every tool; recent exact tip and vertical body-clearance solver retained. |
+| A/B: tool silhouette | Fixed Euler `(0.5, 0, -0.62)` for every tool; exact static tip and static body with cheap vertical translation. |
 | Recent E | Soil/Brush/audio, contextual dust and dirty Bone ivory, Pick micro-impacts, local retention budget, camera, fracture and Bone Condition preserved. |
-| New locked rule | Small Bone tik only on specimen first discovery per reset. Large Bone clack only when direct Chisel contact actually reduces condition. Other reveals keep worked-material audio; mixed removal uses the dominant material. |
+| Corrected locked rule | Small Bone tik only on the first direct damaging-tool contact per specimen/reset, with zero damage. Discovery alone keeps material audio and does not spend protection. Large Bone clack only when a later direct Chisel hit actually reduces condition. |
 
 Transient pieces start at the estimated top of the removed plate (`volume / cells` above the new floor), move outward at 0.09–0.14 m/s and upward at 0.035–0.10 m/s, then expire after **0.51–0.69 s**. Four existing MultiMesh pools, 48 slots each; no persistent conversion or new physics. This replaces E's at-most-three 1.2–2.4 mm chips.
 
 Persistent **quantities are unchanged**: at most two crumbs per 24×24-texel bucket, 8% retention, 0.02 capacity per crumb; overflow feeds fine dust. Only hard-crumb presentation grows. Soil keeps its 1.4 mm / 14% dimensions. Blower still changes zero structural height and zero condition; `debris_ejected` is intact.
 
-Limits: transient launch height is an average from the removed patch, not reconstructed fragments; flight does not collide with changing terrain. At the restored angle, the deepest synthetic vertical-sided cavity requires up to **84.90 mm body clearance**; the tip and rigid handle angle stay exact. Placeholder connector appearance and actual satisfaction require the seven-point human retest in [P4_REPORT](P4_REPORT.md#retest-humain--exactement-sept-points).
+## Targeted performance correction — 2026-10-04
+
+Human Brush/Soil input reported <10 FPS. Before fixing, compare identical inputs with proxy on/off, stationary, moving over intact Soil and moving in an excavated area, at 1×/3×. Measure controller edit, WorkingSurface, proxy, height/residue uploads and particle/debris feedback separately. [P4_REPORT](P4_REPORT.md) records the measured regression and distinguishes it from the unreproduced <10 FPS report.
+
+Priority: fluidity, stable A/B angle, exact readable work point, then reasonable anti-clipping. `ToolRoot/Tip` stays at the exact hit; `ToolRoot/Body` uses static meshes and a vertical offset. Split meshes/normals only at initialization. At most twelve height probes per changed pose; no runtime mesh reconstruction, face scanning, heightfield area scan or vertex-array duplication. Recoil moves only Body and reuses clearance. Small rare intersections or a separated tip/body in extreme cavities are accepted prototype limits.
+
+Performance gate: at least 60 FPS locally; paired proxy on/off throughput and a CPU test of bounded probes/static geometry prevent a hardware-dependent FPS-only regression test. Gameplay/tool tuning, Chisel spectacle, Blower, debris quantities, Soil, Pick, Dust and camera remain unchanged.
+
+Limits: transient launch height is an average from the removed patch, not reconstructed fragments; flight does not collide with changing terrain. Human retest is now **exactly three points** in [P4_REPORT](P4_REPORT.md#retest-humain--exactement-trois-points): Brush performance, Bone protection, quick Chisel/Blower/Pick sanity.
 
 Measurements and evidence: [P4_REPORT](P4_REPORT.md). **STOP after delivery. P4-V and P5 remain blocked; PR #5 remains draft and unmerged.**

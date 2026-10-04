@@ -1,0 +1,36 @@
+{
+	"blower_1x": {
+		"crumb_pixel_samples": 1049,
+		"ejections": 144,
+		"initial_airborne": 43,
+		"max_crumb_width_m": 0.0031817255076021
+	},
+	"blower_3x": {
+		"crumb_pixel_samples": 1457,
+		"ejections": 144,
+		"initial_airborne": 43,
+		"max_crumb_width_m": 0.0031817255076021
+	},
+	"break_clay_1x": {
+		"fx_pixel_samples": 43,
+		"particles": 10,
+		"persistent_crumbs": 3
+	},
+	"break_clay_3x": {
+		"fx_pixel_samples": 395,
+		"particles": 10,
+		"persistent_crumbs": 3
+	},
+	"break_stone_1x": {
+		"fx_pixel_samples": 47,
+		"particles": 9,
+		"persistent_crumbs": 4
+	},
+	"break_stone_3x": {
+		"fx_pixel_samples": 387,
+		"particles": 9,
+		"persistent_crumbs": 4
+	},
+	"checks": 28,
+	"failures": 0
+}

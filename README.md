@@ -55,13 +55,13 @@ P4 ajoute les réactions de matière :
 
 La composition [FINAL FEEL](docs/dev/P4_FINAL_FEEL_TARGET.md) reprend le spectacle Chisel de P4-A (éclats transitoires 3–6 mm) et le nettoyage visible de P4-B (miettes projetées hors du bloc), avec la quantité persistante récente toujours plafonnée. Soil, Pick et ivoire Bone sous la poussière sont préservés. Les outils retrouvent l’ancien angle fixe, pointe exacte et corps dégagé. Grammaire joueur : **matière attachée / saleté**.
 
-**Bone audio** : petit tik uniquement à la première découverte du spécimen par reset ; gros clack uniquement sur hit Chisel direct avec perte réelle de condition. Les révélations supplémentaires gardent le son Clay/Sandstone travaillé. Condition, exposition et timbres historiques inchangés.
+**Bone audio** : premier contact DIRECT Chisel/Bone par reset : petit tik et zéro dégât, même après découverte adjacente ; gros clack uniquement sur hit Chisel direct avec perte réelle de condition. Toutes les révélations adjacentes gardent le son Clay/Sandstone travaillé. La découverte ne consomme pas la protection ; exposition, dégâts ultérieurs et timbres historiques inchangés.
 
 **[4] Precision Pick** : clic ou maintien immobile, six micro-impacts/s, rayon 3 texels, puissance 0,24, retrait rapide et précis sans grosses plaques. Zéro dégât provisoire P4, plafond osseux intact. Réglages Brush/Chisel/Blower/Pick, fracture et caméra préservés.
 
-**1 395 checks fonctionnels, 90 contrôles graphiques et l’oracle GPU passent. 28 scénarios : 97–240 FPS**, P95 maximal 19,249 ms sur RTX 5080 / 1080p. Casse dense et Blower proches de 240 FPS ; la pose Brush à l’ancien angle coûte davantage sur Soil. Le plaisir de casser ET nettoyer attend le retest humain.
+**Bugfix Brush** : Tip/Body statiques, douze sondes terrain maximum, aucune reconstruction de mesh pendant le jeu. Geste de 30 s à 1×/3× : **233–236 FPS**, proxy P95 **32 µs**, réglages Soil inchangés. Diagnostic, tests et limites dans le [rapport P4](docs/dev/P4_REPORT.md) ; le retest humain ciblé reste attendu.
 
-Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Tester 10–15 minutes selon les [sept points P4](docs/dev/P4_REPORT.md#retest-humain--exactement-sept-points). **STOP. PR #5 en brouillon, non mergée ; P4-V et P5 interdits.**
+Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Suivre les [trois points du bugfix P4](docs/dev/P4_REPORT.md#retest-humain--exactement-trois-points) : Brush 30–60 s, premier contact Bone protégé, puis sanity Chisel/Blower/Pick. **STOP. PR #5 en brouillon, non mergée ; P4-V et P5 interdits.**
 
 Brief :
 

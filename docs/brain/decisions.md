@@ -310,3 +310,11 @@ Leçons vérifiées : des fragments créés après le retrait peuvent disparaît
 Code `8394ee9` : **1 395 checks fonctionnels + 90 contrôles graphiques**, oracle GPU et 28 WAV historiques exacts ; **28 scénarios à 96,56–239,97 FPS**, P95 maximal 19,249 ms. Les valeurs persistantes restent 29/27 miettes après une minute simulée de Chisel, zéro après Blower. Ces preuves ne valident pas le plaisir humain.
 
 Prochaine action : les **sept points exacts** de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--exactement-sept-points). **STOP, PR #5 brouillon, aucun merge. P4-V (macro-stratigraphie / profondeur variable / vraie physique de débris) reste une proposition bloquée jusqu’au test humain et à une nouvelle autorisation ; P5 interdit.**
+
+## Bugfix ciblé P4 FINAL FEEL — 2026-10-04
+
+Antoine juge le reste du Final Feel plutôt bon et autorise uniquement Brush FPS et protection du premier contact direct Bone. La découverte adjacente garde le son matériau et ne consomme jamais la protection. `first_direct_contact_consumed`, indépendant de `first_contact`, se réarme au reset : premier Chisel direct tik/100, deuxième DING/97. Pick/Brush/Blower restent sûrs et ne consomment rien. La révélation au centre par le même impact peut compter comme contact protégé ; l’exposition ailleurs dans le footprint ne le peut pas. Cette règle remplace l’interprétation précédente « tik à la première découverte ».
+
+Leçon mesurée : la stabilité de topologie ne rend pas gratuit un mesh reconstruit à chaque pose. Ancien Brush : jusqu’à 1 498 lectures terrain/pose, tableaux/normales et meshes répétés ; le coût croît avec la densité. Nouveau Tip/Body statique : ≤12 sondes, ≤48 lectures, zéro reconstruction, angle A/B conservé. Geste identique de 30 s à 1×/3× : 144/154 → 233/236 FPS, proxy P95 8,6/8,4 ms → 32 µs. La chute humaine <10 FPS n’a pas été reproduite ; le surcoût du proxy est isolé, les autres états gameplay correspondent.
+
+Priorité confirmée : fluidité, angle stable, point exact lisible, puis anti-clipping raisonnable ; petites intersections rares acceptées. Régression CPU par nombre de lectures/meshes statiques et benchmark proxy on/off, au-delà des FPS absolus. [Rapport et trois points de retest](../dev/P4_REPORT.md#retest-humain--exactement-trois-points). STOP ; PR #5 brouillon, aucun merge, P4-V ou P5.
