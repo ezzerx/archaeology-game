@@ -132,8 +132,8 @@ func test_blower_distance_edge_cap() -> void:
 	for i in range(12):
 		steady.blow(Vector2(127.5, 79.5), Vector2(127.5, 79.5), 15, 1, DT, Vector2.RIGHT)
 		steady.advance(DT)
-	check(steady.fragments[steady_id].position.y > resting_y + 0.002,
-		"production 60 Hz Blower lifts a sleeper; contact tolerance cannot swallow small impulses")
+	check(steady.fragments[steady_id].position.y < resting_y + 0.004 and steady.fragments[steady_id].position.x > 0.02,
+		"closure: grounded pop stays low while sustained Blower pushes horizontally")
 	# Time integration, without collision, does not depend on call frequency.
 	var speeds: Array[Vector3] = []
 	for hz in [30, 60, 120]:
@@ -143,8 +143,8 @@ func test_blower_distance_edge_cap() -> void:
 		speeds.append(test.fragments[slot].velocity)
 	check(speeds[0].is_equal_approx(speeds[1]) and speeds[1].is_equal_approx(speeds[2]), "Blower impulse integrated in seconds, independent of input rate")
 	for i in range(100): sim.blow(center, center, 1000, 1, DT, Vector2.RIGHT)
-	check(Vector2(near.velocity.x, near.velocity.z).length() <= sim.profile.blower_speed_limit + 0.000001
-		and near.velocity.y <= sim.profile.blower_lift_limit + 0.000001, "held Blower cannot inject unbounded speed (float32 velocity)")
+	check(Vector2(near.velocity.x, near.velocity.z).length() <= sim.profile.crumb_blower_speed_limit + 0.000001
+		and near.velocity.y <= sim.profile.crumb_blower_pop + 0.000001, "held Blower cannot inject unbounded speed (float32 velocity)")
 	sim = TerrainDebris.new(terrain())
 	var exits: Array = []
 	sim.debris_ejected.connect(func(source, at, direction): exits.append([at, direction, source]))
@@ -217,8 +217,8 @@ func step_dirt(dirt: LooseDebris, count: int) -> void:
 
 func test_persistent_state() -> void:
 	var dirt := dirt_fixture()
-	check(is_equal_approx(dirt.profile.matrix_crumb_width, 0.0045) and is_equal_approx(dirt.profile.crumb_width, 0.0014),
-		"human-validated P4-V1 crumb scale restored: hard 4.5 mm, Soil 1.4 mm")
+	check(is_equal_approx(dirt.profile.matrix_crumb_width, 0.0045) and is_equal_approx(dirt.profile.crumb_width, 0.0022),
+		"human-validated P4-V1 crumb scale restored: hard 4.5 mm preserved, Soil 1.8–2.2 mm closure addendum")
 	check(dirt.profile.crumbs_per_bucket == 2 and dirt.profile.bucket_tiles * LooseDebris.STRIDE == 24
 		and is_equal_approx(dirt.profile.retained_fraction, 0.08) and is_equal_approx(dirt.profile.crumb_capacity, 0.02),
 		"P4-V1 local density and retained amount unchanged by physics")
@@ -232,7 +232,7 @@ func test_persistent_state() -> void:
 				overflow += dirt.deposit_removed(x, y, 10, layer)
 	var retained := 0.0
 	for amount in dirt.cells.values(): retained += amount * 64
-	check(dirt.cells.size() == 128 and dirt.physics.active_count == 128, "global persistent and physical cap both 128")
+	check(dirt.cells.size() == 256 and dirt.physics.active_count == 256, "closure Matrix ownership and physical capacity both 256")
 	check(dirt.physical_slots.size() == dirt.cells.size(), "exactly one physical record per persistent hard crumb")
 	check(absf(supplied - retained - overflow) < 0.001, "every rejected portion returns to Fine Dust, no lost mass")
 	var local_ok := true
@@ -245,7 +245,7 @@ func test_persistent_state() -> void:
 	var amounts := dirt.cells.duplicate()
 	var ids := dirt.physical_slots.duplicate()
 	step_dirt(dirt, 1800)
-	check(dirt.cells == amounts and dirt.physical_slots == ids and dirt.physics.sleeping_count == 128,
+	check(dirt.cells == amounts and dirt.physical_slots == ids and dirt.physics.sleeping_count == 256,
 		"full persistent state survives 30 seconds of sleep without fade, deletion or replacement")
 	var before := dirt.physics.fragments[0].position
 	overflow = dirt.deposit_removed(248, 152, 10, 1)
@@ -327,7 +327,7 @@ func test_persistent_state() -> void:
 		dirt.deposit_removed(248, 152, 10, 1)
 		dirt.advance(DT)
 		max_count = maxi(max_count, dirt.persistent_count())
-	check(max_count <= 128, "legacy flight + partial cleanup + new deposits never exceed the shared global cap")
+	check(max_count <= dirt.profile.matrix_crumb_cap, "legacy flight + partial cleanup + new deposits never exceed the shared global cap")
 
 func test_scene() -> void:
 	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
@@ -350,7 +350,7 @@ func test_scene() -> void:
 	check(not fx.crumb_physics_enabled, "R preserves chosen crumb A/B mode")
 	main._unhandled_input(key)
 	check(fx.crumb_physics_enabled and "Crumb Physics: ON" in fx.debris_debug()
-		and "Moving:" in fx.debris_debug(), "F3 + F1 expose the persistent crumb hypothesis")
+		and "Moving matrix:" in fx.debris_debug(), "F3 + F1 expose the persistent crumb hypothesis")
 	var node_count := get_node_count()
 	var mesh := fx.loose_view.multimesh.mesh.get_rid()
 	var transient_states: Array = []
@@ -374,7 +374,7 @@ func test_scene() -> void:
 		fx._process(0.6)
 		check(fx.particles[1].is_empty() and fx.particles[2].is_empty(), "no large cubes survive 0.7 seconds in either mode")
 	check(transient_states[0] == transient_states[1], "transient trajectories and RNG identical ON/OFF after 100ms")
-	check(get_node_count() == node_count and fx.loose_view.multimesh.instance_count == 128
+	check(get_node_count() == node_count and fx.loose_view.multimesh.instance_count == dirt.profile.matrix_crumb_cap + dirt.profile.soil_grain_cap
 		and fx.loose_view.multimesh.mesh.get_rid() == mesh and not fx.has_node("TerrainHardFragments"),
 		"one fixed persistent renderer, no parallel hard-fragment physics or node/mesh allocation")
 	# Fracture generates its ordinary spectacle and exactly the retained dirty state.

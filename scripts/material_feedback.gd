@@ -196,9 +196,11 @@ func on_air_jet(_from: Vector2, _to: Vector2, _radius: float, _falloff: float, _
 
 func debris_debug() -> String:
 	var state := block.working_map.loose_debris
-	return ("Crumb Physics: %s [F3] | Persistent crumbs: %d / %d | Moving: %d | Sleeping: %d\n" % [
-		"ON" if crumb_physics_enabled else "OFF", state.persistent_count(), state.profile.global_crumb_cap,
-		state.moving_count(), state.persistent_count() - state.moving_count()]
+	return ("Crumb Physics: %s [F3] | Soil grains: %d / %d | Matrix crumbs: %d / %d\n" % [
+		"ON" if crumb_physics_enabled else "OFF", state.count_for(0), state.profile.soil_grain_cap,
+		state.count_for(1), state.profile.matrix_crumb_cap]
+		+ "Clay: %d | Sandstone: %d | Moving matrix: %d | Sleeping: %d | Fine Dust: separate\n" % [
+		state.layer_counts[1], state.layer_counts[2], state.physics.active_count - state.physics.sleeping_count, state.physics.sleeping_count]
 		+ "Terrain samples: %d (tick %d) | CPU: %d us | MultiMesh: %d us\n" % [
 		state.samples_last_frame, state.physics.last_samples, state.physics.last_step_usec, loose_view.last_update_usec])
 

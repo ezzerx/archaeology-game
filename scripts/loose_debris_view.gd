@@ -15,7 +15,7 @@ func setup(target: ExcavationBlock) -> void:
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh.use_colors = true
 	multimesh.mesh = DebrisVisualMesh.with_face_contrast(crumb_mesh())
-	multimesh.instance_count = state.profile.global_crumb_cap
+	multimesh.instance_count = state.profile.matrix_crumb_cap + state.profile.soil_grain_cap
 	multimesh.visible_instance_count = 0
 	var material := StandardMaterial3D.new()
 	material.vertex_color_use_as_albedo = true
@@ -38,9 +38,7 @@ static func crumb_mesh() -> ArrayMesh:
 
 func draw_item(slot: int, point: Vector2, amount: float, layer: int, lift := 0.0) -> void:
 	var uv := (point + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
-	# P4-V1 hard-crumb dimensions in BOTH A/B modes. Soil geometry stays unchanged.
-	var width := (state.profile.crumb_width if layer == 0 else state.profile.matrix_crumb_width) \
-		* clampf(sqrt(amount / state.profile.crumb_capacity), 0.08, 1.0)
+	var width := state.visual_width(point, amount, layer)
 	var height := width * (0.14 if layer == 0 else 0.32)
 	var pos := block.to_global(Vector3((uv.x - 0.5) * block.surface_size.x,
 		block.relief.height_at(uv) + (0.00018 if layer == 0 else height * 0.5 + 0.0001) + lift, (uv.y - 0.5) * block.surface_size.y))
@@ -50,7 +48,8 @@ func draw_item(slot: int, point: Vector2, amount: float, layer: int, lift := 0.0
 
 func draw_key(slot: int, key: Vector3i) -> void:
 	if not state.physical_slots.has(key):
-		draw_item(slot, state.point_for(key), state.cells[key], key.z)
+		draw_item(slot, state.point_for(key), state.cells[key], key.z,
+			0.00045 * sin(PI * state.soil_hops.get(key, 0.0) / 0.18))
 		return
 	var f := state.physics.fragments[state.physical_slots[key]]
 	# scaled_local matches the oriented support calculation (R * S, not S * R).

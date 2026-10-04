@@ -156,7 +156,7 @@ func scenario(kind: String, zoom: float) -> void:
 	if kind == "blower": check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads, "Blower structural state exact: " + label)
 	if kind == "dirty_idle":
 		check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads
-			and block.working_map.loose_debris.persistent_count() == block.working_map.loose_debris.profile.global_crumb_cap, "globally capped resting dirt is stable: " + label)
+			and block.working_map.loose_debris.persistent_count() == block.working_map.loose_debris.profile.matrix_crumb_cap + block.working_map.loose_debris.profile.soil_grain_cap, "globally capped resting dirt is stable: " + label)
 	if kind.begins_with("pick"):
 		check(changed > 0 and controller.total_impacts == 36 and block.working_map.fossil.condition == 100
 			and detached == 0 and marked == 0, "real Pick input removes caps without damage or fracture: " + label)

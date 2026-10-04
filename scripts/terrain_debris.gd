@@ -22,6 +22,7 @@ class Fragment extends RefCounted:
 	var contact_time := 0.0
 	var sleeping_time := 0.0
 	var contacts := 0
+	var blown_recently := 0.0
 
 	func support_height() -> float:
 		# Conservative oriented envelope of the flake, not its unrotated thickness.
@@ -40,12 +41,13 @@ var last_blower_usec := 0
 var emitted_count := 0
 var skipped_count := 0
 var ejected_count := 0
+var _vertex_heights: Dictionary = {} # Tick-local, invalidated before any support query.
 
 func _init(terrain: ReliefSurface, settings: DebrisPhysicsProfile = preload("res://config/debris_physics_profile.tres"), capacity := 128) -> void:
 	relief = terrain
 	map_size = relief.image.get_size()
 	profile = settings
-	for i in range(clampi(capacity, 1, 192)):
+	for i in range(clampi(capacity, 1, 512)):
 		fragments.append(Fragment.new())
 
 func spawn(at: Vector3, velocity: Vector3, size: Vector3, layer: int, rotation: float, source := Vector3i.ZERO) -> int:
@@ -71,6 +73,7 @@ func spawn(at: Vector3, velocity: Vector3, size: Vector3, layer: int, rotation: 
 	f.angular_velocity = 4.0
 	f.age = 0.0
 	f.contacts = 0
+	f.blown_recently = 0.0
 	_wake(f)
 	emitted_count += 1
 	return slot
@@ -80,7 +83,23 @@ func _inside(at: Vector3) -> bool:
 
 func _height(at: Vector3) -> float:
 	last_samples += 1
-	return relief.height_at(SurfaceMapping.local_to_uv(at, relief.dimensions))
+	# Same three vertices/triangle and float32 vertex Y as ReliefSurface.height_at.
+	# Nearby contacts share vertex reads; no stale cache after excavation next tick.
+	var uv := SurfaceMapping.local_to_uv(at, relief.dimensions).clamp(Vector2.ZERO, Vector2.ONE)
+	var point := uv * Vector2(relief.cells)
+	var cell := Vector2i(point.floor()).min(relief.cells - Vector2i.ONE)
+	var fraction := point - Vector2(cell)
+	var b := _vertex_height(cell + Vector2i.RIGHT)
+	var c := _vertex_height(cell + Vector2i.DOWN)
+	if fraction.x + fraction.y <= 1.0:
+		var a := _vertex_height(cell)
+		return a + (b - a) * fraction.x + (c - a) * fraction.y
+	var d := _vertex_height(cell + Vector2i.ONE)
+	return d + (c - d) * (1.0 - fraction.x) + (b - d) * (1.0 - fraction.y)
+
+func _vertex_height(cell: Vector2i) -> float:
+	if not _vertex_heights.has(cell): _vertex_heights[cell] = relief.vertex_at(cell).y
+	return _vertex_heights[cell]
 
 func _gradient(at: Vector3) -> Vector2:
 	var distance := profile.slope_sample_distance
@@ -110,12 +129,14 @@ func remove(slot: int) -> void:
 func advance(delta: float) -> void:
 	var started := Time.get_ticks_usec()
 	last_samples = 0
+	_vertex_heights.clear()
 	if active_count == 0:
 		last_step_usec = Time.get_ticks_usec() - started
 		return
 	for f in fragments:
 		if not f.active: continue
 		f.age += delta
+		f.blown_recently = maxf(0, f.blown_recently - delta)
 		if f.state == State.SLEEPING:
 			# Excavation under a settled crumb must remove its support immediately.
 			var floor_y := _height(f.position) + f.support_height() + profile.contact_skin
@@ -163,7 +184,7 @@ func _step(f: Fragment, delta: float) -> void:
 	if f.state == State.AIRBORNE: f.contacts += 1
 	f.velocity.y = bounce if bounce >= profile.bounce_min_speed else 0.0
 	f.state = State.AIRBORNE if f.velocity.y > 0 else State.CONTACT
-	var lateral := Vector2(f.velocity.x, f.velocity.z) * exp(-profile.friction[f.material - 1] * delta)
+	var lateral := Vector2(f.velocity.x, f.velocity.z) * exp(-(profile.blown_drag if f.blown_recently > 0 else profile.friction[f.material - 1]) * delta)
 	f.angular_velocity *= exp(-profile.angular_damping * delta)
 	f.contact_time += delta
 	if f.state == State.CONTACT and f.contact_time < profile.slide_duration:
@@ -176,7 +197,7 @@ func _step(f: Fragment, delta: float) -> void:
 				lateral = (lateral + extra).limit_length(profile.slide_speed_limit)
 	f.velocity.x = lateral.x
 	f.velocity.z = lateral.y
-	if f.state == State.CONTACT and lateral.length() < profile.sleep_speed and absf(f.angular_velocity) < profile.sleep_angular_speed:
+	if f.blown_recently <= 0 and f.state == State.CONTACT and lateral.length() < profile.sleep_speed and absf(f.angular_velocity) < profile.sleep_angular_speed:
 		f.quiet_time += delta
 		if f.quiet_time >= profile.sleep_delay:
 			f.state = State.SLEEPING
@@ -199,13 +220,18 @@ func blow(from: Vector2, to: Vector2, radius: float, falloff: float, delta: floa
 		var t := clampf((point - from).dot(segment) * inv_length, 0, 1)
 		var weight := WorkingSurface.weight(point.distance_to(from + segment * t) / radius, falloff)
 		if weight <= 0: continue
-		if f.state == State.SLEEPING: sleeping_count -= 1
-		_wake(f)
-		var lateral := Vector3(f.velocity.x, 0, f.velocity.z) + jet * profile.crumb_blower_impulse * weight * delta
-		lateral = lateral.limit_length(profile.blower_speed_limit)
+		var pop := f.state != State.AIRBORNE and f.blown_recently <= 0
+		if f.state == State.SLEEPING:
+			sleeping_count -= 1
+			_wake(f)
+		if pop:
+			f.velocity.y = maxf(f.velocity.y, profile.crumb_blower_pop * weight)
+			f.state = State.AIRBORNE
+		f.blown_recently = profile.blown_duration
+		var lateral := Vector3(f.velocity.x, 0, f.velocity.z) + jet * profile.crumb_blower_acceleration * weight * delta
+		lateral = lateral.limit_length(profile.crumb_blower_speed_limit)
 		f.velocity.x = lateral.x
 		f.velocity.z = lateral.z
-		f.velocity.y = minf(profile.blower_lift_limit, f.velocity.y + profile.crumb_blower_lift * weight * delta)
 		f.angular_velocity = maxf(f.angular_velocity, weight * 4.0)
 		affected += 1
 	last_blower_usec = Time.get_ticks_usec() - started

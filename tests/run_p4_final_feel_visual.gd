@@ -141,10 +141,10 @@ func blower_capture(zoom: int) -> void:
 	await RenderingServer.frame_post_draw
 	var soil := fx.loose_view.multimesh.get_instance_transform(0).basis
 	var soil_point := state.point_for(Vector3i(87, 17, 0))
-	# Golden P4-E transform: scaled() applies world-axis scale after rotation,
-	# so a rotated column length is not the nominal 1.4 mm width.
-	var previous_soil := Basis(Vector3.UP, soil_point.x * 1.7 + soil_point.y * 2.3).scaled(Vector3(0.0014, 0.000196, 0.00105))
-	check(soil.is_equal_approx(previous_soil), "recent Soil rendered transform unchanged")
+	# Closure explicitly increases only Soil; the six-sided flat mesh stays intact.
+	var width := state.visual_width(soil_point, 0.02, 0)
+	var expected := Basis(Vector3.UP, soil_point.x * 1.7 + soil_point.y * 2.3).scaled(Vector3(width, width * 0.14, width * 0.75))
+	check(soil.is_equal_approx(expected) and width >= 0.0018 and width <= 0.0025, "closure Soil granules are 1.8–2.5 mm, flat, varied; Matrix remains 4.5 mm")
 
 func run() -> void:
 	if DisplayServer.get_name() == "headless":

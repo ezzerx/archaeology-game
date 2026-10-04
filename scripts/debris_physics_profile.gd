@@ -17,8 +17,9 @@ extends Resource
 @export var contact_skin := 0.00015
 @export var spawn_lateral_speed := 0.035
 @export var spawn_lift := 0.025
-# Integrated over the actual tool delta; independent of frame/tick frequency.
-@export var crumb_blower_impulse := 5.0 # m/s of lateral velocity per second.
-@export var crumb_blower_lift := 1.8 # m/s of upward velocity per second.
-@export var blower_speed_limit := 0.80
-@export var blower_lift_limit := 0.22
+# One grounded pop; sustained air adds horizontal velocity only.
+@export var crumb_blower_pop := 0.055
+@export var crumb_blower_acceleration := 12.0
+@export var crumb_blower_speed_limit := 1.6
+@export var blown_drag := 0.8
+@export var blown_duration := 0.4

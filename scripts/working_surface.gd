@@ -93,6 +93,7 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 	# Above this immutable bound no cell can contact bone: skip its packed reads.
 	var bone_limit := fossil.field.highest_ceiling + 2.0 * FossilField.EXPOSURE_EPSILON if has_fossil else -1.0
 	var newly_exposed := PackedInt32Array()
+	if loose_debris != null: loose_debris.begin_deposition()
 	for y in range(low.y, high.y + 1):
 		var row_low := low.x
 		var row_high := high.x
@@ -158,6 +159,7 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				if fine_dust > 0.0:
 					residue.deposit_removed(x, y, fine_dust)
 				changed += 1
+	if loose_debris != null: loose_debris.end_deposition()
 	if changed > 0:
 		# Image is the synchronized RF staging buffer, also used by CPU picking.
 		image.set_data(size.x, size.y, false, Image.FORMAT_RF, _heights.to_byte_array())
