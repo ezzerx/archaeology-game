@@ -46,6 +46,7 @@ func run() -> void:
 	var block: ExcavationBlock = main.get_node("ExcavationBlock")
 	main.get_node("ToolController").set_physics_process(false)
 	var fx: MaterialFeedback = main.feedback
+	fx.debris_physics_enabled = false # Preserve the exact P4-V1 OFF oracle.
 	var structural := block.working_map.image.get_data()
 	var dust := block.working_map.residue.image.get_data()
 	for i in range(30):

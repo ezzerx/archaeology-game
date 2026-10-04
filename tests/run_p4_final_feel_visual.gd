@@ -156,6 +156,7 @@ func run() -> void:
 	AudioServer.set_bus_mute(0, true)
 	main = load("res://scenes/prototype_main.tscn").instantiate()
 	root.add_child(main)
+	main.feedback.debris_physics_enabled = false # Exact validated spectacle A/B reference.
 	block = main.block
 	controller = main.controller
 	camera = main.camera
