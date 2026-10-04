@@ -8,13 +8,33 @@ Transformer un bloc opaque en découverte tangible par des gestes de fouille et 
 
 *PowerWash Simulator* est une référence pour la satisfaction de transformation progressive, pas un modèle à reproduire dans son univers ou ses systèmes. Le nom de travail ArchaeologyGame reste modifiable. Le terme « archéologie » décrit le concept général ; le premier cœur de contenu porte sur les fossiles et leur préparation.
 
+## Cadre narratif actuel
+
+La base narrative canonique actuelle est celle d'un **atelier de préparation au sein d'un musée d'histoire naturelle**.
+
+Le joueur est employé / préparateur du musée. Il reçoit des blocs, fragments et spécimens qui doivent être dégagés, nettoyés, préparés et documentés avant de rejoindre les réserves, la collection ou une exposition.
+
+Boucle diégétique cible :
+
+> **spécimen confié par le musée → atelier de préparation → excavation / nettoyage / identification → archivage → collection / exposition mise à jour**
+
+Le joueur ne contrôle toujours aucun avatar. Le musée sert de lieu, d'employeur et de destination du travail, pas de monde ouvert.
+
+Mise en scène de travail retenue tant qu'une meilleure idée n'émerge pas :
+
+- menu principal / accueil pouvant montrer **la façade du musée** ;
+- lancement d'une session = passage implicite « à l'intérieur », dans **l'atelier de préparation** ;
+- la galerie / collection représente le résultat visible du travail accompli.
+
+Cette direction est une **baseline narrative actuelle**, pas un scénario définitif. Elle peut évoluer si une proposition plus forte apparaît sans casser le cœur du jeu.
+
 ## Périmètre confirmé
 
 - Jeu cosy destiné à Steam, sans monde ouvert ni personnage contrôlable.
 - Fouille en vue strictement du dessus : un bloc est posé sur une table, le joueur agit directement sur sa surface.
 - Plusieurs matériaux superposés possèdent résistance, profondeur, réactions et outils adaptés.
 - Les os se révèlent progressivement ; l’identité du spécimen peut être cachée au départ.
-- Les fragments récupérés enrichissent une collection et complètent les expositions du musée.
+- Les fragments récupérés enrichissent une collection et complètent les expositions du musée ; le musée est aussi le cadre narratif qui confie les spécimens au joueur.
 - Le musée est une interface de galerie horizontale, sans déplacement d’avatar.
 - La réussite dépend prioritairement du game feel, de l’atmosphère et du rythme de découverte.
 - Le premier prototype reste limité à un seul écran de fouille.
