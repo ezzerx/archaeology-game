@@ -28,10 +28,18 @@ func prepare_fixture(kind: String) -> void:
 		block.working_map.apply_segment(p, p, 70, 100, 1.5, 1, Vector3.ONE, 8)
 		block.working_map.residue.apply_segment(p, p, 80, 1, 0)
 	if kind == "dirty_idle":
-		# Worst resting case: every local bucket across the block is occupied.
+		# Worst resting case: fill the global crumb cap across local buckets.
 		for y in range(0, block.map_resolution.y, 8):
 			for x in range(0, block.map_resolution.x, 8):
 				block.working_map.loose_debris.deposit_removed(x, y, 100, (x / 8 as int) % 3)
+		# This is a RESTING fixture, not an edge-ejection test. Newly born V2
+		# crumbs hop; suppress only fixture launch velocity and settle them first.
+		var dirt := block.working_map.loose_debris
+		for f in dirt.physics.fragments:
+			if f.active:
+				f.velocity = Vector3.ZERO
+				f.angular_velocity = 0
+		for tick in range(90): dirt.advance(1.0 / 60)
 		for y in range(block.map_resolution.y):
 			for x in range(block.map_resolution.x): block.working_map.residue.deposit_removed(x, y, 0.65)
 		block.working_map.residue.apply_segment(Vector2(0, 320), Vector2(1023, 320), 400, 1, 0)
@@ -148,7 +156,7 @@ func scenario(kind: String, zoom: float) -> void:
 	if kind == "blower": check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads, "Blower structural state exact: " + label)
 	if kind == "dirty_idle":
 		check(initial_height == block.working_map.image.get_data() and block.upload_count == uploads
-			and block.working_map.loose_debris.cells.size() == 2322, "fully dirtied resting block is stable: " + label)
+			and block.working_map.loose_debris.persistent_count() == block.working_map.loose_debris.profile.matrix_crumb_cap, "globally capped resting dirt is stable: " + label)
 	if kind.begins_with("pick"):
 		check(changed > 0 and controller.total_impacts == 36 and block.working_map.fossil.condition == 100
 			and detached == 0 and marked == 0, "real Pick input removes caps without damage or fracture: " + label)
@@ -300,11 +308,14 @@ func run() -> void:
 	main.get_node("Debug/BonePanel").hide()
 	for i in range(90): await physics_frame
 	var dense_only := "--dense-only" in OS.get_cmdline_user_args()
-	var kinds := ["clay_dense", "stone_dense"] if dense_only else ["soil", "clay", "stone", "bone", "blower", "dirty_idle", "pick", "pick_clay", "pick_stone", "proxy_cavity", "proxy_bone", "dusty_bone", "clay_dense", "stone_dense"]
+	var idle_only := "--idle-only" in OS.get_cmdline_user_args()
+	var pick_only := "--pick-only" in OS.get_cmdline_user_args()
+	var kinds := ["dirty_idle"] if idle_only else (["clay_dense", "stone_dense"] if dense_only else ["soil", "clay", "stone", "bone", "blower", "dirty_idle", "pick", "pick_clay", "pick_stone", "proxy_cavity", "proxy_bone", "dusty_bone", "clay_dense", "stone_dense"])
+	if pick_only: kinds = ["pick", "pick_clay", "pick_stone"]
 	for zoom in [1.0, 3.0]:
 		for kind in kinds:
 			await scenario(kind, zoom)
-	if not dense_only:
+	if not dense_only and not idle_only and not pick_only:
 		await comparison_captures()
 		await cleanup_captures()
 		await debris_session_captures()
@@ -317,7 +328,9 @@ func run() -> void:
 	report["runtime_cap"] = Engine.max_fps
 	report["physics_hz"] = Engine.physics_ticks_per_second
 	report["failures"] = failures
-	FileAccess.open("res://work/test-logs/p4-dense-benchmark.json" if dense_only else "res://work/test-logs/p4-benchmark.json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
+	var output := "p4-idle-benchmark" if idle_only else ("p4-dense-benchmark" if dense_only else "p4-benchmark")
+	if pick_only: output = "p4-pick-human-benchmark"
+	FileAccess.open("res://work/test-logs/" + output + ".json", FileAccess.WRITE).store_string(JSON.stringify(report, "\t"))
 	print("P4 GRAPHICAL: %d failures" % failures)
 	controller.reset_surface()
 	main.queue_free()

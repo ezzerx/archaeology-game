@@ -2,7 +2,8 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; micro-fix P4 FINAL FEEL par composant prêt pour décision de fermeture.**
+**Statut : préproduction — P4/P4-V1 validés et mergés ; micro-passe finale P4-V2 en retest humain, PR #7 DRAFT.**
+Contrat courant : [rapport P4-V2](docs/dev/P4V2_REPORT.md) et [Brain du dépôt](docs/brain/status.md). Soil sans mess persistant, micro-restes hard détachables au Brush, Matrix évacuée par engagement du Blower. Bone Film et Pick validés conservés. Aucun merge ni P5 automatique.
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression

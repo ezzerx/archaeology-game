@@ -153,6 +153,8 @@ func test_bone_and_events() -> void:
 	check(events == count, "clean blower produces no fictitious material particles")
 	surface.apply_continuous(contact, contact, brush, 0.1)
 	check(events == count + 1 and surface.last_action.removed.x > 0, "actual brush removal emits one aggregated action")
+	surface.residue.deposit_removed(int(contact.x), int(contact.y), 8) # Independent hard-dust fixture.
+	surface.residue.apply_segment(contact, contact, 20, 1, 0)
 	var dust_before := surface.residue.value_at((contact + Vector2.ONE * 0.5) / Vector2(size))
 	surface.apply_continuous(contact, contact, blower, 0.1)
 	check(surface.last_action.residue_cleared > 0 and surface.residue.value_at((contact + Vector2.ONE * 0.5) / Vector2(size)) < dust_before, "actual residue clearing emits airflow/dust work")
@@ -166,7 +168,7 @@ func test_scene_and_audio() -> void:
 	var fx: MaterialFeedback = main.feedback
 	await process_frame
 	# P4 human-validated baseline — tuning final deferred to P7.
-	var baseline := [Vector3(40, 0.70, 1.25), Vector3(22, 0.64, 2.25), Vector3(60, 0, 1), Vector3(7, 0.24, 1.50)]
+	var baseline := [Vector3(40, 0.70, 1.25), Vector3(22, 0.64, 2.25), Vector3(60, 0, 1), Vector3(11, 0.44, 1.75)]
 	for tool in range(4):
 		check(Vector3(control.tools[tool].radius, control.tools[tool].power, control.tools[tool].falloff).is_equal_approx(baseline[tool]),
 			"fresh scene uses human-validated resource baseline without debug input: tool %d" % tool)
@@ -206,7 +208,8 @@ func test_scene_and_audio() -> void:
 	check(error < 0.00001, "225 picking roundtrips on real P4 fracture edges")
 	var p := Vector2(200, 200)
 	block.working_map.apply_continuous(p, p, brush, 0.1)
-	check(fx.emitted[0] > 0 and fx.audio.last_family == &"brush_soil", "real soil action emits grains and soil sound")
+	check(fx.emitted[0] == 0 and fx.pools[0] == null and fx.audio.last_family == &"brush_soil", "real Soil action keeps sound without grain emission")
+	block.working_map.residue.deposit_removed(200, 200, 8) # Hard dust cleanup fixture.
 	block.working_map.apply_continuous(p, p, blower, 0.1)
 	check(fx.emitted[3] > 0 and fx.audio.last_family == &"air", "real blower clearing emits dust and air sound")
 	for family in MaterialAudio.FAMILIES:
@@ -227,9 +230,9 @@ func test_scene_and_audio() -> void:
 	for tool in range(4):
 		check(Vector3(control.tools[tool].radius, control.tools[tool].power, control.tools[tool].falloff).is_equal_approx(baseline[tool]),
 			"specimen reset keeps the launch baseline without debug adjustment: tool %d" % tool)
-	check(fx.emitted == PackedInt32Array([0, 0, 0, 0]) and fx.action_count == 0 and before_particles[0] > 0, "R clears particle counters and transient actions")
+	check(fx.emitted == PackedInt32Array([0, 0, 0, 0]) and fx.action_count == 0 and before_particles[3] > 0, "R clears particle counters and transient actions")
 	var all_clear := fx.audio.played == 0 and fx.recoil_remaining == 0 and fx.bone_remaining == 0
-	for family in range(4): all_clear = all_clear and fx.particles[family].is_empty() and fx.pools[family].visible_instance_count == 0
+	for family in range(4): all_clear = all_clear and fx.particles[family].is_empty() and (fx.pools[family] == null or fx.pools[family].visible_instance_count == 0)
 	check(all_clear, "R immediately clears all visible particle/audio/recoil state")
 	main.free()
 	await process_frame

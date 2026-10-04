@@ -9,10 +9,16 @@ var dirty := true
 var strata: Stratigraphy
 var residue: SurfaceResidue
 var fossil: FossilState
+var bone_film: BoneSurfaceFilm
 signal material_action(event: Dictionary)
+## Feedback-only jet, including clean terrain. It never changes the action/state.
+signal air_jet_applied(from: Vector2, to: Vector2, radius: float, falloff: float, delta: float, direction: Vector2)
 signal surface_reset
 var fracture: MaterialFracture
 var loose_debris: LooseDebris
+var excavatable_depth := 0.102 # Metres; set from the actual production block.
+var last_micro_probes := 0
+var last_micro_cells := 0
 var last_removed := Vector3.ZERO
 var last_action: Dictionary = {}
 var last_residue_edit_usec := 0
@@ -27,6 +33,7 @@ func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null,
 	strata = stratigraphy
 	image = Image.create(size.x, size.y, false, Image.FORMAT_RF)
 	residue = SurfaceResidue.new(size)
+	bone_film = BoneSurfaceFilm.new(size)
 	if reactions != null:
 		assert(strata != null)
 		fracture = MaterialFracture.new(size, reactions)
@@ -34,6 +41,7 @@ func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null,
 	if fossil_field != null:
 		assert(fossil_field.size == size)
 		fossil = FossilState.new(fossil_field)
+		fossil.bone_cell_exposed.connect(bone_film.expose)
 	reset()
 
 func reset() -> void:
@@ -41,6 +49,7 @@ func reset() -> void:
 	_heights.fill(1.0)
 	image.fill(Color(1.0, 0.0, 0.0, 1.0))
 	residue.reset()
+	bone_film.reset()
 	if fracture != null:
 		fracture.reset()
 	if loose_debris != null: loose_debris.reset()
@@ -63,7 +72,7 @@ static func weight(distance_ratio: float, falloff: float) -> float:
 
 func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 		falloff: float, delta: float, effectiveness := Vector3.ONE,
-		residue_generation := 0.0, stop_at_initial_layer := false) -> int:
+		residue_generation := 0.0, stop_at_initial_layer := false, brush_cleanup := false) -> int:
 	if radius <= 0.0 or strength <= 0.0 or delta <= 0.0:
 		return 0
 	# Sweep a capsule: the entire segment is covered, including fast movements.
@@ -91,6 +100,8 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 	# Above this immutable bound no cell can contact bone: skip its packed reads.
 	var bone_limit := fossil.field.highest_ceiling + 2.0 * FossilField.EXPOSURE_EPSILON if has_fossil else -1.0
 	var newly_exposed := PackedInt32Array()
+	var micro_seen := {}
+	if loose_debris != null: loose_debris.begin_deposition()
 	for y in range(low.y, high.y + 1):
 		var row_low := low.x
 		var row_high := high.x
@@ -123,6 +134,29 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				# Packed reads avoid per-texel Image calls and Resource dispatch.
 				var upper := limits[index * 2]
 				var lower := limits[index * 2 + 1]
+				if brush_cleanup and loose_debris != null and old_value <= upper:
+					var layer := 1 if old_value > lower else 2
+					var remaining := old_value - MicroRemnant.bottom(self, index, layer)
+					if remaining > Stratigraphy.SURFACE_EPSILON and remaining <= loose_debris.profile.micro_depth_m / excavatable_depth + Stratigraphy.SURFACE_EPSILON \
+							and work >= base_work * loose_debris.profile.micro_min_weight and not micro_seen.has(index) \
+							and last_micro_probes < loose_debris.profile.micro_probe_budget:
+						last_micro_probes += 1
+						var island := MicroRemnant.inspect(self, Vector2i(x, y), layer, micro_seen)
+						var volume := 0.0
+						var center := Vector2.ZERO
+						for member in island:
+							volume += _heights[member] - MicroRemnant.bottom(self, member, layer)
+							center += Vector2(member % size.x, member / size.x as int)
+						if not island.is_empty() and loose_debris.detach_at(center / island.size(), volume, layer):
+							for member in island:
+								_heights[member] = MicroRemnant.bottom(self, member, layer)
+								if has_fossil and bone_ceilings[member] > 0 and _heights[member] <= bone_ceilings[member] + FossilField.EXPOSURE_EPSILON and fossil.exposed[member] == 0:
+									newly_exposed.append(member)
+							last_removed[layer] += volume
+							last_micro_cells += island.size()
+							changed += island.size()
+					continue # All non-eligible attached hard material is untouched.
+
 				if next_value > upper and effectiveness.x > 0.0:
 					var removed := minf(next_value - upper, work / resistance.x)
 					next_value -= removed
@@ -150,12 +184,13 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 				_heights[index] = next_value
 				var layer := Stratigraphy.index_at(old_value, Vector2(limits[index * 2], limits[index * 2 + 1])) if strata != null else 0
 				last_removed[layer] += old_value - _heights[index]
-				var fine_dust := (old_value - next_value) * residue_generation
-				if loose_debris != null:
+				var fine_dust := (old_value - next_value) * residue_generation if layer > 0 else 0.0
+				if loose_debris != null and layer > 0:
 					fine_dust += loose_debris.deposit_removed(x, y, old_value - _heights[index], layer)
 				if fine_dust > 0.0:
 					residue.deposit_removed(x, y, fine_dust)
 				changed += 1
+	if loose_debris != null: loose_debris.end_deposition()
 	if changed > 0:
 		# Image is the synchronized RF staging buffer, also used by CPU picking.
 		image.set_data(size.x, size.y, false, Image.FORMAT_RF, _heights.to_byte_array())
@@ -181,6 +216,8 @@ func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float, was_exposed_before_impact := false) -> int:
 	var edit_started := Time.get_ticks_usec()
 	last_edit_usec = 0
+	last_micro_probes = 0
+	last_micro_cells = 0
 	last_residue_edit_usec = 0
 	changed_residue_cells = 0
 	last_removed = Vector3.ZERO
@@ -189,6 +226,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		return 0
 	residue.last_cleared = 0.0
 	residue.cleared_packets = []
+	bone_film.clean(from, to, tool, amount) # Before revelation: newly exposed film survives this stroke.
 	if loose_debris != null: loose_debris.clean(from, to, tool, amount)
 	var changed := 0
 	var exposed_before := fossil.exposed_cells if fossil != null else 0
@@ -204,7 +242,8 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		changed = fracture.apply(self, to, tool)
 	elif tool.effectiveness != Vector3.ZERO:
 		changed = apply_segment(from, to, tool.radius, tool.power, tool.falloff,
-			amount, tool.effectiveness, tool.residue_generation, is_pick)
+			amount, tool.effectiveness,
+			tool.residue_generation, is_pick, tool.id == &"soft_brush")
 	if tool.residue_clear > 0.0 or (changed > 0 and (tool.residue_generation > 0.0 or loose_debris != null)):
 		var start := Time.get_ticks_usec()
 		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount, tool.id == &"air_blower")
@@ -222,10 +261,10 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		bone_protected_contact = fossil.contact_at(center_index, tool.bone_damage, was_exposed_before_impact)
 		bone_damage = condition_before - fossil.condition
 	var loose_cleared := loose_debris.last_cleared if loose_debris != null else 0.0
-	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
+	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_film.last_cleared > 0 or bone_revealed or direct_bone_hit:
 		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
 			"changed": changed, "marks": marks, "chunks": fracture.last_chunks.duplicate(true) if is_fracture else [],
-			"residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
+			"micro_detached": last_micro_cells, "bone_film_cleared": bone_film.last_cleared, "residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
 			"cleared_dust": residue.cleared_packets.duplicate(true),
 			"direction": loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized(), "bone_revealed": bone_revealed,
 			"bone_first_contact": bone_first_contact,
@@ -236,4 +275,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		material_action.emit(last_action)
 	else:
 		last_edit_usec = Time.get_ticks_usec() - edit_started
+	if tool.id == &"air_blower":
+		air_jet_applied.emit(from, to, tool.radius, tool.falloff, amount,
+			loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized())
 	return changed

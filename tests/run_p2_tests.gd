@@ -38,7 +38,7 @@ func test_definitions() -> void:
 	check(chisel.interaction_mode == ToolDefinition.InteractionMode.IMPACT, "chisel impact profile")
 	check(brush.radius == 40 and chisel.radius == 22 and blower.radius == 60, "P4 human-validated nominal footprints")
 	check(chisel.cadence >= 4 and chisel.cadence <= 5, "nominal chisel cadence")
-	check(brush.effectiveness == Vector3(1, 0.06, 0), "brush material table")
+	check(brush.effectiveness == Vector3(1, 0, 0), "Brush excavates Soil only; micro-remnants use separate bounded detachment")
 	check(chisel.effectiveness.y > chisel.effectiveness.x and chisel.effectiveness.z > 0, "chisel material table")
 	check(blower.effectiveness == Vector3.ZERO and blower.power == 0, "blower structural zeros")
 	check(blower.residue_clear > brush.residue_clear * 10, "blower clears far more strongly")
@@ -79,13 +79,13 @@ func test_materials_and_residue() -> void:
 	var soil_removed := 1.0 - soil.value_at(cell)
 	var clay_removed := clay_height - clay.value_at(cell)
 	check(absf(soil_removed - 0.07) < 0.000001, "brush removes soil at P4 baseline 0.70 depth/s")
-	check(absf(clay_removed - 0.0014) < 0.000001 and soil_removed / clay_removed > 49, "brush Soil is 50x Clay")
+	check(absf(clay_removed) < 0.000001, "Brush has no general attached Clay excavation")
 	check(stone.image.get_data() == stone_bytes and not stone.dirty, "brush never excavates Sandstone, even a long tick")
 	check(stone.residue.value_at(Vector2(0.5, 0.5)) == 0, "ineffective brush creates no residue")
 	var crossing := surface_at()
 	crossing.apply_continuous(centre, centre, brush, 1000)
-	var floor_limit := crossing.strata.boundaries.get_pixelv(cell).g
-	check(crossing.value_at(cell) == floor_limit, "long brush tick stops exactly at Sandstone interface")
+	var floor_limit := crossing.strata.boundaries.get_pixelv(cell).r
+	check(crossing.value_at(cell) == floor_limit, "long Brush tick stops exactly at the Clay roof")
 	soil = surface_at()
 	clay = surface_at(clay_height)
 	stone = surface_at(0.2)
@@ -150,11 +150,12 @@ func test_materials_and_residue() -> void:
 	for value in lightly_cleaned.residue._values:
 		residue_bounds = residue_bounds and value >= 0 and value <= 1
 	check(residue_bounds, "CPU residue stays within 0..1")
-	# Independent mass check on unsaturated soil: generation follows actual removal.
-	var deposited := surface_at()
-	deposited.apply_impact(centre, chisel)
+	# Independent mass check on unsaturated hard material.
+	var deposited := surface_at(0.2)
+	var initial_depths := deposited._heights.duplicate()
+	deposited.apply_impact(centre, residue_tool)
 	var removed_sum := 0.0
-	for h in deposited.image.get_data().to_float32_array(): removed_sum += 1.0 - h
+	for index in range(initial_depths.size()): removed_sum += initial_depths[index] - deposited._heights[index]
 	var residue_sum := 0.0
 	for value in deposited.residue._values: residue_sum += value
 	check(absf(residue_sum * 16.0 - removed_sum * chisel.residue_generation) < 0.001, "coarse residue conserves generated removal before saturation")
@@ -204,7 +205,8 @@ func test_tool_oracle() -> void:
 	check(clean_path and swept.image.get_data() == height_before, "fast blower sweep clears continuously without height changes")
 	# Uneven dimensions still map the last height texel to the last residue cell.
 	var edge := WorkingSurface.new(Vector2i(97, 65))
-	edge.apply_impact(Vector2(96, 64), chisel)
+	edge.residue.deposit_removed(96, 64, 0.1)
+	edge.residue.apply_segment(Vector2(96, 64), Vector2(96, 64), 10, 1, 0)
 	check(edge.residue.size == Vector2i(25, 17) and edge.residue.image.get_pixel(24, 16).r > 0, "partial residue edge tiles are included")
 
 func test_cadence() -> void:
@@ -310,7 +312,8 @@ func test_input() -> void:
 		for i in range(20): tick()
 		check(block.working_map.value_at(Vector2i(233, 320)) == 1 and block.working_map.residue.value_at(Vector2(0.23, 0.5)) == 0 and not controller._held, "R restores and disarms held tool %d" % tool_index)
 	controller.select_tool(2)
-	block.working_map.apply_impact(Vector2(512, 320), chisel)
+	block.working_map.residue.deposit_removed(512, 320, 8)
+	block.working_map.residue.apply_segment(Vector2(512, 320), Vector2(512, 320), 40, 1, 0)
 	block.flush_texture()
 	var uploads := block.upload_count
 	var residue_uploads := block.residue_upload_count

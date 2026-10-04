@@ -77,7 +77,8 @@ func test_face_meshes() -> void:
 	root.add_child(main)
 	main.controller.set_physics_process(false)
 	var fx: MaterialFeedback = main.feedback
-	check(fx.pools[0].mesh is BoxMesh and fx.pools[3].mesh is QuadMesh, "Soil grains and lifted dust meshes unchanged")
+	fx.crumb_physics_enabled = false # Historical lifetime/mesh regression.
+	check(fx.pools[0] == null and fx.pools[3].mesh is QuadMesh, "no Soil GPU pool; lifted dust mesh unchanged")
 	check(fx.pools[1].mesh is ArrayMesh and fx.pools[2].mesh is ArrayMesh, "hard chunks use static face contrast")
 	var original := fx.pools[2].mesh.get_rid()
 	fx._emit(2, Vector2(700, 140), 5)

@@ -1,0 +1,26 @@
+{
+	"checks": 13,
+	"failures": 0,
+	"p4-final-bone-1x": {
+		"darker_pixels_vs_old": 53694,
+		"dirty_clean_pixels": 61443,
+		"exposed": 32290,
+		"film_bytes": 163840,
+		"partial_clean_pixels": 6141
+	},
+	"p4-final-bone-3x": {
+		"darker_pixels_vs_old": 277940,
+		"dirty_clean_pixels": 320025,
+		"exposed": 32290,
+		"film_bytes": 163840,
+		"partial_clean_pixels": 55373
+	},
+	"p4-final-soil-1x": {
+		"dust_pixels": 35027,
+		"matrix_count": 41
+	},
+	"p4-final-soil-3x": {
+		"dust_pixels": 157816,
+		"matrix_count": 41
+	}
+}

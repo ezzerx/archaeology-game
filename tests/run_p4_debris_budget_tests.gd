@@ -11,7 +11,7 @@ func run() -> void:
 				for x in range(0, 24, 8):
 					supplied += 8
 					overflow += dirt.deposit_removed(x, y, 8, layer)
-	check(dirt.cells.size() == 2, "one local budget is shared by repeated excavation and all three materials")
+	check(dirt.cells.size() == 7, "closure: Clay3/Stone4 local slots, Soil dust only")
 	var retained := 0.0
 	var bounded := true
 	for amount in dirt.cells.values():
@@ -21,7 +21,7 @@ func run() -> void:
 	check(absf(supplied - overflow - retained) < 0.001 and overflow >= supplied * 0.92,
 		"retention cap returns every excess portion to fine dust, without silently deleting it")
 	dirt.deposit_removed(24, 0, 8, 2)
-	check(dirt.cells.size() == 3, "adjacent bucket has its own budget")
+	check(dirt.cells.size() == 8, "adjacent bucket has its own budget")
 	var stored := dirt.cells.duplicate()
 	dirt.advance(120)
 	check(dirt.cells == stored, "resting budgeted crumbs persist indefinitely")
@@ -38,14 +38,15 @@ func run() -> void:
 		var bucket := surface.loose_debris.bucket_for(key)
 		counts[bucket] = counts.get(bucket, 0) + 1
 	bounded = true
-	for count in counts.values(): bounded = bounded and count <= 2
-	check(bounded and not counts.is_empty(), "long real Chisel session never accumulates more than two crumbs per zone")
+	for bucket in counts: bounded = bounded and counts[bucket] <= dirt.profile.crumbs_per_bucket[bucket.z - 1]
+	check(bounded and not counts.is_empty(), "long real Chisel session never accumulates more than the material quota per zone")
 	check(Array(surface.residue._values).max() > 0.1, "fracturing still leaves persistent Fine Dust")
 	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
 	root.add_child(main)
 	var block: ExcavationBlock = main.get_node("ExcavationBlock")
 	main.get_node("ToolController").set_physics_process(false)
 	var fx: MaterialFeedback = main.feedback
+	fx.crumb_physics_enabled = false # Preserve the exact P4-V1 OFF oracle.
 	var structural := block.working_map.image.get_data()
 	var dust := block.working_map.residue.image.get_data()
 	for i in range(30):

@@ -1,0 +1,365 @@
+{
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"engine": "4.7.2-stable (official)",
+	"failures": 0,
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"max_particles": 192,
+	"physics_hz": 60,
+	"pick_1x": {
+		"audio_events": 36,
+		"brush_loop_starts": 0,
+		"changed_texels": 4735,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.619,
+			"mean": 0.0994444444444444,
+			"p95": 0.908
+		},
+		"cpu_edit_ms": {
+			"max": 1.619,
+			"mean": 0.0994444444444444,
+			"p95": 0.908
+		},
+		"cpu_pick_ms": {
+			"max": 0.279,
+			"mean": 0.0716888888888888,
+			"p95": 0.131
+		},
+		"cpu_proxy_ms": {
+			"max": 0.074,
+			"mean": 0.0104361111111111,
+			"p95": 0.013
+		},
+		"exposed_cells": 583,
+		"flying_debris": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 7.466,
+			"mean": 4.16592703266159,
+			"p95": 4.491
+		},
+		"height_uploads": 36,
+		"impacts": 36,
+		"loose_bins": 8,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			0
+		],
+		"peak_flying": 0,
+		"peak_particles": [
+			0,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.863876000211,
+		"upload_submit_ms": {
+			"max": 0.244,
+			"mean": 0.0145472222222222,
+			"p95": 0.14
+		},
+		"zoom": 1.0
+	},
+	"pick_3x": {
+		"audio_events": 36,
+		"brush_loop_starts": 0,
+		"changed_texels": 4735,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.528,
+			"mean": 0.0988555555555555,
+			"p95": 0.944
+		},
+		"cpu_edit_ms": {
+			"max": 1.528,
+			"mean": 0.0988555555555555,
+			"p95": 0.944
+		},
+		"cpu_pick_ms": {
+			"max": 0.223,
+			"mean": 0.0732249999999998,
+			"p95": 0.134
+		},
+		"cpu_proxy_ms": {
+			"max": 0.075,
+			"mean": 0.0104691614691614,
+			"p95": 0.013
+		},
+		"exposed_cells": 583,
+		"flying_debris": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 6.248,
+			"mean": 4.16591054091542,
+			"p95": 4.51
+		},
+		"height_uploads": 36,
+		"impacts": 36,
+		"loose_bins": 8,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			0
+		],
+		"peak_flying": 0,
+		"peak_particles": [
+			0,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.865675221876,
+		"upload_submit_ms": {
+			"max": 0.198,
+			"mean": 0.0141611111111111,
+			"p95": 0.136
+		},
+		"zoom": 3.00000010518467
+	},
+	"pick_clay_1x": {
+		"audio_events": 36,
+		"brush_loop_starts": 0,
+		"changed_texels": 11889,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.616,
+			"mean": 0.134183333333334,
+			"p95": 1.32
+		},
+		"cpu_edit_ms": {
+			"max": 1.616,
+			"mean": 0.134183333333334,
+			"p95": 1.32
+		},
+		"cpu_pick_ms": {
+			"max": 0.354,
+			"mean": 0.0880027777777778,
+			"p95": 0.153
+		},
+		"cpu_proxy_ms": {
+			"max": 0.082,
+			"mean": 0.0112430555555555,
+			"p95": 0.028
+		},
+		"exposed_cells": 0,
+		"flying_debris": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 6.309,
+			"mean": 4.16592008339126,
+			"p95": 4.573
+		},
+		"height_uploads": 36,
+		"impacts": 36,
+		"loose_bins": 16,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			0
+		],
+		"peak_flying": 0,
+		"peak_particles": [
+			0,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.863436194576,
+		"upload_submit_ms": {
+			"max": 0.243,
+			"mean": 0.0169861111111111,
+			"p95": 0.163
+		},
+		"zoom": 1.0
+	},
+	"pick_clay_3x": {
+		"audio_events": 36,
+		"brush_loop_starts": 0,
+		"changed_texels": 11889,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.5,
+			"mean": 0.131072222222223,
+			"p95": 1.314
+		},
+		"cpu_edit_ms": {
+			"max": 1.5,
+			"mean": 0.131072222222223,
+			"p95": 1.314
+		},
+		"cpu_pick_ms": {
+			"max": 0.283,
+			"mean": 0.0881138888888889,
+			"p95": 0.152
+		},
+		"cpu_proxy_ms": {
+			"max": 0.179,
+			"mean": 0.01133125,
+			"p95": 0.039
+		},
+		"exposed_cells": 0,
+		"flying_debris": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 6.285,
+			"mean": 4.16593050729676,
+			"p95": 4.552
+		},
+		"height_uploads": 36,
+		"impacts": 36,
+		"loose_bins": 16,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			0
+		],
+		"peak_flying": 0,
+		"peak_particles": [
+			0,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.863876000211,
+		"upload_submit_ms": {
+			"max": 0.292,
+			"mean": 0.0170361111111111,
+			"p95": 0.162
+		},
+		"zoom": 3.00000010518467
+	},
+	"pick_stone_1x": {
+		"audio_events": 36,
+		"brush_loop_starts": 0,
+		"changed_texels": 9359,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.468,
+			"mean": 0.112202777777778,
+			"p95": 1.146
+		},
+		"cpu_edit_ms": {
+			"max": 1.468,
+			"mean": 0.112202777777778,
+			"p95": 1.146
+		},
+		"cpu_pick_ms": {
+			"max": 0.298,
+			"mean": 0.0898805555555557,
+			"p95": 0.154
+		},
+		"cpu_proxy_ms": {
+			"max": 0.137,
+			"mean": 0.0107331947331947,
+			"p95": 0.013
+		},
+		"exposed_cells": 0,
+		"flying_debris": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 6.255,
+			"mean": 4.16593342579752,
+			"p95": 4.483
+		},
+		"height_uploads": 36,
+		"impacts": 36,
+		"loose_bins": 8,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			0
+		],
+		"peak_flying": 0,
+		"peak_particles": [
+			0,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.864637831012,
+		"upload_submit_ms": {
+			"max": 0.295,
+			"mean": 0.0167888888888889,
+			"p95": 0.16
+		},
+		"zoom": 1.0
+	},
+	"pick_stone_3x": {
+		"audio_events": 36,
+		"brush_loop_starts": 0,
+		"changed_texels": 9359,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {
+			"max": 1.797,
+			"mean": 0.115180555555556,
+			"p95": 1.133
+		},
+		"cpu_edit_ms": {
+			"max": 1.797,
+			"mean": 0.115180555555556,
+			"p95": 1.133
+		},
+		"cpu_pick_ms": {
+			"max": 0.243,
+			"mean": 0.0952277777777779,
+			"p95": 0.172
+		},
+		"cpu_proxy_ms": {
+			"max": 0.133,
+			"mean": 0.0108048611111111,
+			"p95": 0.014
+		},
+		"exposed_cells": 0,
+		"flying_debris": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 6.446,
+			"mean": 4.16592564280753,
+			"p95": 4.515
+		},
+		"height_uploads": 36,
+		"impacts": 36,
+		"loose_bins": 8,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			0
+		],
+		"peak_flying": 0,
+		"peak_particles": [
+			0,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.864755616319,
+		"upload_submit_ms": {
+			"max": 0.28,
+			"mean": 0.0177166666666667,
+			"p95": 0.165
+		},
+		"zoom": 3.00000010518467
+	},
+	"runtime_cap": 240,
+	"stress_atlas_bytes": 64372,
+	"viewport": "(1920, 1080)"
+}

@@ -1,0 +1,141 @@
+{
+	"checks": 8,
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"failures": 0,
+	"fps_cap": 240,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"physics_hz": 60,
+	"soil_brush_matrix0_1x": {
+		"blower_us": {},
+		"cap_refused_attempts": [
+			0,
+			0,
+			0
+		],
+		"debris_update_us": {
+			"max": 228.0,
+			"mean": 50.5733333333333,
+			"p95": 89.0
+		},
+		"duration_s": 20.012683,
+		"edit_us": {
+			"max": 6416.0,
+			"mean": 3613.81416666667,
+			"p95": 4454.0
+		},
+		"film_upload_us": {},
+		"film_uploads": 0,
+		"final_counts": [
+			0,
+			0,
+			0
+		],
+		"fps": 239.947837079116,
+		"frame_ms": {
+			"max": 11.108,
+			"mean": 4.16599416909624,
+			"p95": 8.172
+		},
+		"initial_counts": [
+			0,
+			0,
+			0
+		],
+		"matrix_cap": 256,
+		"max_count": 0,
+		"max_moving": 0,
+		"max_samples_tick": 0,
+		"micro_detached_cells": 0,
+		"micro_probes_max": 0,
+		"min_1s_fps": 239.133857169333,
+		"multimesh_us": {
+			"max": 95.0,
+			"mean": 2.05038517593171,
+			"p95": 3.0
+		},
+		"physics_us": {
+			"max": 2.0,
+			"mean": 0.235833333333333,
+			"p95": 1.0
+		},
+		"residue_edit_us": {
+			"max": 158.0,
+			"mean": 38.8566666666667,
+			"p95": 55.0
+		},
+		"residue_upload_count": 0,
+		"residue_upload_us": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"zoom": 1.0
+	},
+	"soil_brush_matrix0_3x": {
+		"blower_us": {},
+		"cap_refused_attempts": [
+			0,
+			0,
+			0
+		],
+		"debris_update_us": {
+			"max": 214.0,
+			"mean": 47.1083333333333,
+			"p95": 81.0
+		},
+		"duration_s": 20.004849,
+		"edit_us": {
+			"max": 6853.0,
+			"mean": 3506.33833333333,
+			"p95": 4047.0
+		},
+		"film_upload_us": {},
+		"film_uploads": 0,
+		"final_counts": [
+			0,
+			0,
+			0
+		],
+		"fps": 239.941826104261,
+		"frame_ms": {
+			"max": 11.786,
+			"mean": 4.16610500000003,
+			"p95": 8.086
+		},
+		"initial_counts": [
+			0,
+			0,
+			0
+		],
+		"matrix_cap": 256,
+		"max_count": 0,
+		"max_moving": 0,
+		"max_samples_tick": 0,
+		"micro_detached_cells": 0,
+		"micro_probes_max": 0,
+		"min_1s_fps": 239.039777214927,
+		"multimesh_us": {
+			"max": 38.0,
+			"mean": 1.97937929598,
+			"p95": 3.0
+		},
+		"physics_us": {
+			"max": 1.0,
+			"mean": 0.2525,
+			"p95": 1.0
+		},
+		"residue_edit_us": {
+			"max": 187.0,
+			"mean": 37.0691666666667,
+			"p95": 53.0
+		},
+		"residue_upload_count": 0,
+		"residue_upload_us": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"zoom": 3.00000010518467
+	}
+}

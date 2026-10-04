@@ -1,0 +1,9 @@
+{
+	"cap": 240,
+	"checks": 8,
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"failures": 0,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"physics_hz": 60
+}

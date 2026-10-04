@@ -1,5 +1,9 @@
 # Rapport P4 — FINAL FEEL, protection par composant
 
+> Dernière décision de clôture : **Soil sans mess persistant**, grains et dépôt Dust retirés ; micro-restes hard détachables au Brush et évacuation Matrix par engagement du Blower. [Contrat courant](P4V2_BRIEF.md). Les réglages historiques de débris ci-dessous ne sont plus la baseline courante.
+
+> Addendum humain de clôture, 2026-10-04 : Precision Pick **radius 11.0 / power 0.44 / falloff 1.75**, cadence 6 Hz, `bone_damage=0`, efficacités inchangées. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les mesures plus anciennes ci-dessous décrivent leur baseline datée ; [rapport courant](P4V2_REPORT.md), [mesures Pick de la première clôture](P4V2_FIRST_CLOSURE_REPORT.md).
+
 **2026-10-04 · `prototype/p4-game-feel` · Godot 4.7.2 / Compatibility.**
 
 Code du micro-fix : **`0c549f58d6c2c27e21251a854c2e18a39d389ee2`**, base **`44edb75c71398d72137966f2fd029d7614552e68`**. [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) **brouillon, non mergée**. Unique changement de gameplay : **une protection de premier contact direct par composant anatomique**. Les baselines humaines, le snapshot avant impact et tout le reste du Final Feel sont conservés. Source de vérité : [P4_FINAL_FEEL_TARGET](P4_FINAL_FEEL_TARGET.md).
@@ -40,7 +44,7 @@ Le code **`e5df77f`**, livré au HEAD **`44edb75`**, a persisté les baselines c
 | `soft_brush.tres` | 40 / 0.80 / 1.50 | **40 / 0.70 / 1.25** |
 | `chisel.tres` | 12 / 0.24 / 2.00 | **22 / 0.64 / 2.25** |
 | `air_blower.tres` | 60 / 0 / 1.00 | **60 / 0 / 1.00**, inchangé |
-| `precision_pick.tres` | 3 / 0.24 / 1.50 | **7 / 0.24 / 1.50** |
+| `precision_pick.tres` | 7 / 0.24 / 1.50 (ancien lock) | **11 / 0.44 / 1.75** (addendum humain de clôture) |
 
 Blower conserve `residue_clear = 2.5`. Cadences Chisel **4.5 Hz** / Pick **6 Hz**, efficacités, génération de résidu, dégâts Bone, résistances et seuils de fracture inchangés. Les tests chargent la scène réelle et vérifient les quatre triplets au lancement puis au reset, sans entrée debug. Le reset conserve son fonctionnement existant si le joueur ajuste ensuite le debug pendant sa session.
 
@@ -130,7 +134,7 @@ Test obligatoire dans `tests/run_p4_audio_tests.gd` : reset → fracture révél
 - **Chisel A `42ec46d`** : marks → cracks → chunks, éclats 3–6 mm, 1–5 par plaque cassée, départ au dessus estimé du morceau, durée 0,51–0,69 s, pools 4 × 48 ; fracture, cadence et résistances inchangées. Seuls rayon/puissance/falloff prennent les valeurs autorisées.
 - **Blower B `c25b44f`** : miettes dures visibles jusqu’à 4,5 mm, vol directionnel et sortie de frontière ; hook `debris_ejected`. Zéro retrait structurel ou dommage.
 - **Quantités persistantes** : deux miettes par zone 24×24, rétention 8 %, capacité 0,02 ; Soil à 1,4 mm / 14 %. Dust locale, ivoire Bone, effets de souffle inchangés.
-- **Pick** : six micro-impacts/s, rayon 7, puissance 0,24, efficacités 0,30/1,00/1,50, interface et plafond osseux, zéro dégât provisoire P4. Rapport de volume Chisel/Pick **15,76** avec les baselines du lock ; retraits centraux Pick inchangés, 0,08 Clay / 0,045 Stone.
+- **Pick, baseline humaine actualisée à la clôture** : six impacts/s, **11 / 0,44 / 1,75**, efficacités 0,30/ 1,00/ 1,50 inchangées, interface/plafond Bone, zéro dégât. Nettoyage structurel local rapide, sans stress de fracture ni gros chunks. Le ratio historique 15,76 et les retraits 0,08/ 0,045 concernaient le lock précédent ; le nouveau banc donne **Chisel/Pick 4,46**, retraits centraux **0,146667 Clay / 0,0825 Stone**. Empreinte Pick 373 cellules, au plus un quart de la surface du disque Chisel ; le retrait de masse reste le rôle du Chisel.
 - **Caméra/input** : zoom 1–3×, RMB pan borné, Home et R, touches/debug, picking exact ; 240 FPS / physique 60 Hz.
 
 ## Validation historique du lock et preuves
@@ -139,13 +143,13 @@ Test obligatoire dans `tests/run_p4_audio_tests.gd` : reset → fracture révél
 
 **90 contrôles graphiques, zéro échec** : feedback 16, composition 28, matières 46. **28 scénarios à 235,18–240,01 FPS**, P95 maximal **12,214 ms**, frame maximale **14,478 ms**. Oracle GPU : **194 955 pixels**, height ≤0,004825, matériau corrigé ≤0,010882, maps exactes et tolérances inchangées. Les 28 WAV historiques passent la comparaison SHA-256 du test Pick.
 
-Avec le Chisel 22/0.64/2.25, le test de spectacle produit 30 particules Clay / 33 Stone, visibles aux deux zooms. Après une minute simulée : **40/39 miettes Clay/Stone**, dans les mêmes budgets de deux par zone ; zéro après souffle. Blower : 43 paquets au premier souffle, 144 sorties, zéro modification structurelle ou de condition. Ces quantités résultent du nouveau footprint et ne changent pas les règles de débris.
+Avec le Chisel 22/ 0.64/2.25, le test de spectacle produit 30 particules Clay / 33 Stone, visibles aux deux zooms. Après une minute simulée : **40/39 miettes Clay/Stone**, dans les mêmes budgets de deux par zone ; zéro après souffle. Blower : 43 paquets au premier souffle, 144 sorties, zéro modification structurelle ou de condition. Ces quantités résultent du nouveau footprint et ne changent pas les règles de débris.
 
 [28 scénarios](evidence/p4-lock-benchmark.json) · [composition](evidence/p4-lock-composition-visual.json) · [dust/cleanup](evidence/p4-lock-feedback-visual.json) · [matières](evidence/p4-lock-material-visual.json) · [GPU](evidence/p4-lock-gpu.json) · [test Bone/audio](evidence/p4-lock-audio.txt).
 
 Sonde attentive avec baselines courantes : **344 impacts → 4 976 cellules exposées, 57,77 % du crâne, condition 100, protection toujours disponible**. Dix impacts ultérieurs sur un centre visible : premier protégé à 100, neuf dommages de trois points → **73**. Cette sonde reconnaît parfaitement les centres visibles ; elle ne remplace pas un geste humain. **4 432 rayons zoom, 387 pan** ; plafonds osseux et picking conservés.
 
-Le test de fracture conserve une charge historique explicite (12/0.24/2) pour vérifier les mêmes seuils marques/détachement sans les confondre avec le tuning. Les scènes réelles, audio, Pick, débris, sonde de condition et benchmarks emploient les nouvelles ressources. Le test P2 compare la génération des résidus sous saturation : une puissance supérieure ne doit pas invalider une comparaison de ratios en remplissant le dépôt.
+Le test de fracture conserve une charge historique explicite (12/ 0.24/2) pour vérifier les mêmes seuils marques/détachement sans les confondre avec le tuning. Les scènes réelles, audio, Pick, débris, sonde de condition et benchmarks emploient les nouvelles ressources. Le test P2 compare la génération des résidus sous saturation : une puissance supérieure ne doit pas invalider une comparaison de ratios en remplissant le dépôt.
 
 Les régressions du proxy vérifient toujours pointe exacte, base stable, meshes statiques, zéro effet gameplay, nombre borné de sondes et coût CPU. Aucun seuil de performance ou de rendu n’est assoupli pour le lock.
 

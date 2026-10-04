@@ -1,0 +1,121 @@
+{
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"dirty_idle_1x": {
+		"audio_events": 0,
+		"brush_loop_starts": 0,
+		"changed_texels": 0,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {},
+		"cpu_edit_ms": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"cpu_pick_ms": {
+			"max": 0.108,
+			"mean": 0.0400138888888889,
+			"p95": 0.054
+		},
+		"cpu_proxy_ms": {
+			"max": 0.142,
+			"mean": 0.0102569444444442,
+			"p95": 0.013
+		},
+		"exposed_cells": 0,
+		"flying_debris": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 4.775,
+			"mean": 4.16593676164005,
+			"p95": 4.525
+		},
+		"height_uploads": 0,
+		"impacts": 0,
+		"loose_bins": 128,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			0
+		],
+		"peak_flying": 0,
+		"peak_particles": [
+			0,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.860717431907,
+		"upload_submit_ms": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"zoom": 1.0
+	},
+	"dirty_idle_3x": {
+		"audio_events": 0,
+		"brush_loop_starts": 0,
+		"changed_texels": 0,
+		"chunks": 0,
+		"condition": 100.0,
+		"cpu_active_edit_ms": {},
+		"cpu_edit_ms": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"cpu_pick_ms": {
+			"max": 0.086,
+			"mean": 0.0384888888888889,
+			"p95": 0.052
+		},
+		"cpu_proxy_ms": {
+			"max": 0.067,
+			"mean": 0.00991129591129572,
+			"p95": 0.012
+		},
+		"exposed_cells": 0,
+		"flying_debris": 0,
+		"fracture_uploads": 0,
+		"frame_ms": {
+			"max": 4.767,
+			"mean": 4.16593481276008,
+			"p95": 4.515
+		},
+		"height_uploads": 0,
+		"impacts": 0,
+		"loose_bins": 128,
+		"marks": 0,
+		"particles_emitted": [
+			0,
+			0,
+			0,
+			0
+		],
+		"peak_flying": 0,
+		"peak_particles": [
+			0,
+			0,
+			0,
+			0
+		],
+		"render_fps": 239.856219337035,
+		"upload_submit_ms": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"zoom": 3.00000010518467
+	},
+	"engine": "4.7.2-stable (official)",
+	"failures": 0,
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"max_particles": 192,
+	"physics_hz": 60,
+	"runtime_cap": 240,
+	"stress_atlas_bytes": 64372,
+	"viewport": "(1920, 1080)"
+}

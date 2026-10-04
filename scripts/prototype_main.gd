@@ -18,7 +18,7 @@ var _notice_remaining := 0.0
 var feedback: MaterialFeedback
 
 func _ready() -> void:
-	get_window().title = "ArchaeologyGame — P4-V1.1 Effort-aware Verticality"
+	get_window().title = "ArchaeologyGame — P4-V2 Persistent crumbs (F3 A/B)"
 	feedback = MaterialFeedback.new()
 	feedback.name = "MaterialFeedback"
 	add_child(feedback)
@@ -76,6 +76,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			bone_panel.visible = debug_panel.visible
 		elif event.physical_keycode == KEY_F2:
 			block.set_debug_view(block.debug_view + 1)
+		elif OS.is_debug_build() and event.physical_keycode == KEY_F3:
+			feedback.crumb_physics_enabled = not feedback.crumb_physics_enabled
 
 func _process(delta: float) -> void:
 	_notice_remaining = maxf(0.0, _notice_remaining - delta)
@@ -92,10 +94,11 @@ func _process(delta: float) -> void:
 		var definition: MaterialDefinition = hit.material
 		surface_info = ("Height %.4f | Depth %.1f mm\n%s | Resistance %.1f\n" % [hit.height, hit.depth * 1000.0, definition.display_name, definition.resistance]
 			+ "Effectiveness %.2f | Base rate %.4f depth/s (%.2f mm/s), before fracture\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
-			+ "Mess %.3f" % block.working_map.residue.value_at(hit.uv))
+			+ "Fine Dust %.3f | Bone Film %.0f%%" % [block.working_map.residue.value_at(hit.uv), block.working_map.bone_film.value_at(hit.uv) * 100])
 		surface_info += feedback.contact_debug(hit)
 		surface_info += verticality_debug(hit)
-	debug_label.text = ("P4-V1 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+	debug_label.text = ("P4-V2 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+		+ feedback.debris_debug()
 		+ "Zoom %.2fx | Wheel: zoom | RMB drag: pan | Home: overview\n" % camera.zoom_factor
 		+ "Radius %.0f texels | Power %.2f %s | Falloff %.2f\n" % [config.radius, config.power, "/impact" if config.interaction_mode == ToolDefinition.InteractionMode.IMPACT else "/s", config.falloff]
 		+ "Screen: %s | %s\n" % [hit.screen, "IN BOUNDS" if hit.inside else "OUT OF BOUNDS"]
@@ -104,7 +107,7 @@ func _process(delta: float) -> void:
 		+ "Cell: %s | %s\n" % [hit.get("cell", "—"), surface_info]
 		+ "Chisel %.1f Hz | next %.3f s | impacts %d\n" % [controller.tools[1].cadence, controller.impact_clock.time_to_next(controller.tools[1].cadence), controller.total_impacts]
 		+ "CPU edit %.2f ms (residue %.2f) | Pick %.2f ms\n" % [controller.last_edit_usec / 1000.0, controller.last_residue_edit_usec / 1000.0, controller.last_pick_usec / 1000.0]
-		+ "Upload submit: height %.2f ms | residue %.3f ms (40 KiB)\n" % [block.last_upload_usec / 1000.0, block.last_residue_upload_usec / 1000.0]
+		+ "Upload submit: height %.2f ms | residue %.3f ms (40 KiB) | film %.3f ms (160 KiB)\n" % [block.last_upload_usec / 1000.0, block.last_residue_upload_usec / 1000.0, block.last_film_upload_usec / 1000.0]
 		+ "Changed height %d / residue %d | DDA cells %d\n" % [controller.changed_texels, controller.changed_residue_cells, hit.get("visited_cells", 0)]
 		+ "Fracture: %d stressed cells | %d chips last impact\n" % [block.working_map.fracture.stress.size(), block.working_map.fracture.last_chunks.size()]
 		+ "DEV Wheel: Shift power | Ctrl falloff | Alt radius\n"
