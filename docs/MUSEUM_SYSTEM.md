@@ -1,8 +1,18 @@
 # Musée et collection
 
+## Cadre diégétique
+
+Le musée n'est plus seulement une méta-progression abstraite : il constitue la **baseline narrative actuelle** du jeu.
+
+Le joueur travaille dans les coulisses d'un musée d'histoire naturelle comme préparateur / restaurateur de spécimens. Les blocs et fragments arrivent dans l'atelier, sont préparés sur la table de travail, puis rejoignent les réserves, la collection ou une exposition lorsque leur préparation le permet.
+
+Le jeu conserve une structure sans avatar contrôlable : la façade, l'atelier, les dossiers et la galerie suffisent à faire exister le lieu.
+
+Transition de mise en scène envisagée : **façade du musée au menu principal → atelier intérieur au lancement → galerie/collection comme destination visible du travail**.
+
 ## Rôle
 
-Le musée est la méta-progression principale : une sorte de **Pokédex physique** où les découvertes prennent une forme visible. La motivation vient des fragments qui complètent progressivement des expositions, puis donnent une raison de retourner fouiller.
+Le musée est à la fois le cadre narratif et la méta-progression principale : une sorte de **Pokédex physique** où les découvertes prennent une forme visible. La motivation vient des fragments qui complètent progressivement des expositions, puis donnent une raison de retourner fouiller.
 
 Ce système appartient à une étape après la validation du nettoyage. La v0.1 ne comporte pas de musée complet.
 
