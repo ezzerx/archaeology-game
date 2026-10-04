@@ -399,3 +399,11 @@ Blower réveille et transporte la miette complète ; Brush garde un retrait prog
 Leçons vérifiées : ne pas utiliser le bucket de naissance comme position de nettoyage après transport ; tester le vrai renderer pour les transforms MultiMesh (le backend headless renvoie des données factices) ; séparer mesure de performance et attente d'une capture GPU, sauvegarder les scénarios achevés. L'oracle ON/OFF doit comparer la structure, la fracture et Bone, **pas imposer des miettes identiques alors que leur mouvement/nettoyage est précisément la variable étudiée**. La conservation de leur quantité est contrôlée séparément jusqu'à l'éjection, y compris après nettoyage partiel.
 
 Résultats et checklist canoniques : [P4V2_REPORT](../dev/P4V2_REPORT.md). La technique prouve la chute, la persistance, l'autorité de position et les budgets ; elle ne prouve pas le fun. **Attendre le nouvel A/B humain KEEP / SIMPLIFY / DROP.**
+
+## P4-V2 — Restaurer le look, ne modifier que le mouvement, 2026-10-04
+
+Antoine rejette explicitement les micro-débris de `8f703ae` : taille/présence insuffisantes. **MÊMES DÉBRIS QU’AVANT, AVEC UN PEU DE PHYSIQUE.** La physique ne préautorise aucun redesign visuel ni raréfaction. Reprendre directement la baseline persistante P4-V1 : 4,5 mm max, forme, couleurs, contraste, proportions et règles locales de quantité historiques. Le cap global 128 et les mouvements V2 restent ; aucune modification des outils, de la verticalité, de Bone ou du spectacle Chisel.
+
+Leçon confirmée : séparer l'identité visuelle déjà appréciée d'une expérimentation de comportement. La réduction 4,5 →2,2 mm retirait environ trois quarts de la couverture pixel sur les captures de contrôle, malgré la même quantité. Restaurer aussi les attentes visuelles historiques, au lieu d'adapter les fixtures pour accepter cette perte. Les captures figées vérifient désormais la présence à quantité/position identiques ; elles ne remplacent pas le retest humain.
+
+Rapport et quatre questions : [P4V2_REPORT](../dev/P4V2_REPORT.md). **PR #7 DRAFT, STOP après push pour validation humaine ; aucun merge/P5.**

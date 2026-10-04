@@ -1,0 +1,151 @@
+4.7.2.stable.official.ed1daf0bf
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Initialisation du projet (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Analyse de la structure des fichiers…[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Chargement des noms des classes globales…[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Vérification des GDExtensions…[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Création des scripts de chargement automatique…[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initialisation des extensions…[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Démarrage du scan de fichiers…[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Enregistrement des classes globales… (7 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | DebrisProfile[39m[0m
+[  12% ] [90m[1mupdate_scripts_classes[22m | LooseDebrisView[39m[0m
+[  25% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  37% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  62% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  75% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Chargement de l’éditeur (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Chargement de la disposition de l’éditeur…[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Chargement des docks…[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | Réouverture des scènes…[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | Chargement de la disposition de l’éditeur central…[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | Chargement de la disposition de la fenêtre des plugins…[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | Disposition de l’éditeur prête.[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+p1-import: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BENCH: default 1024x640/r40, mean edit 2.186 ms (CPU only)
+BENCH: full diagonal 30.344 ms (CPU only)
+P0 TESTS: 45 checks, 0 failures
+p0-regression: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P1 PICK ORACLE: 180 rays, maximum error 0.00000016 m
+P1 TESTS: 52 checks, 0 failures
+p1-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+p1-scene: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P2 TESTS: 97 checks, 0 failures
+p2-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P3 LAYOUT: 32290 cells, components [0, 7756, 7243, 10771, 6520], ceiling 0.163361..0.457368
+P3 CAMERA: bone 231 / matrix 262, max error 0.00000196 m
+P3 TESTS: 88 checks, 0 failures
+p3-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P3 ZOOM: 4432 rays, bone 536 / floor 652 / slopes 108; anchor 0.000366 px, ray 0.00000064 m
+P3 ZOOM TESTS: 160 checks, 0 failures
+p3-zoom-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 TESTS: 72 checks, 0 failures
+p4-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 PAN TESTS: 43 checks, 0 failures; 387 rays, max error 0.00000019 m
+p4-pan-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 AUDIO MATERIAL: layer=1 reset=0 later reveals=2 Bone sounds=0
+P4 AUDIO MATERIAL: layer=1 reset=1 later reveals=2 Bone sounds=0
+P4 AUDIO MATERIAL: layer=2 reset=0 later reveals=82 Bone sounds=0
+P4 AUDIO MATERIAL: layer=2 reset=1 later reveals=82 Bone sounds=0
+P4 AUDIO TESTS: 42 checks, 0 failures
+p4-audio-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 COMPONENT CONTACT TESTS: 72 checks, 0 failures
+P4 COMPONENT SEQUENCE: [{"action":"Skull first","audio":"bone_revealed","component":"Skull","condition":100.0,"consumed":[0,1,0,0,0],"damage":0.0,"protected":true},{"action":"Skull second","audio":"direct_bone_hit","component":"Skull","condition":97.0,"consumed":[0,1,0,0,0],"damage":3.0,"protected":false},{"action":"Ribs first after Skull","audio":"bone_revealed","component":"Ribs","condition":97.0,"consumed":[0,1,0,1,0],"damage":0.0,"protected":true},{"action":"Ribs second","audio":"direct_bone_hit","component":"Ribs","condition":94.0,"consumed":[0,1,0,1,0],"damage":3.0,"protected":false},{"action":"Different rib, same Ribs component","audio":"direct_bone_hit","component":"Ribs","condition":91.0,"consumed":[0,1,0,1,0],"damage":3.0,"protected":false},{"action":"Spine first","audio":"bone_revealed","component":"Spine / Vertebrae","condition":91.0,"consumed":[0,1,1,1,0],"damage":0.0,"protected":true},{"action":"Hind Limb first","audio":"bone_revealed","component":"Hind Limb","condition":91.0,"consumed":[0,1,1,1,1],"damage":0.0,"protected":true},{"action":"Different vertebra, same Spine component","audio":"direct_bone_hit","component":"Spine / Vertebrae","condition":88.0,"consumed":[0,1,1,1,1],"damage":3.0,"protected":false},{"action":"Hind Limb second","audio":"direct_bone_hit","component":"Hind Limb","condition":85.0,"consumed":[0,1,1,1,1],"damage":3.0,"protected":false}]
+p4-component-contact-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 DIRT TESTS: 27 checks, 0 failures
+p4-dirt-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 FINAL FEEL peak hard particles per ordinary impact: 46
+P4 DEBRIS BUDGET TESTS: 18 checks, 0 failures
+p4-debris-budget-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 PICK BULK: Pick=14.1710503697395; Chisel=218.961797088385; ratio=15.4513456219131
+P4 PICK TESTS: 39 checks, 0 failures
+p4-pick-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 PICK READABILITY: one stationary impact; Clay depth=0.0799999833107; Sandstone depth=0.04500000178814
+P4 FEEDBACK TESTS: 25 checks, 0 failures
+p4-feedback-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 PROXY TESTS: 737 checks, 0 failures; 35 contacts
+P4 PROXY MAX BODY LIFT: 83.1424252622928 mm including recoil
+p4-proxy-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PROXY COST flat_density_1 {"fit_usec":{"max":7.0,"mean":2.175,"p95":3.0},"max_height_queries":0,"max_vertex_queries":0,"mesh_change_notifications":0}
+PROXY COST flat_density_2 {"fit_usec":{"max":5.0,"mean":2.075,"p95":3.0},"max_height_queries":0,"max_vertex_queries":0,"mesh_change_notifications":0}
+PROXY COST dug_density_1 {"fit_usec":{"max":63.0,"mean":33.5416666666667,"p95":39.0},"max_height_queries":12,"max_vertex_queries":48,"mesh_change_notifications":0}
+PROXY COST dug_density_2 {"fit_usec":{"max":68.0,"mean":33.7583333333333,"p95":37.0},"max_height_queries":12,"max_vertex_queries":48,"mesh_change_notifications":0}
+PROXY COST deep_density_1 {"fit_usec":{"max":40.0,"mean":16.4,"p95":34.0},"max_height_queries":12,"max_vertex_queries":48,"mesh_change_notifications":0}
+PROXY COST deep_density_2 {"fit_usec":{"max":59.0,"mean":16.6083333333333,"p95":35.0},"max_height_queries":12,"max_vertex_queries":48,"mesh_change_notifications":0}
+P4 PROXY COST: 0 failures
+p4-proxy-cost: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 CONDITION {"careful_visible_centres":{"chisel_seconds_at_4_5_hz":96.4444444444444,"condition":100.0,"exposed_cells":4759,"global_exposure_percent":14.7383090740167,"impacts":434,"limitation":"Perfect centre recognition and immediate stop; feasibility only, not a human playtest.","passes":[{"condition":100.0,"exposed_cells":4167,"impacts":188,"new_bone_cells":4167,"pass":1},{"condition":100.0,"exposed_cells":4329,"impacts":311,"new_bone_cells":162,"pass":2},{"condition":100.0,"exposed_cells":4453,"impacts":372,"new_bone_cells":124,"pass":3},{"condition":100.0,"exposed_cells":4524,"impacts":397,"new_bone_cells":71,"pass":4},{"condition":100.0,"exposed_cells":4583,"impacts":412,"new_bone_cells":59,"pass":5},{"condition":100.0,"exposed_cells":4675,"impacts":421,"new_bone_cells":92,"pass":6},{"condition":100.0,"exposed_cells":4719,"impacts":429,"new_bone_cells":44,"pass":7},{"condition":100.0,"exposed_cells":4753,"impacts":432,"new_bone_cells":34,"pass":8},{"condition":100.0,"exposed_cells":4759,"impacts":434,"new_bone_cells":6,"pass":9}],"skull_exposure_percent":56.4337287261475},"held_on_visible_bone":{"condition_after":73.0,"condition_before":100.0,"first_hit_condition":100.0,"first_hit_protected":true,"impacts":10,"protection_available_before":true}}
+p4-condition: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4V TESTS: 90 checks, 0 failures
+P4V RANGES: {"bone_after_mm":[55.3484623432159,85.3372009992599],"bone_before_mm":[65.7899980545044,77.8478636741638],"clay_mm":[11.2249047160149,40.9798799157143],"component_totals_after":[0,7756,7243,10771,6520],"component_totals_before":[0,7756,7243,10771,6520],"fossil_build_ms":43.245,"fossil_cells":32290,"fossil_sha256":"1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e","ids_sha256":"9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21","layer_build_ms":286.623,"layers_sha256":"189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9","max_layer_step":0.00140118598937988,"max_offset_curvature":0.00000344426100744311,"max_offset_error":0.0000000148998223203911,"max_offset_step":0.000510097950413727,"soil_bone_gap_min_mm":31.3305652141571,"soil_mm":[16.3200026750565,43.8600007295609]}
+P4V ZONES: [{"bone_mm":56.6412137746811,"cell":[250,230],"clay_mm":28.4348287582397,"component":"Skull","sandstone_mm":11.8863823413849,"soil_mm":16.3200026750565},{"bone_mm":66.6947963833809,"cell":[510,307],"clay_mm":30.1671710014343,"component":"Spine / Vertebrae","sandstone_mm":4.88644963502884,"soil_mm":31.6411757469177},{"bone_mm":78.7541788816452,"cell":[646,441],"clay_mm":25.3000425696373,"component":"Hind Limb","sandstone_mm":10.2684443593025,"soil_mm":43.1856919527054}]
+p4v-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4V TESTS: 90 checks, 0 failures
+P4V RANGES: {"bone_after_mm":[55.3484623432159,85.3372009992599],"bone_before_mm":[65.7899980545044,77.8478636741638],"clay_mm":[11.2249047160149,40.9798799157143],"component_totals_after":[0,7756,7243,10771,6520],"component_totals_before":[0,7756,7243,10771,6520],"fossil_build_ms":45.192,"fossil_cells":32290,"fossil_sha256":"1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e","ids_sha256":"9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21","layer_build_ms":286.036,"layers_sha256":"189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9","max_layer_step":0.00140118598937988,"max_offset_curvature":0.00000344426100744311,"max_offset_error":0.0000000148998223203911,"max_offset_step":0.000510097950413727,"soil_bone_gap_min_mm":31.3305652141571,"soil_mm":[16.3200026750565,43.8600007295609]}
+P4V ZONES: [{"bone_mm":56.6412137746811,"cell":[250,230],"clay_mm":28.4348287582397,"component":"Skull","sandstone_mm":11.8863823413849,"soil_mm":16.3200026750565},{"bone_mm":66.6947963833809,"cell":[510,307],"clay_mm":30.1671710014343,"component":"Spine / Vertebrae","sandstone_mm":4.88644963502884,"soil_mm":31.6411757469177},{"bone_mm":78.7541788816452,"cell":[646,441],"clay_mm":25.3000425696373,"component":"Hind Limb","sandstone_mm":10.2684443593025,"soil_mm":43.1856919527054}]
+p4v-repeat: PASS
+P4V cross-process determinism: 9 hashes identical
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4V EFFORT DISTRIBUTION: {"after":{"bone_cells":32290,"bone_depth_mm":{"P90":79.2835710346699,"P95":81.1684887707233,"max":85.3371994793415,"median":70.4160081446171,"min":55.3484653830528},"clay_whole_map_mm":{"P90":34.8477112054825,"P95":37.4152455925941,"max":40.9798799157143,"median":25.1194960176945,"min":11.2249047160149},"hard_work_index":{"P90":170.324507653713,"P95":175.699317216873,"max":199.647927343845,"median":147.282583087683,"min":98.983006477356},"interfaces_ordered":true,"sandstone_mm":{"P90":16.1473703384399,"P95":17.1242948770523,"max":21.4937138557434,"median":11.587785243988,"min":2.13913321495056},"soil_whole_map_mm":{"P90":43.8600007295609,"P95":43.8600007295609,"max":43.8600007295609,"median":32.1486157178879,"min":16.3200026750565},"stone_5_to_18_mm_fraction":0.901145865593063,"zones":[{"bone_mm":56.6412137746811,"cell":[250,230],"clay_above_bone_mm":28.4348287582397,"clay_mm":28.4348287582397,"component":"Skull","hard_work_index":148.698525428772,"sandstone_mm":11.8863823413849,"soil_mm":16.3200026750565},{"bone_mm":66.6947963833809,"cell":[510,307],"clay_above_bone_mm":30.1671710014343,"clay_mm":30.1671710014343,"component":"Spine / Vertebrae","hard_work_index":116.562577724457,"sandstone_mm":4.88644963502884,"soil_mm":31.6411757469177},{"bone_mm":78.7541788816452,"cell":[646,441],"clay_above_bone_mm":25.3000425696373,"clay_mm":25.3000425696373,"component":"Hind Limb","hard_work_index":130.665164291859,"sandstone_mm":10.2684443593025,"soil_mm":43.1856919527054}]},"after_fossil_sha256":"1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e","after_layers_sha256":"189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9","before":{"bone_cells":32290,"bone_depth_mm":{"P90":79.2835710346699,"P95":81.1684887707233,"max":85.3371994793415,"median":70.4160081446171,"min":55.3484653830528},"clay_whole_map_mm":{"P90":24.4751341938972,"P95":29.9707397818565,"max":37.7397390604019,"median":11.6221916377544,"min":11.2200014591217},"hard_work_index":{"P90":201.953942537308,"P95":207.472369194031,"max":231.881359577179,"median":174.182632654905,"min":113.692179322243},"interfaces_ordered":true,"sandstone_mm":{"P90":29.705963909626,"P95":31.4756718277931,"max":36.9410766363144,"median":23.2788413465023,"min":1.46212202310562},"soil_whole_map_mm":{"P90":43.8600007295609,"P95":43.8600007295609,"max":43.8600007295609,"median":32.1486157178879,"min":16.3200026750565},"stone_5_to_18_mm_fraction":0.329637658717869,"zones":[{"bone_mm":56.6412137746811,"cell":[250,230],"clay_above_bone_mm":12.7273896932602,"clay_mm":12.7273896932602,"component":"Skull","hard_work_index":185.349216580391,"sandstone_mm":27.5938214063644,"soil_mm":16.3200026750565},{"bone_mm":66.6947963833809,"cell":[510,307],"clay_above_bone_mm":27.6134131550789,"clay_mm":27.6134131550789,"component":"Spine / Vertebrae","hard_work_index":122.521346032619,"sandstone_mm":7.44020748138428,"soil_mm":31.6411757469177},{"bone_mm":78.7541788816452,"cell":[646,441],"clay_above_bone_mm":13.5311377644539,"clay_mm":13.5311377644539,"component":"Hind Limb","hard_work_index":158.12594217062,"sandstone_mm":22.0373491644859,"soil_mm":43.1856919527054}]},"before_fossil_sha256":"1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e","before_layers_sha256":"48770854498bf447805741d929a540fed9d59ab86e3698efc9b0c2c1fd30f296","component_totals":[0,7756,7243,10771,6520],"ids_sha256":"9f36172b7b6924c288c089dd6736709f1bcec831adb8743b623bb3e759afca21"}
+P4V EFFORT TESTS: 47 checks, 0 failures
+p4v-effort-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4V12 TESTS: 37 checks, 0 failures
+p4v12-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4V2 CRUMBS TESTS: 91 checks, 0 failures
+p4v2-tests: PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4V2 CRUMBS TESTS: 91 checks, 0 failures
+p4v2-repeat: PASS
+P4V2 cross-process replay: identical
