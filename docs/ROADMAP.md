@@ -12,7 +12,7 @@ The canonical phase numbering remains the simple **P0 → P7** sequence from `PR
 | **P1 — Material / Relief** | Real cavities, stratigraphy, material resistance | ✅ validated |
 | **P2 — Tools** | Soft Brush, Chisel, Air Blower with distinct roles | ✅ validated |
 | **P3 — Fossil** | Hidden fossil, progressive exposure, bone contact / condition | ✅ validated & merged |
-| **P4 — Game Feel** | Material reactions, fracture/chunks, particles/debris placeholders, tool presence, sound/feedback | ▶ active — excavation must begin to feel satisfying without full production DA |
+| **P4 — Game Feel** | Material reactions, fracture/chunks, debris, tool presence, sound/feedback, Bone preparation, verticality | ✅ human-validated & merged |
 | **P5 — UI & Progression** | Objectives, specimen dossier, classification, fragments, completion card, one complete excavation loop | One session must make sense end-to-end |
 | **P6 — Art Pass** | Reproduce and validate the canonical visual direction in-engine, then apply it to the V0.1 slice | DA must become coherent, reproducible and performant |
 | **P7 — Tuning** | No new systems: tune speed, resistance, radii, sounds, dust, feedback and discovery rhythm | V0.1 ready for external playtest |
@@ -110,7 +110,21 @@ Dedicated brainstorm/prototype for:
 
 These are confirmed future pillars, but their detailed design is intentionally deferred.
 
+### Future Excavation Polish — name TBD
+
+A later dedicated gameplay-polish phase may be opened **after P5/P6 give more context**. It is intentionally not named `P4.2` and is not scheduled yet.
+
+Known candidates:
+- richer Soil behavior/feedback;
+- further debris/mess refinement;
+- Pick-vs-Brush readability around Bone;
+- Bone dirt vs Sandstone differentiation;
+- dust/relief readability.
+
+These are the remaining “last 20%”, not blockers for leaving P4.
+
 ## Later production
+
 
 After the above are validated:
 
