@@ -376,3 +376,14 @@ Antoine valide **P4-V1 Verticality** après la passe V1.2. La macro-stratigraphi
 Watchpoint différé : avant Blower, la poussière peut encore réduire la lisibilité des arêtes et des blocs ; après nettoyage, les bords sombres et la perception de profondeur sont plus nets. Ce point est **non bloquant** pour P4-V1 et doit être repris lors du polish visuel / P6-P7, en surveillant la relation poussière ↔ lecture du relief.
 
 La verticalité actuelle est jugée suffisante pour avancer. Pas de nouvelle itération géologique avant nécessité observée. Le prochain spike possible est **P4-V2 terrain-aware debris physics** ; la génération procédurale reste future/post-core.
+
+
+## Baseline narrative musée et P6 contact patina — 2026-10-04
+
+Antoine canonise comme **base narrative actuelle tant qu'une meilleure piste n'émerge pas** : le joueur travaille dans les coulisses d'un musée d'histoire naturelle comme préparateur / restaurateur de spécimens. Le musée confie blocs et fragments, l'atelier est le lieu de gameplay, puis les pièces préparées rejoignent réserves, collection ou exposition. Aucun avatar contrôlable n'est ajouté.
+
+Mise en scène retenue comme direction : **façade du musée au menu principal → atelier intérieur pendant le gameplay → galerie/collection comme destination du travail**. Le musée devient donc à la fois contexte narratif, employeur diégétique et méta-progression.
+
+Le naming définitif reste ouvert. **Bone by Bone** est un candidat haut de shortlist, sans validation comme titre final.
+
+P6 reçoit aussi une idée DA canonisée : **layer contact patina**. La frontière Soil → Clay doit pouvoir montrer une fine peau de Clay salie/brunie par son contact avec le Soil ; dès qu'on la creuse, la Clay intérieure apparaît plus franche/orangée. Une version plus légère Clay → Sandstone est à tester en P6A. Cette patine est visuelle uniquement : elle ne change ni épaisseur structurelle, ni résistance, ni picking.
