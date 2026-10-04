@@ -2,7 +2,7 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 FINAL FEEL validé humainement et mergé ; P4-V1 Verticality actif ; P4-V2 debris physics et P5 bloqués**.
+- Phase : **préproduction — P4 FINAL FEEL validé humainement et mergé ; P4-V1 Verticality implémenté, validation humaine attendue ; P4-V2 debris physics et P5 bloqués**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. Spike actif : `prototype/p4v-verticality`, [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) en brouillon, non mergée.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -114,7 +114,7 @@ Vérifications : **495 checks fonctionnels** (439 historiques + 56 P4), dix scé
 
 Condition : sonde attentive de 1 004 impacts → 4 105 cellules osseuses, **49,87 % du crâne**, condition **100 %**. Elle reconnaît parfaitement les centres visibles ; ce n'est pas un test humain. Maintenir le Chisel sur un centre exposé inflige toujours −3 par impact. Aucun mécanisme de protection ajouté.
 
-Le test humain initial a ensuite conduit à la passe corrective ci-dessus. Si un nouveau test relève encore un dommage jugé inévitable, documenter le geste précis avant toute protection supplémentaire. **Ne pas merger cette livraison ni commencer P5.**
+Le test humain initial a ensuite conduit à la passe corrective ci-dessus, puis à la clôture humaine P4 du 2026-10-04. Si un nouveau test relève un dommage jugé inévitable, documenter le geste précis avant toute protection supplémentaire.
 
 Architecture et limites : [P4_MATERIAL_REACTION_DECISION](../dev/P4_MATERIAL_REACTION_DECISION.md).
 
@@ -122,25 +122,27 @@ Brief canonique :
 
 [P4_BRIEF.md](../dev/P4_BRIEF.md)
 
-**P5 reste interdit avant validation humaine de P4.**
+**La validation P4 ne lance pas P5 : seule la passe P4-V1 est actuellement autorisée.**
 
-## P4-V1 — Verticality ▶
+## P4-V1 — Verticality : implémenté, à tester humainement
 
-Source de vérité : [P4V_BRIEF](../dev/P4V_BRIEF.md).
+Source de vérité : [P4V_BRIEF](../dev/P4V_BRIEF.md). Architecture, mesures, preuves et checklist : [P4V_REPORT](../dev/P4V_REPORT.md).
 
-Objectif : remplacer la micro-ondulation quasi plate par une **macro-stratigraphie déterministe** et une **profondeur d'enfouissement B-17 variable**, sans génération procédurale.
+Un seul B-17 déterministe : Soil en pente large, lentille Clay indépendante, champ d’enfouissement commun aux os. Cartes précalculées au chargement, inchangées au reset ; aucune procgen ni simulation verticale en jeu.
 
-Le bloc reste identique à chaque run/reset. Le joueur doit lire la matière et la cavité au lieu d'apprendre un script de profondeur fixe.
+| Mesure | Valeur V1 |
+|---|---:|
+| Soil | 16,32–43,86 mm |
+| Clay | 11,22–37,74 mm |
+| Bone depuis top | 55,35–85,34 mm, contre 65,79–77,85 mm en P4 |
+| Cellules Bone | 32 290, silhouette/IDs/totaux P4 exacts |
+| A / B / C | Skull (250,230), Spine (510,307), Hind Limb (646,441) |
 
-V1 uniquement :
-- épaisseurs Soil/Clay/Sandstone nettement variables ;
-- burial plane B-17 doucement incliné/warpé ;
-- trois zones de test shallow/medium/deep ;
-- CPU/GPU/picking et P4 Final Feel préservés.
+Les ressources P4 Final Feel sont inchangées. Bone Condition globale et protection par composant préservées : **Skull → Skull → Ribs → Ribs = tik/100 → DING/97 → tik/97 → DING/94**. F1 donne les épaisseurs/profondeurs en mm. Précision : grille X/Z du shader alignée sur UV, intersection du picking en scalaires float64 ; parcours DDA et tolérances conservés, aucune reconstruction de mesh.
 
-**Interdits jusqu'au test humain V1** : seed/procgen, debris gravity, collision terrain des chunks, sliding/bounce, P5.
+Validation : **1 604 contrôles fonctionnels +90 visuels**, neuf empreintes identiques entre processus, 60 scénarios de performance, zéro échec dans les phases finales. V1 : 227,73–239,87 FPS moyens, minimum sur une seconde 210,54, P95 maximal 12,757 ms ; frame isolée maximale 18,728 ms. Oracle rasant : 1,650 µm ; 250 065 pixels GPU vérifiés avec tolérances et cas d’occlusion documentés. Ces contrôles ne remplacent pas le test humain sur l’intérêt de la verticalité.
 
-PR #6 reste brouillon/non mergée. Après automatisation verte : **STOP pour test humain**, puis décision éventuelle P4-V2 terrain-aware debris physics.
+Prochaine action : **Antoine exécute les six points A–F du rapport**, puis décide de la suite. PR #6 reste brouillon/non mergée. **STOP : aucun merge, seed/procgen, P4-V2 debris physics ni P5 sans nouvelle autorisation.**
 
 ## Watchpoints techniques
 
@@ -153,4 +155,4 @@ PR #6 reste brouillon/non mergée. Après automatisation verte : **STOP pour tes
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → **P4 Game Feel** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → **P4-V1 : test humain** → P4-V2 éventuel sur autorisation → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.

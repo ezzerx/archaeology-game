@@ -1,0 +1,152 @@
+{
+	"after_reset_and_safe_tools": {
+		"condition": 100.0,
+		"consumed": [
+			0,
+			0,
+			0,
+			0,
+			0
+		]
+	},
+	"checks": 72,
+	"failures": 0,
+	"maximum_protected_hits": 4,
+	"sequence": [
+		{
+			"action": "Skull first",
+			"audio": "bone_revealed",
+			"component": "Skull",
+			"condition": 100.0,
+			"consumed": [
+				0,
+				1,
+				0,
+				0,
+				0
+			],
+			"damage": 0.0,
+			"protected": true
+		},
+		{
+			"action": "Skull second",
+			"audio": "direct_bone_hit",
+			"component": "Skull",
+			"condition": 97.0,
+			"consumed": [
+				0,
+				1,
+				0,
+				0,
+				0
+			],
+			"damage": 3.0,
+			"protected": false
+		},
+		{
+			"action": "Ribs first after Skull",
+			"audio": "bone_revealed",
+			"component": "Ribs",
+			"condition": 97.0,
+			"consumed": [
+				0,
+				1,
+				0,
+				1,
+				0
+			],
+			"damage": 0.0,
+			"protected": true
+		},
+		{
+			"action": "Ribs second",
+			"audio": "direct_bone_hit",
+			"component": "Ribs",
+			"condition": 94.0,
+			"consumed": [
+				0,
+				1,
+				0,
+				1,
+				0
+			],
+			"damage": 3.0,
+			"protected": false
+		},
+		{
+			"action": "Different rib, same Ribs component",
+			"audio": "direct_bone_hit",
+			"component": "Ribs",
+			"condition": 91.0,
+			"consumed": [
+				0,
+				1,
+				0,
+				1,
+				0
+			],
+			"damage": 3.0,
+			"protected": false
+		},
+		{
+			"action": "Spine first",
+			"audio": "bone_revealed",
+			"component": "Spine / Vertebrae",
+			"condition": 91.0,
+			"consumed": [
+				0,
+				1,
+				1,
+				1,
+				0
+			],
+			"damage": 0.0,
+			"protected": true
+		},
+		{
+			"action": "Hind Limb first",
+			"audio": "bone_revealed",
+			"component": "Hind Limb",
+			"condition": 91.0,
+			"consumed": [
+				0,
+				1,
+				1,
+				1,
+				1
+			],
+			"damage": 0.0,
+			"protected": true
+		},
+		{
+			"action": "Different vertebra, same Spine component",
+			"audio": "direct_bone_hit",
+			"component": "Spine / Vertebrae",
+			"condition": 88.0,
+			"consumed": [
+				0,
+				1,
+				1,
+				1,
+				1
+			],
+			"damage": 3.0,
+			"protected": false
+		},
+		{
+			"action": "Hind Limb second",
+			"audio": "direct_bone_hit",
+			"component": "Hind Limb",
+			"condition": 85.0,
+			"consumed": [
+				0,
+				1,
+				1,
+				1,
+				1
+			],
+			"damage": 3.0,
+			"protected": false
+		}
+	]
+}

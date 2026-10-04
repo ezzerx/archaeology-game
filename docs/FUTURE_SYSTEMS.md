@@ -1,6 +1,6 @@
 # Future Systems — Confirmed Post-Core Directions
 
-**Status:** confirmed future product directions, intentionally not implemented during the current V0.1 core validation.
+**Status:** confirmed future product directions. The deterministic verticality foundation is advanced to P4-V1; seeded generation and progression remain post-core.
 
 These systems are considered part of the intended game direction if the excavation core passes validation. Their detailed design, balancing and production scope remain open and will receive dedicated brainstorming/specification later.
 
@@ -43,7 +43,9 @@ The player should learn to identify materials and choose tools, not learn a fixe
 
 ### When to prototype
 
-Do not implement during P3/P4/P5 core validation.
+**Decision, 2026-10-04:** prototype the **deterministic macro-verticality foundation** in P4-V1, because layer thickness and fossil burial directly change core excavation. One authored B-17 block, broad smooth interfaces and a shared burial field; identical every launch/reset. [Brief](dev/P4V_BRIEF.md) · [Report](dev/P4V_REPORT.md).
+
+This exception does not move procedural generation into P4. Do not add seeds, random variants, multiple blocks or a site generator during P4-V1/P5. P4-V2 debris physics requires a separate authorization after the V1 human test.
 
 After the core V0.1 is proven, create a dedicated variability prototype using multiple seeds / authored variants and test whether repeated excavation stays interesting.
 
@@ -112,7 +114,7 @@ The systems should reinforce one another without turning the excavation into a g
 
 These directions are **certain future product pillars**, but their implementation is conditional on the core loop succeeding.
 
-Do not pull them into P3, P4 or P5 simply because they are now documented.
+Do not pull seeded generation or progression into P3, P4 or P5 simply because they are documented. Only the deterministic macro-verticality foundation is explicitly authorized early, in P4-V1.
 
 First validate:
 
