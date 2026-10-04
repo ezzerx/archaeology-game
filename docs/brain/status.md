@@ -2,7 +2,7 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — bugfix P4 FINAL FEEL livré, retest humain ciblé attendu ; P4-V et P5 interdits**.
+- Phase : **préproduction — dernier lock P4 FINAL FEEL livré, prêt pour décision de fermeture ; P4-V et P5 non autorisés**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. Livraison en revue : `prototype/p4-game-feel`, [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) en brouillon, non mergée (implémentation initiale `42ec46d`, puis correctifs documentés dans le rapport).
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -62,19 +62,28 @@ Rapports :
 - Le Chisel actuel reste encore trop proche d'un effacement local de heightfield : P4 doit introduire une vraie réaction de matière avant de décider d'une mécanique de protection supplémentaire.
 - Les valeurs de vitesse/puissance actuelles peuvent sembler lentes ; ne pas faire le tuning final avant P7, sauf nécessité de test.
 
-## P4 — FINAL FEEL, bugfix ciblé ▶
+## P4 — FINAL FEEL, dernier lock ▶
 
-Source de vérité : [P4_FINAL_FEEL_TARGET](../dev/P4_FINAL_FEEL_TARGET.md). Le reste de la composition A/B est jugé plutôt bon par Antoine ; seuls **Brush FPS** et **premier contact direct Bone** sont corrigés dans cette passe. Références Chisel A (`42ec46d`), Blower B (`c25b44f`), Soil/Pick récents E (`f527139`) préservées.
+Source de vérité : [P4_FINAL_FEEL_TARGET](../dev/P4_FINAL_FEEL_TARGET.md). Dernier lock autorisé : persister les **baselines validées humainement** et réserver la protection Bone aux cellules déjà exposées **avant** l’impact. Références Chisel A (`42ec46d`), Blower B (`c25b44f`), mécaniques Soil/Pick récentes et correctif FPS préservés.
 
-Livré : éclats Chisel **3–6 mm, 1–5 par plaque cassée**, projection depuis le dessus estimé du morceau retiré, expiration **0,51–0,69 s**, pools toujours bornés. Les gros morceaux restent transitoires. Blower retrouve des miettes dures visibles (**jusqu’à 4,5 mm**) transportées dans le jet puis éjectées ; dust soulevée et hook `debris_ejected` conservés. **Quantités persistantes inchangées** : deux miettes par zone 24×24, rétention 8 %, capacité 0,02. Après 60 s simulées : 29/27 miettes Clay/grès, puis zéro après souffle.
+| Outil | Rayon | Puissance | Falloff |
+|---|---:|---:|---:|
+| Brush | 40 | 0.70 | 1.25 |
+| Chisel | 22 | 0.64 | 2.25 |
+| Blower | 60 | 0 | 1.00 |
+| Pick | 7 | 0.24 | 1.50 |
 
-**Protection Bone corrigée** : découverte/exposure et `first_direct_contact_consumed` indépendants. Toute révélation adjacente garde le son de matière et laisse la protection disponible. Premier Chisel direct : `bone_protected_contact`, petit tik, zéro dégât, 100 %. Deuxième sur centre exposé : gros DING, −3, 97 %. Reset réarme ; Pick/Brush/Blower ne consomment rien. Centre caché atteint par le même impact : protection consommée sans dégât ; les autres cellules du footprint ne comptent pas. Exposition, dégâts ultérieurs et 28 WAV inchangés.
+**P4 human-validated baseline — tuning final deferred to P7.** Blower conserve `residue_clear = 2.5`. Cadences Chisel 4.5 Hz / Pick 6 Hz, efficacités, génération de résidus, dégâts, résistances et seuils de fracture inchangés. Valeurs disponibles au lancement/reset sans retouche debug préalable ; fonctionnement des réglages en session préservé.
 
-**Pick inchangé** : clic/maintien immobile, six micro-impacts/s, rayon 3, puissance 0,24, efficacités 0,30/1,00/1,50 ; petit footprint, interface et plafond osseux, zéro dégât provisoire P4. **Proxies simplifiés** : angle fixe `(0.5, 0, -0.62)`, Tip exact, Body statique déplacé verticalement, douze sondes maximum. Aucune reconstruction de mesh en jeu. Priorité fluidité ; rares petites intersections acceptées, aucun suivi des normales.
+Livré : éclats Chisel **3–6 mm, 1–5 par plaque cassée**, projection depuis le dessus estimé du morceau retiré, expiration **0,51–0,69 s**, pools toujours bornés. Les gros morceaux restent transitoires. Blower conserve des miettes dures visibles (**jusqu’à 4,5 mm**) transportées dans le jet puis éjectées ; dust soulevée et hook `debris_ejected` conservés. **Budgets persistants inchangés** : deux miettes par zone 24×24, rétention 8 %, capacité 0,02.
 
-**Brush mesuré avant/après** : geste de 30 s, **143,57 → 232,59 FPS à 1×**, **154,03 → 235,60 à 3×** ; P95 frame 17,860/17,027 → 12,537/12,265 ms. Coût proxy P95 8 616/8 432 → **32 µs**, à moins de 0,5 % du geste sans proxy. Ancien fit : jusqu’à 1 498 lectures terrain/pose et reconstructions répétées ; nouveau : ≤48 lectures, meshes immuables. La chute humaine <10 FPS n’a pas été reproduite dans le test autonome ; le surcoût proxy est prouvé. Empreintes des états gameplay avant/après identiques. Cap 240 FPS / physique 60 Hz conservés.
+**Protection Bone définitivement corrigée** : `apply_impact` capture `was_exposed_before_impact` avant toute mutation. Toute révélation, **même centrale**, garde le son de matière, zéro dégât et la protection disponible, sans événement protégé. Premier coup suivant sur un centre déjà exposé avant l’impact : `bone_protected_contact`, petit tik, zéro dégât, 100 %, protection consommée. Deuxième : DING, −3, 97 %. Reset réarme ; Pick/Brush/Blower ne consomment rien. L’ancienne consommation lors d’une révélation centrale est abandonnée. Découverte/UI, exposition, dégâts ultérieurs et 28 WAV inchangés.
 
-Code et validation : [P4_REPORT](../dev/P4_REPORT.md). Prochaine action : **exactement trois points** : Brush Soil 30–60 s après reset ; révélation adjacente puis premier contact direct tik/100 et deuxième DING/97 ; sanity Chisel/Blower/Pick quelques minutes. **STOP. PR #5 BROUILLON, NON MERGÉE. P4-V Verticality / Debris Physics et P5 bloqués jusqu’à validation humaine et nouvelle autorisation explicite.**
+**Mécanique Pick inchangée**, rayon verrouillé à 7 : clic/maintien immobile, six micro-impacts/s, puissance 0,24, efficacités 0,30/1,00/1,50 ; footprint local, interface et plafond osseux, zéro dégât provisoire P4. **Proxies conservés** : angle fixe `(0.5, 0, -0.62)`, Tip exact, Body statique déplacé verticalement, douze sondes maximum. Aucune reconstruction de mesh en jeu. Priorité fluidité ; rares petites intersections acceptées, aucun suivi des normales.
+
+**Brush avec baselines du lock** : geste de 30 s, **235,24 FPS à 1×**, **236,17 à 3×**, P95 frame **12,264/12,202 ms**, proxy P95 **31 µs**. Coût de pose CPU borné à douze sondes/48 lectures, meshes immuables. L’ancien surcoût proxy reste corrigé ; aucune chute <10 FPS reproduite dans ces mesures. Cap 240 FPS / physique 60 Hz conservés.
+
+Code du lock : **`e5df77f60666532ebd3d6df256f667df443330e1`**. **1 445 checks fonctionnels + 90 graphiques verts**, 28 scénarios à **235,18–240,01 FPS**, oracle GPU 194 955 pixels ; séquence caché au centre → visible → tik/100 → DING/97 et reset vérifiée. Après 60 s simulées de Chisel : 40/39 miettes Clay/Stone, zéro après souffle, mêmes budgets. Preuves : [P4_REPORT](../dev/P4_REPORT.md). Prochaine action : décision humaine de fermeture P4. **STOP. PR #5 BROUILLON, NON MERGÉE. P4-V Verticality / Debris Physics et P5 nécessitent une nouvelle autorisation explicite.**
 ### Livraison initiale conservée comme historique
 
 P4 vise à faire passer le prototype de :

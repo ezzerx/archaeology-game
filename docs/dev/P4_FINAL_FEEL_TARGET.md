@@ -1,8 +1,8 @@
 # P4 Final Feel — A/B Composition Target
 
-**Status:** Final Feel targeted bugfix: Brush proxy performance and first direct Bone contact; human retest pending on `prototype/p4-game-feel`
+**Status:** Last P4 Final Feel lock: human-validated tool baselines and protection on Bone already visible before impact, on `prototype/p4-game-feel`
 
-**Date:** 2026-10-03  
+**Date:** 2026-10-04
 **PR:** #5 remains draft / unmerged  
 **P5 remains blocked**
 
@@ -12,7 +12,20 @@ The A/B tests show that the latest build is not automatically the best-feeling b
 
 This pass deliberately composes the strongest behaviors from earlier P4 snapshots before any verticality / debris-physics experiment.
 
-After this pass, Antoine will retest the core feel. Only if this composition is validated should the project move to a separate **P4-V Verticality / Debris Physics Spike**.
+The final human test supplied the baselines below. This lock prepares P4 for closure; a separate **P4-V Verticality / Debris Physics Spike** still requires explicit authorization.
+
+## Human-validated resource baseline — final lock
+
+**P4 human-validated baseline — tuning final deferred to P7.**
+
+| Tool | Radius | Power | Falloff |
+|---|---:|---:|---:|
+| Soft Brush | 40 | 0.70 | 1.25 |
+| Chisel | 22 | 0.64 | 2.25 |
+| Air Blower | 60 | 0 | 1.00 |
+| Precision Pick | 7 | 0.24 | 1.50 |
+
+These are persisted in the tool resources and loaded without debug adjustments at launch; specimen reset retains those values. Existing in-session debug/reset behavior is unchanged. Blower `residue_clear = 2.5`, cadences (Chisel 4.5 Hz, Pick 6 Hz), effectiveness, residue generation, Bone damage, material resistances and fracture thresholds remain unchanged. The final lock changes only these authorized resource values and the pre-impact Bone protection decision.
 
 ## Human A/B findings
 
@@ -81,7 +94,7 @@ Solve clipping by offset/lift/shape placement rather than continuous orientation
 
 Replace the current repeated reveal-vs-hit semantics with:
 
-### First protected DIRECT bone contact only
+### First protected DIRECT contact on Bone already exposed before impact
 - one small distinct Bone `tik`;
 - zero damage;
 - Bone detected.
@@ -97,9 +110,9 @@ Important consequence:
 
 If the player strikes Sandstone beside Bone and the fracture reveals Bone cells, including the very first discovery, the audible impact remains **Sandstone**. Discovery never consumes direct-contact protection.
 
-`FossilState.first_contact` remains the discovery/UI state. A separate `first_direct_contact_consumed` starts false and resets with the specimen. Only a powered damaging-tool impact whose exact centre reaches exposed Bone can consume it. Its event sets `bone_protected_contact = true`, with zero damage and the small tik. Later hits on an already exposed centre retain the existing three-point damage and big DING. Pick, Brush and Blower never consume protection.
+`FossilState.first_contact` remains the discovery/UI state. A separate `first_direct_contact_consumed` starts false and resets with the specimen. `apply_impact` snapshots `was_exposed_before_impact` before any mutation. Only a powered damaging-tool impact whose exact centre was already exposed in that snapshot can consume protection. Its event sets `bone_protected_contact = true`, with zero damage and the small tik. The next hit retains the existing three-point damage and big DING. Pick, Brush and Blower never consume protection.
 
-An impact that first reveals Bone at its own centre may consume protection safely; an off-centre reveal cannot. Once protection is consumed, revealing another previously hidden centre remains damage-free on that uncovering impact, retaining the historical condition rule and worked-material sound.
+An impact that first reveals Bone, **even at its own centre**, never consumes protection, never sets `bone_protected_contact`, does no damage and keeps worked-material audio. The old centre-reveal consumption rule is abandoned. Post-impact exposure, newly exposed cells, discovery and exposure counts never decide consumption. Exact sequence: hidden centre revealed → material sound / 100 / protection available; next visible-centre hit → small tik / 100 / protection consumed; following hit → DING / 97. Reset rearms protection.
 
 This prevents near-Bone Sandstone excavation from being dominated by Bone audio.
 
@@ -183,7 +196,7 @@ The local A/B worktrees identify **A = `42ec46d`**, **B = `c25b44f`**, and the r
 | B: visible cleanup | Hard crumbs use 4.5 mm nominal maximum width and 32% height; existing directional flight and boundary ejection retained. |
 | A/B: tool silhouette | Fixed Euler `(0.5, 0, -0.62)` for every tool; exact static tip and static body with cheap vertical translation. |
 | Recent E | Soil/Brush/audio, contextual dust and dirty Bone ivory, Pick micro-impacts, local retention budget, camera, fracture and Bone Condition preserved. |
-| Corrected locked rule | Small Bone tik only on the first direct damaging-tool contact per specimen/reset, with zero damage. Discovery alone keeps material audio and does not spend protection. Large Bone clack only when a later direct Chisel hit actually reduces condition. |
+| Corrected locked rule | Small Bone tik only on the first direct damaging-tool contact on a centre already exposed before impact, per specimen/reset, with zero damage. All reveals, including the impact centre, keep material audio and do not spend protection. Large Bone clack only when a later direct Chisel hit actually reduces condition. |
 
 Transient pieces start at the estimated top of the removed plate (`volume / cells` above the new floor), move outward at 0.09–0.14 m/s and upward at 0.035–0.10 m/s, then expire after **0.51–0.69 s**. Four existing MultiMesh pools, 48 slots each; no persistent conversion or new physics. This replaces E's at-most-three 1.2–2.4 mm chips.
 
@@ -195,8 +208,8 @@ Human Brush/Soil input reported <10 FPS. Before fixing, compare identical inputs
 
 Priority: fluidity, stable A/B angle, exact readable work point, then reasonable anti-clipping. `ToolRoot/Tip` stays at the exact hit; `ToolRoot/Body` uses static meshes and a vertical offset. Split meshes/normals only at initialization. At most twelve height probes per changed pose; no runtime mesh reconstruction, face scanning, heightfield area scan or vertex-array duplication. Recoil moves only Body and reuses clearance. Small rare intersections or a separated tip/body in extreme cavities are accepted prototype limits.
 
-Performance gate: at least 60 FPS locally; paired proxy on/off throughput and a CPU test of bounded probes/static geometry prevent a hardware-dependent FPS-only regression test. Gameplay/tool tuning, Chisel spectacle, Blower, debris quantities, Soil, Pick, Dust and camera remain unchanged.
+Performance gate: at least 60 FPS locally; paired proxy on/off throughput and a CPU test of bounded probes/static geometry prevent a hardware-dependent FPS-only regression test. The proxy correction preserved gameplay/tool tuning; the final lock subsequently persists only the human-validated baselines above. Chisel spectacle, Blower, debris rules, Soil/Pick behavior, Dust and camera remain unchanged.
 
-Limits: transient launch height is an average from the removed patch, not reconstructed fragments; flight does not collide with changing terrain. Human retest is now **exactly three points** in [P4_REPORT](P4_REPORT.md#retest-humain--exactement-trois-points): Brush performance, Bone protection, quick Chisel/Blower/Pick sanity.
+Limits: transient launch height is an average from the removed patch, not reconstructed fragments; flight does not collide with changing terrain. [P4_REPORT](P4_REPORT.md#retest-humain--exactement-trois-points) retains three short checks for closure: baseline Brush performance, centre-reveal Bone protection and Chisel/Blower/Pick sanity.
 
 Measurements and evidence: [P4_REPORT](P4_REPORT.md). **STOP after delivery. P4-V and P5 remain blocked; PR #5 remains draft and unmerged.**

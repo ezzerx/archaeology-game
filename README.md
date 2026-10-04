@@ -2,7 +2,7 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; P4 FINAL FEEL prête pour retest humain.**
+**Statut : préproduction — P0/P1/P2/P3 validés et mergés ; dernier lock P4 FINAL FEEL prêt pour décision de fermeture.**
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -55,13 +55,15 @@ P4 ajoute les réactions de matière :
 
 La composition [FINAL FEEL](docs/dev/P4_FINAL_FEEL_TARGET.md) reprend le spectacle Chisel de P4-A (éclats transitoires 3–6 mm) et le nettoyage visible de P4-B (miettes projetées hors du bloc), avec la quantité persistante récente toujours plafonnée. Soil, Pick et ivoire Bone sous la poussière sont préservés. Les outils retrouvent l’ancien angle fixe, pointe exacte et corps dégagé. Grammaire joueur : **matière attachée / saleté**.
 
-**Bone audio** : premier contact DIRECT Chisel/Bone par reset : petit tik et zéro dégât, même après découverte adjacente ; gros clack uniquement sur hit Chisel direct avec perte réelle de condition. Toutes les révélations adjacentes gardent le son Clay/Sandstone travaillé. La découverte ne consomme pas la protection ; exposition, dégâts ultérieurs et timbres historiques inchangés.
+**Bone audio** : toute révélation, même au centre du coup, garde le son matériau et laisse la protection disponible. Premier Chisel sur un centre **déjà exposé avant l’impact** : petit tik, condition 100, protection consommée ; coup suivant : gros DING, condition 97. Reset réarme ; Pick/Brush/Blower ne consomment jamais. Exposition, dégâts ultérieurs et timbres historiques inchangés.
 
-**[4] Precision Pick** : clic ou maintien immobile, six micro-impacts/s, rayon 3 texels, puissance 0,24, retrait rapide et précis sans grosses plaques. Zéro dégât provisoire P4, plafond osseux intact. Réglages Brush/Chisel/Blower/Pick, fracture et caméra préservés.
+**Baselines humaines persistées**, rayon / puissance / falloff : Brush **40 / 0.70 / 1.25**, Chisel **22 / 0.64 / 2.25**, Blower **60 / 0 / 1.00**, Pick **7 / 0.24 / 1.50**. **P4 human-validated baseline — tuning final deferred to P7.** Blower conserve son nettoyage 2.5 ; cadences, efficacités, génération de résidu, dégâts et fracture inchangés.
 
-**Bugfix Brush** : Tip/Body statiques, douze sondes terrain maximum, aucune reconstruction de mesh pendant le jeu. Geste de 30 s à 1×/3× : **233–236 FPS**, proxy P95 **32 µs**, réglages Soil inchangés. Diagnostic, tests et limites dans le [rapport P4](docs/dev/P4_REPORT.md) ; le retest humain ciblé reste attendu.
+**[4] Precision Pick** : clic ou maintien immobile, six micro-impacts/s, rayon 7 texels, puissance 0,24, retrait rapide et précis sans grosses plaques. Zéro dégât provisoire P4, plafond osseux intact.
 
-Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer. Suivre les [trois points du bugfix P4](docs/dev/P4_REPORT.md#retest-humain--exactement-trois-points) : Brush 30–60 s, premier contact Bone protégé, puis sanity Chisel/Blower/Pick. **STOP. PR #5 en brouillon, non mergée ; P4-V et P5 interdits.**
+**Bugfix Brush conservé** : Tip/Body statiques, douze sondes terrain maximum, aucune reconstruction de mesh pendant le jeu. Avec la baseline du lock, geste de 30 s à 1×/3× : **235–236 FPS**, proxy P95 **31 µs**. Diagnostic, tests et limites dans le [rapport P4](docs/dev/P4_REPORT.md).
+
+Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer ; aucun réglage debug préalable nécessaire. [Trois vérifications avant fermeture P4](docs/dev/P4_REPORT.md#retest-humain--exactement-trois-points) : Brush 30–60 s, révélation centrale puis contact Bone protégé, sanity Chisel/Blower/Pick. **STOP. PR #5 en brouillon, non mergée ; P4-V et P5 nécessitent une nouvelle autorisation.**
 
 Brief :
 

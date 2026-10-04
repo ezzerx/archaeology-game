@@ -1,0 +1,126 @@
+{
+  "code_commit": "e5df77f60666532ebd3d6df256f667df443330e1",
+  "baseline_commit": "15a02a812f481a2634d19a7372df121ad5daca81",
+  "engine": "4.7.2-stable (official)",
+  "date": "2026-10-04",
+  "baseline_label": "P4 human-validated baseline — tuning final deferred to P7.",
+  "tool_baselines": {
+    "brush": [
+      40,
+      0.7,
+      1.25
+    ],
+    "chisel": [
+      22,
+      0.64,
+      2.25
+    ],
+    "blower": [
+      60,
+      0,
+      1
+    ],
+    "pick": [
+      7,
+      0.24,
+      1.5
+    ]
+  },
+  "tool_triplet_order": [
+    "radius",
+    "power",
+    "falloff"
+  ],
+  "blower_residue_clear": 2.5,
+  "protected_resource_fields_unchanged": true,
+  "production_changed_files": [
+    "config/chisel.tres",
+    "config/precision_pick.tres",
+    "config/soft_brush.tres",
+    "scripts/fossil_state.gd",
+    "scripts/working_surface.gd"
+  ],
+  "functional_checks": {
+    "p0": 45,
+    "p1": 52,
+    "p2": 97,
+    "p3": 88,
+    "zoom": 160,
+    "p4_core": 72,
+    "pan": 43,
+    "audio": 42,
+    "dirt": 27,
+    "debris_budget": 18,
+    "pick": 39,
+    "feedback": 25,
+    "proxy": 737
+  },
+  "functional_total": 1445.0,
+  "functional_failures": 0,
+  "graphical_checks": {
+    "feedback": 16,
+    "material": 46,
+    "composition": 28
+  },
+  "graphical_total": 90.0,
+  "graphical_failures": 0,
+  "cpu_proxy_cases": 6,
+  "cpu_proxy_failures": 0,
+  "brush_paired_cases": 12,
+  "brush_seconds_per_moving_case": 30,
+  "brush_failures": 0,
+  "general_performance_cases": 28,
+  "performance_failures": 0,
+  "general_min_fps": 235.176740070366,
+  "general_max_fps": 240.010044740161,
+  "general_max_p95_ms": 12.214,
+  "general_max_frame_ms": 14.478,
+  "gpu_pixels": 194955.0,
+  "gpu_height_max_error": 0.00482505326177561,
+  "gpu_material_max_error": 0.0108823478221893,
+  "gpu_maps_byte_exact": true,
+  "gpu_failures": 0,
+  "generated_historical_wavs_byte_exact": 28,
+  "runtime_cap": 240,
+  "physics_hz": 60,
+  "bone_verified_by": "tests/run_p4_audio_tests.gd",
+  "bone_hidden_center_sequence": [
+    {
+      "action": "hidden center revealed",
+      "was_exposed_before_impact": false,
+      "exposed_after": true,
+      "condition": 100,
+      "damage": 0,
+      "protection_consumed": false,
+      "bone_protected_contact": false,
+      "audio": "chisel_stone"
+    },
+    {
+      "action": "first subsequent visible center hit",
+      "was_exposed_before_impact": true,
+      "condition": 100,
+      "damage": 0,
+      "protection_consumed": true,
+      "bone_protected_contact": true,
+      "audio": "bone_revealed (small tik)"
+    },
+    {
+      "action": "second visible center hit",
+      "was_exposed_before_impact": true,
+      "condition": 97,
+      "damage": 3,
+      "protection_consumed": true,
+      "bone_protected_contact": false,
+      "audio": "direct_bone_hit (big DING)"
+    },
+    {
+      "action": "reset",
+      "condition": 100,
+      "protection_consumed": false
+    }
+  ],
+  "adjacent_reveal_never_consumes": true,
+  "pick_brush_blower_never_consume": true,
+  "final_lock_human_retest_performed_by_agent": false,
+  "local_project_godot_change_excluded": true
+}

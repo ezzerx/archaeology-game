@@ -15,9 +15,20 @@ Deux états visibles : **matière attachée / saleté**. Aucun choix Loose Debri
 
 ## Socle préservé
 
-Fracture Chisel, profondeur, condition plus juste, timbres découverte/hit direct, Brush audio et caméra sont validés humainement. Ressources Brush/Chisel/Blower/Pick, résistances, partition, stress, seuils, profondeur des fractures, samples audio, contrôleur d’entrée et picking inchangés. Seul le routage des signaux Bone change selon la nouvelle règle humaine.
+Fracture Chisel, profondeur, timbres, Brush audio et caméra sont préservés. Le dernier lock persiste uniquement les valeurs humaines ci-dessous et corrige la décision de protection Bone avant impact. Cadences, efficacités, génération de résidu, dégâts, résistances, partition, stress, seuils, profondeur des fractures, samples audio, contrôleur d’entrée et picking inchangés.
 
-Heightfield RF autoritaire, picking DDA sur ses triangles, fracture locale seedée et sparse, atlas RG8 de 242×133. Premier contact osseux sûr, puis −3 points par impact Chisel dont le centre était déjà exposé, une pénalité maximum par impact. Aucun auto-stop, marge osseuse ou bonus Brush.
+**P4 human-validated baseline — tuning final deferred to P7.**
+
+| Ressource | Rayon | Puissance | Falloff |
+|---|---:|---:|---:|
+| Brush | 40 | 0.70 | 1.25 |
+| Chisel | 22 | 0.64 | 2.25 |
+| Blower | 60 | 0 | 1.00 |
+| Pick | 7 | 0.24 | 1.50 |
+
+Blower conserve `residue_clear = 2.5`. Les ressources fournissent ce feel au lancement et au reset sans réglage debug préalable ; le reset ne modifie pas le fonctionnement existant des réglages debug en cours de session.
+
+Heightfield RF autoritaire, picking DDA sur ses triangles, fracture locale seedée et sparse, atlas RG8 de 242×133. Premier Chisel sur un centre déjà exposé avant le coup : petit tik et zéro dégât ; impacts directs suivants : −3 points, une pénalité maximum par impact. Toute révélation reste sûre et ne consomme pas cette protection. Aucun auto-stop, marge osseuse ou bonus Brush.
 
 ## Bone et poussière par matière
 
@@ -65,16 +76,16 @@ Les miettes soufflées s’agrègent en paquets, avancent à 60 Hz et sortent à
 
 | Paramètre | Valeur P4 |
 |---|---:|
-| Rayon | 3 texels, contre 12 pour Chisel |
+| Rayon | 7 texels, contre 22 pour Chisel |
 | Puissance par impact | 0,24 |
 | Cadence / falloff | 6 Hz / 1,5 |
 | Efficacités Soil / Clay / Sandstone | 0,30 / 1,00 / 1,50 |
 | Génération poussière / nettoyage | 1,25 / 0 |
 | Dégât Bone | 0 |
 
-Disque minuscule, au plus 25 centres de texels modifiés dans le test centré. Micro-retrait direct, sans cellules de fracture Chisel, stress ou gros éclat. Chaque impact s’arrête à l’interface du matériau initial et au plafond osseux, sans marge. Aucun pont entre deux positions d’impact.
+Disque local, au plus 145 centres de texels dans le footprint du test centré. Micro-retrait direct, sans cellules de fracture Chisel, stress ou gros éclat. Chaque impact s’arrête à l’interface du matériau initial et au plafond osseux, sans marge. Aucun pont entre deux positions d’impact.
 
-Un clic central retire **0,08 Clay / 0,045 Sandstone** de hauteur normalisée, soit **8,16 / 4,59 mm**, si la couche disponible le permet. L’efficacité locale est forte ; le volume reste faible grâce au rayon. Le test d’une seconde mesure un rapport de volume Chisel/Pick **17,80**. Géométrie, exposition, dépôt et événements restent synchronisés dans le noyau commun.
+Un clic central retire **0,08 Clay / 0,045 Sandstone** de hauteur normalisée, soit **8,16 / 4,59 mm**, si la couche disponible le permet. L’efficacité locale est forte ; le volume reste faible grâce au rayon. Avec les baselines verrouillées, le test d’une seconde mesure un rapport de volume Chisel/Pick **15,76**. Géométrie, exposition, dépôt et événements restent synchronisés dans le noyau commun.
 
 Petit recul et son Pick discret à l’impact ; le Pick ne déclenche ni tik protégé ni dommage et ne consomme jamais la protection Chisel. **Zéro dégât est provisoire P4 pour tester la finition, pas le tuning P7.**
 
@@ -84,13 +95,13 @@ Petit recul et son Pick discret à l’impact ; le Pick ne déclenche ni tik pro
 
 - `bone_revealed` garde sa signification d’exposition supplémentaire ; le décompte des cellules/composants reste inchangé.
 - `bone_first_contact` et `FossilState.first_contact` indiquent seulement la découverte/UI. Même la première révélation adjacente garde le son du matériau travaillé.
-- `first_direct_contact_consumed`, distinct et remis à faux au reset, protège une fois le centre d’un impact Chisel susceptible de faire des dégâts. Premier contact direct : `bone_protected_contact = true`, petit tik, zéro dégât. Pick/Brush/Blower ne consomment rien.
-- Un centre Bone caché atteint par cet impact peut consommer la protection sans dégât. Des cellules révélées ailleurs dans le footprint ne le peuvent pas. Une fois la protection consommée, un nouveau centre précédemment caché reste sans dommage sur sa révélation, conformément à la règle historique.
+- `first_direct_contact_consumed`, distinct et remis à faux au reset, protège une fois un centre Bone **déjà exposé avant l’impact**. `apply_impact` capture `was_exposed_before_impact` avant toute mutation ; ce snapshot décide le contact direct. Premier contact éligible : `bone_protected_contact = true`, petit tik, zéro dégât, protection consommée. Pick/Brush/Blower ne consomment rien.
+- Un centre Bone caché révélé par le coup ne consomme **jamais** la protection : aucun dégât, aucun événement protégé et son matériau. Même règle pour les révélations adjacentes. L’ancienne consommation lors d’une révélation centrale est abandonnée. Ni exposition après impact, ni découverte, ni compteurs ne peuvent remplacer le snapshot.
 - `bone_damage` transporte la baisse réelle de condition déjà calculée par la règle existante. **Gros clack + signal visuel** seulement si hit direct et perte >0 ; à condition zéro, aucun faux signal de dommage supplémentaire.
 - Autres impacts : Clay/Sandstone travaillé, y compris lors de toute exposition adjacente. Si les deux sont retirés, le volume dominant choisit le son. Le contact direct protégé et un hit dommageable ont priorité sur ce son de matière.
 
-Le sample historique `bone_revealed` est le petit tik de contact protégé ; aucun WAV modifié. Aucune marge, auto-stop ni retuning des outils ; les dégâts ultérieurs restent −3 points, bornés à zéro.
+Le sample historique `bone_revealed` est le petit tik de contact protégé ; aucun WAV modifié. Aucune marge ni auto-stop ; seuls les paramètres de baseline autorisés ci-dessus changent. Les dégâts ultérieurs restent −3 points, bornés à zéro.
 
 Caméra orthographique 84°, zoom 1–3× au curseur, RMB pan borné, Home vue initiale et R reset conservés. Changement d’outil, focus/resize annulent le geste ; nouveau clic requis. Debug Shift/Ctrl/Alt+molette et F6/F7 conservés. Cap 240 FPS, physique 60 Hz.
 
-Visuels placeholders, quantités agrégées et saturées, sans collisions fines ou historique de pigment. Les contrôles de géométrie, pixels et débit ne valident pas le plaisir ou la reconnaissance humaine instantanée. **Prochain gate : les trois points du bugfix dans le rapport. STOP ; aucun merge, P4-V ou P5 automatique.** Macro-stratigraphie, profondeur fossile variable et vraie gravité des débris dans les cavités restent hors périmètre.
+Visuels placeholders, quantités agrégées et saturées, sans collisions fines ou historique de pigment. Les contrôles de géométrie, pixels et débit ne valident pas le plaisir ou la reconnaissance humaine instantanée. **Lock préparé pour fermeture P4 ; STOP, aucun merge, P4-V ou P5 automatique.** Macro-stratigraphie, profondeur fossile variable et vraie gravité des débris dans les cavités restent hors périmètre.

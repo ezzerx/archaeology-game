@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4 AUDIO MATERIAL: layer=1 reset=0 later reveals=3 Bone sounds=0
+P4 AUDIO MATERIAL: layer=1 reset=1 later reveals=3 Bone sounds=0
+P4 AUDIO MATERIAL: layer=2 reset=0 later reveals=86 Bone sounds=0
+P4 AUDIO MATERIAL: layer=2 reset=1 later reveals=86 Bone sounds=0
+P4 AUDIO TESTS: 42 checks, 0 failures
