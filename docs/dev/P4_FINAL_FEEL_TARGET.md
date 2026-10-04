@@ -1,6 +1,6 @@
 # P4 Final Feel — A/B Composition Target
 
-**Status:** Last P4 Final Feel lock: human-validated tool baselines and protection on Bone already visible before impact, on `prototype/p4-game-feel`
+**Status:** P4 Final Feel component micro-fix: one protected direct contact per fossil component, with unchanged human-validated baselines, on `prototype/p4-game-feel`
 
 **Date:** 2026-10-04
 **PR:** #5 remains draft / unmerged  
@@ -25,7 +25,7 @@ The final human test supplied the baselines below. This lock prepares P4 for clo
 | Air Blower | 60 | 0 | 1.00 |
 | Precision Pick | 7 | 0.24 | 1.50 |
 
-These are persisted in the tool resources and loaded without debug adjustments at launch; specimen reset retains those values. Existing in-session debug/reset behavior is unchanged. Blower `residue_clear = 2.5`, cadences (Chisel 4.5 Hz, Pick 6 Hz), effectiveness, residue generation, Bone damage, material resistances and fracture thresholds remain unchanged. The final lock changes only these authorized resource values and the pre-impact Bone protection decision.
+These are persisted in the tool resources and loaded without debug adjustments at launch; specimen reset retains those values. Existing in-session debug/reset behavior is unchanged. Blower `residue_clear = 2.5`, cadences (Chisel 4.5 Hz, Pick 6 Hz), effectiveness, residue generation, Bone damage, material resistances and fracture thresholds remain unchanged. The resource lock established these values and the pre-impact eligibility rule; the subsequent component micro-fix preserves every resource and only scopes protection by component, with READY/USED in the existing F1 panel.
 
 ## Human A/B findings
 
@@ -94,7 +94,7 @@ Solve clipping by offset/lift/shape placement rather than continuous orientation
 
 Replace the current repeated reveal-vs-hit semantics with:
 
-### First protected DIRECT contact on Bone already exposed before impact
+### First protected DIRECT contact per fossil component, on Bone already exposed before impact
 - one small distinct Bone `tik`;
 - zero damage;
 - Bone detected.
@@ -110,9 +110,13 @@ Important consequence:
 
 If the player strikes Sandstone beside Bone and the fracture reveals Bone cells, including the very first discovery, the audible impact remains **Sandstone**. Discovery never consumes direct-contact protection.
 
-`FossilState.first_contact` remains the discovery/UI state. A separate `first_direct_contact_consumed` starts false and resets with the specimen. `apply_impact` snapshots `was_exposed_before_impact` before any mutation. Only a powered damaging-tool impact whose exact centre was already exposed in that snapshot can consume protection. Its event sets `bone_protected_contact = true`, with zero damage and the small tik. The next hit retains the existing three-point damage and big DING. Pick, Brush and Blower never consume protection.
+`FossilState.first_contact` remains the discovery/UI state. Protection is **one protected direct contact per fossil component**. `direct_contact_consumed` is a five-byte array indexed by `FossilField.Component`: NONE is unused, then **Skull / Spine / Ribs / Hind Limb**. Reset clears all flags. B-17 therefore has **four protected contacts maximum per reset**, one for each component; all ribs share RIBS and all vertebrae share SPINE. A new cell, individual rib/vertebra or revealed area grants no extra protection.
 
-An impact that first reveals Bone, **even at its own centre**, never consumes protection, never sets `bone_protected_contact`, does no damage and keeps worked-material audio. The old centre-reveal consumption rule is abandoned. Post-impact exposure, newly exposed cells, discovery and exposure counts never decide consumption. Exact sequence: hidden centre revealed → material sound / 100 / protection available; next visible-centre hit → small tik / 100 / protection consumed; following hit → DING / 97. Reset rearms protection.
+`apply_impact` still snapshots `was_exposed_before_impact` before any mutation. Only a powered damaging-tool impact whose exact centre was already exposed in that snapshot can consume the protection of `field.component_ids[index]`. Its event sets `bone_protected_contact = true`, with zero damage and the small tik. Every later direct hit anywhere on that same component retains the existing three-point damage and big DING. Pick, Brush and Blower never consume protection. **Bone Condition remains global to the specimen**, with no additional bars: Skull → Skull → Ribs → Ribs gives **100 → 97 → 97 → 94**.
+
+This component rule is a **P4 baseline, open to reevaluation during P7 tuning**. The existing F1 component rows show READY/USED for developer inspection only. Material audio, events, tools, fracture and all other feel remain unchanged.
+
+An impact that first reveals Bone, **even at its own centre**, never consumes any component protection, never sets `bone_protected_contact`, does no damage and keeps worked-material audio. The old centre-reveal consumption rule is abandoned. Post-impact exposure, newly exposed cells, discovery and exposure counts never decide consumption. Within a fresh component: hidden centre revealed → material sound / condition unchanged / protection available; next visible-centre hit → small tik / condition unchanged / that component consumed; following hit → DING / −3 global condition. Reset rearms all four protections.
 
 This prevents near-Bone Sandstone excavation from being dominated by Bone audio.
 
@@ -196,7 +200,7 @@ The local A/B worktrees identify **A = `42ec46d`**, **B = `c25b44f`**, and the r
 | B: visible cleanup | Hard crumbs use 4.5 mm nominal maximum width and 32% height; existing directional flight and boundary ejection retained. |
 | A/B: tool silhouette | Fixed Euler `(0.5, 0, -0.62)` for every tool; exact static tip and static body with cheap vertical translation. |
 | Recent E | Soil/Brush/audio, contextual dust and dirty Bone ivory, Pick micro-impacts, local retention budget, camera, fracture and Bone Condition preserved. |
-| Corrected locked rule | Small Bone tik only on the first direct damaging-tool contact on a centre already exposed before impact, per specimen/reset, with zero damage. All reveals, including the impact centre, keep material audio and do not spend protection. Large Bone clack only when a later direct Chisel hit actually reduces condition. |
+| Corrected locked rule | One protected direct contact per fossil component: small tik and zero damage on the first already-visible centre hit for Skull, Spine, Ribs and Hind Limb. All reveals keep material audio and do not spend protection. Later direct hits on that component reduce global condition by three and play the large Bone clack. |
 
 Transient pieces start at the estimated top of the removed plate (`volume / cells` above the new floor), move outward at 0.09–0.14 m/s and upward at 0.035–0.10 m/s, then expire after **0.51–0.69 s**. Four existing MultiMesh pools, 48 slots each; no persistent conversion or new physics. This replaces E's at-most-three 1.2–2.4 mm chips.
 

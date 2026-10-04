@@ -1,8 +1,35 @@
-# Rapport P4 — FINAL FEEL, dernier lock
+# Rapport P4 — FINAL FEEL, protection par composant
 
 **2026-10-04 · `prototype/p4-game-feel` · Godot 4.7.2 / Compatibility.**
 
-Code du lock : **`e5df77f60666532ebd3d6df256f667df443330e1`**, base **`15a02a8`**. [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) **brouillon, non mergée**. Deux changements autorisés : persister les baselines humaines et réserver le premier hit protégé au Bone déjà visible avant impact. Le correctif FPS précédent et le reste du Final Feel sont conservés. P4 est préparée pour décision de fermeture ; **P4-V et P5 restent non autorisés**. Source de vérité : [P4_FINAL_FEEL_TARGET](P4_FINAL_FEEL_TARGET.md).
+Code du micro-fix : **`0c549f58d6c2c27e21251a854c2e18a39d389ee2`**, base **`44edb75c71398d72137966f2fd029d7614552e68`**. [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) **brouillon, non mergée**. Unique changement de gameplay : **une protection de premier contact direct par composant anatomique**. Les baselines humaines, le snapshot avant impact et tout le reste du Final Feel sont conservés. Source de vérité : [P4_FINAL_FEEL_TARGET](P4_FINAL_FEEL_TARGET.md).
+
+## Micro-fix courant — protection indépendante par composant
+
+`FossilState.direct_contact_consumed` remplace le booléen global par un **PackedByteArray de cinq cases** indexées par `FossilField.Component`. NONE reste inutilisé ; **Skull / Spine / Ribs / Hind Limb** ont chacun un flag. `is_direct_contact_protected(component)` expose l’état. `contact_at` consulte uniquement le composant de la cellule centrale, déjà exposée avant le coup, et ignore NONE. **Bone Condition reste globale**, avec les dégâts historiques de trois points.
+
+B-17 dispose de **quatre protections maximum par reset**, jamais une par cellule, côte, vertèbre ou nouvelle zone. Toutes les côtes partagent RIBS et toute la colonne partage SPINE. Reset remet les quatre flags à READY et la condition à 100. Révélation centrale ou adjacente, Pick, Brush et Blower ne consomment aucun flag. Les sons existants suivent les mêmes événements. F1 ajoute seulement READY/USED dans les lignes de composants déjà présentes.
+
+Résultat réel du nouveau test `run_p4_component_contact_tests.gd`, avec B-17 et les ressources de production :
+
+| Impact sur os déjà visible | Protection | Dégât | Condition globale | Son |
+|---|---|---:|---:|---|
+| Skull, premier | Skull consommée | 0 | **100** | Petit tik |
+| Skull, deuxième | Aucune nouvelle | 3 | **97** | Gros DING |
+| Ribs, premier | Ribs consommée | 0 | **97** | Petit tik |
+| Ribs, deuxième | Aucune nouvelle | 3 | **94** | Gros DING |
+
+Une autre côte éloignée, révélée ensuite, ne redonne aucune protection : son premier hit sur centre visible descend à **91**. Spine puis Hind Limb restent indépendants : premier hit protégé pour chacun, condition inchangée à 91 ; une autre vertèbre prend ensuite trois points. Le reset et les outils sûrs sur les quatre composants laissent tous les flags disponibles. **Baseline P4, réévaluable au tuning P7 si nécessaire.**
+
+Validation courante : **1 517 checks fonctionnels (dont 72 nouveaux) + 90 contrôles graphiques**, zéro échec, soit **1 607 contrôles comptés**. Six cas CPU de pose, oracle GPU **194 955 pixels**, 28 WAV historiques identiques et sonde de condition également verts. Sanity uniquement : **quatre cas Chisel Clay/Stone à 1×/3×**, **239,86–239,87 FPS**, P95 maximal **4,325 ms**, frame max **11,768 ms**, sur RTX 5080 / Ryzen 9800X3D en 1080p. Cap 240 FPS / physique 60 Hz inchangés. Aucun benchmark long relancé ; les mesures Brush du lock précédent restent historiques.
+
+[Validation courante](evidence/p4-component-validation.json) · [séquence des composants/reset](evidence/p4-component-contact.json) · [sanity](evidence/p4-component-sanity.json) · [composition](evidence/p4-component-composition-visual.json) · [dust/cleanup](evidence/p4-component-feedback-visual.json) · [matières](evidence/p4-component-material-visual.json) · [GPU](evidence/p4-component-gpu.json) · [condition](evidence/p4-component-condition.json) · [coût proxy](evidence/p4-component-proxy-cost.json).
+
+Le diff de production est limité à `fossil_state.gd` et à l’affichage dev dans `prototype_main.gd`. Ressources, retrait, fracture, spectacle, débris, audio, shaders, proxies et caméra inchangés. La modification locale préexistante de `project.godot` reste exclue. **P4 Final Feel ready for human closure / P4-V authorization.** STOP ; aucun merge ni ouverture de P4-V/P5.
+
+## Historique du lock des ressources
+
+Le code **`e5df77f`**, livré au HEAD **`44edb75`**, a persisté les baselines ci-dessous et corrigé l’éligibilité avant impact. Ses mesures complètes sont conservées ; sa protection alors globale est remplacée par le micro-fix ci-dessus.
 
 ## Ressources : avant / après
 
@@ -79,11 +106,11 @@ Détail CPU du geste de 30 s à 1×, **moyenne / P95**, en µs. ToolController i
 
 Les JSON contiennent aussi les maxima et toutes ces mesures à 3×. Les moyennes dépassent largement 60 FPS et tous les P95 après correction sont sous 16,67 ms ; quelques frames isolées atteignent 18,205 ms. Le test autonome ne remplace pas le retest humain de 30–60 s dans les conditions du signalement.
 
-## Bone : état exposé avant impact, seule règle de protection
+## Bone : prérequis avant impact conservé, protection par composant
 
 Cause exacte restante : le bugfix précédent avait séparé découverte et protection, mais autorisait encore le **centre révélé par le coup lui-même** à consommer `first_direct_contact_consumed`. Le joueur découvrait donc un os dont la protection était déjà dépensée ; son premier clic volontaire visible produisait DING/−3. Cette règle est abandonnée.
 
-`apply_impact` capture **`was_exposed_before_impact` avant toute mutation**. Le centre exact doit déjà être exposé dans ce snapshot et l’outil doit pouvoir faire des dégâts pour consommer la protection ou infliger les dégâts ultérieurs. `FossilState.contact_at` rejette également tout centre qui n’était pas exposé avant le coup. `first_contact` reste la découverte/UI ; aucune décision depuis `bone_revealed`, les cellules nouvellement exposées ou les compteurs après mutation. Actuellement, seul Chisel est dommageable.
+`apply_impact` capture **`was_exposed_before_impact` avant toute mutation**. Le centre exact doit déjà être exposé dans ce snapshot et l’outil doit pouvoir faire des dégâts pour consommer la protection **de ce composant** ou infliger les dégâts ultérieurs. `FossilState.contact_at` rejette également tout centre qui n’était pas exposé avant le coup. `first_contact` reste la découverte/UI ; aucune décision depuis `bone_revealed`, les cellules nouvellement exposées ou les compteurs après mutation. Actuellement, seul Chisel est dommageable. Le tableau suivant part d’un reset et reste dans le même composant.
 
 | Action | Protection / condition | Son |
 |---|---|---|
@@ -91,7 +118,7 @@ Cause exacte restante : le bugfix précédent avait séparé découverte et prot
 | **Centre caché révélé par ce coup** | **Protection toujours disponible ; 100 ; aucun événement protégé/direct** | **Matériau travaillé** |
 | Premier Chisel suivant sur Bone déjà exposé avant le coup | `bone_protected_contact = true`, dégâts 0 ; 100 ; protection consommée | Petit tik |
 | Deuxième Chisel au même point | Protection fausse, dégâts historiques 3 ; 97 | Gros DING |
-| Reset | Protection réarmée ; 100 | État audio réinitialisé |
+| Reset | Les quatre protections réarmées ; 100 | État audio réinitialisé |
 | Pick, Brush, Blower avant Chisel | Aucun dégât, aucune consommation | Audio propre à leur travail |
 
 Toute révélation, centrale ou adjacente, reste sans dommage et ne consomme jamais la protection. Après consommation, une nouvelle cellule cachée reste également sûre sur l’impact qui la découvre ; seuls les centres déjà exposés prennent les dégâts ultérieurs. À condition zéro, aucun faux son de dommage. Les **28 WAV historiques restent identiques**.
@@ -106,7 +133,7 @@ Test obligatoire dans `tests/run_p4_audio_tests.gd` : reset → fracture révél
 - **Pick** : six micro-impacts/s, rayon 7, puissance 0,24, efficacités 0,30/1,00/1,50, interface et plafond osseux, zéro dégât provisoire P4. Rapport de volume Chisel/Pick **15,76** avec les baselines du lock ; retraits centraux Pick inchangés, 0,08 Clay / 0,045 Stone.
 - **Caméra/input** : zoom 1–3×, RMB pan borné, Home et R, touches/debug, picking exact ; 240 FPS / physique 60 Hz.
 
-## Validation du lock et preuves
+## Validation historique du lock et preuves
 
 **1 445 checks fonctionnels, zéro échec** : P0 45, P1 52, P2 97, P3 88, zoom 160, P4 72, pan 43, audio 42, dirt 27, débris 18, Pick 39, feedback 25, proxies 737. Six cas CPU de pose et douze cas Brush également verts. Le test d’entrée P3 vérifie le premier contact sur Bone visible protégé, puis la pénalité habituelle au clic suivant.
 
@@ -122,7 +149,7 @@ Le test de fracture conserve une charge historique explicite (12/0.24/2) pour v�
 
 Les régressions du proxy vérifient toujours pointe exacte, base stable, meshes statiques, zéro effet gameplay, nombre borné de sondes et coût CPU. Aucun seuil de performance ou de rendu n’est assoupli pour le lock.
 
-[Validation courante](evidence/p4-lock-validation.json) · [condition](evidence/p4-lock-condition.json). Historique du bugfix précédent : [Brush avant](evidence/p4-bugfix-brush-before.json) · [Brush après](evidence/p4-bugfix-brush-after.json) · [coût proxy avant](evidence/p4-bugfix-proxy-cost-before.json) · [coût proxy après](evidence/p4-bugfix-proxy-cost-after.json) · [validation ancienne](evidence/p4-bugfix-validation.json).
+[Validation du lock antérieur](evidence/p4-lock-validation.json) · [condition](evidence/p4-lock-condition.json). Historique du bugfix précédent : [Brush avant](evidence/p4-bugfix-brush-before.json) · [Brush après](evidence/p4-bugfix-brush-after.json) · [coût proxy avant](evidence/p4-bugfix-proxy-cost-before.json) · [coût proxy après](evidence/p4-bugfix-proxy-cost-after.json) · [validation ancienne](evidence/p4-bugfix-validation.json).
 
 Les JSON `p4-bugfix-*` décrivent le code `59f7e21`, notamment son ancienne protection centrale désormais abandonnée ; ils restent des preuves historiques, pas la règle actuelle. Proxies inchangés : [Brush en cavité](evidence/p4-bugfix-deep-brush.png), [Chisel au bord](evidence/p4-bugfix-deep-edge-chisel.png), [Pick/Bone](evidence/p4-bugfix-bone-pick.png).
 
@@ -132,14 +159,14 @@ Reproduction complète :
 & tests/check_p4.ps1 -GodotBin 'C:\Users\antoi\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe' -Graphical
 ```
 
-Les preuves A/B restent sous `evidence/p4-feel-*`, le bugfix précédent sous `p4-bugfix-*`, le dernier lock sous **`p4-lock-*`**. La modification locale préexistante de `project.godot` est préservée et exclue des commits. Aucun merge, P4-V, physique des débris, verticalité ou P5.
+Les preuves A/B restent sous `evidence/p4-feel-*`, le bugfix précédent sous `p4-bugfix-*`, le lock des ressources sous `p4-lock-*` et le micro-fix courant sous **`p4-component-*`**. La modification locale préexistante de `project.godot` est préservée et exclue des commits. Aucun merge, P4-V, physique des débris, verticalité ou P5.
 
 ## Retest humain — exactement trois points
 
 Les baselines proviennent du dernier test humain. Pour la décision de fermeture : ouvrir `project.godot` dans Godot 4.7.2, **F5**, masquer **F1**, sans retoucher les paramètres debug.
 
 1. **BRUSH PERF** — Reset, puis Brush sur Soil pendant **30–60 s** : aucune chute massive, jeu fluide, sensation Soil inchangée.
-2. **BONE PROTECTION** — Révéler un os, y compris au centre d’un impact : son matériau et condition 100. Premier clic suivant sur cet os maintenant visible : **petit tik, condition 100**. Deuxième : **gros DING, condition 97**. Reset réarme.
+2. **BONE PROTECTION** — Révéler Skull : aucun flag consommé. Skull → Skull → Ribs → Ribs sur os déjà visible : **tik/100 → DING/97 → tik/97 → DING/94**. Une autre côte ne redonne pas de protection. Spine/Hind Limb indépendants ; reset réarme les quatre.
 3. **QUICK SANITY** — Chisel + Blower + Pick pendant quelques minutes : vérifier que les autres sensations sont conservées.
 
 **STOP après push du lock. PR #5 BROUILLON, NON MERGÉE. P4-V et P5 restent interdits sans nouvelle autorisation explicite.**

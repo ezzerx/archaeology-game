@@ -15,7 +15,7 @@ Deux états visibles : **matière attachée / saleté**. Aucun choix Loose Debri
 
 ## Socle préservé
 
-Fracture Chisel, profondeur, timbres, Brush audio et caméra sont préservés. Le dernier lock persiste uniquement les valeurs humaines ci-dessous et corrige la décision de protection Bone avant impact. Cadences, efficacités, génération de résidu, dégâts, résistances, partition, stress, seuils, profondeur des fractures, samples audio, contrôleur d’entrée et picking inchangés.
+Fracture Chisel, profondeur, timbres, Brush audio et caméra sont préservés. Le lock a persisté les valeurs humaines ci-dessous et corrigé la décision de protection Bone avant impact. Le micro-fix suivant conserve exactement ce socle et limite uniquement la consommation au composant anatomique concerné. Cadences, efficacités, génération de résidu, dégâts, résistances, partition, stress, seuils, profondeur des fractures, samples audio, contrôleur d’entrée et picking inchangés.
 
 **P4 human-validated baseline — tuning final deferred to P7.**
 
@@ -28,7 +28,7 @@ Fracture Chisel, profondeur, timbres, Brush audio et caméra sont préservés. L
 
 Blower conserve `residue_clear = 2.5`. Les ressources fournissent ce feel au lancement et au reset sans réglage debug préalable ; le reset ne modifie pas le fonctionnement existant des réglages debug en cours de session.
 
-Heightfield RF autoritaire, picking DDA sur ses triangles, fracture locale seedée et sparse, atlas RG8 de 242×133. Premier Chisel sur un centre déjà exposé avant le coup : petit tik et zéro dégât ; impacts directs suivants : −3 points, une pénalité maximum par impact. Toute révélation reste sûre et ne consomme pas cette protection. Aucun auto-stop, marge osseuse ou bonus Brush.
+Heightfield RF autoritaire, picking DDA sur ses triangles, fracture locale seedée et sparse, atlas RG8 de 242×133. **Un premier Chisel protégé par composant anatomique**, sur un centre déjà exposé avant le coup : petit tik et zéro dégât ; impacts directs suivants sur ce composant : −3 points, une pénalité maximum par impact. Toute révélation reste sûre et ne consomme aucune protection. Aucun auto-stop, marge osseuse ou bonus Brush.
 
 ## Bone et poussière par matière
 
@@ -95,12 +95,14 @@ Petit recul et son Pick discret à l’impact ; le Pick ne déclenche ni tik pro
 
 - `bone_revealed` garde sa signification d’exposition supplémentaire ; le décompte des cellules/composants reste inchangé.
 - `bone_first_contact` et `FossilState.first_contact` indiquent seulement la découverte/UI. Même la première révélation adjacente garde le son du matériau travaillé.
-- `first_direct_contact_consumed`, distinct et remis à faux au reset, protège une fois un centre Bone **déjà exposé avant l’impact**. `apply_impact` capture `was_exposed_before_impact` avant toute mutation ; ce snapshot décide le contact direct. Premier contact éligible : `bone_protected_contact = true`, petit tik, zéro dégât, protection consommée. Pick/Brush/Blower ne consomment rien.
+- `direct_contact_consumed`, `PackedByteArray` de cinq cases indexées par `FossilField.Component`, remplace le booléen global. NONE reste inutilisé ; **Skull / Spine / Ribs / Hind Limb** ont chacun une protection, soit **quatre maximum pour B-17**, réarmées au reset. Toutes les côtes partagent RIBS, toutes les vertèbres partagent SPINE : aucune protection par cellule, os individuel ou nouvelle zone.
+- `contact_at` valide l’index, l’exposition **avant** impact et le dommage potentiel, ignore NONE, puis consulte uniquement le composant de la cellule centrale. Première fois : `bone_protected_contact = true`, petit tik, zéro dégât et consommation de ce seul composant. Ensuite : `damage_at` normal. Le snapshot `was_exposed_before_impact` dans `apply_impact` reste inchangé. Pick/Brush/Blower ne consomment rien.
+- **Bone Condition reste globale** : Skull → Skull → Ribs → Ribs donne 100 → 97 → 97 → 94. Aucun état de condition ni barre supplémentaire par composant. F1 affiche seulement READY/USED dans les lignes de composants existantes. **Baseline P4, réévaluable au tuning P7.**
 - Un centre Bone caché révélé par le coup ne consomme **jamais** la protection : aucun dégât, aucun événement protégé et son matériau. Même règle pour les révélations adjacentes. L’ancienne consommation lors d’une révélation centrale est abandonnée. Ni exposition après impact, ni découverte, ni compteurs ne peuvent remplacer le snapshot.
 - `bone_damage` transporte la baisse réelle de condition déjà calculée par la règle existante. **Gros clack + signal visuel** seulement si hit direct et perte >0 ; à condition zéro, aucun faux signal de dommage supplémentaire.
 - Autres impacts : Clay/Sandstone travaillé, y compris lors de toute exposition adjacente. Si les deux sont retirés, le volume dominant choisit le son. Le contact direct protégé et un hit dommageable ont priorité sur ce son de matière.
 
-Le sample historique `bone_revealed` est le petit tik de contact protégé ; aucun WAV modifié. Aucune marge ni auto-stop ; seuls les paramètres de baseline autorisés ci-dessus changent. Les dégâts ultérieurs restent −3 points, bornés à zéro.
+Le sample historique `bone_revealed` reste le petit tik commun aux quatre contacts protégés ; aucun WAV modifié. Aucune marge ni auto-stop. Ce micro-fix préserve exactement les paramètres de baseline déjà persistés ci-dessus. Les dégâts ultérieurs restent −3 points sur la condition globale, bornés à zéro.
 
 Caméra orthographique 84°, zoom 1–3× au curseur, RMB pan borné, Home vue initiale et R reset conservés. Changement d’outil, focus/resize annulent le geste ; nouveau clic requis. Debug Shift/Ctrl/Alt+molette et F6/F7 conservés. Cap 240 FPS, physique 60 Hz.
 

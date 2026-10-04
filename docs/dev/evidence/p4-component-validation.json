@@ -1,0 +1,83 @@
+{
+  "code_commit": "0c549f58d6c2c27e21251a854c2e18a39d389ee2",
+  "baseline_commit": "44edb75c71398d72137966f2fd029d7614552e68",
+  "date": "2026-10-04",
+  "engine": "4.7.2-stable (official)",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "viewport": "(1920, 1080)",
+  "rule": "one protected direct contact per fossil component",
+  "components": [
+    "Skull",
+    "Spine / Vertebrae",
+    "Ribs",
+    "Hind Limb"
+  ],
+  "protection_storage": "PackedByteArray indexed by FossilField.Component; NONE unused",
+  "condition_scope": "global specimen",
+  "maximum_protected_contacts": 4,
+  "skull_skull_ribs_ribs_condition": [
+    100.0,
+    97.0,
+    97.0,
+    94.0
+  ],
+  "after_reset_and_safe_tools": {
+    "condition": 100.0,
+    "consumed": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "functional_checks": {
+    "p0": 45,
+    "p1": 52,
+    "p2": 97,
+    "p3": 88,
+    "zoom": 160,
+    "p4_core": 72,
+    "pan": 43,
+    "audio": 42,
+    "component_contact": 72,
+    "dirt": 27,
+    "debris_budget": 18,
+    "pick": 39,
+    "feedback": 25,
+    "proxy": 737
+  },
+  "functional_total": 1517.0,
+  "functional_failures": 0,
+  "graphical_checks": {
+    "feedback": 16,
+    "composition": 28,
+    "material": 46
+  },
+  "graphical_total": 90.0,
+  "graphical_failures": 0,
+  "sanity_cases": 4,
+  "sanity_failures": 0,
+  "sanity_min_fps": 239.856159644526,
+  "sanity_max_fps": 239.867994258504,
+  "sanity_max_p95_ms": 4.325,
+  "sanity_max_frame_ms": 11.768,
+  "long_benchmarks_repeated": false,
+  "cpu_proxy_cases": 6,
+  "cpu_proxy_failures": 0,
+  "gpu_pixels": 194955.0,
+  "gpu_failures": 0,
+  "gpu_maps_byte_exact": true,
+  "generated_historical_wavs_byte_exact": 28,
+  "resources_byte_unchanged": true,
+  "production_changed_files": [
+    "scripts/fossil_state.gd",
+    "scripts/prototype_main.gd"
+  ],
+  "runtime_cap": 240,
+  "physics_hz": 60,
+  "local_project_godot_change_excluded": true,
+  "human_closure_authorized": false,
+  "p4v_started": false
+}
