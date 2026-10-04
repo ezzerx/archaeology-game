@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ReactionProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/reaction_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+seed = 417
+clay_patch_size = 9.0
+stone_patch_size = 5.0
+clay_stress_threshold = 0.12
+stone_stress_threshold = 0.13
+clay_chunk_depth = 0.15
+stone_chunk_depth = 0.08
+particles_per_family = 48
+particle_lifetime = 0.65
+particle_amount = 1.0
+recoil = 0.012
+pitch_variation = 0.04
+audio_volume_db = -15.0

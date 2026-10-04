@@ -9,16 +9,28 @@ var dirty := true
 var strata: Stratigraphy
 var residue: SurfaceResidue
 var fossil: FossilState
+signal material_action(event: Dictionary)
+signal surface_reset
+var fracture: MaterialFracture
+var loose_debris: LooseDebris
+var last_removed := Vector3.ZERO
+var last_action: Dictionary = {}
 var last_residue_edit_usec := 0
+var last_edit_usec := 0 # Surface work, excluding synchronous feedback consumers.
 var changed_residue_cells := 0
 var _heights := PackedFloat32Array()
 
-func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null, fossil_field: FossilField = null) -> void:
+func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null,
+		fossil_field: FossilField = null, reactions: ReactionProfile = null) -> void:
 	assert(resolution.x > 0 and resolution.y > 0)
 	size = resolution
 	strata = stratigraphy
 	image = Image.create(size.x, size.y, false, Image.FORMAT_RF)
 	residue = SurfaceResidue.new(size)
+	if reactions != null:
+		assert(strata != null)
+		fracture = MaterialFracture.new(size, reactions)
+		loose_debris = LooseDebris.new(size)
 	if fossil_field != null:
 		assert(fossil_field.size == size)
 		fossil = FossilState.new(fossil_field)
@@ -29,11 +41,17 @@ func reset() -> void:
 	_heights.fill(1.0)
 	image.fill(Color(1.0, 0.0, 0.0, 1.0))
 	residue.reset()
+	if fracture != null:
+		fracture.reset()
+	if loose_debris != null: loose_debris.reset()
+	last_removed = Vector3.ZERO
+	last_action = {}
 	if fossil != null:
 		fossil.reset()
 	last_residue_edit_usec = 0
 	changed_residue_cells = 0
 	dirty = true
+	surface_reset.emit()
 
 func value_at(cell: Vector2i) -> float:
 	return image.get_pixelv(cell.clamp(Vector2i.ZERO, size - Vector2i.ONE)).r
@@ -45,7 +63,7 @@ static func weight(distance_ratio: float, falloff: float) -> float:
 
 func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 		falloff: float, delta: float, effectiveness := Vector3.ONE,
-		residue_generation := 0.0) -> int:
+		residue_generation := 0.0, stop_at_initial_layer := false) -> int:
 	if radius <= 0.0 or strength <= 0.0 or delta <= 0.0:
 		return 0
 	# Sweep a capsule: the entire segment is covered, including fast movements.
@@ -115,6 +133,9 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 					work -= removed * resistance.y
 				if next_value <= lower and effectiveness.z > 0.0:
 					next_value = maxf(0.0, next_value - maxf(work, 0.0) / resistance.z)
+				if stop_at_initial_layer:
+					var initial_floor := upper if old_value > upper else (lower if old_value > lower else 0.0)
+					next_value = maxf(next_value, initial_floor)
 			if next_value < old_value:
 				if next_value <= bone_limit and bone_ceilings[index] > 0.0:
 					# Discard remaining work at bone. Ineffective strokes do not
@@ -127,8 +148,13 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 					if _heights[index] <= bone_ceilings[index] + FossilField.EXPOSURE_EPSILON and fossil.exposed[index] == 0:
 						newly_exposed.append(index)
 				_heights[index] = next_value
-				if residue_generation > 0.0:
-					residue.deposit_removed(x, y, (old_value - next_value) * residue_generation)
+				var layer := Stratigraphy.index_at(old_value, Vector2(limits[index * 2], limits[index * 2 + 1])) if strata != null else 0
+				last_removed[layer] += old_value - _heights[index]
+				var fine_dust := (old_value - next_value) * residue_generation
+				if loose_debris != null:
+					fine_dust += loose_debris.deposit_removed(x, y, old_value - _heights[index], layer)
+				if fine_dust > 0.0:
+					residue.deposit_removed(x, y, fine_dust)
 				changed += 1
 	if changed > 0:
 		# Image is the synchronized RF staging buffer, also used by CPU picking.
@@ -143,22 +169,71 @@ func apply_continuous(from: Vector2, to: Vector2, tool: ToolDefinition, delta: f
 
 func apply_impact(point: Vector2, tool: ToolDefinition) -> int:
 	# Impacts deliberately have no previous point and cannot form a capsule.
-	# Snapshot the centre BEFORE removal: the impact revealing it is always safe.
-	if fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT and tool.power > 0.0:
-		fossil.damage_at(fossil.field.index_at_map(point), tool.bone_damage)
-	return _apply_tool(point, point, tool, 1.0)
+	# Calls outside the map never clamp into a valid edge-cell damage decision.
+	if point.x < -0.5 or point.y < -0.5 or point.x >= size.x - 0.5 or point.y >= size.y - 0.5:
+		last_action = {}
+		return 0
+	# Only Bone visible BEFORE this impact is a direct-contact candidate.
+	# Snapshot before fracture, exposure signals, cleanup or any other mutation.
+	var was_exposed_before_impact := fossil != null and fossil.exposed[fossil.field.index_at_map(point)] != 0
+	return _apply_tool(point, point, tool, 1.0, was_exposed_before_impact)
 
-func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float) -> int:
+func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float, was_exposed_before_impact := false) -> int:
+	var edit_started := Time.get_ticks_usec()
+	last_edit_usec = 0
 	last_residue_edit_usec = 0
 	changed_residue_cells = 0
+	last_removed = Vector3.ZERO
+	last_action = {}
 	if amount <= 0.0:
 		return 0
+	residue.last_cleared = 0.0
+	residue.cleared_packets = []
+	if loose_debris != null: loose_debris.clean(from, to, tool, amount)
 	var changed := 0
-	if tool.effectiveness != Vector3.ZERO:
+	var exposed_before := fossil.exposed_cells if fossil != null else 0
+	var discovered_before := fossil.first_contact if fossil != null else false
+	var can_damage := was_exposed_before_impact and fossil != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT \
+		and tool.power > 0.0 and tool.bone_damage > 0.0
+	var center_index := fossil.field.index_at_map(to) if can_damage else -1
+	# Pick shares the impact clock, but removes only its tiny footprint directly.
+	# No broad fracture cells, motion gate, or weak per-pass scraping limit.
+	var is_pick := tool.id == &"precision_pick"
+	var is_fracture := fracture != null and tool.interaction_mode == ToolDefinition.InteractionMode.IMPACT and not is_pick
+	if is_fracture:
+		changed = fracture.apply(self, to, tool)
+	elif tool.effectiveness != Vector3.ZERO:
 		changed = apply_segment(from, to, tool.radius, tool.power, tool.falloff,
-			amount, tool.effectiveness, tool.residue_generation)
-	if tool.residue_clear > 0.0 or (changed > 0 and tool.residue_generation > 0.0):
+			amount, tool.effectiveness, tool.residue_generation, is_pick)
+	if tool.residue_clear > 0.0 or (changed > 0 and (tool.residue_generation > 0.0 or loose_debris != null)):
 		var start := Time.get_ticks_usec()
-		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount)
+		changed_residue_cells = residue.apply_segment(from, to, tool.radius, tool.falloff, tool.residue_clear * amount, tool.id == &"air_blower")
 		last_residue_edit_usec = Time.get_ticks_usec() - start
+	var marks := fracture.last_marks if is_fracture else 0
+	var bone_revealed := fossil != null and fossil.exposed_cells > exposed_before
+	# Exposure remains per-cell; the discovery cue belongs to the specimen once.
+	var bone_first_contact := fossil != null and fossil.first_contact and not discovered_before
+	# Never infer contact from post-impact exposure, even at the exact centre.
+	var direct_bone_hit := can_damage
+	var bone_protected_contact := false
+	var bone_damage := 0.0
+	if direct_bone_hit:
+		var condition_before := fossil.condition
+		bone_protected_contact = fossil.contact_at(center_index, tool.bone_damage, was_exposed_before_impact)
+		bone_damage = condition_before - fossil.condition
+	var loose_cleared := loose_debris.last_cleared if loose_debris != null else 0.0
+	if changed > 0 or marks > 0 or changed_residue_cells > 0 or residue.last_cleared > 0 or loose_cleared > 0 or bone_revealed or direct_bone_hit:
+		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
+			"changed": changed, "marks": marks, "chunks": fracture.last_chunks.duplicate(true) if is_fracture else [],
+			"residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
+			"cleared_dust": residue.cleared_packets.duplicate(true),
+			"direction": loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized(), "bone_revealed": bone_revealed,
+			"bone_first_contact": bone_first_contact,
+			"bone_protected_contact": bone_protected_contact,
+			"bone_damage": bone_damage,
+			"direct_bone_hit": direct_bone_hit, "movement": from.distance_to(to) / maxf(amount, 0.0001)}
+		last_edit_usec = Time.get_ticks_usec() - edit_started
+		material_action.emit(last_action)
+	else:
+		last_edit_usec = Time.get_ticks_usec() - edit_started
 	return changed

@@ -1,6 +1,6 @@
 class_name ToolDefinition
 extends Resource
-## P2 tuning only. Power = work/second for strokes, work/impact for the chisel.
+## Prototype resources. Power = work/second for strokes, work/impact for impacts.
 ## Effectiveness vector order follows the three fixed P1 layers: Soil, Clay, Stone.
 
 enum InteractionMode { CONTINUOUS, IMPACT }

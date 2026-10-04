@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DebrisProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/debris_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+bucket_tiles = 3
+crumbs_per_bucket = 2
+retained_fraction = 0.08
+crumb_capacity = 0.02
+crumb_width = 0.0014
+matrix_crumb_width = 0.0045
+chunk_width = Vector2(0.003, 0.006)
+chunk_cells_per_particle = 10
+chunk_particles_per_patch = 5
+chunk_lifetime = 0.6

@@ -137,8 +137,13 @@ func test_contact_damage_and_reset() -> void:
 	check(first_events == 1 and fossil.first_contact and cell_events == 1, "first and per-cell contact emitted once")
 	check(fossil.exposed_cells == 1 and fossil.exposure_percent() < 0.01, "one-cell reveal is a tiny fraction of fossil")
 	check(component_events == 1, "component change emitted once per affected component per operation")
+	check(fossil.direct_contact_consumed.count(1) == 0 and not surface.last_action.bone_protected_contact,
+		"hidden centre reveal leaves direct protection available")
 	surface.apply_impact(point, strong)
-	check(fossil.condition == 97 and damage_events == 1, "second direct impact subtracts three points exactly once")
+	check(fossil.condition == 100 and surface.last_action.bone_protected_contact and damage_events == 0,
+		"first impact on previously visible centre consumes protection without damage")
+	surface.apply_impact(point, strong)
+	check(fossil.condition == 97 and damage_events == 1, "second visible-centre impact subtracts three points exactly once")
 	check(first_events == 1 and cell_events == 1 and component_events == 1, "no repeat reveal events when hitting exposed cell")
 	strong.radius = 50
 	surface.apply_impact(point, strong)
@@ -278,7 +283,12 @@ func test_scene() -> void:
 	controller._pointer_inside = true
 	mouse(root, screen, true)
 	controller._physics_process(1.0 / 60.0)
-	check(fossil.condition == 97 and controller.total_impacts == 1, "production input schedules one direct bone penalty")
+	check(fossil.condition == 100 and controller.total_impacts == 1 and block.working_map.last_action.bone_protected_contact,
+		"P4 correction: first direct input after indirect exposure is protected")
+	controller.cancel_stroke()
+	mouse(root, screen, true)
+	controller._physics_process(1.0 / 60.0)
+	check(fossil.condition == 97 and controller.total_impacts == 2, "next production input schedules one direct bone penalty")
 	controller.select_tool(0)
 	for i in range(30): controller._physics_process(1.0 / 60.0)
 	check(fossil.condition == 97 and not controller._held, "tool switch on bone cancels held stroke")

@@ -15,9 +15,14 @@ extends Node3D
 
 var _debug_elapsed := 0.0
 var _notice_remaining := 0.0
+var feedback: MaterialFeedback
 
 func _ready() -> void:
-	get_window().title = "ArchaeologyGame — P3 Fossil"
+	get_window().title = "ArchaeologyGame — P4 Material Reactions"
+	feedback = MaterialFeedback.new()
+	feedback.name = "MaterialFeedback"
+	add_child(feedback)
+	feedback.setup(block, controller)
 	block.working_map.fossil.bone_first_contact.connect(_on_bone_first_contact)
 	block.working_map.fossil.specimen_reset.connect(_on_specimen_reset)
 	var button_group := ButtonGroup.new()
@@ -41,6 +46,7 @@ func _ready() -> void:
 	camera.size = camera_size
 	camera.initialize_view()
 	camera.zoom_started.connect(controller.cancel_stroke)
+	camera.pan_started.connect(controller.cancel_stroke)
 	camera.view_changed.connect(controller.refresh_view)
 	bone_panel.visible = debug_panel.visible
 	bone_notice.hide()
@@ -85,10 +91,11 @@ func _process(delta: float) -> void:
 	if hit.inside:
 		var definition: MaterialDefinition = hit.material
 		surface_info = ("Height %.4f | Depth %.1f mm\n%s | Resistance %.1f\n" % [hit.height, hit.depth * 1000.0, definition.display_name, definition.resistance]
-			+ "Effectiveness %.2f | Rate %.4f depth/s (%.2f mm/s)\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
-			+ "Residue %.3f | grey overlay in SHADED view" % block.working_map.residue.value_at(hit.uv))
-	debug_label.text = ("P3 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
-		+ "Zoom %.2fx | Wheel: zoom | Home: overview\n" % camera.zoom_factor
+			+ "Effectiveness %.2f | Base rate %.4f depth/s (%.2f mm/s), before fracture\n" % [config.effectiveness_for(definition.id), config.structural_rate(definition), config.structural_rate(definition) * (block.thickness - block.base_height) * 1000.0]
+			+ "Mess %.3f" % block.working_map.residue.value_at(hit.uv))
+		surface_info += feedback.contact_debug(hit)
+	debug_label.text = ("P4 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+		+ "Zoom %.2fx | Wheel: zoom | RMB drag: pan | Home: overview\n" % camera.zoom_factor
 		+ "Radius %.0f texels | Power %.2f %s | Falloff %.2f\n" % [config.radius, config.power, "/impact" if config.interaction_mode == ToolDefinition.InteractionMode.IMPACT else "/s", config.falloff]
 		+ "Screen: %s | %s\n" % [hit.screen, "IN BOUNDS" if hit.inside else "OUT OF BOUNDS"]
 		+ "World: %s\nLocal: %s\n" % [hit.get("world", "—"), hit.get("local", "—")]
@@ -98,6 +105,7 @@ func _process(delta: float) -> void:
 		+ "CPU edit %.2f ms (residue %.2f) | Pick %.2f ms\n" % [controller.last_edit_usec / 1000.0, controller.last_residue_edit_usec / 1000.0, controller.last_pick_usec / 1000.0]
 		+ "Upload submit: height %.2f ms | residue %.3f ms (40 KiB)\n" % [block.last_upload_usec / 1000.0, block.last_residue_upload_usec / 1000.0]
 		+ "Changed height %d / residue %d | DDA cells %d\n" % [controller.changed_texels, controller.changed_residue_cells, hit.get("visited_cells", 0)]
+		+ "Fracture: %d stressed cells | %d chips last impact\n" % [block.working_map.fracture.stress.size(), block.working_map.fracture.last_chunks.size()]
 		+ "DEV Wheel: Shift power | Ctrl falloff | Alt radius\n"
 		+ "DEV F6/F7: radius -/+ | Shift: power | Ctrl: falloff")
 	var fossil := block.working_map.fossil
@@ -110,7 +118,9 @@ func _process(delta: float) -> void:
 	bone_label.text = ("%s / DEBUG\nExposure %.2f%% | %d / %d cells\nBone Condition %.0f%%\n" % [
 		FossilField.SPECIMEN_NAME, fossil.exposure_percent(), fossil.exposed_cells, fossil.field.total_cells, fossil.condition]
 		+ hovered + "\n")
+	bone_label.text += "Component exposure / Direct protection:\n"
 	for component in range(1, FossilField.COMPONENT_NAMES.size()):
-		bone_label.text += "%s: %.2f%%\n" % [FossilField.COMPONENT_NAMES[component], fossil.exposure_percent(component)]
+		bone_label.text += "%s: %.2f%% | %s\n" % [FossilField.COMPONENT_NAMES[component], fossil.exposure_percent(component),
+			"READY" if fossil.is_direct_contact_protected(component) else "USED"]
 	bone_label.text += "Contact: %s\nDamage: %s\nCap %d FPS | Physics %d Hz" % [fossil.last_bone_event,
 		fossil.last_damage_event, Engine.max_fps, Engine.physics_ticks_per_second]

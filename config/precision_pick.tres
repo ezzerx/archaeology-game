@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ToolDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/tool_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"precision_pick"
+display_name = "Precision Pick"
+interaction_mode = 1
+radius = 7.0
+power = 0.24
+falloff = 1.5
+cadence = 6.0
+effectiveness = Vector3(0.3, 1.0, 1.5)
+residue_generation = 1.25
+bone_damage = 0.0

@@ -1,0 +1,67 @@
+{
+	"careful_visible_centres": {
+		"chisel_seconds_at_4_5_hz": 223.111111111111,
+		"condition": 100.0,
+		"exposed_cells": 4105,
+		"global_exposure_percent": 12.7129142149272,
+		"impacts": 1004,
+		"limitation": "Perfect centre recognition and immediate stop; feasibility only, not a human playtest.",
+		"passes": [
+			{
+				"condition": 100.0,
+				"exposed_cells": 49,
+				"impacts": 192,
+				"new_bone_cells": 49,
+				"pass": 1
+			},
+			{
+				"condition": 100.0,
+				"exposed_cells": 2425,
+				"impacts": 359,
+				"new_bone_cells": 2376,
+				"pass": 2
+			},
+			{
+				"condition": 100.0,
+				"exposed_cells": 3305,
+				"impacts": 503,
+				"new_bone_cells": 880,
+				"pass": 3
+			},
+			{
+				"condition": 100.0,
+				"exposed_cells": 3771,
+				"impacts": 633,
+				"new_bone_cells": 466,
+				"pass": 4
+			},
+			{
+				"condition": 100.0,
+				"exposed_cells": 3987,
+				"impacts": 758,
+				"new_bone_cells": 216,
+				"pass": 5
+			},
+			{
+				"condition": 100.0,
+				"exposed_cells": 4028,
+				"impacts": 881,
+				"new_bone_cells": 41,
+				"pass": 6
+			},
+			{
+				"condition": 100.0,
+				"exposed_cells": 4105,
+				"impacts": 1004,
+				"new_bone_cells": 77,
+				"pass": 7
+			}
+		],
+		"skull_exposure_percent": 49.8710675605982
+	},
+	"held_on_visible_bone": {
+		"condition_after": 70.0,
+		"condition_before": 100.0,
+		"impacts": 10
+	}
+}

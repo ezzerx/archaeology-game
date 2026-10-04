@@ -237,3 +237,100 @@ Objectif :
 P4 reste un jalon gameplay/game feel, pas un Art Pass.
 
 Référence : [P4_BRIEF](../dev/P4_BRIEF.md).
+
+## Implémentation P4 et état de validation — 2026-10-02
+
+- Partition angulaire seedée et stress sparse par matériau : Clay 9 texels / plaques, Sandstone 5 texels / fragments. Un impact ne traverse pas la couche initialement touchée ; plafond osseux toujours appliqué.
+- Atlas dynamique de stress RG8 **64 372 octets** ; aucun masque mutable à la résolution du heightfield. Reset exact, aucun calcul de fracture au repos.
+- Les effets consomment les actions réelles : proxies sans collider, quatre pools MultiMesh limités à 192 particules, six familles audio originales × quatre variantes. F2 masque les effets pour conserver des vues de données et un oracle GPU sans occlusion.
+- La sonde attentive conserve 100 % de condition avec 49,87 % du crâne révélé. Cette preuve technique ne valide ni la lisibilité humaine ni le plaisir ; aucune protection nouvelle n'a été nécessaire pour cette sonde et aucune n'est ajoutée.
+- Un pic isolé au premier effet a motivé une préchauffe invisible du matériau instancié au démarrage. Le passage final reste sous 11,6 ms par frame mesurée ; ne pas généraliser cette mesure à tous les pilotes.
+- P4 reste à valider humainement. PR non mergée ; P5/P6/P7 non commencés.
+
+Références : [P4_REPORT](../dev/P4_REPORT.md), [P4_MATERIAL_REACTION_DECISION](../dev/P4_MATERIAL_REACTION_DECISION.md).
+
+## Retour humain et passe corrective P4 — 2026-10-02
+
+Antoine confirme une fouille devenue addictive : environ 15 minutes supplémentaires malgré l'intention d'arrêter, Chisel très fun. Préserver marks → cracks → chunks et les réglages existants ; aucun tuning final avant P7.
+
+Décisions confirmées : Fine Dust et Loose Debris persistants séparés ; miettes déjà détachées nettoyables sans toucher au grès structurel ; souffle directionnel avec événement de sortie pour un futur atelier ; Brush audio continu ; découverte osseuse distincte du hit direct ; pan RMB à angle fixe et Home complet. Aucun quatrième outil, marge osseuse, table salissable ou P5.
+
+Implémentation vérifiée : carte de poussière R8 conservée, bins sparse 8×8 et MultiMesh, paquets de miettes regroupés localement pour éviter un objet par tick. 585 checks passent, oracle GPU et budget graphique conservés. La masse des paquets est une quantité visuelle normalisée ; la physique fine reste une limite explicite.
+
+Le premier retour positif ne valide pas encore les corrections : attendre le nouveau test humain du rapport. PR #5 reste en brouillon et non mergée.
+
+## Deuxième test humain et finition P4 — 2026-10-03
+
+Antoine confirme Chisel/fracture, profondeur, lisibilité, condition moins punitive et zoom/pan. Sons découverte/hit direct jugés parfaits, Brush audio suffisant pour P4. La boucle suscite encore environ 15 minutes de jeu supplémentaires. Préserver ces acquis.
+
+La correction autorisée sépare **Transient Chunks / Loose Debris / Fine Dust**. Les gros éclats expirent en 1–2 secondes ; les miettes persistantes sont plafonnées localement (deux par 24×24 texels, toutes matières partagées, taille ≤1,6 mm). Au plus 8 % du retrait nourrit les miettes, l’excédent retourne à Fine Dust. Le nettoyage libère le budget. Ce choix vise un Blower périodique satisfaisant sans timer ni retuning de ses paramètres.
+
+**Exception explicite au périmètre initial : quatrième outil Precision Pick [4].** LMB maintenu + mouvement, rayon 3 texels, retrait structurel lent et local de Clay/Sandstone, sans fracture de plaques. Un passage respecte l’interface initiale, une profondeur maximale et le bone ceiling. Zéro dégât **provisoire P4** pour pouvoir finir les restes attachés ; aucune protection supplémentaire du Chisel et aucun bonus Brush. Les paramètres du nouvel outil sont des valeurs de départ, pas le tuning P7.
+
+Vérifié : 642 checks, 28 WAV historiques identiques à l’octet, oracle GPU conservé ; 14 scénarios à 222–240 FPS sur la machine de référence, y compris bloc entièrement sali au repos et Pick autour des os. Les sessions de 60 secondes simulées de Chisel gardent 29/27 miettes dans leurs zones ; ce résultat technique ne valide pas à lui seul la cadence humaine du nettoyage.
+
+Prochaine action : huit points de retest dans [P4_REPORT](../dev/P4_REPORT.md). **STOP après livraison, PR #5 en brouillon, aucun merge ni P5 sans nouvelle autorisation explicite.**
+
+## Troisième test humain et corrections ciblées P4 — 2026-10-03
+
+Le Chisel reste très fun ; fracture, audio Brush/osseux, condition, picking et caméra restent validés. Antoine autorise uniquement cinq corrections : contact du proxy, lisibilité Fine Dust, soulèvement directionnel de la poussière nettoyée, réglage du Pick et distinction attaché/détaché/transitoire. La réduction du budget de miettes est conservée.
+
+Choix livrés : pointe réelle au hit, repère continu de normale, protection du mesh visuel contre le relief ; amas de poussière stables dans le shader R8 ; packets temporaires issus de cellules effectivement nettoyées, transformés en bouffées dans le pool AirDust existant. Écailles détachées ≤1,4 × 0,196 mm, deux par zone locale, F1 avec compteurs de voisinage. Aucun changement de géométrie gameplay par les proxies/FX.
+
+Pick seul retuné : puissance 0,16 → 0,22 ; efficacités Clay 0,60 → 0,75 / Sandstone 0,45 → 1,00 ; vitesse de référence 100 → 40 texels/s. Rayon, limite par passage, interfaces et plafond osseux conservés. Clay deux fois plus rapide que grès au débit central nominal ; zéro dégât reste provisoire P4.
+
+Leçons vérifiées : une normale ne suffit pas contre une paroi opposée concave ; contrôler aussi l’intérieur des faces. `Mesh.get_faces()` quantifie son maillage dérivé : les tests précis doivent lire `surface_get_arrays`. Réutiliser sommets/échantillons locaux et borner la topologie pour éviter que le contrôle visuel dépasse le budget. Le billboard MultiMesh doit conserver explicitement l’échelle des instances.
+
+Vérifié : **1 093 checks fonctionnels**, 16 contrôles graphiques, oracle GPU conservé, 28 WAV historiques identiques ; **22 scénarios à 123–240 FPS**, P95 maximal 14,039 ms. Les captures montrent la saleté/son nettoyage, sans valider subjectivement « ça souffle ». Sept points de retest dans [P4_REPORT](../dev/P4_REPORT.md). **STOP après livraison ; PR #5 brouillon, aucun merge ni P5.**
+
+## Simplification finale P4 après nouveau test humain — 2026-10-03
+
+Décisions explicites d’Antoine : le joueur ne distingue que **matière attachée / saleté**. Soil → Brush, matrice dure en volume → Chisel, détails près de Bone → Precision Pick, mess → Brush/Blower. La distinction Loose Debris/Fine Dust reste interne ; les petites écailles sont une composante de la saleté.
+
+Règle verrouillée : **Dust may obscure detail, never material identity.** Bone conserve son ivoire et sa réponse lumineuse même poussiéreux. Dépôts colorés selon le matériau local, sans map supplémentaire. Orientation visuelle fixe des outils, pointe ancrée, dégagement vertical du corps ; éclats plus petits/rares, rapidement éjectés hors du centre. Le suivi de normale de la troisième passe est abandonné conformément au retour humain.
+
+Le Pick devient un **micro-Chisel sûr** : clic/maintien immobile, 6 Hz, rayon 3, puissance 0,24, efficacités 0,30/1,00/1,50. Retrait direct sans grosses fractures, arrêt de couche et plafond osseux intact ; zéro dégât provisoire P4. Le faible débit en volume vient de la surface minuscule, plus d’un grattage lent obligatoire. Le mode SCRAPE est retiré. Chisel, Brush, Blower, résistances, fracture, audio et caméra sont préservés.
+
+Vérifié au code `f62fccf` : **1 376 checks fonctionnels + 62 contrôles graphiques**, oracle GPU et 28 WAV historiques exacts ; **24 scénarios à 169–240 FPS**, P95 maximal 13,365 ms sur la machine de référence. Point de vigilance réel : dégagement de corps jusqu’à 36,32 mm dans la cavité synthétique quasi verticale. Les tests ne remplacent pas le verdict humain sur la silhouette ou le plaisir.
+
+Leçons : conserver l’identité du matériau sous les effets de saleté ; séparer la petite aire d’un outil de son efficacité locale ; un manche rigide à orientation fixe et une pointe raccordée permettent le dégagement sans suivre les micronormales. Les bornes visuelles doivent être examinées sur les cas extrêmes, pas seulement sur le plat.
+
+Prochaine action : les **huit points exacts** de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--exactement-huit-points), dont la boucle Brush → Chisel → Pick → Blower et 10–15 minutes libres. **STOP après livraison. PR #5 en brouillon, aucun merge ni P5.**
+
+## P4 FINAL FEEL — composition issue du test A/B, 2026-10-04
+
+Antoine choisit le spectacle Chisel A (`42ec46d`), le cleanup Blower B (`c25b44f`), Soil/Pick récents et l’ancien angle fixe. La réduction du nombre et de la taille des éclats avait diminué le plaisir : le problème à traiter était l’accumulation persistante. Décision confirmée : **séparer puissance du spectacle transitoire et quantité de saleté durable**. La cible canonique est [P4_FINAL_FEEL_TARGET](../dev/P4_FINAL_FEEL_TARGET.md).
+
+Implémentation : éclats 3–6 mm, 1–5 par plaque réelle, expiration courte dans les pools existants ; naissance au dessus estimé de la plaque enlevée. Miettes dures jusqu’à 4,5 mm pour rendre le souffle visible, sans augmenter la rétention 8 %, le plafond de deux dépôts/zone ou leur capacité. Soil, Pick micro-Chisel, fracture, condition et caméra restent inchangés. Angle A/B fixe `(0.5, 0, -0.62)`, pointe précise et dégagement du corps conservés.
+
+Nouvelle règle audio : **un petit tik Bone à la première détection du spécimen par reset ; un gros clack uniquement sur hit direct qui diminue la condition ; tous les autres reveals gardent le son de matière**. `bone_revealed` reste le compteur d’exposition supplémentaire ; `bone_first_contact` et la perte réelle transportée dans l’événement gouvernent seulement le feedback. Aucun changement de dommage ou protection supplémentaire.
+
+Leçons vérifiées : des fragments créés après le retrait peuvent disparaître dans les parois si on les fait naître au nouveau fond ; utiliser le volume/cellules pour estimer le dessus retiré rend leur projection visible, sans physique terrain. Restaurer un angle plus oblique augmente le coût du dégagement local et la longueur du raccord de pointe dans une cavité extrême ; documenter ces compromis, sans refaire tourner le manche selon la normale.
+
+Code `8394ee9` : **1 395 checks fonctionnels + 90 contrôles graphiques**, oracle GPU et 28 WAV historiques exacts ; **28 scénarios à 96,56–239,97 FPS**, P95 maximal 19,249 ms. Les valeurs persistantes restent 29/27 miettes après une minute simulée de Chisel, zéro après Blower. Ces preuves ne valident pas le plaisir humain.
+
+Prochaine action : les **sept points exacts** de [P4_REPORT](../dev/P4_REPORT.md#retest-humain--exactement-sept-points). **STOP, PR #5 brouillon, aucun merge. P4-V (macro-stratigraphie / profondeur variable / vraie physique de débris) reste une proposition bloquée jusqu’au test humain et à une nouvelle autorisation ; P5 interdit.**
+
+## Bugfix ciblé P4 FINAL FEEL — 2026-10-04
+
+Antoine juge le reste du Final Feel plutôt bon et autorise uniquement Brush FPS et protection du premier contact direct Bone. La découverte adjacente garde le son matériau et ne consomme jamais la protection. `first_direct_contact_consumed`, indépendant de `first_contact`, se réarme au reset : premier Chisel direct tik/100, deuxième DING/97. Pick/Brush/Blower restent sûrs et ne consomment rien. **Correction ultérieure canonique : la consommation à la révélation centrale de ce bugfix est abandonnée par le dernier lock ci-dessous ; seul un centre déjà visible avant le coup est éligible.** L’interprétation précédente « tik à la première découverte » est également remplacée.
+
+Leçon mesurée : la stabilité de topologie ne rend pas gratuit un mesh reconstruit à chaque pose. Ancien Brush : jusqu’à 1 498 lectures terrain/pose, tableaux/normales et meshes répétés ; le coût croît avec la densité. Nouveau Tip/Body statique : ≤12 sondes, ≤48 lectures, zéro reconstruction, angle A/B conservé. Geste identique de 30 s à 1×/3× : 144/154 → 233/236 FPS, proxy P95 8,6/8,4 ms → 32 µs. La chute humaine <10 FPS n’a pas été reproduite ; le surcoût du proxy est isolé, les autres états gameplay correspondent.
+
+Priorité confirmée : fluidité, angle stable, point exact lisible, puis anti-clipping raisonnable ; petites intersections rares acceptées. Régression CPU par nombre de lectures/meshes statiques et benchmark proxy on/off, au-delà des FPS absolus. [Rapport et trois points de retest](../dev/P4_REPORT.md#retest-humain--exactement-trois-points). STOP ; PR #5 brouillon, aucun merge, P4-V ou P5.
+
+## Dernier lock P4 FINAL FEEL — 2026-10-04
+
+Valeurs validées par le test humain, persistées dans les ressources (rayon / puissance / falloff) : **Brush 40 / 0.70 / 1.25 ; Chisel 22 / 0.64 / 2.25 ; Blower 60 / 0 / 1.00 ; Pick 7 / 0.24 / 1.50**. **P4 human-validated baseline — tuning final deferred to P7.** Cadences, efficacités, résidu, dégâts, résistances et seuils de fracture inchangés. Les anciens rayons 12/3 des entrées historiques ne sont plus les baselines courantes.
+
+Règle confirmée : **premier Chisel sur un centre Bone déjà exposé AVANT cet impact** uniquement. Capturer cet état avant toute mutation. Révélation cachée, centrale ou adjacente : matériau, zéro dégât, protection disponible, aucun événement protégé. Clic suivant sur l’os désormais visible : petit tik/100, protection consommée ; suivant : DING/97. Reset réarme ; Pick/Brush/Blower ne consomment jamais. Ne jamais déduire le contact de l’exposition après coup ou de la découverte du spécimen.
+
+Leçon : une protection destinée au premier geste volontaire sur une cible visible doit utiliser son état **avant** l’action, sinon la révélation peut dépenser la protection à l’insu du joueur. Aucun changement de spectacle, transport, Dust, proxies, caméra ou debug. Résultats et preuves du lock : [P4_REPORT](../dev/P4_REPORT.md). STOP après push ; PR #5 brouillon, P4 prêt pour décision de fermeture, aucun merge ni P4-V/P5 autorisé.
+
+## Dernier micro-fix P4 — protection par composant, 2026-10-04
+
+Antoine remplace la protection globale des passes précédentes par **une protection indépendante par composant anatomique**. B-17 : **Skull / Spine / Ribs / Hind Limb**, quatre maximum par reset. Toutes les côtes partagent RIBS, toutes les vertèbres partagent SPINE ; aucune protection par cellule, os individuel ou nouvelle zone. `direct_contact_consumed` est un tableau de cinq octets indexés par `Component`, NONE inutilisé. Reset remet les quatre états à READY.
+
+Précondition inchangée : le centre doit être **déjà exposé avant l’impact** et l’outil dommageable. Première frappe du composant : tik et zéro dégât ; suivantes sur ce composant : DING/−3. **Bone Condition reste globale** : Skull → Skull → Ribs → Ribs = 100 → 97 → 97 → 94. Révélation centrale/adjacente, Pick, Brush et Blower ne consomment jamais. Seul ajout debug : READY/USED dans les lignes F1 existantes. Cette règle est une **baseline P4 réévaluable en P7**.
+
+Code `0c549f5` : **1 517 contrôles fonctionnels + 90 graphiques**, zéro échec ; 72 nouveaux vérifient aussi une autre côte, une autre vertèbre, reset et outils sûrs. Sanity de quatre scénarios à **239,86–239,87 FPS**, P95 maximal 4,325 ms. Baselines outils, ressources et tout le reste du feel inchangés. **P4 Final Feel ready for human closure / P4-V authorization.** STOP après push ; PR #5 brouillon, aucun merge ni P4-V/P5 sans nouvelle autorisation.

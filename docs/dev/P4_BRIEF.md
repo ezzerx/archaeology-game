@@ -6,7 +6,13 @@
 **Renderer:** keep current Compatibility renderer unless a concrete P4 blocker requires a documented decision  
 **Gate:** P5 must not start before human validation of P4
 
+**Corrective addendum — 2026-10-03:** Antoine explicitly authorized a fourth prototype tool, Precision Pick, and a split between transient chunks, locally budgeted persistent crumbs and dominant fine dust. This supersedes the original three-tool scope below. Preserve the human-validated Chisel fracture, existing tool values, bone sounds, Brush audio and camera. Current implementation, tests and retest gate: [P4_REPORT](P4_REPORT.md) and [P4_MATERIAL_REACTION_DECISION](P4_MATERIAL_REACTION_DECISION.md). PR #5 stays draft; no merge or P5.
+
+**Final simplification addendum — 2026-10-03:** the player now reads only **attached material / mess**. Pick becomes a safe micro-Chisel using stationary held/clicked impacts; only Pick may be retuned. Dust must preserve material identity, especially Bone ivory. Use contextual dust colors, fixed tool orientation with body-only clearance, and fewer/smaller outward chips. Internal dirt states may remain, without a player classification task. This decision supersedes earlier SCRAPE and normal-following corrections. Exact eight-point human retest in the report; no merge or P5.
+
 ## Goal
+
+**Final Feel composition addendum — 2026-10-04:** [P4_FINAL_FEEL_TARGET](P4_FINAL_FEEL_TARGET.md) now takes precedence: restore P4-A transient Chisel spectacle and the old fixed tool angle; restore P4-B visible Blower cleanup while keeping recent retention caps, Soil and micro-impact Pick. Bone audio becomes specimen-first-discovery only, or actual direct-hit damage; other reveals retain material sound. This supersedes the fewer/smaller hard-chip target above. Seven-point retest in [P4_REPORT](P4_REPORT.md); PR #5 stays draft. No merge, P4-V or P5 without new explicit authorization.
 
 P4 must answer:
 

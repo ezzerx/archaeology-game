@@ -13,6 +13,8 @@ var exposed := PackedByteArray()
 var component_exposed := PackedInt32Array([0, 0, 0, 0, 0])
 var exposed_cells := 0
 var first_contact := false
+# Indexed by FossilField.Component; NONE is unused. Condition stays global.
+var direct_contact_consumed := PackedByteArray([0, 0, 0, 0, 0])
 var condition: float:
 	get: return _condition
 var _condition := 100.0
@@ -29,6 +31,7 @@ func reset() -> void:
 	component_exposed.fill(0)
 	exposed_cells = 0
 	first_contact = false
+	direct_contact_consumed.fill(0)
 	_condition = 100.0
 	last_bone_event = "—"
 	last_damage_event = "—"
@@ -64,6 +67,24 @@ func expose_cells(indices: PackedInt32Array) -> void:
 	for component in range(1, changed_components.size()):
 		if changed_components[component] != 0:
 			bone_component_exposure_changed.emit(component, component_exposed[component], field.component_totals[component])
+
+func is_direct_contact_protected(component: int) -> bool:
+	return component > FossilField.Component.NONE and component < direct_contact_consumed.size() \
+		and direct_contact_consumed[component] == 0
+
+func contact_at(index: int, amount: float, was_exposed: bool) -> bool:
+	# The snapshot is taken by apply_impact BEFORE any surface mutation. Even a
+	# centre reveal leaves protection available for the next, visible-Bone hit.
+	if not was_exposed or index < 0 or index >= exposed.size() or exposed[index] == 0 or amount <= 0.0:
+		return false
+	var component := field.component_ids[index]
+	if component == FossilField.Component.NONE:
+		return false
+	if is_direct_contact_protected(component):
+		direct_contact_consumed[component] = 1
+		return true
+	damage_at(index, amount)
+	return false
 
 func damage_at(index: int, amount: float) -> void:
 	if index < 0 or index >= exposed.size() or exposed[index] == 0 or amount <= 0.0:

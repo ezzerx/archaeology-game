@@ -1,0 +1,63 @@
+{
+	"deep_density_1": {
+		"fit_usec": {
+			"max": 70.0,
+			"mean": 17.325,
+			"p95": 34.0
+		},
+		"max_height_queries": 12,
+		"max_vertex_queries": 48,
+		"mesh_change_notifications": 0
+	},
+	"deep_density_2": {
+		"fit_usec": {
+			"max": 37.0,
+			"mean": 16.0166666666667,
+			"p95": 34.0
+		},
+		"max_height_queries": 12,
+		"max_vertex_queries": 48,
+		"mesh_change_notifications": 0
+	},
+	"dug_density_1": {
+		"fit_usec": {
+			"max": 59.0,
+			"mean": 32.725,
+			"p95": 37.0
+		},
+		"max_height_queries": 12,
+		"max_vertex_queries": 48,
+		"mesh_change_notifications": 0
+	},
+	"dug_density_2": {
+		"fit_usec": {
+			"max": 54.0,
+			"mean": 32.5083333333333,
+			"p95": 37.0
+		},
+		"max_height_queries": 12,
+		"max_vertex_queries": 48,
+		"mesh_change_notifications": 0
+	},
+	"failures": 0,
+	"flat_density_1": {
+		"fit_usec": {
+			"max": 8.0,
+			"mean": 2.11666666666667,
+			"p95": 3.0
+		},
+		"max_height_queries": 0,
+		"max_vertex_queries": 0,
+		"mesh_change_notifications": 0
+	},
+	"flat_density_2": {
+		"fit_usec": {
+			"max": 3.0,
+			"mean": 2.08333333333333,
+			"p95": 3.0
+		},
+		"max_height_queries": 0,
+		"max_vertex_queries": 0,
+		"mesh_change_notifications": 0
+	}
+}
