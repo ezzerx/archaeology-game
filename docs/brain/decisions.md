@@ -460,3 +460,16 @@ Mise en scène retenue comme direction : **façade du musée au menu principal �
 Le naming définitif reste ouvert. **Bone by Bone** est un candidat haut de shortlist, sans validation comme titre final.
 
 P6 reçoit aussi une idée DA canonisée : **layer contact patina**. La frontière Soil → Clay doit pouvoir montrer une fine peau de Clay salie/brunie par son contact avec le Soil ; dès qu'on la creuse, la Clay intérieure apparaît plus franche/orangée. Une version plus légère Clay → Sandstone est à tester en P6A. Cette patine est visuelle uniquement : elle ne change ni épaisseur structurelle, ni résistance, ni picking.
+
+
+## P4 clôturé humainement — 2026-10-05
+
+Antoine valide la clôture de **P4 Game Feel**. PR #7 mergée dans `main` au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. La boucle d'excavation/préparation contient désormais les éléments essentiels ; la recherche des derniers 20 % est volontairement différée afin de bénéficier du contexte de P5/P6.
+
+Baselines principales conservées : Brush **40 / 0,70 / 1,25** ; Chisel **22 / 0,64 / 2,25**, 4,5 Hz ; Blower **60 / 0 / 1,0**, clear 2,5 ; Precision Pick **11 / 0,44 / 1,75**, 6 Hz, Bone safe. Chisel bulk, Pick finition structurelle, Brush préparation/nettoyage, Blower évacuation du mess.
+
+La préparation Bone est canonique : **Exposure ≠ Cleanliness ≠ Condition**. Un Bone révélé porte un film adhérent nettoyable au Brush ; les vrais restes structurels restent au Pick ; la Condition et les protections par composant sont indépendantes.
+
+Déférés sans bloquer P4 : Soil trop provisoire pour le final, débris encore perfectibles, ambiguïtés visuelles Pick/Brush sur certains micro-restes, Bone dirt parfois trop proche du Sandstone, dust vs lecture des arêtes. Pour P6, tester d'abord **la couleur seule** du Bone Film avant de modifier son pattern/densité, car les taches actuelles sont appréciées.
+
+Si ces sujets restent importants après P5/P6, ouvrir une **phase future dédiée de polish excavation/gameplay, nom à définir**, et non `P4.2`. P5 devient la prochaine phase canonique.
