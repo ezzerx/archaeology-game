@@ -1,0 +1,28 @@
+{
+	"checks": 13,
+	"failures": 0,
+	"p4-closure-bone-1x": {
+		"dirty_clean_pixels": 61412,
+		"exposed": 32290,
+		"film_bytes": 163840,
+		"partial_clean_pixels": 4934
+	},
+	"p4-closure-bone-3x": {
+		"dirty_clean_pixels": 320025,
+		"exposed": 32290,
+		"film_bytes": 163840,
+		"partial_clean_pixels": 44386
+	},
+	"p4-closure-soil-1x": {
+		"cap_refused_attempts": 977444,
+		"created_per_s": 389.0,
+		"grain_pixels": 373,
+		"visible": 128
+	},
+	"p4-closure-soil-3x": {
+		"cap_refused_attempts": 977444,
+		"created_per_s": 389.0,
+		"grain_pixels": 1101,
+		"visible": 128
+	}
+}

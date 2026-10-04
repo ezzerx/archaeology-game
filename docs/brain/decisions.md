@@ -289,7 +289,7 @@ Décisions explicites d’Antoine : le joueur ne distingue que **matière attach
 
 Règle verrouillée : **Dust may obscure detail, never material identity.** Bone conserve son ivoire et sa réponse lumineuse même poussiéreux. Dépôts colorés selon le matériau local, sans map supplémentaire. Orientation visuelle fixe des outils, pointe ancrée, dégagement vertical du corps ; éclats plus petits/rares, rapidement éjectés hors du centre. Le suivi de normale de la troisième passe est abandonné conformément au retour humain.
 
-Le Pick devient un **micro-Chisel sûr** : clic/maintien immobile, 6 Hz, rayon 3, puissance 0,24, efficacités 0,30/1,00/1,50. Retrait direct sans grosses fractures, arrêt de couche et plafond osseux intact ; zéro dégât provisoire P4. Le faible débit en volume vient de la surface minuscule, plus d’un grattage lent obligatoire. Le mode SCRAPE est retiré. Chisel, Brush, Blower, résistances, fracture, audio et caméra sont préservés.
+Le Pick devient un **micro-Chisel sûr** : clic/maintien immobile, 6 Hz, rayon 3, puissance 0,24, efficacités 0,30/ 1,00/ 1,50. Retrait direct sans grosses fractures, arrêt de couche et plafond osseux intact ; zéro dégât provisoire P4. Le faible débit en volume vient de la surface minuscule, plus d’un grattage lent obligatoire. Le mode SCRAPE est retiré. Chisel, Brush, Blower, résistances, fracture, audio et caméra sont préservés.
 
 Vérifié au code `f62fccf` : **1 376 checks fonctionnels + 62 contrôles graphiques**, oracle GPU et 28 WAV historiques exacts ; **24 scénarios à 169–240 FPS**, P95 maximal 13,365 ms sur la machine de référence. Point de vigilance réel : dégagement de corps jusqu’à 36,32 mm dans la cavité synthétique quasi verticale. Les tests ne remplacent pas le verdict humain sur la silhouette ou le plaisir.
 
@@ -351,7 +351,7 @@ Formules, mesures, limites de rasterisation et checklist humaine dans [P4V_REPOR
 
 **Antoine valide humainement le principe de verticalité V1**, mais certaines colonnes Sandstone rendent la fouille trop longue. Correction autorisée uniquement sur la distribution des couches, depuis `122e9b1cf6dfacad721f9af240ef30592de8491c`. Garder les profondeurs Bone et les paramètres P4 ; remplacer une partie de Stone par Clay avec un champ large en UV, sans masque de squelette ni correction par cellule.
 
-Règle confirmée : **“Verticality / generation must be effort-aware, not depth-only.”** Une future seed devra respecter des budgets de travail pondérés par la matière et des quantiles/maxima sur toute la population Bone, en plus des contraintes géométriques. Clay coûte 3/1 =3 par mm ; Stone 8/1,5 =5,333… : une profondeur identique ne représente pas un effort identique. L'oracle debug/test compte uniquement la matrice au-dessus du plafond Bone et ne prédit pas le temps réel.
+Règle confirmée : **“Verticality / generation must be effort-aware, not depth-only.”** Une future seed devra respecter des budgets de travail pondérés par la matière et des quantiles/maxima sur toute la population Bone, en plus des contraintes géométriques. Clay coûte 3/1 =3 par mm ; Stone 8/ 1,5 =5,333… : une profondeur identique ne représente pas un effort identique. L'oracle debug/test compte uniquement la matrice au-dessus du plafond Bone et ne prédit pas le temps réel.
 
 Implémentation : nappe Clay à épaules douces, gradient et deux lobes larges. Soil et tous les plafonds/IDs/totaux Bone restent exacts à trois résolutions ; amplitude 29,99 mm conservée. Sur 32 290 cellules, Stone médiane/P95/max : **23,28/31,48/36,94 →11,59/17,12/21,49 mm**. Effort médiane/P95/max : **174,18/207,47/231,88 →147,28/175,70/199,65**. 90,11 % des cellules conservent 5–18 mm de Stone. Les budgets sont provisoires P4-V, tuning final P7.
 
@@ -394,7 +394,7 @@ Leçon de validation : comparer quinze états intermédiaires ON/OFF, ainsi que 
 
 Choix implémenté dans **`03803e5`** : restaurer le chemin des gros éclats P4-V1 à l'identique et réutiliser le seul noyau de mouvement pour `LooseDebris`. La quantité et l'occupation restent attachées à la clé de naissance ; la position physique actuelle est commune au rendu et au nettoyage. Deux miettes/24×24, 8 % retenus, capacité 0,02, cap global 128. Une miette partie de sa source garde sa place jusqu'au nettoyage ; les destinations ne sont pas rebucketées. Saturation = refus + surplus Dust, jamais recyclage visible. Dimensions communes ON/OFF 2,2 mm maximum pour la matrice ; aucun gros cube persistant. **Le sommeil n'est plus une condition d'expiration.**
 
-Blower réveille et transporte la miette complète ; Brush garde un retrait progressif simple au point actuel. Sortie unique avec quantité restante réelle, état et budget libérés avant émission. Deux paramètres dédiés au système de miettes (5,0 /1,8 par seconde) donnent une réponse légère, sans toucher la ressource outil. Ces paramètres physiques restent expérimentaux, non validés humainement.
+Blower réveille et transporte la miette complète ; Brush garde un retrait progressif simple au point actuel. Sortie unique avec quantité restante réelle, état et budget libérés avant émission. Deux paramètres dédiés au système de miettes (5,0 / 1,8 par seconde) donnent une réponse légère, sans toucher la ressource outil. Ces paramètres physiques restent expérimentaux, non validés humainement.
 
 Leçons vérifiées : ne pas utiliser le bucket de naissance comme position de nettoyage après transport ; tester le vrai renderer pour les transforms MultiMesh (le backend headless renvoie des données factices) ; séparer mesure de performance et attente d'une capture GPU, sauvegarder les scénarios achevés. L'oracle ON/OFF doit comparer la structure, la fracture et Bone, **pas imposer des miettes identiques alors que leur mouvement/nettoyage est précisément la variable étudiée**. La conservation de leur quantité est contrôlée séparément jusqu'à l'éjection, y compris après nettoyage partiel.
 
@@ -407,3 +407,19 @@ Antoine rejette explicitement les micro-débris de `8f703ae` : taille/présence 
 Leçon confirmée : séparer l'identité visuelle déjà appréciée d'une expérimentation de comportement. La réduction 4,5 →2,2 mm retirait environ trois quarts de la couverture pixel sur les captures de contrôle, malgré la même quantité. Restaurer aussi les attentes visuelles historiques, au lieu d'adapter les fixtures pour accepter cette perte. Les captures figées vérifient désormais la présence à quantité/position identiques ; elles ne remplacent pas le retest humain.
 
 Rapport et quatre questions : [P4V2_REPORT](../dev/P4V2_REPORT.md). **PR #7 DRAFT, STOP après push pour validation humaine ; aucun merge/P5.**
+
+## P4 — Autorisation de clôture et Soil visible, 2026-10-04
+
+Antoine valide la restauration Matrix 4,5 mm avec physique et le spectacle Chisel P4-V1. La clôture autorise explicitement budgets distincts Soil/Matrix, cap Matrix>128, Blower sans lévitation et nouveau film adhérent sur Bone, avant retest final. Le retour Soil impose deux feedbacks lisibles : Dust diffuse conservée **et** grains bruns plats individuels1,8–2,5 mm.
+
+Livraison : Soil 128, Matrix 256, admission locale par matériau, Fine Dust sans slot. Le diamètre Soil1,8–2,2 mm n'est plus proportionnel à sa quantité minuscule. Pas de multiplicateur Sandstone : 38crumbs/20 impacts, rendement par volume supérieur à Clay après séparation des budgets. Le Blower donne un pop au sol, puis une poussée horizontale ; friction faible temporaire, aucune recharge verticale en vol. Banc ouvert :80/80 sortent en1 s.
+
+**Exposure ≠ Cleanliness ≠ Condition.** Le film apparaît au signal central de première exposition et seul Brush le retire, avec continuité audio. Une carte compacte peut partager une quantité tout en gardant un masque fin des cellules sales : une nouvelle cellule exposée ne resalit pas les anciennes propres. Les cellules nouvellement révélées dans un groupe déjà partiellement nettoyé partagent la quantité restante ; aucune recharge des voisines.
+
+Leçon vérifiée de performance : profiler Soil au cap en parallèle de Matrix en mouvement, pas seulement le noyau de débris isolé. Le stress initial échoue ; refus Soil rapides, marquage par groupe de déposition et cache de sommets limité au tick réduisent le coût sans changer les quantités ni les hauteurs canoniques. Preuves exactes dans [P4V2_REPORT](../dev/P4V2_REPORT.md).
+
+**PR #7 DRAFT, pas de merge/P5 automatique ; STOP après push pour les tests humains Soil/Matrix/Blower/Bone Film et 10–15 min de jeu.** Le test technique ne valide pas le plaisir.
+
+## Precision Pick — addendum humain confirmé, 2026-10-04
+
+Nouveau test humain positif : **11 / 0,44 / 1,75** remplace **7 / 0,24 / 1,50** dans la ressource native. Cadence6 Hz, dégâts Bone 0, efficacités0,30/ 1,00/ 1,50 inchangées. Finition structurelle rapide après Chisel ; faible capacité de déblaiement due au petit footprint, pas à un impact local péniblement faible. Aucun stress de fracture ni gros chunks Chisel. Brush prépare le film adhérent, Blower chasse le mess libre. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les anciennes entrées de décision conservent leur valeur historique, pas une baseline concurrente.

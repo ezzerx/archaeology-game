@@ -2,7 +2,7 @@
 
 - Date : **2026-10-04**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4/P4-V1 validés et mergés ; première P4-V2 SIMPLIFY ; look P4-V1 des miettes restauré après rejet des micro-débris, nouvel A/B humain attendu ; P5 bloqué**.
+- Phase : **préproduction — P4/P4-V1 validés et mergés ; look Matrix/physique P4-V2 validés ; passe de clôture livrée, retest final attendu ; P5 bloqué**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Spike actif : `prototype/p4v2-debris-physics`, PR #7 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -71,7 +71,7 @@ Source de vérité : [P4_FINAL_FEEL_TARGET](../dev/P4_FINAL_FEEL_TARGET.md). Mic
 | Brush | 40 | 0.70 | 1.25 |
 | Chisel | 22 | 0.64 | 2.25 |
 | Blower | 60 | 0 | 1.00 |
-| Pick | 7 | 0.24 | 1.50 |
+| Pick | 11 | 0.44 | 1.75 |
 
 **P4 human-validated baseline — tuning final deferred to P7.** Blower conserve `residue_clear = 2.5`. Cadences Chisel 4.5 Hz / Pick 6 Hz, efficacités, génération de résidus, dégâts, résistances et seuils de fracture inchangés. Valeurs disponibles au lancement/reset sans retouche debug préalable ; fonctionnement des réglages en session préservé.
 
@@ -79,7 +79,7 @@ Livré : éclats Chisel **3–6 mm, 1–5 par plaque cassée**, projection depui
 
 **Protection Bone par composant** : `direct_contact_consumed` est un `PackedByteArray` indexé par NONE (inutilisé), **Skull / Spine / Ribs / Hind Limb**. Maximum **quatre contacts protégés par reset**. Toutes les côtes partagent RIBS, toute la colonne partage SPINE ; aucune protection par cellule, os individuel ou zone. Snapshot `was_exposed_before_impact` conservé : révélation, même centrale, = matière / zéro dégât / aucun flag consommé. Premier Chisel sur un centre déjà visible de ce composant : petit tik, zéro dégât, flag consommé ; suivants sur ce composant : DING/−3. **Bone Condition reste globale** : Skull → Skull → Ribs → Ribs = **100 → 97 → 97 → 94**. Reset réarme les quatre ; Pick/Brush/Blower ne consomment rien. F1 affiche READY/USED dans les lignes existantes. **Baseline P4 réévaluable en P7.** Découverte/UI, exposition et 28 WAV inchangés.
 
-**Mécanique Pick inchangée**, rayon verrouillé à 7 : clic/maintien immobile, six micro-impacts/s, puissance 0,24, efficacités 0,30/1,00/1,50 ; footprint local, interface et plafond osseux, zéro dégât provisoire P4. **Proxies conservés** : angle fixe `(0.5, 0, -0.62)`, Tip exact, Body statique déplacé verticalement, douze sondes maximum. Aucune reconstruction de mesh en jeu. Priorité fluidité ; rares petites intersections acceptées, aucun suivi des normales.
+**Mécanique Pick inchangée**, rayon humain verrouillé à 11 : clic/maintien immobile, six micro-impacts/s, puissance 0,44, falloff 1,75, efficacités 0,30/ 1,00/ 1,50 ; footprint local, interface et plafond osseux, zéro dégât provisoire P4. **Proxies conservés** : angle fixe `(0.5, 0, -0.62)`, Tip exact, Body statique déplacé verticalement, douze sondes maximum. Aucune reconstruction de mesh en jeu. Priorité fluidité ; rares petites intersections acceptées, aucun suivi des normales.
 
 **Brush avec baselines du lock** : geste de 30 s, **235,24 FPS à 1×**, **236,17 à 3×**, P95 frame **12,264/12,202 ms**, proxy P95 **31 µs**. Coût de pose CPU borné à douze sondes/48 lectures, meshes immuables. L’ancien surcoût proxy reste corrigé ; aucune chute <10 FPS reproduite dans ces mesures. Cap 240 FPS / physique 60 Hz conservés.
 
@@ -156,21 +156,18 @@ Code/tests : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Validation finale :
 
 Validation humaine : **NON/OUI/OUI** obtenus — grille orange absente, blocs/profondeur mieux lisibles, base toujours agréable. P4-V1 est validé et mergé via PR #6. Watchpoint différé : la poussière réduit encore la lisibilité des arêtes/blocs avant Blower ; après nettoyage, les bords noirs et la profondeur se lisent mieux. À reprendre en polish visuel/P6-P7, pas comme blocker gameplay. **P4-V2 debris physics peut être ouvert séparément ; P5 reste bloqué tant que ce spike n'est pas cadré/validé.**
 
-## P4-V2 — Look P4-V1 restauré, physique conservée ▶
+## P4 — Clôture livrée, validation finale attendue ▶
 
-**Retour humain confirmé : micro-débris de `8f703ae` rejetés**, trop petits/discrets. Nouvelle cible : **MÊMES DÉBRIS QU’AVANT, AVEC UN PEU DE PHYSIQUE**. Le premier malentendu reste corrigé : la physique vise les miettes persistantes, pas les gros éclats transitoires.
+Retour humain confirmé sur la baseline `874edc4` : P4 Final Feel/P4-V1, look Matrix restauré4,5 mm, physique persistante et chunks Chisel transitoires validés. Nouvelle autorisation explicite de clôture ; **P4 n'est pas déclaré DONE avant retest**.
 
-Restauration directe de la baseline `ce014d0` : **4,5 mm maximum** Clay/Sandstone au lieu de 2,2 ; mêmes mesh, couleurs, contraste, proportions 32 %/75 %, taille selon quantité. Soil 1,4 mm, deux miettes/24×24, rétention 8 %, capacité 0,02 exacts. Cap V2 128 conservé, surplus Dust, aucune éviction. Le spectacle Chisel, outils, relief/géologie, Bone, Dust, audio et proxies ne changent pas.
+- Budgets Soil **128** / Matrix **256**, deux slots locaux par matériau ; Fine Dust indépendante. Soil 128 n'empêche plus Clay/Stone. Grains Soil plats/bruns1,8–2,2 mm : 128 visibles après5 s de Brush dans la fixture ; 45Clay/38Stone sur20 impacts contrôlés par matériau, sans multiplicateur de rétention.
+- Blower : pop 0,055 m/s unique au sol, push12 m/s² horizontal limité1,6 m/s, traînée réduite0,4 s. Banc ouvert1 s : **80/80 éjectées**, déplacement moyen56,95 cm, soulèvement max2,35 mm, quantité exacte.
+- Bone Film : découverte automatique, ivoire sale, seul Brush nettoie (`1,0/s`, initial 0,85) ; nouvelle voisine ne resalit pas une cellule propre. RGBA8 compacte 160 KiB et masque fin ; audio Brush sur film seul. Exposure/Condition/protections restent indépendantes.
+- Optimisation de déposition saturée et sondes terrain après échec du stress initial ; résultats, timings et limites exacts dans le rapport. Aucun changement de géologie/outils structurels/spectacle/Dust.
 
-Moteur physique et paramètres inchangés : petit kick 0,035/0,025 m/s, gravité 0,65, contact/settle/sleep sans expiration, Blower qui réveille/transporte, Brush progressif, position XYZ autoritaire, sortie unique avec quantité réelle. F3 OFF/ON garde la même taille P4-V1 ; R reset sans changer de mode. F1 expose les coûts et comptes.
+`c775186c12d60e2a2313b2e905c161da6e8310d7` · [Rapport courant, preuves et mesures](../dev/P4V2_REPORT.md) · [Brief](../dev/P4V2_BRIEF.md). [Ancienne restauration archivée](../dev/P4V2_LOOK_REPORT.md). Modification locale `project.godot` préexistante préservée hors commits.
 
-**1 782 contrôles fonctionnels**, **32 visuels de présence**, **28 Final Feel +38 contraste/interfaces +8 GPU physiques** verts. En captures figées, présence pixel ×**3,67–4,10** face à 2,2 mm, mêmes 20 miettes/quantités ON/OFF sur chaque fixture. Seuils visuels P4-V1 rétablis et fixture de contraste simplifiée d'origine rétablie. Chute vérifiée **67,64 mm** ; persistance 30 s au cap et 100 s sur plat.
-
-Correction/tests **`a58fe1a`**. **36 scénarios V2 /202 assertions verts** : 239,78–239,87 FPS, minimum une seconde 238,70 ; pire P95 6,556 ms (précédemment 6,342), max frame 12,202 ms. Noyau ON P95 max 1 016 µs, max 4 248 µs ; 1 280 sondes/tick, 128 miettes max. Blower éjecte le cap avec quantité exacte, Brush le nettoie. Mesures locales non isolées ; 60 anciens benchmarks complets non rejoués, cas affectés et visuels reprofilés.
-
-Sources : [brief](../dev/P4V2_BRIEF.md), [rapport courant et preuves](../dev/P4V2_REPORT.md). Le [rapport 2,2 mm](../dev/P4V2_CRUMBS_MICRO_REPORT.md) est historique/rejeté ; ses mesures ne décrivent pas la restauration actuelle. Modification locale préexistante `project.godot` préservée hors commits.
-
-**STOP pour les quatre questions humaines visibilité / identité / physique / Blower. PR #7 DRAFT ; aucun merge ni P5.** La technique ne vaut pas validation du ressenti. Watchpoint Dust/arêtes toujours différé P6/P7.
+**Prochaine action : retest humain** Soil grains+Dust, indépendance des caps, quantité Stone, Blower hors bloc, Bone sale après révélation/Blower, nettoyage Brush progressif, boucle avec Pick, session 10–15 min. **STOP, PR #7 DRAFT ; aucun merge ni P5.**
 
 ## Watchpoints techniques
 
@@ -183,4 +180,8 @@ Sources : [brief](../dev/P4V2_BRIEF.md), [rapport courant et preuves](../dev/P4V
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → P4-V1 ✅ → **P4-V2 : SIMPLIFY initial, nouvel A/B sur petites miettes persistantes** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → P4-V1 ✅ → **P4-V2 : acquis validés, clôture en attente du retest final** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.
+
+## Precision Pick — addendum humain confirmé, 2026-10-04
+
+Nouveau test humain positif : **11 / 0,44 / 1,75** remplace **7 / 0,24 / 1,50** dans la ressource native. Cadence6 Hz, dégâts Bone 0, efficacités0,30/ 1,00/ 1,50 inchangées. Finition structurelle rapide après Chisel ; faible capacité de déblaiement due au petit footprint, pas à un impact local péniblement faible. Aucun stress de fracture ni gros chunks Chisel. Brush prépare le film adhérent, Blower chasse le mess libre. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les anciennes entrées de décision conservent leur valeur historique, pas une baseline concurrente.

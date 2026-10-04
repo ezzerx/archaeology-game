@@ -1,0 +1,44 @@
+{
+	"blower_sweep_1s": {
+		"affected": 80,
+		"ejected": 80,
+		"exited_amount": 1.6,
+		"initial": 80,
+		"initial_amount": 1.6,
+		"max_distance_m": 0.610000014305115,
+		"mean_distance_m": 0.569499999284744,
+		"peak_height_m": 0.00234701455110288,
+		"remaining": 0,
+		"remaining_amount": 0.0
+	},
+	"checks": 41,
+	"failures": 0,
+	"matrix_1": {
+		"cap_refused_attempts": 0,
+		"count": 45,
+		"created": 45,
+		"crumbs_per_removed_unit": 0.0338854861515192,
+		"refused_attempts": 7054,
+		"removed_normalized_sum": 1328.00219535828,
+		"removed_volume_mm3": 159151.142003539,
+		"retained_normalized": 0.593645415268839
+	},
+	"matrix_2": {
+		"cap_refused_attempts": 0,
+		"count": 38,
+		"created": 38,
+		"crumbs_per_removed_unit": 0.124508615568263,
+		"refused_attempts": 1582,
+		"removed_normalized_sum": 305.199763298035,
+		"removed_volume_mm3": 36575.911574444,
+		"retained_normalized": 0.223299995008856
+	},
+	"soil_5s": {
+		"cap_refused_deposition_attempts": 977444,
+		"created": 1945,
+		"created_per_s": 389.0,
+		"local_refused_attempts": 421328,
+		"removed_normalized_sum": 4790.4171257019,
+		"visible": 128
+	}
+}
