@@ -368,3 +368,11 @@ Cause vérifiée : une hauteur interpolée sur triangles comparée à une limite
 Lisibilité : légère différence de valeur entre dessus/parois dures et couleurs de faces précalculées dans les meshes de morceaux existants. Pas de silhouette, trajectoire, quantité ou durée nouvelle. Le contraste augmente dans les fixtures, mais le jugement de profondeur/plaisir appartient au test humain.
 
 Leçon de validation : figer l'état de simulation et attendre des frames complètes après un échange de mesh/shader avant lecture GPU ; une capture trop précoce peut confondre absence temporaire et contraste. [Preuves et trois questions V1.2](../dev/P4V_REPORT.md). **STOP après push, PR #6 DRAFT ; aucun merge, P4-V2, procgen ou P5.**
+
+## P4-V1 validation humaine et merge — 2026-10-04
+
+Antoine valide **P4-V1 Verticality** après la passe V1.2. La macro-stratigraphie déterministe, la redistribution sensible à l'effort et le cleanup des interfaces sont conservés comme nouvelle baseline. PR #6 mergée dans `main` au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`.
+
+Watchpoint différé : avant Blower, la poussière peut encore réduire la lisibilité des arêtes et des blocs ; après nettoyage, les bords sombres et la perception de profondeur sont plus nets. Ce point est **non bloquant** pour P4-V1 et doit être repris lors du polish visuel / P6-P7, en surveillant la relation poussière ↔ lecture du relief.
+
+La verticalité actuelle est jugée suffisante pour avancer. Pas de nouvelle itération géologique avant nécessité observée. Le prochain spike possible est **P4-V2 terrain-aware debris physics** ; la génération procédurale reste future/post-core.
