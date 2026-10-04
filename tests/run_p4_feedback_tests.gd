@@ -43,6 +43,8 @@ func test_pick_readability_and_semantics() -> void:
 		check(removal > 0.035, "one stationary Pick click produces immediately visible depth: %.2f" % height)
 		check(surface.fracture.stress.is_empty() and surface.last_action.chunks.is_empty(), "visible Pick removal still creates no plate fracture")
 	check(removals[0] > removals[1] * 1.5 and removals[1] > 0, "Sandstone remains distinctly harder than Clay with the same finishing gesture")
+	check(absf(removals[0] - 0.146666667) < 0.000001 and absf(removals[1] - 0.0825) < 0.000001,
+		"human Pick power 0.44 clears strong local depths with unchanged material effectiveness/resistance")
 	print("P4 PICK READABILITY: one stationary impact; Clay depth=", removals[0], "; Sandstone depth=", removals[1])
 	var flake := LooseDebrisView.crumb_mesh().surface_get_arrays(0)
 	var outward := true

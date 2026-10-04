@@ -166,7 +166,7 @@ func test_scene_and_audio() -> void:
 	var fx: MaterialFeedback = main.feedback
 	await process_frame
 	# P4 human-validated baseline — tuning final deferred to P7.
-	var baseline := [Vector3(40, 0.70, 1.25), Vector3(22, 0.64, 2.25), Vector3(60, 0, 1), Vector3(7, 0.24, 1.50)]
+	var baseline := [Vector3(40, 0.70, 1.25), Vector3(22, 0.64, 2.25), Vector3(60, 0, 1), Vector3(11, 0.44, 1.75)]
 	for tool in range(4):
 		check(Vector3(control.tools[tool].radius, control.tools[tool].power, control.tools[tool].falloff).is_equal_approx(baseline[tool]),
 			"fresh scene uses human-validated resource baseline without debug input: tool %d" % tool)

@@ -8,8 +8,10 @@ func sync(surface: WorkingSurface) -> void:
 func test_micro_impacts() -> void:
 	# Final human decision supersedes SCRAPE/movement and 0.004 per-pass limits.
 	check(pick.id == &"precision_pick" and pick.interaction_mode == ToolDefinition.InteractionMode.IMPACT
-		and pick.radius < chisel.radius / 3 and pick.bone_damage == 0 and pick.residue_clear == 0,
-		"data-driven Pick has a small structural footprint, provisional zero damage and no cleanup bonus")
+		and is_equal_approx(pick.radius, 11) and is_equal_approx(pick.power, 0.44) and is_equal_approx(pick.falloff, 1.75)
+		and pick.radius <= chisel.radius * 0.5 and pick.bone_damage == 0 and pick.residue_clear == 0,
+		"human Pick 11/0.44/1.75: at most quarter Chisel disk area, zero damage, no loose-cleanup bonus")
+	check(pick.cadence == 6 and pick.effectiveness == Vector3(0.3, 1.0, 1.5), "human Pick retains 6 Hz and original effectiveness")
 	for height in [0.9, 0.6, 0.25]:
 		var surface := dirty_fixture(height)
 		var before := surface.image.get_data()
@@ -23,8 +25,8 @@ func test_micro_impacts() -> void:
 				var distance := Vector2(x, y).distance_to(point)
 				if distance < pick.radius: footprint_cells += 1
 				if distance >= pick.radius: precise = precise and surface._heights[y * surface.size.x + x] == before_values[y * surface.size.x + x]
-		check(precise and changed <= footprint_cells and changed <= 145,
-			"radius-7 baseline stays inside its 145-cell disk without a swept bridge or broad fracture")
+		check(precise and changed <= footprint_cells and footprint_cells == 373,
+			"human radius-11 footprint is exactly a 373-cell disk: no sweep bridge or broad fracture")
 		check(surface.fracture.stress.is_empty() and surface.last_action.chunks.is_empty()
 			and surface.last_action.marks == 0, "Pick never triggers Chisel plate stress or chunks")
 	var bulk := fixture(0.6)
@@ -37,7 +39,9 @@ func test_micro_impacts() -> void:
 	for i in range(fine._heights.size()):
 		fine_removed += initial[i] - fine._heights[i]
 		bulk_removed += initial[i] - bulk._heights[i]
-	check(fine_removed > 0 and bulk_removed > fine_removed * 10, "one second: Chisel removes over ten times the bulk despite fast local Pick work")
+	# The old >10 ratio encoded the superseded weak/small Pick. The new contract
+	# is stronger local finishing, bounded to <=1/4 the disk area, without fracture.
+	check(fine_removed > 0 and bulk_removed > fine_removed, "one second: Chisel still wins bulk removal over the human-validated fast Pick")
 	check(0.6 - fine.value_at(cell) > 0.25, "six stationary micro-impacts quickly clear a substantial attached Clay cap")
 	print("P4 PICK BULK: Pick=", fine_removed, "; Chisel=", bulk_removed, "; ratio=", bulk_removed / fine_removed)
 	var strong := pick.duplicate() as ToolDefinition

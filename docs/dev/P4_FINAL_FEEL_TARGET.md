@@ -23,7 +23,7 @@ The final human test supplied the baselines below. This lock prepares P4 for clo
 | Soft Brush | 40 | 0.70 | 1.25 |
 | Chisel | 22 | 0.64 | 2.25 |
 | Air Blower | 60 | 0 | 1.00 |
-| Precision Pick | 7 | 0.24 | 1.50 |
+| Precision Pick | 11 | 0.44 | 1.75 |
 
 These are persisted in the tool resources and loaded without debug adjustments at launch; specimen reset retains those values. Existing in-session debug/reset behavior is unchanged. Blower `residue_clear = 2.5`, cadences (Chisel 4.5 Hz, Pick 6 Hz), effectiveness, residue generation, Bone damage, material resistances and fracture thresholds remain unchanged. The resource lock established these values and the pre-impact eligibility rule; the subsequent component micro-fix preserves every resource and only scopes protection by component, with READY/USED in the existing F1 panel.
 
@@ -217,3 +217,7 @@ Performance gate: at least 60 FPS locally; paired proxy on/off throughput and a 
 Limits: transient launch height is an average from the removed patch, not reconstructed fragments; flight does not collide with changing terrain. [P4_REPORT](P4_REPORT.md#retest-humain--exactement-trois-points) retains three short checks for closure: baseline Brush performance, centre-reveal Bone protection and Chisel/Blower/Pick sanity.
 
 Measurements and evidence: [P4_REPORT](P4_REPORT.md). **STOP after delivery. P4-V and P5 remain blocked; PR #5 remains draft and unmerged.**
+
+## Human Precision Pick update — P4 closure, 2026-10-04
+
+Human-approved native baseline: **radius 11.0 / power 0.44 / falloff 1.75**, replacing 7/ 0.24/ 1.50. Keep 6 Hz, zero Bone damage and effectiveness(0.3,1.0,1.5). Fast precise structural cleanup after bulk Chisel work; limited bulk role comes from the small footprint, never weak local work. No Chisel fracture cells or large chunks. Brush cleans adhered Bone Film/general mess; Blower clears loose mess/dust. **P4 human-validated baseline — final fine tuning still deferred to P7.**
