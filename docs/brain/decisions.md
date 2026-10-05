@@ -543,3 +543,14 @@ Antoine keeps P5 minimal but restores one global optional mastery reward.
 - Classification is transient/non-blocking; Condition and detailed component data stay out of the primary HUD.
 
 Rationale: preserve a clear 0→85 required phase, a meaningful 85→95 optional mastery phase, and 95→100 personal completion, while keeping the fossil/work surface visually dominant.
+
+
+## P5 — Livraison du parcours simplifié85/95, 2026-10-05
+
+La direction humaine85/95 est implémentée sur PR #8 (`19b8ec4`) : une seule carte de préparation, quatre outils, aucun fragment/Forceps/plateau dans le jeu normal. À85/85, completion persistante et archive permise ; la fouille n'est pas interrompue. À95/95, une seule étoile globale persistante et une confirmation discrète ; Condition indépendante, aucun bonus100%. Archive ne montre que la clôture positive, l'étoile si acquise et le bouton suivant. Les détails demeurent F1.
+
+Choix technique vérifié : ne pas supprimer les modules de l'expérience fragments, mais ne les initialiser que dans un test explicite ; aucune touche normale ne les active. Les anciens tests de seuils/composants/mission sont remplacés par ceux du parcours actif, tandis que plafonds/READY/retour/dépôt restent couverts séparément. Les snapshots de fin/archivage et le reset sont conservés. Un Keep Cleaning sans clic est possible : lire aussi les actions supplémentaires, pas seulement le booléen de choix.
+
+Leçon vérifiée : un panneau dimensionné par texte avec retour à la ligne doit pouvoir rétrécir après calcul de sa taille minimale ; sinon il laisse une grande zone vide malgré un contenu compact. La capture et le contrôle de rectangle ont détecté et corrigé ce défaut.
+
+[Rapport et preuves](../dev/P5_SIMPLIFICATION_REPORT.md) :2 017 contrôles fonctionnels,59 graphiques,22 scénarios/90 contrôles perf, oracle GPU194 955 pixels ; zéro échec. **Cela ne valide pas P5 humainement.** Attendre les six réponses du retest libre ; aucun merge ni P6.

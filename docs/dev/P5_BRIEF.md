@@ -1,5 +1,7 @@
 # P5 — Complete Session Loop / UI & Progression
 
+> **Historique — supersédé pour le parcours actif.** La dernière décision85/95 du [brief humain](P5_HUMAN_CORRECTION_BRIEF.md) et [P5_SIMPLIFICATION_REPORT](P5_SIMPLIFICATION_REPORT.md) font autorité : carte unique, quatre outils, étoile globale facultative ; aucun fragment/dossier droit. Les chiffres et captures ci-dessous décrivent cette ancienne livraison.
+
 **Status:** authorized after human closure of P4  
 **Date:** 2026-10-05  
 **Base:** `main@b2a32c8ae97c8fec2c8a583c405ac9274ef566af`  

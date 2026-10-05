@@ -1,0 +1,63 @@
+{
+	"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+	"failures": 0,
+	"godot": "4.7.2-stable (official)",
+	"gpu": "NVIDIA GeForce RTX 5080",
+	"gpu_oracle": {
+		"bone_material_max_error": 0.0108823478221893,
+		"bone_pixels": 6860,
+		"boundary_alternatives": 12,
+		"boundary_tolerance_texels": 0.01,
+		"height_max_error": 0.00465471253675574,
+		"matrix_pixels": 58125,
+		"raster_alternatives": [
+			{
+				"color_error": 0.00156861543655396,
+				"height_error": 0.000192258287878555,
+				"offset_texels": "(0.01, -0.005)",
+				"score": 0.0784307718276978,
+				"screen": "(996.5, 414.5)"
+			},
+			{
+				"color_error": 0.00137254595756531,
+				"height_error": 0.00392156839370728,
+				"offset_texels": "(-0.01, -0.01)",
+				"score": 0.392156839370728,
+				"screen": "(633.5, 468.5)"
+			}
+		],
+		"raw_height_max_error": 0.386496712471925,
+		"raw_material_max_error": 0.291568636894226,
+		"textures_byte_exact": true,
+		"zoom": 1.0
+	},
+	"gpu_oracle-2x": {
+		"bone_material_max_error": 0.0108823478221893,
+		"bone_pixels": 15299,
+		"boundary_alternatives": 1,
+		"boundary_tolerance_texels": 0.01,
+		"height_max_error": 0.00463760176710055,
+		"matrix_pixels": 49686,
+		"raster_alternatives": [],
+		"raw_height_max_error": 0.00463760176710055,
+		"raw_material_max_error": 0.291568636894226,
+		"textures_byte_exact": true,
+		"zoom": 2.0
+	},
+	"gpu_oracle-3x": {
+		"bone_material_max_error": 0.00156861543655396,
+		"bone_pixels": 18777,
+		"boundary_alternatives": 2,
+		"boundary_tolerance_texels": 0.01,
+		"height_max_error": 0.00468425920196609,
+		"matrix_pixels": 46208,
+		"raster_alternatives": [],
+		"raw_height_max_error": 0.00468425920196609,
+		"raw_material_max_error": 0.291568636894226,
+		"textures_byte_exact": true,
+		"zoom": 3.00000010518467
+	},
+	"physics_hz": 60,
+	"static_fossil_payload_bytes": 5242880,
+	"viewport": "(1920.0, 1080.0)"
+}

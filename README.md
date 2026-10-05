@@ -4,8 +4,8 @@
 
 **Statut : préproduction — P4 validé et mergé ; correctif P5 livré pour retest humain, PR #8 DRAFT.**
 
-**Après le premier test humain : P5 non validé, correctif livré pour retest.** Demande requise distincte de la qualité optionnelle, étoiles95/95, fragments voisins du spécimen, plateau physique et archive courte/positive : [rapport correctif courant](docs/dev/P5_CORRECTION_REPORT.md). Choisir librement Keep Cleaning ou Archive ;100 % n'est pas nécessaire. Au zoom, Home retrouve le plateau fixé sur le bureau.
-Contrat courant : [brief P5](docs/dev/P5_BRIEF.md), [rapport et checklist](docs/dev/P5_REPORT.md), [Brain du dépôt](docs/brain/status.md). Aucun merge ni P6 avant nouvelle autorisation.
+**P5 simplifié — direction humaine du 2026-10-05 :** une carte compacte en haut à gauche, deux métriques globales. **Exposure ≥85 % ET Cleanliness ≥85 %** autorisent Archive ; **≥95 % ET ≥95 %** donnent une seule étoile globale Fine Preparation, facultative et persistante, avec un bref éclat/son discret. Aucun bonus à100 %. Quatre outils ; aucun fragment, Forceps, plateau, dossier droit ou checklist anatomique dans le parcours normal. Classification transitoire, Condition et détails F1. Archive courte : Specimen archived / Museum records updated / étoile seulement si acquise / Prepare Another Block. Baselines P4 inchangées. **P5 reste non validé humainement ; PR #8 DRAFT, aucun merge ni P6.**
+Rapport, preuves et six questions de retest : [P5_SIMPLIFICATION_REPORT](docs/dev/P5_SIMPLIFICATION_REPORT.md).
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -21,9 +21,9 @@ Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ### Jouer une session P5
 
-Ouvrir `project.godot` dans Godot4.7.2 puis **F5**. Le dossier B-17 commence à Unknown, avec trois objectifs et un plateau vide. [1] Brush prépare Soil/film, [2] Chisel la matrice, [3] Blower le mess, [4] Pick les détails, [5] Forceps les fragments : dégager leur pourtour, cliquer sur READY, glisser au plateau et relâcher.
+Ouvrir `project.godot` dans Godot4.7.2 puis **F5** et jouer librement, sans lire de brief. [1] Brush prépare Soil/film, [2] Chisel la matrice, [3] Blower le mess, [4] Pick les détails.
 
-La demande se termine à crâne60 % exposé et50 % propre, squelette60 %, fragments2/2. **Keep Cleaning** permet de poursuivre ; **Archive Specimen** clôture avec les valeurs finales. **Prepare Another Block** réinitialise le même B-17 déterministe. R reset complet ; F1 debug/métriques ; molette zoom ; RMB pan ; Home vue initiale. La UI est fonctionnelle, la DA finale reste P6.
+La carte annonce quand le spécimen est prêt à archiver. Continuer est facultatif. **Prepare Another Block** réinitialise le même B-17 déterministe pour ce prototype. R reset complet ; F1 détails et métriques ; molette zoom ; RMB pan ; Home vue initiale.
 
 Validation reproductible : `tests/check_p5.ps1 -GodotBin <chemin-vers-Godot> -Graphical`. Les tests emploient des fixtures pour réduire leur durée ; le jeu normal n’a aucun raccourci de completion.
 

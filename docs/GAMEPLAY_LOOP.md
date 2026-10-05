@@ -2,11 +2,11 @@
 
 ## Canon actuel — 2026-10-05
 
-**Correction P5 après test humain1** : le Museum Request de gauche est seul obligatoire ; le dossier décrit la qualité optionnelle. Prepared80/80 reste, avec étoile persistante à95 % exposé ET95 % propre, sans exigence de100 %. Fragments découverts près des os puis déposés avec Forceps dans un plateau3D fixe sur le bureau. Archive courte et positive, valeurs finales et un seul CTA ; détails/métriques F1. [Rapport correctif et retest libre](dev/P5_CORRECTION_REPORT.md). P5 n'est pas validé humainement ; aucun P6.
+**P5 simplifié — direction humaine du 2026-10-05 :** une carte compacte en haut à gauche, deux métriques globales. **Exposure ≥85 % ET Cleanliness ≥85 %** autorisent Archive ; **≥95 % ET ≥95 %** donnent une seule étoile globale Fine Preparation, facultative et persistante, avec un bref éclat/son discret. Aucun bonus à100 %. Quatre outils ; aucun fragment, Forceps, plateau, dossier droit ou checklist anatomique dans le parcours normal. Classification transitoire, Condition et détails F1. Archive courte : Specimen archived / Museum records updated / étoile seulement si acquise / Prepare Another Block. Baselines P4 inchangées. **P5 reste non validé humainement ; PR #8 DRAFT, aucun merge ni P6.** [Rapport courant](dev/P5_SIMPLIFICATION_REPORT.md).
 
 Le joueur est préparateur/restaurateur dans un musée d'histoire naturelle. La boucle prototype actuelle est :
 
-> **bloc confié → excavation/préparation → découverte/classification → récupération manuelle des fragments → Preparation Complete → Keep Cleaning ou Archive Specimen → prochain bloc**
+> **bloc confié → excavation/préparation → découverte → Specimen prepared (85/85) → Keep Cleaning ou Archive Specimen → prochain bloc**
 
 Grammaire outils actuelle :
 
@@ -14,7 +14,6 @@ Grammaire outils actuelle :
 - **Chisel** : excavation bulk Clay/Sandstone et fracture ;
 - **Air Blower** : évacuation du mess libre ;
 - **Precision Pick** : finition structurelle précise près des os ;
-- **Forceps [P5]** : récupération de fragments indépendants READY, jamais excavation.
 
 Trois métriques Bone restent séparées : **Exposure / Cleanliness / Condition**. Les sections plus anciennes ci-dessous conservent la provenance des idées ; les décisions P4/P5 plus récentes prévalent.
 

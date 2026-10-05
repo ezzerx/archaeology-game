@@ -2,7 +2,7 @@
 
 - Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 validé et mergé ; P5 non validé après test humain1, correction livrée pour retest ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
+- Phase : **préproduction — P4 validé et mergé ; P5 simplifié85/95 livré pour retest après les derniers retours, toujours non validé humainement ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 actif : `prototype/p5-loop-progression`, PR #8 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -10,6 +10,8 @@
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
 - Merge P3 : `10a12379ab1db629380ac9697e5597aeb16a373b`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.
+
+**Reprise courante :** [P5_SIMPLIFICATION_REPORT](../dev/P5_SIMPLIFICATION_REPORT.md), dernière section85/95 du brief humain ; lancer/jouer puis six questions, sans briefing technique.
 
 ## P0 — Validé ✅
 
@@ -224,7 +226,7 @@ Le feel P4 et les quatre ressources outils restent verrouillés. Modification lo
 
 **Prochaine action : une session humaine complète en huit étapes, surtout Keep Cleaning.** Le fonctionnement technique est vérifié ; compréhension, agrément du transfert Forceps et envie de poursuivre restent à valider. **STOP après livraison : PR #8 DRAFT, aucun merge ni P6.**
 
-## P5 — Correction humaine1 livrée pour retest
+## P5 — Correction humaine1 (historique, supersédée)
 
 Le premier test a révélé une confusion entre mission requise et qualité100 %, des panneaux obstructifs, une récupération peu naturelle et une archive trop administrative. **Son Keep Cleaning n'est pas un signal produit exploitable.** [Brief correctif](../dev/P5_HUMAN_CORRECTION_BRIEF.md) et [rapport courant](../dev/P5_CORRECTION_REPORT.md) prévalent sur la livraison initiale ci-dessus.
 
@@ -254,7 +256,7 @@ P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 corrigé
 Nouveau test humain positif : **11 / 0,44 / 1,75** remplace **7 / 0,24 / 1,50** dans la ressource native. Cadence6 Hz, dégâts Bone 0, efficacités0,30/ 1,00/ 1,50 inchangées. Finition structurelle rapide après Chisel ; faible capacité de déblaiement due au petit footprint, pas à un impact local péniblement faible. Aucun stress de fracture ni gros chunks Chisel. Brush prépare le film adhérent, Blower chasse le mess libre. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les anciennes entrées de décision conservent leur valeur historique, pas une baseline concurrente.
 
 
-## P5 — second human review: simplify before validation
+## P5 — second human review (historical90/90, superseded)
 
 Second review on 2026-10-05: the corrected UI still contains too much information and obscures the basic purpose of the session. P5 remains **not human-validated**.
 
@@ -271,4 +273,8 @@ Latest human direction supersedes the prior 90/90-only mockup: required completi
 
 Player-facing HUD should be reduced to a single compact top-left/left-margin preparation card plus the bottom four-tool toolbar. Remove the permanent right dossier, component list, Forceps/fragments/tray and component stars from the P5 validation flow.
 
-Next action: implement this minimal layout/threshold change on PR #8, run regression/perf, then retest from reset without briefing. P5 remains unvalidated until that human gate.
+**Livraison85/95 réalisée** : code `19b8ec49395e18378af4996788c90807c31af13d`, [rapport courant](../dev/P5_SIMPLIFICATION_REPORT.md). Une carte224px à gauche, deux barres ; completion à85/85 sans modal ni interruption, étoile globale persistante à95/95 avec éclat/son uniques. Seule Archive bloque les outils ; sa carte affiche deux lignes positives, l'étoile si acquise et Prepare Another Block. Classification transitoire, Condition/métriques F1. Fragments/Forceps/plateau non instanciés normalement ; expérience conservée pour tests seulement.
+
+**Vérifié** :2 017 contrôles fonctionnels (1 895 historiques +83 actifs +39 expérience),59 graphiques,22 scénarios/90 contrôles de performance, oracle GPU194 955 pixels ; zéro échec.239,68–239,87 FPS, minimum1s238,99, pire frame11,035ms. Les quatre outils et autorités P4 sont inchangés. `project.godot` préexistant hors commits.
+
+**Prochaine action : lancer et jouer librement, puis répondre aux six questions du rapport courant.** Aucun brief ni coordonnées. P5 reste non validé ; PR #8 DRAFT, STOP sans merge/P6.

@@ -45,19 +45,13 @@ Active branch:
 `prototype/p5-loop-progression`
 
 PR:
-**#8 — Complete session loop, Forceps & archive flow**
+**#8 — Minimal preparation session, 85/95 and archive** (DRAFT)
 
-Current technical HEAD at this audit:
-`27550255d4010163f8765c344781b167c553b164` (corrective implementation; documentation follows)
+Current implementation and verification: `docs/dev/P5_SIMPLIFICATION_REPORT.md`.
 
-The first human test did **not** validate P5: required work and optional quality were confused, so its Keep Cleaning behavior is not a valid product signal. The authorized correction is now technically delivered: compact margin panels, request-only archive authority, optional95/95 stars, naturally adjacent fragments, a physical desk tray and a short positive archive closure. Automated/graphical/performance checks are green. A **new free-choice human retest** is required; never tell the player to keep cleaning before observing their decision.
+The latest human review supersedes the original three objectives and the first correction. Required completion is global85/85; optional mastery is one global95/95 star. One compact top-left card, four tools, no right dossier, fragments, tray or Forceps in the playable flow. Completion and mastery never interrupt excavation. Archive is a short positive closure. The earlier Keep Cleaning behavior is not a validated product signal.
 
-Read:
-0. `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md` and `docs/dev/P5_CORRECTION_REPORT.md` (current correction)
-1. `docs/dev/P5_BRIEF.md`
-2. `docs/dev/P5_REPORT.md`
-3. PR #8
-4. `docs/brain/status.md`
+Read the last85/95 section of `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md`, the simplification report, PR #8 and `docs/brain/status.md`. Original P5 and first-correction reports are historical.
 
 **Do not merge P5 and do not start P6 until Antoine explicitly validates P5.**
 
@@ -87,7 +81,6 @@ When documents conflict, use this order:
 | Chisel | 22 | 0.64 | 2.25 | bulk Clay/Sandstone fracture |
 | Air Blower | 60 | 0 | 1.00 | eject loose mess / dust |
 | Precision Pick | 11 | 0.44 | 1.75 | fast precise structural finishing |
-| Forceps [P5] | — | — | — | recover READY independent fragments |
 
 Chisel cadence 4.5 Hz. Pick cadence 6 Hz. Blower residue clear 2.5. Pick is Bone-safe in the current prototype.
 
@@ -99,7 +92,6 @@ Chisel cadence 4.5 Hz. Pick cadence 6 Hz. Blower residue clear 2.5. Pick is Bone
 - bulk hard matrix → Chisel
 - precise attached remnants near Bone → Pick
 - loose mess → Brush / Blower
-- recoverable independent fragment → Forceps when READY
 
 Tiny isolated hard remnants may detach into brushable mess under the bounded P4 rule. Do not give Brush general hard-matrix excavation.
 
@@ -142,26 +134,15 @@ If gameplay polish is reopened after P5/P6, create a **new named phase** (TBD), 
 
 P5 is the first time the prototype becomes a complete “game session”.
 
-Implemented target flow:
+Current target flow:
 
-> **Museum Preparation Lab / B-17 → excavation → classification progress → prepare skull → recover 2 fragments with Forceps → Preparation Complete → Keep Cleaning OR Archive Specimen → Museum records updated → Prepare Another Block**
+> **Prepare B-17 → reveal and clean →85/85: Ready to archive → Archive OR optional cleaning →95/95: one Fine Preparation star → Museum records updated → Prepare Another Block**
 
-P5 specifics:
-- dossier separates Exposure / Cleanliness / Condition;
-- classification: Unknown → Vertebrate remains → Possible Theropod → Likely small theropod;
-- objectives:
-  - Prepare skull = Skull exposure ≥60% + cleanliness ≥50%
-  - Reveal ≥60% skeleton
-  - Recover both fragments
-- two independent deterministic fragments;
-- Forceps drag into a two-slot tray;
-- fragment READY = ≥90% exposure + local clearance;
-- completion snapshot is frozen;
-- Keep Cleaning resumes full interaction;
-- archive snapshot uses latest values;
-- Prepare Another Block resets same B-17 as placeholder.
+One card shows global Exposure/Cleanliness. Completion is latched and leaves tools active. Keep Cleaning records a voluntary choice without resetting anything. A new dirty revelation may lower cleanliness without revoking earned completion/star. Condition remains independent and active; classification can briefly notify discoveries. Both are available in debug, not additional player tasks.
 
-The key human question is not whether tests pass; it is whether this flow feels natural and whether Keep Cleaning is genuinely attractive.
+Archive captures current values, locks tools and offers another block. Separate completion/archive snapshots and actions/time remain in F1. Another Block repeats deterministic B-17 for P5; the future museum/crate loop is not implemented. Historical fragment code is dormant, reachable only through explicit test setup.
+
+The gate is human comprehension and desire to continue, not automated test success. Launch and play without brief/developer coordinates; use only the six questions in the current report afterward.
 
 ## 8. Narrative baseline
 

@@ -1,5 +1,7 @@
 # P5 — Correction après le premier test humain
 
+> **Historique — supersédé pour le parcours actif.** La dernière décision85/95 du [brief humain](P5_HUMAN_CORRECTION_BRIEF.md) et [P5_SIMPLIFICATION_REPORT](P5_SIMPLIFICATION_REPORT.md) font autorité : carte unique, quatre outils, étoile globale facultative ; aucun fragment/dossier droit. Les chiffres et captures ci-dessous décrivent cette ancienne livraison.
+
 2026-10-05 · `prototype/p5-loop-progression` · PR #8 **DRAFT** · aucun merge ni P6.
 
 Entrée : `87e3a4cd92dff7aa6ebc45d314353a04c167dd3b`, après récupération des décisions documentaires distantes. Sources : [brief correctif](P5_HUMAN_CORRECTION_BRIEF.md), [premier verdict humain](P5_REPORT.md#human-test-1--2026-10-05) et préférence explicite d'Antoine : l'archive doit conclure agréablement un travail pour le musée, avec un message court et positif.

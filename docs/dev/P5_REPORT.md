@@ -1,5 +1,7 @@
 # P5 — Complete Session Loop / UI & Progression
 
+> **Historique — supersédé pour le parcours actif.** La dernière décision85/95 du [brief humain](P5_HUMAN_CORRECTION_BRIEF.md) et [P5_SIMPLIFICATION_REPORT](P5_SIMPLIFICATION_REPORT.md) font autorité : carte unique, quatre outils, étoile globale facultative ; aucun fragment/dossier droit. Les chiffres et captures ci-dessous décrivent cette ancienne livraison.
+
 **Livré le 2026-10-05 pour test humain.** Branche `prototype/p5-loop-progression` ; [PR #8 DRAFT](https://github.com/ezzerx/archaeology-game/pull/8). Aucun merge ni P6. Source de vérité : [P5_BRIEF](P5_BRIEF.md).
 
 **Mise à jour après test humain : P5 non validé.** Le [rapport correctif courant](P5_CORRECTION_REPORT.md) remplace les descriptions initiales de disposition UI, plateau2D, emplacements des fragments et archive ci-dessous. Les preuves initiales restent conservées comme historique.
