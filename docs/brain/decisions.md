@@ -623,3 +623,26 @@ La règle prototype retenue est `plus grand amas caché < ceil(total Bone princi
 La liste des cellules cachées suit les signaux de première exposition ; le parcours en largeur est regroupé par action, différé jusqu’à85 % et mis en cache. Aucun recalcul pour film, Condition ou caméra. Les régions séparées ne sont jamais additionnées : plusieurs petits restes ne forment pas artificiellement une grande pièce manquante. La méthode ne garantit pas une silhouette complète si plusieurs petits os séparés restent enfouis ; aucune extension de gameplay pour masquer cette limite.
 
 [Rapport courant](../dev/P5_HIDDEN_CLUSTER_REPORT.md).85/85 global,95/95 facultatif et Condition qualitative restent inchangés. Aucun merge ni P6 avant verdict humain.
+
+
+## P5 human closure — advance to P6 — 2026-10-05
+
+Antoine explicitly closes P5 as **sufficiently validated to advance**.
+
+What P5 proved:
+- one fossil-preparation session can be understood and completed end-to-end;
+- the compact HUD communicates the core job clearly enough;
+- museum standard at85/85 gives a clear stopping point;
+- optional95/95 Fine Preparation provides a lightweight reason to continue;
+- qualitative Condition gives the player a reason to work carefully without becoming another completion bar;
+- Archive / Keep Cleaning establishes a complete session ending.
+
+Known limitations are accepted and deferred rather than blocking P6:
+- Cleanliness is measured over currently exposed Bone, so revealing new dirty Bone can lower the displayed cleanliness percentage; this is logical but may need better communication/presentation later.
+- The hidden-cluster coverage guard is still not a perfect proxy for human visual completeness; some visibly missing anatomy can still remain while archive is allowed. Do not spend more P5 time tailoring B-17-specific completion logic.
+- Final in-matrix vs extraction vs mounted-skeleton/hybrid destination remains a Macro Game Design question.
+- P5 UI is intentionally greybox; visual quality is now P6's responsibility.
+
+Fragments/Forceps remain dormant historical experiments, not part of the active P5 player loop.
+
+Decision: stop P5 iteration here, merge PR #8, then open **P6A — Visual Direction / Production Spike**.
