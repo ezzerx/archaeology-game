@@ -4,6 +4,7 @@ Le contexte du projet voyage avec ce dépôt. Le Brain personnel conserve unique
 
 ## À lire à la reprise
 
+0. [ORCHESTRATION_HANDOFF](../ORCHESTRATION_HANDOFF.md) — mental model produit et protocole de reprise
 1. [AGENTS.md](../../AGENTS.md)
 2. [status.md](status.md)
 3. [decisions.md](decisions.md)
