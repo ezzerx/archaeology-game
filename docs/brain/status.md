@@ -299,3 +299,11 @@ Carte unique, standard85 % dès le départ, deux barres, Condition Excellent/Goo
 Vérifié :2 055 contrôles fonctionnels,77 graphiques,26 scénarios/104 contrôles perf, zéro échec.239,707–239,869 FPS ; minimum1s238,847 ; pire frame11,406ms. Cap240 / physique60Hz conservés. `project.godot` préexistant reste hors commits.
 
 **Prochaine action : jouer librement depuis reset, puis neuf questions du rapport courant. STOP ; P5 non validé humainement, PR #8 DRAFT, aucun merge ni P6.**
+
+### P5 final coverage experiment — hidden cluster
+
+Current 65%-per-component coverage guard is rejected by human review: archive can still unlock while a clearly visible lower-leg section remains buried.
+
+Next corrective build should keep the current minimal HUD,85/85 museum standard,95/95 Fine Preparation and qualitative Condition, but replace the component guard with a cached connected-hidden-Bone cluster guard. Start calibration around2–3% of total main-skeleton Bone cells; document the final centralized threshold and fixture evidence.
+
+PR #8 remains DRAFT. No additional P5 features or UI redesign. After implementation, perform one final clean human retest before deciding whether P5 is complete.
