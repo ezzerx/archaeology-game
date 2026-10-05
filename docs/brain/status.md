@@ -2,7 +2,7 @@
 
 - Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 validé et mergé ; P5 Complete Session Loop / UI & Progression livré pour test humain ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
+- Phase : **préproduction — P4 validé et mergé ; P5 non validé après test humain1, correction livrée pour retest ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 actif : `prototype/p5-loop-progression`, PR #8 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -206,7 +206,7 @@ Première stratégie P6 pour la lisibilité : **tester uniquement la couleur** d
 
 Ces sujets ne rouvrent pas P4 maintenant. S'ils restent importants après P5/P6, ils recevront une **phase dédiée de polish gameplay/excavation avec un nouveau nom (TBD), pas “P4.2”**.
 
-## P5 — Complete Session Loop / UI & Progression livré, test humain attendu ▶
+## P5 — Livraison initiale Complete Session Loop / UI & Progression (historique)
 
 Source de vérité : [P5_BRIEF](../dev/P5_BRIEF.md).
 
@@ -224,7 +224,19 @@ Le feel P4 et les quatre ressources outils restent verrouillés. Modification lo
 
 **Prochaine action : une session humaine complète en huit étapes, surtout Keep Cleaning.** Le fonctionnement technique est vérifié ; compréhension, agrément du transfert Forceps et envie de poursuivre restent à valider. **STOP après livraison : PR #8 DRAFT, aucun merge ni P6.**
 
-## Watchpoints techniques
+## P5 — Correction humaine1 livrée pour retest
+
+Le premier test a révélé une confusion entre mission requise et qualité100 %, des panneaux obstructifs, une récupération peu naturelle et une archive trop administrative. **Son Keep Cleaning n'est pas un signal produit exploitable.** [Brief correctif](../dev/P5_HUMAN_CORRECTION_BRIEF.md) et [rapport courant](../dev/P5_CORRECTION_REPORT.md) prévalent sur la livraison initiale ci-dessus.
+
+- Museum Request seul obligatoire ; sous-objectifs terminés également verts/résumés ; état persistant Request complete / Ready to archive / Further work optional. Archive accessible dans ce panneau. Dossier explicitement informatif/optionnel ; panneaux224 px dans les marges à vue d'ensemble.
+- Étoiles par composant à **95 % exposé ET95 % propre**, persistantes, éclat doré et notice uniques. Prepared80/80 conservé ; aucune autorité sur Condition, mission ou archive. Zéro étoile n'empêche rien ;100 % n'est pas requis.
+- Fragments rapprochés de la mâchoire/bassin, notice unique à10 % réellement exposé. READY90 %+couronne inchangé ; exactement deux, totaux anatomiques exacts. Plateau3D fixe sur le bureau ; dépôt sur son fond intérieur réel, meshes visibles dans les compartiments. Home restaure le plateau si le zoom l'a sorti du cadre, sans recadrage automatique.
+- Archive courte : confirmation visuelle/sonore discrète, identité, demande accomplie, fragments/Condition finale, qualité optionnelle et remerciement. Un seul bouton Prepare Another Block ; valeurs détaillées conservées en F1, snapshots toujours séparés.
+- **2 117 checks fonctionnels** (1 895 historiques +184 P5 +38 correctifs), **79 graphiques**, **22 scénarios de performance /70 checks**, zéro échec.239,70–239,88 FPS, minimum1 s239,01, pire frame11,426 ms. Cap240/physique60 ; ressources et géologie P4 inchangées. `project.godot` préexistant toujours hors commits.
+
+**Prochaine action : retest sans coordonnées ni consigne de continuer.** Distinguer plaisir/maîtrise optionnelle de confusion ; tester aussi confort du plateau depuis le zoom et satisfaction de l'archive. P5 reste non validé humainement. **STOP, PR #8 DRAFT ; aucun merge/P6.**
+
+## Watchpoints techniques courants
 
 - grille relief dense (~1,31 M triangles) ;
 - upload RF complet quand dirty ;
@@ -235,7 +247,7 @@ Le feel P4 et les quatre ressources outils restent verrouillés. Modification lo
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 livré, test humain attendu** → P6 Art Pass (non autorisé) → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 corrigé, retest humain attendu** → P6 Art Pass (non autorisé) → P7 Tuning → V0.1.
 
 ## Precision Pick — addendum humain confirmé, 2026-10-04
 

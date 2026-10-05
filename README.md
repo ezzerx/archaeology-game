@@ -2,7 +2,9 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P4 validé et mergé ; session complète P5 livrée pour test humain, PR #8 DRAFT.**
+**Statut : préproduction — P4 validé et mergé ; correctif P5 livré pour retest humain, PR #8 DRAFT.**
+
+**Après le premier test humain : P5 non validé, correctif livré pour retest.** Demande requise distincte de la qualité optionnelle, étoiles95/95, fragments voisins du spécimen, plateau physique et archive courte/positive : [rapport correctif courant](docs/dev/P5_CORRECTION_REPORT.md). Choisir librement Keep Cleaning ou Archive ;100 % n'est pas nécessaire. Au zoom, Home retrouve le plateau fixé sur le bureau.
 Contrat courant : [brief P5](docs/dev/P5_BRIEF.md), [rapport et checklist](docs/dev/P5_REPORT.md), [Brain du dépôt](docs/brain/status.md). Aucun merge ni P6 avant nouvelle autorisation.
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 

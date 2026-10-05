@@ -505,3 +505,13 @@ Antoine valide comme **base à tester** la variante A du futur écran d'arrivage
 - fiche scientifique / clipboard concise pour les informations de provenance, période, matrice probable, difficulté et notes du conservateur.
 
 Aucun avatar contrôlable ni déplacement 3D pour aller toucher les caisses. La salle doit rester un hub de choix court, lisible et diégétique, puis mener à une phase d'ouverture de caisse et enfin à la préparation.
+
+## P5 — Retour humain1 et correction autorisée, 2026-10-05
+
+**Verdict confirmé : P5 non validé.** L'ambiguïté mission/qualité100 % empêche d'interpréter le premier Keep Cleaning comme une envie libre de poursuivre. Antoine autorise une correction ciblée : hiérarchie requise/optionnelle, marges UI, fragments naturellement voisins du spécimen, plateau physique, préparation fine95/95 et archive satisfaisante. **Préférence produit confirmée : l'archive doit être une conclusion courte, claire et émotionnellement positive du travail pour le musée, pas un rapport administratif/PDF.** Aucun P6 ni retuning P4.
+
+Choix livrés, à retester humainement : demande de gauche seule autorité d'archive ; dossier explicitement optionnel ; étoiles persistantes95/95 avec éclat/notice uniques et aucun effet sur Condition/mission ; découverte d'un fragment à10 % d'exposition réelle. Les fragments sont près de la mâchoire et du bassin sans changer les totaux anatomiques. Le plateau est un objet3D fixe ; la cible est son fond intérieur, pas son rectangle écran. Home retrouve le bureau quand le zoom sort le plateau du cadre ; cette friction éventuelle doit être évaluée au retest.
+
+L'archive conserve les valeurs finales, affiche identité/demande accomplie/fragments/Condition/qualité optionnelle et remercie brièvement le joueur, avec une confirmation douce. Les écarts détaillés restent F1. Un parcours sans étoile reste une réussite complète de la demande. Le protocole laisse **choisir librement** Archive ou Keep Cleaning ; aucune consigne de continuer avant de relever le choix.
+
+Leçons vérifiées : les sous-lignes d'un objectif terminé doivent porter le même statut visuel que sa coche ; les contrôles de layout doivent inclure l'état Keep Cleaning où le bouton Archive apparaît, sinon celui-ci peut masquer le compteur du plateau. Attendre la fin du bref fondu pour la capture finale d'archive, sans l'exclure du benchmark. L'oracle entièrement révélé/nettoyé atteint100 % ; la cause des98–99 % de la session humaine reste non localisée faute de snapshot de ce terrain. Rapport et retest : [P5_CORRECTION_REPORT](../dev/P5_CORRECTION_REPORT.md).

@@ -1,0 +1,34 @@
+{
+	"checks": 184,
+	"component_totals": [
+		0,
+		7756,
+		7243,
+		10771,
+		6520
+	],
+	"failures": 0,
+	"fragment_0": {
+		"baseline_impacts": 36,
+		"cells": 378,
+		"center": "(274.5, 295.5)",
+		"collar": 380
+	},
+	"fragment_1": {
+		"baseline_impacts": 22,
+		"cells": 386,
+		"center": "(652.5, 344.5)",
+		"collar": 388
+	},
+	"metrics": {
+		"additional_tool_actions_after_completion": 2,
+		"cleanliness_at_archive": 99.9999987910839,
+		"cleanliness_at_completion": 16.168930642161,
+		"condition_at_archive": 97.0,
+		"condition_at_completion": 100.0,
+		"exposure_at_archive": 100.0,
+		"exposure_at_completion": 90.6348714772375,
+		"keep_cleaning_chosen": true,
+		"time_after_completion": 0.122873
+	}
+}

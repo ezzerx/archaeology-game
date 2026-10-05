@@ -2,6 +2,8 @@
 
 **Status:** Prototype specification  
 
+**Correctif P5 courant après test humain1 — 2026-10-05 :** [brief](dev/P5_HUMAN_CORRECTION_BRIEF.md) et [rapport](dev/P5_CORRECTION_REPORT.md) prévalent pour l'UI/récupération. Demande requise seule autorité d'archive ; qualité95/95 étoilée facultative, sans100 % obligatoire. Les deux fragments sont près de la mâchoire/bassin, détectés à10 % exposé puis READY90 %+clearance. Le plateau est physique sur la table (Home pour le retrouver au zoom). Archive = conclusion courte et positive du travail pour le musée ; snapshots/F1 conservés. Aucun retuning P4/P6. Le premier Keep Cleaning n'est pas interprétable à cause de l'ambiguïté initiale ; nouveau test libre requis.
+
 > **Current canon / source precedence — 2026-10-05:** this file is the foundational V0.1 specification and intentionally preserves historical sections. When a later phase conflicts with text below, use Antoine’s latest explicit decision, then the active phase brief/report, then the repository Brain. Current active work is P5 on `prototype/p5-loop-progression` / PR #8; read `docs/ORCHESTRATION_HANDOFF.md`, `docs/dev/P5_BRIEF.md` and `docs/dev/P5_REPORT.md`. In particular, old references to three tools, automatic fragment recovery, Soil persistent dust and `Restart Specimen` are superseded.
 
 **Project phase:** Pre-production  

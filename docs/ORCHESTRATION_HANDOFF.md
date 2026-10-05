@@ -48,11 +48,12 @@ PR:
 **#8 — Complete session loop, Forceps & archive flow**
 
 Current technical HEAD at this audit:
-`8b83f2f8a3e9cd1edf54bdfad2661c6425f88fc0`
+`27550255d4010163f8765c344781b167c553b164` (corrective implementation; documentation follows)
 
-P5 has already been implemented and automated/graphical/performance checks are green. It is waiting for Antoine’s **single end-to-end human session**.
+The first human test did **not** validate P5: required work and optional quality were confused, so its Keep Cleaning behavior is not a valid product signal. The authorized correction is now technically delivered: compact margin panels, request-only archive authority, optional95/95 stars, naturally adjacent fragments, a physical desk tray and a short positive archive closure. Automated/graphical/performance checks are green. A **new free-choice human retest** is required; never tell the player to keep cleaning before observing their decision.
 
 Read:
+0. `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md` and `docs/dev/P5_CORRECTION_REPORT.md` (current correction)
 1. `docs/dev/P5_BRIEF.md`
 2. `docs/dev/P5_REPORT.md`
 3. PR #8

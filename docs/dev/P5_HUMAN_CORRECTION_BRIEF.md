@@ -178,6 +178,12 @@ Do not add:
 - exact-100% requirement;
 - new currency/rewards.
 
+## Archive closure — explicit product direction, 2026-10-05
+
+The corrective pass also replaces the administrative archive report with a short, positive museum-job closure: a centered greybox confirmation, specimen identity, required work fulfilled, optional preparation quality, fragments and Condition, followed by one Prepare Another Block CTA. A subtle confirmation sound / brief stamp-like entrance is permitted. No dense statistics or final-art treatment; detailed completion/archive metrics remain in F1. User wording: “short, clean, emotionally positive closure.”
+
+Implementation and corrected retest: [P5_CORRECTION_REPORT](P5_CORRECTION_REPORT.md).
+
 ## Gate
 
 P5 remains DRAFT / unmerged until Antoine retests this corrected flow.

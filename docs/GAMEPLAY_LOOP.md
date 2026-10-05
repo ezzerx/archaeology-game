@@ -2,6 +2,8 @@
 
 ## Canon actuel — 2026-10-05
 
+**Correction P5 après test humain1** : le Museum Request de gauche est seul obligatoire ; le dossier décrit la qualité optionnelle. Prepared80/80 reste, avec étoile persistante à95 % exposé ET95 % propre, sans exigence de100 %. Fragments découverts près des os puis déposés avec Forceps dans un plateau3D fixe sur le bureau. Archive courte et positive, valeurs finales et un seul CTA ; détails/métriques F1. [Rapport correctif et retest libre](dev/P5_CORRECTION_REPORT.md). P5 n'est pas validé humainement ; aucun P6.
+
 Le joueur est préparateur/restaurateur dans un musée d'histoire naturelle. La boucle prototype actuelle est :
 
 > **bloc confié → excavation/préparation → découverte/classification → récupération manuelle des fragments → Preparation Complete → Keep Cleaning ou Archive Specimen → prochain bloc**

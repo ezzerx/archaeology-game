@@ -2,6 +2,8 @@
 
 **Livré le 2026-10-05 pour test humain.** Branche `prototype/p5-loop-progression` ; [PR #8 DRAFT](https://github.com/ezzerx/archaeology-game/pull/8). Aucun merge ni P6. Source de vérité : [P5_BRIEF](P5_BRIEF.md).
 
+**Mise à jour après test humain : P5 non validé.** Le [rapport correctif courant](P5_CORRECTION_REPORT.md) remplace les descriptions initiales de disposition UI, plateau2D, emplacements des fragments et archive ci-dessous. Les preuves initiales restent conservées comme historique.
+
 Base documentaire : `main@b2a32c8ae97c8fec2c8a583c405ac9274ef566af` ; entrée de branche `eec9569676e0b6a837f418faa492e9232777bea2`. P4 clôturé humainement et mergé via PR #7 (`bae4ee64268dd6270afb9f0011c316c45c57d251`). La modification locale préexistante de `project.godot` est conservée hors commits ; physique60 Hz vérifiée à l'exécution.
 
 Commits de code : **`03f84c1`** (modèle, film agrégé, fragments) puis **`8f34880933e972c182d66c2364f3f1a8e8b7583f`** (interaction, UI, flux et tests). Le commit documentaire suivant conserve ce code et ses preuves.
