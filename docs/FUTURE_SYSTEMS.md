@@ -41,6 +41,28 @@ The system should produce blocks that are:
 
 The player should learn to identify materials and choose tools, not learn a fixed timer/depth script.
 
+### Block silhouette / prepared-block identity — direction to test
+
+Beyond internal stratigraphy, future specimens should test **different outer block/jacket silhouettes** so every preparation does not begin from the same perfect rectangle. Preferred first approach: preserve a readable/controlled work surface and vary the visible outer mass — compact, elongated, chipped, asymmetric, plaster-jacketed, etc. This is a direction to prototype, not a requirement to move immediately to fully free-form excavation geometry.
+
+The goal is identity and anticipation, not extra friction.
+
+### Soil / loose-overburden redesign — preferred hypothesis to test
+
+The current thick structural Soil layer is considered provisional. A preferred future experiment is to reinterpret Soil as a **thin loose dirt / overburden layer sitting on top of the real matrix**, rather than a deep material the player excavates for several centimeters.
+
+Target tactile sequence:
+
+> **brush away loose surface dirt → reveal the dirty contact surface of Clay/Sandstone → switch to Chisel/Pick for structural excavation**
+
+The visual **contact patina** remains after the loose surplus is removed, so the newly uncovered matrix initially looks weathered/dirty; cutting into it reveals its fresher interior color. This creates three readable states:
+
+1. loose surface dirt / overburden — Brush;
+2. contact patina on the matrix — visual surface history, material still identifiable;
+3. fresh Clay/Sandstone interior — structural excavation.
+
+This hypothesis should be tested in a future excavation-polish pass, not pulled into P5. If Soil becomes thin, verticality must remain interesting through matrix geometry, Clay/Sandstone distribution and fossil burial rather than relying on thick Soil depth.
+
 ### When to prototype
 
 **Decision, 2026-10-04:** prototype the **deterministic macro-verticality foundation** in P4-V1, because layer thickness and fossil burial directly change core excavation. One authored B-17 block, broad smooth interfaces and a shared burial field; identical every launch/reset. [Brief](dev/P4V_BRIEF.md) · [Report](dev/P4V_REPORT.md).
@@ -107,6 +129,8 @@ Design intent:
 > **choose crate → anticipate → open → reveal block/dossier → prepare specimen**
 
 The rarity/specialness signal exists to create anticipation and prioritization, not to support paid loot-box mechanics. Core collection progress must remain targetable and fair.
+
+Crate visual identity is also a direction to explore: different markings, seals, reinforcement, labels, wear, museum handling tags or presentation cues may communicate provenance / rarity / exceptional status before opening. Exact crate shapes are not a priority; **identity through visual treatment** is the stronger current direction.
 
 ## 5. Museum as visible completion / permanent memory — confirmed macro-loop direction
 
