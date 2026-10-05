@@ -225,6 +225,14 @@ Already canonized for P6:
 - Target macro loop: **crate queue → anticipation/opening → preparation → archive → visible museum update → next crate**.
 
 
+### Preferred future exploration directions
+
+These are strong current hypotheses, not final implementations:
+
+- **Crate identity > crate geometry:** use labels, seals, reinforcement, wear and special handling cues to signal provenance/rarity/exceptional status; different crate shapes are optional and low priority.
+- **Prepared-block silhouette variation:** test visually different block/jacket silhouettes while keeping preparation readable; avoid jumping immediately to unconstrained free-form geometry.
+- **Soil redesign:** preferred hypothesis is a thin removable loose-overburden/dirt layer rather than deep Soil. Brush reveals a dirty/contact-patinated Clay/Sandstone surface; structural excavation then reveals fresh matrix interior. If adopted, preserve verticality through matrix/fossil depth rather than thick Soil.
+
 Do not pull these into P5/P6 without explicit authorization:
 
 - seeded/controlled variable excavation blocks;
