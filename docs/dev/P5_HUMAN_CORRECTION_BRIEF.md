@@ -195,3 +195,73 @@ Success means:
 - fragment recovery is understandable and tactile;
 - high-quality preparation has a satisfying lightweight payoff;
 - Keep Cleaning behavior can finally be interpreted cleanly.
+
+
+## Human test 2 — simplify P5 to the core session — 2026-10-05
+
+The second human review shows that the previous correction still over-specifies the session. P5 is now simplified aggressively.
+
+### New P5 product target
+
+P5 must prove only this:
+
+> **Can a player understand, complete and end one fossil-preparation session without explanation?**
+
+The player-facing goal becomes one compact task:
+
+> **Prepare the specimen**
+> - Reveal at least 90% of the skeleton
+> - Clean at least 90% of the revealed Bone
+
+No other requirement gates completion.
+
+### Remove from P5 player flow
+
+- Remove the two recoverable fragments from the P5 goal.
+- Remove Forceps [5] from the normal P5 tool flow.
+- Remove the fragment tray / fragment counter from the P5 UI.
+- Remove component-by-component stars / fine-preparation goals from the normal UI.
+- Remove the detailed component state list from the normal UI.
+- Do not present Condition as another goal; keep it in debug / final summary if useful.
+- Classification may still progress internally and/or appear as a lightweight one-line discovery update, but must not compete with the preparation goal.
+
+The fragment/Forceps work is retained only as historical experiment code/documentation unless removal is technically cheaper/cleaner. It is **not part of the P5 validation gate** and should not appear to the player in the corrected P5 test.
+
+### Minimal UI target
+
+Persistent player-facing information should be approximately:
+
+> **PREPARE SPECIMEN B-17**
+> Reveal skeleton   56 / 90%
+> Clean fossil       3 / 90%
+
+Plus the four established excavation tools.
+
+When both thresholds are met:
+
+> **✓ Specimen prepared**
+> Ready to archive.
+> Further cleaning is optional.
+
+Offer:
+- Archive Specimen
+- Keep Cleaning
+
+Exact 100% is never required.
+
+### P5 completion gate
+
+P5 is human-valid when a fresh player can, without reading a brief or using debug information:
+
+1. immediately understand that the job is to reveal and clean the fossil;
+2. reach the 90/90 preparation threshold through the normal P4 tool grammar;
+3. understand clearly that the required work is finished;
+4. freely choose Archive or Keep Cleaning without wondering whether hidden requirements remain;
+5. archive and reach a clear end-of-session state;
+6. start/reset another block successfully.
+
+P5 does **not** need final UI art, museum meta, extraction/mounting logic, fragments, collection progression, crates, or full classification UX.
+
+P6 owns visual identity / beautiful UI. For P5, **ugly is acceptable; confusing is not**.
+
+The final question of whether finished fossils are displayed in matrix, fully extracted, mounted as skeleton components, or handled by a hybrid system is deferred to the Macro Game Design workshop.
