@@ -39,7 +39,7 @@ Merged milestones:
 
 P4 closure merge: PR #7 → `bae4ee64268dd6270afb9f0011c316c45c57d251`.
 
-### P5 is ACTIVE and technically delivered, but NOT human-validated
+### P5 is CLOSED and human-validated; P6A is NEXT
 
 Active branch:
 `prototype/p5-loop-progression`
@@ -53,9 +53,19 @@ The latest human review supersedes the original three objectives and the first c
 
 Read the final Human test5 section of `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md`, the hidden-cluster report, PR #8 and `docs/brain/status.md`. Original P5 and first-correction reports are historical.
 
-**Do not merge P5 and do not start P6 until Antoine explicitly validates P5.**
+**Antoine has explicitly validated P5 sufficiently to advance. Merge/canonize P5, then P6A becomes the active phase.**
 
 A new orchestrator must not infer project state from `main` code alone while an active phase lives on a draft PR.
+
+### P5 closure watchpoints
+
+Accepted/deferred rather than blockers:
+- Cleanliness can decrease when newly exposed Bone adds dirty cells to the current exposed-Bone denominator.
+- Hidden-cluster coverage is not a perfect human-visual-completeness oracle; do not keep tailoring B-17 completion logic in P5.
+- Final in-matrix / extraction / mounted-skeleton / hybrid destination remains a Macro Game Design question.
+- P5 UI is intentionally greybox. P6 owns visual identity.
+
+P5 active player loop at closure: one compact card, four tools,85/85 museum standard, optional95/95 Fine Preparation, qualitative Condition, Archive / Keep Cleaning. Fragments/Forceps are dormant historical experiments.
 
 ## 4. Source precedence
 
