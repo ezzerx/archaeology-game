@@ -1,5 +1,7 @@
 # P5 — Complete Session Loop / UI & Progression
 
+> **Correction courante :** [garde anatomique65 % et Condition qualitative](P5_COVERAGE_CARE_REPORT.md), après le retour humain4. Les résultats ci-dessous restent ceux de cette ancienne livraison.
+
 > **Historique — supersédé pour le parcours actif.** La dernière décision85/95 du [brief humain](P5_HUMAN_CORRECTION_BRIEF.md) et [P5_SIMPLIFICATION_REPORT](P5_SIMPLIFICATION_REPORT.md) font autorité : carte unique, quatre outils, étoile globale facultative ; aucun fragment/dossier droit. Les chiffres et captures ci-dessous décrivent cette ancienne livraison.
 
 **Livré le 2026-10-05 pour test humain.** Branche `prototype/p5-loop-progression` ; [PR #8 DRAFT](https://github.com/ezzerx/archaeology-game/pull/8). Aucun merge ni P6. Source de vérité : [P5_BRIEF](P5_BRIEF.md).

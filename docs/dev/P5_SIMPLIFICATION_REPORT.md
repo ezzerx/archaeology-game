@@ -1,5 +1,7 @@
 # P5 — Session simplifiée, carte unique et85/95
 
+> **Correction courante :** [garde anatomique65 % et Condition qualitative](P5_COVERAGE_CARE_REPORT.md), après le retour humain4. Les résultats ci-dessous restent ceux de cette ancienne livraison.
+
 2026-10-05 · `prototype/p5-loop-progression` · [PR #8 DRAFT](https://github.com/ezzerx/archaeology-game/pull/8).
 
 **Livré pour retest ; P5 toujours non validé humainement. Aucun merge ni P6.**

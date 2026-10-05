@@ -1,5 +1,7 @@
 # P5 — Correction après le premier test humain
 
+> **Correction courante :** [garde anatomique65 % et Condition qualitative](P5_COVERAGE_CARE_REPORT.md), après le retour humain4. Les résultats ci-dessous restent ceux de cette ancienne livraison.
+
 > **Historique — supersédé pour le parcours actif.** La dernière décision85/95 du [brief humain](P5_HUMAN_CORRECTION_BRIEF.md) et [P5_SIMPLIFICATION_REPORT](P5_SIMPLIFICATION_REPORT.md) font autorité : carte unique, quatre outils, étoile globale facultative ; aucun fragment/dossier droit. Les chiffres et captures ci-dessous décrivent cette ancienne livraison.
 
 2026-10-05 · `prototype/p5-loop-progression` · PR #8 **DRAFT** · aucun merge ni P6.
@@ -84,3 +86,8 @@ Vérifications ciblées déjà réalisées : seuils exacts95/95, étoile unique/
 7. **Archive et suite.** La carte donne-t-elle une conclusion courte, positive et satisfaisante au travail pour le musée ? Le son reste-t-il discret ? Les valeurs finales sont-elles cohérentes sans donner l'impression d'un rapport administratif ? Prepare Another Block doit ramener le même B-17 vierge ; ce retour est volontaire pour P5.
 
 **STOP pour ce retest. P5 reste non validé humainement ; PR #8 DRAFT. Aucun merge, P6, crate intake, galerie, refonte Soil ou retuning P4.**
+
+
+## Livraison Human test4 — 2026-10-05
+
+Code et tests : `77fd61b`. Garde minimale65 % sur les quatre composants ajoutée au85/85 global ; Condition qualitative et notices de dégradation ; étoile95/95 indépendante.2 055 contrôles fonctionnels,77 graphiques,104 contrôles perf sur26 scénarios : zéro échec.239,707–239,869 FPS. Détails, limites et neuf questions dans le [rapport courant](P5_COVERAGE_CARE_REPORT.md). STOP pour retest ; aucun merge/P6.

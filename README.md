@@ -4,8 +4,8 @@
 
 **Statut : préproduction — P4 validé et mergé ; correctif P5 livré pour retest humain, PR #8 DRAFT.**
 
-**P5 simplifié — direction humaine du 2026-10-05 :** une carte compacte en haut à gauche, deux métriques globales. **Exposure ≥85 % ET Cleanliness ≥85 %** autorisent Archive ; **≥95 % ET ≥95 %** donnent une seule étoile globale Fine Preparation, facultative et persistante, avec un bref éclat/son discret. Aucun bonus à100 %. Quatre outils ; aucun fragment, Forceps, plateau, dossier droit ou checklist anatomique dans le parcours normal. Classification transitoire, Condition et détails F1. Archive courte : Specimen archived / Museum records updated / étoile seulement si acquise / Prepare Another Block. Baselines P4 inchangées. **P5 reste non validé humainement ; PR #8 DRAFT, aucun merge ni P6.**
-Rapport, preuves et six questions de retest : [P5_SIMPLIFICATION_REPORT](docs/dev/P5_SIMPLIFICATION_REPORT.md).
+**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET chacun des quatre composants majeurs révélé à≥65 %. Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. [Rapport courant](docs/dev/P5_COVERAGE_CARE_REPORT.md). **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
+Rapport, preuves et neuf questions de retest : [P5_COVERAGE_CARE_REPORT](docs/dev/P5_COVERAGE_CARE_REPORT.md).
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression

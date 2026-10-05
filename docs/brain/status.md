@@ -2,7 +2,7 @@
 
 - Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 validé et mergé ; P5 simplifié85/95 livré pour retest après les derniers retours, toujours non validé humainement ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
+- Phase : **préproduction — P4 validé et mergé ; P5 85/95 + garde65 % + Condition qualitative livré pour retest, toujours non validé humainement ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 actif : `prototype/p5-loop-progression`, PR #8 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -11,7 +11,7 @@
 - Merge P3 : `10a12379ab1db629380ac9697e5597aeb16a373b`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.
 
-**Reprise courante :** [P5_SIMPLIFICATION_REPORT](../dev/P5_SIMPLIFICATION_REPORT.md), dernière section85/95 du brief humain ; lancer/jouer puis six questions, sans briefing technique.
+**Reprise courante :** [P5_COVERAGE_CARE_REPORT](../dev/P5_COVERAGE_CARE_REPORT.md), Human test4 du brief ; lancer/jouer puis neuf questions, sans briefing technique.
 
 ## P0 — Validé ✅
 
@@ -286,4 +286,16 @@ Next corrective build is now defined: 85/85 global Exposure/Cleanliness plus an 
 
 HUD remains one compact preparation card plus the four-tool toolbar. No right dossier, fragments, Forceps, tray, component stars or detailed component checklist in the P5 validation flow.
 
-PR #8 remains DRAFT. Next action: implement this target, rerun regressions/performance, then perform one clean human retest without brief/debug guidance. No P6 until explicit validation.
+PR #8 remains DRAFT. Target implemented and verified below; next action is one clean human retest without brief/debug guidance. No P6 until explicit validation.
+
+### Livraison finale P5 — couverture anatomique et soin — 2026-10-05
+
+Code et tests : `77fd61b`.
+
+[Rapport courant et neuf questions](../dev/P5_COVERAGE_CARE_REPORT.md). Archive requiert85/85 global et chacun des quatre composants≥65 % exposé. Seuil prototype retenu après comparaison50/60/65/70 sur B-17 :50 laissait tout le bas de patte enfoui. La garde vérifie quatre compteurs seulement après exposition ; elle ne garantit pas chaque sous-os. Message unique si elle bloque85/85.
+
+Carte unique, standard85 % dès le départ, deux barres, Condition Excellent/Good/Fair/Damaged et première dégradation de chaque palier signalée une fois. Readiness indique que poursuivre est facultatif ;95/95 reste une étoile globale indépendante de Condition. Archive courte avec palier final. Aucun changement P4 ni activation des fragments.
+
+Vérifié :2 055 contrôles fonctionnels,77 graphiques,26 scénarios/104 contrôles perf, zéro échec.239,707–239,869 FPS ; minimum1s238,847 ; pire frame11,406ms. Cap240 / physique60Hz conservés. `project.godot` préexistant reste hors commits.
+
+**Prochaine action : jouer librement depuis reset, puis neuf questions du rapport courant. STOP ; P5 non validé humainement, PR #8 DRAFT, aucun merge ni P6.**

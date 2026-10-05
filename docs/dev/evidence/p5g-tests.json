@@ -1,0 +1,42 @@
+{
+	"boundary_events": [
+		2,
+		1
+	],
+	"checks": 121,
+	"coverage": {
+		"allowed": {
+			"classification": "Likely small theropod",
+			"cleanliness": 99.9999987636082,
+			"condition": 100.0,
+			"condition_tier": "Excellent",
+			"coverage_passed": true,
+			"exposure": 85.8655930628678,
+			"fine_preparation": false
+		},
+		"blocked": {
+			"classification": "Likely small theropod",
+			"cleanliness": 99.9999987904815,
+			"condition": 100.0,
+			"condition_tier": "Excellent",
+			"coverage_passed": false,
+			"exposure": 85.8655930628678,
+			"fine_preparation": false
+		},
+		"threshold": 65.0
+	},
+	"failures": 0,
+	"metrics": {
+		"additional_tool_actions_after_completion": 2,
+		"cleanliness_at_archive": 99.9999987992414,
+		"cleanliness_at_completion": 97.6739149300178,
+		"condition_at_archive": 97.0,
+		"condition_at_completion": 100.0,
+		"exposure_at_archive": 96.0080520284918,
+		"exposure_at_completion": 86.0080520284918,
+		"fine_at_archive": true,
+		"fine_at_completion": false,
+		"keep_cleaning_chosen": true,
+		"time_after_completion": 0.121723
+	}
+}

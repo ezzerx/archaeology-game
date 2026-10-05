@@ -1,6 +1,6 @@
 # P5 Human Correction Brief — Clarity, Optional Mastery & Physical Fragment Recovery
 
-> **Current target: Human test3 /85→95 at the end of this document.** It supersedes the older three-objective and90/90 sections below. Current delivery and retest: [P5_SIMPLIFICATION_REPORT](P5_SIMPLIFICATION_REPORT.md). Archive contains only a short positive confirmation, the global star if earned, and Prepare Another Block; all detailed metrics remain in F1.
+> **Current target: Human test4 /85→95 + coverage guard + qualitative Condition at the end of this document.** It supersedes prior P5 sections. Current delivery: [P5_COVERAGE_CARE_REPORT](P5_COVERAGE_CARE_REPORT.md).
 
 **Status:** authorized corrective pass after first human end-to-end test  
 **Date:** 2026-10-05  

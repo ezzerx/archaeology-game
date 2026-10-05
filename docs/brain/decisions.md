@@ -591,3 +591,11 @@ Antoine validates the next P5 design baseline:
 - Fragments/Forceps/tray and per-component stars remain outside the P5 player flow.
 
 Design intent: answer four questions with minimal UI — What do I do? Can I stop? Why might I continue? Why should I be careful?
+
+## Livraison couverture et soin — 2026-10-05
+
+La cible humaine est implémentée :85/85 global plus garde anatomique, Condition qualitative indépendante, étoile globale95/95 inchangée. Choix prototype **65 % minimum sur chacun des quatre composants**, centralisé dans PreparationRules ; les captures comparées50/60/65/70 montrent que50 laisse tout le bas de patte couvert. Ce choix demande encore validation humaine : quatre compteurs ne constituent pas une analyse de chaque sous-os ou amas contigu.
+
+La garde est invalidée uniquement par exposition, puis évaluée dans le regroupement existant ; film et dégâts seuls ne la recalculent pas. Une baisse de Condition notifie une seule fois le palier atteint, sans rafale si plusieurs seuils sont franchis. Une découverte simultanée ne remplace pas immédiatement cette notice. Reset réarme les notifications ; nettoyer ne restaure pas Condition et n'annule pas Fine Preparation.
+
+[Rapport courant](../dev/P5_COVERAGE_CARE_REPORT.md) :2 055 contrôles fonctionnels,77 graphiques,104 contrôles perf/26 scénarios, zéro échec. Les vérifications techniques ne valent pas validation produit. Retest libre en neuf questions, PR #8 DRAFT ; aucun merge/P6.
