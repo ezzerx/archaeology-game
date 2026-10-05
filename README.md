@@ -2,8 +2,8 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P4/P4-V1 validés et mergés ; micro-passe finale P4-V2 en retest humain, PR #7 DRAFT.**
-Contrat courant : [rapport P4-V2](docs/dev/P4V2_REPORT.md) et [Brain du dépôt](docs/brain/status.md). Soil sans mess persistant, micro-restes hard détachables au Brush, Matrix évacuée par engagement du Blower. Bone Film et Pick validés conservés. Aucun merge ni P5 automatique.
+**Statut : préproduction — P4 validé et mergé ; session complète P5 livrée pour test humain, PR #8 DRAFT.**
+Contrat courant : [brief P5](docs/dev/P5_BRIEF.md), [rapport et checklist](docs/dev/P5_REPORT.md), [Brain du dépôt](docs/brain/status.md). Aucun merge ni P6 avant nouvelle autorisation.
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -12,10 +12,18 @@ Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 - P1 Matière / relief ✅
 - P2 Outils ✅
 - P3 Fossile / zoom ✅
-- **P4 Game Feel ▶**
-- P5 UI / progression
+- P4 Game Feel ✅
+- **P5 Session complète / UI / progression — test humain ▶**
 - P6 Art pass
 - P7 Tuning
+
+### Jouer une session P5
+
+Ouvrir `project.godot` dans Godot4.7.2 puis **F5**. Le dossier B-17 commence à Unknown, avec trois objectifs et un plateau vide. [1] Brush prépare Soil/film, [2] Chisel la matrice, [3] Blower le mess, [4] Pick les détails, [5] Forceps les fragments : dégager leur pourtour, cliquer sur READY, glisser au plateau et relâcher.
+
+La demande se termine à crâne60 % exposé et50 % propre, squelette60 %, fragments2/2. **Keep Cleaning** permet de poursuivre ; **Archive Specimen** clôture avec les valeurs finales. **Prepare Another Block** réinitialise le même B-17 déterministe. R reset complet ; F1 debug/métriques ; molette zoom ; RMB pan ; Home vue initiale. La UI est fonctionnelle, la DA finale reste P6.
+
+Validation reproductible : `tests/check_p5.ps1 -GodotBin <chemin-vers-Godot> -Graphical`. Les tests emploient des fixtures pour réduire leur durée ; le jeu normal n’a aucun raccourci de completion.
 
 ### P3 — Fossile
 
@@ -45,7 +53,7 @@ Rapports :
 
 P4 ajoute les réactions de matière :
 
-- Soil granulaire ;
+- retrait/audio/relief Soil, sans mess persistant depuis la clôture P4 ;
 - Clay qui chip/peel ;
 - Sandstone qui fissure et casse en chunks ;
 - Chisel avec vraie sensation d'impact ;
@@ -58,13 +66,13 @@ La composition [FINAL FEEL](docs/dev/P4_FINAL_FEEL_TARGET.md) reprend le spectac
 
 **Bone audio** : une protection indépendante pour **Skull / Spine / Ribs / Hind Limb**, quatre maximum par reset, avec **une Bone Condition globale**. Toute révélation, même centrale, garde le son matériau et ne consomme aucun flag. Premier Chisel sur un centre du composant **déjà exposé avant l’impact** : petit tik, zéro dégât ; suivants sur ce composant : DING/−3. Skull → Skull → Ribs → Ribs donne **100 → 97 → 97 → 94**. Toutes les côtes partagent RIBS, toute la colonne SPINE. Reset réarme les quatre ; Pick/Brush/Blower ne consomment jamais. F1 affiche READY/USED. Baseline P4 réévaluable en P7 ; exposition et timbres historiques inchangés.
 
-**Baselines humaines persistées**, rayon / puissance / falloff : Brush **40 / 0.70 / 1.25**, Chisel **22 / 0.64 / 2.25**, Blower **60 / 0 / 1.00**, Pick **7 / 0.24 / 1.50**. **P4 human-validated baseline — tuning final deferred to P7.** Blower conserve son nettoyage 2.5 ; cadences, efficacités, génération de résidu, dégâts et fracture inchangés.
+**Baselines humaines persistées**, rayon / puissance / falloff : Brush **40 / 0.70 / 1.25**, Chisel **22 / 0.64 / 2.25**, Blower **60 / 0 / 1.00**, Pick **11 / 0.44 / 1.75**. **P4 human-validated baseline — tuning final deferred to P7.** Blower conserve son nettoyage2.5 ; Chisel4.5 Hz, Pick6 Hz. Soil n’émet aucun mess persistant ; Clay/Sandstone conservent Matrix et Dust.
 
-**[4] Precision Pick** : clic ou maintien immobile, six micro-impacts/s, rayon 7 texels, puissance 0,24, retrait rapide et précis sans grosses plaques. Zéro dégât provisoire P4, plafond osseux intact.
+**[4] Precision Pick** : clic ou maintien immobile, six micro-impacts/s, rayon11 texels, puissance0,44, falloff1,75, retrait précis sans grosses plaques. Zéro dégât provisoire P4, plafond osseux intact.
 
 **Bugfix Brush conservé** : Tip/Body statiques, douze sondes terrain maximum, aucune reconstruction de mesh pendant le jeu. Avec la baseline du lock, geste de 30 s à 1×/3× : **235–236 FPS**, proxy P95 **31 µs**. Diagnostic, tests et limites dans le [rapport P4](docs/dev/P4_REPORT.md).
 
-Ouvrir `project.godot` dans Godot 4.7.2, lancer **F5**, masquer F1 pour jouer ; aucun réglage debug préalable nécessaire. P4 Final Feel est validé et mergé. La base verticale V1.1 est jugée meilleure ; [trois vérifications du cleanup V1.2](docs/dev/P4V_REPORT.md#v12--test-humain) : interfaces propres, blocs/profondeur lisibles, agrément préservé après 5–10 minutes libres. **STOP ; PR #6 reste en brouillon, non mergée. Aucun P4-V2 ou P5 automatique.**
+P4, la verticalité V1.1 et le cleanup V1.2 sont validés humainement et mergés. Ces acquis restent verrouillés pendant P5. Les anciens rapports conservent leurs mesures historiques ; le [statut courant](docs/brain/status.md) et le brief P5 prévalent pour la prochaine action autorisée.
 
 Brief :
 
