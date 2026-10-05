@@ -231,6 +231,7 @@ These are strong current hypotheses, not final implementations:
 
 - **Crate identity > crate geometry:** use labels, seals, reinforcement, wear and special handling cues to signal provenance/rarity/exceptional status; different crate shapes are optional and low priority.
 - **Specimen Intake screen baseline:** Variant A is the preferred prototype: fixed/semi-fixed receiving-room view with several directly selectable crates, plus subtle hero-focus on the current crate and a concise scientific dossier/clipboard. No avatar navigation.
+- **Crate opening grammar:** direct mouse manipulation with a small modular set of believable actions (pull straps, flip latches, crowbar lever, lift lid, remove protection). Usually 2–3 short interactions; vary crate hardware rather than repeat one animation. Opening reveals a closed/unprepared block, never already-exposed bones.
 - **Prepared-block silhouette variation:** test visually different block/jacket silhouettes while keeping preparation readable; avoid jumping immediately to unconstrained free-form geometry.
 - **Soil redesign:** preferred hypothesis is a thin removable loose-overburden/dirt layer rather than deep Soil. Brush reveals a dirty/contact-patinated Clay/Sandstone surface; structural excavation then reveals fresh matrix interior. If adopted, preserve verticality through matrix/fossil depth rather than thick Soil.
 
