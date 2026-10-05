@@ -263,3 +263,12 @@ New validation target: one simple player-facing goal — **reveal >=90% skeleton
 P5 is intentionally greybox; P6 will make the interface beautiful/diegetic. The only P5 UI requirement is immediate comprehension.
 
 PR #8 remains DRAFT. Next action: implement this simplification, rerun regression/performance checks, then one clean human retest with no brief/debug guidance. No P6 before that gate.
+
+
+### P5 latest target — compact HUD / 85→95
+
+Latest human direction supersedes the prior 90/90-only mockup: required completion is now **85% Exposure +85% Cleanliness**, followed by one optional global **Fine Preparation ★** at **95% +95%**. Exact100% is personal only.
+
+Player-facing HUD should be reduced to a single compact top-left/left-margin preparation card plus the bottom four-tool toolbar. Remove the permanent right dossier, component list, Forceps/fragments/tray and component stars from the P5 validation flow.
+
+Next action: implement this minimal layout/threshold change on PR #8, run regression/perf, then retest from reset without briefing. P5 remains unvalidated until that human gate.
