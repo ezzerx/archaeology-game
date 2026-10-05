@@ -151,8 +151,8 @@ func _process(delta: float) -> void:
 	bone_label.text += "Contact: %s\nDamage: %s\nCap %d FPS | Physics %d Hz" % [fossil.last_bone_event,
 		fossil.last_damage_event, Engine.max_fps, Engine.physics_ticks_per_second]
 	var metrics := session.metrics()
-	bone_label.text += "\n\nP5 / %s\nCleanliness %.1f%% | Fine Preparation %s\nCoverage %s | Checks %d\nComplete %s | Keep Cleaning %s | Archived %s\nAfter completion %.1f s | Actions %d\nCompletion E/C/Q: %.1f / %.1f / %.1f\nArchive E/C/Q: %.1f / %.1f / %.1f\nSession %d us / UI %d us | Refreshes %d" % [
-		PreparationRules.CLASSIFICATIONS[session.classification_stage], block.working_map.bone_film.cleanliness_percent(), session.fine_preparation, session.coverage_passed, session.coverage_checks,
+	bone_label.text += "\n\nP5 / %s\nCleanliness %.1f%% | Fine Preparation %s\nCoverage %s | Hidden max %d | Checks %d\nComplete %s | Keep Cleaning %s | Archived %s\nAfter completion %.1f s | Actions %d\nCompletion E/C/Q: %.1f / %.1f / %.1f\nArchive E/C/Q: %.1f / %.1f / %.1f\nSession %d us / UI %d us | Refreshes %d" % [
+		PreparationRules.CLASSIFICATIONS[session.classification_stage], block.working_map.bone_film.cleanliness_percent(), session.fine_preparation, session.coverage_passed, session.largest_hidden_cluster, session.coverage_checks,
 		session.preparation_complete, session.keep_cleaning_chosen, session.archived, metrics.time_after_completion,
 		session.additional_tool_actions_after_completion, metrics.exposure_at_completion, metrics.cleanliness_at_completion, metrics.condition_at_completion,
 		metrics.exposure_at_archive, metrics.cleanliness_at_archive, metrics.condition_at_archive,

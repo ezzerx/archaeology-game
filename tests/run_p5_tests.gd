@@ -118,6 +118,7 @@ func test_boundaries() -> void:
 	var film := MeasuredFilm.new(Vector2i(16, 16))
 	source.fossil = fossil
 	source.bone_film = film
+	fossil.exposed.fill(1)
 	var state := PreparationSession.new(source)
 	var events := [0, 0]
 	state.completed.connect(func(_value: Dictionary): events[0] += 1)
@@ -175,9 +176,9 @@ func test_active_scene() -> void:
 	P5Fixture.reveal(surface, [100, 0, 0, 0]); P5Fixture.clean(surface); session.flush()
 	check(not session.fine_preparation and ui.quality_cue_count == 0, "one perfectly prepared component earns no global star")
 	main.reset_specimen()
-	P5Fixture.reveal(surface, [84, 84, 84, 84]); P5Fixture.clean(surface); session.flush()
+	P5Fixture.distributed(surface, 84); P5Fixture.clean(surface); session.flush()
 	check(not session.preparation_complete, "native full cleanliness with below85 global exposure is incomplete")
-	P5Fixture.reveal(surface, [86, 86, 86, 86]); session.flush()
+	P5Fixture.distributed(surface, 86); session.flush()
 	check(session.preparation_complete and not session.fine_preparation, "exposure can be final requirement, no fragment gate")
 	check(ui.state_label.text == "✓ Ready to archive" and ui.closure_label.text.contains("optional"), "persistent completion wording permits stopping")
 	check(ui.fine_label.visible and ui.fine_label.text.contains("95%") and ui.fine_label.text.contains("Optional") and ui.archive_button.visible and ui.keep_button.visible, "single optional hint and both actions after85")
@@ -212,7 +213,7 @@ func test_active_scene() -> void:
 	check(session.additional_tool_actions_after_completion == 0 and session.metrics().time_after_completion == 0 and not session.keep_cleaning_chosen, "Another Block clears metrics and choice")
 	check(ui.quality_cue_count == 0 and ui.archive_cue_count == 0 and not ui.archive_sound.playing and not ui.fine_sound.playing and ui.notice_label.text == "", "reset clears all cues and pending notices")
 	check(control.selected_index == 0 and main.camera.zoom_factor == 1, "Another Block resets tool and camera")
-	P5Fixture.reveal(surface, [86, 86, 86, 86]); session.flush()
+	P5Fixture.distributed(surface, 86); session.flush()
 	check(not session.preparation_complete, "native exposure alone is insufficient")
 	P5Fixture.clean(surface); session.flush()
 	check(session.preparation_complete and not session.fine_preparation and session.archive(), "native Brush completes then archives without star")
@@ -221,38 +222,67 @@ func test_active_scene() -> void:
 	check(not session.archived and not session.preparation_complete and surface.fossil.exposed_cells == 0, "R resets archived session too")
 
 func test_coverage() -> void:
-	for id in range(4):
-		var parts: Array[float] = [100.0, 100.0, 100.0, 100.0]
-		parts[id] = 64.99
-		check(not PreparationRules.coverage_passes(parts), "every major component must reach65: " + str(id))
-		parts[id] = 65
-		check(PreparationRules.coverage_passes(parts), "exact65 passes: " + str(id))
+	# Independent minimal topology: diagonal neighbors connect; row edges never wrap.
+	var field := FossilField.new(Vector2i(16, 16))
+	field.component_ids.fill(0)
+	for i in [31, 32, 49]: field.component_ids[i] = 4
+	var topology := FossilState.new(field)
+	var topology_guard := HiddenBoneCoverage.new(topology)
+	check(topology_guard.largest_cluster() == 2, "8-connectivity includes diagonals, excludes row wrapping")
+	topology.expose_cells(PackedInt32Array([32]))
+	check(topology_guard.largest_cluster() == 1, "revealed bridge splits hidden connectivity")
+	var threshold := PreparationRules.coverage_threshold(surface.fossil.field.total_cells)
+	check(threshold == 646, "native blocking threshold ceil2%=646")
 	main.reset_specimen()
-	P5Fixture.reveal_counts(surface, [7756, 7243, 10771, 1956])
-	P5Fixture.clean(surface); session.flush()
+	check(session.coverage.hidden.size() == 32290 and session.largest_hidden_cluster == -1, "reset exact hidden set, deferred unknown measurement")
+	P5Fixture.reveal(surface, [10, 0, 0, 0]); session.flush()
+	check(session.coverage_checks == 0, "no cluster traversal below85 exposure")
+	main.reset_specimen()
+	P5Fixture.reveal_except(surface, P5Fixture.foot_hidden(surface)); P5Fixture.clean(surface); session.flush()
 	var original := session.snapshot()
-	check(original.exposure >= 85 and original.cleanliness >= 85 and not session.coverage_passed, "real B17 at85.865% leaves70% of hind limb buried")
-	check(not session.preparation_complete and not session.archive() and main.session_ui.coverage_label.visible, "coverage blocks archive with one contextual line")
-	check(not main.session_ui.fine_label.visible and not main.session_ui.archive_button.visible, "blocked preparation does not advertise mastery or archive")
+	check(session.largest_hidden_cluster == 1328 and original.exposure > 95 and original.exposure < 96, "human failure: entire separate foot1328 at95.887%")
+	check(not session.preparation_complete and not session.archive() and main.session_ui.coverage_label.visible, "major hidden foot blocks archive with existing context")
+	check(session.fine_preparation, "95/95 mastery independent even while coverage blocks archive")
 	var count := session.coverage_checks
+	P5Fixture.clean(surface); surface.fossil.damage_at(surface.fossil.field.index_at_map(Vector2(252, 199)), 6); session.flush()
 	for i in range(5): session.invalidate(); session.flush()
-	check(session.coverage_checks == count, "film/condition/ordinary refresh cannot recheck coverage")
+	check(session.coverage_checks == count, "cleaning, Condition and idle refresh do not recompute")
 	main.reset_specimen()
-	# Move exactly2282 exposed cells from Skull to Limb: same global score, adequate spread.
-	P5Fixture.reveal_counts(surface, [5474, 7243, 10771, 4238])
-	P5Fixture.clean(surface); session.flush()
-	equal(session.snapshot().exposure, original.exposure, "same global exposure, different anatomical distribution")
-	check(session.coverage_passed and session.preparation_complete and session.archive(), "same score with every major part65+ allows archive")
-	evidence.coverage = {"blocked": original, "allowed": session.archive_snapshot.duplicate(true), "threshold": PreparationRules.COVERAGE_MIN_EXPOSURE}
+	P5Fixture.reveal_except(surface, P5Fixture.scattered_hidden(surface, 1328)); P5Fixture.clean(surface); session.flush()
+	equal(session.snapshot().exposure, original.exposure, "same global score distributed differently")
+	check(session.largest_hidden_cluster <= 49 and session.preparation_complete and session.archive(), "small disconnected patches never sum to major mass")
+	evidence.coverage = {"human_failure": original, "same_score_allowed": session.archive_snapshot.duplicate(true), "threshold_cells": threshold}
 	main.reset_specimen()
-	check(not session.coverage_passed and session.coverage_checks == 0 and not main.session_ui.coverage_label.visible, "reset clears guard/cache/context")
-	P5Fixture.reveal_counts(surface, [7756, 7243, 10771, 4237]); P5Fixture.clean(surface); session.flush()
-	check(not session.preparation_complete, "one native cell below limb65 is blocked despite92.9 global")
+	P5Fixture.distributed(surface, 85); P5Fixture.clean(surface); session.flush()
+	check(session.preparation_complete and not session.fine_preparation and session.archive(), "well-distributed native85% allows archive without100")
+	evidence.coverage.distributed85 = session.archive_snapshot.duplicate(true)
+	main.reset_specimen()
+	P5Fixture.reveal(surface, [100, 100, 100, 0]); P5Fixture.clean(surface); session.flush()
+	check(not session.preparation_complete and not session.archive(), "clearly incomplete hind limb blocked")
+	check(session.coverage.largest_cluster() >= 1983, "large separated shin caught without bridging gaps")
+	for size in [threshold - 1, threshold, threshold + 1]:
+		main.reset_specimen()
+		P5Fixture.reveal_except(surface, P5Fixture.connected_foot(surface, size)); P5Fixture.clean(surface); session.flush()
+		check(session.largest_hidden_cluster == size, "exact native connected fixture " + str(size))
+		check(session.coverage_passed == (size < threshold), "strict below threshold boundary " + str(size))
+	main.reset_specimen()
+	var patch := P5Fixture.connected_foot(surface, threshold)
+	P5Fixture.reveal_except(surface, patch); P5Fixture.clean(surface); session.flush()
 	var before := completion_count
-	P5Fixture.reveal_counts(surface, [7756, 7243, 10771, 4238]); session.flush()
-	check(session.preparation_complete and completion_count == before + 1, "final coverage cell triggers completion, no near100 requirement")
+	patch.resize(threshold - 1)
+	P5Fixture.reveal_except(surface, patch); session.flush()
+	check(session.preparation_complete and completion_count == before + 1, "revealing threshold cell completes exactly once")
 	session.invalidate(); session.flush()
-	check(completion_count == before + 1 and not main.session_ui.coverage_label.visible, "guard completion fires once and clears contextual blocker")
+	check(completion_count == before + 1 and not main.session_ui.coverage_label.visible, "completion latched, blocker clears")
+	main.reset_specimen()
+	check(session.coverage.hidden.size() == 32290 and session.coverage_checks == 0 and session.largest_hidden_cluster == -1, "reset restores exact initial guard state")
+	# The experimental ceilings cannot add cells to the main-Bone guard.
+	var experimental := WorkingSurface.new(surface.size, null, surface.fossil.field)
+	experimental.enable_fragments(RecoverableFragmentField.new())
+	var guard := HiddenBoneCoverage.new(experimental.fossil)
+	check(guard.hidden.size() == 32290, "experimental fragment occupancy excluded")
+	P5Fixture.reveal(experimental, [100, 100, 100, 100])
+	check(guard.largest_cluster() == 0, "unrecovered hidden fragments cannot block fully revealed main skeleton")
 
 func test_condition() -> void:
 	for pair in [[100, "Excellent"], [95, "Excellent"], [94.99, "Good"], [85, "Good"], [84.99, "Fair"], [70, "Fair"], [69.99, "Damaged"], [0, "Damaged"]]:
@@ -322,4 +352,4 @@ func run() -> void:
 	var ui_count: int = main.session_ui.refresh_count
 	for i in range(10): await process_frame
 	check(session.refresh_count == count and main.session_ui.refresh_count == ui_count, "zero idle polling or UI rebuild")
-	await finish("p5g-tests")
+	await finish("p5h-tests")

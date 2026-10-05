@@ -1,6 +1,6 @@
 class_name PreparationSession
 extends RefCounted
-## Observes committed P4 state. Coalesces signal bursts; reads four counters only.
+## Observes committed P4 state. Coalesces signal bursts; caches hidden-region coverage after exposure.
 signal changed
 signal notice(text: String)
 signal completed(snapshot: Dictionary)
@@ -16,6 +16,8 @@ var preparation_complete := false
 var archived := false
 var coverage_passed := false
 var coverage_checks := 0
+var largest_hidden_cluster := -1 # Unknown until the global exposure threshold.
+var coverage: HiddenBoneCoverage
 var condition_tier := 0
 var _coverage_dirty := true
 var _notified_condition_tiers := 0
@@ -31,6 +33,7 @@ var _pending := false
 
 func _init(source: WorkingSurface) -> void:
 	surface = source
+	coverage = HiddenBoneCoverage.new(source.fossil)
 	surface.fossil.bone_component_exposure_changed.connect(_on_exposure)
 	surface.fossil.bone_condition_changed.connect(_on_condition)
 	surface.fossil.bone_first_contact.connect(_on_discovery)
@@ -75,9 +78,10 @@ func flush() -> void:
 	for id in range(1, 5):
 		exposures.append(fossil.exposure_percent(id))
 		component_states.append(PreparationRules.component_state(exposures.back(), surface.bone_film.cleanliness_percent(id)))
-	if _coverage_dirty:
+	if _coverage_dirty and fossil.exposure_percent() >= PreparationRules.REQUIRED_EXPOSURE:
 		_coverage_dirty = false
-		coverage_passed = PreparationRules.coverage_passes(exposures)
+		largest_hidden_cluster = coverage.largest_cluster()
+		coverage_passed = largest_hidden_cluster < PreparationRules.coverage_threshold(fossil.field.total_cells)
 		coverage_checks += 1
 	var stage := PreparationRules.classification(classification_stage, fossil.exposure_percent(), exposures)
 	if stage != classification_stage:
@@ -102,7 +106,7 @@ func snapshot() -> Dictionary:
 		"exposure": surface.fossil.exposure_percent(), "cleanliness": surface.bone_film.cleanliness_percent(),
 		"condition": surface.fossil.condition, "fine_preparation": fine_preparation,
 		"condition_tier": PreparationRules.CONDITION_TIERS[PreparationRules.condition_tier(surface.fossil.condition)],
-		"coverage_passed": coverage_passed}
+		"coverage_passed": coverage_passed, "largest_hidden_cluster": largest_hidden_cluster}
 
 func can_use_tools() -> bool:
 	return not archived
@@ -144,6 +148,7 @@ func reset() -> void:
 	classification_stage = 0
 	coverage_passed = false
 	coverage_checks = 0
+	largest_hidden_cluster = -1
 	_coverage_dirty = true
 	condition_tier = PreparationRules.condition_tier(surface.fossil.condition)
 	_notified_condition_tiers = 0

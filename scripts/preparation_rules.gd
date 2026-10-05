@@ -12,8 +12,8 @@ const THEROPOD_LIMB := 10.0
 const THEROPOD_SKULL := 35.0
 const REQUIRED_EXPOSURE := 85.0
 const REQUIRED_CLEANLINESS := 85.0
-# B-17's four authored major anatomical components; use their cached exposures.
-const COVERAGE_MIN_EXPOSURE := 65.0
+# Strict boundary: ceil(2% of main Bone); 646 cells on native B-17.
+const HIDDEN_CLUSTER_BLOCKING_RATIO := 0.02
 const CONDITION_EXCELLENT := 95.0
 const CONDITION_GOOD := 85.0
 const CONDITION_FAIR := 70.0
@@ -36,8 +36,8 @@ static func fine_preparation(exposure: float, cleanliness: float) -> bool:
 static func preparation_complete(exposure: float, cleanliness: float, coverage: bool) -> bool:
 	return exposure >= REQUIRED_EXPOSURE and cleanliness >= REQUIRED_CLEANLINESS and coverage
 
-static func coverage_passes(components: Array[float]) -> bool:
-	return components.size() == 4 and components.min() >= COVERAGE_MIN_EXPOSURE
+static func coverage_threshold(total_cells: int) -> int:
+	return maxi(1, ceili(total_cells * HIDDEN_CLUSTER_BLOCKING_RATIO))
 
 static func condition_tier(condition: float) -> int:
 	if condition >= CONDITION_EXCELLENT: return 0

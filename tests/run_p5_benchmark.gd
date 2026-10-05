@@ -4,7 +4,7 @@ var frame_times: Array[float] = []
 var previous_frame := 0
 var measuring := false
 var results := {}
-var benchmark_path := "res://work/test-logs/p5g-benchmark.json"
+var benchmark_path := "res://work/test-logs/p5h-benchmark.json"
 
 func on_frame() -> void:
 	var now := Time.get_ticks_usec()
@@ -74,7 +74,7 @@ func scenario(kind: String, zoom: float) -> void:
 		"keep_cleaning": tool = 3; center = Vector2(260, 270)
 	if kind in ["completion_card", "fine_preparation", "keep_cleaning", "archive_card"]:
 		var percent := 96 if kind == "fine_preparation" else 86
-		P5Fixture.reveal(surface, [percent, percent, percent, percent])
+		P5Fixture.distributed(surface, percent)
 		if kind in ["completion_card", "fine_preparation"]:
 			# Untimed uniform-film fixture. The timed ordinary Brush stroke crosses the gate.
 			var amount := BoneSurfaceFilm.INITIAL * (1 - (84.99 if kind == "completion_card" else 94.99) / 100.0)
@@ -93,16 +93,12 @@ func scenario(kind: String, zoom: float) -> void:
 		session.flush()
 		if kind == "keep_cleaning": session.keep_cleaning()
 	if kind == "coverage_gate":
-		P5Fixture.reveal_counts(surface, [7756, 7243, 10771, 4237])
+		var hidden := P5Fixture.connected_foot(surface, PreparationRules.coverage_threshold(surface.fossil.field.total_cells))
+		P5Fixture.reveal_except(surface, hidden)
 		P5Fixture.clean(surface)
-		var found := 0
-		for index in range(surface.fossil.field.component_ids.size()):
-			if surface.fossil.field.component_ids[index] != 4: continue
-			found += 1
-			if found == 4238:
-				@warning_ignore("integer_division")
-				center = Vector2(index % surface.size.x, index / surface.size.x)
-				break
+		var index := hidden[-1]
+		@warning_ignore("integer_division")
+		center = Vector2(index % surface.size.x, index / surface.size.x)
 		tool = 3
 	if kind == "care_drop":
 		P5Fixture.reveal(surface, [96, 96, 96, 96]); P5Fixture.clean(surface)
@@ -207,14 +203,23 @@ func run() -> void:
 	control.set_physics_process(false)
 	process_frame.connect(on_frame)
 	var kinds := ["brush_soil", "chisel_clay", "chisel_stone", "pick_bone", "blower_crumbs", "brush_film", "fine_preparation", "completion_card", "keep_cleaning", "progress_updates", "archive_card", "coverage_gate", "care_drop"]
-	for zoom in [1.0, 3.0]:
+	var zooms := [1.0, 3.0]
+	if OS.get_cmdline_user_args().has("targeted"):
+		kinds = ["brush_film", "coverage_gate", "care_drop"]
+		zooms = [3.0]
+		benchmark_path = "res://work/test-logs/p5h-benchmark-recheck.json"
+	for zoom in zooms:
 		for kind in kinds:
 			await scenario(kind, zoom)
 	results["validation"] = {"checks": checks, "failures": failures}
 	FileAccess.open(benchmark_path, FileAccess.WRITE).store_string(JSON.stringify(results, "\t"))
 	print("P5 BENCHMARK: %d checks, %d failures" % [checks, failures])
+	# Drain the final hit playback before tearing down the test's audio nodes.
+	for voice in main.find_children("*", "AudioStreamPlayer", true, false): voice.stop()
+	await create_timer(0.15).timeout
 	main.queue_free()
 	await process_frame
 	session = null
 	surface = null
+	await process_frame
 	quit(0 if failures == 0 else 1)

@@ -6,7 +6,7 @@ func screenshot(label: String) -> Image:
 	await process_frame
 	await RenderingServer.frame_post_draw
 	var picture := root.get_texture().get_image()
-	var path := "res://work/test-logs/p5g-" + label + ".png"
+	var path := "res://work/test-logs/p5h-" + label + ".png"
 	picture.save_png(path)
 	captures.append(path)
 	return picture
@@ -50,11 +50,11 @@ func visual_fixture(percent: float) -> void:
 			var index := y * surface.size.x + x
 			surface._heights[index] = minf(surface._heights[index], maxf(surface.structural_ceilings[index] + 0.025, 0.19))
 	P5Fixture.commit(surface)
-	P5Fixture.reveal(surface, [percent, percent, percent, percent])
+	P5Fixture.distributed(surface, percent) if percent >= 85 else P5Fixture.reveal(surface, [percent, percent, percent, percent])
 	P5Fixture.clean(surface)
 
-func coverage_fixture(counts: Array[int]) -> void:
-	P5Fixture.reveal_counts(surface, counts)
+func coverage_fixture(hidden: PackedInt32Array) -> void:
+	P5Fixture.reveal_except(surface, hidden)
 	# Clear surrounding matrix for visual assessment, retaining a matrix buffer
 	# over every still-hidden Bone cell. This is test setup, never player geometry.
 	var covered := PackedByteArray()
@@ -70,6 +70,7 @@ func coverage_fixture(counts: Array[int]) -> void:
 		for x in range(150, 830):
 			var index := y * surface.size.x + x
 			if covered[index] == 0: surface._heights[index] = maxf(surface.structural_ceilings[index], 0.19)
+			elif surface.fossil.exposed[index] == 0: surface._heights[index] = minf(surface._heights[index], maxf(surface.structural_ceilings[index] + 0.025, 0.22))
 	P5Fixture.commit(surface)
 	P5Fixture.clean(surface)
 
@@ -95,13 +96,12 @@ func run() -> void:
 	await create_timer(3.3).timeout
 	check(main.session_ui.notice_label.text == "", "discovery disappears")
 	main.reset_specimen()
-	coverage_fixture([7756, 7243, 10771, 1956]); await settle()
+	coverage_fixture(P5Fixture.foot_hidden(surface)); await settle()
 	check(not session.preparation_complete and main.session_ui.coverage_label.visible, "buried hind limb blocks real85+ score")
 	check_layout()
 	await screenshot("02a-coverage-blocked")
-	main.reset_specimen()
-	coverage_fixture([5474, 7243, 10771, 4238]); await settle()
-	check(session.preparation_complete, "same global score with meaningful coverage passes")
+	coverage_fixture(P5Fixture.connected_foot(surface, PreparationRules.coverage_threshold(surface.fossil.field.total_cells) - 1)); await settle()
+	check(session.preparation_complete, "revealing part of the foot passes before100")
 	await screenshot("02b-coverage-pass")
 	main.reset_specimen()
 	visual_fixture(67); await settle()
@@ -158,4 +158,4 @@ func run() -> void:
 	await screenshot("12-debug")
 	evidence.captures = captures
 	evidence.completion = completion
-	await finish("p5g-visual")
+	await finish("p5h-visual")
