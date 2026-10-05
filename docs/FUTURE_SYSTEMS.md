@@ -167,7 +167,22 @@ The core motivational target is similar to the pleasure of filling a museum coll
 
 Prefer visible exhibit change over abstract XP bars. Some exhibits may start partially complete so the player enters an existing institution and immediately has near-term completion goals.
 
-## 6. Long-term motivation model
+## 6. Specimen destination / conservation bridge — macro-design question
+
+A future macro-design workshop must decide how prepared specimens transition from the preparation bench into the museum.
+
+Open models to compare:
+
+- **in-matrix display:** the prepared slab/jacket itself becomes the finished museum object;
+- **extractable specimen:** selected bones/fragments are removed from matrix and conserved separately;
+- **mounted skeleton contribution:** recovered elements progressively populate a museum mount / armature;
+- **hybrid rules:** different specimen classes use different destinations.
+
+A short **conservation / mounting / finishing** ritual is a strong candidate for bridging preparation and exhibition (for example final cleaning, consolidant/resin, simple support placement), but it must remain brief and ceremonial rather than add another 10–15 minute gameplay phase.
+
+This is intentionally unresolved until the post-P5 macro game design workshop. P5's two Forceps fragments are a mechanic test, not a commitment that all major anatomy must become removable.
+
+## 7. Long-term motivation model
 
 Current intended structure:
 
@@ -183,7 +198,7 @@ EXCAVATION
 
 The systems should reinforce one another without turning the excavation into a grind.
 
-## 7. Scope rule
+## 8. Scope rule
 
 These directions are **certain future product pillars**, but their implementation is conditional on the core loop succeeding.
 
