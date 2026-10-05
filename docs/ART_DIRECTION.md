@@ -211,3 +211,16 @@ This avoids both extremes:
 - treating DA as cosmetic polish left until the end.
 
 No external art tool is canonized yet.
+
+
+## Future material-transition exploration
+
+### Soil / matrix transition experiment
+
+Preferred future visual hypothesis, to test alongside the later Soil gameplay redesign:
+
+> **thin loose dirt on top → dirty/contact-patinated matrix surface → fresh matrix interior after excavation**
+
+The loose dirt should read as a removable surface covering rather than necessarily a deep structural layer. Once brushed away, Clay/Sandstone remains visibly weathered at the contact surface while still being immediately identifiable as that material. Chisel/Pick then reveals the cleaner, stronger interior color underneath.
+
+This pairs naturally with the already-canonized P6 **contact patina** idea. It is not authorization to rewrite Soil during P5/P6 without a dedicated gameplay test; P6 may prove the visual language, while a later excavation-polish phase validates the interaction model.
