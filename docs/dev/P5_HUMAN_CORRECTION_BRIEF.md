@@ -325,3 +325,76 @@ A successful P5 retest should show that:
 - the player understands immediately that archiving is allowed;
 - the 95/95 star creates optional motivation without looking like another mandatory objective;
 - the work surface remains visually dominant.
+
+
+## Human test 4 — final P5 target: 85/95 + coverage guard + Condition tiers — 2026-10-05
+
+Antoine validates this as the next P5 version to implement and retest.
+
+### Required preparation
+Archive-ready requires all of:
+- global Skeleton Exposure >=85%
+- global Bone Cleanliness >=85%
+- **coverage guard passes**: no major contiguous anatomical region remains substantially buried
+
+The coverage guard is not a third visible progress bar. It exists to prevent cases where global 85–95% is reached while an obvious major limb/section is still missing visually.
+
+If the global thresholds are met but the guard fails, show only a contextual line such as:
+> **A major section is still covered.**
+
+Do not show a permanent component checklist and do not reveal hidden Bone through intact matrix.
+
+### Optional mastery
+- global Exposure >=95%
+- global Cleanliness >=95%
+- reward: one global **★ Fine Preparation**
+
+Fine Preparation never gates archive.
+Exact 100% is personal completion only.
+
+### Condition
+Condition remains independent from Exposure/Cleanliness and does not gate archive in P5.
+
+Player-facing Condition is qualitative:
+- 95–100%: **Excellent**
+- 85–94%: **Good**
+- 70–84%: **Fair**
+- <70%: **Damaged**
+
+Primary HUD shows only the qualitative label (exact percentage may remain debug/final-summary data). On a tier drop, show one subtle contextual feedback so the player understands careless work has consequences.
+
+Fine Preparation and Condition are intentionally independent:
+- ★ Fine Preparation + Excellent is possible
+- ★ Fine Preparation + Good is also possible
+
+This avoids turning one early mistake into a permanently failed preparation run.
+
+### Minimal HUD
+Persistent card:
+- Specimen B-17
+- Museum standard: 85%
+- Reveal skeleton: X%
+- Clean fossil: Y%
+- Condition: Excellent / Good / Fair / Damaged
+
+Before completion, do not advertise the 95% mastery target heavily.
+
+At archive-ready:
+> **✓ Ready to archive**
+> Further preparation is optional.
+> ★ Fine Preparation — reach 95%
+
+At 95/95:
+> **★ Fine Preparation**
+
+No right-side dossier, no component list, no fragments/Forceps/tray in the P5 player flow.
+
+### P5 gate
+P5 is valid when the player can:
+1. understand the job immediately;
+2. reveal/clean the specimen to the museum standard;
+3. not be allowed to archive while a major visual section is still buried;
+4. understand that 85% means "done enough";
+5. optionally pursue 95% Fine Preparation;
+6. understand that Condition represents care, not another fill-to-100 objective;
+7. archive and reach a clear end state without explanation.
