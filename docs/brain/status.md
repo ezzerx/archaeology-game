@@ -249,7 +249,7 @@ Le premier test a révélé une confusion entre mission requise et qualité100 %
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 corrigé, retest humain attendu** → P6 Art Pass (non autorisé) → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 ✅ human-validated** → **P6A Visual Direction / Production Spike — next** → P6B Art Pass → P7 Tuning → V0.1.
 
 ## Precision Pick — addendum humain confirmé, 2026-10-04
 
@@ -320,3 +320,22 @@ Cache actualisé uniquement après exposition, parcours différé jusqu’à85 %
 Vérifié :2 062 contrôles fonctionnels,77 graphiques,104 contrôles perf/26 scénarios, plus10 contrôles de rejeu ciblé ; zéro échec.238,504–239,871 FPS moyens, minimum1s231,929 ; pic isolé33,730ms non reproduit sur le rejeu (maximum9,563ms). Aucune garantie par-frame absolue extrapolée. Détails et preuves dans le rapport.
 
 **STOP pour les sept étapes de retest du rapport. P5 non validé humainement ; PR #8 DRAFT, aucun merge/P6.**
+
+
+## P5 — human closure ✅
+
+Antoine closes P5 on 2026-10-05 and authorizes progression to P6.
+
+Human verdict:
+- core session objective is now understandable;
+- current greybox UI is sufficient for P5;
+-85/85 museum standard,95/95 Fine Preparation and qualitative Condition are accepted as the current prototype loop;
+- Archive / Keep Cleaning is sufficient to represent the end of a preparation session.
+
+Deferred watchpoints:
+- Cleanliness may drop when newly exposed dirty Bone expands the denominator;
+- hidden-cluster coverage is not a perfect visual-completeness oracle and may still allow some missing anatomy;
+- final specimen destination/extraction model remains open for Macro Game Design;
+- no further B-17-specific completion tuning before more context from P6 / future meta design.
+
+P5 is no longer a blocker. Next gate: **P6A Visual Direction / Production Spike**.
