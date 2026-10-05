@@ -505,3 +505,12 @@ Antoine valide comme **base à tester** la variante A du futur écran d'arrivage
 - fiche scientifique / clipboard concise pour les informations de provenance, période, matrice probable, difficulté et notes du conservateur.
 
 Aucun avatar contrôlable ni déplacement 3D pour aller toucher les caisses. La salle doit rester un hub de choix court, lisible et diégétique, puis mener à une phase d'ouverture de caisse et enfin à la préparation.
+
+
+## Crate opening — tactile modular grammar — 2026-10-05
+
+Antoine valide la direction d'une **ouverture tactile directe** et variée des caisses. Le joueur agit avec la souris sur les éléments physiques plutôt que d'appuyer sur un bouton abstrait : tirer une sangle pour la retirer, ouvrir des loquets, insérer un pied-de-biche dans la jointure puis tirer la souris vers le bas pour faire levier, soulever le couvercle, retirer éventuellement une protection intérieure.
+
+La variation est modulaire : toutes les caisses ne possèdent pas les mêmes attaches. Certaines ont sangles + loquets, d'autres nécessitent le pied-de-biche, d'autres sont plus simples. Ne pas empiler tous les gestes à chaque fois : viser généralement **2–3 interactions courtes**, avec des affordances visuelles évidentes et sans fail-state punitif.
+
+La caisse révèle toujours un **bloc/jacket fermé et non préparé**. L'ouverture de caisse répond à « quel chantier ai-je reçu ? » ; le reveal des os reste réservé au cœur de gameplay de préparation.
