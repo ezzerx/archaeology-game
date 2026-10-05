@@ -571,3 +571,23 @@ Antoine confirme que la transition **préparation → musée** doit être trait�
 Une courte étape de **conservation / finition / mounting** reste une piste forte pour relier le travail du laboratoire à l'exposition (consolidant, dernier nettoyage, support, étiquette), mais elle ne doit pas devenir une seconde phase de 10–15 minutes après chaque préparation. Cible : geste final court, satisfaisant et cérémoniel.
 
 L'ancienne expérience des deux fragments extractibles dans P5, désormais dormante, reste un test de mécanique Forceps, pas une décision sur le modèle final d'extraction des pièces principales.
+
+
+## P5 final simplified target — 85/95, coverage guard, qualitative Condition — 2026-10-05
+
+Antoine validates the next P5 design baseline:
+
+- Required preparation = **Exposure >=85% + Cleanliness >=85% + coverage guard**.
+- Coverage guard is invisible unless it blocks completion; it prevents archive while an obvious major contiguous anatomical region remains substantially buried.
+- Optional mastery = **Exposure >=95% + Cleanliness >=95% => one global ★ Fine Preparation**.
+- Exact100% is personal only.
+- Condition is shown as a qualitative care state, independent from completion:
+  - 95–100 Excellent
+  - 85–94 Good
+  - 70–84 Fair
+  - <70 Damaged
+- Condition does not gate archive in P5 and does not invalidate Fine Preparation.
+- Primary HUD remains one compact card with museum standard, Reveal, Clean and qualitative Condition; no permanent right dossier.
+- Fragments/Forceps/tray and per-component stars remain outside the P5 player flow.
+
+Design intent: answer four questions with minimal UI — What do I do? Can I stop? Why might I continue? Why should I be careful?
