@@ -1,0 +1,281 @@
+# Orchestration Handoff — ArchaeologyGame
+
+**Purpose:** give a new ChatGPT orchestration conversation the same product mental model and decision discipline as the current one.
+
+**Last audited:** 2026-10-05.
+
+## 1. Product in one paragraph
+
+ArchaeologyGame is a cosy, tactile fossil-preparation game set in the back rooms of a natural-history museum. The player is a **specimen preparator/restorer**, not an adventurer avatar: specimens arrive at the museum workshop as excavation blocks, the player removes Soil / Clay / Sandstone, reveals and cleans Bone, recovers pieces, updates a scientific dossier, then archives the prepared specimen for the museum collection. The core fantasy is **quiet scientific craft and discovery**. No open world, no controllable character; the tabletop/workbench is the gameplay space.
+
+Long-term diegetic loop:
+
+> **museum assigns specimen → preparation workshop → excavation / cleaning / identification → archive → collection / exhibition update → next specimen**
+
+## 2. North Star
+
+The central product question remains:
+
+> **Est-ce que j’ai envie de continuer à gratter alors que je sais déjà ce qu’il y a dessous ?**
+
+Do not compensate for weak excavation feel with more content, progression or UI.
+
+P5 adds a second behavioral test:
+
+> **After “Preparation Complete”, does the player voluntarily choose to keep cleaning?**
+
+## 3. Current gate — critical
+
+### P4 is CLOSED and human-validated
+
+Merged milestones:
+- P0 ✅
+- P1 ✅
+- P2 ✅
+- P3 ✅
+- P4 Final Feel ✅
+- P4-V1 deterministic effort-aware verticality ✅
+- P4 closure / debris physics / Bone preparation ✅
+
+P4 closure merge: PR #7 → `bae4ee64268dd6270afb9f0011c316c45c57d251`.
+
+### P5 is ACTIVE and technically delivered, but NOT human-validated
+
+Active branch:
+`prototype/p5-loop-progression`
+
+PR:
+**#8 — Complete session loop, Forceps & archive flow**
+
+Current technical HEAD at this audit:
+`8b83f2f8a3e9cd1edf54bdfad2661c6425f88fc0`
+
+P5 has already been implemented and automated/graphical/performance checks are green. It is waiting for Antoine’s **single end-to-end human session**.
+
+Read:
+1. `docs/dev/P5_BRIEF.md`
+2. `docs/dev/P5_REPORT.md`
+3. PR #8
+4. `docs/brain/status.md`
+
+**Do not merge P5 and do not start P6 until Antoine explicitly validates P5.**
+
+A new orchestrator must not infer project state from `main` code alone while an active phase lives on a draft PR.
+
+## 4. Source precedence
+
+When documents conflict, use this order:
+
+1. **Antoine’s newest explicit decision in the current conversation**
+2. **active phase brief** (`docs/dev/Pn_BRIEF.md`)
+3. **active phase report / active PR**
+4. `docs/brain/decisions.md`
+5. `docs/brain/status.md`
+6. `docs/CONCEPT.md`, `GAMEPLAY_LOOP.md`, `ART_DIRECTION.md`, `MUSEUM_SYSTEM.md`, `ROADMAP.md`
+7. older phase reports / old prototype text as historical context
+
+`PROTOTYPE_V0_1_SPEC.md` is foundational but contains historical sections superseded by later phase decisions. Never resurrect an older rule merely because it is still written there.
+
+## 5. P4 gameplay baseline — do not casually retune
+
+### Tools
+
+| Tool | Radius | Power | Falloff | Role |
+|---|---:|---:|---:|---|
+| Soft Brush | 40 | 0.70 | 1.25 | Soil + Bone Film / mess cleanup |
+| Chisel | 22 | 0.64 | 2.25 | bulk Clay/Sandstone fracture |
+| Air Blower | 60 | 0 | 1.00 | eject loose mess / dust |
+| Precision Pick | 11 | 0.44 | 1.75 | fast precise structural finishing |
+| Forceps [P5] | — | — | — | recover READY independent fragments |
+
+Chisel cadence 4.5 Hz. Pick cadence 6 Hz. Blower residue clear 2.5. Pick is Bone-safe in the current prototype.
+
+### Player grammar
+
+> **attached material vs mess**
+
+- Soil → Brush
+- bulk hard matrix → Chisel
+- precise attached remnants near Bone → Pick
+- loose mess → Brush / Blower
+- recoverable independent fragment → Forceps when READY
+
+Tiny isolated hard remnants may detach into brushable mess under the bounded P4 rule. Do not give Brush general hard-matrix excavation.
+
+### Bone
+
+Three distinct concepts:
+
+> **Exposure ≠ Cleanliness ≠ Condition**
+
+- Exposure = structure revealed
+- Cleanliness = adhered Bone Surface Film removed
+- Condition = damage state
+
+Newly exposed Bone carries an adhered dirt film. Brush removes it; Blower/Pick do not. Bone Condition is global. First direct damaging Chisel contact is protected **per anatomical component**: Skull / Spine / Ribs / Hind Limb. Main skeleton totals remain 32,290 cells.
+
+### Material / debris
+
+- Chisel fracture spectacle is intentionally strong and transient.
+- Clay/Sandstone persistent Matrix crumbs use lightweight bounded physics.
+- Blower cleanup is gameplay evacuation: sufficient jet engagement removes logical crumbs and shows a short ejection FX.
+- Soil currently has **no persistent grains and no persistent Fine Dust**. This is explicitly provisional and deferred.
+- deterministic P4-V1 verticality is **effort-aware, not depth-only**.
+
+## 6. Known “last 20%” — deliberately deferred
+
+These are **not P4 blockers**:
+
+- Soil needs a richer redesign eventually.
+- Matrix debris is good enough but may have a better future solution.
+- occasional visual ambiguity: Pick-removable attached remnant vs Brush-removable mess.
+- Bone dirt can still resemble Sandstone in some views.
+- dust can reduce block-edge/depth readability.
+
+Important P6 rule:
+**before redesigning Bone Film, test color only**. Antoine likes the current spot/pattern shape.
+
+If gameplay polish is reopened after P5/P6, create a **new named phase** (TBD), not “P4.2”.
+
+## 7. P5 mental model
+
+P5 is the first time the prototype becomes a complete “game session”.
+
+Implemented target flow:
+
+> **Museum Preparation Lab / B-17 → excavation → classification progress → prepare skull → recover 2 fragments with Forceps → Preparation Complete → Keep Cleaning OR Archive Specimen → Museum records updated → Prepare Another Block**
+
+P5 specifics:
+- dossier separates Exposure / Cleanliness / Condition;
+- classification: Unknown → Vertebrate remains → Possible Theropod → Likely small theropod;
+- objectives:
+  - Prepare skull = Skull exposure ≥60% + cleanliness ≥50%
+  - Reveal ≥60% skeleton
+  - Recover both fragments
+- two independent deterministic fragments;
+- Forceps drag into a two-slot tray;
+- fragment READY = ≥90% exposure + local clearance;
+- completion snapshot is frozen;
+- Keep Cleaning resumes full interaction;
+- archive snapshot uses latest values;
+- Prepare Another Block resets same B-17 as placeholder.
+
+The key human question is not whether tests pass; it is whether this flow feels natural and whether Keep Cleaning is genuinely attractive.
+
+## 8. Narrative baseline
+
+Current canon, until a better idea appears:
+
+> **The player is employed by a natural-history museum as a specimen preparator/restorer.**
+
+The museum is:
+- narrative employer;
+- physical setting;
+- destination of prepared specimens;
+- future meta-progression/collection.
+
+Menu direction:
+- exterior/front view of the museum;
+- pressing Play implies entering the building;
+- gameplay happens in the preparation workshop;
+- gallery/collection shows the result of the work.
+
+No avatar navigation.
+
+Working-title shortlist lives in `docs/NAMING_IDEAS.md`.
+**Bone by Bone** is a strong current candidate, not the final title.
+
+## 9. Visual direction
+
+Canonical:
+> **2.5D stylized — tabletop — near-vertical orthographic camera**
+
+Not pixel art, not photorealism, not visibly low-poly, not exaggerated cartoon.
+
+Emotional target:
+> **a warm illustration brought to life**
+
+Identity:
+**earth + stone + Bone + warm lamp + scientific equipment + natural-history museum**
+
+Visual references:
+- canonical 2×2 board in `docs/visual-references/archaeologygame-v0.1-visual-reference-board.jpg`
+- manifest: `docs/VISUAL_REFERENCES.md`
+
+The ChatGPT Project also contains the canonical board. Recent museum-exterior/menu generations are exploratory concept work, **not yet a versioned canonical image**. Their text direction is canonized; if exact pixels matter later, ask Antoine to re-provide/select the image or version one explicitly.
+
+### P6 reserved ideas
+
+P6A first, then P6B.
+
+Already canonized for P6:
+- museum façade/menu → preparation workshop → gallery visual continuity;
+- **layer contact patina**:
+  - Soil → Clay: dirty/browned Clay surface skin, cleaner orange Clay underneath;
+  - Clay → Sandstone: subtler optional variant;
+  - visual only, no gameplay thickness/resistance/picking.
+- Bone dirt vs Sandstone readability: **try color-only first**.
+
+## 10. Long-term confirmed pillars
+
+Do not pull these into P5/P6 without explicit authorization:
+
+- seeded/controlled variable excavation blocks;
+- equipment specialization/progression;
+- expertise/site progression;
+- museum collection/meta;
+- later content diversification (e.g. minerals/geodes remains brainstorm-level unless separately canonized).
+
+Future block generation must preserve:
+> **effort-aware variability, not depth-only randomness**
+
+## 11. Orchestration workflow
+
+Antoine’s preferred split:
+
+- **During a phase:** implementation/testing stays in Codex.
+- **Between phases:** return to ChatGPT orchestration for product review, human-gate decision, merge/canonization, next brief.
+
+The orchestrator should:
+- protect product intent;
+- challenge premature workarounds;
+- keep the phase scope narrow;
+- treat human playtest feedback as the gate;
+- inspect the live PR before merge;
+- update Brain/decisions/status after durable decisions;
+- never infer human validation from automated tests.
+
+Reusable rule learned in P3/P4:
+
+> **Do not create an earlier-phase workaround for a problem a planned later phase is explicitly expected to reshape unless it blocks current validation.**
+
+## 12. How to resume in a new conversation
+
+The new orchestrator should immediately:
+
+1. read this file;
+2. read `AGENTS.md`;
+3. read `docs/brain/status.md` + `decisions.md`;
+4. inspect the active PR and branch, not only `main`;
+5. read the active phase brief/report;
+6. ask for / consume Antoine’s latest human-test feedback;
+7. only then decide merge, correction pass or next phase.
+
+As of this audit:
+- inspect PR #8;
+- P5 code is delivered;
+- wait for Antoine’s end-to-end test;
+- no P6 yet.
+
+## 13. What “same wavelength” means
+
+When making a product decision, preserve these priorities:
+
+1. **tactile/satisfying excavation**
+2. **clear material/tool language**
+3. **quiet scientific discovery / museum-preparation fantasy**
+4. **player desire to voluntarily continue cleaning**
+5. **functional progression that supports the core, not replaces it**
+6. **art production only when it becomes the highest-leverage risk**
+
+The project should feel like **careful preparation of a real museum specimen**, not a generic digging game, simulator dashboard, or adventure RPG.
