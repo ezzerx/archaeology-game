@@ -495,3 +495,13 @@ Antoine conserve trois **directions préférées à tester**, sans les considér
 3. **Refonte Soil — hypothèse privilégiée** : remplacer à terme le Soil épais par une couche plutôt fine de terre/saleté meuble posée sur la matrice. Le Brush enlève le surplus pour révéler Clay/Sandstone ; une patine de contact sale reste visible sur la surface, puis l'excavation révèle la couleur fraîche de la matrice. Boucle cible : **surface dirt → contact patina → fresh structural matrix**. Si Soil devient mince, la verticalité doit être portée par la matrice et l'enfouissement, pas par une grosse épaisseur de terre.
 
 Ces points appartiennent au futur macro/polish design et ne rouvrent pas P4/P5.
+
+
+## Specimen Intake screen baseline — 2026-10-05
+
+Antoine valide comme **base à tester** la variante A du futur écran d'arrivage : vue fixe/semi-fixe de la salle de réception du musée avec plusieurs caisses visibles et sélectionnables directement. Elle emprunte deux éléments aux variantes alternatives :
+
+- focus visuel/cinématique subtil sur la caisse sélectionnée ;
+- fiche scientifique / clipboard concise pour les informations de provenance, période, matrice probable, difficulté et notes du conservateur.
+
+Aucun avatar contrôlable ni déplacement 3D pour aller toucher les caisses. La salle doit rester un hub de choix court, lisible et diégétique, puis mener à une phase d'ouverture de caisse et enfin à la préparation.
