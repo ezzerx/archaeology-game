@@ -599,3 +599,18 @@ La cible humaine est implémentée :85/85 global plus garde anatomique, Conditio
 La garde est invalidée uniquement par exposition, puis évaluée dans le regroupement existant ; film et dégâts seuls ne la recalculent pas. Une baisse de Condition notifie une seule fois le palier atteint, sans rafale si plusieurs seuils sont franchis. Une découverte simultanée ne remplace pas immédiatement cette notice. Reset réarme les notifications ; nettoyer ne restaure pas Condition et n'annule pas Fine Preparation.
 
 [Rapport courant](../dev/P5_COVERAGE_CARE_REPORT.md) :2 055 contrôles fonctionnels,77 graphiques,104 contrôles perf/26 scénarios, zéro échec. Les vérifications techniques ne valent pas validation produit. Retest libre en neuf questions, PR #8 DRAFT ; aucun merge/P6.
+
+## P5 coverage guard — hidden connected mass — 2026-10-05
+
+Antoine approves replacing the coarse **65% minimum per anatomical component** readiness guard with a more perceptual hidden-mass test.
+
+Archive readiness remains:
+- Exposure global >=85%
+- Cleanliness global >=85%
+- no major contiguous hidden Bone cluster above the centralized prototype threshold
+
+Initial target to test: largest remaining connected hidden Bone cluster around **2–3% of total main skeleton cells**. Exact threshold must be calibrated on B-17 fixtures and documented.
+
+Reason: a component can satisfy65% exposure while still leaving a visually obvious lower-limb section buried. The new guard should answer the perceptual question: **does a major piece of the skeleton still visibly remain undiscovered?**
+
+No new HUD metric; only a contextual "Major section still covered" message when blocked. P4 gameplay and P5 UI remain otherwise unchanged.
