@@ -265,3 +265,61 @@ P5 does **not** need final UI art, museum meta, extraction/mounting logic, fragm
 P6 owns visual identity / beautiful UI. For P5, **ugly is acceptable; confusing is not**.
 
 The final question of whether finished fossils are displayed in matrix, fully extracted, mounted as skeleton components, or handled by a hybrid system is deferred to the Macro Game Design workshop.
+
+
+## Human test 3 — compact HUD + 85/95 mastery ladder — 2026-10-05
+
+P5 keeps the aggressive UI simplification, but restores one lightweight optional mastery hook without reintroducing component-level complexity.
+
+### Thresholds
+
+Required museum preparation:
+- global skeleton Exposure >=85%
+- global Bone Cleanliness >=85%
+
+Optional mastery:
+- global skeleton Exposure >=95%
+- global Bone Cleanliness >=95%
+
+At 85/85:
+> **✓ Specimen prepared — Ready to archive**
+
+At 95/95:
+> **★ Fine Preparation**
+
+Exact 100% remains purely personal completion and never gates anything.
+
+### HUD placement
+
+Use **one compact always-on progress card** anchored to the upper-left / left non-play margin when available. Do not keep a permanent right-side dossier.
+
+The card should contain only:
+- specimen name;
+- Reveal skeleton progress;
+- Clean fossil progress;
+- current state: Preparing / Ready to archive / Fine Preparation ★.
+
+Keep the four-tool toolbar along the bottom.
+
+Detailed classification, component states and Condition remain hidden from the primary HUD; classification can appear as a short transient discovery notification, and Condition can remain debug/final-summary information.
+
+At narrower resolutions where no non-play margin exists, preserve the same top-left anchor with a compact translucent overlay rather than introducing a second panel.
+
+### Visual language for mastery
+
+Do not show component stars. There is exactly **one global Fine Preparation star**.
+
+When 95/95 is first reached:
+- brief subtle sparkle/glint;
+- short quiet positive sound;
+- persistent small gold star beside the compact preparation state.
+
+The mastery cue should be desirable but clearly optional.
+
+### Gate
+
+A successful P5 retest should show that:
+- 85/85 communicates "job done";
+- the player understands immediately that archiving is allowed;
+- the 95/95 star creates optional motivation without looking like another mandatory objective;
+- the work surface remains visually dominant.
