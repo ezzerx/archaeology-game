@@ -132,6 +132,24 @@ The rarity/specialness signal exists to create anticipation and prioritization, 
 
 Crate visual identity is also a direction to explore: different markings, seals, reinforcement, labels, wear, museum handling tags or presentation cues may communicate provenance / rarity / exceptional status before opening. Exact crate shapes are not a priority; **identity through visual treatment** is the stronger current direction.
 
+### Crate-opening interaction grammar — preferred direction
+
+The opening ritual should use a small **modular set of tactile direct-manipulation interactions** instead of repeating one identical animation every time. Example modules:
+
+- pull/remove transport straps with the mouse;
+- flip/open metal latches;
+- insert a crowbar at a lid seam and drag downward to lever the lid open;
+- lift/slide the lid directly;
+- remove a final protective wrapping / padding layer before the block reveal.
+
+Do not stack every interaction on every crate. A crate should typically require only **2–3 short actions** so the ritual stays satisfying after many repetitions. The crate's visible construction must clearly communicate what can be manipulated. Variation should come from believable crate hardware / provenance, not arbitrary minigame randomness.
+
+Preferred structure:
+
+> **transport restraint (optional) → closure interaction → lid opening → optional protection reveal → closed fossil block/jacket**
+
+The block revealed by opening remains **closed/unprepared**: the crate reveals the next job, while fossil/bone discovery remains exclusive to the preparation gameplay.
+
 ### Intake interaction baseline — preferred prototype
 
 For the future in-game **Specimen Intake** screen, use **Variant A as the baseline**: a readable fixed / semi-fixed view of the museum receiving room with several crates visible at once. Borrow selected strengths from the other explored directions:
