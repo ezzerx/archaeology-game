@@ -218,6 +218,13 @@ Already canonized for P6:
 
 ## 10. Long-term confirmed pillars
 
+### Newly locked macro-loop pillars
+
+- **Specimen Intake via physical crates:** future work selection is a crate queue with partially informative scientific/logistics labels (site/origin, period, matrix, difficulty, curator/provenance note, exceptional status). A short satisfying opening ritual bridges selection and preparation. Special crates may create strong anticipation, but never paid loot-box logic or unfair collection blocking.
+- **Museum as living visual memory:** each prepared/acquired piece should visibly alter the gallery/exhibit. Missing parts remain physically missing. The museum should feel more alive because of the player's work, inspired by the satisfaction of filling the museum in Animal Crossing. Prefer visible completion over abstract XP bars; starting partly filled is a strong candidate.
+- Target macro loop: **crate queue → anticipation/opening → preparation → archive → visible museum update → next crate**.
+
+
 Do not pull these into P5/P6 without explicit authorization:
 
 - seeded/controlled variable excavation blocks;
