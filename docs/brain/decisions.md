@@ -484,3 +484,14 @@ Antoine canonise deux piliers pour le jeu complet, à concevoir/prototyper **apr
 **2. Musée comme mémoire physique du travail.** La galerie doit donner envie d'être complétée parce qu'elle matérialise réellement les préparations du joueur, dans l'esprit du plaisir de donation/complétion du musée d'Animal Crossing. Les pièces apparaissent dans les expositions, les manques restent visibles et la progression se lit dans le lieu avant de se lire dans des chiffres. Une galerie partiellement remplie au départ est une piste forte pour faire sentir que le musée existait avant le joueur et créer des objectifs déjà entamés.
 
 Boucle macro cible : **crate queue → anticipation/opening → preparation → archive → visible museum update → next crate**.
+
+
+## Directions à approfondir — caisses, silhouettes de blocs et refonte Soil — 2026-10-05
+
+Antoine conserve trois **directions préférées à tester**, sans les considérer encore comme implémentations finales :
+
+1. **Identité visuelle des caisses** : la forme exacte des caisses n'est pas prioritaire, mais leur traitement visuel peut signaler provenance, rareté ou caractère exceptionnel (marquages, scellés, étiquettes, renforts, usure, handling tags) et renforcer l'anticipation avant ouverture.
+2. **Silhouette du bloc préparé** : tester des masses/jackets plus variés qu'un rectangle parfait (compact, allongé, cassé/asymétrique, etc.) tout en conservant d'abord une surface de préparation lisible. La variation doit enrichir l'identité du spécimen, pas ajouter de friction gratuite.
+3. **Refonte Soil — hypothèse privilégiée** : remplacer à terme le Soil épais par une couche plutôt fine de terre/saleté meuble posée sur la matrice. Le Brush enlève le surplus pour révéler Clay/Sandstone ; une patine de contact sale reste visible sur la surface, puis l'excavation révèle la couleur fraîche de la matrice. Boucle cible : **surface dirt → contact patina → fresh structural matrix**. Si Soil devient mince, la verticalité doit être portée par la matrice et l'enfouissement, pas par une grosse épaisseur de terre.
+
+Ces points appartiennent au futur macro/polish design et ne rouvrent pas P4/P5.
