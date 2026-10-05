@@ -2,7 +2,7 @@
 
 ## Reprise
 
-Lire `docs/brain/BRAIN.md`, `docs/brain/status.md` et les documents utiles à la demande. Le contexte propre à ce dépôt est canonique pour ce projet ; le Brain personnel ne conserve qu’un pointeur.
+Lire d'abord `docs/ORCHESTRATION_HANDOFF.md`, puis lire `docs/brain/BRAIN.md`, `docs/brain/status.md` et les documents utiles à la demande. Le contexte propre à ce dépôt est canonique pour ce projet ; le Brain personnel ne conserve qu’un pointeur.
 
 ## Périmètre actuel
 
