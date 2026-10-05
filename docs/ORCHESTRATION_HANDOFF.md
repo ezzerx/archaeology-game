@@ -67,6 +67,15 @@ Accepted/deferred rather than blockers:
 
 P5 active player loop at closure: one compact card, four tools,85/85 museum standard, optional95/95 Fine Preparation, qualitative Condition, Archive / Keep Cleaning. Fragments/Forceps are dormant historical experiments.
 
+### P6A is ACTIVE
+
+Branch: `prototype/p6a-visual-spike`  
+Brief: `docs/dev/P6A_BRIEF.md`
+
+First task: P6A Material Lab on real B-17 dynamic rendering. Do not begin with full workshop/UI production. Prove the rendering/material pipeline first, then lighting, Bone readability, jacket-shell approach, static-asset import workflow, small UI sample and finally one playable hero slice.
+
+P6B requires explicit Antoine approval after human review of the hero slice.
+
 ## 4. Source precedence
 
 When documents conflict, use this order:
