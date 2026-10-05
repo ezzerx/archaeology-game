@@ -528,3 +528,18 @@ P5 UI should be minimal and functional: one preparation goal, two progress value
 P5's art is intentionally greybox. **P5 must be clear, not beautiful; P6 owns the real visual/UI language.**
 
 P5 is complete when one preparation session can be understood, completed and archived from start to finish without explanation. Full skeleton extraction vs in-matrix vs mounted/hybrid museum destination remains a Macro Game Design decision.
+
+
+## P5 compact HUD + 85/95 mastery ladder — 2026-10-05
+
+Antoine keeps P5 minimal but restores one global optional mastery reward.
+
+- Required completion = **global Exposure >=85% AND global Cleanliness >=85%**.
+- Optional mastery = **global Exposure >=95% AND global Cleanliness >=95%** -> one persistent **★ Fine Preparation** reward with a brief subtle glint/sound.
+- Exact 100% is never required.
+- No per-component stars/checklists in the player-facing P5 UI.
+- Primary HUD = one compact top-left / left-margin card with specimen name + Reveal + Clean + state. No permanent right-side dossier.
+- Four-tool toolbar remains bottom.
+- Classification is transient/non-blocking; Condition and detailed component data stay out of the primary HUD.
+
+Rationale: preserve a clear 0→85 required phase, a meaningful 85→95 optional mastery phase, and 95→100 personal completion, while keeping the fossil/work surface visually dominant.
