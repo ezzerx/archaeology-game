@@ -132,6 +132,15 @@ The rarity/specialness signal exists to create anticipation and prioritization, 
 
 Crate visual identity is also a direction to explore: different markings, seals, reinforcement, labels, wear, museum handling tags or presentation cues may communicate provenance / rarity / exceptional status before opening. Exact crate shapes are not a priority; **identity through visual treatment** is the stronger current direction.
 
+### Intake interaction baseline — preferred prototype
+
+For the future in-game **Specimen Intake** screen, use **Variant A as the baseline**: a readable fixed / semi-fixed view of the museum receiving room with several crates visible at once. Borrow selected strengths from the other explored directions:
+
+- from the more cinematic variant: a stronger visual focus / subtle camera or lighting emphasis on the currently selected crate;
+- from the dossier-oriented variant: a concise scientific intake card / clipboard with provenance, period, expected matrix, preparation difficulty and curator notes.
+
+The player should select crates directly in the room rather than navigate a generic level-select grid. No controllable avatar or unnecessary walking is introduced.
+
 ## 5. Museum as visible completion / permanent memory — confirmed macro-loop direction
 
 The museum is not merely a stats screen. It should physically reflect completed work: recovered/prepared pieces appear in exhibitions, missing pieces remain visibly absent, and the gallery becomes a persistent record of the player's career.
