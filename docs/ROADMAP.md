@@ -13,8 +13,8 @@ The canonical phase numbering remains the simple **P0 → P7** sequence from `PR
 | **P2 — Tools** | Soft Brush, Chisel, Air Blower with distinct roles | ✅ validated |
 | **P3 — Fossil** | Hidden fossil, progressive exposure, bone contact / condition | ✅ validated & merged |
 | **P4 — Game Feel** | Material reactions, fracture/chunks, debris, tool presence, sound/feedback, Bone preparation, verticality | ✅ human-validated & merged |
-| **P5 — UI & Progression** | Objectives, specimen dossier, classification, fragments, completion card, one complete excavation loop | One session must make sense end-to-end |
-| **P6 — Art Pass** | Reproduce and validate the canonical visual direction in-engine, then apply it to the V0.1 slice | DA must become coherent, reproducible and performant |
+| **P5 — UI & Progression** | One complete preparation session, minimal progress UI, archive/continue choice | ✅ human-validated; greybox intentionally accepted |
+| **P6 — Art Pass** | Reproduce and validate the canonical visual direction in-engine, then apply it to the V0.1 slice | ▶ P6A next: prove the visual-production pipeline before scaling |
 | **P7 — Tuning** | No new systems: tune speed, resistance, radii, sounds, dust, feedback and discovery rhythm | V0.1 ready for external playtest |
 
 ## Development principle — Pareto before production art
