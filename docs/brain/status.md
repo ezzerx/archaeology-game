@@ -278,3 +278,12 @@ Player-facing HUD should be reduced to a single compact top-left/left-margin pre
 **Vérifié** :2 017 contrôles fonctionnels (1 895 historiques +83 actifs +39 expérience),59 graphiques,22 scénarios/90 contrôles de performance, oracle GPU194 955 pixels ; zéro échec.239,68–239,87 FPS, minimum1s238,99, pire frame11,035ms. Les quatre outils et autorités P4 sont inchangés. `project.godot` préexistant hors commits.
 
 **Prochaine action : lancer et jouer librement, puis répondre aux six questions du rapport courant.** Aucun brief ni coordonnées. P5 reste non validé ; PR #8 DRAFT, STOP sans merge/P6.
+
+
+### P5 implementation target locked after human review
+
+Next corrective build is now defined: 85/85 global Exposure/Cleanliness plus an invisible major-section coverage guard for archive readiness; optional global Fine Preparation at95/95; qualitative Condition tiers (Excellent/Good/Fair/Damaged) as care feedback, not a completion requirement.
+
+HUD remains one compact preparation card plus the four-tool toolbar. No right dossier, fragments, Forceps, tray, component stars or detailed component checklist in the P5 validation flow.
+
+PR #8 remains DRAFT. Next action: implement this target, rerun regressions/performance, then perform one clean human retest without brief/debug guidance. No P6 until explicit validation.
