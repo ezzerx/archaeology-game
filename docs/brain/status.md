@@ -2,9 +2,9 @@
 
 - Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 Game Feel + verticalité + préparation Bone validés humainement et mergés ; P5 UI & Progression est la prochaine phase, non commencée**.
+- Phase : **préproduction — P4 validé et mergé ; P5 Complete Session Loop / UI & Progression livré pour test humain ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`.
+- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 actif : `prototype/p5-loop-progression`, PR #8 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
@@ -156,7 +156,9 @@ Code/tests : **`bef81c8e6d51bd16f56c1e2f35f911543a0320bf`**. Validation finale :
 
 Validation humaine : **NON/OUI/OUI** obtenus — grille orange absente, blocs/profondeur mieux lisibles, base toujours agréable. P4-V1 est validé et mergé via PR #6. Watchpoint différé : la poussière réduit encore la lisibilité des arêtes/blocs avant Blower ; après nettoyage, les bords noirs et la profondeur se lisent mieux. À reprendre en polish visuel/P6-P7, pas comme blocker gameplay. **P4-V2 debris physics peut être ouvert séparément ; P5 reste bloqué tant que ce spike n'est pas cadré/validé.**
 
-## P4 — Micro-passe finale livrée, retest humain attendu ▶
+## P4 — Micro-passe finale, livraison historique avant clôture
+
+Le retest et le STOP ci-dessous décrivent la livraison historique ; la clôture humaine du 2026-10-05, consignée ensuite, les remplace.
 
 Le cœur P4 est apprécié ; gameplay et teinte du Bone Film sont validés. Cette passe ne traite que trois irritants : micro-restes hard ambigus, Matrix camouflée conservant le cap, Dust Soil persistante sans valeur suffisante.
 
@@ -204,6 +206,24 @@ Première stratégie P6 pour la lisibilité : **tester uniquement la couleur** d
 
 Ces sujets ne rouvrent pas P4 maintenant. S'ils restent importants après P5/P6, ils recevront une **phase dédiée de polish gameplay/excavation avec un nouveau nom (TBD), pas “P4.2”**.
 
+## P5 — Complete Session Loop / UI & Progression livré, test humain attendu ▶
+
+Source de vérité : [P5_BRIEF](../dev/P5_BRIEF.md).
+
+Livré sur `prototype/p5-loop-progression`, [PR #8 DRAFT](https://github.com/ezzerx/archaeology-game/pull/8). [Rapport, preuves, limites et checklist humaine](../dev/P5_REPORT.md).
+
+- `PreparationSession` observe les compteurs et signaux existants ; états, classification, objectifs et UI actualisés sur événement. Aucun scan du squelette par frame. **Exposure / Cleanliness / Condition restent trois autorités distinctes.** Cleanliness dérive du film des seules cellules anatomiques exposées.
+- Composants : Hidden <10 % ; Detected ≥10 % ; Exposed ≥50 % ; Prepared ≥80 % exposé **et** ≥80 % propre. Classification monotone Unknown → Vertebrate (global ≥5 % ou composant ≥10 %) → Possible Theropod (Spine ≥15 % et Hind Limb ≥10 %) → Likely small theropod (Skull ≥35 %, étape précédente acquise).
+- Trois objectifs acquis dans n'importe quel ordre : Skull ≥60 % exposé et ≥50 % propre ; squelette ≥60 % exposé ; fragments2/2. Completion unique, sans exiger100 %.
+- Deux fragments indépendants, déterministes, plafonds Bone et film ; totaux anatomiques **32 290 / 7 756 / 7 243 / 10 771 / 6 520** inchangés. READY exige ≥90 % exposé et une couronne locale entièrement dégagée. **Forceps [5]** saisit, soulève et transporte au tray ; relâchement ailleurs, changement d'outil ou perte de focus rendent le fragment. Aucun retrait/film/dégât par Forceps.
+- UI fonctionnelle : objectifs, dossier, cinq outils, deux slots, notifications bornées. Snapshot figé à `Preparation Complete` ; **Keep Cleaning** conserve le bloc et ses outils ; **Archive Specimen** prend les valeurs actuelles, stoppe les outils et affiche `Museum records updated.`. **Prepare Another Block** et R réarment exactement le même B-17.
+- Métriques locales F1 : temps depuis completion, Keep Cleaning choisi, valeurs à completion/archive et actions supplémentaires. Le temps inclut la carte ; une action est un impact ou un tick continu appliqué, pas un clic humain. Aucune télémétrie ni sauvegarde musée.
+- Validation : **1 895 contrôles historiques +184 P5**, tous verts ; **47 contrôles graphiques P5 +63 historiques ciblés**, oracle GPU194 955 pixels et interfaces256 725 pixels, zéro échec. Performance : **20 scénarios ×6 s à1×/3×**, 239,71–239,88 FPS, minimum1 s238,95, pire frame11,221 ms ; drag final répété à239,87 FPS. Cap240 / physique60 conservés.
+
+Le feel P4 et les quatre ressources outils restent verrouillés. Modification locale préexistante de `project.godot` préservée hors commits. P5 remplace explicitement l'auto-recovery et `Restart Specimen` des anciennes spécifications.
+
+**Prochaine action : une session humaine complète en huit étapes, surtout Keep Cleaning.** Le fonctionnement technique est vérifié ; compréhension, agrément du transfert Forceps et envie de poursuivre restent à valider. **STOP après livraison : PR #8 DRAFT, aucun merge ni P6.**
+
 ## Watchpoints techniques
 
 - grille relief dense (~1,31 M triangles) ;
@@ -215,7 +235,7 @@ Ces sujets ne rouvrent pas P4 maintenant. S'ils restent importants après P5/P6,
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4 ✅ → P4-V1 ✅ → **P4-V2 : acquis validés, clôture en attente du retest final** → P5 UI/progression → P6 Art Pass → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 livré, test humain attendu** → P6 Art Pass (non autorisé) → P7 Tuning → V0.1.
 
 ## Precision Pick — addendum humain confirmé, 2026-10-04
 
