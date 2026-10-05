@@ -156,3 +156,20 @@ Faire une seule session, sans réglage debug de puissance/rayon. [1] Brush : Soi
 UI, pinces et fragments restent greybox ; aucune DA finale. Un dépôt laisse le substrat à sa hauteur, puisque Forceps n'excave pas. Les critères de clearance, le placement et les seuils de progression demandent encore un retour humain. Pas de musée navigable, sauvegarde collection, économie, équipement, autre fossile, procgen ni redesign Soil/débris/film. Les quatre ressources P4, géologie, fracture, protections, caméra et audio ne sont pas retunés.
 
 **Technique vérifiée ; agrément et comportement Keep Cleaning non encore validés humainement. STOP pour cette session humaine. PR #8 reste DRAFT ; aucun merge ni P6.**
+
+
+## Human test 1 — 2026-10-05
+
+**Verdict: NOT YET HUMAN-VALIDATED.** Technical delivery remains sound, but the first end-to-end playtest exposed comprehension and recovery-UX issues that invalidate the current Keep Cleaning behavioral read.
+
+Main findings:
+- UI occupies too much of the excavation view;
+- required objectives vs dossier/100% quality are ambiguous;
+- completed objective child values still visually read unfinished;
+- high-quality cleaning lacks a satisfying component-level payoff;
+- 98–99% can look visually complete, so exact 100% risks pixel-hunting;
+- recoverable fragments feel arbitrary/hard to discover and the UI tray is not tactile enough.
+
+Correction scope and retest protocol: [P5_HUMAN_CORRECTION_BRIEF](P5_HUMAN_CORRECTION_BRIEF.md).
+
+**PR #8 stays DRAFT. Do not merge and do not start P6 before corrected human retest.**
