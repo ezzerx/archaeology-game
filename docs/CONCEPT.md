@@ -49,13 +49,13 @@ Les retours doivent permettre de sentir la transition entre terre, roche et os. 
 
 | Sujet | Orientation actuelle | Validation attendue |
 |---|---|---|
-| Direction artistique | Pixel art premium ; alternative 2D illustrée | Comparaison sur une fouille jouable |
-| Fragilité / condition | Outils agressifs pouvant abîmer les os ; résine stabilisatrice | Vérifier que le risque enrichit le geste sans créer de frustration |
-| Identification | Unknown → classification probable → identité précise | Définir les indices et le niveau d’intervention du joueur |
-| Progression | Collection et musée comme méta-progression principale | Vérifier la motivation sur quelques fouilles reliées |
+| Direction artistique | **2.5D stylisée, tabletop, caméra orthographique presque verticale** | P6A valide la production finale sans changer cette base |
+| Fragilité / condition | **Bone Condition globale + protection du premier hit direct par composant** ; Pick/Brush/Blower sûrs | Tuning final du risque en P7 |
+| Identification | Unknown → Vertebrate remains → Possible Theropod → Likely small theropod | P5 teste le rythme et la lisibilité du dossier |
+| Progression | Musée/collection comme méta-progression ; P5 teste d'abord une session de préparation complète | Relier ensuite plusieurs spécimens/fouilles |
 | Statistiques du musée | Collection Progress, Exhibit Prestige, Visitor Rating | Garder uniquement les indicateurs utiles |
 | Catalogue | Dinosaures et autres collections possibles | Choisir après validation du cœur jouable |
-| Moteur | Godot envisagé | Vérifier version stable, rendu et mises à jour des masks |
+| Moteur | **Godot 4.7.2 stable Standard, GDScript, Compatibility** | Reconsidérer uniquement face à une limitation concrète |
 
 Le contenu culturel ancien, l’économie, les doublons de fragments, les déblocages et les contraintes scientifiques précises ne sont pas encore définis. Aucun planning commercial ni volume final de contenu n’est engagé.
 
