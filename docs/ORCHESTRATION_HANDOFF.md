@@ -234,6 +234,7 @@ These are strong current hypotheses, not final implementations:
 - **Crate opening grammar:** direct mouse manipulation with a small modular set of believable actions (pull straps, flip latches, crowbar lever, lift lid, remove protection). Usually 2–3 short interactions; vary crate hardware rather than repeat one animation. Opening reveals a closed/unprepared block, never already-exposed bones.
 - **Prepared-block silhouette variation:** test visually different block/jacket silhouettes while keeping preparation readable; avoid jumping immediately to unconstrained free-form geometry.
 - **Soil redesign:** preferred hypothesis is a thin removable loose-overburden/dirt layer rather than deep Soil. Brush reveals a dirty/contact-patinated Clay/Sandstone surface; structural excavation then reveals fresh matrix interior. If adopted, preserve verticality through matrix/fossil depth rather than thick Soil.
+- **Preparation → museum bridge remains open:** Macro Game Design must compare in-matrix display, extractable bones, mounted-skeleton contribution and hybrid specimen rules. A short conservation/mounting ritual is promising, but never as another long 10–15 minute phase. P5 Forceps fragments do not commit the final extraction model.
 
 Do not pull these into P5/P6 without explicit authorization:
 
