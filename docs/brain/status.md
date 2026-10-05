@@ -339,3 +339,14 @@ Deferred watchpoints:
 - no further B-17-specific completion tuning before more context from P6 / future meta design.
 
 P5 is no longer a blocker. Next gate: **P6A Visual Direction / Production Spike**.
+
+
+## P6A — Visual Direction / Production Spike ACTIVE
+
+P5 is closed and merged. P6A is now the active phase on `prototype/p6a-visual-spike`.
+
+Source of truth: [P6A_BRIEF](../dev/P6A_BRIEF.md).
+
+First task is **P6A-1 Material Lab**: compare the current dynamic B-17 rendering against representative procedural/authored/hybrid material candidates on identical excavation states before producing environment assets.
+
+P6A must prove fidelity, gameplay readability, dynamic compatibility, performance and production cost. No automatic P6B after technical success; Antoine must approve the playable hero slice.
