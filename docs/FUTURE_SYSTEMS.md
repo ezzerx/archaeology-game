@@ -96,7 +96,27 @@ The exact system may be framed as museum prestige, scientific reputation, fundin
 
 This deserves a dedicated design workshop after the excavation core and initial visual pipeline are validated.
 
-## 4. Long-term motivation model
+## 4. Specimen Intake / Crate Queue — confirmed macro-loop direction
+
+The next excavation should be selected through a **physical specimen-crate queue**, not a generic level-select grid.
+
+Each crate provides partial pre-opening information (origin/site, geological period, expected matrix, preparation difficulty, curator note and exceptional/rare status where appropriate) while preserving the exact specimen as a discovery. A short crate-opening ritual should bridge selection and preparation.
+
+Design intent:
+
+> **choose crate → anticipate → open → reveal block/dossier → prepare specimen**
+
+The rarity/specialness signal exists to create anticipation and prioritization, not to support paid loot-box mechanics. Core collection progress must remain targetable and fair.
+
+## 5. Museum as visible completion / permanent memory — confirmed macro-loop direction
+
+The museum is not merely a stats screen. It should physically reflect completed work: recovered/prepared pieces appear in exhibitions, missing pieces remain visibly absent, and the gallery becomes a persistent record of the player's career.
+
+The core motivational target is similar to the pleasure of filling a museum collection in *Animal Crossing*: each contribution makes the place feel more alive and more personally authored.
+
+Prefer visible exhibit change over abstract XP bars. Some exhibits may start partially complete so the player enters an existing institution and immediately has near-term completion goals.
+
+## 6. Long-term motivation model
 
 Current intended structure:
 
@@ -112,7 +132,7 @@ EXCAVATION
 
 The systems should reinforce one another without turning the excavation into a grind.
 
-## 5. Scope rule
+## 7. Scope rule
 
 These directions are **certain future product pillars**, but their implementation is conditional on the core loop succeeding.
 
