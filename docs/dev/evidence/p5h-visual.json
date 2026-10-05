@@ -1,0 +1,31 @@
+{
+	"captures": [
+		"res://work/test-logs/p5h-01-start.png",
+		"res://work/test-logs/p5h-02-discovery.png",
+		"res://work/test-logs/p5h-02a-coverage-blocked.png",
+		"res://work/test-logs/p5h-02b-coverage-pass.png",
+		"res://work/test-logs/p5h-03-preparing.png",
+		"res://work/test-logs/p5h-04-ready.png",
+		"res://work/test-logs/p5h-05-fine-glint.png",
+		"res://work/test-logs/p5h-06-fine.png",
+		"res://work/test-logs/p5h-06a-condition-good.png",
+		"res://work/test-logs/p5h-07-archive-fine.png",
+		"res://work/test-logs/p5h-08-another-block.png",
+		"res://work/test-logs/p5h-09-archive.png",
+		"res://work/test-logs/p5h-10-1280x720.png",
+		"res://work/test-logs/p5h-11-narrow.png",
+		"res://work/test-logs/p5h-12-debug.png"
+	],
+	"checks": 77,
+	"completion": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999987742198,
+		"condition": 100.0,
+		"condition_tier": "Excellent",
+		"coverage_passed": true,
+		"exposure": 96.9588107773304,
+		"fine_preparation": true,
+		"largest_hidden_cluster": 49
+	},
+	"failures": 0
+}

@@ -2,9 +2,11 @@
 
 ## Canon actuel — 2026-10-05
 
+**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET aucun amas osseux caché atteignant le seuil centralisé (connexité8, sans pont entre os). Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. [Rapport courant](dev/P5_HIDDEN_CLUSTER_REPORT.md). **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
+
 Le joueur est préparateur/restaurateur dans un musée d'histoire naturelle. La boucle prototype actuelle est :
 
-> **bloc confié → excavation/préparation → découverte/classification → récupération manuelle des fragments → Preparation Complete → Keep Cleaning ou Archive Specimen → prochain bloc**
+> **bloc confié → excavation/préparation → découverte → Specimen prepared (85/85) → Keep Cleaning ou Archive Specimen → prochain bloc**
 
 Grammaire outils actuelle :
 
@@ -12,7 +14,6 @@ Grammaire outils actuelle :
 - **Chisel** : excavation bulk Clay/Sandstone et fracture ;
 - **Air Blower** : évacuation du mess libre ;
 - **Precision Pick** : finition structurelle précise près des os ;
-- **Forceps [P5]** : récupération de fragments indépendants READY, jamais excavation.
 
 Trois métriques Bone restent séparées : **Exposure / Cleanliness / Condition**. Les sections plus anciennes ci-dessous conservent la provenance des idées ; les décisions P4/P5 plus récentes prévalent.
 

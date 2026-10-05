@@ -97,7 +97,7 @@ func test_input_and_sound() -> void:
 	var toolbar: HBoxContainer = main.get_node("Debug/Toolbar")
 	await process_frame
 	check(control.tools.size() == 4 and toolbar.get_child_count() == 4
-		and control.tools[3].id == &"precision_pick", "four tool resources and a fourth visible button")
+		and control.tools[3].id == &"precision_pick", "P5 preserves the four excavation tools and Pick fourth")
 	for keycode in [KEY_4, KEY_1, KEY_KP_4, KEY_2, KEY_4, KEY_3]:
 		control._held = true
 		var key := InputEventKey.new()

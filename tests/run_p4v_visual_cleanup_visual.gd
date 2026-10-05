@@ -26,6 +26,9 @@ func interface_case(layer: int, offset: float, zoom: float) -> void:
 	for i in range(block.working_map._heights.size()):
 		block.working_map._heights[i] = block.working_map.strata.packed_limits[i * 2 + layer] + offset
 	block.working_map.image.set_data(1024, 640, false, Image.FORMAT_RF, block.working_map._heights.to_byte_array())
+	# P5's two independent fragments can stand above this synthetic whole-map
+	# cut. Commit their exposure, then include their Bone pixels in the oracle.
+	block.working_map.update_fragments(Rect2i(Vector2i.ZERO, block.map_resolution))
 	block.working_map.dirty = true
 	block.flush_texture()
 	main.feedback.reset()
@@ -59,8 +62,9 @@ func interface_case(layer: int, offset: float, zoom: float) -> void:
 			var hit := block.pick(Vector2(x + 0.5, y + 0.5), camera)
 			if not hit.inside: continue
 			samples += 1
-			if color_distance(before.get_pixel(x, y), expected.debug_color) > 0.02: before_wrong += 1
-			var error := color_distance(after.get_pixel(x, y), expected.debug_color)
+			var expected_color: Color = block.material.get_shader_parameter("bone_color") if hit.bone_exposed else expected.debug_color
+			if color_distance(before.get_pixel(x, y), expected_color) > 0.02: before_wrong += 1
+			var error := color_distance(after.get_pixel(x, y), expected_color)
 			max_color_error = maxf(max_color_error, error)
 			if error > 0.02: after_wrong += 1
 			if hit.material != expected: cursor_wrong += 1

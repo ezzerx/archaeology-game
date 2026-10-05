@@ -1,0 +1,35 @@
+{
+	"captures": [
+		"res://work/test-logs/p5-01-start.png",
+		"res://work/test-logs/p5-02-discovery.png",
+		"res://work/test-logs/p5-03-ready.png",
+		"res://work/test-logs/p5-03a-fragment-bone-gpu.png",
+		"res://work/test-logs/p5-03b-fragment-held-source-gpu.png",
+		"res://work/test-logs/p5-04-drag.png",
+		"res://work/test-logs/p5-05-tray-one.png",
+		"res://work/test-logs/p5-06-complete.png",
+		"res://work/test-logs/p5-07-keep-cleaning.png",
+		"res://work/test-logs/p5-07a-quality.png",
+		"res://work/test-logs/p5-08-archive.png",
+		"res://work/test-logs/p5-09-another-block.png",
+		"res://work/test-logs/p5-10-1280x720.png",
+		"res://work/test-logs/p5-11-debug.png",
+		"res://work/test-logs/p5-12-archive-request-only.png"
+	],
+	"checks": 79,
+	"completion": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999987109332,
+		"condition": 100.0,
+		"exposure": 65.726231031279,
+		"fragments": 2,
+		"quality_count": 0,
+		"quality_marks": [
+			false,
+			false,
+			false,
+			false
+		]
+	},
+	"failures": 0
+}

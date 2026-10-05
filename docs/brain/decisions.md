@@ -506,6 +506,54 @@ Antoine valide comme **base à tester** la variante A du futur écran d'arrivage
 
 Aucun avatar contrôlable ni déplacement 3D pour aller toucher les caisses. La salle doit rester un hub de choix court, lisible et diégétique, puis mener à une phase d'ouverture de caisse et enfin à la préparation.
 
+## P5 — Retour humain1 et correction autorisée, 2026-10-05
+
+**Verdict confirmé : P5 non validé.** L'ambiguïté mission/qualité100 % empêche d'interpréter le premier Keep Cleaning comme une envie libre de poursuivre. Antoine autorise une correction ciblée : hiérarchie requise/optionnelle, marges UI, fragments naturellement voisins du spécimen, plateau physique, préparation fine95/95 et archive satisfaisante. **Préférence produit confirmée : l'archive doit être une conclusion courte, claire et émotionnellement positive du travail pour le musée, pas un rapport administratif/PDF.** Aucun P6 ni retuning P4.
+
+Choix livrés, à retester humainement : demande de gauche seule autorité d'archive ; dossier explicitement optionnel ; étoiles persistantes95/95 avec éclat/notice uniques et aucun effet sur Condition/mission ; découverte d'un fragment à10 % d'exposition réelle. Les fragments sont près de la mâchoire et du bassin sans changer les totaux anatomiques. Le plateau est un objet3D fixe ; la cible est son fond intérieur, pas son rectangle écran. Home retrouve le bureau quand le zoom sort le plateau du cadre ; cette friction éventuelle doit être évaluée au retest.
+
+L'archive conserve les valeurs finales, affiche identité/demande accomplie/fragments/Condition/qualité optionnelle et remercie brièvement le joueur, avec une confirmation douce. Les écarts détaillés restent F1. Un parcours sans étoile reste une réussite complète de la demande. Le protocole laisse **choisir librement** Archive ou Keep Cleaning ; aucune consigne de continuer avant de relever le choix.
+
+Leçons vérifiées : les sous-lignes d'un objectif terminé doivent porter le même statut visuel que sa coche ; les contrôles de layout doivent inclure l'état Keep Cleaning où le bouton Archive apparaît, sinon celui-ci peut masquer le compteur du plateau. Attendre la fin du bref fondu pour la capture finale d'archive, sans l'exclure du benchmark. L'oracle entièrement révélé/nettoyé atteint100 % ; la cause des98–99 % de la session humaine reste non localisée faute de snapshot de ce terrain. Rapport et retest : [P5_CORRECTION_REPORT](../dev/P5_CORRECTION_REPORT.md).
+
+
+## P5 simplification — remove fragment objective and reduce UI — 2026-10-05
+
+Antoine rejects the growing P5 objective/dossier complexity. The core P5 goal is simplified to **Prepare the specimen = reveal >=90% of the skeleton + clean >=90% of revealed Bone**.
+
+The two loose fragments, Forceps objective, physical tray, component stars and detailed component checklist are removed from the P5 player-facing validation flow. They were exploratory mechanics, not part of Antoine's original core vision, and may only return later if Macro Game Design gives them a clear role.
+
+P5 UI should be minimal and functional: one preparation goal, two progress values/bars, established four-tool toolbar, clear completion state, Archive / Keep Cleaning. Classification may remain a subtle discovery signal but not a competing checklist. Condition is not another completion requirement.
+
+P5's art is intentionally greybox. **P5 must be clear, not beautiful; P6 owns the real visual/UI language.**
+
+P5 is complete when one preparation session can be understood, completed and archived from start to finish without explanation. Full skeleton extraction vs in-matrix vs mounted/hybrid museum destination remains a Macro Game Design decision.
+
+
+## P5 compact HUD + 85/95 mastery ladder — 2026-10-05
+
+Antoine keeps P5 minimal but restores one global optional mastery reward.
+
+- Required completion = **global Exposure >=85% AND global Cleanliness >=85%**.
+- Optional mastery = **global Exposure >=95% AND global Cleanliness >=95%** -> one persistent **★ Fine Preparation** reward with a brief subtle glint/sound.
+- Exact 100% is never required.
+- No per-component stars/checklists in the player-facing P5 UI.
+- Primary HUD = one compact top-left / left-margin card with specimen name + Reveal + Clean + state. No permanent right-side dossier.
+- Four-tool toolbar remains bottom.
+- Classification is transient/non-blocking; Condition and detailed component data stay out of the primary HUD.
+
+Rationale: preserve a clear 0→85 required phase, a meaningful 85→95 optional mastery phase, and 95→100 personal completion, while keeping the fossil/work surface visually dominant.
+
+
+## P5 — Livraison du parcours simplifié85/95, 2026-10-05
+
+La direction humaine85/95 est implémentée sur PR #8 (`19b8ec4`) : une seule carte de préparation, quatre outils, aucun fragment/Forceps/plateau dans le jeu normal. À85/85, completion persistante et archive permise ; la fouille n'est pas interrompue. À95/95, une seule étoile globale persistante et une confirmation discrète ; Condition indépendante, aucun bonus100%. Archive ne montre que la clôture positive, l'étoile si acquise et le bouton suivant. Les détails demeurent F1.
+
+Choix technique vérifié : ne pas supprimer les modules de l'expérience fragments, mais ne les initialiser que dans un test explicite ; aucune touche normale ne les active. Les anciens tests de seuils/composants/mission sont remplacés par ceux du parcours actif, tandis que plafonds/READY/retour/dépôt restent couverts séparément. Les snapshots de fin/archivage et le reset sont conservés. Un Keep Cleaning sans clic est possible : lire aussi les actions supplémentaires, pas seulement le booléen de choix.
+
+Leçon vérifiée : un panneau dimensionné par texte avec retour à la ligne doit pouvoir rétrécir après calcul de sa taille minimale ; sinon il laisse une grande zone vide malgré un contenu compact. La capture et le contrôle de rectangle ont détecté et corrigé ce défaut.
+
+[Rapport et preuves](../dev/P5_SIMPLIFICATION_REPORT.md) :2 017 contrôles fonctionnels,59 graphiques,22 scénarios/90 contrôles perf, oracle GPU194 955 pixels ; zéro échec. **Cela ne valide pas P5 humainement.** Attendre les six réponses du retest libre ; aucun merge ni P6.
 
 ## Crate opening — tactile modular grammar — 2026-10-05
 
@@ -522,4 +570,79 @@ Antoine confirme que la transition **préparation → musée** doit être trait�
 
 Une courte étape de **conservation / finition / mounting** reste une piste forte pour relier le travail du laboratoire à l'exposition (consolidant, dernier nettoyage, support, étiquette), mais elle ne doit pas devenir une seconde phase de 10–15 minutes après chaque préparation. Cible : geste final court, satisfaisant et cérémoniel.
 
-La présence de seulement deux fragments extractibles dans P5 reste un test de mécanique Forceps, pas une décision sur le modèle final d'extraction des pièces principales.
+L'ancienne expérience des deux fragments extractibles dans P5, désormais dormante, reste un test de mécanique Forceps, pas une décision sur le modèle final d'extraction des pièces principales.
+
+
+## P5 final simplified target — 85/95, coverage guard, qualitative Condition — 2026-10-05
+
+Antoine validates the next P5 design baseline:
+
+- Required preparation = **Exposure >=85% + Cleanliness >=85% + coverage guard**.
+- Coverage guard is invisible unless it blocks completion; it prevents archive while an obvious major contiguous anatomical region remains substantially buried.
+- Optional mastery = **Exposure >=95% + Cleanliness >=95% => one global ★ Fine Preparation**.
+- Exact100% is personal only.
+- Condition is shown as a qualitative care state, independent from completion:
+  - 95–100 Excellent
+  - 85–94 Good
+  - 70–84 Fair
+  - <70 Damaged
+- Condition does not gate archive in P5 and does not invalidate Fine Preparation.
+- Primary HUD remains one compact card with museum standard, Reveal, Clean and qualitative Condition; no permanent right dossier.
+- Fragments/Forceps/tray and per-component stars remain outside the P5 player flow.
+
+Design intent: answer four questions with minimal UI — What do I do? Can I stop? Why might I continue? Why should I be careful?
+
+## Livraison couverture et soin — 2026-10-05
+
+La cible humaine est implémentée :85/85 global plus garde anatomique, Condition qualitative indépendante, étoile globale95/95 inchangée. Choix prototype **65 % minimum sur chacun des quatre composants**, centralisé dans PreparationRules ; les captures comparées50/60/65/70 montrent que50 laisse tout le bas de patte couvert. Ce choix demande encore validation humaine : quatre compteurs ne constituent pas une analyse de chaque sous-os ou amas contigu.
+
+La garde est invalidée uniquement par exposition, puis évaluée dans le regroupement existant ; film et dégâts seuls ne la recalculent pas. Une baisse de Condition notifie une seule fois le palier atteint, sans rafale si plusieurs seuils sont franchis. Une découverte simultanée ne remplace pas immédiatement cette notice. Reset réarme les notifications ; nettoyer ne restaure pas Condition et n'annule pas Fine Preparation.
+
+[Rapport courant](../dev/P5_COVERAGE_CARE_REPORT.md) :2 055 contrôles fonctionnels,77 graphiques,104 contrôles perf/26 scénarios, zéro échec. Les vérifications techniques ne valent pas validation produit. Retest libre en neuf questions, PR #8 DRAFT ; aucun merge/P6.
+
+## P5 coverage guard — hidden connected mass — 2026-10-05
+
+Antoine approves replacing the coarse **65% minimum per anatomical component** readiness guard with a more perceptual hidden-mass test.
+
+Archive readiness remains:
+- Exposure global >=85%
+- Cleanliness global >=85%
+- no major contiguous hidden Bone cluster above the centralized prototype threshold
+
+Initial target to test: largest remaining connected hidden Bone cluster around **2–3% of total main skeleton cells**. Exact threshold must be calibrated on B-17 fixtures and documented.
+
+Reason: a component can satisfy65% exposure while still leaving a visually obvious lower-limb section buried. The new guard should answer the perceptual question: **does a major piece of the skeleton still visibly remain undiscovered?**
+
+No new HUD metric; only a contextual "Major section still covered" message when blocked. P4 gameplay and P5 UI remain otherwise unchanged.
+
+
+## Garde exacte des amas cachés — implémentation Human test5 — 2026-10-05
+
+La règle prototype retenue est `plus grand amas caché < ceil(total Bone principal ×0,02)`, soit strictement moins de646 cellules pour B-17. Connexité8 immédiate, aucun pont ni dilatation. La topologie réelle sépare naturellement le pied (1 328 cellules) du bas de jambe (1 983), tous deux détectables sans relier les os.2 % a été préféré à3 % : la limite3 % laisserait encore près de73 % du pied caché. Ce choix technique reste à valider humainement.
+
+La liste des cellules cachées suit les signaux de première exposition ; le parcours en largeur est regroupé par action, différé jusqu’à85 % et mis en cache. Aucun recalcul pour film, Condition ou caméra. Les régions séparées ne sont jamais additionnées : plusieurs petits restes ne forment pas artificiellement une grande pièce manquante. La méthode ne garantit pas une silhouette complète si plusieurs petits os séparés restent enfouis ; aucune extension de gameplay pour masquer cette limite.
+
+[Rapport courant](../dev/P5_HIDDEN_CLUSTER_REPORT.md).85/85 global,95/95 facultatif et Condition qualitative restent inchangés. Aucun merge ni P6 avant verdict humain.
+
+
+## P5 human closure — advance to P6 — 2026-10-05
+
+Antoine explicitly closes P5 as **sufficiently validated to advance**.
+
+What P5 proved:
+- one fossil-preparation session can be understood and completed end-to-end;
+- the compact HUD communicates the core job clearly enough;
+- museum standard at85/85 gives a clear stopping point;
+- optional95/95 Fine Preparation provides a lightweight reason to continue;
+- qualitative Condition gives the player a reason to work carefully without becoming another completion bar;
+- Archive / Keep Cleaning establishes a complete session ending.
+
+Known limitations are accepted and deferred rather than blocking P6:
+- Cleanliness is measured over currently exposed Bone, so revealing new dirty Bone can lower the displayed cleanliness percentage; this is logical but may need better communication/presentation later.
+- The hidden-cluster coverage guard is still not a perfect proxy for human visual completeness; some visibly missing anatomy can still remain while archive is allowed. Do not spend more P5 time tailoring B-17-specific completion logic.
+- Final in-matrix vs extraction vs mounted-skeleton/hybrid destination remains a Macro Game Design question.
+- P5 UI is intentionally greybox; visual quality is now P6's responsibility.
+
+Fragments/Forceps remain dormant historical experiments, not part of the active P5 player loop.
+
+Decision: stop P5 iteration here, merge PR #8, then open **P6A — Visual Direction / Production Spike**.

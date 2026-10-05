@@ -172,7 +172,7 @@ func validate_bone_pixels(zoom := 1.0) -> void:
 	check(bone_samples > 2000 and matrix_samples > 10000, "GPU oracle samples both bone and adjacent cavity")
 	check(height_error < 0.01, "rendered height equals CPU first-hit relief including bone boundaries")
 	check(color_error < 0.02, "rendered bone material equals structural exposure / component cells")
-	check(block.fossil_texture.get_image().get_data() == block.working_map.fossil.field.image.get_data(), "static RGF GPU/CPU byte equality")
+	check(block.fossil_texture.get_image().get_data() == block.working_map.bone_display_image.get_data(), "static anatomical + independent fragment RGF GPU/CPU byte equality")
 	check(block.texture.get_image().get_data() == block.working_map.image.get_data(), "height GPU/CPU byte equality")
 	check(block.residue_texture.get_image().get_data() == block.working_map.residue.image.get_data(), "residue GPU/CPU byte equality")
 	var oracle_key := "gpu_oracle" + suffix
@@ -181,7 +181,7 @@ func validate_bone_pixels(zoom := 1.0) -> void:
 		"bone_material_max_error": color_error, "raw_material_max_error": raw_color_error,
 		"raster_alternatives": raster_alternatives,
 		"boundary_alternatives": boundary_alternatives, "boundary_tolerance_texels": 0.01, "textures_byte_exact":
-		block.fossil_texture.get_image().get_data() == block.working_map.fossil.field.image.get_data()}
+		block.fossil_texture.get_image().get_data() == block.working_map.bone_display_image.get_data()}
 	print("P3 GPU ORACLE: ", JSON.stringify(report[oracle_key]))
 	if not color_mismatches.is_empty(): print("P3 COLOR DIAGNOSTICS: ", JSON.stringify(color_mismatches))
 	if not height_mismatches.is_empty(): print("P3 HEIGHT DIAGNOSTICS: ", JSON.stringify(height_mismatches))

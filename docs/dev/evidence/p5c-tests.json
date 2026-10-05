@@ -1,0 +1,20 @@
+{
+	"checks": 38,
+	"failures": 0,
+	"fragment_0_distance_to_anatomy": 20.651876449585,
+	"fragment_1_distance_to_anatomy": 25.347583770752,
+	"zero_star_archive": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999986892421,
+		"condition": 100.0,
+		"exposure": 65.004645401053,
+		"fragments": 2,
+		"quality_count": 0,
+		"quality_marks": [
+			false,
+			false,
+			false,
+			false
+		]
+	}
+}

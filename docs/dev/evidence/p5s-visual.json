@@ -1,0 +1,25 @@
+{
+	"captures": [
+		"res://work/test-logs/p5s-01-start.png",
+		"res://work/test-logs/p5s-02-discovery.png",
+		"res://work/test-logs/p5s-03-preparing.png",
+		"res://work/test-logs/p5s-04-ready.png",
+		"res://work/test-logs/p5s-05-fine-glint.png",
+		"res://work/test-logs/p5s-06-fine.png",
+		"res://work/test-logs/p5s-07-archive-fine.png",
+		"res://work/test-logs/p5s-08-another-block.png",
+		"res://work/test-logs/p5s-09-archive.png",
+		"res://work/test-logs/p5s-10-1280x720.png",
+		"res://work/test-logs/p5s-11-narrow.png",
+		"res://work/test-logs/p5s-12-debug.png"
+	],
+	"checks": 59,
+	"completion": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999988077579,
+		"condition": 100.0,
+		"exposure": 86.0080520284918,
+		"fine_preparation": false
+	},
+	"failures": 0
+}

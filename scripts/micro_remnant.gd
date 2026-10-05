@@ -5,7 +5,7 @@ extends RefCounted
 
 static func bottom(surface: WorkingSurface, index: int, layer: int) -> float:
 	var floor_height := surface.strata.packed_limits[index * 2 + 1] if layer == 1 else 0.0
-	if surface.fossil != null: floor_height = maxf(floor_height, surface.fossil.field.ceilings[index])
+	if surface.fossil != null: floor_height = maxf(floor_height, surface.structural_ceilings[index])
 	return floor_height
 
 static func inspect(surface: WorkingSurface, start: Vector2i, layer: int, seen: Dictionary) -> PackedInt32Array:

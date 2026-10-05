@@ -72,6 +72,9 @@ func prepare_residue() -> void:
 				block.working_map.apply_impact(Vector2(x, y), chisel)
 
 func screenshot(name: String) -> Image:
+	# Legacy terrain/FX oracles isolate P0–P4 pixels. P5 UI/interaction/performance
+	# has its own visible-UI suite and must not occlude this historical oracle.
+	if main != null: main.session_ui.hide()
 	await RenderingServer.frame_post_draw
 	var picture := root.get_texture().get_image()
 	picture.save_png("res://work/test-logs/" + name + ".png")

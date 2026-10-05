@@ -2,7 +2,7 @@
 
 - Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 validé et mergé ; P5 Complete Session Loop / UI & Progression livré pour test humain ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
+- Phase : **préproduction — P4 validé et mergé ; P5 85/95 + garde des amas cachés + Condition qualitative livré pour retest, toujours non validé humainement ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 actif : `prototype/p5-loop-progression`, PR #8 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -10,6 +10,8 @@
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
 - Merge P3 : `10a12379ab1db629380ac9697e5597aeb16a373b`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.
+
+**Reprise courante :** [P5_HIDDEN_CLUSTER_REPORT](../dev/P5_HIDDEN_CLUSTER_REPORT.md), Human test5. Retest ciblé en sept étapes ; aucune autre feature.
 
 ## P0 — Validé ✅
 
@@ -206,7 +208,7 @@ Première stratégie P6 pour la lisibilité : **tester uniquement la couleur** d
 
 Ces sujets ne rouvrent pas P4 maintenant. S'ils restent importants après P5/P6, ils recevront une **phase dédiée de polish gameplay/excavation avec un nouveau nom (TBD), pas “P4.2”**.
 
-## P5 — Complete Session Loop / UI & Progression livré, test humain attendu ▶
+## P5 — Livraison initiale Complete Session Loop / UI & Progression (historique)
 
 Source de vérité : [P5_BRIEF](../dev/P5_BRIEF.md).
 
@@ -224,7 +226,19 @@ Le feel P4 et les quatre ressources outils restent verrouillés. Modification lo
 
 **Prochaine action : une session humaine complète en huit étapes, surtout Keep Cleaning.** Le fonctionnement technique est vérifié ; compréhension, agrément du transfert Forceps et envie de poursuivre restent à valider. **STOP après livraison : PR #8 DRAFT, aucun merge ni P6.**
 
-## Watchpoints techniques
+## P5 — Correction humaine1 (historique, supersédée)
+
+Le premier test a révélé une confusion entre mission requise et qualité100 %, des panneaux obstructifs, une récupération peu naturelle et une archive trop administrative. **Son Keep Cleaning n'est pas un signal produit exploitable.** [Brief correctif](../dev/P5_HUMAN_CORRECTION_BRIEF.md) et [rapport courant](../dev/P5_CORRECTION_REPORT.md) prévalent sur la livraison initiale ci-dessus.
+
+- Museum Request seul obligatoire ; sous-objectifs terminés également verts/résumés ; état persistant Request complete / Ready to archive / Further work optional. Archive accessible dans ce panneau. Dossier explicitement informatif/optionnel ; panneaux224 px dans les marges à vue d'ensemble.
+- Étoiles par composant à **95 % exposé ET95 % propre**, persistantes, éclat doré et notice uniques. Prepared80/80 conservé ; aucune autorité sur Condition, mission ou archive. Zéro étoile n'empêche rien ;100 % n'est pas requis.
+- Fragments rapprochés de la mâchoire/bassin, notice unique à10 % réellement exposé. READY90 %+couronne inchangé ; exactement deux, totaux anatomiques exacts. Plateau3D fixe sur le bureau ; dépôt sur son fond intérieur réel, meshes visibles dans les compartiments. Home restaure le plateau si le zoom l'a sorti du cadre, sans recadrage automatique.
+- Archive courte : confirmation visuelle/sonore discrète, identité, demande accomplie, fragments/Condition finale, qualité optionnelle et remerciement. Un seul bouton Prepare Another Block ; valeurs détaillées conservées en F1, snapshots toujours séparés.
+- **2 117 checks fonctionnels** (1 895 historiques +184 P5 +38 correctifs), **79 graphiques**, **22 scénarios de performance /70 checks**, zéro échec.239,70–239,88 FPS, minimum1 s239,01, pire frame11,426 ms. Cap240/physique60 ; ressources et géologie P4 inchangées. `project.godot` préexistant toujours hors commits.
+
+**Prochaine action : retest sans coordonnées ni consigne de continuer.** Distinguer plaisir/maîtrise optionnelle de confusion ; tester aussi confort du plateau depuis le zoom et satisfaction de l'archive. P5 reste non validé humainement. **STOP, PR #8 DRAFT ; aucun merge/P6.**
+
+## Watchpoints techniques courants
 
 - grille relief dense (~1,31 M triangles) ;
 - upload RF complet quand dirty ;
@@ -235,8 +249,93 @@ Le feel P4 et les quatre ressources outils restent verrouillés. Modification lo
 
 ## Séquence
 
-P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 livré, test humain attendu** → P6 Art Pass (non autorisé) → P7 Tuning → V0.1.
+P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 ✅ human-validated** → **P6A Visual Direction / Production Spike — next** → P6B Art Pass → P7 Tuning → V0.1.
 
 ## Precision Pick — addendum humain confirmé, 2026-10-04
 
 Nouveau test humain positif : **11 / 0,44 / 1,75** remplace **7 / 0,24 / 1,50** dans la ressource native. Cadence6 Hz, dégâts Bone 0, efficacités0,30/ 1,00/ 1,50 inchangées. Finition structurelle rapide après Chisel ; faible capacité de déblaiement due au petit footprint, pas à un impact local péniblement faible. Aucun stress de fracture ni gros chunks Chisel. Brush prépare le film adhérent, Blower chasse le mess libre. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les anciennes entrées de décision conservent leur valeur historique, pas une baseline concurrente.
+
+
+## P5 — second human review (historical90/90, superseded)
+
+Second review on 2026-10-05: the corrected UI still contains too much information and obscures the basic purpose of the session. P5 remains **not human-validated**.
+
+New validation target: one simple player-facing goal — **reveal >=90% skeleton and clean >=90% Bone** — then clearly offer Archive or optional further cleaning. Fragments/Forceps/tray and component-quality stars are removed from the P5 validation flow. Detailed classification/components/Condition move out of the primary UI.
+
+P5 is intentionally greybox; P6 will make the interface beautiful/diegetic. The only P5 UI requirement is immediate comprehension.
+
+PR #8 remains DRAFT. Next action: implement this simplification, rerun regression/performance checks, then one clean human retest with no brief/debug guidance. No P6 before that gate.
+
+
+### P5 latest target — compact HUD / 85→95
+
+Latest human direction supersedes the prior 90/90-only mockup: required completion is now **85% Exposure +85% Cleanliness**, followed by one optional global **Fine Preparation ★** at **95% +95%**. Exact100% is personal only.
+
+Player-facing HUD should be reduced to a single compact top-left/left-margin preparation card plus the bottom four-tool toolbar. Remove the permanent right dossier, component list, Forceps/fragments/tray and component stars from the P5 validation flow.
+
+**Livraison85/95 réalisée** : code `19b8ec49395e18378af4996788c90807c31af13d`, [rapport courant](../dev/P5_SIMPLIFICATION_REPORT.md). Une carte224px à gauche, deux barres ; completion à85/85 sans modal ni interruption, étoile globale persistante à95/95 avec éclat/son uniques. Seule Archive bloque les outils ; sa carte affiche deux lignes positives, l'étoile si acquise et Prepare Another Block. Classification transitoire, Condition/métriques F1. Fragments/Forceps/plateau non instanciés normalement ; expérience conservée pour tests seulement.
+
+**Vérifié** :2 017 contrôles fonctionnels (1 895 historiques +83 actifs +39 expérience),59 graphiques,22 scénarios/90 contrôles de performance, oracle GPU194 955 pixels ; zéro échec.239,68–239,87 FPS, minimum1s238,99, pire frame11,035ms. Les quatre outils et autorités P4 sont inchangés. `project.godot` préexistant hors commits.
+
+**Prochaine action : lancer et jouer librement, puis répondre aux six questions du rapport courant.** Aucun brief ni coordonnées. P5 reste non validé ; PR #8 DRAFT, STOP sans merge/P6.
+
+
+### P5 implementation target locked after human review
+
+Next corrective build is now defined: 85/85 global Exposure/Cleanliness plus an invisible major-section coverage guard for archive readiness; optional global Fine Preparation at95/95; qualitative Condition tiers (Excellent/Good/Fair/Damaged) as care feedback, not a completion requirement.
+
+HUD remains one compact preparation card plus the four-tool toolbar. No right dossier, fragments, Forceps, tray, component stars or detailed component checklist in the P5 validation flow.
+
+PR #8 remains DRAFT. Target implemented and verified below; next action is one clean human retest without brief/debug guidance. No P6 until explicit validation.
+
+### Livraison finale P5 — couverture anatomique et soin — 2026-10-05
+
+Code et tests : `77fd61b`.
+
+[Rapport courant et neuf questions](../dev/P5_COVERAGE_CARE_REPORT.md). Archive requiert85/85 global et chacun des quatre composants≥65 % exposé. Seuil prototype retenu après comparaison50/60/65/70 sur B-17 :50 laissait tout le bas de patte enfoui. La garde vérifie quatre compteurs seulement après exposition ; elle ne garantit pas chaque sous-os. Message unique si elle bloque85/85.
+
+Carte unique, standard85 % dès le départ, deux barres, Condition Excellent/Good/Fair/Damaged et première dégradation de chaque palier signalée une fois. Readiness indique que poursuivre est facultatif ;95/95 reste une étoile globale indépendante de Condition. Archive courte avec palier final. Aucun changement P4 ni activation des fragments.
+
+Vérifié :2 055 contrôles fonctionnels,77 graphiques,26 scénarios/104 contrôles perf, zéro échec.239,707–239,869 FPS ; minimum1s238,847 ; pire frame11,406ms. Cap240 / physique60Hz conservés. `project.godot` préexistant reste hors commits.
+
+**Prochaine action : jouer librement depuis reset, puis neuf questions du rapport courant. STOP ; P5 non validé humainement, PR #8 DRAFT, aucun merge ni P6.**
+
+### P5 final coverage experiment — hidden cluster
+
+Current 65%-per-component coverage guard is rejected by human review: archive can still unlock while a clearly visible lower-leg section remains buried.
+
+Next corrective build should keep the current minimal HUD,85/85 museum standard,95/95 Fine Preparation and qualitative Condition, but replace the component guard with a cached connected-hidden-Bone cluster guard. Start calibration around2–3% of total main-skeleton Bone cells; document the final centralized threshold and fixture evidence.
+
+PR #8 remains DRAFT. No additional P5 features or UI redesign. After implementation, perform one final clean human retest before deciding whether P5 is complete.
+
+
+### Livraison Human test5 — amas cachés — 2026-10-05
+
+Code et tests : `d8fad43`.
+
+La garde65 % par composant est supprimée. Parcours exact8-connexe des cellules principales encore cachées, sans dilatation ni fragments ; archive à85/85 seulement si le plus grand amas est **<646 cellules** (2 % du total, arrondi au supérieur). Le pied entier caché représente1 328 cellules et bloque malgré95,887 % global. Le même total dispersé en taches de49 cellules passe, comme85,0015 % bien réparti.
+
+Cache actualisé uniquement après exposition, parcours différé jusqu’à85 % ; aucun recalcul pour propreté/Condition/caméra/repos. HUD,95/95, Condition et P4 inchangés. [Rapport courant, preuves et limites](../dev/P5_HIDDEN_CLUSTER_REPORT.md).
+
+Vérifié :2 062 contrôles fonctionnels,77 graphiques,104 contrôles perf/26 scénarios, plus10 contrôles de rejeu ciblé ; zéro échec.238,504–239,871 FPS moyens, minimum1s231,929 ; pic isolé33,730ms non reproduit sur le rejeu (maximum9,563ms). Aucune garantie par-frame absolue extrapolée. Détails et preuves dans le rapport.
+
+**STOP pour les sept étapes de retest du rapport. P5 non validé humainement ; PR #8 DRAFT, aucun merge/P6.**
+
+
+## P5 — human closure ✅
+
+Antoine closes P5 on 2026-10-05 and authorizes progression to P6.
+
+Human verdict:
+- core session objective is now understandable;
+- current greybox UI is sufficient for P5;
+-85/85 museum standard,95/95 Fine Preparation and qualitative Condition are accepted as the current prototype loop;
+- Archive / Keep Cleaning is sufficient to represent the end of a preparation session.
+
+Deferred watchpoints:
+- Cleanliness may drop when newly exposed dirty Bone expands the denominator;
+- hidden-cluster coverage is not a perfect visual-completeness oracle and may still allow some missing anatomy;
+- final specimen destination/extraction model remains open for Macro Game Design;
+- no further B-17-specific completion tuning before more context from P6 / future meta design.
+
+P5 is no longer a blocker. Next gate: **P6A Visual Direction / Production Spike**.

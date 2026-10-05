@@ -180,7 +180,7 @@ Open models to compare:
 
 A short **conservation / mounting / finishing** ritual is a strong candidate for bridging preparation and exhibition (for example final cleaning, consolidant/resin, simple support placement), but it must remain brief and ceremonial rather than add another 10–15 minute gameplay phase.
 
-This is intentionally unresolved until the post-P5 macro game design workshop. P5's two Forceps fragments are a mechanic test, not a commitment that all major anatomy must become removable.
+This is intentionally unresolved until the post-P5 macro game design workshop. P5's dormant two-fragment Forceps experiment is a mechanic test, not a commitment that all major anatomy must become removable.
 
 ## 7. Long-term motivation model
 

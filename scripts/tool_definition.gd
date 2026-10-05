@@ -3,7 +3,7 @@ extends Resource
 ## Prototype resources. Power = work/second for strokes, work/impact for impacts.
 ## Effectiveness vector order follows the three fixed P1 layers: Soil, Clay, Stone.
 
-enum InteractionMode { CONTINUOUS, IMPACT }
+enum InteractionMode { CONTINUOUS, IMPACT, RECOVERY }
 
 @export var id: StringName
 @export var display_name: String
@@ -41,4 +41,5 @@ func structural_rate(material: MaterialDefinition) -> float:
 	return rate * cadence if interaction_mode == InteractionMode.IMPACT else rate
 
 func mode_name() -> String:
+	if interaction_mode == InteractionMode.RECOVERY: return "RECOVERY"
 	return "IMPACTS" if interaction_mode == InteractionMode.IMPACT else "CONTINUOUS"

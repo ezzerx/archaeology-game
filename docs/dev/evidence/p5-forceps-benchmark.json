@@ -1,0 +1,80 @@
+{
+	"forceps_drag_1x": {
+		"changed_cells": 0,
+		"cleanliness_delta": 0.0,
+		"complete": false,
+		"drag_ticks": 360,
+		"edit_ms": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"exposure_delta_cells": 0,
+		"frame_ms": {
+			"max": 4.566,
+			"mean": 4.16554091539532,
+			"p95": 4.321
+		},
+		"keep_cleaning": false,
+		"min_1s_fps": 240.002549404674,
+		"physics_hz": 60,
+		"remaining_crumbs": 0,
+		"render_fps": 239.87573039831,
+		"runtime_cap": 240,
+		"seconds": 6.011446,
+		"session_cpu_us": {
+			"max": 21.0,
+			"mean": 21.0,
+			"p95": 21.0
+		},
+		"session_refreshes": 1,
+		"ui_cpu_us": {
+			"max": 47.0,
+			"mean": 47.0,
+			"p95": 47.0
+		},
+		"ui_refreshes": 1,
+		"zoom": 1.0
+	},
+	"forceps_drag_3x": {
+		"changed_cells": 0,
+		"cleanliness_delta": 0.0,
+		"complete": false,
+		"drag_ticks": 360,
+		"edit_ms": {
+			"max": 0.0,
+			"mean": 0.0,
+			"p95": 0.0
+		},
+		"exposure_delta_cells": 0,
+		"frame_ms": {
+			"max": 4.464,
+			"mean": 4.16546351633081,
+			"p95": 4.326
+		},
+		"keep_cleaning": false,
+		"min_1s_fps": 240.002549404674,
+		"physics_hz": 60,
+		"remaining_crumbs": 0,
+		"render_fps": 239.873312218703,
+		"runtime_cap": 240,
+		"seconds": 5.999,
+		"session_cpu_us": {
+			"max": 28.0,
+			"mean": 28.0,
+			"p95": 28.0
+		},
+		"session_refreshes": 1,
+		"ui_cpu_us": {
+			"max": 55.0,
+			"mean": 55.0,
+			"p95": 55.0
+		},
+		"ui_refreshes": 1,
+		"zoom": 3.00000010518467
+	},
+	"validation": {
+		"checks": 6,
+		"failures": 0
+	}
+}

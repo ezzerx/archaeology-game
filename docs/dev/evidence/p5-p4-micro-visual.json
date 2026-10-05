@@ -1,0 +1,36 @@
+{
+	"checks": 25,
+	"ejection_1x": {
+		"after": 0,
+		"before": 64,
+		"flight_pixels": 858
+	},
+	"ejection_3x": {
+		"after": 0,
+		"before": 64,
+		"flight_pixels": 7798
+	},
+	"failures": 0,
+	"p4-micro-bone-1x": {
+		"darker_pixels_vs_old": 53694,
+		"dirty_clean_pixels": 61443,
+		"exposed": 32290,
+		"film_bytes": 163840,
+		"partial_clean_pixels": 6141
+	},
+	"p4-micro-bone-3x": {
+		"darker_pixels_vs_old": 277940,
+		"dirty_clean_pixels": 320025,
+		"exposed": 32290,
+		"film_bytes": 163840,
+		"partial_clean_pixels": 55373
+	},
+	"p4-micro-soil-1x": {
+		"dust_pixels": 0,
+		"matrix_count": 0
+	},
+	"p4-micro-soil-3x": {
+		"dust_pixels": 0,
+		"matrix_count": 0
+	}
+}

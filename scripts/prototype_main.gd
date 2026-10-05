@@ -16,14 +16,30 @@ extends Node3D
 var _debug_elapsed := 0.0
 var _notice_remaining := 0.0
 var feedback: MaterialFeedback
+var session: PreparationSession
+var session_ui: PreparationUI
+var forceps_view: ForcepsView
+var fragment_tray: FragmentTray3D
 
 func _ready() -> void:
-	get_window().title = "ArchaeologyGame — P4-V2 Persistent crumbs (F3 A/B)"
+	get_window().title = "ArchaeologyGame — P5 Museum Preparation Lab"
 	feedback = MaterialFeedback.new()
 	feedback.name = "MaterialFeedback"
 	add_child(feedback)
 	feedback.setup(block, controller)
-	block.working_map.fossil.bone_first_contact.connect(_on_bone_first_contact)
+	session = PreparationSession.new(block.working_map)
+	controller.session = session
+	if block.working_map.fragments != null:
+		fragment_tray = FragmentTray3D.new()
+		add_child(fragment_tray)
+		fragment_tray.setup(block.working_map.fragments, camera)
+		controller.fragment_tray = fragment_tray
+		forceps_view = ForcepsView.new()
+		add_child(forceps_view)
+		forceps_view.setup(block, controller, camera)
+	session_ui = PreparationUI.new()
+	add_child(session_ui)
+	session_ui.setup(session, controller, reset_specimen)
 	block.working_map.fossil.specimen_reset.connect(_on_specimen_reset)
 	var button_group := ButtonGroup.new()
 	for i in range(controller.tools.size()):
@@ -33,7 +49,7 @@ func _ready() -> void:
 		button.toggle_mode = true
 		button.button_group = button_group
 		button.focus_mode = Control.FOCUS_NONE
-		button.custom_minimum_size = Vector2(215, 44)
+		button.custom_minimum_size = Vector2(200, 44)
 		button.add_theme_font_size_override("font_size", 22)
 		button.pressed.connect(controller.select_tool.bind(i))
 		toolbar.add_child(button)
@@ -48,8 +64,14 @@ func _ready() -> void:
 	camera.zoom_started.connect(controller.cancel_stroke)
 	camera.pan_started.connect(controller.cancel_stroke)
 	camera.view_changed.connect(controller.refresh_view)
-	bone_panel.visible = debug_panel.visible
+	debug_panel.hide()
+	bone_panel.hide()
 	bone_notice.hide()
+
+func reset_specimen() -> void:
+	controller.reset_surface()
+	controller.select_tool(0)
+	camera.reset_view()
 
 func _on_bone_first_contact(_cell: Vector2i, _component: int) -> void:
 	bone_notice.text = "Bone detected\nDelicate material underneath"
@@ -69,11 +91,11 @@ func _update_toolbar(index: int) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.physical_keycode == KEY_R:
-			controller.reset_surface()
-			camera.reset_view()
+			reset_specimen()
 		elif event.physical_keycode == KEY_F1:
 			debug_panel.visible = not debug_panel.visible
 			bone_panel.visible = debug_panel.visible
+			session_ui.set_debug_visible(debug_panel.visible)
 		elif event.physical_keycode == KEY_F2:
 			block.set_debug_view(block.debug_view + 1)
 		elif OS.is_debug_build() and event.physical_keycode == KEY_F3:
@@ -97,7 +119,7 @@ func _process(delta: float) -> void:
 			+ "Fine Dust %.3f | Bone Film %.0f%%" % [block.working_map.residue.value_at(hit.uv), block.working_map.bone_film.value_at(hit.uv) * 100])
 		surface_info += feedback.contact_debug(hit)
 		surface_info += verticality_debug(hit)
-	debug_label.text = ("P4-V2 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
+	debug_label.text = ("P5 / %s / %s | %d FPS | %s\n" % [config.display_name, config.mode_name(), Engine.get_frames_per_second(), ["SHADED", "HEIGHT", "LAYERS", "NORMALS"][block.debug_view]]
 		+ feedback.debris_debug()
 		+ "Zoom %.2fx | Wheel: zoom | RMB drag: pan | Home: overview\n" % camera.zoom_factor
 		+ "Radius %.0f texels | Power %.2f %s | Falloff %.2f\n" % [config.radius, config.power, "/impact" if config.interaction_mode == ToolDefinition.InteractionMode.IMPACT else "/s", config.falloff]
@@ -128,6 +150,13 @@ func _process(delta: float) -> void:
 			"READY" if fossil.is_direct_contact_protected(component) else "USED"]
 	bone_label.text += "Contact: %s\nDamage: %s\nCap %d FPS | Physics %d Hz" % [fossil.last_bone_event,
 		fossil.last_damage_event, Engine.max_fps, Engine.physics_ticks_per_second]
+	var metrics := session.metrics()
+	bone_label.text += "\n\nP5 / %s\nCleanliness %.1f%% | Fine Preparation %s\nCoverage %s | Hidden max %d | Checks %d\nComplete %s | Keep Cleaning %s | Archived %s\nAfter completion %.1f s | Actions %d\nCompletion E/C/Q: %.1f / %.1f / %.1f\nArchive E/C/Q: %.1f / %.1f / %.1f\nSession %d us / UI %d us | Refreshes %d" % [
+		PreparationRules.CLASSIFICATIONS[session.classification_stage], block.working_map.bone_film.cleanliness_percent(), session.fine_preparation, session.coverage_passed, session.largest_hidden_cluster, session.coverage_checks,
+		session.preparation_complete, session.keep_cleaning_chosen, session.archived, metrics.time_after_completion,
+		session.additional_tool_actions_after_completion, metrics.exposure_at_completion, metrics.cleanliness_at_completion, metrics.condition_at_completion,
+		metrics.exposure_at_archive, metrics.cleanliness_at_archive, metrics.condition_at_archive,
+		session.last_refresh_usec, session_ui.last_refresh_usec, session.refresh_count]
 
 func verticality_debug(hit: Dictionary) -> String:
 	# F1 only: O(1) reads from the same static layer map used by CPU/GPU.
