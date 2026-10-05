@@ -514,3 +514,12 @@ Antoine valide la direction d'une **ouverture tactile directe** et variée des c
 La variation est modulaire : toutes les caisses ne possèdent pas les mêmes attaches. Certaines ont sangles + loquets, d'autres nécessitent le pied-de-biche, d'autres sont plus simples. Ne pas empiler tous les gestes à chaque fois : viser généralement **2–3 interactions courtes**, avec des affordances visuelles évidentes et sans fail-state punitif.
 
 La caisse révèle toujours un **bloc/jacket fermé et non préparé**. L'ouverture de caisse répond à « quel chantier ai-je reçu ? » ; le reveal des os reste réservé au cœur de gameplay de préparation.
+
+
+## Macro design question — specimen destination after preparation — 2026-10-05
+
+Antoine confirme que la transition **préparation → musée** doit être traitée sérieusement pendant le futur Macro Game Design. Les modèles à comparer sont : spécimen conservé **in matrix**, os/éléments extractibles, contribution progressive à un squelette monté, ou approche hybride selon le type de fossile.
+
+Une courte étape de **conservation / finition / mounting** reste une piste forte pour relier le travail du laboratoire à l'exposition (consolidant, dernier nettoyage, support, étiquette), mais elle ne doit pas devenir une seconde phase de 10–15 minutes après chaque préparation. Cible : geste final court, satisfaisant et cérémoniel.
+
+La présence de seulement deux fragments extractibles dans P5 reste un test de mécanique Forceps, pas une décision sur le modèle final d'extraction des pièces principales.
