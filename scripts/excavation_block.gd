@@ -50,6 +50,7 @@ func _ready() -> void:
 	assert(surface_size.x > 0.0 and surface_size.y > 0.0 and thickness > base_height)
 	var strata := Stratigraphy.new(map_resolution, material_definitions)
 	working_map = WorkingSurface.new(map_resolution, strata, FossilField.new(map_resolution), reactions)
+	working_map.enable_fragments(RecoverableFragmentField.new(map_resolution))
 	working_map.excavatable_depth = thickness - base_height
 	working_map.loose_debris.ejected.connect(_on_debris_ejected)
 	relief = ReliefSurface.new(working_map.image, surface_size, map_resolution, base_height, thickness)
@@ -59,7 +60,7 @@ func _ready() -> void:
 	layer_texture = ImageTexture.create_from_image(strata.boundaries)
 	residue_texture = ImageTexture.create_from_image(working_map.residue.image)
 	bone_film_texture = ImageTexture.create_from_image(working_map.bone_film.image)
-	fossil_texture = ImageTexture.create_from_image(working_map.fossil.field.image)
+	fossil_texture = ImageTexture.create_from_image(working_map.bone_display_image)
 	fracture_texture = ImageTexture.create_from_image(working_map.fracture.image)
 	working_map.fracture.dirty = false
 	working_map.dirty = false
@@ -135,10 +136,14 @@ func pick(screen: Vector2, camera: Camera3D) -> Dictionary:
 	var cell: Vector2i = result.cell
 	var index := cell.y * map_resolution.x + cell.x
 	var component := working_map.fossil.field.component_ids[index]
-	result.merge({"bone": component != 0, "bone_component": component,
-		"bone_ceiling": working_map.fossil.field.ceilings[index],
-		"bone_exposed": working_map.fossil.exposed[index] != 0,
+	var fragment := working_map.fragments.target_at(index) if working_map.fragments != null else -1
+	var fragment_bone := working_map.fragments != null and working_map.fragments.field.ids[index] != 0 and working_map.structural_ceilings[index] > 0
+	if fragment_bone and working_map.fragments.grabbed == working_map.fragments.field.ids[index] - 1: fragment_bone = false
+	result.merge({"bone": component != 0 or fragment_bone, "bone_component": component,
+		"bone_ceiling": working_map.structural_ceilings[index],
+		"bone_exposed": working_map.fossil.exposed[index] != 0 or fragment >= 0,
 		"cell_height": working_map.value_at(cell)})
+	result.fragment = fragment
 	return result
 
 func show_cursor(hit: Dictionary, radius: float, color := Color(0.95, 0.8, 0.2)) -> void:

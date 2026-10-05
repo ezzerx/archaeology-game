@@ -6,6 +6,8 @@ uniform sampler2D layer_boundaries : filter_linear, repeat_disable;
 uniform sampler2D residue_map : filter_linear, repeat_disable;
 uniform sampler2D bone_film_map : filter_nearest, repeat_disable;
 uniform sampler2D fossil_map : filter_nearest, repeat_disable;
+uniform vec2 fragment_visible = vec2(1.0);
+uniform int highlighted_fragment = -1;
 uniform sampler2D fracture_map : filter_nearest, repeat_disable;
 uniform vec2 fracture_sizes = vec2(9.0, 5.0);
 uniform float fracture_seed = 0.0;
@@ -67,6 +69,8 @@ void fragment() {
 	ivec2 cell = clamp(ivec2(UV * map_size), ivec2(0), ivec2(map_size) - ivec2(1));
 	vec2 bone = texelFetch(fossil_map, cell, 0).rg;
 	bool exposed_bone = !is_skirt && bone.g > 0.5 && texelFetch(working_map, cell, 0).r <= bone.r + bone_exposure_epsilon;
+	int fragment_id = int(round(bone.g)) - 5;
+	if (fragment_id >= 0 && fragment_id < 2 && fragment_visible[fragment_id] < 0.5) { exposed_bone = false; }
 	if (exposed_bone) { color = bone_color.rgb; }
 	float dust_cover = 0.0;
 	float film_cover = 0.0;
@@ -133,6 +137,9 @@ void fragment() {
 	float ring = 1.0 - smoothstep(0.7, 1.6, abs(distance_texels - cursor_radius));
 	float centre = 1.0 - smoothstep(0.7, 1.8, distance_texels);
 	float marker = cursor_visible && !is_skirt ? max(ring * (debug_view == 0 ? 0.32 : 1.0), centre) : 0.0;
+	if (exposed_bone && fragment_id >= 0 && fragment_id == highlighted_fragment && debug_view == 0) {
+		color = mix(color, vec3(0.38, 0.84, 0.73), 0.35);
+	}
 	// Keep height in midtones: Compatibility's low-end color conversion otherwise
 	// crushes near-zero values, which also obscures differences in this debug view.
 	if (debug_view == 1) { color = vec3(0.25 + 0.75 * surface_height); }

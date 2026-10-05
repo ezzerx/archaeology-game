@@ -66,7 +66,7 @@ func apply(surface: WorkingSurface, point: Vector2, tool: ToolDefinition) -> int
 				continue
 			var index := y * surface.size.x + x
 			var old := surface._heights[index]
-			var ceiling := surface.fossil.field.ceilings[index] if surface.fossil != null else 0.0
+			var ceiling := surface.structural_ceilings[index] if surface.fossil != null else 0.0
 			if old <= ceiling:
 				continue
 			var limits := Vector2(surface.strata.packed_limits[index * 2], surface.strata.packed_limits[index * 2 + 1])
@@ -103,7 +103,7 @@ func apply(surface: WorkingSurface, point: Vector2, tool: ToolDefinition) -> int
 			var old := surface._heights[index]
 			var bottom := surface.strata.packed_limits[index * 2 + 1] if key.z == 1 else 0.0
 			if surface.fossil != null:
-				bottom = maxf(bottom, surface.fossil.field.ceilings[index])
+				bottom = maxf(bottom, surface.structural_ceilings[index])
 			var next := maxf(bottom, old - profile.chunk_depth(key.z))
 			chunk_cells += _remove(surface, index, next, key.z, tool, newly_exposed)
 			volume += old - surface._heights[index]
@@ -116,6 +116,7 @@ func apply(surface: WorkingSurface, point: Vector2, tool: ToolDefinition) -> int
 		surface.dirty = true
 	if not newly_exposed.is_empty():
 		surface.fossil.expose_cells(newly_exposed)
+	if changed > 0: surface.update_fragments(Rect2i(low, high - low + Vector2i.ONE))
 	return changed
 
 func _remove(surface: WorkingSurface, index: int, next: float, layer: int,

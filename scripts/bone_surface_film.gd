@@ -5,6 +5,12 @@ extends RefCounted
 ## Seen bits keep a cleaned cell clean when adjacent cells are first exposed.
 const STRIDE := 4
 const INITIAL := 0.85
+signal cleaned
+# Counters derive directly from the film's existing cohorts. Component 0 is
+# independent fragments; overall cleanliness sums only anatomical IDs 1..4.
+var exposed_totals := PackedInt32Array([0, 0, 0, 0, 0])
+var dirt_totals := PackedFloat64Array([0, 0, 0, 0, 0])
+var _dirty_counts := PackedByteArray()
 var height_size: Vector2i
 var size: Vector2i
 var image: Image
@@ -24,6 +30,7 @@ func _init(resolution: Vector2i) -> void:
 	_seen.resize(_values.size())
 	_masks.resize(_values.size())
 	_bytes.resize(_values.size() * 4)
+	_dirty_counts.resize(_values.size() * 5)
 	image = Image.create(size.x, size.y, false, Image.FORMAT_RGBA8)
 	reset()
 
@@ -32,6 +39,9 @@ func reset() -> void:
 	_seen.fill(0)
 	_masks.fill(0)
 	_bytes.fill(0)
+	_dirty_counts.fill(0)
+	exposed_totals.fill(0)
+	dirt_totals.fill(0)
 	last_cleared = 0
 	last_edit_usec = 0
 	_image_pending = true
@@ -51,7 +61,7 @@ func flush_image() -> void:
 		_image_pending = false
 
 @warning_ignore("integer_division")
-func expose(cell: Vector2i, _component := 0) -> void:
+func expose(cell: Vector2i, component := 0) -> void:
 	var index := (cell.y / STRIDE) * size.x + cell.x / STRIDE
 	var bit := 1 << ((cell.y % STRIDE) * STRIDE + cell.x % STRIDE)
 	if _seen[index] & bit: return
@@ -60,7 +70,18 @@ func expose(cell: Vector2i, _component := 0) -> void:
 	# the tile's remaining film; an entirely clean tile starts a fresh cohort.
 	if _masks[index] == 0: _values[index] = INITIAL
 	_masks[index] |= bit
+	_dirty_counts[index * 5 + component] += 1
+	exposed_totals[component] += 1
+	dirt_totals[component] += _values[index]
 	_encode(index)
+
+func cleanliness_percent(component := 0) -> float:
+	var total := 0
+	var dirt := 0.0
+	for id in range(1, 5) if component == 0 else [component]:
+		total += exposed_totals[id]
+		dirt += dirt_totals[id]
+	return clampf(100.0 * (1.0 - dirt / (total * INITIAL)), 0.0, 100.0) if total > 0 else 0.0
 
 @warning_ignore("integer_division")
 func value_at(uv: Vector2) -> float:
@@ -89,8 +110,13 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 			if amount <= 0: continue
 			_values[index] -= amount
 			last_cleared += amount
+			# At most five small counters per edited coarse cell; no bone scan.
+			for component in range(5):
+				dirt_totals[component] = maxf(0.0, dirt_totals[component] - amount * _dirty_counts[index * 5 + component])
 			if _values[index] < 0.000001:
 				_values[index] = 0
 				_masks[index] = 0
+				for component in range(5): _dirty_counts[index * 5 + component] = 0
 			_encode(index)
 	last_edit_usec = Time.get_ticks_usec() - start
+	if last_cleared > 0: cleaned.emit()

@@ -10,6 +10,11 @@ var strata: Stratigraphy
 var residue: SurfaceResidue
 var fossil: FossilState
 var bone_film: BoneSurfaceFilm
+var fragments: FragmentState
+var structural_ceilings := PackedFloat32Array()
+var highest_structural_ceiling := -1.0
+var bone_display_image: Image
+signal tool_applied
 signal material_action(event: Dictionary)
 ## Feedback-only jet, including clean terrain. It never changes the action/state.
 signal air_jet_applied(from: Vector2, to: Vector2, radius: float, falloff: float, delta: float, direction: Vector2)
@@ -42,7 +47,33 @@ func _init(resolution := Vector2i(1024, 640), stratigraphy: Stratigraphy = null,
 		assert(fossil_field.size == size)
 		fossil = FossilState.new(fossil_field)
 		fossil.bone_cell_exposed.connect(bone_film.expose)
+		structural_ceilings = fossil_field.ceilings
+		highest_structural_ceiling = fossil_field.highest_ceiling
+		bone_display_image = fossil_field.image
 	reset()
+
+func enable_fragments(field: RecoverableFragmentField) -> void:
+	assert(fossil != null and field.size == size)
+	fragments = FragmentState.new(field)
+	fragments.cell_exposed.connect(bone_film.expose)
+	fragments.fragment_recovered.connect(_release_fragment_ceiling)
+	bone_display_image = fossil.field.image.duplicate()
+	structural_ceilings = fossil.field.ceilings.duplicate()
+	for id in range(field.COUNT):
+		for index in field.cells[id]:
+			assert(fossil.field.component_ids[index] == 0)
+			structural_ceilings[index] = field.ceilings[index]
+			highest_structural_ceiling = maxf(highest_structural_ceiling, field.ceilings[index])
+			@warning_ignore("integer_division")
+			bone_display_image.set_pixel(index % size.x, index / size.x, Color(field.ceilings[index], 5 + id, 0, 1))
+
+func _release_fragment_ceiling(id: int, _count: int) -> void:
+	# Recovering removes the independent object, not any terrain. Its substrate
+	# retains the exact RF heights and can be worked normally afterwards.
+	for index in fragments.field.cells[id]: structural_ceilings[index] = 0.0
+
+func update_fragments(region: Rect2i) -> void:
+	if fragments != null: fragments.update_region(_heights, region)
 
 func reset() -> void:
 	_heights.resize(size.x * size.y)
@@ -50,6 +81,10 @@ func reset() -> void:
 	image.fill(Color(1.0, 0.0, 0.0, 1.0))
 	residue.reset()
 	bone_film.reset()
+	if fragments != null:
+		for id in range(fragments.field.COUNT):
+			for index in fragments.field.cells[id]: structural_ceilings[index] = fragments.field.ceilings[index]
+		fragments.reset()
 	if fracture != null:
 		fracture.reset()
 	if loose_debris != null: loose_debris.reset()
@@ -96,9 +131,9 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 	resistance /= effectiveness.max(Vector3.ONE * 0.00000001)
 	var changed := 0
 	var has_fossil := fossil != null
-	var bone_ceilings := fossil.field.ceilings if has_fossil else PackedFloat32Array()
+	var bone_ceilings := structural_ceilings
 	# Above this immutable bound no cell can contact bone: skip its packed reads.
-	var bone_limit := fossil.field.highest_ceiling + 2.0 * FossilField.EXPOSURE_EPSILON if has_fossil else -1.0
+	var bone_limit := highest_structural_ceiling + 2.0 * FossilField.EXPOSURE_EPSILON if has_fossil else -1.0
 	var newly_exposed := PackedInt32Array()
 	var micro_seen := {}
 	if loose_debris != null: loose_debris.begin_deposition()
@@ -197,6 +232,7 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 	dirty = dirty or changed > 0
 	if not newly_exposed.is_empty():
 		fossil.expose_cells(newly_exposed)
+	if changed > 0: update_fragments(Rect2i(low - Vector2i.ONE * 2, high - low + Vector2i.ONE * 5))
 	return changed
 
 func apply_continuous(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> int:
@@ -222,8 +258,9 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 	changed_residue_cells = 0
 	last_removed = Vector3.ZERO
 	last_action = {}
-	if amount <= 0.0:
+	if amount <= 0.0 or tool.id == &"forceps" or tool.interaction_mode == ToolDefinition.InteractionMode.RECOVERY:
 		return 0
+	tool_applied.emit()
 	residue.last_cleared = 0.0
 	residue.cleared_packets = []
 	bone_film.clean(from, to, tool, amount) # Before revelation: newly exposed film survives this stroke.
