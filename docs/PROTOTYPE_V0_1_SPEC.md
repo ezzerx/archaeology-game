@@ -6,6 +6,17 @@
 **Engine:** Godot 4.x, version stable à figer au démarrage du développement  
 **Purpose:** Valider le cœur de gameplay avant toute production du jeu complet.
 
+**Addendum P5 — 2026-10-05 (prioritaire sur les sections historiques)** : P4 est validé et mergé. La session B-17 comporte désormais cinq outils : Brush, Chisel, Air Blower, Precision Pick et **Forceps [5]**. [P5_BRIEF](dev/P5_BRIEF.md) fait autorité ; [P5_REPORT](dev/P5_REPORT.md) décrit l’implémentation, les tests et la checklist humaine.
+
+- **Exposure ≠ Cleanliness ≠ Condition.** La propreté mesure le film retiré sur l’os anatomique actuellement exposé ; un nouvel os révélé peut faire baisser ce ratio sans resalir les cellules déjà propres.
+- Classification automatique monotone : Unknown ; Vertebrate remains à5 % global ou10 % d’un composant ; Possible Theropod avec Spine15 % + Hind Limb10 % ; Likely small theropod avec Skull35 % après le stade précédent.
+- Composants : Hidden<10 % ; Detected≥10 % ; Exposed≥50 % ; Prepared si exposition≥80 % et propreté≥80 %.
+- Objectifs acquis dans n’importe quel ordre : **Prepare the skull** (exposition60 % et propreté50 %), révéler60 % du squelette, récupérer2/2 fragments. Les seuils P5 restent provisoires jusqu’au tuning P7.
+- **§21 est remplacé** : aucune récupération automatique. Deux fragments indépendants, hors totaux anatomiques, deviennent READY à90 % d’exposition avec une collerette locale dégagée. Forceps saisit, soulève et transporte ; relâcher sur le plateau récupère, ailleurs restitue. Aucun retrait de terrain/film ni dégât.
+- **§23 est remplacé** : `Preparation Complete` capture les statistiques une seule fois. `Keep Cleaning` reprend la préparation sans reset et conserve l’accès à `Archive Specimen`. L’archive utilise les valeurs finales, arrête les outils et affiche `Museum records updated` puis `Prepare Another Block`.
+- Pour P5, ce dernier bouton et R réinitialisent exactement **le même B-17**. La file de spécimens et la sélection de site sont futures ; aucun musée persistant, galerie, économie ou autre fossile ici.
+- Temps completion→archive, statistiques aux deux instants et actions supplémentaires restent en mémoire/F1. Aucune télémétrie réseau. **STOP pour test humain, PR #8 DRAFT ; pas de P6.**
+
 **Addendum P4 — 2026-10-03 :** la deuxième passe corrective autorise explicitement un quatrième outil prototype, **Precision Pick [4]**, pour la finition des restes attachés, sûr sur l’os à titre provisoire. Cette exception au périmètre initial de trois outils est décrite dans [P4_REPORT](dev/P4_REPORT.md) et [P4_MATERIAL_REACTION_DECISION](dev/P4_MATERIAL_REACTION_DECISION.md). Aucun P5 ni merge P4 autorisé.
 
 **Simplification finale P4 — 2026-10-03 :** Pick devient un micro-Chisel sûr à impacts immobiles (clic/maintien). Grammaire joueur : matière attachée / saleté ; Soil → Brush, matrice dure → Chisel, détails → Pick, mess → Brush/Blower. Règle verrouillée : **Dust may obscure detail, never material identity**. L’ivoire Bone reste identifiable sous la poussière ; outils à orientation fixe et éclats peu obstructifs. Cette décision remplace les attentes antérieures de grattage du Pick et de classification des débris, sans lancer P5.
@@ -255,9 +266,7 @@ Lorsqu'une hauteur devient suffisamment faible, l'os apparaît.
 
 ## 10. Outils V0.1
 
-Seulement **trois outils jouables**.
-
-Cela doit suffire à tester si le changement de comportement entre outils est intéressant.
+La spécification initiale prévoyait trois outils ; **P4/P5 portent la barre à cinq** : Soft Brush, Chisel, Air Blower, Precision Pick et Forceps. Les descriptions historiques ci-dessous sont complétées par l'addendum prioritaire et le brief P5.
 
 ### Tool 1 — Soft Brush
 
@@ -529,12 +538,12 @@ Il n'est pas nécessaire d'identifier une espèce réelle.
 
 Deux petits fragments osseux indépendants sont présents.
 
-Ils sont considérés récupérés lorsque :
+Ils deviennent **READY** lorsque :
 
-- environ 90 % de leur surface est visible ;
-- suffisamment de matière autour a été retirée.
+- au moins 90 % de leur surface est visible ;
+- la couronne locale de matrice est entièrement dégagée selon le test déterministe P5.
 
-Pour V0.1 : **récupération automatique**.
+**P5 remplace la récupération automatique par Forceps [5].** LMB sur READY saisit et soulève le fragment ; le drag suit la souris. Relâcher sur le plateau le récupère ; relâcher ailleurs le remet en place, toujours READY. Aucune excavation, aucun retrait de film ni dégât. Les totaux du squelette principal sont inchangés.
 
 Feedback :
 
@@ -550,7 +559,7 @@ Panneau en haut à gauche :
 
 ### Current Objective
 
-- ☐ Expose the skull
+- ☐ Prepare the skull — exposition du crâne ≥60 % et propreté ≥50 %
 - ☐ Reveal 60 % of the skeleton
 - ☐ Recover both fragments
 
@@ -560,7 +569,7 @@ Ils peuvent être réalisés dans n'importe quel ordre.
 
 Lorsque les trois objectifs sont atteints :
 
-petite transition. La lampe s'intensifie très légèrement. Le bruit des outils baisse.
+P5 déclenche la carte une seule fois et fige les statistiques de completion. Les outils s'arrêtent pendant la carte ; aucune transition de lumière ou de son supplémentaire n'est requise dans cette passe.
 
 Carte :
 
@@ -570,6 +579,8 @@ Carte :
 >
 > Skeleton revealed: 67 %
 >
+> Bone cleanliness: 61 %
+>
 > Fragments recovered: 2/2
 >
 > Condition: 94 %
@@ -577,9 +588,11 @@ Carte :
 Deux boutons :
 
 - **Keep Cleaning**
-- **Restart Specimen**
+- **Archive Specimen**
 
 Le bouton le plus important est **Keep Cleaning**.
+
+Keep Cleaning reprend exactement le même état, avec tous les outils et un bouton Archive Specimen toujours disponible dans le dossier. L'archive capture les statistiques finales actuelles, stoppe les outils et affiche **Specimen Archived — Museum records updated.** puis **Prepare Another Block**. Ce bouton remplace le rôle principal de Restart Specimen et réinitialise le même B-17 pour P5 ; une file de spécimens ou une sélection de site viendra plus tard.
 
 ## 24. Test comportemental clé
 
@@ -611,15 +624,17 @@ Rythme indicatif :
 
 Bas de l'écran.
 
-Trois gros slots seulement :
+Cinq slots fonctionnels en P5 :
 
 ```text
 [1] Soft Brush
 [2] Chisel
 [3] Air Blower
+[4] Precision Pick
+[5] Forceps
 ```
 
-Sélection via clic, touches 1 / 2 / 3, éventuellement molette.
+Sélection via clic ou touches 1 / 2 / 3 / 4 / 5. La molette conserve le zoom ; les modificateurs debug restent décrits dans le rapport P4.
 
 Le slot sélectionné reçoit une lumière chaude subtile.
 

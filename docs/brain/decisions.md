@@ -473,3 +473,20 @@ La préparation Bone est canonique : **Exposure ≠ Cleanliness ≠ Condition**.
 Déférés sans bloquer P4 : Soil trop provisoire pour le final, débris encore perfectibles, ambiguïtés visuelles Pick/Brush sur certains micro-restes, Bone dirt parfois trop proche du Sandstone, dust vs lecture des arêtes. Pour P6, tester d'abord **la couleur seule** du Bone Film avant de modifier son pattern/densité, car les taches actuelles sont appréciées.
 
 Si ces sujets restent importants après P5/P6, ouvrir une **phase future dédiée de polish excavation/gameplay, nom à définir**, et non `P4.2`. P5 devient la prochaine phase canonique.
+
+## P5 — Première session complète livrée pour test humain, 2026-10-05
+
+**Autorisation confirmée d'Antoine** : implémenter le [brief P5](../dev/P5_BRIEF.md), conserver les baselines P4, pousser des commits atomiques sur la branche préparée et la PR #8 **DRAFT**, puis STOP. Aucun merge ni P6. Le transfert manuel **Forceps [5] → fragment tray** remplace l'ancienne récupération automatique ; **Archive Specimen → Prepare Another Block** remplace le bouton principal Restart Specimen. Le musée reste un cadre narratif léger.
+
+Choix implémentés et vérifiés techniquement, encore **non validés humainement** :
+
+- `PreparationSession` observe FossilState, BoneSurfaceFilm, Condition et FragmentState. Les notifications de mutation sont regroupées avant lecture des quatre compteurs ; aucun scan du squelette ni reconstruction de l'arbre UI à chaque frame. Cleanliness est normalisée par le film initial0,85 des cellules anatomiques exposées. Les fragments sont exclus des totaux/ratios du squelette.
+- Seuils P5 centralisés dans `PreparationRules` : états10/50/80+80 ; Vertebrate global5 ou composant10 ; Possible Spine15+Hind Limb10 ; Likely Skull35 après Possible ; objectifs Skull60+50, global60, fragments2/2. Classification et objectifs acquis sont monotones ; l'état courant d'un composant peut changer si une nouvelle surface sale est révélée. Ces seuils restent provisoires, distincts du tuning excavation P7.
+- Deux capsules osseuses fixes dans un champ indépendant, sans modifier les IDs/silhouette/plafonds anatomiques. READY =90 % exposé + couronne de4 texels canoniques entièrement sous le seuil de dégagement. Contrôle limité aux deux régions affectées, au plus784/820 lectures par fragment à1024×640. Accessibilité vérifiée avec les baselines natives.
+- Le transfert est cinématique, sans rigid-body : meshes construits une fois, fragment porté au-dessus du bord du bloc. Prise/retour/dépôt ne modifient aucune hauteur RF ni le film. Au dépôt, seul le plafond indépendant disparaît ; son substrat reste excavable. Perte de focus/changement d'outil annulent la prise sans compter de récupération.
+- Completion fige un snapshot unique. Keep Cleaning conserve tout ; archive capture les valeurs courantes et fige les métriques. Objectifs acquis ne sont pas retirés lors d'une nouvelle révélation sale. R/Prepare Another Block réarment le même B-17 ; une file de spécimens/site selection reste future.
+- Mesure locale transparente : le temps supplémentaire commence à completion, carte comprise ; les actions comptent les impacts et ticks continus effectivement appliqués. Ce n'est pas un nombre de clics ni une mesure pure de temps actif. Aucun backend ni stockage durable.
+
+Leçons de vérification : les oracles graphiques historiques doivent inclure les nouveaux pixels Bone indépendants et cacher les panneaux P5 lorsqu'ils mesurent uniquement le terrain ; leurs tolérances restent inchangées. Une fixture qui taille directement toute la carte doit notifier l'exposition locale des fragments. Un fragment porté à hauteur de sa cavité disparaît derrière le bord du bloc : le plan de transfert doit passer au-dessus du bord, puis être revérifié en rendu réel. Les captures et tests automatisés ne prouvent ni le plaisir ni l'envie de Keep Cleaning.
+
+[P5_REPORT](../dev/P5_REPORT.md) rassemble résultats, limites, performances et les huit questions du test humain. **Prochaine action confirmée : retest humain end-to-end, sans ouverture automatique de P6.**

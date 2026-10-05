@@ -1,5 +1,21 @@
 # Boucle de jeu et sensation de fouille
 
+## Session P5 actuelle — 2026-10-05
+
+Le joueur prépare **B-17 dans l’atelier du musée**. La boucle jouable est maintenant : **excaver → découvrir/classifier → préparer au Brush/Pick → récupérer deux fragments avec Forceps → terminer la demande → continuer librement ou archiver**. [Contrat](dev/P5_BRIEF.md) · [Rapport et test humain](dev/P5_REPORT.md).
+
+Les cinq outils sont [1] Brush (Soil/film), [2] Chisel (matrice dure), [3] Air Blower (mess), [4] Precision Pick (détails structurels), [5] Forceps (récupération seulement). Leurs baselines P4 restent inchangées.
+
+Le dossier sépare l’exposition, la propreté de l’os exposé et sa condition. Classification automatique et monotone : Unknown → Vertebrate remains (5 % global ou composant10 %) → Possible Theropod (Spine15 % et Hind Limb10 %) → Likely small theropod (Skull35 %). Pas de quiz.
+
+Trois objectifs acquis dans n’importe quel ordre : crâne exposé60 % et propre50 %, squelette exposé60 %, deux fragments au plateau. Ces seuils n’exigent pas une préparation parfaite. Un fragment READY possède≥90 % de surface exposée et sa collerette4 texels entièrement dégagée sous son plafond minimal. **Cliquer/glisser avec Forceps puis relâcher dans le plateau** le récupère ; ailleurs, il retourne à sa place. Le squelette principal n’est pas saisissable. La propreté du fragment n’est pas une condition de récupération.
+
+`Preparation Complete` montre l’instantané de la première réussite. **Keep Cleaning** préserve la fouille et permet d’améliorer l’exposition/propreté ; un Chisel maladroit peut encore abîmer la condition. Un nouvel os sale peut faire baisser le ratio de propreté sans annuler un objectif déjà acquis. Le bouton d’archive reste accessible. `Archive Specimen` capture les valeurs courantes et ferme la session avec `Museum records updated`.
+
+`Prepare Another Block` réinitialise le même B-17 déterministe en P5 ; la future file de spécimens/sélection de site n’est pas implémentée. R reste le reset développeur complet. Le temps et les deltas après completion sont locaux/F1, sans backend. Le test produit prioritaire est **l’envie de continuer alors que le musée considère le travail terminé** ; validation humaine encore attendue.
+
+Les sections suivantes conservent la vision et le catalogue à plus long terme ; cet addendum et le brief P5 prévalent sur leurs anciennes hypothèses de prototype.
+
 ## Boucle principale
 
 | Étape | Action et retour attendu |
