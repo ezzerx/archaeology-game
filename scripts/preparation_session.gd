@@ -5,10 +5,12 @@ signal changed
 signal notice(text: String)
 signal completed(snapshot: Dictionary)
 signal archive_created(snapshot: Dictionary)
+signal component_polished(component: int)
 
 var surface: WorkingSurface
 var classification_stage := 0
 var component_states: Array[String] = []
+var quality_marks: Array[bool] = [false, false, false, false]
 var objective_done: Array[bool] = [false, false, false]
 var preparation_complete := false
 var card_open := false
@@ -32,6 +34,7 @@ func _init(source: WorkingSurface) -> void:
 	surface.bone_film.cleaned.connect(invalidate)
 	surface.fragments.changed.connect(invalidate)
 	surface.fragments.fragment_ready.connect(_on_ready)
+	surface.fragments.fragment_detected.connect(_on_fragment_detected)
 	surface.fragments.fragment_recovered.connect(_on_recovered)
 	surface.tool_applied.connect(record_tool_action)
 	surface.surface_reset.connect(reset)
@@ -48,6 +51,9 @@ func _on_discovery(_cell: Vector2i, _component: int) -> void:
 
 func _on_ready(id: int) -> void:
 	notice.emit("%s — Ready to recover with [5] Forceps" % RecoverableFragmentField.NAMES[id])
+
+func _on_fragment_detected(id: int) -> void:
+	notice.emit("Loose fragment detected — %s · clear its edges, then [5] Forceps" % RecoverableFragmentField.NAMES[id])
 
 func _on_recovered(_id: int, count: int) -> void:
 	notice.emit("Fragment recovered — %d/2" % count)
@@ -67,6 +73,10 @@ func flush() -> void:
 	for id in range(1, 5):
 		exposures.append(fossil.exposure_percent(id))
 		component_states.append(PreparationRules.component_state(exposures.back(), surface.bone_film.cleanliness_percent(id)))
+		if not quality_marks[id - 1] and PreparationRules.fine_preparation(exposures.back(), surface.bone_film.cleanliness_percent(id)):
+			quality_marks[id - 1] = true
+			component_polished.emit(id)
+			notice.emit("%s beautifully prepared ★ — optional quality mark" % ["", "Skull", "Spine", "Ribs", "Hind Limb"][id])
 	var stage := PreparationRules.classification(classification_stage, fossil.exposure_percent(), exposures)
 	if stage != classification_stage:
 		classification_stage = stage
@@ -91,7 +101,8 @@ func flush() -> void:
 func snapshot() -> Dictionary:
 	return {"classification": PreparationRules.CLASSIFICATIONS[classification_stage],
 		"exposure": surface.fossil.exposure_percent(), "cleanliness": surface.bone_film.cleanliness_percent(),
-		"condition": surface.fossil.condition, "fragments": surface.fragments.recovered_count()}
+		"condition": surface.fossil.condition, "fragments": surface.fragments.recovered_count(),
+		"quality_marks": quality_marks.duplicate(), "quality_count": quality_marks.count(true)}
 
 func can_use_tools() -> bool:
 	return not card_open and not archived
@@ -133,6 +144,7 @@ func reset() -> void:
 	classification_stage = 0
 	objective_done = [false, false, false]
 	component_states = ["Hidden", "Hidden", "Hidden", "Hidden"]
+	quality_marks = [false, false, false, false]
 	preparation_complete = false
 	card_open = false
 	archived = false

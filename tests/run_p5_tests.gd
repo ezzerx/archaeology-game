@@ -246,7 +246,7 @@ func test_forceps_input() -> void:
 	mouse(screen_at(field.centers[0]), true)
 	mouse(main.session_ui.tray.get_global_rect().get_center(), false)
 	session.flush()
-	check(surface.fragments.recovered_count() == 1 and main.session_ui.slots[0].occupied, "real tray drop recovers one")
+	check(surface.fragments.recovered_count() == 1 and main.forceps_view.pieces[0].visible, "real tray drop recovers one")
 	check(not surface.fragments.grab(0) and not surface.fragments.release(true), "no duplicate recovery")
 	check(surface.image.get_data() == terrain and surface.bone_film._bytes == film, "grab/drop never removes matrix or film")
 	for index in field.cells[0]:
@@ -256,9 +256,9 @@ func test_forceps_input() -> void:
 	mouse(screen_at(field.centers[1]), true)
 	mouse(main.session_ui.tray.get_global_rect().get_center(), false)
 	session.flush()
-	check(surface.fragments.recovered_count() == 2 and main.session_ui.slots[1].occupied, "second real tray drop 2/2")
+	check(surface.fragments.recovered_count() == 2 and main.forceps_view.pieces[1].visible, "second real tray drop 2/2")
 	main.reset_specimen()
-	check(surface.fragments.recovered_count() == 0 and not main.session_ui.slots[0].occupied and not main.session_ui.slots[1].occupied, "reset restores empty tray")
+	check(surface.fragments.recovered_count() == 0 and not main.forceps_view.pieces[0].visible and not main.forceps_view.pieces[1].visible, "reset restores empty tray")
 	check(main.block.material.get_shader_parameter("fragment_visible") == Vector2.ONE, "reset restores source rendering")
 	for id in range(2):
 		var restored := true
@@ -271,7 +271,7 @@ func test_keep_cleaning_archive() -> void:
 	var snapshot := session.completion_snapshot.duplicate()
 	var state := surface.image.get_data()
 	check(main.session_ui.modal.visible and not session.can_use_tools(), "completion card blocks tools")
-	check(main.session_ui.card_stats.text == PreparationUI.summary(snapshot), "completion card uses completion snapshot")
+	check(main.session_ui.card_stats.text.contains("%.1f%% exposed" % snapshot.exposure) and main.session_ui.card_stats.text.contains("%.1f%% clean" % snapshot.cleanliness), "completion card uses completion snapshot")
 	check(not control.select_tool(1), "card prevents tool selection")
 	control._held = true
 	control._screen = screen_at(Vector2(800, 400))
@@ -294,7 +294,7 @@ func test_keep_cleaning_archive() -> void:
 	check(session.archive() and not session.archive(), "archive is one-shot")
 	check(session.archive_snapshot == session.snapshot() and session.archive_snapshot.condition == 97, "archive captures latest values")
 	check(main.session_ui.modal.visible and main.session_ui.another_button.visible and not main.session_ui.keep_button.visible, "archived summary offers another block")
-	check(main.session_ui.card_stats.text == PreparationUI.summary(session.archive_snapshot), "final UI uses archive snapshot")
+	check(main.session_ui.card_stats.text.contains("Condition 97%") and main.session_ui.card_delta.text.contains("4 components"), "final UI uses latest condition and optional quality snapshot")
 	var metrics := session.metrics()
 	check(metrics.time_after_completion > 0 and metrics.exposure_at_archive > metrics.exposure_at_completion and metrics.condition_at_archive == 97, "completion to archive metrics")
 	evidence.metrics = metrics

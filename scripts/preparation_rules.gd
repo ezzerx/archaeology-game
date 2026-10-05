@@ -14,6 +14,9 @@ const SKULL_OBJECTIVE_EXPOSURE := 60.0
 const SKULL_OBJECTIVE_CLEANLINESS := 50.0
 const SKELETON_OBJECTIVE := 60.0
 const FRAGMENT_EXPOSURE := 90.0
+const FRAGMENT_DETECTED := 10.0
+const QUALITY_EXPOSURE := 95.0
+const QUALITY_CLEANLINESS := 95.0
 const CLASSIFICATIONS := ["Unknown", "Vertebrate remains", "Possible Theropod", "Likely small theropod"]
 const OBJECTIVES := ["Prepare the skull", "Reveal 60 % of the skeleton", "Recover both fragments"]
 
@@ -22,6 +25,9 @@ static func component_state(exposure: float, cleanliness: float) -> String:
 	if exposure >= EXPOSED: return "Exposed"
 	if exposure >= DETECTED: return "Detected"
 	return "Hidden"
+
+static func fine_preparation(exposure: float, cleanliness: float) -> bool:
+	return exposure >= QUALITY_EXPOSURE and cleanliness >= QUALITY_CLEANLINESS
 
 static func classification(previous: int, overall: float, components: Array[float]) -> int:
 	var stage := previous

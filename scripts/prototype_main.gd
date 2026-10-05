@@ -19,6 +19,7 @@ var feedback: MaterialFeedback
 var session: PreparationSession
 var session_ui: PreparationUI
 var forceps_view: ForcepsView
+var fragment_tray: FragmentTray3D
 
 func _ready() -> void:
 	get_window().title = "ArchaeologyGame — P5 Museum Preparation Lab"
@@ -28,6 +29,10 @@ func _ready() -> void:
 	feedback.setup(block, controller)
 	session = PreparationSession.new(block.working_map)
 	controller.session = session
+	fragment_tray = FragmentTray3D.new()
+	add_child(fragment_tray)
+	fragment_tray.setup(block.working_map.fragments, camera)
+	controller.fragment_tray = fragment_tray
 	session_ui = PreparationUI.new()
 	add_child(session_ui)
 	session_ui.setup(session, controller, reset_specimen)

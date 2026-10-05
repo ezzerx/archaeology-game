@@ -4,7 +4,8 @@ extends RefCounted
 ## The complete 4-texel clearance collar must be <= the lowest fragment ceiling.
 const COUNT := 2
 const NAMES := ["Fragment A", "Fragment B"]
-const ENDS := [Vector4(302, 381, 324, 389), Vector4(745, 384, 769, 376)]
+# Beside the lower jaw and pelvis: encountered while following the specimen.
+const ENDS := [Vector4(264, 295, 286, 297), Vector4(642, 342, 664, 348)]
 const RADIUS := 6.0
 const COLLAR := 4.0
 

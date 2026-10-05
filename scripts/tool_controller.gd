@@ -11,7 +11,7 @@ signal tool_selected(index: int)
 signal forceps_hover_changed(id: int, text: String)
 var session: PreparationSession
 var ui_blockers: Array[Control] = []
-var fragment_tray: Control
+var fragment_tray: FragmentTray3D
 var _hover_signature := ""
 
 var selected_index := 0
@@ -110,7 +110,9 @@ func _input(event: InputEvent) -> void:
 		_screen = event.position # Already in stretched viewport coordinates.
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		if block != null and block.working_map.fragments != null and block.working_map.fragments.grabbed >= 0:
-			var over_tray := fragment_tray != null and fragment_tray.is_visible_in_tree() and fragment_tray.get_global_rect().has_point(_screen)
+			var over_tray := fragment_tray != null and fragment_tray.is_visible_in_tree() and fragment_tray.accepts_drop(_screen)
+			for panel in ui_blockers:
+				if panel.is_visible_in_tree() and panel.get_global_rect().has_point(_screen): over_tray = false
 			block.working_map.fragments.release(over_tray and _focused and _pointer_inside and (session == null or session.can_use_tools()))
 			get_viewport().set_input_as_handled()
 		cancel_stroke()
@@ -170,7 +172,8 @@ func _render_cursor() -> void:
 		var state := block.working_map.fragments
 		message = "Ready to recover — drag to the fragment tray" if state.ready[fragment] else "Clear more matrix"
 		if state.ready[fragment]: highlighted = fragment
-	var signature := "%d:%s" % [fragment, message]
+	var tray_visible := fragment_tray == null or selected_index != 4 or fragment_tray.in_view()
+	var signature := "%d:%d:%s:%s" % [selected_index, fragment, message, tray_visible]
 	if signature != _hover_signature:
 		_hover_signature = signature
 		block.material.set_shader_parameter("highlighted_fragment", highlighted)

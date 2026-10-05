@@ -3,6 +3,7 @@ extends RefCounted
 ## Only local, dirty-rectangle checks; no map scan or update at idle.
 signal changed
 signal fragment_ready(id: int)
+signal fragment_detected(id: int)
 signal fragment_recovered(id: int, count: int)
 signal cell_exposed(cell: Vector2i, component: int)
 
@@ -11,6 +12,7 @@ var exposure: Array[float] = [0.0, 0.0]
 var ready: Array[bool] = [false, false]
 var recovered: Array[bool] = [false, false]
 var clearance: Array[bool] = [false, false]
+var detected: Array[bool] = [false, false]
 var grabbed := -1
 var checks := 0
 var last_inspected_cells := 0
@@ -24,6 +26,7 @@ func reset() -> void:
 	ready = [false, false]
 	recovered = [false, false]
 	clearance = [false, false]
+	detected = [false, false]
 	grabbed = -1
 	_seen.clear()
 	checks = 0
@@ -58,6 +61,9 @@ func update_region(heights: PackedFloat32Array, region: Rect2i) -> void:
 		var is_ready := percent >= PreparationRules.FRAGMENT_EXPOSURE and clear
 		did_change = did_change or exposure[id] != percent or clearance[id] != clear or ready[id] != is_ready
 		exposure[id] = percent
+		if not detected[id] and percent >= PreparationRules.FRAGMENT_DETECTED:
+			detected[id] = true
+			fragment_detected.emit(id)
 		clearance[id] = clear
 		var just_ready := is_ready and not ready[id]
 		ready[id] = is_ready

@@ -64,7 +64,8 @@ func _sync() -> void:
 	var present := Vector2.ONE
 	for id in range(state.field.COUNT):
 		if state.recovered[id] or state.grabbed == id: present[id] = 0.0
-		pieces[id].visible = state.grabbed == id
+		pieces[id].visible = state.grabbed == id or state.recovered[id]
+		if state.recovered[id]: pieces[id].global_position = controller.fragment_tray.slot_world(id)
 	block.material.set_shader_parameter("fragment_visible", present)
 	if state.grabbed >= 0 and _dragged != state.grabbed:
 		var uv := (state.field.centers[state.grabbed] + Vector2.ONE * 0.5) / Vector2(block.map_resolution)
