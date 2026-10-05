@@ -554,3 +554,20 @@ Choix technique vérifié : ne pas supprimer les modules de l'expérience fragme
 Leçon vérifiée : un panneau dimensionné par texte avec retour à la ligne doit pouvoir rétrécir après calcul de sa taille minimale ; sinon il laisse une grande zone vide malgré un contenu compact. La capture et le contrôle de rectangle ont détecté et corrigé ce défaut.
 
 [Rapport et preuves](../dev/P5_SIMPLIFICATION_REPORT.md) :2 017 contrôles fonctionnels,59 graphiques,22 scénarios/90 contrôles perf, oracle GPU194 955 pixels ; zéro échec. **Cela ne valide pas P5 humainement.** Attendre les six réponses du retest libre ; aucun merge ni P6.
+
+## Crate opening — tactile modular grammar — 2026-10-05
+
+Antoine valide la direction d'une **ouverture tactile directe** et variée des caisses. Le joueur agit avec la souris sur les éléments physiques plutôt que d'appuyer sur un bouton abstrait : tirer une sangle pour la retirer, ouvrir des loquets, insérer un pied-de-biche dans la jointure puis tirer la souris vers le bas pour faire levier, soulever le couvercle, retirer éventuellement une protection intérieure.
+
+La variation est modulaire : toutes les caisses ne possèdent pas les mêmes attaches. Certaines ont sangles + loquets, d'autres nécessitent le pied-de-biche, d'autres sont plus simples. Ne pas empiler tous les gestes à chaque fois : viser généralement **2–3 interactions courtes**, avec des affordances visuelles évidentes et sans fail-state punitif.
+
+La caisse révèle toujours un **bloc/jacket fermé et non préparé**. L'ouverture de caisse répond à « quel chantier ai-je reçu ? » ; le reveal des os reste réservé au cœur de gameplay de préparation.
+
+
+## Macro design question — specimen destination after preparation — 2026-10-05
+
+Antoine confirme que la transition **préparation → musée** doit être traitée sérieusement pendant le futur Macro Game Design. Les modèles à comparer sont : spécimen conservé **in matrix**, os/éléments extractibles, contribution progressive à un squelette monté, ou approche hybride selon le type de fossile.
+
+Une courte étape de **conservation / finition / mounting** reste une piste forte pour relier le travail du laboratoire à l'exposition (consolidant, dernier nettoyage, support, étiquette), mais elle ne doit pas devenir une seconde phase de 10–15 minutes après chaque préparation. Cible : geste final court, satisfaisant et cérémoniel.
+
+L'ancienne expérience des deux fragments extractibles dans P5, désormais dormante, reste un test de mécanique Forceps, pas une décision sur le modèle final d'extraction des pièces principales.

@@ -4,7 +4,7 @@
 
 **Livré pour retest ; P5 toujours non validé humainement. Aucun merge ni P6.**
 
-Entrée documentaire : `351cb1f`. Code/tests : **`19b8ec49395e18378af4996788c90807c31af13d`**. La dernière section85/95 du [brief humain](P5_HUMAN_CORRECTION_BRIEF.md) et la demande explicite d'Antoine prévalent sur les anciennes règles à trois objectifs,90/90 ou étoiles par composant. La modification locale préexistante de `project.godot` reste hors commits.
+Entrée documentaire : `351cb1f`. Code/tests : **`19b8ec49395e18378af4996788c90807c31af13d`**. La dernière section85/95 du [brief humain](P5_HUMAN_CORRECTION_BRIEF.md) et la demande explicite d'Antoine prévalent sur les anciennes règles à trois objectifs,90/90 ou étoiles par composant. La modification locale préexistante de `project.godot` reste hors commits. Les décisions documentaires de `main@56dad72` (ouverture tactile des caisses et destination musée à concevoir plus tard) sont intégrées à la branche P5 ; conflits documentaires résolus en conservant les deux historiques. Aucun changement de code supplémentaire ni fusion de la PR.
 
 ## Parcours livré
 
