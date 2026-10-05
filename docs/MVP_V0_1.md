@@ -1,7 +1,18 @@
 # Prototype v0.1 — Fossil Cleaning Prototype
 
-**Statut : spécifié, non développé.**  
-La spécification détaillée et canonique se trouve dans [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md).
+**Statut : prototype développé par gates ; P4 validé, P5 livré sur PR #8 pour test humain.**  
+La spécification détaillée et canonique se trouve dans [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md), mais les briefs de phase plus récents prévalent lorsqu'ils la remplacent.
+
+## Overrides canoniques actuels
+
+- quatre outils d'excavation/préparation sont désormais validés : Brush, Chisel, Blower, Precision Pick ; **Forceps [5]** est ajouté par P5 pour la récupération manuelle ;
+- les fragments ne sont plus récupérés automatiquement en P5 : ils deviennent READY puis sont déplacés au plateau avec Forceps ;
+- la fin de session actuelle est **Preparation Complete → Keep Cleaning / Archive Specimen → Prepare Another Block**, pas Restart Specimen ;
+- **Exposure ≠ Cleanliness ≠ Condition** ; le Bone Surface Film est nettoyé au Brush ;
+- Soil n'a actuellement aucun mess persistant ; sa refonte est différée ;
+- le cadre narratif actuel est le laboratoire de préparation d'un musée d'histoire naturelle.
+
+Pour la reprise actuelle, lire [ORCHESTRATION_HANDOFF](ORCHESTRATION_HANDOFF.md), [P5_BRIEF](dev/P5_BRIEF.md) et [P5_REPORT](dev/P5_REPORT.md).
 
 ## Question à résoudre
 
