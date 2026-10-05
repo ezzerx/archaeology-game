@@ -7,13 +7,18 @@ static func commit(surface: WorkingSurface) -> void:
 	surface.dirty = true
 
 static func reveal(surface: WorkingSurface, percentages: Array) -> void:
+	var targets: Array[int] = []
+	for id in range(1, 5): targets.append(ceili(surface.fossil.field.component_totals[id] * percentages[id - 1] / 100.0))
+	reveal_counts(surface, targets)
+
+static func reveal_counts(surface: WorkingSurface, targets: Array[int]) -> void:
 	var counts := [0, 0, 0, 0, 0]
 	var indices := PackedInt32Array()
 	for index in range(surface.fossil.field.component_ids.size()):
 		var id := surface.fossil.field.component_ids[index]
 		if id == 0: continue
 		counts[id] += 1
-		if counts[id] > ceili(surface.fossil.field.component_totals[id] * percentages[id - 1] / 100.0): continue
+		if counts[id] > targets[id - 1]: continue
 		surface._heights[index] = surface.fossil.field.ceilings[index]
 		indices.append(index)
 	commit(surface)

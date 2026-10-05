@@ -6,6 +6,7 @@ signal notice(text: String)
 signal completed(snapshot: Dictionary)
 signal archive_created(snapshot: Dictionary)
 signal finely_prepared
+signal condition_tier_dropped(tier: String)
 
 var surface: WorkingSurface
 var classification_stage := 0
@@ -13,6 +14,11 @@ var component_states: Array[String] = []
 var fine_preparation := false
 var preparation_complete := false
 var archived := false
+var coverage_passed := false
+var coverage_checks := 0
+var condition_tier := 0
+var _coverage_dirty := true
+var _notified_condition_tiers := 0
 var keep_cleaning_chosen := false
 var completion_snapshot: Dictionary = {}
 var archive_snapshot: Dictionary = {}
@@ -34,9 +40,18 @@ func _init(source: WorkingSurface) -> void:
 	reset()
 
 func _on_exposure(_component: int, _exposed: int, _total: int) -> void:
+	_coverage_dirty = true
 	invalidate()
 
-func _on_condition(_condition: float, _damage: float) -> void:
+func _on_condition(condition: float, _damage: float) -> void:
+	var next := PreparationRules.condition_tier(condition)
+	var first_drop := next > condition_tier and (_notified_condition_tiers & (1 << next)) == 0
+	condition_tier = next
+	if first_drop:
+		_notified_condition_tiers |= 1 << next
+		var tier: String = PreparationRules.CONDITION_TIERS[next]
+		condition_tier_dropped.emit(tier)
+		notice.emit("Condition: " + tier)
 	invalidate()
 
 func _on_discovery(_cell: Vector2i, _component: int) -> void:
@@ -60,6 +75,10 @@ func flush() -> void:
 	for id in range(1, 5):
 		exposures.append(fossil.exposure_percent(id))
 		component_states.append(PreparationRules.component_state(exposures.back(), surface.bone_film.cleanliness_percent(id)))
+	if _coverage_dirty:
+		_coverage_dirty = false
+		coverage_passed = PreparationRules.coverage_passes(exposures)
+		coverage_checks += 1
 	var stage := PreparationRules.classification(classification_stage, fossil.exposure_percent(), exposures)
 	if stage != classification_stage:
 		classification_stage = stage
@@ -69,7 +88,7 @@ func flush() -> void:
 		fine_preparation = true
 		finely_prepared.emit()
 	values.fine_preparation = fine_preparation
-	if not preparation_complete and PreparationRules.preparation_complete(values.exposure, values.cleanliness):
+	if not preparation_complete and PreparationRules.preparation_complete(values.exposure, values.cleanliness, coverage_passed):
 		preparation_complete = true
 		_completion_usec = Time.get_ticks_usec()
 		completion_snapshot = values.duplicate(true)
@@ -81,7 +100,9 @@ func flush() -> void:
 func snapshot() -> Dictionary:
 	return {"classification": PreparationRules.CLASSIFICATIONS[classification_stage],
 		"exposure": surface.fossil.exposure_percent(), "cleanliness": surface.bone_film.cleanliness_percent(),
-		"condition": surface.fossil.condition, "fine_preparation": fine_preparation}
+		"condition": surface.fossil.condition, "fine_preparation": fine_preparation,
+		"condition_tier": PreparationRules.CONDITION_TIERS[PreparationRules.condition_tier(surface.fossil.condition)],
+		"coverage_passed": coverage_passed}
 
 func can_use_tools() -> bool:
 	return not archived
@@ -121,6 +142,11 @@ func metrics() -> Dictionary:
 func reset() -> void:
 	_pending = false
 	classification_stage = 0
+	coverage_passed = false
+	coverage_checks = 0
+	_coverage_dirty = true
+	condition_tier = PreparationRules.condition_tier(surface.fossil.condition)
+	_notified_condition_tiers = 0
 	component_states = ["Hidden", "Hidden", "Hidden", "Hidden"]
 	fine_preparation = false
 	preparation_complete = false

@@ -103,8 +103,9 @@ func screen_at(point: Vector2) -> Vector2:
 # native-cell integration and an independent film oracle are tested separately.
 class MeasuredFossil extends FossilState:
 	var percent := 0.0
-	func exposure_percent(_component: int = 0) -> float:
-		return percent
+	var components: Array[float] = [100.0, 100.0, 100.0, 100.0]
+	func exposure_percent(component: int = 0) -> float:
+		return percent if component == 0 else components[component - 1]
 
 class MeasuredFilm extends BoneSurfaceFilm:
 	var percent := 0.0
@@ -129,6 +130,7 @@ func test_boundaries() -> void:
 	fossil.percent = 85; film.percent = 85
 	state.invalidate(); state.flush()
 	check(state.preparation_complete and events[0] == 1 and not state.fine_preparation, "exact 85/85 completes once, no star")
+	check(state.coverage_passed, "exact global boundary test has passing coverage")
 	var first := state.completion_snapshot.duplicate()
 	check(state.can_use_tools(), "85/85 does not interrupt excavation")
 	for pair in [[94.99, 100], [100, 94.99]]:
@@ -168,8 +170,8 @@ func test_active_scene() -> void:
 		if child is PanelContainer: panels += 1
 	check(panels == 1 and ui.controller.ui_blockers.size() == 2, "exactly one permanent card plus hidden archive blocker")
 	check(ui.root_control.find_children("*", "ProgressBar", true, false).size() == 2, "only two progress bars")
-	check(ui.state_label.text == "Prepare the specimen" and not ui.fine_label.visible and not ui.modal.visible and not ui.archive_button.visible, "start has only task and two metrics")
-	check(not main.debug_panel.visible and not main.bone_panel.visible, "Condition and detailed data are hidden by default")
+	check(ui.state_label.text == "Museum standard · 85%" and not ui.fine_label.visible and not ui.modal.visible and not ui.archive_button.visible, "start has only task and two metrics")
+	check(not main.debug_panel.visible and not main.bone_panel.visible, "exact Condition and debug data are hidden by default")
 	P5Fixture.reveal(surface, [100, 0, 0, 0]); P5Fixture.clean(surface); session.flush()
 	check(not session.fine_preparation and ui.quality_cue_count == 0, "one perfectly prepared component earns no global star")
 	main.reset_specimen()
@@ -177,8 +179,8 @@ func test_active_scene() -> void:
 	check(not session.preparation_complete, "native full cleanliness with below85 global exposure is incomplete")
 	P5Fixture.reveal(surface, [86, 86, 86, 86]); session.flush()
 	check(session.preparation_complete and not session.fine_preparation, "exposure can be final requirement, no fragment gate")
-	check(ui.state_label.text == "✓ Specimen prepared" and ui.closure_label.text.contains("Ready to archive.") and ui.closure_label.text.contains("optional"), "persistent completion wording permits stopping")
-	check(ui.fine_label.visible and ui.fine_label.text.contains("Optional: both bars to 95%") and ui.archive_button.visible and ui.keep_button.visible, "single optional hint and both actions after85")
+	check(ui.state_label.text == "✓ Ready to archive" and ui.closure_label.text.contains("optional"), "persistent completion wording permits stopping")
+	check(ui.fine_label.visible and ui.fine_label.text.contains("95%") and ui.fine_label.text.contains("Optional") and ui.archive_button.visible and ui.keep_button.visible, "single optional hint and both actions after85")
 	check(not ui.modal.visible and session.can_use_tools(), "completion stays in existing card without modal")
 	var initial_snapshot := session.completion_snapshot.duplicate()
 	var terrain := surface.image.get_data()
@@ -198,7 +200,7 @@ func test_active_scene() -> void:
 	check(session.archive_snapshot.fine_preparation and session.archive_snapshot.condition == 97 and not session.can_use_tools(), "archive freezes current record and locks tools")
 	check(ui.modal.visible and not ui.preparation_card.visible and ui.card_star.visible and ui.another_button.visible, "archive is a short independent closure")
 	check(ui.card_title.text == "✓ Specimen archived" and ui.card_subtitle.text == "Museum records updated.", "positive concise archive wording")
-	check(ui.card.get_child(0).get_child_count() == 4 and ui.archive_cue_count == 1, "archive contains three short lines and one action only")
+	check(ui.card.get_child(0).get_child_count() == 5 and ui.archive_cue_count == 1, "archive contains concise closure, optional star, care tier and one action")
 	evidence.metrics = session.metrics()
 	terrain = surface.image.get_data()
 	control._held = true; control._screen = screen_at(Vector2(800, 400)); control._physics_process(1.0 / 60)
@@ -217,6 +219,74 @@ func test_active_scene() -> void:
 	check(not ui.card_star.visible and ui.another_button.visible, "no star line or unfinished checklist on ordinary archive")
 	key.physical_keycode = KEY_R; root.push_input(key, true)
 	check(not session.archived and not session.preparation_complete and surface.fossil.exposed_cells == 0, "R resets archived session too")
+
+func test_coverage() -> void:
+	for id in range(4):
+		var parts: Array[float] = [100.0, 100.0, 100.0, 100.0]
+		parts[id] = 64.99
+		check(not PreparationRules.coverage_passes(parts), "every major component must reach65: " + str(id))
+		parts[id] = 65
+		check(PreparationRules.coverage_passes(parts), "exact65 passes: " + str(id))
+	main.reset_specimen()
+	P5Fixture.reveal_counts(surface, [7756, 7243, 10771, 1956])
+	P5Fixture.clean(surface); session.flush()
+	var original := session.snapshot()
+	check(original.exposure >= 85 and original.cleanliness >= 85 and not session.coverage_passed, "real B17 at85.865% leaves70% of hind limb buried")
+	check(not session.preparation_complete and not session.archive() and main.session_ui.coverage_label.visible, "coverage blocks archive with one contextual line")
+	check(not main.session_ui.fine_label.visible and not main.session_ui.archive_button.visible, "blocked preparation does not advertise mastery or archive")
+	var count := session.coverage_checks
+	for i in range(5): session.invalidate(); session.flush()
+	check(session.coverage_checks == count, "film/condition/ordinary refresh cannot recheck coverage")
+	main.reset_specimen()
+	# Move exactly2282 exposed cells from Skull to Limb: same global score, adequate spread.
+	P5Fixture.reveal_counts(surface, [5474, 7243, 10771, 4238])
+	P5Fixture.clean(surface); session.flush()
+	equal(session.snapshot().exposure, original.exposure, "same global exposure, different anatomical distribution")
+	check(session.coverage_passed and session.preparation_complete and session.archive(), "same score with every major part65+ allows archive")
+	evidence.coverage = {"blocked": original, "allowed": session.archive_snapshot.duplicate(true), "threshold": PreparationRules.COVERAGE_MIN_EXPOSURE}
+	main.reset_specimen()
+	check(not session.coverage_passed and session.coverage_checks == 0 and not main.session_ui.coverage_label.visible, "reset clears guard/cache/context")
+	P5Fixture.reveal_counts(surface, [7756, 7243, 10771, 4237]); P5Fixture.clean(surface); session.flush()
+	check(not session.preparation_complete, "one native cell below limb65 is blocked despite92.9 global")
+	var before := completion_count
+	P5Fixture.reveal_counts(surface, [7756, 7243, 10771, 4238]); session.flush()
+	check(session.preparation_complete and completion_count == before + 1, "final coverage cell triggers completion, no near100 requirement")
+	session.invalidate(); session.flush()
+	check(completion_count == before + 1 and not main.session_ui.coverage_label.visible, "guard completion fires once and clears contextual blocker")
+
+func test_condition() -> void:
+	for pair in [[100, "Excellent"], [95, "Excellent"], [94.99, "Good"], [85, "Good"], [84.99, "Fair"], [70, "Fair"], [69.99, "Damaged"], [0, "Damaged"]]:
+		check(PreparationRules.CONDITION_TIERS[PreparationRules.condition_tier(pair[0])] == pair[1], "exact care tier " + str(pair))
+	main.reset_specimen()
+	check(main.session_ui.condition_label.text == "Condition · Excellent", "care label visible from reset, no percentage")
+	P5Fixture.reveal(surface, [96, 96, 96, 96]); session.flush()
+	var index := surface.fossil.field.index_at_map(Vector2(252, 199))
+	var drops: Array[String] = []
+	var callback := func(tier: String): drops.append(tier)
+	session.condition_tier_dropped.connect(callback)
+	var exposure := surface.fossil.exposure_percent()
+	var cleanliness := surface.bone_film.cleanliness_percent()
+	var coverage_checks := session.coverage_checks
+	for amount in [5, 1, 9, 1, 14, 1]:
+		surface.fossil.damage_at(index, amount); session.flush()
+	check(drops == ["Good", "Fair", "Damaged"], "one event per real downward tier transition, no repeats within tier")
+	check(session.coverage_checks == coverage_checks, "care feedback never rescans coverage")
+	check(surface.fossil.exposure_percent() == exposure and surface.bone_film.cleanliness_percent() == cleanliness, "Condition never changes exposure or cleanliness")
+	check(main.session_ui.condition_label.text == "Condition · Damaged" and main.session_ui.notice_label.text == "Condition: Damaged", "subtle contextual notice and qualitative care state")
+	main.session_ui._show_notice("Discovery updated: test")
+	check(main.session_ui.notice_label.text == "Condition: Damaged", "simultaneous discovery does not erase care feedback")
+	for i in range(5): session.invalidate(); session.flush()
+	check(drops.size() == 3, "refresh does not replay tier drops")
+	P5Fixture.clean(surface); session.flush()
+	check(surface.fossil.condition == 69 and session.fine_preparation and session.preparation_complete, "cleaning cannot restore Condition or prevent mastery/readiness")
+	check(session.archive() and main.session_ui.card_condition.text == "Condition · Damaged" and main.session_ui.card_star.visible, "Damaged plus Fine Preparation can archive legitimately")
+	main.reset_specimen()
+	P5Fixture.reveal(surface, [96, 96, 96, 96])
+	surface.fossil.damage_at(index, 6); P5Fixture.clean(surface); session.flush()
+	check(drops == ["Good", "Fair", "Damaged", "Good"] and session.fine_preparation, "reset rearms care feedback; Good plus Fine Preparation is valid")
+	check(session.archive() and session.archive_snapshot.condition_tier == "Good", "Good archive tier uses final snapshot")
+	session.condition_tier_dropped.disconnect(callback)
+	main.reset_specimen()
 
 func finish(label: String) -> void:
 	evidence.checks = checks
@@ -244,10 +314,12 @@ func run() -> void:
 	test_boundaries()
 	test_film_and_progression()
 	test_active_scene()
+	test_coverage()
+	test_condition()
 	await process_frame
 	await process_frame
 	var count := session.refresh_count
 	var ui_count: int = main.session_ui.refresh_count
 	for i in range(10): await process_frame
 	check(session.refresh_count == count and main.session_ui.refresh_count == ui_count, "zero idle polling or UI rebuild")
-	await finish("p5s-tests")
+	await finish("p5g-tests")

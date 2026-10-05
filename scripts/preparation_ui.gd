@@ -8,6 +8,8 @@ var controller: ToolController
 var root_control: Control
 var preparation_card: PanelContainer
 var state_label: Label
+var condition_label: Label
+var coverage_label: Label
 var closure_label: Label
 var exposure_label: Label
 var cleanliness_label: Label
@@ -21,6 +23,7 @@ var card: PanelContainer
 var card_title: Label
 var card_subtitle: Label
 var card_star: Label
+var card_condition: Label
 var another_button: Button
 var notice_label: Label
 var notice_timer: Timer
@@ -102,12 +105,14 @@ func setup(state: PreparationSession, input: ToolController, reset_action: Calla
 	var column := _column(preparation_card)
 	column.minimum_size_changed.connect(_fit_preparation_card)
 	_label(column, "SPECIMEN B-17", 18)
-	state_label = _label(column, "Prepare the specimen", 21)
+	state_label = _label(column, "", 19)
 	exposure_label = _metric(column, "Reveal skeleton")
 	exposure_bar = _bar(column)
 	cleanliness_label = _metric(column, "Clean fossil")
 	cleanliness_bar = _bar(column)
-	closure_label = _label(column, "Ready to archive.\nFurther preparation is optional.", 17)
+	condition_label = _label(column, "", 17)
+	coverage_label = _label(column, "Major section still covered", 17)
+	closure_label = _label(column, "Further preparation is optional.", 17)
 	closure_label.modulate = DONE
 	fine_label = _label(column, "", 17)
 	fine_label.modulate = GOLD
@@ -139,7 +144,8 @@ func setup(state: PreparationSession, input: ToolController, reset_action: Calla
 	card_subtitle = _label(column, "Museum records updated.", 23)
 	card_star = _label(column, "★ Fine Preparation", 21)
 	card_star.modulate = GOLD
-	for label in [card_title, card_subtitle, card_star]:
+	card_condition = _label(column, "", 21)
+	for label in [card_title, card_subtitle, card_star, card_condition]:
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	another_button = _button(column, "Prepare Another Block", reset_action, 22)
 	controller.ui_blockers = [preparation_card, modal]
@@ -199,6 +205,8 @@ func _clear_notice() -> void:
 func _show_notice(message: String) -> void:
 	# Only the latest discovery is relevant; no queued checklist after completion.
 	if session.archived: return
+	# A discovery in the same action must not immediately erase care feedback.
+	if notice_label.text.begins_with("Condition:") and not notice_timer.is_stopped() and not message.begins_with("Condition:"): return
 	notice_label.text = message
 	notice_timer.start()
 
@@ -222,16 +230,19 @@ func refresh() -> void:
 	cleanliness_label.text = "%d%%" % floori(values.cleanliness)
 	exposure_bar.value = values.exposure
 	cleanliness_bar.value = values.cleanliness
-	state_label.text = "✓ Specimen prepared" if session.preparation_complete else "Prepare the specimen"
+	state_label.text = "✓ Ready to archive" if session.preparation_complete else "Museum standard · %d%%" % PreparationRules.REQUIRED_EXPOSURE
+	condition_label.text = "Condition · " + values.condition_tier
+	coverage_label.visible = not session.preparation_complete and not session.coverage_passed and values.exposure >= PreparationRules.REQUIRED_EXPOSURE and values.cleanliness >= PreparationRules.REQUIRED_CLEANLINESS
 	state_label.modulate = DONE if session.preparation_complete else Color.WHITE
 	closure_label.visible = session.preparation_complete
 	fine_label.visible = session.preparation_complete
-	fine_label.text = "★ Fine Preparation" if session.fine_preparation else "★ Fine Preparation\nOptional: both bars to 95%"
+	fine_label.text = "★ Fine Preparation" if session.fine_preparation else "★ Fine Preparation · %d%%\nOptional · both bars" % PreparationRules.QUALITY_EXPOSURE
 	archive_button.visible = session.preparation_complete
 	keep_button.visible = session.preparation_complete and not session.keep_cleaning_chosen
 	preparation_card.visible = not _debug_visible and not session.archived
 	modal.visible = session.archived
 	card_star.visible = session.archive_snapshot.get("fine_preparation", false)
+	card_condition.text = "Condition · " + str(session.archive_snapshot.get("condition_tier", "Excellent"))
 	if session.archived:
 		controller.cancel_stroke()
 		notice_timer.stop()

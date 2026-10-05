@@ -4,7 +4,7 @@ var frame_times: Array[float] = []
 var previous_frame := 0
 var measuring := false
 var results := {}
-var benchmark_path := "res://work/test-logs/p5s-benchmark.json"
+var benchmark_path := "res://work/test-logs/p5g-benchmark.json"
 
 func on_frame() -> void:
 	var now := Time.get_ticks_usec()
@@ -39,7 +39,7 @@ func local_fixture(center: Vector2, kind: String) -> void:
 			var ceiling := surface.structural_ceilings[index]
 			var height := surface.strata.packed_limits[index * 2]
 			if kind == "chisel_stone": height = surface.strata.packed_limits[index * 2 + 1] - 0.002
-			if kind in ["pick_bone", "progress_updates", "keep_cleaning"]:
+			if kind in ["pick_bone", "progress_updates", "keep_cleaning", "coverage_gate"]:
 				height = ceiling + 0.008 if ceiling > 0 else 0.17
 			surface._heights[index] = minf(surface._heights[index], maxf(height, ceiling))
 	P5Fixture.commit(surface)
@@ -92,7 +92,23 @@ func scenario(kind: String, zoom: float) -> void:
 			P5Fixture.clean(surface)
 		session.flush()
 		if kind == "keep_cleaning": session.keep_cleaning()
-	if kind in ["chisel_clay", "chisel_stone", "pick_bone", "progress_updates", "keep_cleaning"]: local_fixture(center, kind)
+	if kind == "coverage_gate":
+		P5Fixture.reveal_counts(surface, [7756, 7243, 10771, 4237])
+		P5Fixture.clean(surface)
+		var found := 0
+		for index in range(surface.fossil.field.component_ids.size()):
+			if surface.fossil.field.component_ids[index] != 4: continue
+			found += 1
+			if found == 4238:
+				@warning_ignore("integer_division")
+				center = Vector2(index % surface.size.x, index / surface.size.x)
+				break
+		tool = 3
+	if kind == "care_drop":
+		P5Fixture.reveal(surface, [96, 96, 96, 96]); P5Fixture.clean(surface)
+		tool = 1
+		center = Vector2(252, 199)
+	if kind in ["chisel_clay", "chisel_stone", "pick_bone", "progress_updates", "keep_cleaning", "coverage_gate"]: local_fixture(center, kind)
 	if kind == "brush_film": P5Fixture.reveal(surface, [75, 0, 0, 0])
 	if kind == "blower_crumbs": populate_crumbs(center)
 	await settle()
@@ -103,6 +119,11 @@ func scenario(kind: String, zoom: float) -> void:
 	main.camera._focused = true
 	if zoom > 1: main.camera.request_zoom(log(zoom) / log(main.camera.wheel_step), control._screen)
 	for i in range(60): await physics_frame
+	var tier_events: Array[String] = []
+	var care_callback := func(tier: String): tier_events.append(tier)
+	session.condition_tier_dropped.connect(care_callback)
+	if kind == "coverage_gate": check(not session.preparation_complete and not session.coverage_passed, "coverage case starts blocked")
+	var before_coverage_checks := session.coverage_checks
 	var before_exposure := surface.fossil.exposed_cells
 	var before_clean := surface.bone_film.cleanliness_percent()
 	var before_session_refresh := session.refresh_count
@@ -132,6 +153,7 @@ func scenario(kind: String, zoom: float) -> void:
 		else:
 			control._held = true
 			var point := center + Vector2(24 * sin(tick / 50.0), 12 * cos(tick / 65.0))
+			if kind in ["care_drop", "coverage_gate"]: point = center
 			if kind.begins_with("chisel"): point = center + Vector2((tick / 120 as int - 1) * 24, 0)
 			point_at(point)
 		control._physics_process(1.0 / 60)
@@ -145,6 +167,7 @@ func scenario(kind: String, zoom: float) -> void:
 			ui_cost.append(float(main.session_ui.last_refresh_usec))
 			seen_ui_refresh = main.session_ui.refresh_count
 	measuring = false
+	session.condition_tier_dropped.disconnect(care_callback)
 	var seconds := (Time.get_ticks_usec() - started) / 1e6
 	control.cancel_stroke()
 	var label := "%s_%dx" % [kind, int(zoom)]
@@ -153,12 +176,14 @@ func scenario(kind: String, zoom: float) -> void:
 		"session_refreshes": session.refresh_count - before_session_refresh, "ui_refreshes": main.session_ui.refresh_count - before_ui_refresh,
 		"changed_cells": changed, "exposure_delta_cells": surface.fossil.exposed_cells - before_exposure,
 		"cleanliness_delta": surface.bone_film.cleanliness_percent() - before_clean, "remaining_crumbs": surface.loose_debris.persistent_count(),
-		"fine_preparation": session.fine_preparation, "complete": session.preparation_complete, "keep_cleaning": session.keep_cleaning_chosen,
+		"coverage_checks": session.coverage_checks - before_coverage_checks, "condition": surface.fossil.condition, "tier_events": tier_events, "fine_preparation": session.fine_preparation, "complete": session.preparation_complete, "keep_cleaning": session.keep_cleaning_chosen,
 		"seconds": seconds, "zoom": main.camera.zoom_factor, "runtime_cap": Engine.max_fps, "physics_hz": Engine.physics_ticks_per_second}
 	check(data.render_fps >= 60 and data.min_1s_fps >= 60 and data.frame_ms.p95 < 1000.0 / 60, "strict sustained 60 FPS: " + label)
 	check(Engine.max_fps == 240 and Engine.physics_ticks_per_second == 60, "locked runtime cadence")
 	if kind == "completion_card": check(session.preparation_complete and session.can_use_tools() and data.session_refreshes > 0, "native Brush crosses85, updates inline card without blocking")
 	elif kind == "fine_preparation": check(session.fine_preparation and main.session_ui.quality_cue_count == 1 and session.can_use_tools(), "native Brush crosses95, glint and quiet sound without interruption")
+	elif kind == "coverage_gate": check(session.preparation_complete and session.coverage_passed and data.coverage_checks > 0, "ordinary Pick reveals missing coverage and permits archive")
+	elif kind == "care_drop": check(tier_events == ["Good", "Fair", "Damaged"] and session.fine_preparation and data.coverage_checks == 0, "real Chisel damage notifies each tier once without rescanning coverage")
 	elif kind == "archive_card": check(session.archived and main.session_ui.archive_cue_count == 1 and data.ui_refreshes > 0, "archive animation and confirmation included")
 	elif kind == "blower_crumbs": check(surface.loose_debris.persistent_count() == 0 and geometry == surface.image.get_data(), "blower clears real crumbs without excavation")
 	elif kind == "brush_film": check(data.cleanliness_delta > 0 and data.session_refreshes > 0, "brush cleans film and updates the two bars")
@@ -181,7 +206,7 @@ func run() -> void:
 	control = main.controller
 	control.set_physics_process(false)
 	process_frame.connect(on_frame)
-	var kinds := ["brush_soil", "chisel_clay", "chisel_stone", "pick_bone", "blower_crumbs", "brush_film", "fine_preparation", "completion_card", "keep_cleaning", "progress_updates", "archive_card"]
+	var kinds := ["brush_soil", "chisel_clay", "chisel_stone", "pick_bone", "blower_crumbs", "brush_film", "fine_preparation", "completion_card", "keep_cleaning", "progress_updates", "archive_card", "coverage_gate", "care_drop"]
 	for zoom in [1.0, 3.0]:
 		for kind in kinds:
 			await scenario(kind, zoom)

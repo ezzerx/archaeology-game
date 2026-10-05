@@ -6,7 +6,7 @@ func screenshot(label: String) -> Image:
 	await process_frame
 	await RenderingServer.frame_post_draw
 	var picture := root.get_texture().get_image()
-	var path := "res://work/test-logs/p5s-" + label + ".png"
+	var path := "res://work/test-logs/p5g-" + label + ".png"
 	picture.save_png(path)
 	captures.append(path)
 	return picture
@@ -39,7 +39,7 @@ func check_layout(overview := true) -> void:
 		var block_left: float = main.camera.unproject_position(main.block.to_global(Vector3(-0.55, 0.12, 0))).x
 		check(rect.end.x < block_left, "card entirely outside block at overview")
 	check(viewport.encloses(main.toolbar.get_global_rect()) and main.toolbar.get_child_count() == 4, "four-tool toolbar fits")
-	for label in [ui.state_label, ui.exposure_label, ui.cleanliness_label, ui.closure_label, ui.fine_label]:
+	for label in [ui.state_label, ui.exposure_label, ui.cleanliness_label, ui.closure_label, ui.fine_label, ui.condition_label, ui.coverage_label]:
 		if label.is_visible_in_tree(): check(rect.encloses(label.get_global_rect()), "text fits within only permanent card: " + label.text)
 	for button in [ui.archive_button, ui.keep_button]:
 		if button.is_visible_in_tree(): check(rect.encloses(button.get_global_rect()), "action fits within card")
@@ -51,6 +51,26 @@ func visual_fixture(percent: float) -> void:
 			surface._heights[index] = minf(surface._heights[index], maxf(surface.structural_ceilings[index] + 0.025, 0.19))
 	P5Fixture.commit(surface)
 	P5Fixture.reveal(surface, [percent, percent, percent, percent])
+	P5Fixture.clean(surface)
+
+func coverage_fixture(counts: Array[int]) -> void:
+	P5Fixture.reveal_counts(surface, counts)
+	# Clear surrounding matrix for visual assessment, retaining a matrix buffer
+	# over every still-hidden Bone cell. This is test setup, never player geometry.
+	var covered := PackedByteArray()
+	covered.resize(surface._heights.size())
+	for index in range(surface.fossil.field.component_ids.size()):
+		if surface.fossil.field.component_ids[index] == 0 or surface.fossil.exposed[index] != 0: continue
+		@warning_ignore("integer_division")
+		var at := Vector2i(index % surface.size.x, index / surface.size.x)
+		for y in range(maxi(0, at.y - 12), mini(surface.size.y, at.y + 13)):
+			for x in range(maxi(0, at.x - 12), mini(surface.size.x, at.x + 13)):
+				covered[y * surface.size.x + x] = 1
+	for y in range(165, 570):
+		for x in range(150, 830):
+			var index := y * surface.size.x + x
+			if covered[index] == 0: surface._heights[index] = maxf(surface.structural_ceilings[index], 0.19)
+	P5Fixture.commit(surface)
 	P5Fixture.clean(surface)
 
 func run() -> void:
@@ -74,6 +94,16 @@ func run() -> void:
 	await screenshot("02-discovery")
 	await create_timer(3.3).timeout
 	check(main.session_ui.notice_label.text == "", "discovery disappears")
+	main.reset_specimen()
+	coverage_fixture([7756, 7243, 10771, 1956]); await settle()
+	check(not session.preparation_complete and main.session_ui.coverage_label.visible, "buried hind limb blocks real85+ score")
+	check_layout()
+	await screenshot("02a-coverage-blocked")
+	main.reset_specimen()
+	coverage_fixture([5474, 7243, 10771, 4238]); await settle()
+	check(session.preparation_complete, "same global score with meaningful coverage passes")
+	await screenshot("02b-coverage-pass")
+	main.reset_specimen()
 	visual_fixture(67); await settle()
 	check(not session.preparation_complete and not main.session_ui.fine_label.visible, "mastery hidden before required work is done")
 	await screenshot("03-preparing")
@@ -93,9 +123,13 @@ func run() -> void:
 	await create_timer(0.8).timeout
 	check(main.session_ui.fine_label.modulate == PreparationUI.GOLD, "brief glint settles to persistent gold star")
 	await screenshot("06-fine")
+	surface.fossil.damage_at(surface.fossil.field.index_at_map(Vector2(252, 199)), 6); await settle()
+	check(main.session_ui.condition_label.text == "Condition · Good" and session.fine_preparation, "visible care drop does not revoke star")
+	await screenshot("06a-condition-good")
 	check(session.completion_snapshot == completion, "completion record remains frozen")
 	await click_button(main.session_ui.archive_button)
 	check(session.archived and main.session_ui.card_star.visible, "real archive click with star")
+	check(main.session_ui.card_condition.text == "Condition · Good", "archive presents final qualitative care")
 	await create_timer(0.3).timeout
 	check(main.session_ui.card.modulate.a == 1 and root.get_visible_rect().encloses(main.session_ui.card.get_global_rect()), "short archive entrance and card fit")
 	await screenshot("07-archive-fine")
@@ -124,4 +158,4 @@ func run() -> void:
 	await screenshot("12-debug")
 	evidence.captures = captures
 	evidence.completion = completion
-	await finish("p5s-visual")
+	await finish("p5g-visual")
