@@ -515,3 +515,16 @@ Choix livrés, à retester humainement : demande de gauche seule autorité d'arc
 L'archive conserve les valeurs finales, affiche identité/demande accomplie/fragments/Condition/qualité optionnelle et remercie brièvement le joueur, avec une confirmation douce. Les écarts détaillés restent F1. Un parcours sans étoile reste une réussite complète de la demande. Le protocole laisse **choisir librement** Archive ou Keep Cleaning ; aucune consigne de continuer avant de relever le choix.
 
 Leçons vérifiées : les sous-lignes d'un objectif terminé doivent porter le même statut visuel que sa coche ; les contrôles de layout doivent inclure l'état Keep Cleaning où le bouton Archive apparaît, sinon celui-ci peut masquer le compteur du plateau. Attendre la fin du bref fondu pour la capture finale d'archive, sans l'exclure du benchmark. L'oracle entièrement révélé/nettoyé atteint100 % ; la cause des98–99 % de la session humaine reste non localisée faute de snapshot de ce terrain. Rapport et retest : [P5_CORRECTION_REPORT](../dev/P5_CORRECTION_REPORT.md).
+
+
+## P5 simplification — remove fragment objective and reduce UI — 2026-10-05
+
+Antoine rejects the growing P5 objective/dossier complexity. The core P5 goal is simplified to **Prepare the specimen = reveal >=90% of the skeleton + clean >=90% of revealed Bone**.
+
+The two loose fragments, Forceps objective, physical tray, component stars and detailed component checklist are removed from the P5 player-facing validation flow. They were exploratory mechanics, not part of Antoine's original core vision, and may only return later if Macro Game Design gives them a clear role.
+
+P5 UI should be minimal and functional: one preparation goal, two progress values/bars, established four-tool toolbar, clear completion state, Archive / Keep Cleaning. Classification may remain a subtle discovery signal but not a competing checklist. Condition is not another completion requirement.
+
+P5's art is intentionally greybox. **P5 must be clear, not beautiful; P6 owns the real visual/UI language.**
+
+P5 is complete when one preparation session can be understood, completed and archived from start to finish without explanation. Full skeleton extraction vs in-matrix vs mounted/hybrid museum destination remains a Macro Game Design decision.
