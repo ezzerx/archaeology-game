@@ -112,3 +112,10 @@ They are references for:
 - museum presentation.
 
 Gameplay rules, scope and architecture are governed by the written canonical specs.
+
+
+## Current ChatGPT Project availability
+
+The canonical 2×2 visual board is also attached to the ChatGPT Project as `archaeologygame-v0.1-visual-reference-board.jpg`, so a new orchestration conversation inside the same Project can recover the shared visual baseline without relying on this chat history.
+
+Recent **museum exterior / main-menu** generations are exploratory concept work. Their direction is canonized in `CONCEPT.md`, `ART_DIRECTION.md` and the orchestration handoff, but **no single exterior image is yet a canonical production reference**. If exact pixels become important, Antoine should explicitly select/version one rather than an agent inferring a winner from old chat attachments.
