@@ -16,6 +16,14 @@ Grammaire outils actuelle :
 
 Trois métriques Bone restent séparées : **Exposure / Cleanliness / Condition**. Les sections plus anciennes ci-dessous conservent la provenance des idées ; les décisions P4/P5 plus récentes prévalent.
 
+## Boucle macro cible
+
+Après validation de la V0.1, la boucle complète visée devient :
+
+> **choisir une caisse de spécimen → lire son étiquette / anticiper → ouvrir la caisse → préparer le bloc → classifier / récupérer → archiver → voir le musée évoluer → choisir la prochaine caisse**
+
+La sélection par caisse et la galerie vivante sont des directions macro-game-design canonisées, pas du scope P5 actuel.
+
 ## Boucle principale
 
 | Étape | Action et retour attendu |
