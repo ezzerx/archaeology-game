@@ -258,7 +258,7 @@ func test_scene() -> void:
 	var uv := (point + Vector2.ONE * 0.5) / Vector2(field.size)
 	block.working_map.apply_segment(point, point, 60, 1e5, 1, 1)
 	block.flush_texture()
-	check(main.get_node("Debug/BoneNotice").visible and main.get_node("Debug/BoneNotice").text == "Bone detected\nDelicate material underneath", "first contact drives exact debug notification")
+	check(main.session_ui.notice_label.text == "Bone detected — delicate material underneath", "first contact drives the P5 discovery notification")
 	var hit_bone := 0
 	var hit_matrix := 0
 	var worst := 0.0
@@ -317,7 +317,7 @@ func test_scene() -> void:
 	for i in range(30): controller._physics_process(1.0 / 60.0)
 	check(fossil.condition == 100 and fossil.exposed_cells == 0 and not fossil.first_contact
 		and not controller._held and controller.total_impacts == 0 and controller.impact_clock.emitted == 0, "R resets fossil plus held input and chisel cadence")
-	check(not main.get_node("Debug/BoneNotice").visible, "R immediately clears notification")
+	check(main.session_ui.notice_label.text.is_empty(), "R immediately clears notification")
 	check(block.working_map.value_at(cell) == 1 and block.working_map.residue.value_at(uv) == 0, "R leaves pristine surface while mouse remains held")
 	main.queue_free()
 	await process_frame

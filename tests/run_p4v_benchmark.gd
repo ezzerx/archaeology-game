@@ -64,7 +64,7 @@ func zone_scenario(zone: int, kind: String, zoom: float) -> void:
 	check(absf((camera as PrecisionZoom).zoom_factor - zoom) < 0.001, "benchmark reaches requested zoom")
 	var height_before := block.working_map.image.get_data()
 	var layer_bytes := block.working_map.strata.boundaries.get_data()
-	var bone_bytes := block.working_map.fossil.field.image.get_data()
+	var bone_bytes := block.working_map.bone_display_image.get_data()
 	var edits: Array[float] = []
 	var active_edits: Array[float] = []
 	var picks: Array[float] = []

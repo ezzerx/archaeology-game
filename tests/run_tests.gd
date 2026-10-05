@@ -192,10 +192,10 @@ func test_scene() -> void:
 	key.pressed = true
 	root.push_input(key)
 	await process_frame
-	check(not panel.visible, "F1 hides debug")
+	check(panel.visible, "F1 shows debug from the P5 player view")
 	root.push_input(key.duplicate())
 	await process_frame
-	check(panel.visible, "F1 shows debug")
+	check(not panel.visible, "F1 returns to the P5 player view")
 	controller._notification(Node.NOTIFICATION_WM_WINDOW_FOCUS_OUT)
 	await physics_frame
 	await physics_frame
