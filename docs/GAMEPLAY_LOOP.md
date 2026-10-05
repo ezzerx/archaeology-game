@@ -1,5 +1,21 @@
 # Boucle de jeu et sensation de fouille
 
+## Canon actuel — 2026-10-05
+
+Le joueur est préparateur/restaurateur dans un musée d'histoire naturelle. La boucle prototype actuelle est :
+
+> **bloc confié → excavation/préparation → découverte/classification → récupération manuelle des fragments → Preparation Complete → Keep Cleaning ou Archive Specimen → prochain bloc**
+
+Grammaire outils actuelle :
+
+- **Soft Brush** : Soil, Bone Surface Film et mess brushable ;
+- **Chisel** : excavation bulk Clay/Sandstone et fracture ;
+- **Air Blower** : évacuation du mess libre ;
+- **Precision Pick** : finition structurelle précise près des os ;
+- **Forceps [P5]** : récupération de fragments indépendants READY, jamais excavation.
+
+Trois métriques Bone restent séparées : **Exposure / Cleanliness / Condition**. Les sections plus anciennes ci-dessous conservent la provenance des idées ; les décisions P4/P5 plus récentes prévalent.
+
 ## Boucle principale
 
 | Étape | Action et retour attendu |
