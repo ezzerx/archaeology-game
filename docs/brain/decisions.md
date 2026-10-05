@@ -473,3 +473,14 @@ La préparation Bone est canonique : **Exposure ≠ Cleanliness ≠ Condition**.
 Déférés sans bloquer P4 : Soil trop provisoire pour le final, débris encore perfectibles, ambiguïtés visuelles Pick/Brush sur certains micro-restes, Bone dirt parfois trop proche du Sandstone, dust vs lecture des arêtes. Pour P6, tester d'abord **la couleur seule** du Bone Film avant de modifier son pattern/densité, car les taches actuelles sont appréciées.
 
 Si ces sujets restent importants après P5/P6, ouvrir une **phase future dédiée de polish excavation/gameplay, nom à définir**, et non `P4.2`. P5 devient la prochaine phase canonique.
+
+
+## Macro game design — caisses et musée vivant — 2026-10-05
+
+Antoine canonise deux piliers pour le jeu complet, à concevoir/prototyper **après la V0.1** sans les tirer dans P5.
+
+**1. Specimen crates / intake queue.** Le prochain travail est choisi via des caisses physiques reçues par le musée. L'étiquette donne origine géologique/site, période estimée, matrice, difficulté, notes de provenance et éventuel caractère rare/exceptionnel sans révéler précisément le contenu. Une courte phase satisfaisante d'ouverture de caisse doit relier la sélection à la préparation. Les caisses spéciales peuvent créer un fort sentiment d'anticipation (« il faut que j'ouvre celle-là »), mais la rareté ne doit pas devenir une lootbox payante ni rendre la progression principale injuste.
+
+**2. Musée comme mémoire physique du travail.** La galerie doit donner envie d'être complétée parce qu'elle matérialise réellement les préparations du joueur, dans l'esprit du plaisir de donation/complétion du musée d'Animal Crossing. Les pièces apparaissent dans les expositions, les manques restent visibles et la progression se lit dans le lieu avant de se lire dans des chiffres. Une galerie partiellement remplie au départ est une piste forte pour faire sentir que le musée existait avant le joueur et créer des objectifs déjà entamés.
+
+Boucle macro cible : **crate queue → anticipation/opening → preparation → archive → visible museum update → next crate**.
