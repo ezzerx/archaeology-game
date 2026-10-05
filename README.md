@@ -2,10 +2,9 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P4 validé et mergé ; correctif P5 livré pour retest humain, PR #8 DRAFT.**
+**Statut : P4/P5 clos et mergés ; P6A-1 Material Lab pour revue humaine, PR #9 DRAFT.**
 
-**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET aucun amas osseux caché atteignant le seuil centralisé (connexité8, sans pont entre os). Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. [Rapport courant](docs/dev/P5_HIDDEN_CLUSTER_REPORT.md). **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
-Rapport, preuves et sept étapes de retest : [P5_HIDDEN_CLUSTER_REPORT](docs/dev/P5_HIDDEN_CLUSTER_REPORT.md).
+**P6A-1 :** comparaison P5 / procédural / textures peintes / hybride sur le vrai B-17 dynamique. [Rapport, preuves et protocole](docs/dev/P6A_REPORT.md). Le gameplay P4/P5 reste gelé. Arrêt après cette comparaison ; aucun P6B ni autre tâche P6A sans revue Antoine.
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression
@@ -15,9 +14,19 @@ Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 - P2 Outils ✅
 - P3 Fossile / zoom ✅
 - P4 Game Feel ✅
-- **P5 Session complète / UI / progression — test humain ▶**
-- P6 Art pass
+- P5 Session complète / UI / progression ✅
+- **P6A-1 Material Lab — revue humaine ▶**
+- P6B Art pass — non démarré
 - P7 Tuning
+
+### Comparer les matériaux P6A-1
+
+Ouvrir `scenes/p6a_material_lab.tscn` puis **F6** dans Godot, ou lancer
+`./Launch-Material-Lab.ps1 -GodotBin <Godot>`. La scène commence avec B-17 fermé.
+**F8** change le candidat sans toucher à la fouille ou à la caméra ; **F9** charge
+le preset suivant ; **F10** recharge ce preset ; **H** masque les commandes du lab.
+Le panneau permet aussi de choisir directement un état et d'activer/désactiver
+la patine, la palette du film et les micro-normales. R revient au bloc intact.
 
 ### Jouer une session P5
 

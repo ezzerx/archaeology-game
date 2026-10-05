@@ -1,17 +1,17 @@
 # Statut canonique
 
-- Date : **2026-10-05**.
+- Date : **2026-10-06**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 validé et mergé ; P5 85/95 + garde des amas cachés + Condition qualitative livré pour retest, toujours non validé humainement ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
+- Phase : **P4/P5 clos et mergés ; P6A-1 Material Lab en revue, PR #9 DRAFT. Aucun pipeline canonisé ; arrêt avant les autres tâches P6A et P6B.**
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
-- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 actif : `prototype/p5-loop-progression`, PR #8 en brouillon.
+- Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 mergé ; P6A actif : `prototype/p6a-visual-spike`, [PR #9](https://github.com/ezzerx/archaeology-game/pull/9) DRAFT.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
 - Merge P1 : `960642c3fc6972bdb257c96abd43b90c148e632d`.
 - Merge P2 : `9b8423fedfb4723ba8b0113a23e564ba474c8bd2`.
 - Merge P3 : `10a12379ab1db629380ac9697e5597aeb16a373b`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.
 
-**Reprise courante :** [P5_HIDDEN_CLUSTER_REPORT](../dev/P5_HIDDEN_CLUSTER_REPORT.md), Human test5. Retest ciblé en sept étapes ; aucune autre feature.
+**Reprise courante :** [P6A_REPORT](../dev/P6A_REPORT.md), scène `scenes/p6a_material_lab.tscn`. Comparer les matériaux, patine et teinte du film sans retuner P4/P5. La consigne explicite du 6 octobre limite le travail au Material Lab ; la suite du brief P6A attend Antoine.
 
 ## P0 — Validé ✅
 
@@ -350,3 +350,15 @@ Source of truth: [P6A_BRIEF](../dev/P6A_BRIEF.md).
 First task is **P6A-1 Material Lab**: compare the current dynamic B-17 rendering against representative procedural/authored/hybrid material candidates on identical excavation states before producing environment assets.
 
 P6A must prove fidelity, gameplay readability, dynamic compatibility, performance and production cost. No automatic P6B after technical success; Antoine must approve the playable hero slice.
+
+### P6A-1 — livraison pour revue, 2026-10-06
+
+Material Lab séparé, quatre rendus P5/A/B/C et dix presets, blocs fermés au lancement.
+F8 bascule le rendu sans reset, F9/F10 chargent/rechargent les fixtures ; H masque
+le panneau de laboratoire. Patine Soil→Clay, variante Clay→Sandstone facultative,
+palette Film et détails de normale comparables. Motifs/masques Film conservés.
+Code gameplay P4/P5 inchangé ; mesures et captures dans [P6A_REPORT](../dev/P6A_REPORT.md).
+
+Préférence technique provisoire : B (atlas peint + masques), **non canonisée**.
+C n'inclut pas de jacket. La scène P5 normale reste le point d'entrée F5.
+**Prochaine action : revue Antoine du Material Lab. STOP jusqu'au verdict.**

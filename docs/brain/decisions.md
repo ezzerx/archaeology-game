@@ -667,3 +667,27 @@ Examples:
 - spring/summer: corresponding vegetation/light/weather variations.
 
 The building and composition remain recognizable. Seasonal ambience should be subtle and contemplative, with lightweight animation (e.g. snowflakes/leaves) rather than a busy menu. This belongs to later P6 menu/exterior work, not the first Material Lab spike.
+
+## P6A-1 — périmètre et arrêt confirmés — 2026-10-06
+
+Antoine autorise **uniquement le Material Lab** sur la géométrie/data B-17 réelle,
+avec référence P5 et essais procédural/peint/hybride. Même caméra et même fouille
+pour chaque candidat ; patine de contact purement visuelle. Premier essai Bone Film
+limité à couleur/propriétés de matière, motif et densité inchangés. P4/P5 gelés.
+Arrêt pour revue humaine avant éclairage, jackets, Blender/assets, UI, hero slice
+ou P6B. Le brief P6A complet n'autorise pas automatiquement ces travaux.
+
+Implémentation de spike : scène héritée séparée, atlas source IA1254² et habillages
+insérés dans le shader P5 en mémoire ; aucun changement aux fichiers de gameplay.
+Le laboratoire n'est pas le nouveau rendu par défaut. Rapport canonique :
+[P6A_REPORT](../dev/P6A_REPORT.md).
+
+**Recommandation technique en attente de revue, non décision canonique : B.**
+L'atlas peint apporte l'essentiel du gain observé ; C est testé seulement côté
+matériaux, sans jacket. Les captures gardent des limites de répétition et de relief
+osseux à3×. Ni une réussite des tests ni un temps GPU faible ne valident la DA.
+
+Leçon vérifiée : une comparaison GPU pixel par pixel doit attendre l'arrêt complet
+du zoom amorti ; une caméra encore mobile de quelques fractions de pixel peut
+faire échouer un masque pourtant inchangé. Le banc réutilise en outre la pose
+exacte de référence pour tous les candidats d'une charge.

@@ -2,7 +2,7 @@
 
 **Purpose:** give a new ChatGPT orchestration conversation the same product mental model and decision discipline as the current one.
 
-**Last audited:** 2026-10-05.
+**Last audited:** 2026-10-06.
 
 ## 1. Product in one paragraph
 
@@ -39,13 +39,9 @@ Merged milestones:
 
 P4 closure merge: PR #7 → `bae4ee64268dd6270afb9f0011c316c45c57d251`.
 
-### P5 is CLOSED and human-validated; P6A is NEXT
+### P5 is CLOSED, human-validated and merged
 
-Active branch:
-`prototype/p5-loop-progression`
-
-PR:
-**#8 — Minimal preparation session, 85/95 and archive** (DRAFT)
+P5 history: `prototype/p5-loop-progression`, PR #8 merged.
 
 Current implementation and verification: `docs/dev/P5_HIDDEN_CLUSTER_REPORT.md`.
 
@@ -53,7 +49,7 @@ The latest human review supersedes the original three objectives and the first c
 
 Read the final Human test5 section of `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md`, the hidden-cluster report, PR #8 and `docs/brain/status.md`. Original P5 and first-correction reports are historical.
 
-**Antoine has explicitly validated P5 sufficiently to advance. Merge/canonize P5, then P6A becomes the active phase.**
+**Antoine has explicitly validated P5 sufficiently to advance. P6A is active.**
 
 A new orchestrator must not infer project state from `main` code alone while an active phase lives on a draft PR.
 
@@ -72,7 +68,9 @@ P5 active player loop at closure: one compact card, four tools,85/85 museum stan
 Branch: `prototype/p6a-visual-spike`  
 Brief: `docs/dev/P6A_BRIEF.md`
 
-First task: P6A Material Lab on real B-17 dynamic rendering. Do not begin with full workshop/UI production. Prove the rendering/material pipeline first, then lighting, Bone readability, jacket-shell approach, static-asset import workflow, small UI sample and finally one playable hero slice.
+Current task: **P6A-1 only**, Material Lab on real B-17 dynamic rendering, PR #9 DRAFT. See `docs/dev/P6A_REPORT.md` and `scenes/p6a_material_lab.tscn`.
+
+The explicit 2026-10-06 scope includes visual contact patina and Bone Film color/material properties, with its pattern preserved. **Stop after the Material Lab for Antoine's review.** No lighting, jackets, Blender/static assets, final UI or hero slice until separately authorized. The remaining tasks in the broad P6A brief are not an execution instruction.
 
 P6B requires explicit Antoine approval after human review of the hero slice.
 
