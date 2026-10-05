@@ -252,3 +252,14 @@ P0 ✅ → P1 ✅ → P2 ✅ → P3 ✅ → P4/P4-V1/P4-V2 ✅ → **P5 corrigé
 ## Precision Pick — addendum humain confirmé, 2026-10-04
 
 Nouveau test humain positif : **11 / 0,44 / 1,75** remplace **7 / 0,24 / 1,50** dans la ressource native. Cadence6 Hz, dégâts Bone 0, efficacités0,30/ 1,00/ 1,50 inchangées. Finition structurelle rapide après Chisel ; faible capacité de déblaiement due au petit footprint, pas à un impact local péniblement faible. Aucun stress de fracture ni gros chunks Chisel. Brush prépare le film adhérent, Blower chasse le mess libre. **P4 human-validated baseline — final fine tuning still deferred to P7.** Les anciennes entrées de décision conservent leur valeur historique, pas une baseline concurrente.
+
+
+## P5 — second human review: simplify before validation
+
+Second review on 2026-10-05: the corrected UI still contains too much information and obscures the basic purpose of the session. P5 remains **not human-validated**.
+
+New validation target: one simple player-facing goal — **reveal >=90% skeleton and clean >=90% Bone** — then clearly offer Archive or optional further cleaning. Fragments/Forceps/tray and component-quality stars are removed from the P5 validation flow. Detailed classification/components/Condition move out of the primary UI.
+
+P5 is intentionally greybox; P6 will make the interface beautiful/diegetic. The only P5 UI requirement is immediate comprehension.
+
+PR #8 remains DRAFT. Next action: implement this simplification, rerun regression/performance checks, then one clean human retest with no brief/debug guidance. No P6 before that gate.
