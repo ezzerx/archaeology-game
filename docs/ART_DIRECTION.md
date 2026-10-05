@@ -224,3 +224,14 @@ Preferred future visual hypothesis, to test alongside the later Soil gameplay re
 The loose dirt should read as a removable surface covering rather than necessarily a deep structural layer. Once brushed away, Clay/Sandstone remains visibly weathered at the contact surface while still being immediately identifiable as that material. Chisel/Pick then reveals the cleaner, stronger interior color underneath.
 
 This pairs naturally with the already-canonized P6 **contact patina** idea. It is not authorization to rewrite Soil during P5/P6 without a dedicated gameplay test; P6 may prove the visual language, while a later excavation-polish phase validates the interaction model.
+
+
+## Seasonal museum exterior / main menu
+
+Future menu direction: preserve one recognizable museum façade and composition across seasons, changing atmosphere rather than architecture.
+
+- Winter: snow accumulation, slow falling flakes, cold blue exterior air and warm golden windows.
+- Autumn: orange foliage, drifting leaves, warm low light.
+- Spring / summer: restrained seasonal vegetation and light shifts.
+
+Target effect: a quiet, living, cozy museum the player recognizes and wants to return to. Seasonal motion should remain subtle and low-noise. This is a strong later-P6 direction, not part of the initial Material Lab spike.
