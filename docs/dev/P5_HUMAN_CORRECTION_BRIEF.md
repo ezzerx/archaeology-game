@@ -1,6 +1,7 @@
 # P5 Human Correction Brief — Clarity, Optional Mastery & Physical Fragment Recovery
 
-> **Current target: Human test4 /85→95 + coverage guard + qualitative Condition at the end of this document.** It supersedes prior P5 sections. Current delivery: [P5_COVERAGE_CARE_REPORT](P5_COVERAGE_CARE_REPORT.md).
+> **Source courante :** [P5_HIDDEN_CLUSTER_REPORT](P5_HIDDEN_CLUSTER_REPORT.md). Human test5 remplace la garde65 % par composant ; les livraisons précédentes restent historiques.
+> **Current target: Human test5 / hidden-cluster guard at the end of this document.** It supersedes the65%-per-component rule. Current delivery: [P5_HIDDEN_CLUSTER_REPORT](P5_HIDDEN_CLUSTER_REPORT.md).
 
 **Status:** authorized corrective pass after first human end-to-end test  
 **Date:** 2026-10-05  

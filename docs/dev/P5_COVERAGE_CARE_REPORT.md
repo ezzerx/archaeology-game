@@ -1,5 +1,6 @@
 # P5 — Couverture anatomique et qualité du soin
 
+> **Source courante :** [P5_HIDDEN_CLUSTER_REPORT](P5_HIDDEN_CLUSTER_REPORT.md). Human test5 remplace la garde65 % par composant ; les livraisons précédentes restent historiques.
 2026-10-05 · `prototype/p5-loop-progression` · PR #8 **DRAFT**. Entrée : `ef0ee5a1ba5d8f5199953e66909385066cb8a4db`. Code et tests : `77fd61b`.
 
 **Livraison pour retest, pas validation humaine. Aucun merge ni P6.** Le [brief humain4](P5_HUMAN_CORRECTION_BRIEF.md#human-test-4--final-p5-target-8595--coverage-guard--condition-tiers--2026-10-05) et la demande actuelle prévalent sur les anciennes itérations. `project.godot` préexistant reste hors commits.

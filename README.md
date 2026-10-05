@@ -4,8 +4,8 @@
 
 **Statut : préproduction — P4 validé et mergé ; correctif P5 livré pour retest humain, PR #8 DRAFT.**
 
-**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET chacun des quatre composants majeurs révélé à≥65 %. Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. [Rapport courant](docs/dev/P5_COVERAGE_CARE_REPORT.md). **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
-Rapport, preuves et neuf questions de retest : [P5_COVERAGE_CARE_REPORT](docs/dev/P5_COVERAGE_CARE_REPORT.md).
+**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET aucun amas osseux caché atteignant le seuil centralisé (connexité8, sans pont entre os). Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. [Rapport courant](docs/dev/P5_HIDDEN_CLUSTER_REPORT.md). **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
+Rapport, preuves et sept étapes de retest : [P5_HIDDEN_CLUSTER_REPORT](docs/dev/P5_HIDDEN_CLUSTER_REPORT.md).
 Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
 
 ## Progression

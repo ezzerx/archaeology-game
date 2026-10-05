@@ -1,0 +1,130 @@
+{
+	"brush_film_3x": {
+		"changed_cells": 400172,
+		"cleanliness_delta": 45.2661756861904,
+		"complete": false,
+		"condition": 100.0,
+		"coverage_checks": 0,
+		"edit_ms": {
+			"max": 4.743,
+			"mean": 3.67821111111111,
+			"p95": 4.139
+		},
+		"exposure_delta_cells": 0,
+		"fine_preparation": false,
+		"frame_ms": {
+			"max": 9.563,
+			"mean": 4.16598123697012,
+			"p95": 8.612
+		},
+		"keep_cleaning": false,
+		"min_1s_fps": 238.952416740947,
+		"physics_hz": 60,
+		"remaining_crumbs": 0,
+		"render_fps": 239.70936364077,
+		"runtime_cap": 240,
+		"seconds": 6.003103,
+		"session_cpu_us": {
+			"max": 56.0,
+			"mean": 15.1083333333333,
+			"p95": 20.0
+		},
+		"session_refreshes": 360,
+		"tier_events": [],
+		"ui_cpu_us": {
+			"max": 454.0,
+			"mean": 32.0194444444444,
+			"p95": 89.0
+		},
+		"ui_refreshes": 360,
+		"zoom": 3.00000010518467
+	},
+	"care_drop_3x": {
+		"changed_cells": 17009,
+		"cleanliness_delta": 0.0,
+		"complete": true,
+		"condition": 22.0,
+		"coverage_checks": 0,
+		"edit_ms": {
+			"max": 2.219,
+			"mean": 0.148152777777778,
+			"p95": 1.872
+		},
+		"exposure_delta_cells": 0,
+		"fine_preparation": true,
+		"frame_ms": {
+			"max": 7.303,
+			"mean": 4.16597637248089,
+			"p95": 4.657
+		},
+		"keep_cleaning": false,
+		"min_1s_fps": 239.961685785606,
+		"physics_hz": 60,
+		"remaining_crumbs": 14,
+		"render_fps": 239.849962930763,
+		"runtime_cap": 240,
+		"seconds": 5.999584,
+		"session_cpu_us": {
+			"max": 25.0,
+			"mean": 17.8461538461538,
+			"p95": 19.0
+		},
+		"session_refreshes": 26,
+		"tier_events": [
+			"Good",
+			"Fair",
+			"Damaged"
+		],
+		"ui_cpu_us": {
+			"max": 189.0,
+			"mean": 45.3846153846154,
+			"p95": 123.0
+		},
+		"ui_refreshes": 26,
+		"zoom": 3.00000010518467
+	},
+	"coverage_gate_3x": {
+		"changed_cells": 6794,
+		"cleanliness_delta": -0.167208255817357,
+		"complete": true,
+		"condition": 100.0,
+		"coverage_checks": 8,
+		"edit_ms": {
+			"max": 1.627,
+			"mean": 0.117152777777778,
+			"p95": 1.075
+		},
+		"exposure_delta_cells": 53,
+		"fine_preparation": true,
+		"frame_ms": {
+			"max": 7.783,
+			"mean": 4.16588394718554,
+			"p95": 4.701
+		},
+		"keep_cleaning": false,
+		"min_1s_fps": 239.560719199052,
+		"physics_hz": 60,
+		"remaining_crumbs": 9,
+		"render_fps": 239.839009523225,
+		"runtime_cap": 240,
+		"seconds": 5.999858,
+		"session_cpu_us": {
+			"max": 497.0,
+			"mean": 477.625,
+			"p95": 490.0
+		},
+		"session_refreshes": 8,
+		"tier_events": [],
+		"ui_cpu_us": {
+			"max": 530.0,
+			"mean": 110.5,
+			"p95": 173.0
+		},
+		"ui_refreshes": 8,
+		"zoom": 3.00000010518467
+	},
+	"validation": {
+		"checks": 10,
+		"failures": 0
+	}
+}

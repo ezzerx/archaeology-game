@@ -2,7 +2,7 @@
 
 - Date : **2026-10-05**.
 - Projet : **ArchaeologyGame**, working title modifiable.
-- Phase : **préproduction — P4 validé et mergé ; P5 85/95 + garde65 % + Condition qualitative livré pour retest, toujours non validé humainement ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
+- Phase : **préproduction — P4 validé et mergé ; P5 85/95 + garde des amas cachés + Condition qualitative livré pour retest, toujours non validé humainement ; PR #8 DRAFT, aucun merge ni P6 autorisé**.
 - Dépôt privé : [ezzerx/archaeology-game](https://github.com/ezzerx/archaeology-game).
 - Branche canonique : `main`. P4 Final Feel mergé via [PR #5](https://github.com/ezzerx/archaeology-game/pull/5) au commit `7ae0fec3c004d207c99f4713111a240f8d5f2e9a`. P4-V1 verticality mergé via [PR #6](https://github.com/ezzerx/archaeology-game/pull/6) au commit `756cd4338285e52b7d751bc0f0e1694b7792c882`. Clôture P4 / V2 mergée via [PR #7](https://github.com/ezzerx/archaeology-game/pull/7) au commit `bae4ee64268dd6270afb9f0011c316c45c57d251`. P5 actif : `prototype/p5-loop-progression`, PR #8 en brouillon.
 - Merge P0 : `244aba3652a03aac908b1aabe1651c3b9edb1315`.
@@ -11,7 +11,7 @@
 - Merge P3 : `10a12379ab1db629380ac9697e5597aeb16a373b`.
 - Dossier local initial : `C:\Users\antoi\Documents\Codex\Projects\ArchaeologyGame`.
 
-**Reprise courante :** [P5_COVERAGE_CARE_REPORT](../dev/P5_COVERAGE_CARE_REPORT.md), Human test4 du brief ; lancer/jouer puis neuf questions, sans briefing technique.
+**Reprise courante :** [P5_HIDDEN_CLUSTER_REPORT](../dev/P5_HIDDEN_CLUSTER_REPORT.md), Human test5. Retest ciblé en sept étapes ; aucune autre feature.
 
 ## P0 — Validé ✅
 
@@ -307,3 +307,16 @@ Current 65%-per-component coverage guard is rejected by human review: archive ca
 Next corrective build should keep the current minimal HUD,85/85 museum standard,95/95 Fine Preparation and qualitative Condition, but replace the component guard with a cached connected-hidden-Bone cluster guard. Start calibration around2–3% of total main-skeleton Bone cells; document the final centralized threshold and fixture evidence.
 
 PR #8 remains DRAFT. No additional P5 features or UI redesign. After implementation, perform one final clean human retest before deciding whether P5 is complete.
+
+
+### Livraison Human test5 — amas cachés — 2026-10-05
+
+Code et tests : `d8fad43`.
+
+La garde65 % par composant est supprimée. Parcours exact8-connexe des cellules principales encore cachées, sans dilatation ni fragments ; archive à85/85 seulement si le plus grand amas est **<646 cellules** (2 % du total, arrondi au supérieur). Le pied entier caché représente1 328 cellules et bloque malgré95,887 % global. Le même total dispersé en taches de49 cellules passe, comme85,0015 % bien réparti.
+
+Cache actualisé uniquement après exposition, parcours différé jusqu’à85 % ; aucun recalcul pour propreté/Condition/caméra/repos. HUD,95/95, Condition et P4 inchangés. [Rapport courant, preuves et limites](../dev/P5_HIDDEN_CLUSTER_REPORT.md).
+
+Vérifié :2 062 contrôles fonctionnels,77 graphiques,104 contrôles perf/26 scénarios, plus10 contrôles de rejeu ciblé ; zéro échec.238,504–239,871 FPS moyens, minimum1s231,929 ; pic isolé33,730ms non reproduit sur le rejeu (maximum9,563ms). Aucune garantie par-frame absolue extrapolée. Détails et preuves dans le rapport.
+
+**STOP pour les sept étapes de retest du rapport. P5 non validé humainement ; PR #8 DRAFT, aucun merge/P6.**

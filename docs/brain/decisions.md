@@ -614,3 +614,12 @@ Initial target to test: largest remaining connected hidden Bone cluster around *
 Reason: a component can satisfy65% exposure while still leaving a visually obvious lower-limb section buried. The new guard should answer the perceptual question: **does a major piece of the skeleton still visibly remain undiscovered?**
 
 No new HUD metric; only a contextual "Major section still covered" message when blocked. P4 gameplay and P5 UI remain otherwise unchanged.
+
+
+## Garde exacte des amas cachés — implémentation Human test5 — 2026-10-05
+
+La règle prototype retenue est `plus grand amas caché < ceil(total Bone principal ×0,02)`, soit strictement moins de646 cellules pour B-17. Connexité8 immédiate, aucun pont ni dilatation. La topologie réelle sépare naturellement le pied (1 328 cellules) du bas de jambe (1 983), tous deux détectables sans relier les os.2 % a été préféré à3 % : la limite3 % laisserait encore près de73 % du pied caché. Ce choix technique reste à valider humainement.
+
+La liste des cellules cachées suit les signaux de première exposition ; le parcours en largeur est regroupé par action, différé jusqu’à85 % et mis en cache. Aucun recalcul pour film, Condition ou caméra. Les régions séparées ne sont jamais additionnées : plusieurs petits restes ne forment pas artificiellement une grande pièce manquante. La méthode ne garantit pas une silhouette complète si plusieurs petits os séparés restent enfouis ; aucune extension de gameplay pour masquer cette limite.
+
+[Rapport courant](../dev/P5_HIDDEN_CLUSTER_REPORT.md).85/85 global,95/95 facultatif et Condition qualitative restent inchangés. Aucun merge ni P6 avant verdict humain.

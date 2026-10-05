@@ -47,11 +47,11 @@ Active branch:
 PR:
 **#8 — Minimal preparation session, 85/95 and archive** (DRAFT)
 
-Current implementation and verification: `docs/dev/P5_COVERAGE_CARE_REPORT.md`.
+Current implementation and verification: `docs/dev/P5_HIDDEN_CLUSTER_REPORT.md`.
 
-The latest human review supersedes the original three objectives and the first correction. Required completion is global85/85 AND each of the four major components at65% exposure; optional mastery is one global95/95 star. One compact top-left card, four tools, no right dossier, fragments, tray or Forceps in the playable flow. Completion and mastery never interrupt excavation. Archive is a short positive closure. Qualitative Condition (Excellent/Good/Fair/Damaged) appears in the card and archive without gating either milestone. A brief notice accompanies the first drop into a care tier. The earlier Keep Cleaning behavior is not a validated product signal.
+The latest human review supersedes the original three objectives and the first correction. Required completion is global85/85 AND no remaining hidden 8-connected Bone region at or above the centralized threshold; optional mastery is one global95/95 star. One compact top-left card, four tools, no right dossier, fragments, tray or Forceps in the playable flow. Completion and mastery never interrupt excavation. Archive is a short positive closure. Qualitative Condition (Excellent/Good/Fair/Damaged) appears in the card and archive without gating either milestone. A brief notice accompanies the first drop into a care tier. The earlier Keep Cleaning behavior is not a validated product signal.
 
-Read the final Human test4 section of `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md`, the simplification report, PR #8 and `docs/brain/status.md`. Original P5 and first-correction reports are historical.
+Read the final Human test5 section of `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md`, the hidden-cluster report, PR #8 and `docs/brain/status.md`. Original P5 and first-correction reports are historical.
 
 **Do not merge P5 and do not start P6 until Antoine explicitly validates P5.**
 
@@ -142,7 +142,7 @@ One card shows global Exposure/Cleanliness. Completion is latched and leaves too
 
 Archive captures current values, locks tools and offers another block. Separate completion/archive snapshots and actions/time remain in F1. Another Block repeats deterministic B-17 for P5; the future museum/crate loop is not implemented. Historical fragment code is dormant, reachable only through explicit test setup.
 
-The gate is human comprehension and desire to continue, not automated test success. Launch and play without brief/developer coordinates; use only the nine questions in the current report afterward.
+The gate is human comprehension and desire to continue, not automated test success. Launch and play without brief/developer coordinates; use only the seven retest steps in the current report afterward.
 
 ## 8. Narrative baseline
 
