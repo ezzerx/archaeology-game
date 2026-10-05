@@ -4,7 +4,7 @@ extends Node
 @export var block: ExcavationBlock
 @export var camera: Camera3D
 @export var tools: Array[ToolDefinition] = [preload("res://config/soft_brush.tres"),
-	preload("res://config/chisel.tres"), preload("res://config/air_blower.tres"), preload("res://config/precision_pick.tres"), preload("res://config/forceps.tres")]
+	preload("res://config/chisel.tres"), preload("res://config/air_blower.tres"), preload("res://config/precision_pick.tres")]
 @export var toolbar: Control
 
 signal tool_selected(index: int)
@@ -67,7 +67,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_2, KEY_KP_2: index = 1
 			KEY_3, KEY_KP_3: index = 2
 			KEY_4, KEY_KP_4: index = 3
-			KEY_5, KEY_KP_5: index = 4
+			KEY_5, KEY_KP_5:
+				if tools.size() > 4: index = 4 # Dormant fragment experiment only.
 		if index >= 0:
 			select_tool(index)
 			get_viewport().set_input_as_handled()

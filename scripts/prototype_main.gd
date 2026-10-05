@@ -29,16 +29,17 @@ func _ready() -> void:
 	feedback.setup(block, controller)
 	session = PreparationSession.new(block.working_map)
 	controller.session = session
-	fragment_tray = FragmentTray3D.new()
-	add_child(fragment_tray)
-	fragment_tray.setup(block.working_map.fragments, camera)
-	controller.fragment_tray = fragment_tray
+	if block.working_map.fragments != null:
+		fragment_tray = FragmentTray3D.new()
+		add_child(fragment_tray)
+		fragment_tray.setup(block.working_map.fragments, camera)
+		controller.fragment_tray = fragment_tray
+		forceps_view = ForcepsView.new()
+		add_child(forceps_view)
+		forceps_view.setup(block, controller, camera)
 	session_ui = PreparationUI.new()
 	add_child(session_ui)
 	session_ui.setup(session, controller, reset_specimen)
-	forceps_view = ForcepsView.new()
-	add_child(forceps_view)
-	forceps_view.setup(block, controller, camera)
 	block.working_map.fossil.specimen_reset.connect(_on_specimen_reset)
 	var button_group := ButtonGroup.new()
 	for i in range(controller.tools.size()):
@@ -150,12 +151,12 @@ func _process(delta: float) -> void:
 	bone_label.text += "Contact: %s\nDamage: %s\nCap %d FPS | Physics %d Hz" % [fossil.last_bone_event,
 		fossil.last_damage_event, Engine.max_fps, Engine.physics_ticks_per_second]
 	var metrics := session.metrics()
-	bone_label.text += "\n\nP5 / %s\nCleanliness %.1f%% | Fragments %d/2\nComplete %s | Keep Cleaning %s | Archived %s\nAfter completion %.1f s | Actions %d\nCompletion E/C/Q: %.1f / %.1f / %.1f\nArchive E/C/Q: %.1f / %.1f / %.1f\nSession %d us / UI %d us | Refreshes %d\nFragment local checks %d (last %d cells)" % [
-		PreparationRules.CLASSIFICATIONS[session.classification_stage], block.working_map.bone_film.cleanliness_percent(), block.working_map.fragments.recovered_count(),
+	bone_label.text += "\n\nP5 / %s\nCleanliness %.1f%% | Fine Preparation %s\nComplete %s | Keep Cleaning %s | Archived %s\nAfter completion %.1f s | Actions %d\nCompletion E/C/Q: %.1f / %.1f / %.1f\nArchive E/C/Q: %.1f / %.1f / %.1f\nSession %d us / UI %d us | Refreshes %d" % [
+		PreparationRules.CLASSIFICATIONS[session.classification_stage], block.working_map.bone_film.cleanliness_percent(), session.fine_preparation,
 		session.preparation_complete, session.keep_cleaning_chosen, session.archived, metrics.time_after_completion,
 		session.additional_tool_actions_after_completion, metrics.exposure_at_completion, metrics.cleanliness_at_completion, metrics.condition_at_completion,
 		metrics.exposure_at_archive, metrics.cleanliness_at_archive, metrics.condition_at_archive,
-		session.last_refresh_usec, session_ui.last_refresh_usec, session.refresh_count, block.working_map.fragments.checks, block.working_map.fragments.last_inspected_cells]
+		session.last_refresh_usec, session_ui.last_refresh_usec, session.refresh_count]
 
 func verticality_debug(hit: Dictionary) -> String:
 	# F1 only: O(1) reads from the same static layer map used by CPU/GPU.

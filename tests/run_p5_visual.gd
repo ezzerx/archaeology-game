@@ -6,7 +6,7 @@ func screenshot(label: String) -> Image:
 	await process_frame
 	await RenderingServer.frame_post_draw
 	var picture := root.get_texture().get_image()
-	var path := "res://work/test-logs/p5-" + label + ".png"
+	var path := "res://work/test-logs/p5s-" + label + ".png"
 	picture.save_png(path)
 	captures.append(path)
 	return picture
@@ -29,25 +29,28 @@ func point_at(point: Vector2) -> void:
 	root.push_input(motion, true)
 	control.refresh_view()
 
-func check_layout() -> void:
+func check_layout(overview := true) -> void:
 	var ui: PreparationUI = main.session_ui
-	for panel in [ui.objectives, ui.dossier, ui.tray]:
-		var rect: Rect2 = panel.get_global_rect()
-		check(rect.position.x >= 0 and rect.position.y >= 0 and rect.end.x <= 1920 and rect.end.y < 975, "panel fits reference viewport: " + str(rect))
-	check(ui.objectives.get_global_rect().end.x <= 245 and ui.dossier.position.x >= 1675, "both panels stay in desk margins at overview")
-	check(ui.objectives.get_global_rect().end.y < ui.tray.get_global_rect().position.y - 25, "request leaves physical tray and its count unobstructed")
-	check(main.toolbar.get_global_rect().end.x <= 1920, "five tools fit toolbar")
-	for label in ui.objective_labels + ui.objective_details + [ui.stats_label, ui.classification_label, ui.request_status] + ui.component_labels:
-		check(label.get_global_rect().end.x <= 1910 and label.get_global_rect().end.y < 975, "visible labels fit")
+	var rect := ui.preparation_card.get_global_rect()
+	var viewport := root.get_visible_rect()
+	check(rect.position == Vector2(16, 130) and rect.size.x <= 224, "same compact top-left anchor")
+	check(viewport.encloses(rect) and rect.end.y < main.toolbar.get_global_rect().position.y, "card fits above tools")
+	if overview:
+		var block_left: float = main.camera.unproject_position(main.block.to_global(Vector3(-0.55, 0.12, 0))).x
+		check(rect.end.x < block_left, "card entirely outside block at overview")
+	check(viewport.encloses(main.toolbar.get_global_rect()) and main.toolbar.get_child_count() == 4, "four-tool toolbar fits")
+	for label in [ui.state_label, ui.exposure_label, ui.cleanliness_label, ui.closure_label, ui.fine_label]:
+		if label.is_visible_in_tree(): check(rect.encloses(label.get_global_rect()), "text fits within only permanent card: " + label.text)
+	for button in [ui.archive_button, ui.keep_button]:
+		if button.is_visible_in_tree(): check(rect.encloses(button.get_global_rect()), "action fits within card")
 
-func visual_fixture() -> void:
-	# A partly worked block with real, authored ceiling silhouettes.
+func visual_fixture(percent: float) -> void:
 	for y in range(165, 570):
 		for x in range(150, 830):
 			var index := y * surface.size.x + x
-			surface._heights[index] = maxf(surface.structural_ceilings[index] + 0.025, 0.19)
+			surface._heights[index] = minf(surface._heights[index], maxf(surface.structural_ceilings[index] + 0.025, 0.19))
 	P5Fixture.commit(surface)
-	P5Fixture.reveal(surface, [68, 65, 65, 65])
+	P5Fixture.reveal(surface, [percent, percent, percent, percent])
 	P5Fixture.clean(surface)
 
 func run() -> void:
@@ -65,114 +68,60 @@ func run() -> void:
 	control._pointer_inside = true
 	await settle()
 	check_layout()
-	check(main.session_ui.classification_label.text == "Unknown" and not main.session_ui.modal.visible, "start dossier Unknown and no modal")
 	await screenshot("01-start")
-	P5Fixture.reveal(surface, [12, 0, 0, 0])
-	await settle()
-	check(main.session_ui.classification_label.text == "Vertebrate remains", "dossier stage 1")
+	P5Fixture.reveal(surface, [12, 0, 0, 0]); await settle()
+	check(main.session_ui.notice_label.text == "Discovery updated: Vertebrate remains", "classification is transient notice only")
 	await screenshot("02-discovery")
-	P5Fixture.reveal(surface, [12, 15, 0, 10])
-	await settle()
-	check(main.session_ui.classification_label.text == "Possible Theropod", "dossier stage 2")
-	P5Fixture.reveal(surface, [35, 15, 0, 10])
-	await settle()
-	check(main.session_ui.classification_label.text == "Likely small theropod", "dossier stage 3")
-	visual_fixture()
-	P5Fixture.ready_fragment(surface, 0)
-	await settle()
-	control.select_tool(4)
-	point_at(surface.fragments.field.centers[0])
-	check(main.session_ui.hover_label.text.begins_with("Ready to recover") and main.block.material.get_shader_parameter("highlighted_fragment") == 0, "ready hover/highlight")
-	await screenshot("03-ready")
-	# Independent GPU check: source is ivory Bone, then becomes substrate while
-	# the actual fragment is held. No terrain byte is allowed to change.
-	var geometry := surface.image.get_data()
-	var source_pixel := Vector2i(screen_at(surface.fragments.field.centers[0]))
-	main.forceps_view.hide()
-	main.block.set_debug_view(2)
-	main.block.show_cursor({"inside": false}, 8)
-	var bone_image := await screenshot("03a-fragment-bone-gpu")
-	var bone_color: Color = main.block.material.get_shader_parameter("bone_color")
-	check(bone_image.get_pixelv(source_pixel).is_equal_approx(bone_color) or
-		absf(bone_image.get_pixelv(source_pixel).r - bone_color.r) < 0.02, "fragment source rendered as Bone")
-	mouse(control._screen, true)
-	await settle()
-	var source_image := await screenshot("03b-fragment-held-source-gpu")
-	check(absf(source_image.get_pixelv(source_pixel).r - bone_image.get_pixelv(source_pixel).r) > 0.05, "grab removes Bone from source pixels")
-	check(surface.image.get_data() == geometry, "GPU source transition preserves terrain bytes")
-	main.forceps_view.show()
-	main.block.set_debug_view(0)
-	check(surface.fragments.grabbed == 0 and main.forceps_view.pieces[0].visible, "fragment lifts with Forceps")
-	var motion := InputEventMouseMotion.new()
-	motion.position = Vector2(470, 680)
-	root.push_input(motion, true)
-	await screenshot("04-drag")
-	check(main.block.material.get_shader_parameter("fragment_visible").x == 0, "held fragment leaves its source")
-	mouse(main.session_ui.tray.get_global_rect().get_center(), false)
-	await settle()
-	check(surface.fragments.recovered_count() == 1 and main.forceps_view.pieces[0].visible, "tray has Fragment A")
-	await screenshot("05-tray-one")
-	P5Fixture.ready_fragment(surface, 1)
-	await settle()
-	point_at(surface.fragments.field.centers[1])
-	mouse(control._screen, true)
-	mouse(main.session_ui.tray.get_global_rect().get_center(), false)
-	await settle()
-	check(session.preparation_complete and main.session_ui.modal.visible and main.forceps_view.pieces[1].visible, "two fragments complete real UI loop")
-	check(main.session_ui.card_stats.get_global_rect().end.x < 1300 and main.session_ui.card_archive_button.get_global_rect().end.y < 950, "completion card fits")
-	await screenshot("06-complete")
-	var completion := session.completion_snapshot.duplicate()
-	await click_button(main.session_ui.keep_button)
-	check(session.keep_cleaning_chosen and not main.session_ui.modal.visible and main.session_ui.archive_button.visible, "real Keep Cleaning click resumes")
+	await create_timer(3.3).timeout
+	check(main.session_ui.notice_label.text == "", "discovery disappears")
+	visual_fixture(67); await settle()
+	check(not session.preparation_complete and not main.session_ui.fine_label.visible, "mastery hidden before required work is done")
+	await screenshot("03-preparing")
+	visual_fixture(86); await settle()
+	check(session.preparation_complete and not main.session_ui.modal.visible and session.can_use_tools(), "native completion is nonblocking")
 	check_layout()
-	await screenshot("07-keep-cleaning")
-	P5Fixture.reveal(surface, [96, 96, 76, 89])
-	P5Fixture.clean(surface)
-	surface.apply_impact(Vector2(252, 199), control.tools[1])
-	surface.apply_impact(Vector2(252, 199), control.tools[1])
-	await settle()
-	check(session.quality_marks == [true, true, false, false], "two optional stars visible after refinement")
-	await create_timer(0.2).timeout
-	await screenshot("07a-quality")
-	check(session.completion_snapshot == completion, "completion card immutable after continued work")
+	await screenshot("04-ready")
+	var completion := session.completion_snapshot.duplicate()
+	var geometry := surface.image.get_data()
+	await click_button(main.session_ui.keep_button)
+	check(session.keep_cleaning_chosen and surface.image.get_data() == geometry and main.session_ui.archive_button.visible, "real Keep Cleaning click keeps state and archive access")
+	visual_fixture(96); await settle()
+	check(session.fine_preparation and main.session_ui.quality_cue_count == 1 and not main.session_ui.modal.visible, "single global star without modal")
+	check_layout()
+	await create_timer(0.12).timeout
+	await screenshot("05-fine-glint")
+	await create_timer(0.8).timeout
+	check(main.session_ui.fine_label.modulate == PreparationUI.GOLD, "brief glint settles to persistent gold star")
+	await screenshot("06-fine")
+	check(session.completion_snapshot == completion, "completion record remains frozen")
 	await click_button(main.session_ui.archive_button)
-	check(session.archived and session.archive_snapshot.exposure > completion.exposure, "real Archive click captures improved specimen")
-	check(main.session_ui.another_button.get_global_rect().end.y < 1020, "archive card fits")
-	await create_timer(0.35).timeout
-	check(main.session_ui.card.modulate.a == 1 and main.session_ui.archive_cue_count == 1, "archive confirmation animation finishes once")
-	await screenshot("08-archive")
+	check(session.archived and main.session_ui.card_star.visible, "real archive click with star")
+	await create_timer(0.3).timeout
+	check(main.session_ui.card.modulate.a == 1 and root.get_visible_rect().encloses(main.session_ui.card.get_global_rect()), "short archive entrance and card fit")
+	await screenshot("07-archive-fine")
 	await click_button(main.session_ui.another_button)
-	check(session.classification_stage == 0 and surface.fragments.recovered_count() == 0 and not main.session_ui.modal.visible, "real Another Block click resets")
-	await screenshot("09-another-block")
-	root.size = Vector2i(1280, 720)
-	await settle()
+	check(not session.preparation_complete and not session.fine_preparation and surface.fossil.exposed_cells == 0, "real Another Block click resets")
+	await screenshot("08-another-block")
+	visual_fixture(86); await settle()
+	await click_button(main.session_ui.archive_button)
+	await create_timer(0.3).timeout
+	check(session.archived and not session.fine_preparation and not main.session_ui.card_star.visible, "archive without star is complete and concise")
+	await screenshot("09-archive")
+	await click_button(main.session_ui.another_button)
+	root.size = Vector2i(1280, 720); await settle()
 	check_layout()
 	await screenshot("10-1280x720")
-	root.size = Vector2i(1920, 1080)
-	await settle()
-	main.debug_panel.show()
-	main.bone_panel.show()
-	main.session_ui.set_debug_visible(true)
+	# Narrower logical viewport (4:3): retain same anchor and translucent overlay.
+	root.size = Vector2i(1440, 1080); root.content_scale_size = root.size; await settle()
+	visual_fixture(86); await settle()
+	check_layout(false)
+	check(main.session_ui.preparation_card.get_theme_stylebox("panel").bg_color.a < 1, "compact narrow overlay is translucent")
+	await screenshot("11-narrow")
+	root.size = Vector2i(1920, 1080); root.content_scale_size = root.size; await settle()
+	main.debug_panel.show(); main.bone_panel.show(); main.session_ui.set_debug_visible(true)
 	main._process(0.2)
-	check(main.bone_panel.get_global_rect().end.y < 970, "F1 session metrics fit above toolbar")
-	await screenshot("11-debug")
-	main.debug_panel.hide()
-	main.bone_panel.hide()
-	main.session_ui.set_debug_visible(false)
-	P5Fixture.reveal(surface, [65, 65, 65, 65])
-	P5Fixture.clean(surface)
-	P5Fixture.recover(surface, 0)
-	P5Fixture.recover(surface, 1)
-	await settle()
-	await click_button(main.session_ui.card_archive_button)
-	await create_timer(0.35).timeout
-	check(session.archive_snapshot.quality_count == 0 and main.session_ui.another_button.visible, "archive without optional marks is equally complete")
-	await screenshot("12-archive-request-only")
-	evidence = {"checks": checks, "failures": failures, "captures": captures, "completion": completion}
-	FileAccess.open("res://work/test-logs/p5-visual.json", FileAccess.WRITE).store_string(JSON.stringify(evidence, "\t"))
-	print("P5 VISUAL: %d checks, %d failures" % [checks, failures])
-	main.queue_free()
-	await process_frame
-	session = null
-	surface = null
-	quit(0 if failures == 0 else 1)
+	check(main.bone_label.text.contains("Fine Preparation") and main.bone_label.text.contains("Completion E/C/Q"), "F1 retains detailed state and measurements")
+	await screenshot("12-debug")
+	evidence.captures = captures
+	evidence.completion = completion
+	await finish("p5s-visual")

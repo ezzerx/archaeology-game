@@ -18,8 +18,8 @@ function Invoke-P5Check([string]$Name, [string[]]$EngineArguments) {
     }
     Write-Output "$Name`: PASS"
 }
-Invoke-P5Check 'p5-tests' @('--headless', '--script', 'res://tests/run_p5_tests.gd')
-Invoke-P5Check 'p5c-tests' @('--headless', '--script', 'res://tests/run_p5_correction_tests.gd')
+Invoke-P5Check 'p5s-tests' @('--headless', '--script', 'res://tests/run_p5_tests.gd')
+Invoke-P5Check 'p5-fragment-experiment' @('--headless', '--script', 'res://tests/run_p5_fragment_experiment.gd')
 if ($Graphical) {
     Invoke-P5Check 'p5-visual' @('--position', '0,0', '--script', 'res://tests/run_p5_visual.gd')
     Invoke-P5Check 'p5-benchmark' @('--position', '0,0', '--script', 'res://tests/run_p5_benchmark.gd')

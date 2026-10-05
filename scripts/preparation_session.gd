@@ -5,15 +5,13 @@ signal changed
 signal notice(text: String)
 signal completed(snapshot: Dictionary)
 signal archive_created(snapshot: Dictionary)
-signal component_polished(component: int)
+signal finely_prepared
 
 var surface: WorkingSurface
 var classification_stage := 0
 var component_states: Array[String] = []
-var quality_marks: Array[bool] = [false, false, false, false]
-var objective_done: Array[bool] = [false, false, false]
+var fine_preparation := false
 var preparation_complete := false
-var card_open := false
 var archived := false
 var keep_cleaning_chosen := false
 var completion_snapshot: Dictionary = {}
@@ -24,7 +22,6 @@ var last_refresh_usec := 0
 var _completion_usec := 0
 var _archive_usec := 0
 var _pending := false
-var _current: Dictionary = {}
 
 func _init(source: WorkingSurface) -> void:
 	surface = source
@@ -32,10 +29,6 @@ func _init(source: WorkingSurface) -> void:
 	surface.fossil.bone_condition_changed.connect(_on_condition)
 	surface.fossil.bone_first_contact.connect(_on_discovery)
 	surface.bone_film.cleaned.connect(invalidate)
-	surface.fragments.changed.connect(invalidate)
-	surface.fragments.fragment_ready.connect(_on_ready)
-	surface.fragments.fragment_detected.connect(_on_fragment_detected)
-	surface.fragments.fragment_recovered.connect(_on_recovered)
 	surface.tool_applied.connect(record_tool_action)
 	surface.surface_reset.connect(reset)
 	reset()
@@ -49,15 +42,6 @@ func _on_condition(_condition: float, _damage: float) -> void:
 func _on_discovery(_cell: Vector2i, _component: int) -> void:
 	notice.emit("Bone detected — delicate material underneath")
 
-func _on_ready(id: int) -> void:
-	notice.emit("%s — Ready to recover with [5] Forceps" % RecoverableFragmentField.NAMES[id])
-
-func _on_fragment_detected(id: int) -> void:
-	notice.emit("Loose fragment detected — %s · clear its edges, then [5] Forceps" % RecoverableFragmentField.NAMES[id])
-
-func _on_recovered(_id: int, count: int) -> void:
-	notice.emit("Fragment recovered — %d/2" % count)
-
 func invalidate() -> void:
 	if _pending: return
 	_pending = true
@@ -65,6 +49,9 @@ func invalidate() -> void:
 
 func flush() -> void:
 	if not _pending: return
+	if archived:
+		_pending = false
+		return
 	_pending = false
 	var started := Time.get_ticks_usec()
 	var fossil := surface.fossil
@@ -73,26 +60,19 @@ func flush() -> void:
 	for id in range(1, 5):
 		exposures.append(fossil.exposure_percent(id))
 		component_states.append(PreparationRules.component_state(exposures.back(), surface.bone_film.cleanliness_percent(id)))
-		if not quality_marks[id - 1] and PreparationRules.fine_preparation(exposures.back(), surface.bone_film.cleanliness_percent(id)):
-			quality_marks[id - 1] = true
-			component_polished.emit(id)
-			notice.emit("%s beautifully prepared ★ — optional quality mark" % ["", "Skull", "Spine", "Ribs", "Hind Limb"][id])
 	var stage := PreparationRules.classification(classification_stage, fossil.exposure_percent(), exposures)
 	if stage != classification_stage:
 		classification_stage = stage
-		notice.emit("Classification updated — " + PreparationRules.CLASSIFICATIONS[stage])
-	var achieved := PreparationRules.objectives(exposures[0], surface.bone_film.cleanliness_percent(1),
-		fossil.exposure_percent(), surface.fragments.recovered_count())
-	for i in range(3):
-		if achieved[i] and not objective_done[i]:
-			objective_done[i] = true
-			notice.emit("Objective completed — " + PreparationRules.OBJECTIVES[i])
-	_current = snapshot()
-	if not preparation_complete and not objective_done.has(false):
+		notice.emit("Discovery updated: " + PreparationRules.CLASSIFICATIONS[stage])
+	var values := snapshot()
+	if not fine_preparation and PreparationRules.fine_preparation(values.exposure, values.cleanliness):
+		fine_preparation = true
+		finely_prepared.emit()
+	values.fine_preparation = fine_preparation
+	if not preparation_complete and PreparationRules.preparation_complete(values.exposure, values.cleanliness):
 		preparation_complete = true
-		card_open = true
 		_completion_usec = Time.get_ticks_usec()
-		completion_snapshot = _current.duplicate(true)
+		completion_snapshot = values.duplicate(true)
 		completed.emit(completion_snapshot.duplicate(true))
 	refresh_count += 1
 	last_refresh_usec = Time.get_ticks_usec() - started
@@ -101,15 +81,13 @@ func flush() -> void:
 func snapshot() -> Dictionary:
 	return {"classification": PreparationRules.CLASSIFICATIONS[classification_stage],
 		"exposure": surface.fossil.exposure_percent(), "cleanliness": surface.bone_film.cleanliness_percent(),
-		"condition": surface.fossil.condition, "fragments": surface.fragments.recovered_count(),
-		"quality_marks": quality_marks.duplicate(), "quality_count": quality_marks.count(true)}
+		"condition": surface.fossil.condition, "fine_preparation": fine_preparation}
 
 func can_use_tools() -> bool:
-	return not card_open and not archived
+	return not archived
 
 func keep_cleaning() -> bool:
-	if not preparation_complete or archived or not card_open: return false
-	card_open = false
+	if not preparation_complete or archived or keep_cleaning_chosen: return false
 	keep_cleaning_chosen = true
 	changed.emit()
 	return true
@@ -120,7 +98,6 @@ func archive() -> bool:
 	archive_snapshot = snapshot()
 	_archive_usec = Time.get_ticks_usec()
 	archived = true
-	card_open = false
 	archive_created.emit(archive_snapshot.duplicate(true))
 	changed.emit()
 	return true
@@ -137,16 +114,16 @@ func metrics() -> Dictionary:
 		"cleanliness_at_archive": archive_snapshot.get("cleanliness", 0.0),
 		"condition_at_completion": completion_snapshot.get("condition", 100.0),
 		"condition_at_archive": archive_snapshot.get("condition", 100.0),
-		"additional_tool_actions_after_completion": additional_tool_actions_after_completion}
+		"additional_tool_actions_after_completion": additional_tool_actions_after_completion,
+		"fine_at_completion": completion_snapshot.get("fine_preparation", false),
+		"fine_at_archive": archive_snapshot.get("fine_preparation", false)}
 
 func reset() -> void:
 	_pending = false
 	classification_stage = 0
-	objective_done = [false, false, false]
 	component_states = ["Hidden", "Hidden", "Hidden", "Hidden"]
-	quality_marks = [false, false, false, false]
+	fine_preparation = false
 	preparation_complete = false
-	card_open = false
 	archived = false
 	keep_cleaning_chosen = false
 	completion_snapshot.clear()
@@ -156,5 +133,4 @@ func reset() -> void:
 	additional_tool_actions_after_completion = 0
 	refresh_count = 0
 	last_refresh_usec = 0
-	_current = snapshot()
 	changed.emit()

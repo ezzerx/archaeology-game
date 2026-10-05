@@ -4,7 +4,7 @@ var frame_times: Array[float] = []
 var previous_frame := 0
 var measuring := false
 var results := {}
-var benchmark_path := "res://work/test-logs/p5-benchmark.json"
+var benchmark_path := "res://work/test-logs/p5s-benchmark.json"
 
 func on_frame() -> void:
 	var now := Time.get_ticks_usec()
@@ -39,7 +39,7 @@ func local_fixture(center: Vector2, kind: String) -> void:
 			var ceiling := surface.structural_ceilings[index]
 			var height := surface.strata.packed_limits[index * 2]
 			if kind == "chisel_stone": height = surface.strata.packed_limits[index * 2 + 1] - 0.002
-			if kind in ["pick_bone", "dossier_updates", "keep_cleaning"]:
+			if kind in ["pick_bone", "progress_updates", "keep_cleaning"]:
 				height = ceiling + 0.008 if ceiling > 0 else 0.17
 			surface._heights[index] = minf(surface._heights[index], maxf(height, ceiling))
 	P5Fixture.commit(surface)
@@ -69,22 +69,31 @@ func scenario(kind: String, zoom: float) -> void:
 	match kind:
 		"chisel_clay", "chisel_stone": tool = 1
 		"blower_crumbs": tool = 2
-		"pick_bone", "dossier_updates": tool = 3; center = Vector2(250, 218)
-		"forceps_drag": tool = 4; center = surface.fragments.field.centers[0]
+		"pick_bone", "progress_updates": tool = 3; center = Vector2(250, 218)
 		"brush_film": center = Vector2(250, 218)
 		"keep_cleaning": tool = 3; center = Vector2(260, 270)
-	if kind in ["completion_card", "keep_cleaning", "archive_card"]:
-		P5Fixture.reveal(surface, [65, 65, 65, 65])
-		P5Fixture.clean(surface)
-		P5Fixture.recover(surface, 0)
-		P5Fixture.ready_fragment(surface, 1)
-		if kind in ["keep_cleaning", "archive_card"]:
-			P5Fixture.recover(surface, 1)
-			session.flush()
-			if kind == "keep_cleaning": session.keep_cleaning()
-	if kind in ["chisel_clay", "chisel_stone", "pick_bone", "dossier_updates", "keep_cleaning"]: local_fixture(center, kind)
+	if kind in ["completion_card", "fine_preparation", "keep_cleaning", "archive_card"]:
+		var percent := 96 if kind == "fine_preparation" else 86
+		P5Fixture.reveal(surface, [percent, percent, percent, percent])
+		if kind in ["completion_card", "fine_preparation"]:
+			# Untimed uniform-film fixture. The timed ordinary Brush stroke crosses the gate.
+			var amount := BoneSurfaceFilm.INITIAL * (1 - (84.99 if kind == "completion_card" else 94.99) / 100.0)
+			var film := surface.bone_film
+			film.dirt_totals.fill(0)
+			for index in range(film._values.size()):
+				if film._masks[index] == 0: continue
+				film._values[index] = amount
+				for id in range(5): film.dirt_totals[id] += film._values[index] * film._dirty_counts[index * 5 + id]
+				film._encode(index)
+			film.cleaned.emit()
+			center = Vector2(250, 218)
+			film_oracle()
+		else:
+			P5Fixture.clean(surface)
+		session.flush()
+		if kind == "keep_cleaning": session.keep_cleaning()
+	if kind in ["chisel_clay", "chisel_stone", "pick_bone", "progress_updates", "keep_cleaning"]: local_fixture(center, kind)
 	if kind == "brush_film": P5Fixture.reveal(surface, [75, 0, 0, 0])
-	if kind == "forceps_drag": P5Fixture.ready_fragment(surface, 0)
 	if kind == "blower_crumbs": populate_crumbs(center)
 	await settle()
 	control.select_tool(tool)
@@ -105,8 +114,6 @@ func scenario(kind: String, zoom: float) -> void:
 	var ui_cost: Array[float] = []
 	var seen_refresh := session.refresh_count
 	var seen_ui_refresh: int = main.session_ui.refresh_count
-	var visible_drag_ticks := 0
-	if kind == "forceps_drag": mouse(control._screen, true)
 	frame_times.clear()
 	previous_frame = 0
 	measuring = true
@@ -120,19 +127,7 @@ func scenario(kind: String, zoom: float) -> void:
 		control.impact_clock.emitted = held_emitted
 		control._focused = true
 		control._pointer_inside = true
-		if kind == "forceps_drag":
-			if surface.fragments.grabbed < 0:
-				point_at(center)
-				mouse(control._screen, true)
-			var motion := InputEventMouseMotion.new()
-			motion.position = Vector2(850 + 310 * sin(tick / 60.0), 600 + 80 * cos(tick / 80.0))
-			root.push_input(motion, true)
-			if surface.fragments.grabbed == 0: visible_drag_ticks += 1
-		elif kind == "completion_card":
-			if tick == 30:
-				surface.fragments.grab(1)
-				surface.fragments.release(true)
-		elif kind == "archive_card":
+		if kind == "archive_card":
 			if tick == 30: session.archive()
 		else:
 			control._held = true
@@ -158,18 +153,18 @@ func scenario(kind: String, zoom: float) -> void:
 		"session_refreshes": session.refresh_count - before_session_refresh, "ui_refreshes": main.session_ui.refresh_count - before_ui_refresh,
 		"changed_cells": changed, "exposure_delta_cells": surface.fossil.exposed_cells - before_exposure,
 		"cleanliness_delta": surface.bone_film.cleanliness_percent() - before_clean, "remaining_crumbs": surface.loose_debris.persistent_count(),
-		"drag_ticks": visible_drag_ticks, "complete": session.preparation_complete, "keep_cleaning": session.keep_cleaning_chosen,
+		"fine_preparation": session.fine_preparation, "complete": session.preparation_complete, "keep_cleaning": session.keep_cleaning_chosen,
 		"seconds": seconds, "zoom": main.camera.zoom_factor, "runtime_cap": Engine.max_fps, "physics_hz": Engine.physics_ticks_per_second}
 	check(data.render_fps >= 60 and data.min_1s_fps >= 60 and data.frame_ms.p95 < 1000.0 / 60, "strict sustained 60 FPS: " + label)
 	check(Engine.max_fps == 240 and Engine.physics_ticks_per_second == 60, "locked runtime cadence")
-	if kind == "forceps_drag": check(visible_drag_ticks == 360 and geometry == surface.image.get_data(), "drag workload real, zero excavation")
-	elif kind == "completion_card": check(session.card_open and data.session_refreshes > 0, "completion transition included")
+	if kind == "completion_card": check(session.preparation_complete and session.can_use_tools() and data.session_refreshes > 0, "native Brush crosses85, updates inline card without blocking")
+	elif kind == "fine_preparation": check(session.fine_preparation and main.session_ui.quality_cue_count == 1 and session.can_use_tools(), "native Brush crosses95, glint and quiet sound without interruption")
 	elif kind == "archive_card": check(session.archived and main.session_ui.archive_cue_count == 1 and data.ui_refreshes > 0, "archive animation and confirmation included")
 	elif kind == "blower_crumbs": check(surface.loose_debris.persistent_count() == 0 and geometry == surface.image.get_data(), "blower clears real crumbs without excavation")
-	elif kind == "brush_film": check(data.cleanliness_delta > 0 and data.session_refreshes > 0, "brush cleans film and updates dossier")
+	elif kind == "brush_film": check(data.cleanliness_delta > 0 and data.session_refreshes > 0, "brush cleans film and updates the two bars")
 	else:
 		check(changed > 0, "real excavation workload " + label)
-		if kind in ["dossier_updates", "keep_cleaning"]: check(data.exposure_delta_cells > 0 and data.session_refreshes > 0, "new exposure updates P5 " + label)
+		if kind in ["progress_updates", "keep_cleaning"]: check(data.exposure_delta_cells > 0 and data.session_refreshes > 0, "new exposure updates P5 " + label)
 	results[label] = data
 	print("P5 BENCH ", label, " ", JSON.stringify(data))
 	FileAccess.open(benchmark_path, FileAccess.WRITE).store_string(JSON.stringify(results, "\t"))
@@ -186,10 +181,7 @@ func run() -> void:
 	control = main.controller
 	control.set_physics_process(false)
 	process_frame.connect(on_frame)
-	var kinds := ["brush_soil", "chisel_clay", "chisel_stone", "pick_bone", "blower_crumbs", "brush_film", "forceps_drag", "completion_card", "keep_cleaning", "dossier_updates", "archive_card"]
-	if "--forceps-only" in OS.get_cmdline_user_args():
-		kinds = ["forceps_drag"]
-		benchmark_path = "res://work/test-logs/p5-forceps-benchmark.json"
+	var kinds := ["brush_soil", "chisel_clay", "chisel_stone", "pick_bone", "blower_crumbs", "brush_film", "fine_preparation", "completion_card", "keep_cleaning", "progress_updates", "archive_card"]
 	for zoom in [1.0, 3.0]:
 		for kind in kinds:
 			await scenario(kind, zoom)
