@@ -398,3 +398,37 @@ P5 is valid when the player can:
 5. optionally pursue 95% Fine Preparation;
 6. understand that Condition represents care, not another fill-to-100 objective;
 7. archive and reach a clear end state without explanation.
+
+
+## Human test 5 — replace component guard with hidden-cluster guard — 2026-10-05
+
+Antoine approves one final focused P5 correction before the next human retest.
+
+### Problem
+The current 65%-per-component coverage guard can still allow archive while a visually obvious lower-limb section remains buried. Global progress is numerically high enough, but the silhouette still looks incomplete.
+
+### New preferred coverage rule
+Replace the current per-component minimum guard as the primary archive guard with a bounded **hidden-Bone cluster guard**:
+
+- required museum standard remains global Exposure >=85% AND global Cleanliness >=85%;
+- archive is blocked if there remains a **large contiguous cluster of unrevealed Bone cells**;
+- use existing Bone occupancy/component data, but judge the remaining hidden mass by connected region size rather than by a coarse per-component percentage;
+- do not reveal hidden Bone through intact matrix;
+- do not add a third visible progress bar or anatomical checklist.
+
+Prototype target:
+- start testing with a blocking threshold around **2–3% of total main-skeleton Bone cells** for the largest remaining hidden connected cluster;
+- centralize the threshold and document the exact chosen value after validating against B-17 fixtures;
+- tune only enough to block clearly missing major anatomy while allowing small residual patches.
+
+When 85/85 is reached but the guard fails, show only:
+**Major section still covered**
+
+### Constraints
+- no per-frame 32k-cell scan;
+- recompute/cache only on meaningful Bone exposure changes or when nearing readiness;
+- no P4 tool/terrain retuning;
+- no UI redesign;
+- no new gameplay feature.
+
+This is intended as the final P5 coverage experiment before the next human validation.
