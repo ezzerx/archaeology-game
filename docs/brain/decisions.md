@@ -646,3 +646,24 @@ Known limitations are accepted and deferred rather than blocking P6:
 Fragments/Forceps remain dormant historical experiments, not part of the active P5 player loop.
 
 Decision: stop P5 iteration here, merge PR #8, then open **P6A — Visual Direction / Production Spike**.
+
+
+## P6A authorization — Material Lab first — 2026-10-05
+
+After P5 closure, Antoine authorizes **P6A Visual Direction / Production Spike**.
+
+First risk to attack is the dynamic excavation block itself, not UI polish or full workshop decoration. Start with a controlled Material Lab using real B-17 gameplay states and compare cheap representative rendering pipelines. Current hypothesis is a hybrid authored-material + shader-variation + static-jacket-shell approach, but it must be proven rather than assumed.
+
+No P6B mass production before a human-approved playable hero slice.
+
+
+## Seasonal museum main menu — visual direction — 2026-10-05
+
+Antoine canonizes a high-impact cozy direction for the future main menu: the **same museum façade/composition changes with the seasons** rather than becoming a different location.
+
+Examples:
+- winter: accumulated snow, softly falling snowflakes, bare/snowy trees, cold exterior / warm glowing interior;
+- autumn: orange foliage, falling leaves, warmer golden atmosphere;
+- spring/summer: corresponding vegetation/light/weather variations.
+
+The building and composition remain recognizable. Seasonal ambience should be subtle and contemplative, with lightweight animation (e.g. snowflakes/leaves) rather than a busy menu. This belongs to later P6 menu/exterior work, not the first Material Lab spike.
