@@ -1,6 +1,9 @@
 # ArchaeologyGame — Gameplay Prototype V0.1
 
 **Status:** Prototype specification  
+
+> **Current canon / source precedence — 2026-10-05:** this file is the foundational V0.1 specification and intentionally preserves historical sections. When a later phase conflicts with text below, use Antoine’s latest explicit decision, then the active phase brief/report, then the repository Brain. Current active work is P5 on `prototype/p5-loop-progression` / PR #8; read `docs/ORCHESTRATION_HANDOFF.md`, `docs/dev/P5_BRIEF.md` and `docs/dev/P5_REPORT.md`. In particular, old references to three tools, automatic fragment recovery, Soil persistent dust and `Restart Specimen` are superseded.
+
 **Project phase:** Pre-production  
 **Target:** PC / Steam  
 **Engine:** Godot 4.x, version stable à figer au démarrage du développement  
