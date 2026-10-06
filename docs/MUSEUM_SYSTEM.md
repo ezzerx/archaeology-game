@@ -4,7 +4,7 @@
 
 Le musée n'est plus seulement une méta-progression abstraite : il constitue la **baseline narrative actuelle** du jeu.
 
-Le joueur travaille dans les coulisses d'un musée d'histoire naturelle comme préparateur / restaurateur de spécimens. Les blocs et fragments arrivent dans l'atelier, sont préparés sur la table de travail, puis rejoignent les réserves, la collection ou une exposition lorsque leur préparation le permet.
+Le joueur travaille dans les coulisses d'un musée d'histoire naturelle comme préparateur / restaurateur de spécimens. Les blocs/spécimens arrivent dans l'atelier, sont préparés sur la table de travail, puis rejoignent les réserves, la collection ou une exposition lorsque leur préparation le permet.
 
 Le jeu conserve une structure sans avatar contrôlable : la façade, l'atelier, les dossiers et la galerie suffisent à faire exister le lieu.
 
@@ -32,7 +32,7 @@ La caisse montrée dans les concepts de façade/musée est une bonne grammaire v
 
 ## Rôle
 
-Le musée est à la fois le cadre narratif et la méta-progression principale : une sorte de **Pokédex physique** où les découvertes prennent une forme visible. La motivation vient des fragments qui complètent progressivement des expositions, puis donnent une raison de retourner fouiller.
+Le musée est à la fois le cadre narratif et la méta-progression principale : une sorte de **Pokédex physique** où le travail du joueur prend une forme visible. La motivation vient de la transformation durable des expositions/collections, puis donne une raison de retourner préparer de nouveaux spécimens.
 
 Ce système appartient à une étape après la validation du nettoyage. La v0.1 ne comporte pas de musée complet.
 
@@ -97,3 +97,18 @@ Seule la collection est aujourd’hui le pilier confirmé. Prestige et rating re
 ## Première validation après la v0.1
 
 Relier quelques fouilles à une exposition partielle. Vérifier qu’une nouvelle pièce apparaît au bon endroit, qu’une pièce manquante reste absente et que le joueur comprend ce qu’il peut encore chercher. Valider la motivation avant d’ajouter catégories et statistiques.
+
+
+## Destination du spécimen — question macro encore ouverte
+
+Le prototype P5 n'a pas tranché le modèle final de récupération.
+
+Le futur Macro Game Design doit comparer :
+- **in-matrix** : le bloc/slab préparé devient l'objet muséal ;
+- **extraction** : certaines pièces sont retirées de la matrice ;
+- **mounted skeleton** : des éléments récupérés complètent progressivement une armature ;
+- **hybride** : la destination dépend du type de spécimen.
+
+Une courte phase de conservation/finition/mounting reste une piste forte pour relier atelier et galerie, mais elle ne doit pas devenir une seconde session longue après chaque préparation.
+
+Les anciennes mécaniques Forceps/fragments de P5 sont historiques et ne définissent pas le modèle musée final.
