@@ -24,15 +24,15 @@ Trois concepts Bone restent séparés :
 
 Le prototype utilise un standard musée global et une maîtrise optionnelle, mais ces seuils sont des valeurs de prototype. Les détails de phase et d'implémentation vivent dans les briefs/reports actifs.
 
-### Soil — rôle encore à décider
+### Soil — thin overburden direction accepted
 
-Le Soil épais actuel est **provisoire**.
-
-Hypothèse préférée à tester avant le lookdev final :
+Le test humain P6A1.5 préfère désormais :
 
 > **fine couche de saleté / overburden à brosser → matrice Clay/Sandstone patinée → excavation structurelle**
 
-Ne pas considérer l'épaisseur Soil actuelle comme un invariant artistique ou gameplay final tant que le Soil Foundation Spike n'est pas tranché.
+Le Soil suit le relief de la matrice au lieu de créer un plafond plat indépendant. Les valeurs exactes d'épaisseur/couverture restent provisoires.
+
+La prochaine question de fond n'est plus le Soil lui-même mais la **géométrie initiale de la matrice**, encore trop plane. P6A1.6 doit tester un relief naturel déterministe avant le lookdev P6A2.
 
 ## Boucle macro cible
 
