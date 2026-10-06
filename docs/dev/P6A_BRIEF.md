@@ -366,3 +366,20 @@ P6A is a **spike**.
 
 Prove the recipe first.
 Do not decorate the whole kitchen before the recipe works.
+
+
+## P6A-2 — Hero Lookdev authorization — 2026-10-06
+
+Human review of P6A-1: the Material Lab proved integration feasibility but none of
+P5/A/B/C is close enough to the desired art direction.
+
+P6A-2 is now separately authorized and supersedes "pick the prettiest A/B/C" as the
+current visual task.
+
+Execution source:
+- [P6A2_BRIEF](P6A2_BRIEF.md)
+- [P6A2 canonical visual target guide](../visual-references/P6A2_VISUAL_TARGETS.md)
+
+P6A-1's B/C findings are starting hypotheses only. P6A-2 must target the reference
+pack directly through one small playable Hero Lookdev patch. P6B remains blocked
+until explicit human approval.
