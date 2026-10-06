@@ -19,12 +19,14 @@ Preferred durable repo location if copied locally:
 
 Expected filenames:
 
-- `00-style-north-star.png`
-- `01-gameplay-target.png`
-- `02-material-closeup.png`
-- `03-closed-block.png`
-- `04-progression-states.png`
-- `05-workbench-target.png`
+- `00-style-north-star.jpg`
+- `01-gameplay-target.jpg`
+- `02-material-closeup.jpg`
+- `03-closed-block.jpg`
+- `04-progression-states.jpg`
+- `05-workbench-target.jpg`
+
+These exact Project-source filenames were audited on 2026-10-06 and are available in the ChatGPT Project context.
 
 If the local Codex session cannot access the images from Project sources and the files
 are not present in the repo, **STOP and ask Antoine to provide/copy them**. Do not
@@ -35,8 +37,8 @@ replace them with guessed web references or proceed from prose alone.
 # Reference hierarchy
 
 ## PRIMARY A — Gameplay target
-**Project source:** `fouille_fossile_sous_la_lampe_dorée.png`
-**Expected repo copy:** `01-gameplay-target.png`
+**Project source:** `Image ChatGPT 6 oct. 2026, 11_40_43.png`
+**Expected local/repo copy:** `01-gameplay-target.jpg`
 
 ### What this image controls
 This is the **primary P6A2 gameplay look target**.
@@ -62,8 +64,8 @@ The implementation must remain the real B-17 gameplay scene and camera.
 ---
 
 ## PRIMARY B — Material close-up
-**Project source:** `fossile_de_dinosaure_en_excavation.png`
-**Expected repo copy:** `02-material-closeup.png`
+**Project source:** `Image ChatGPT 6 oct. 2026, 11_40_49.png`
+**Expected local/repo copy:** `02-material-closeup.jpg`
 
 ### What this image controls
 This is the **material-quality and material-separation target**.
@@ -90,7 +92,7 @@ This reference is about **how materials feel up close**, not scene layout.
 
 ## PRIMARY C — Style north star
 **Project source:** `Fouille Fossile sur Établi de Paléontologue.png`
-**Expected repo copy:** `00-style-north-star.png`
+**Expected local/repo copy:** `00-style-north-star.jpg`
 
 ### What this image controls
 This defines the high-level emotional and artistic target:
@@ -121,8 +123,8 @@ Use it to answer:
 # Supporting references
 
 ## SUPPORT D — Closed specimen block
-**Project source:** `mystère_paléontologique_en_laboratoire.png`
-**Expected repo copy:** `03-closed-block.png`
+**Project source:** `Image ChatGPT 6 oct. 2026, 11_40_54.png`
+**Expected local/repo copy:** `03-closed-block.jpg`
 
 Use for:
 - incoming specimen identity;
@@ -135,8 +137,8 @@ Do not implement crate/intake gameplay or multiple jacket families in P6A2.
 This supports the first jacket-shell prototype only.
 
 ## SUPPORT E — Visual progression states
-**Project source:** `étapes_de_préparation_d_un_fossile_de_dinosaure.png`
-**Expected repo copy:** `04-progression-states.png`
+**Project source:** `Image ChatGPT 6 oct. 2026, 11_41_02.png`
+**Expected local/repo copy:** `04-progression-states.jpg`
 
 Use for:
 - visual continuity from intact -> early reveal -> dirty revealed Bone -> prepared;
@@ -146,8 +148,8 @@ Use for:
 Do not copy the 2x2 infographic layout into the game.
 
 ## SUPPORT F — Workbench/world framing
-**Project source:** `atelier_de_fouilles_paléontologiques_chaleureuses.png`
-**Expected repo copy:** `05-workbench-target.png`
+**Project source:** `Image ChatGPT 6 oct. 2026, 11_40_57.png`
+**Expected local/repo copy:** `05-workbench-target.jpg`
 
 Use later in P6A2 hero-patch assembly for:
 - warm desk material;
