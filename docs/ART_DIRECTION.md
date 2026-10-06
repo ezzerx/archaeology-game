@@ -253,3 +253,14 @@ The current top of the underlying matrix is still too planar. Before P6A2 lookde
 This is **geometry**, not merely normal-map noise. It should improve the starting block silhouette/readability without changing the future separate outer-jacket silhouette system.
 
 These foundation decisions exist so P6A2 can author production-style materials and lighting on geometry that is unlikely to be discarded immediately.
+
+
+## Seasonal museum exterior / main menu
+
+Future menu direction: preserve one recognizable museum façade and composition across seasons, changing atmosphere rather than architecture.
+
+- Winter: snow accumulation, slow falling flakes, cold blue exterior air and warm golden windows.
+- Autumn: orange foliage, drifting leaves, warm low light.
+- Spring / summer: restrained seasonal vegetation and light shifts.
+
+Target effect: a quiet, living, cozy museum the player recognizes and wants to return to. Seasonal motion should remain subtle and low-noise. This is a strong later-P6 direction, not part of the initial Material Lab spike.
