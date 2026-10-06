@@ -119,3 +119,27 @@ Gameplay rules, scope and architecture are governed by the written canonical spe
 The canonical 2×2 visual board is also attached to the ChatGPT Project as `archaeologygame-v0.1-visual-reference-board.jpg`, so a new orchestration conversation inside the same Project can recover the shared visual baseline without relying on this chat history.
 
 Recent **museum exterior / main-menu** generations are exploratory concept work. Their direction is canonized in `CONCEPT.md`, `ART_DIRECTION.md` and the orchestration handoff, but **no single exterior image is yet a canonical production reference**. If exact pixels become important, Antoine should explicitly select/version one rather than an agent inferring a winner from old chat attachments.
+
+
+## P6A2 canonical target pack — 2026-10-06
+
+For P6A2 Hero Lookdev, the newer target pack and its usage rules are canonical:
+[P6A2_VISUAL_TARGETS](visual-references/P6A2_VISUAL_TARGETS.md).
+
+These newer references do **not** replace the original board globally. They have
+higher precedence specifically for P6A2 material/look matching.
+
+Important:
+- the newer images are currently Project/conversation source assets;
+- the guide assigns each image a specific role and explicitly says what must **not**
+  be copied;
+- local Codex must verify image access before implementing lookdev;
+- if the PRIMARY images are inaccessible, stop rather than improvising.
+
+For P6A2 precedence:
+1. gameplay readability and active mechanics;
+2. P6A2 gameplay target;
+3. P6A2 material close-up;
+4. P6A2 style north star;
+5. supporting P6A2 references;
+6. the older canonical board.
