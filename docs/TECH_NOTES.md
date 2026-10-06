@@ -1,8 +1,8 @@
 # Notes techniques
 
-**État courant : Godot 4.7.2 stable Standard, GDScript, Compatibility/OpenGL. P4 est validé/mergé ; P5 est livré sur `prototype/p5-loop-progression` pour test humain.** Le noyau reste un heightfield RF 1024×640 avec relief GPU et picking CPU cohérent, enrichi depuis P1 par fossile, fracture, débris, verticalité, Bone Film et progression P5. Pour l'état réel, lire [ORCHESTRATION_HANDOFF](ORCHESTRATION_HANDOFF.md), le Brain et le rapport de la phase active. Les sections ci-dessous sont surtout des notes historiques d'exploration.
+**Stack courant : Godot 4.7.2 stable Standard, GDScript, Compatibility/OpenGL.** Le noyau reste un heightfield RF 1024×640 avec relief GPU et picking CPU cohérent, enrichi par fossile, fracture, débris, verticalité, Bone Film et progression de session. Pour l'état live, lire uniquement [status](brain/status.md), puis le brief/report actif. Les sections ci-dessous sont surtout des notes techniques/historiques d'exploration.
 
-Les sections exploratoires ci-dessous datent de la conception initiale. Leurs pistes 2D / pixel art sont historiques : [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md) prévaut. Le fonctionnement de P1 est validé techniquement et par Antoine ; le game feel final de la V0.1 reste à construire et tester. Aucun système P2+ n'est lancé par ces notes.
+Les sections exploratoires ci-dessous datent de la conception initiale. Leurs pistes 2D / pixel art sont historiques. Elles ne décrivent ni la phase active ni une autorisation de travail. La source de statut reste [status](brain/status.md).
 
 ## Pourquoi explorer Godot
 
