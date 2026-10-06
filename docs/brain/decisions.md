@@ -691,3 +691,27 @@ Leçon vérifiée : une comparaison GPU pixel par pixel doit attendre l'arrêt c
 du zoom amorti ; une caméra encore mobile de quelques fractions de pixel peut
 faire échouer un masque pourtant inchangé. Le banc réutilise en outre la pose
 exacte de référence pour tous les candidats d'une charge.
+
+
+## P6A2 — target-match lookdev authorized — 2026-10-06
+
+Antoine rejects P6A-1 A/B/C as visual targets: they are useful technical experiments
+but remain far from the desired cozy/stylized quality.
+
+New decision:
+- P6A2 becomes a **Hero Lookdev / target-match** pass;
+- one small real B-17 gameplay patch must be pushed toward the canonical visual pack;
+- authored material quality, multi-scale variation, jacket identity and lighting are
+  the priorities;
+- B-style authored materials + C-style projection/variation are hypotheses, not final
+  art;
+- procedural noise is supportive, not the visual identity;
+- the result must be judged against the target images, not against P6A-1 candidates.
+
+Reference usage is canonicalized in:
+`docs/visual-references/P6A2_VISUAL_TARGETS.md`.
+
+Full mission scope:
+`docs/dev/P6A2_BRIEF.md`.
+
+P6B remains blocked until the Hero Patch receives explicit human visual approval.
