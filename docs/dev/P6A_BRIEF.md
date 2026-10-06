@@ -399,3 +399,20 @@ P6A1.5 is intentionally small:
 - do not implement final Soil particles/VFX/polish.
 
 P6A2 remains prepared but blocked until this decision.
+
+
+## P6A1.6 — Natural Matrix Geometry prerequisite — 2026-10-06
+
+P6A1.5 Soil semantics are now human-approved: thin irregular surface overburden is preferred, with irregular dirty contact deposits rather than uniform recolor.
+
+Before P6A2 executes, the project must resolve one newly exposed foundation issue:
+
+> the underlying Clay/Sandstone starting surface still reads as a broad horizontal plane.
+
+Current order:
+> P6A-1 Material Lab ✅ → P6A1.5 Soil Foundation ✅ → **P6A1.6 Natural Matrix Geometry** → P6A2 Hero Lookdev → human visual gate → P6B.
+
+Execution source:
+- [P6A1.6 Natural Matrix Geometry Brief](P6A16_NATURAL_GEOMETRY_BRIEF.md)
+
+P6A1.6 must stay focused on deterministic matrix topography. It must not become final jacket generation, procedural block generation, P6A2 material lookdev or P7 tuning.
