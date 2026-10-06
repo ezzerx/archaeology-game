@@ -383,3 +383,19 @@ Execution source:
 P6A-1's B/C findings are starting hypotheses only. P6A-2 must target the reference
 pack directly through one small playable Hero Lookdev patch. P6B remains blocked
 until explicit human approval.
+
+
+## P6A1.5 — Soil Foundation Spike prerequisite — 2026-10-06
+
+Human review identified a sequencing risk: P6A2 lookdev should not build production art around the current thick Soil while Soil is explicitly considered provisional.
+
+Current order:
+> P6A-1 Material Lab ✅ → **P6A1.5 Soil Foundation Spike** → P6A2 Hero Lookdev → human gate → P6B
+
+P6A1.5 is intentionally small:
+- compare current thick Soil to the preferred thin loose-overburden model;
+- decide Soil role/thickness/tool grammar only;
+- preserve P4/P5 gameplay elsewhere;
+- do not implement final Soil particles/VFX/polish.
+
+P6A2 remains prepared but blocked until this decision.
