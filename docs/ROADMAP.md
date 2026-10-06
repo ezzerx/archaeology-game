@@ -64,7 +64,7 @@ Purpose:
 Exit:
 > one Soil semantic baseline is chosen for P6A2.
 
-### P6A — Visual Direction / Production Spike
+### P6A scope after the Soil decision
 
 Take one representative slice close to target quality and prove the production pipeline before scaling.
 
