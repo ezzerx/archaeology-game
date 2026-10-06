@@ -279,3 +279,21 @@ When making a product decision, preserve these priorities:
 6. **art production only when it becomes the highest-leverage risk**
 
 The project should feel like **careful preparation of a real museum specimen**, not a generic digging game, simulator dashboard, or adventure RPG.
+
+
+### New-chat resume behavior
+
+When Antoine opens a new orchestration conversation in this Project:
+
+1. read `docs/brain/status.md`;
+2. inspect the active PR/branch named there;
+3. read the active brief/report;
+4. recover the Project visual references when relevant;
+5. do not ask Antoine to restate already-canonized context unless a source is genuinely missing.
+
+Implementation prompts for Codex should be delivered as **one single fenced block**, ready to copy in one click.
+
+As of the 2026-10-06 handoff, the expected next execution request is the **P6A1.6 Natural Matrix Geometry** mission. Its prepared brief lives on the active P6A branch at:
+`docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md`
+
+If the live `status.md` still names P6A1.6 when the new chat starts and Antoine asks to launch it, produce the Codex prompt directly from that brief rather than redesigning the mission from scratch.
