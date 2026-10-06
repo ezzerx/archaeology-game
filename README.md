@@ -1,113 +1,60 @@
 # ArchaeologyGame
 
-**Working title modifiable.**
+**Working title.**
 
-Cozy, tactile fossil-preparation game set in the back rooms of a natural-history museum.
+Cozy, tactile fossil-preparation game set behind the scenes of a natural-history museum.
 
-## Current status
+The player works directly on specimen blocks from a fixed near-top-down tabletop view: reveal matrix layers, expose and clean Bone, preserve the specimen, then archive the preparation for the museum.
 
-Do **not** use this README as the phase gate.
+## Current state
 
-Canonical live status:
-`docs/brain/status.md`
+**Do not use this README as the phase gate.**
 
-Documentation roles:
-`docs/DOCUMENTATION_POLICY.md`
+Live project status, active branch/PR and next authorized action:
+- [docs/brain/status.md](docs/brain/status.md)
 
-Stable project handoff:
-`docs/ORCHESTRATION_HANDOFF.md`
+Stable product handoff:
+- [docs/ORCHESTRATION_HANDOFF.md](docs/ORCHESTRATION_HANDOFF.md)
 
-Engine: **Godot 4.7.2 stable**, GDScript.
+Documentation rules:
+- [docs/DOCUMENTATION_POLICY.md](docs/DOCUMENTATION_POLICY.md)
 
-## Core validated loop
+## Engine
 
-The current prototype lets the player:
-- excavate a deterministic specimen block;
-- use Brush / Chisel / Blower / Precision Pick;
-- progressively reveal and clean Bone;
-- preserve Bone Condition through careful work;
-- reach a museum preparation standard;
-- optionally continue toward Fine Preparation;
-- archive the specimen and reset another block.
+- Godot **4.7.2 stable**
+- GDScript
+- desktop prototype
+- current renderer baseline: Compatibility/OpenGL unless an active visual spike proves a concrete reason to change
 
-The current visual-production phase and next authorized action are always listed in `docs/brain/status.md`.
+## Validated core
 
-### P3 — Fossile
+- fixed tabletop / near-top-down excavation
+- deterministic B-17 fossil block
+- Soft Brush
+- Chisel
+- Air Blower
+- Precision Pick
+- progressive Bone Exposure
+- Bone Surface Film / Cleanliness
+- Bone Condition
+- fracture / debris feedback
+- zoom / pan / reset
+- complete preparation-session loop with Archive / optional further cleaning
 
-P3 introduit :
+## Product north star
 
-- Specimen B-17 caché ;
-- exposition progressive ;
-- bone ceiling ;
-- premier contact protégé ;
-- Bone Condition technique ;
-- zoom orthographique 1×–3× ancré au curseur ;
-- debug rapide souris ;
-- cap runtime 240 FPS.
+> **Est-ce que j’ai envie de continuer à gratter alors que je sais déjà ce qu’il y a dessous ?**
 
-**439 checks passent.**
+## Canonical docs
 
-PR #4 merge :
-`10a12379ab1db629380ac9697e5597aeb16a373b`.
+- [Concept](docs/CONCEPT.md)
+- [Gameplay Loop](docs/GAMEPLAY_LOOP.md)
+- [Art Direction](docs/ART_DIRECTION.md)
+- [V0.1 Target](docs/MVP_V0_1.md)
+- [Museum System](docs/MUSEUM_SYSTEM.md)
+- [Future Systems](docs/FUTURE_SYSTEMS.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Visual References](docs/VISUAL_REFERENCES.md)
+- [Future Release / Studio Notes](docs/FUTURE_RELEASE_BUSINESS.md)
 
-Rapports :
-
-- [P3_REPORT](docs/dev/P3_REPORT.md)
-- [P3_FOSSIL_DECISION](docs/dev/P3_FOSSIL_DECISION.md)
-- [P3_DESIGN_FIXES](docs/dev/P3_DESIGN_FIXES.md)
-
-### P4 — Game Feel
-
-P4 ajoute les réactions de matière :
-
-- retrait/audio/relief Soil, sans mess persistant depuis la clôture P4 ;
-- Clay qui chip/peel ;
-- Sandstone qui fissure et casse en chunks ;
-- Chisel avec vraie sensation d'impact ;
-- particules / débris placeholder ;
-- outils visibles simples ;
-- sons distincts ;
-- meilleure lisibilité Bone contact.
-
-La composition [FINAL FEEL](docs/dev/P4_FINAL_FEEL_TARGET.md) reprend le spectacle Chisel de P4-A (éclats transitoires 3–6 mm) et le nettoyage visible de P4-B (miettes projetées hors du bloc), avec la quantité persistante récente toujours plafonnée. Soil, Pick et ivoire Bone sous la poussière sont préservés. Les outils retrouvent l’ancien angle fixe, pointe exacte et corps dégagé. Grammaire joueur : **matière attachée / saleté**.
-
-**Bone audio** : une protection indépendante pour **Skull / Spine / Ribs / Hind Limb**, quatre maximum par reset, avec **une Bone Condition globale**. Toute révélation, même centrale, garde le son matériau et ne consomme aucun flag. Premier Chisel sur un centre du composant **déjà exposé avant l’impact** : petit tik, zéro dégât ; suivants sur ce composant : DING/−3. Skull → Skull → Ribs → Ribs donne **100 → 97 → 97 → 94**. Toutes les côtes partagent RIBS, toute la colonne SPINE. Reset réarme les quatre ; Pick/Brush/Blower ne consomment jamais. F1 affiche READY/USED. Baseline P4 réévaluable en P7 ; exposition et timbres historiques inchangés.
-
-**Baselines humaines persistées**, rayon / puissance / falloff : Brush **40 / 0.70 / 1.25**, Chisel **22 / 0.64 / 2.25**, Blower **60 / 0 / 1.00**, Pick **11 / 0.44 / 1.75**. **P4 human-validated baseline — tuning final deferred to P7.** Blower conserve son nettoyage2.5 ; Chisel4.5 Hz, Pick6 Hz. Soil n’émet aucun mess persistant ; Clay/Sandstone conservent Matrix et Dust.
-
-**[4] Precision Pick** : clic ou maintien immobile, six micro-impacts/s, rayon11 texels, puissance0,44, falloff1,75, retrait précis sans grosses plaques. Zéro dégât provisoire P4, plafond osseux intact.
-
-**Bugfix Brush conservé** : Tip/Body statiques, douze sondes terrain maximum, aucune reconstruction de mesh pendant le jeu. Avec la baseline du lock, geste de 30 s à 1×/3× : **235–236 FPS**, proxy P95 **31 µs**. Diagnostic, tests et limites dans le [rapport P4](docs/dev/P4_REPORT.md).
-
-P4, la verticalité V1.1 et le cleanup V1.2 sont validés humainement et mergés. Ces acquis restent verrouillés pendant P5. Les anciens rapports conservent leurs mesures historiques ; le [statut courant](docs/brain/status.md) et le brief P5 prévalent pour la prochaine action autorisée.
-
-Brief :
-
-[P4_BRIEF](docs/dev/P4_BRIEF.md)
-
-[Rapport et mesures P4](docs/dev/P4_REPORT.md) · [Architecture P4](docs/dev/P4_MATERIAL_REACTION_DECISION.md)
-
-## Runtime
-
-Runs normaux : **240 FPS max**, physique **60 Hz**.
-
-## Vision
-
-> Est-ce que j’ai envie de continuer à gratter alors que je sais déjà ce qu’il y a dessous ?
-
-Le premier signal P3 est positif : une fois l'os perçu, Antoine a envie de continuer à le révéler.
-
-## Direction visuelle
-
-> **2.5D stylisée — tabletop — orthographique presque verticale**
-
-P4 ajoute seulement les visuels nécessaires au game feel. Le vrai Art Pass reste P6.
-
-## Docs
-
-- [PROTOTYPE_V0_1_SPEC](docs/PROTOTYPE_V0_1_SPEC.md)
-- [ROADMAP](docs/ROADMAP.md)
-- [ART_DIRECTION](docs/ART_DIRECTION.md)
-- [FUTURE_SYSTEMS](docs/FUTURE_SYSTEMS.md)
-- [P4_BRIEF](docs/dev/P4_BRIEF.md)
-- [Brain](docs/brain/BRAIN.md)
+Historical phase evidence lives under `docs/dev/` and must not be used to infer the current phase.
