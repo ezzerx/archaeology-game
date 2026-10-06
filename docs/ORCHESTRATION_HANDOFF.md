@@ -2,7 +2,7 @@
 
 **Purpose:** give a new ChatGPT orchestration conversation the same product mental model and decision discipline as the current one.
 
-**Last audited:** 2026-10-06.
+**Last audited:** 2026-10-05.
 
 ## 1. Product in one paragraph
 
@@ -24,55 +24,20 @@ P5 adds a second behavioral test:
 
 > **After “Preparation Complete”, does the player voluntarily choose to keep cleaning?**
 
-## 3. Current gate — critical
+## 3. Live project state
 
-### P4 is CLOSED and human-validated
+Do **not** cache the live phase in this handoff.
 
-Merged milestones:
-- P0 ✅
-- P1 ✅
-- P2 ✅
-- P3 ✅
-- P4 Final Feel ✅
-- P4-V1 deterministic effort-aware verticality ✅
-- P4 closure / debris physics / Bone preparation ✅
+Read `docs/brain/status.md` for:
+- validated phases;
+- active branch / PR;
+- current gate;
+- next authorized action;
+- accepted watchpoints/blockers.
 
-P4 closure merge: PR #7 → `bae4ee64268dd6270afb9f0011c316c45c57d251`.
+This handoff is intentionally for the **stable mental model**, not day-to-day status.
 
-### P5 is CLOSED, human-validated and merged
-
-P5 history: `prototype/p5-loop-progression`, PR #8 merged.
-
-Current implementation and verification: `docs/dev/P5_HIDDEN_CLUSTER_REPORT.md`.
-
-The latest human review supersedes the original three objectives and the first correction. Required completion is global85/85 AND no remaining hidden 8-connected Bone region at or above the centralized threshold; optional mastery is one global95/95 star. One compact top-left card, four tools, no right dossier, fragments, tray or Forceps in the playable flow. Completion and mastery never interrupt excavation. Archive is a short positive closure. Qualitative Condition (Excellent/Good/Fair/Damaged) appears in the card and archive without gating either milestone. A brief notice accompanies the first drop into a care tier. The earlier Keep Cleaning behavior is not a validated product signal.
-
-Read the final Human test5 section of `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md`, the hidden-cluster report, PR #8 and `docs/brain/status.md`. Original P5 and first-correction reports are historical.
-
-**Antoine has explicitly validated P5 sufficiently to advance. P6A is active.**
-
-A new orchestrator must not infer project state from `main` code alone while an active phase lives on a draft PR.
-
-### P5 closure watchpoints
-
-Accepted/deferred rather than blockers:
-- Cleanliness can decrease when newly exposed Bone adds dirty cells to the current exposed-Bone denominator.
-- Hidden-cluster coverage is not a perfect human-visual-completeness oracle; do not keep tailoring B-17 completion logic in P5.
-- Final in-matrix / extraction / mounted-skeleton / hybrid destination remains a Macro Game Design question.
-- P5 UI is intentionally greybox. P6 owns visual identity.
-
-P5 active player loop at closure: one compact card, four tools,85/85 museum standard, optional95/95 Fine Preparation, qualitative Condition, Archive / Keep Cleaning. Fragments/Forceps are dormant historical experiments.
-
-### P6A is ACTIVE
-
-Branch: `prototype/p6a-visual-spike`  
-Brief: `docs/dev/P6A_BRIEF.md`
-
-Current task: **P6A-1 only**, Material Lab on real B-17 dynamic rendering, PR #9 DRAFT. See `docs/dev/P6A_REPORT.md` and `scenes/p6a_material_lab.tscn`.
-
-The explicit 2026-10-06 scope includes visual contact patina and Bone Film color/material properties, with its pattern preserved. **Stop after the Material Lab for Antoine's review.** No lighting, jackets, Blender/static assets, final UI or hero slice until separately authorized. The remaining tasks in the broad P6A brief are not an execution instruction.
-
-P6B requires explicit Antoine approval after human review of the hero slice.
+Documentation roles are defined in `docs/DOCUMENTATION_POLICY.md`.
 
 ## 4. Source precedence
 

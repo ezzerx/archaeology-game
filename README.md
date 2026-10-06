@@ -2,39 +2,35 @@
 
 **Working title modifiable.**
 
-**Statut : P4/P5 clos et mergés ; P6A-1 Material Lab pour revue humaine, PR #9 DRAFT.**
+Cozy, tactile fossil-preparation game set in the back rooms of a natural-history museum.
 
-**P6A-1 :** comparaison P5 / procédural / textures peintes / hybride sur le vrai B-17 dynamique. [Rapport, preuves et protocole](docs/dev/P6A_REPORT.md). Le gameplay P4/P5 reste gelé. Arrêt après cette comparaison ; aucun P6B ni autre tâche P6A sans revue Antoine.
-Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
+## Current status
 
-## Progression
+Do **not** use this README as the phase gate.
 
-- P0 Interaction brute ✅
-- P1 Matière / relief ✅
-- P2 Outils ✅
-- P3 Fossile / zoom ✅
-- P4 Game Feel ✅
-- P5 Session complète / UI / progression ✅
-- **P6A-1 Material Lab — revue humaine ▶**
-- P6B Art pass — non démarré
-- P7 Tuning
+Canonical live status:
+`docs/brain/status.md`
 
-### Comparer les matériaux P6A-1
+Documentation roles:
+`docs/DOCUMENTATION_POLICY.md`
 
-Ouvrir `scenes/p6a_material_lab.tscn` puis **F6** dans Godot, ou lancer
-`./Launch-Material-Lab.ps1 -GodotBin <Godot>`. La scène commence avec B-17 fermé.
-**F8** change le candidat sans toucher à la fouille ou à la caméra ; **F9** charge
-le preset suivant ; **F10** recharge ce preset ; **H** masque les commandes du lab.
-Le panneau permet aussi de choisir directement un état et d'activer/désactiver
-la patine, la palette du film et les micro-normales. R revient au bloc intact.
+Stable project handoff:
+`docs/ORCHESTRATION_HANDOFF.md`
 
-### Jouer une session P5
+Engine: **Godot 4.7.2 stable**, GDScript.
 
-Ouvrir `project.godot` dans Godot4.7.2 puis **F5** et jouer librement, sans lire de brief. [1] Brush prépare Soil/film, [2] Chisel la matrice, [3] Blower le mess, [4] Pick les détails.
+## Core validated loop
 
-La carte annonce quand le spécimen est prêt à archiver. Continuer est facultatif. **Prepare Another Block** réinitialise le même B-17 déterministe pour ce prototype. R reset complet ; F1 détails et métriques ; molette zoom ; RMB pan ; Home vue initiale.
+The current prototype lets the player:
+- excavate a deterministic specimen block;
+- use Brush / Chisel / Blower / Precision Pick;
+- progressively reveal and clean Bone;
+- preserve Bone Condition through careful work;
+- reach a museum preparation standard;
+- optionally continue toward Fine Preparation;
+- archive the specimen and reset another block.
 
-Validation reproductible : `tests/check_p5.ps1 -GodotBin <chemin-vers-Godot> -Graphical`. Les tests emploient des fixtures pour réduire leur durée ; le jeu normal n’a aucun raccourci de completion.
+The current visual-production phase and next authorized action are always listed in `docs/brain/status.md`.
 
 ### P3 — Fossile
 
