@@ -24,6 +24,7 @@ Ne jamais déduire la phase active depuis un ancien rapport, le README ou une br
 | Architecture / hypothèses techniques | [TECH_NOTES](../TECH_NOTES.md) |
 | Jalons conditionnels | [ROADMAP](../ROADMAP.md) |
 | Systèmes futurs | [FUTURE_SYSTEMS](../FUTURE_SYSTEMS.md) |
+| Release / studio / Steam | [FUTURE_RELEASE_BUSINESS](../FUTURE_RELEASE_BUSINESS.md) |
 
 ## Principes durables
 
