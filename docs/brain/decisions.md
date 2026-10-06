@@ -670,3 +670,41 @@ Sequence:
 > P6A-1 Material Lab ✅ → P6A1.5 Soil Foundation Spike → P6A2 Hero Lookdev → human visual gate → P6B
 
 The Soil spike decides only the basic Soil role/grammar needed for art. It is not final Soil polish.
+
+
+## P6A1.5 human verdict — thin Soil baseline accepted — 2026-10-06
+
+Antoine human-tested the Soil Foundation candidate and prefers the **thin irregular overburden** direction to the former thick structural Soil.
+
+Durable direction:
+- Soil is a **thin, partial, loose surface covering**, not a multi-centimeter structural layer.
+- It follows the underlying matrix relief instead of creating an independent flat ceiling.
+- Brush removes this superficial dirt quickly; Clay/Sandstone becomes the real structural excavation.
+- Exact thickness/coverage values from the spike remain tuning values, not final production constants.
+
+The corrected contact patina is also preferred:
+- keep the original Clay/Sandstone identity;
+- add irregular dirty deposits/stains with broken coverage;
+- never replace the material with one uniformly darker band.
+The spike visuals are still placeholder/ugly; this decision concerns semantics and readability, not final art quality.
+
+P6A2 remains delayed because the Soil test exposed a new structural issue: once the thin Soil is removed, the underlying Clay/Sandstone top is still too planar.
+
+## P6A1.6 — natural matrix geometry direction — 2026-10-06
+
+Antoine explicitly authorizes a focused geometry spike before Hero Lookdev.
+
+Problem:
+> thin Soil now follows the matrix correctly, but the matrix itself still reads as a broad horizontal plane.
+
+Target:
+- give the **underlying Clay/Sandstone surface** natural deterministic macro relief before excavation begins;
+- use broad undulations, shallow bowls/cavities, ridges, local shelves/steps and imperfect transitions rather than a flat slab;
+- make the initial block feel like a believable fossil-bearing matrix, not a rectangle filled with horizontal layers;
+- Soil must conform to this richer substrate;
+- preserve gameplay readability, Bone ceilings, picking, tool grammar, effort-aware work budgets and deterministic QA.
+
+This spike is about **internal matrix topography**, not the future outer block/jacket silhouette system. Prepared-block silhouette variation remains a separate later direction.
+
+Sequence becomes:
+> P6A-1 Material Lab ✅ → P6A1.5 Soil Foundation ✅ human direction chosen → **P6A1.6 Natural Geometry Spike** → P6A2 Hero Lookdev → human visual gate → P6B.
