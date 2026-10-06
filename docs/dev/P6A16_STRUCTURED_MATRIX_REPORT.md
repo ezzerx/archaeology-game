@@ -1,5 +1,7 @@
 # P6A1.6 — Correction B : matrice structurée
 
+> **Verdict humain ultérieur : non validé.** Les niveaux se lisent mieux, mais B évoque encore une toile découpée en plaques/polygones. Antoine demande des affleurements émergents sur un substrat continu. Voir la [nouvelle correction et ses preuves](P6A16_OUTCROPS_REPORT.md). Les mesures et captures ci-dessous documentent uniquement la version polygonale `4c05a56`.
+
 2026-10-06. Correction ciblée après le [verdict humain sur le premier B](P6A16_NATURAL_GEOMETRY_REPORT.md). Le [statut du projet](../brain/status.md) conserve la gate courante.
 
 ## Ce qui change

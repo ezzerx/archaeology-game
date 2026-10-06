@@ -177,23 +177,56 @@ func visual() -> void:
 				main.select_fixture(f)
 				main.select_candidate(c)
 				await zoom_to(zoom, Vector2(275,250) if f == 3 else (Vector2(785,180) if f == 4 else Vector2(435,235)))
+				# Freeze the completed native zoom before copying the exact A pose;
+				# focus changes can otherwise retain a slightly different target_zoom.
+				main.camera._stop_transition()
 				var key := "%d-%d" % [f,zoom]
 				if c == 0: poses[key] = [main.camera.global_transform,main.camera.size]
 				else:
 					main.camera.global_transform = poses[key][0]
 					main.camera.size = poses[key][1]
+				main.camera.target_zoom = main.camera._base_size / main.camera.size
+				main.camera._anchored = false
 				await capture("state%d-%s-%dx" % [f,["A","B"][c],zoom])
-				if f == 1:
+				if f in [0,1]:
 					main.set_patina(false)
-					await capture("matrix-%s-%dx-no-patina" % [["A","B"][c],zoom])
+					await capture("%s-%s-%dx-no-patina" % ["matrix" if f == 1 else "start",["A","B"][c],zoom])
 					main.set_patina(true)
-				check(main.camera.global_transform == poses[key][0] and main.camera.size == poses[key][1], "identical capture camera")
+				check(main.camera.global_transform == poses[key][0] and main.camera.size == poses[key][1], "identical capture camera %s-%s" % [key,str(c)])
+	# Dedicated review framing: the same untouched B, then eight native hits.
+	main.select_fixture(1)
+	main.select_candidate(1)
+	main.set_patina(false)
+	await zoom_centered(3,Vector2(510,448))
+	await capture("outcrop-B-3x-no-patina")
+	await zoom_centered(3,Vector2(488,135))
+	await capture("pocket-B-3x-no-patina")
+	var before := state()
+	var s: WorkingSurface = main.block.working_map
+	for n in range(8):
+		s.apply_impact(Vector2(420,455).lerp(Vector2(474,477),n/7.0),main.controller.tools[1])
+	await settle()
+	check(state().height != before.height and state().bone == before.bone and state().ceilings == before.ceilings,
+		"eight native Chisel hits blend with real relief, immutable Bone")
+	await zoom_centered(3,Vector2(510,448))
+	await capture("outcrop-B-3x-after-8-chisel-no-patina")
+	await zoom_to(1)
+	await capture("outcrop-B-1x-after-8-chisel-no-patina")
+	main.set_patina(true)
 	main.reset_specimen()
 	await zoom_to(1)
 	main.panel.show()
 	await capture("controls-B")
 	main.panel.hide()
 	await gpu_picking()
+
+func zoom_centered(factor: float, point: Vector2) -> void:
+	await zoom_to(factor,point)
+	# Same fixed camera and native pan plane/bounds, only a review framing.
+	var camera: PrecisionZoom = main.camera
+	camera.global_position += camera.project_ray_origin(at(point)) - camera.project_ray_origin(Vector2(root.size)*.5)
+	camera._constrain_pan()
+	await settle()
 
 func gpu_picking() -> void:
 	# Read back the SAME vertex function. Three 6-bit midtone channels avoid
@@ -331,7 +364,7 @@ func benchmark() -> void:
 				FileAccess.open(out+"benchmark.json",FileAccess.WRITE).store_string(JSON.stringify(evidence,"\t"))
 
 func run() -> void:
-	out = "res://work/test-logs/p6a16-structured/"
+	out = "res://work/test-logs/p6a16-outcrops/"
 	var args := OS.get_cmdline_user_args()
 	var mode := args[0] if not args.is_empty() else "tests"
 	DirAccess.make_dir_recursive_absolute(out)

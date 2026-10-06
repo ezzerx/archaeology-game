@@ -724,3 +724,8 @@ Leçon de mesure vérifiée : l’encodage de hauteur GPU par couleurs proches d
 ## P6A1.6 — retour humain : structure minérale, pas ondulations (2026-10-06)
 
 Antoine ne valide pas le premier B : les plis doux restent trop proches d’un plan continu sous la caméra actuelle. Direction confirmée pour la correction : masses/plaques irrégulières imbriquées, plateaux, marches adoucies et poches ouvertes, portés par le vrai heightfield. Ne pas compenser par du bruit, de la texture ou de la lumière ; préserver l’indépendance du fossile. Le [B corrigé](../dev/P6A16_STRUCTURED_MATRIX_REPORT.md) applique cette direction mais attend son propre verdict humain.
+
+
+## P6A1.6 — retour humain : affleurements, pas puzzle (2026-10-06)
+
+Le B polygonal améliore la lecture des niveaux mais n’est pas approuvé comme fondation : Antoine voit une surface découpée en plaques. Direction confirmée : substrat continu relativement calme, quelques masses minérales émergentes de tailles différentes, épaulements imbriqués et poches ouvertes. Préférer des contours courbes irréguliers, des fronts localisés qui se fondent ailleurs dans la surface, et une variation méso légère sur les dessus. Éviter les anneaux abrupts complets, les tranchées de largeur constante et la mosaïque de poids visuel uniforme. Le vrai heightfield doit porter cette lecture sans patine ; outils et Bone restent verrouillés. La [correction par affleurements](../dev/P6A16_OUTCROPS_REPORT.md) est une proposition technique, pas une validation de cette géométrie.

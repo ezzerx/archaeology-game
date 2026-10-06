@@ -1,5 +1,7 @@
 # P6A-1 — Material Lab
 
+> Rapport historique du Material Lab. Les corrections de géométrie sont documentées séparément : [P6A1.6 — affleurements](P6A16_OUTCROPS_REPORT.md). Consulter le [statut canonique](../brain/status.md) pour la revue et la gate courantes.
+
 **2026-10-06 · PR #9 DRAFT · revue Antoine requise.**
 Base gameplay : `main@6ae107d9b55718f34f4e18d8317551a5476e41c0`, P5 clos et mergé.
 

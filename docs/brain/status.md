@@ -48,18 +48,18 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A1.6 — correction « Matrice structurée » livrée techniquement, nouveau verdict humain attendu.**
+**P6A1.6 — correction « Affleurements » livrée techniquement, verdict humain attendu.**
 
-- Retour humain : le premier B reste trop souple/ondulé. Direction demandée : masses et plaques imbriquées, marches adoucies, poches ouvertes, lisibles par la géométrie sous la caméra actuelle.
-- A = Soil mince accepté sur la matrice d’origine ; B corrigé = même Soil sur dix masses/paliers irréguliers du vrai heightfield. Shader, patine, lumière et gameplay conservés.
-- Scène : `scenes/p6a16_natural_matrix_lab.tscn` ; lanceur : `Launch-Natural-Matrix-Lab.ps1`.
-- Fixtures départ, matrice nue, trajet Chisel, préparation Bone/Pick et interface. F8 compare A/B en gardant la vue ; F9 montre la matrice nue.
-- Régressions P0–P5 et labs passées ; Bone, interfaces, picking GPU/CPU et performances 1×/3× vérifiés. Rapport actif : `docs/dev/P6A16_STRUCTURED_MATRIX_REPORT.md`. Premier rapport/captures conservés comme historique.
-- Point de revue : naturel des contours encore polygonaux et confort des marches à la souris. Travail médian −4,3 %, Skull inchangé, budgets P4 respectés ; aucune validation artistique ou canonisation de B corrigé.
+- Retour humain sur B polygonal : niveaux mieux lisibles, mais effet de toile découpée / puzzle ; non validé comme fondation. Direction demandée : masses émergentes, substrat continu calme, fronts localisés et raccords organiques asymétriques.
+- A = Soil mince accepté sur la matrice d’origine, inchangé ; B = quatre affleurements, deux épaulements imbriqués et deux poches dans le vrai heightfield. Shader, patine, lumière, caméra et gameplay conservés.
+- Scène : `scenes/p6a16_natural_matrix_lab.tscn` ; lanceur : `Launch-Natural-Matrix-Lab.ps1`. F8 compare A/B avec reset de la fixture et cadrage conservé ; F9 montre la matrice nue.
+- Rapport actif : `docs/dev/P6A16_OUTCROPS_REPORT.md`, paramètres et 29 captures dont les vues sans patine 1×/3× et huit coups Chisel sur un front. Les deux corrections précédentes et leurs preuves restent historiques.
+- Vérifications : P0–P5 et labs passés, 79 contrôles géométriques conservés, 50 graphiques et 84 benchmark. Bone, interfaces, picking GPU/CPU et progression P5 préservés ; budgets globaux P4 respectés (travail P95 176,71 / max 202,93).
+- Travail médian global −2,7 %, Hind Limb −6,1 % ; cela ne prouve pas une durée de fouille identique. Point de revue : lecture de masses rocheuses émergentes et confort des raccords. Certains arcs/dessus peuvent encore sembler trop lisses ou ronds. Aucun B canonisé.
 
-**Prochaine action : Antoine compare A/B corrigé et donne son HUMAN GEOMETRY VERDICT (A / B corrigé / correction ciblée). STOP développement après cette livraison.** Aucun P6A2, jacket, matériau/lumière final, P6B ou merge sans nouvelle autorisation.
+**Prochaine action : Antoine compare A/B et donne son verdict sur cette correction ciblée. STOP développement après cette livraison.** Aucun P6A2, jacket, art pass final, P6B ou merge sans nouvelle autorisation.
 
-Brief : `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md` ; preuves et dix questions dans le rapport.
+Brief historique : `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md` ; les deux retours humains et le rapport actif précisent la cible de correction.
 
 ## P6A2 status
 

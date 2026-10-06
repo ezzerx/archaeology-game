@@ -64,5 +64,5 @@ Historical phase evidence lives under `docs/dev/` and must not be used to infer 
 Run `./Launch-Natural-Matrix-Lab.ps1` or open
 `scenes/p6a16_natural_matrix_lab.tscn` in Godot and press F6.
 F8 compares the two substrates with the same thin Soil; F9 removes Soil for inspection.
-The [geometry report](docs/dev/P6A16_STRUCTURED_MATRIX_REPORT.md) contains the fixtures,
+The [geometry report](docs/dev/P6A16_OUTCROPS_REPORT.md) contains the fixtures,
 measurements and human retest procedure. The normal project launch remains the P5 scene.
