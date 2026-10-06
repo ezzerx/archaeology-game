@@ -1,5 +1,20 @@
 # P6A1.5 — Soil Foundation Spike
 
+## Human verdict — recorded after this report
+
+Antoine has now human-reviewed this spike and **prefers candidate B's semantics**:
+
+- thin, partial, irregular Soil overburden;
+- Soil follows the underlying matrix rather than forming an independent flat ceiling;
+- Brush removes the superficial Soil; Clay/Sandstone is the structural work surface;
+- contact patina = original material + irregular dirty deposits, never a uniform dark recolor.
+
+The exact 0–2 mm / coverage values below remain spike calibration, not final production constants.
+
+This human verdict is also recorded in `docs/brain/status.md` and `docs/brain/decisions.md`.
+
+The next gate is P6A1.6 Natural Matrix Geometry; do not reopen this A/B unless new evidence requires it.
+
 2026-10-06 · `prototype/p6a-visual-spike` · PR #9 DRAFT.
 
 ## Résultat à examiner
