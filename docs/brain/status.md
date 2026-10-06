@@ -124,3 +124,12 @@ P6A is currently about proving the geometry + visual-production foundation befor
 4. `docs/brain/decisions.md`.
 5. Durable product docs.
 6. Archived/historical reports.
+
+
+## New orchestration chat expectation
+
+If Antoine opens a new chat while this status still names P6A1.6 as next:
+- inspect PR #9;
+- read `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md`;
+- give the launch prompt as one copyable fenced block when asked;
+- do not reopen Soil semantics or P6A2 scope unless new evidence requires it.
