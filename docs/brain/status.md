@@ -16,35 +16,65 @@
 - P6B V0.1 Art Pass — not started
 - P7 Tuning — not started
 
-## Active work
+## Active branch / PR
 
 Active branch: `prototype/p6a-visual-spike`  
 PR: **#9 — P6A Visual Direction / Production Spike** (DRAFT)
 
 P6A-1 Material Lab is complete and human-reviewed.
 
-Result:
-- the dynamic B-17 surface can support authored material rendering without breaking gameplay;
-- none of P5/A/B/C is accepted as the final visual direction;
-- B-style authored materials plus C-style projection/large-scale breakup remain useful technical hypotheses only.
+P6A1.5 Soil Foundation Spike is also human-reviewed.
 
-## Current gate / next action
+## P6A1.5 human verdict
 
-**P6A1.5 — Soil Foundation Spike delivered; waiting for Antoine's A/B decision.**
+Antoine prefers the thin-overburden candidate.
 
-- Separate playable scene: `scenes/p6a15_soil_lab.tscn`, launcher `Launch-Soil-Lab.ps1`.
-- A = current thick Soil; B = 0–2 mm partial covering following the existing matrix.
-- Shared camera/tools/matrix; patchy visual contact deposits leave original Clay/Stone readable.
-- Report, evidence and short retest: [P6A15_SOIL_REPORT](../dev/P6A15_SOIL_REPORT.md).
-- B is a technical recommendation only. No Soil model is canonized.
+Accepted direction:
+- Soil = thin, partial, irregular surface dirt / overburden;
+- Soil follows the substrate instead of creating a flat independent top plane;
+- Brush removes the superficial dirt quickly;
+- Clay/Sandstone is the real structural work surface;
+- exact spike thickness/coverage values remain tunable, not final production constants.
 
-**STOP for human review.** Next action is Antoine's explicit choice of A, B or a targeted correction. No P6A2 execution, P6B, final Soil VFX/polish or unrelated P4/P5 retuning.
+Contact patina direction:
+- original Clay/Sandstone color remains visible;
+- contact history appears as irregular dirty deposits/stains;
+- no uniform dark band / full-material recolor.
+
+Visual quality of the spike is **not** approved as final art; only the Soil semantics and patina language are accepted.
+
+Report on active branch:
+`docs/dev/P6A15_SOIL_REPORT.md`
+
+## Current gate / next authorized action
+
+**P6A1.6 — Natural Matrix Geometry Spike** is next.
+
+Reason:
+with thin Soil, the remaining weakness is now obvious: the underlying Clay/Sandstone surface still reads too much like a broad horizontal plane.
+
+Goal:
+- create deterministic natural macro relief in the starting matrix;
+- introduce broad undulations, shallow cavities/bowls, ridges, local shelves/steps and imperfect transitions;
+- make Soil conform to that substrate;
+- keep the excavation readable and gameplay-safe.
+
+This is **internal matrix topography**, not the future outer jacket/block-silhouette system.
+
+The detailed execution brief is prepared on the active P6A branch. Do not start P6A2 before this geometry spike receives human review.
 
 ## P6A2 status
 
-`P6A2 — Hero Lookdev / Target Match` is designed and documented on the active P6A branch, but **execution is paused until the Soil Foundation Spike is decided**.
+`P6A2 — Hero Lookdev / Target Match` is prepared and documented on the active P6A branch, with a canonical reference pack.
 
-The canonical P6A2 visual target pack is also prepared on the active branch.
+Execution remains **blocked until P6A1.6 Natural Matrix Geometry is human-decided**.
+
+P6A2 visual intent:
+- cozy, warm, stylized natural-history preparation lab;
+- authored tactile materials;
+- irregular plaster jacket around the dynamic core;
+- strong material readability;
+- real lighting/lookdev rather than P6A-1 wallpaper-like test textures.
 
 Do not start P6B before explicit human approval of the P6A2 Hero Patch.
 
@@ -60,7 +90,7 @@ Current prototype session:
 
 Accepted P5 watchpoints, not blockers:
 - Cleanliness may decrease when newly exposed dirty Bone enlarges the exposed-Bone denominator;
-- the hidden-cluster guard is not a perfect human visual-completeness oracle;
+- hidden-cluster coverage is not a perfect human visual-completeness oracle;
 - final in-matrix vs extracted vs mounted/hybrid specimen destination remains a Macro Game Design question.
 
 ## Gameplay freeze during P6A
@@ -71,7 +101,7 @@ Unless a specifically authorized spike says otherwise:
 - do not reopen fragment/Forceps work;
 - do not start museum/intake/meta implementation.
 
-P6A is currently about defining a credible visual-production pipeline.
+P6A is currently about proving the geometry + visual-production foundation before art scaling.
 
 ## Key pointers
 
@@ -79,9 +109,10 @@ P6A is currently about defining a credible visual-production pipeline.
 - Documentation rules: `docs/DOCUMENTATION_POLICY.md`
 - Durable decisions: `docs/brain/decisions.md`
 - Roadmap: `docs/ROADMAP.md`
+- Gameplay loop: `docs/GAMEPLAY_LOOP.md`
 - Visual direction: `docs/ART_DIRECTION.md`
 - Future systems / Soil hypothesis: `docs/FUTURE_SYSTEMS.md`
-- P6A active implementation and reports live on PR #9 / `prototype/p6a-visual-spike`.
+- Active P6A implementation and reports live on PR #9 / `prototype/p6a-visual-spike`.
 
 ## Source precedence
 
