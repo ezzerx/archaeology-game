@@ -1,21 +1,38 @@
 # Boucle de jeu et sensation de fouille
 
-## Canon actuel — 2026-10-05
+> Ce document décrit le **game design**, pas le statut de développement.
+> Pour la phase active et la prochaine action autorisée, lire `docs/brain/status.md`.
 
-**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET aucun amas osseux caché atteignant le seuil centralisé (connexité8, sans pont entre os). Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. [Rapport courant](dev/P5_HIDDEN_CLUSTER_REPORT.md). **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
+## Boucle prototype validée
 
-Le joueur est préparateur/restaurateur dans un musée d'histoire naturelle. La boucle prototype actuelle est :
+Le joueur est préparateur/restaurateur dans un musée d'histoire naturelle.
 
-> **bloc confié → excavation/préparation → découverte → Specimen prepared (85/85) → Keep Cleaning ou Archive Specimen → prochain bloc**
+Boucle actuelle :
+
+> **bloc confié → excavation / révélation → nettoyage → standard musée atteint → Keep Cleaning ou Archive Specimen → prochain bloc**
 
 Grammaire outils actuelle :
 
-- **Soft Brush** : Soil, Bone Surface Film et mess brushable ;
+- **Soft Brush** : Soil / saleté de surface, Bone Surface Film et mess brushable ;
 - **Chisel** : excavation bulk Clay/Sandstone et fracture ;
 - **Air Blower** : évacuation du mess libre ;
-- **Precision Pick** : finition structurelle précise près des os ;
+- **Precision Pick** : finition structurelle précise près des os.
 
-Trois métriques Bone restent séparées : **Exposure / Cleanliness / Condition**. Les sections plus anciennes ci-dessous conservent la provenance des idées ; les décisions P4/P5 plus récentes prévalent.
+Trois concepts Bone restent séparés :
+
+> **Exposure ≠ Cleanliness ≠ Condition**
+
+Le prototype utilise un standard musée global et une maîtrise optionnelle, mais ces seuils sont des valeurs de prototype. Les détails de phase et d'implémentation vivent dans les briefs/reports actifs.
+
+### Soil — rôle encore à décider
+
+Le Soil épais actuel est **provisoire**.
+
+Hypothèse préférée à tester avant le lookdev final :
+
+> **fine couche de saleté / overburden à brosser → matrice Clay/Sandstone patinée → excavation structurelle**
+
+Ne pas considérer l'épaisseur Soil actuelle comme un invariant artistique ou gameplay final tant que le Soil Foundation Spike n'est pas tranché.
 
 ## Boucle macro cible
 
