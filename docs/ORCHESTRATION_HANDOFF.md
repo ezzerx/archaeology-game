@@ -243,6 +243,12 @@ Reusable rule learned in P3/P4:
 
 > **Do not create an earlier-phase workaround for a problem a planned later phase is explicitly expected to reshape unless it blocks current validation.**
 
+## 11.5 Future release / studio context
+
+If the game proves itself, Antoine wants a **commercial studio brand** that can carry credibility into future projects and strengthen CV/LinkedIn positioning. A separate legal company is not required merely to use a studio identity; legal/tax structure can be revisited closer to release/revenue.
+
+Steam/release work is a later production phase, not current P6A scope. See `docs/FUTURE_RELEASE_BUSINESS.md`.
+
 ## 12. How to resume in a new conversation
 
 The new orchestrator should immediately:
