@@ -12,7 +12,7 @@ Transformer un bloc opaque en découverte tangible par des gestes de fouille et 
 
 La base narrative canonique actuelle est celle d'un **atelier de préparation au sein d'un musée d'histoire naturelle**.
 
-Le joueur est employé / préparateur du musée. Il reçoit des blocs, fragments et spécimens qui doivent être dégagés, nettoyés, préparés et documentés avant de rejoindre les réserves, la collection ou une exposition.
+Le joueur est employé / préparateur du musée. Il reçoit des blocs et spécimens qui doivent être dégagés, nettoyés, préparés et documentés avant de rejoindre les réserves, la collection ou une exposition. Selon le futur macro-design, certaines pièces pourront rester in-matrix, être extraites ou contribuer à un montage.
 
 Boucle diégétique cible :
 
@@ -34,7 +34,7 @@ Cette direction est une **baseline narrative actuelle**, pas un scénario défin
 - Fouille en vue strictement du dessus : un bloc est posé sur une table, le joueur agit directement sur sa surface.
 - Plusieurs matériaux superposés possèdent résistance, profondeur, réactions et outils adaptés.
 - Les os se révèlent progressivement ; l’identité du spécimen peut être cachée au départ.
-- Les fragments récupérés enrichissent une collection et complètent les expositions du musée ; le musée est aussi le cadre narratif qui confie les spécimens au joueur.
+- Les spécimens préparés et, selon le futur modèle, les éléments éventuellement récupérés enrichissent la collection et les expositions du musée ; le musée est aussi le cadre narratif qui confie le travail au joueur.
 - Le musée est une interface de galerie horizontale, sans déplacement d’avatar.
 - La réussite dépend prioritairement du game feel, de l’atmosphère et du rythme de découverte.
 - Le premier prototype reste limité à un seul écran de fouille.
@@ -51,8 +51,8 @@ Les retours doivent permettre de sentir la transition entre terre, roche et os. 
 |---|---|---|
 | Direction artistique | **2.5D stylisée, tabletop, caméra orthographique presque verticale** | P6A valide la production finale sans changer cette base |
 | Fragilité / condition | **Bone Condition globale + protection du premier hit direct par composant** ; Pick/Brush/Blower sûrs | Tuning final du risque en P7 |
-| Identification | Unknown → Vertebrate remains → Possible Theropod → Likely small theropod | P5 teste le rythme et la lisibilité du dossier |
-| Progression | Musée/collection comme méta-progression ; P5 teste d'abord une session de préparation complète | Relier ensuite plusieurs spécimens/fouilles |
+| Identification | Unknown → Vertebrate remains → Possible Theropod → Likely small theropod | logique interne/prototype ; présentation finale à retravailler après le core |
+| Progression | Musée/collection comme méta-progression ; la session de préparation complète est validée | Relier ensuite plusieurs spécimens/fouilles après le core |
 | Statistiques du musée | Collection Progress, Exhibit Prestige, Visitor Rating | Garder uniquement les indicateurs utiles |
 | Catalogue | Dinosaures et autres collections possibles | Choisir après validation du cœur jouable |
 | Moteur | **Godot 4.7.2 stable Standard, GDScript, Compatibility** | Reconsidérer uniquement face à une limitation concrète |
