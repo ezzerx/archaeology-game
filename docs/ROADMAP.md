@@ -49,10 +49,11 @@ P6A is intentionally split into small visual/gameplay-risk spikes before scaling
 
 Current intended order:
 1. **P6A-1 Material Lab** — completed; technical feasibility proven, no final visual winner.
-2. **P6A1.5 Soil Foundation Spike** — decide Soil semantics before art is built around it.
-3. **P6A2 Hero Lookdev / Target Match** — push one real B-17 patch toward the canonical visual target pack.
-4. Human visual gate.
-5. P6B only after explicit approval.
+2. **P6A1.5 Soil Foundation Spike** — completed; thin irregular surface overburden direction preferred.
+3. **P6A1.6 Natural Matrix Geometry Spike** — next; fix the overly planar Clay/Sandstone substrate before lookdev.
+4. **P6A2 Hero Lookdev / Target Match** — push one real B-17 patch toward the canonical visual target pack.
+5. Human visual gate.
+6. P6B only after explicit approval.
 
 ### P6A1.5 — Soil Foundation Spike
 
@@ -64,7 +65,18 @@ Purpose:
 Exit:
 > one Soil semantic baseline is chosen for P6A2.
 
-### P6A scope after the Soil decision
+### P6A1.6 — Natural Matrix Geometry Spike
+
+Purpose:
+- replace the broad planar starting matrix impression with deterministic natural macro relief;
+- test shallow cavities/bowls, ridges, shelves/steps and broad undulations;
+- keep the richer topography compatible with Soil-overburden, tools, Bone safety, picking and effort-aware budgets;
+- keep outer block/jacket silhouette variation out of this spike.
+
+Exit:
+> one natural matrix-topography baseline is human-approved for P6A2.
+
+### P6A scope after the geometry decision
 
 Take one representative slice close to target quality and prove the production pipeline before scaling.
 
