@@ -648,70 +648,25 @@ Fragments/Forceps remain dormant historical experiments, not part of the active 
 Decision: stop P5 iteration here, merge PR #8, then open **P6A — Visual Direction / Production Spike**.
 
 
-## P6A authorization — Material Lab first — 2026-10-05
+## Documentation authority and P6A Soil sequencing — 2026-10-06
 
-After P5 closure, Antoine authorizes **P6A Visual Direction / Production Spike**.
+Two durable project-management decisions:
 
-First risk to attack is the dynamic excavation block itself, not UI polish or full workshop decoration. Start with a controlled Material Lab using real B-17 gameplay states and compare cheap representative rendering pipelines. Current hypothesis is a hybrid authored-material + shader-variation + static-jacket-shell approach, but it must be proven rather than assumed.
+### Documentation authority
+- `docs/brain/status.md` is the **single source of truth for live phase, gate, active branch/PR and next authorized action**.
+- `AGENTS.md` stays short: routing + durable invariants only.
+- README / GAMEPLAY_LOOP / ROADMAP / HANDOFF must not duplicate live authorization language.
+- Historical dev reports do not authorize work.
+- Superseded P4-V2 intermediate reports are archived under `docs/dev/archive/p4v2/` with compatibility stubs at their old paths.
+- Documentation roles are defined in `docs/DOCUMENTATION_POLICY.md`.
 
-No P6B mass production before a human-approved playable hero slice.
+### P6A ordering
+P6A2 Hero Lookdev is prepared but **must not execute before the Soil Foundation Spike**.
 
+Reason:
+the current thick structural Soil is explicitly provisional, while the preferred art/gameplay direction is thin loose overburden over Clay/Sandstone with a dirty contact patina. Building production lookdev around the thick Soil first would create avoidable rework.
 
-## Seasonal museum main menu — visual direction — 2026-10-05
+Sequence:
+> P6A-1 Material Lab ✅ → P6A1.5 Soil Foundation Spike → P6A2 Hero Lookdev → human visual gate → P6B
 
-Antoine canonizes a high-impact cozy direction for the future main menu: the **same museum façade/composition changes with the seasons** rather than becoming a different location.
-
-Examples:
-- winter: accumulated snow, softly falling snowflakes, bare/snowy trees, cold exterior / warm glowing interior;
-- autumn: orange foliage, falling leaves, warmer golden atmosphere;
-- spring/summer: corresponding vegetation/light/weather variations.
-
-The building and composition remain recognizable. Seasonal ambience should be subtle and contemplative, with lightweight animation (e.g. snowflakes/leaves) rather than a busy menu. This belongs to later P6 menu/exterior work, not the first Material Lab spike.
-
-## P6A-1 — périmètre et arrêt confirmés — 2026-10-06
-
-Antoine autorise **uniquement le Material Lab** sur la géométrie/data B-17 réelle,
-avec référence P5 et essais procédural/peint/hybride. Même caméra et même fouille
-pour chaque candidat ; patine de contact purement visuelle. Premier essai Bone Film
-limité à couleur/propriétés de matière, motif et densité inchangés. P4/P5 gelés.
-Arrêt pour revue humaine avant éclairage, jackets, Blender/assets, UI, hero slice
-ou P6B. Le brief P6A complet n'autorise pas automatiquement ces travaux.
-
-Implémentation de spike : scène héritée séparée, atlas source IA1254² et habillages
-insérés dans le shader P5 en mémoire ; aucun changement aux fichiers de gameplay.
-Le laboratoire n'est pas le nouveau rendu par défaut. Rapport canonique :
-[P6A_REPORT](../dev/P6A_REPORT.md).
-
-**Recommandation technique en attente de revue, non décision canonique : B.**
-L'atlas peint apporte l'essentiel du gain observé ; C est testé seulement côté
-matériaux, sans jacket. Les captures gardent des limites de répétition et de relief
-osseux à3×. Ni une réussite des tests ni un temps GPU faible ne valident la DA.
-
-Leçon vérifiée : une comparaison GPU pixel par pixel doit attendre l'arrêt complet
-du zoom amorti ; une caméra encore mobile de quelques fractions de pixel peut
-faire échouer un masque pourtant inchangé. Le banc réutilise en outre la pose
-exacte de référence pour tous les candidats d'une charge.
-
-
-## P6A2 — target-match lookdev authorized — 2026-10-06
-
-Antoine rejects P6A-1 A/B/C as visual targets: they are useful technical experiments
-but remain far from the desired cozy/stylized quality.
-
-New decision:
-- P6A2 becomes a **Hero Lookdev / target-match** pass;
-- one small real B-17 gameplay patch must be pushed toward the canonical visual pack;
-- authored material quality, multi-scale variation, jacket identity and lighting are
-  the priorities;
-- B-style authored materials + C-style projection/variation are hypotheses, not final
-  art;
-- procedural noise is supportive, not the visual identity;
-- the result must be judged against the target images, not against P6A-1 candidates.
-
-Reference usage is canonicalized in:
-`docs/visual-references/P6A2_VISUAL_TARGETS.md`.
-
-Full mission scope:
-`docs/dev/P6A2_BRIEF.md`.
-
-P6B remains blocked until the Hero Patch receives explicit human visual approval.
+The Soil spike decides only the basic Soil role/grammar needed for art. It is not final Soil polish.
