@@ -1,21 +1,23 @@
 # P6A2 — Hero Lookdev / Target Match
 
-**Status:** prepared, but BLOCKED until P6A1.5 Soil Foundation Spike is human-decided
+**Status:** prepared, but BLOCKED until P6A1.6 Natural Matrix Geometry is human-decided
 **Date:** 2026-10-06
 **Branch:** `prototype/p6a-visual-spike`
 **PR:** #9 remains DRAFT
 **Scope:** prove that the real gameplay can become visually attractive by matching a small playable hero patch to the canonical P6A2 reference pack.
 
-## Blocking prerequisite — Soil Foundation Spike
+## Blocking prerequisite — Natural Matrix Geometry Spike
 
 Do **not** execute this brief yet.
 
-Before P6A2 starts, P6A1.5 must decide whether Soil remains the current thick structural layer or becomes the preferred thin loose-overburden layer over Clay/Sandstone.
+P6A1.5 is now human-decided: thin irregular Soil overburden is the preferred direction.
+
+Before P6A2 starts, P6A1.6 must decide the **natural starting topography of the underlying Clay/Sandstone matrix**.
 
 Reason:
-P6A2 will author production-style materials and contact transitions. Building those around a known-provisional Soil role would create avoidable rework.
+P6A2 will author production-style materials, lighting and jacket presentation. Building those around the current broad horizontal matrix plane would create avoidable rework and would make the Hero Patch a poor judge of the intended art direction.
 
-Once the Soil spike is human-approved, this brief becomes executable without changing its art target.
+Once the Natural Matrix Geometry spike is human-approved, this brief becomes executable without changing its art target.
 
 ## Why this phase exists
 
