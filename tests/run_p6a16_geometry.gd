@@ -17,6 +17,8 @@ func measure_geometry() -> Dictionary:
 	var stone := [[], [], [], [], []]
 	var gaps: Array[float] = []
 	var bad_order := 0
+	var flat := 0
+	var stepped := 0
 	var outside := 0
 	for y in range(s.size.y):
 		for x in range(s.size.x):
@@ -31,7 +33,10 @@ func measure_geometry() -> Dictionary:
 			if x < s.size.x - 1 and y < s.size.y - 1:
 				var dx: float = (s.strata.packed_limits[(i + 1) * 2] - top) * 0.102 * s.size.x / main.block.surface_size.x
 				var dy: float = (s.strata.packed_limits[(i + s.size.x) * 2] - top) * 0.102 * s.size.y / main.block.surface_size.y
-				slopes.append(rad_to_deg(atan(Vector2(dx, dy).length())))
+				var slope := rad_to_deg(atan(Vector2(dx, dy).length()))
+				slopes.append(slope)
+				if slope < 6: flat += 1
+				if slope > 15: stepped += 1
 			var component: int = s.fossil.field.component_ids[i]
 			if component == 0: continue
 			var ceiling := s.structural_ceilings[i]
@@ -47,6 +52,7 @@ func measure_geometry() -> Dictionary:
 		var hard: Array[float] = []; hard.assign(stone[id])
 		populations.append({"component": id, "cells": work.size(), "work": distribution(work), "stone_mm": distribution(hard)})
 	return {"height_mm_above_base": distribution(height), "clay_mm": distribution(clay),
+		"flat_fraction_under_6deg": float(flat)/slopes.size(), "step_fraction_over_15deg": float(stepped)/slopes.size(),
 		"slope_degrees": distribution(slopes), "soil_mm": distribution(soil), "matrix_bone_gap_mm": distribution(gaps),
 		"bad_order_cells": bad_order, "invalid_initial_cells": outside, "populations": populations}
 
@@ -83,12 +89,15 @@ func functional() -> void:
 				for metric in ["median", "P90", "P95", "max"]:
 					check(measured.populations[id].work[metric] <= reference.populations[id].work[metric] * 1.10,
 						"no anatomical work inflation >10%%: %d %s" % [id, metric])
-			check(measured.slope_degrees.P95 > reference.slope_degrees.P95 * 1.5 and measured.slope_degrees.max < 40,
-				"meaningful but traversable macro slopes")
-			# A coarse 32x20 field should explain the new forms: no micro-noise needed.
-			var coarse := Image.create(33, 21, false, Image.FORMAT_RF)
-			for y in range(21):
-				for x in range(33): coarse.set_pixel(x, y, Color(NaturalMatrixProfile.offsets_mm(Vector2(x / 32.0, y / 20.0)).x, 0, 0))
+			check(measured.slope_degrees.P95 > reference.slope_degrees.P95 * 1.5 and measured.slope_degrees.max < 60,
+				"bounded macro slopes for the structured geometry trial")
+			check(measured.flat_fraction_under_6deg > .55 and measured.step_fraction_over_15deg > .08,
+				"broad interiors plus readable step faces, not uniformly rolling terrain")
+			# Structured steps need ~11 mm sampling; the former 34 mm sampling
+			# only represented soft lobes. Keep submillimeter reconstruction error.
+			var coarse := Image.create(97, 61, false, Image.FORMAT_RF)
+			for y in range(61):
+				for x in range(97): coarse.set_pixel(x, y, Color(NaturalMatrixProfile.offsets_mm(Vector2(x / 96.0, y / 60.0)).x, 0, 0))
 			var error2 := 0.0
 			var samples := 0
 			var low := INF
@@ -97,13 +106,13 @@ func functional() -> void:
 				for x in range(3, s.size.x, 11):
 					var uv := Vector2(x, y) / Vector2(s.size)
 					var delta := NaturalMatrixProfile.offsets_mm(uv).x
-					var filtered := ReliefSurface.sample_image(coarse, (uv * Vector2(32, 20) + Vector2.ONE * 0.5) / Vector2(33, 21)).r
+					var filtered := ReliefSurface.sample_image(coarse, (uv * Vector2(96, 60) + Vector2.ONE * 0.5) / Vector2(97, 61)).r
 					error2 += pow(delta - filtered, 2)
 					samples += 1
 					low = minf(low, delta); high = maxf(high, delta)
 			var rms := sqrt(error2 / samples)
-			check(rms < 0.35 and high - low > 24, "coarse field explains broad >24 mm forms, RMS <0.35 mm")
-			evidence["macro"] = {"coarse_grid": [33,21], "rms_mm": rms, "offset_min_mm": low, "offset_max_mm": high}
+			check(rms < 0.35 and high - low >= 18, "coarse field explains structured >=18 mm forms, RMS <0.35 mm")
+			evidence["macro"] = {"coarse_grid": [97,61], "rms_mm": rms, "offset_min_mm": low, "offset_max_mm": high}
 			var max_soil_delta := 0.0
 			for i in range(s._heights.size()):
 				max_soil_delta = maxf(max_soil_delta, absf((s._heights[i] - s.strata.packed_limits[i*2]) - (accepted.thin_tops[0][i] - accepted.substrates[0][i])) * 102)
@@ -322,7 +331,7 @@ func benchmark() -> void:
 				FileAccess.open(out+"benchmark.json",FileAccess.WRITE).store_string(JSON.stringify(evidence,"\t"))
 
 func run() -> void:
-	out = "res://work/test-logs/p6a16/"
+	out = "res://work/test-logs/p6a16-structured/"
 	var args := OS.get_cmdline_user_args()
 	var mode := args[0] if not args.is_empty() else "tests"
 	DirAccess.make_dir_recursive_absolute(out)
@@ -337,6 +346,14 @@ func run() -> void:
 	main.controller.set_physics_process(false)
 	await settle()
 	if mode == "tests": await functional()
+	elif mode == "preview":
+		main.panel.hide()
+		for c in range(2):
+			main.select_fixture(1)
+			main.select_candidate(c)
+			await zoom_to(1)
+			main.set_patina(false)
+			await capture("preview-%s" % ["A","B"][c])
 	elif mode == "visual": await visual()
 	elif mode == "picking": await gpu_picking()
 	elif mode == "benchmark": await benchmark()

@@ -48,15 +48,16 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A1.6 — Natural Matrix Geometry Spike : livré techniquement, verdict humain attendu.**
+**P6A1.6 — correction « Matrice structurée » livrée techniquement, nouveau verdict humain attendu.**
 
-- A = Soil mince accepté sur la matrice d’origine ; B = même Soil sur cinq macroformes déterministes du vrai heightfield.
+- Retour humain : le premier B reste trop souple/ondulé. Direction demandée : masses et plaques imbriquées, marches adoucies, poches ouvertes, lisibles par la géométrie sous la caméra actuelle.
+- A = Soil mince accepté sur la matrice d’origine ; B corrigé = même Soil sur dix masses/paliers irréguliers du vrai heightfield. Shader, patine, lumière et gameplay conservés.
 - Scène : `scenes/p6a16_natural_matrix_lab.tscn` ; lanceur : `Launch-Natural-Matrix-Lab.ps1`.
 - Fixtures départ, matrice nue, trajet Chisel, préparation Bone/Pick et interface. F8 compare A/B en gardant la vue ; F9 montre la matrice nue.
-- Régressions P0–P5 et labs passées ; Bone, interfaces, picking GPU/CPU et performances 1×/3× vérifiés. Détails : `docs/dev/P6A16_NATURAL_GEOMETRY_REPORT.md`.
-- Point de revue : relief encore discret sous la patine/lumière P5 ; travail médian −24,6 %, dont Skull −45,8 %. Aucun retuning outil ; aucune validation artistique ou canonisation de B.
+- Régressions P0–P5 et labs passées ; Bone, interfaces, picking GPU/CPU et performances 1×/3× vérifiés. Rapport actif : `docs/dev/P6A16_STRUCTURED_MATRIX_REPORT.md`. Premier rapport/captures conservés comme historique.
+- Point de revue : naturel des contours encore polygonaux et confort des marches à la souris. Travail médian −4,3 %, Skull inchangé, budgets P4 respectés ; aucune validation artistique ou canonisation de B corrigé.
 
-**Prochaine action : Antoine compare A/B et donne son HUMAN GEOMETRY VERDICT (A / B / correction ciblée). STOP développement après cette livraison.** Aucun P6A2, jacket, matériau/lumière final, P6B ou merge sans nouvelle autorisation.
+**Prochaine action : Antoine compare A/B corrigé et donne son HUMAN GEOMETRY VERDICT (A / B corrigé / correction ciblée). STOP développement après cette livraison.** Aucun P6A2, jacket, matériau/lumière final, P6B ou merge sans nouvelle autorisation.
 
 Brief : `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md` ; preuves et dix questions dans le rapport.
 

@@ -1,9 +1,18 @@
 extends SceneTree
 ## Review JPEGs; raw full-resolution GPU PNGs remain under ignored work/.
 func _initialize() -> void:
-	var source := "res://work/test-logs/p6a16/"
-	var target := "res://docs/dev/evidence/p6a16/"
+	var source := "res://work/test-logs/p6a16-structured/"
+	var target := "res://docs/dev/evidence/p6a16-structured/"
 	DirAccess.make_dir_recursive_absolute(target)
+	var shapes := []
+	for form in NaturalMatrixProfile.FORMS:
+		var shape: Dictionary = form.duplicate()
+		shape.outline = []
+		for v: Vector2 in form.outline: shape.outline.append([v.x,v.y])
+		shapes.append(shape)
+	FileAccess.open(target+"parameters.json",FileAccess.WRITE).store_string(JSON.stringify({
+		"revision":"structured correction", "footprint_mm":[1100,700],
+		"top_bias_mm":NaturalMatrixProfile.TOP_BIAS_MM, "ordered_forms":shapes},"\t"))
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(source + "visual.json"))
 	for file: String in data.captures:
 		var pic := Image.load_from_file(source + file)

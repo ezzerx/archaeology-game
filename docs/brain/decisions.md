@@ -720,3 +720,7 @@ Sequence becomes:
 Choix technique du spike, sans validation du candidat visuel : les macroformes sont des fonctions UV déterministes centralisées, calculées une fois, indépendantes du fossile. Bone sert à vérifier les plafonds et les budgets de travail après construction, jamais à sculpter/clamp le relief initial. Les fixtures pré-creusées sont séparées de cette génération et les outils restent natifs. Voir [rapport et limites](../dev/P6A16_NATURAL_GEOMETRY_REPORT.md).
 
 Leçon de mesure vérifiée : l’encodage de hauteur GPU par couleurs proches du noir peut produire une fausse divergence sous Compatibility. Encoder dans les tons moyens et comparer aussi à un oracle de triangles natifs avant de conclure à un défaut du picking.
+
+## P6A1.6 — retour humain : structure minérale, pas ondulations (2026-10-06)
+
+Antoine ne valide pas le premier B : les plis doux restent trop proches d’un plan continu sous la caméra actuelle. Direction confirmée pour la correction : masses/plaques irrégulières imbriquées, plateaux, marches adoucies et poches ouvertes, portés par le vrai heightfield. Ne pas compenser par du bruit, de la texture ou de la lumière ; préserver l’indépendance du fossile. Le [B corrigé](../dev/P6A16_STRUCTURED_MATRIX_REPORT.md) applique cette direction mais attend son propre verdict humain.

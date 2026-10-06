@@ -1,5 +1,13 @@
 # P6A1.6 — Natural Matrix Geometry Spike
 
+## Retour humain et correction structurée — 2026-10-06
+
+Antoine juge le premier B encore trop lisse : les plis/ondulations ne portent pas assez la structure sous la caméra quasi top-down. Il demande des masses et plaques imbriquées, des marches naturelles adoucies et des poches ouvertes, par la géométrie elle-même. Cette première proposition B n’est donc **pas validée**.
+
+La correction et son nouvel A/B sont documentés dans [P6A16_STRUCTURED_MATRIX_REPORT.md](P6A16_STRUCTURED_MATRIX_REPORT.md). Les résultats et captures ci-dessous restent ceux de la **première livraison `9bfd0d7`**, conservés comme historique ; ils ne décrivent pas le B corrigé.
+
+## Première livraison
+
 Rapport technique du 2026-10-06. Le [statut canonique](../brain/status.md) conserve la gate et la prochaine action autorisée. Brief : [P6A1.6](P6A16_NATURAL_GEOMETRY_BRIEF.md).
 
 ## Résultat et proposition
@@ -37,7 +45,7 @@ Pour chaque forme : `q = rotate(uv − centre, −angle) / rayons`, `r = length(
 | Étendue du relief, mm | 27,54 | 42,14 |
 | Épaisseur Clay, mm | 11,22–40,98 | 4,73–38,13 |
 | Pente médiane / P95 / max | 1,09° / 4,55° / 4,85° | 3,64° / 14,05° / 21,76° |
-| Distance minimale matrice â†’ Bone, mm | 31,33 | 14,99 |
+| Distance minimale matrice → Bone, mm | 31,33 | 14,99 |
 | Sandstone au-dessus de Bone, médiane / P95 / max, mm | 11,59 / 17,12 / 21,49 | 11,10 / 16,89 / 21,35 |
 
 Le décalage macro échantillonné va de −24,00 à +7,96 mm. Une grille très grossière 33×21 explique ce champ avec une erreur RMS de 0,344 mm : la variation vient des formes larges, pas d’une microtexture. La distance minimale interface Sandstone → Bone reste 1,48 mm. Zéro inversion sur 655 360 cellules ; zéro Bone initialement exposé.
