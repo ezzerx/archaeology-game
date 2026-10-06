@@ -1,26 +1,47 @@
 # ArchaeologyGame — Gameplay Prototype V0.1
 
-**Status:** Prototype specification  
+**Status:** foundational / historical specification.
 
-**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET aucun amas osseux caché atteignant le seuil centralisé (connexité8, sans pont entre os). Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. [Rapport courant](dev/P5_HIDDEN_CLUSTER_REPORT.md). **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
+> **Do not use this file to infer the live phase or next authorized action.**
+> Live state: `docs/brain/status.md`.
+> Documentation roles: `docs/DOCUMENTATION_POLICY.md`.
 
-> **Current canon / source precedence — 2026-10-05:** this file is the foundational V0.1 specification and intentionally preserves historical sections. When a later phase conflicts with text below, use Antoine’s latest explicit decision, then the active phase brief/report, then the repository Brain. Current active work is P5 on `prototype/p5-loop-progression` / PR #8; read `docs/ORCHESTRATION_HANDOFF.md`, `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md` and `docs/dev/P5_HIDDEN_CLUSTER_REPORT.md`. In particular, old references to three tools, automatic fragment recovery, Soil persistent dust and `Restart Specimen` are superseded.
+## Current overrides — 2026-10-06
 
-**Project phase:** Pre-production  
+Later human decisions supersede many historical sections below.
+
+Current V0.1 player loop:
+- four normal tools: Brush / Chisel / Blower / Precision Pick;
+- Forceps/fragments are a dormant historical experiment, not active gameplay;
+- **Exposure ≠ Cleanliness ≠ Condition**;
+- one preparation-session goal with Archive / optional further cleaning;
+- P5 is human-validated and merged;
+- P6A is the active visual/geometry foundation phase.
+
+Current material foundation:
+- Soil direction = thin, partial, irregular overburden following the substrate;
+- contact patina = original Clay/Sandstone + irregular dirty deposits, never uniform recolor;
+- next foundation question = natural deterministic Clay/Sandstone topography before Hero Lookdev.
+
+Current art direction:
+> **2.5D stylisée — tabletop — caméra orthographique presque verticale**
+
+Current engine:
+> **Godot 4.7.2 stable**
+
+Source precedence:
+1. Antoine's newest explicit instruction;
+2. `docs/brain/status.md` for live phase/gate;
+3. active phase brief/report;
+4. `docs/brain/decisions.md`;
+5. durable product docs;
+6. historical text below.
+
+The original P4/P5 addenda and fragment objectives below are kept only for provenance and regression archaeology. They are **not active requirements**.
+
+**Project phase:** Pre-production / visual-pipeline validation  
 **Target:** PC / Steam  
-**Engine:** Godot 4.x, version stable à figer au démarrage du développement  
-**Purpose:** Valider le cœur de gameplay avant toute production du jeu complet.
-
-**Addendum P5 initial — historique, supersédé par85/95** : P4 est validé et mergé. La session B-17 comporte désormais cinq outils : Brush, Chisel, Air Blower, Precision Pick et **Forceps [5]**. [P5_BRIEF](dev/P5_BRIEF.md) fait autorité ; [P5_REPORT](dev/P5_REPORT.md) décrit l’implémentation, les tests et la checklist humaine.
-
-- **Exposure ≠ Cleanliness ≠ Condition.** La propreté mesure le film retiré sur l’os anatomique actuellement exposé ; un nouvel os révélé peut faire baisser ce ratio sans resalir les cellules déjà propres.
-- Classification automatique monotone : Unknown ; Vertebrate remains à5 % global ou10 % d’un composant ; Possible Theropod avec Spine15 % + Hind Limb10 % ; Likely small theropod avec Skull35 % après le stade précédent.
-- Composants : Hidden<10 % ; Detected≥10 % ; Exposed≥50 % ; Prepared si exposition≥80 % et propreté≥80 %.
-- Objectifs acquis dans n’importe quel ordre : **Prepare the skull** (exposition60 % et propreté50 %), révéler60 % du squelette, récupérer2/2 fragments. Les seuils P5 restent provisoires jusqu’au tuning P7.
-- **§21 est remplacé** : aucune récupération automatique. Deux fragments indépendants, hors totaux anatomiques, deviennent READY à90 % d’exposition avec une collerette locale dégagée. Forceps saisit, soulève et transporte ; relâcher sur le plateau récupère, ailleurs restitue. Aucun retrait de terrain/film ni dégât.
-- **§23 est remplacé** : `Preparation Complete` capture les statistiques une seule fois. `Keep Cleaning` reprend la préparation sans reset et conserve l’accès à `Archive Specimen`. L’archive utilise les valeurs finales, arrête les outils et affiche `Museum records updated` puis `Prepare Another Block`.
-- Pour P5, ce dernier bouton et R réinitialisent exactement **le même B-17**. La file de spécimens et la sélection de site sont futures ; aucun musée persistant, galerie, économie ou autre fossile ici.
-- Temps completion→archive, statistiques aux deux instants et actions supplémentaires restent en mémoire/F1. Aucune télémétrie réseau. **STOP pour test humain, PR #8 DRAFT ; pas de P6.**
+**Purpose:** Validate the tactile excavation core and a credible art-production pipeline before full production.
 
 **Addendum P4 — 2026-10-03 :** la deuxième passe corrective autorise explicitement un quatrième outil prototype, **Precision Pick [4]**, pour la finition des restes attachés, sûr sur l’os à titre provisoire. Cette exception au périmètre initial de trois outils est décrite dans [P4_REPORT](dev/P4_REPORT.md) et [P4_MATERIAL_REACTION_DECISION](dev/P4_MATERIAL_REACTION_DECISION.md). Aucun P5 ni merge P4 autorisé.
 
