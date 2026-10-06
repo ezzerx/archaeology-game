@@ -1,5 +1,7 @@
 # ArchaeologyGame — Roadmap
 
+> This file defines phase purposes and sequencing. **Live status is authoritative only in `docs/brain/status.md`.**
+
 No calendar is committed. Each gate depends on human validation of the previous one.
 
 The canonical phase numbering remains the simple **P0 → P7** sequence from `PROTOTYPE_V0_1_SPEC.md`.
@@ -40,6 +42,27 @@ Do not postpone all visual thinking until P6: P4 must make interactions readable
 P6 remains a single numbered phase so the roadmap stays consistent.
 
 Internally it has two ordered substeps:
+
+### P6A — Visual Direction / Production Spike
+
+P6A is intentionally split into small visual/gameplay-risk spikes before scaling.
+
+Current intended order:
+1. **P6A-1 Material Lab** — completed; technical feasibility proven, no final visual winner.
+2. **P6A1.5 Soil Foundation Spike** — decide Soil semantics before art is built around it.
+3. **P6A2 Hero Lookdev / Target Match** — push one real B-17 patch toward the canonical visual target pack.
+4. Human visual gate.
+5. P6B only after explicit approval.
+
+### P6A1.5 — Soil Foundation Spike
+
+Purpose:
+- compare current thick structural Soil with the preferred thin loose-overburden model;
+- decide only the **role / thickness / tool grammar** needed before lookdev;
+- do not turn this into final Soil VFX, debris or P7 tuning.
+
+Exit:
+> one Soil semantic baseline is chosen for P6A2.
 
 ### P6A — Visual Direction / Production Spike
 
