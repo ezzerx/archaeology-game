@@ -646,3 +646,27 @@ Known limitations are accepted and deferred rather than blocking P6:
 Fragments/Forceps remain dormant historical experiments, not part of the active P5 player loop.
 
 Decision: stop P5 iteration here, merge PR #8, then open **P6A — Visual Direction / Production Spike**.
+
+
+## Documentation authority and P6A Soil sequencing — 2026-10-06
+
+Two durable project-management decisions:
+
+### Documentation authority
+- `docs/brain/status.md` is the **single source of truth for live phase, gate, active branch/PR and next authorized action**.
+- `AGENTS.md` stays short: routing + durable invariants only.
+- README / GAMEPLAY_LOOP / ROADMAP / HANDOFF must not duplicate live authorization language.
+- Historical dev reports do not authorize work.
+- Superseded P4-V2 intermediate reports are archived under `docs/dev/archive/p4v2/` with compatibility stubs at their old paths.
+- Documentation roles are defined in `docs/DOCUMENTATION_POLICY.md`.
+
+### P6A ordering
+P6A2 Hero Lookdev is prepared but **must not execute before the Soil Foundation Spike**.
+
+Reason:
+the current thick structural Soil is explicitly provisional, while the preferred art/gameplay direction is thin loose overburden over Clay/Sandstone with a dirty contact patina. Building production lookdev around the thick Soil first would create avoidable rework.
+
+Sequence:
+> P6A-1 Material Lab ✅ → P6A1.5 Soil Foundation Spike → P6A2 Hero Lookdev → human visual gate → P6B
+
+The Soil spike decides only the basic Soil role/grammar needed for art. It is not final Soil polish.
