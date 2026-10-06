@@ -224,3 +224,32 @@ Preferred future visual hypothesis, to test alongside the later Soil gameplay re
 The loose dirt should read as a removable surface covering rather than necessarily a deep structural layer. Once brushed away, Clay/Sandstone remains visibly weathered at the contact surface while still being immediately identifiable as that material. Chisel/Pick then reveals the cleaner, stronger interior color underneath.
 
 This pairs naturally with the already-canonized P6 **contact patina** idea. It is not authorization to rewrite Soil during P5/P6 without a dedicated gameplay test; P6 may prove the visual language, while a later excavation-polish phase validates the interaction model.
+
+
+## P6A foundation updates — Soil, patina and matrix geometry — 2026-10-06
+
+Human review of P6A1.5 clarifies the art/gameplay foundation before Hero Lookdev.
+
+### Soil
+Soil should read as a **thin, partial, irregular surface overburden** that follows the underlying matrix relief. It must not create a thick independent plateau.
+
+### Contact patina
+Contact history must read as:
+> **original material + irregular dirt/deposit**
+
+Not as:
+> uniformly darker recolored Clay/Sandstone.
+
+Clay remains visibly orange beneath broken dirty patches. Sandstone uses the same principle more subtly.
+
+### Matrix topography
+The current top of the underlying matrix is still too planar. Before P6A2 lookdev, P6A1.6 should test natural deterministic matrix topography:
+- broad undulations;
+- shallow bowls/cavities;
+- low ridges;
+- local shelves/steps;
+- imperfect layer transitions.
+
+This is **geometry**, not merely normal-map noise. It should improve the starting block silhouette/readability without changing the future separate outer-jacket silhouette system.
+
+These foundation decisions exist so P6A2 can author production-style materials and lighting on geometry that is unlikely to be discarded immediately.
