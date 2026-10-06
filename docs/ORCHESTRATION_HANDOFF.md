@@ -2,7 +2,7 @@
 
 **Purpose:** give a new ChatGPT orchestration conversation the same product mental model and decision discipline as the current one.
 
-**Last audited:** 2026-10-05.
+**Last audited:** 2026-10-06.
 
 ## 1. Product in one paragraph
 
