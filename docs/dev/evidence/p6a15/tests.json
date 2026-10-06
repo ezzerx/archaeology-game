@@ -1,0 +1,56 @@
+{
+	"benchmark": [],
+	"brush": [
+		{
+			"candidate": "A",
+			"fixture": 0,
+			"seconds": 2,
+			"soil_line_after": 785,
+			"soil_line_before": 785
+		},
+		{
+			"candidate": "B",
+			"fixture": 0,
+			"seconds": 2,
+			"soil_line_after": 0,
+			"soil_line_before": 496
+		},
+		{
+			"candidate": "A",
+			"fixture": 1,
+			"seconds": 2,
+			"soil_line_after": 785,
+			"soil_line_before": 785
+		},
+		{
+			"candidate": "B",
+			"fixture": 1,
+			"seconds": 2,
+			"soil_line_after": 0,
+			"soil_line_before": 496
+		}
+	],
+	"captures": [],
+	"checks": 64,
+	"failures": [],
+	"profiles": [
+		{
+			"bare_percent": 43.4025573730469,
+			"fixture": 0,
+			"max_soil_mm": 1.99999988079071,
+			"min_soil_mm": 0.0,
+			"profile_build_usec": 276572,
+			"surface_relief_mm": 29.5399979352951,
+			"witness_stone_cells": 0
+		},
+		{
+			"bare_percent": 43.4025573730469,
+			"fixture": 1,
+			"max_soil_mm": 2.00000596046448,
+			"min_soil_mm": 0.0,
+			"profile_build_usec": 276572,
+			"surface_relief_mm": 57.4151684045792,
+			"witness_stone_cells": 27933
+		}
+	]
+}

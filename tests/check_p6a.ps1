@@ -16,7 +16,7 @@ function Invoke-Lab([string]$Mode, [switch]$Headless) {
     & $enginePath @engineArgs
     if ($LASTEXITCODE -ne 0) { throw "P6A $Mode failed: $LASTEXITCODE" }
     if (Select-String -LiteralPath $logPath -Pattern 'SCRIPT ERROR|ERROR:|Parse Error|SHADER ERROR' -Quiet) {
-        throw "P6A $Mode: inspect $logPath"
+        throw "P6A ${Mode}: inspect $logPath"
     }
 }
 Invoke-Lab 'tests' -Headless

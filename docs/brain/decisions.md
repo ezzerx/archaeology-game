@@ -670,3 +670,9 @@ Sequence:
 > P6A-1 Material Lab ✅ → P6A1.5 Soil Foundation Spike → P6A2 Hero Lookdev → human visual gate → P6B
 
 The Soil spike decides only the basic Soil role/grammar needed for art. It is not final Soil polish.
+
+## Contact patina — correction de cible, 2026-10-06
+
+Antoine précise que la patine doit être **le matériau d’origine + des dépôts irréguliers**, et non une nouvelle couleur uniformément plus sombre. Clay reste clairement orange ; les taches ont une couverture cassée, des bords imparfaits et une opacité variable. Même principe, plus subtil, pour Sandstone. L’analogie visuelle avec Bone Film n’autorise aucun couplage de gameplay.
+
+Pour le Soil Foundation Spike, le choix technique est d’isoler les nouvelles conditions initiales et cette patine dans une scène de comparaison, en conservant le noyau d’excavation P4/P5. Le profil à 0–2 mm reste une **hypothèse testée**, pas une décision de gameplay validée. Détails et limites dans [P6A15_SOIL_REPORT](../dev/P6A15_SOIL_REPORT.md).

@@ -28,19 +28,17 @@ Result:
 - none of P5/A/B/C is accepted as the final visual direction;
 - B-style authored materials plus C-style projection/large-scale breakup remain useful technical hypotheses only.
 
-## Next authorized action
+## Current gate / next action
 
-**P6A1.5 — Soil Foundation Spike** is next.
+**P6A1.5 — Soil Foundation Spike delivered; waiting for Antoine's A/B decision.**
 
-Purpose:
-> decide the basic gameplay role of Soil before investing in the P6A2 Hero Lookdev.
+- Separate playable scene: `scenes/p6a15_soil_lab.tscn`, launcher `Launch-Soil-Lab.ps1`.
+- A = current thick Soil; B = 0–2 mm partial covering following the existing matrix.
+- Shared camera/tools/matrix; patchy visual contact deposits leave original Clay/Stone readable.
+- Report, evidence and short retest: [P6A15_SOIL_REPORT](../dev/P6A15_SOIL_REPORT.md).
+- B is a technical recommendation only. No Soil model is canonized.
 
-Compare:
-1. current thicker structural Soil;
-2. preferred thin loose-overburden model:
-   Brush away surface dirt → reveal dirty/patinated Clay/Sandstone → structural excavation.
-
-This spike should stay small. Do not turn it into final Soil particles/VFX/polish.
+**STOP for human review.** Next action is Antoine's explicit choice of A, B or a targeted correction. No P6A2 execution, P6B, final Soil VFX/polish or unrelated P4/P5 retuning.
 
 ## P6A2 status
 
