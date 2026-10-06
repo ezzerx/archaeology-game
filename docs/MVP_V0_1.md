@@ -1,115 +1,114 @@
-# Prototype v0.1 — Fossil Cleaning Prototype
+# Prototype v0.1 — Fossil Preparation Core
 
-**Statut : prototype développé par gates ; P4 validé, P5 livré sur PR #8 pour test humain.**  
-La spécification détaillée et canonique se trouve dans [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md), mais les briefs de phase plus récents prévalent lorsqu'ils la remplacent.
+> Current live phase/gate: `docs/brain/status.md`.
+> This document defines the V0.1 product target, not the live implementation status.
 
-## Overrides canoniques actuels
+## Core question
 
-- quatre outils d'excavation/préparation sont désormais validés : Brush, Chisel, Blower, Precision Pick ; **Forceps [5]** est ajouté par P5 pour la récupération manuelle ;
-- les fragments ne sont plus récupérés automatiquement en P5 : ils deviennent READY puis sont déplacés au plateau avec Forceps ;
-- la fin de session actuelle est **Preparation Complete → Keep Cleaning / Archive Specimen → Prepare Another Block**, pas Restart Specimen ;
-- **Exposure ≠ Cleanliness ≠ Condition** ; le Bone Surface Film est nettoyé au Brush ;
-- Soil n'a actuellement aucun mess persistant ; sa refonte est différée ;
-- le cadre narratif actuel est le laboratoire de préparation d'un musée d'histoire naturelle.
+> **Est-ce que j’ai envie de continuer à gratter alors que je sais déjà ce qu’il y a dessous ?**
 
-Pour la reprise actuelle, lire [ORCHESTRATION_HANDOFF](ORCHESTRATION_HANDOFF.md), [P5_BRIEF](dev/P5_BRIEF.md) et [P5_REPORT](dev/P5_REPORT.md).
+A positive answer validates the core tactile loop, not the complete commercial game.
 
-## Question à résoudre
-
-> Est-ce que j’ai envie de continuer à gratter alors que je sais déjà ce qu’il y a dessous ?
-
-Une réponse positive valide le cœur de sensation, pas la viabilité commerciale ni le jeu complet.
-
-## Direction visuelle retenue
-
-Pour le prototype, la direction canonique est désormais :
+## Canonical presentation
 
 > **2.5D stylisée — tabletop — caméra orthographique presque verticale**
 
-Le pixel art n'est plus la cible du prototype. La fouille doit permettre profondeur, cavités, ombres locales, fissures, poussière et révélation progressive des os. Voir [ART_DIRECTION.md](ART_DIRECTION.md).
+No controllable avatar. No open world.
 
-## Périmètre obligatoire
+The player is a specimen preparator/restorer working behind the scenes of a natural-history museum.
 
-| Élément | Résultat attendu |
-|---|---|
-| Un écran | Tabletop fixe, sans personnage ni déplacement |
-| Un bloc | Surface multicouche travaillable directement |
-| Un fossile | Specimen B-17, os révélés progressivement |
-| Trois matières cœur | Loose Soil, Compact Clay, Sandstone |
-| Une zone secondaire | Hard Rock facultatif pour tester la résistance |
-| Trois outils | Soft Brush, Chisel, Air Blower |
-| Matière destructible | Profondeur, états intermédiaires, creux et couche suivante |
-| Poussière | État gameplay nettoyable, pas simple VFX |
-| Game feel | Outils visibles, particules, débris, sons, lumière et réactions distinctes |
-| Découverte | Premier contact os protégé, son différent, feedback Bone detected |
-| Condition | Chisel pouvant endommager un os déjà exposé |
-| Mystère | Unknown → Vertebrate remains → Possible Theropod → Likely small theropod |
-| Fragments | Deux fragments récupérables automatiquement après dégagement |
-| Progression | Trois objectifs, completion card et Keep Cleaning |
+## V0.1 core loop
 
-## Les trois objectifs
+> **receive one specimen block → reveal / excavate → clean Bone → reach museum standard → Archive or Keep Cleaning → reset another block**
 
-- Expose the skull
-- Reveal 60 % of the skeleton
-- Recover both fragments
+Current normal tool grammar:
+- **Soft Brush** — thin Soil/surface dirt, Bone Surface Film, brushable mess;
+- **Chisel** — bulk Clay/Sandstone excavation and fracture;
+- **Air Blower** — loose mess evacuation;
+- **Precision Pick** — precise attached matrix near Bone.
 
-Ils peuvent être réalisés dans n'importe quel ordre.
+Historical Forceps/fragments work is dormant and is **not** part of the active V0.1 player loop.
 
-## Condition de fin
+## Core materials
 
-Une fois les trois objectifs atteints, afficher **Preparation Complete** avec :
+- thin loose Soil / surface overburden;
+- Compact Clay;
+- Sandstone / compact matrix;
+- Bone.
 
-- classification probable ;
-- pourcentage révélé ;
-- fragments récupérés ;
-- condition du spécimen.
+P6A1.5 human review prefers thin irregular Soil overburden rather than the former multi-centimeter Soil layer.
 
-Proposer :
+The next foundation question is the natural topography of the Clay/Sandstone matrix itself; see the live status.
 
-- **Keep Cleaning**
-- **Restart Specimen**
+## Bone concepts
 
-Le comportement le plus important à observer est : **le joueur continue-t-il volontairement après la fin ?**
+Keep separate:
 
-## Validation interne
+> **Exposure ≠ Cleanliness ≠ Condition**
 
-Feu vert proposé :
+- Exposure = how much Bone structure is revealed.
+- Cleanliness = how much adhered Bone Surface Film is removed.
+- Condition = preservation/damage state.
 
-- au moins **4 joueurs sur 5** donnent **4/5 ou plus** à la satisfaction de la fouille ;
-- au moins **3 joueurs sur 5** continuent volontairement après **Preparation Complete**.
+## Current completion model
 
-## Hors périmètre
+The V0.1 prototype currently uses:
+- a museum preparation standard;
+- optional further cleaning;
+- optional Fine Preparation mastery;
+- qualitative Condition feedback;
+- Archive / Keep Cleaning.
 
-Pas de :
+Exact thresholds are prototype/tuning values and live in the implementation docs, not here.
 
-- musée fonctionnel ;
-- économie ;
-- monde ouvert ;
-- personnage ;
-- multiples fossiles ;
-- sauvegarde avancée ;
-- génération procédurale ;
-- Steam integration ;
-- achievements ;
-- gamepad ;
-- histoire ;
-- catalogue important d'assets.
+## Must prove before V0.1 is considered ready
 
-**V0.1 = le bloc.**
+- excavation is satisfying with all four tools;
+- materials are immediately readable;
+- Bone reveal creates desire to continue;
+- the session goal and stopping point are understood without explanation;
+- the art direction is reproducible in-engine and survives real excavation;
+- performance remains acceptable on representative desktop hardware.
 
-## Ordre de réalisation
+## Out of V0.1 core scope
 
-1. **P0 — Interaction brute** : caméra, bloc, raycast, curseur, modification d'une map.
-2. **P1 — Matière** : profondeur, matériaux, résistance, creusement.
-3. **P2 — Outils** : Brush, Chisel, Blower.
-4. **P3 — Fossile** : exposure, detection, condition.
-5. **P4 — Game feel** : particules, débris, outil physique, audio, poussière, lumière.
-6. **P5 — UI et progression**.
-7. **P6 — Art pass** vers la DA canonique.
-8. **P7 — Tuning**, sans nouveau système.
+Do not require for the first serious external playtest:
+- full museum meta progression;
+- crate intake/opening;
+- multiple fossil families;
+- equipment economy/progression;
+- procedural/seeded block generation;
+- final extraction vs in-matrix vs mounted-skeleton model;
+- full save/meta economy;
+- Steam launch integration;
+- large content catalog.
 
-Le développement doit respecter la règle suivante :
+These are post-core systems once the excavation and visual pipeline are proven.
 
-> Si Astra hésite entre ajouter une feature et rendre le pinceau plus agréable, améliorer le pinceau.
+## External validation target
 
-Tous les détails de comportement, architecture, audio, matériaux, UI, debug et critères de Done sont définis dans [PROTOTYPE_V0_1_SPEC.md](PROTOTYPE_V0_1_SPEC.md).
+Initial target remains:
+- at least **4/5 testers** rate excavation satisfaction **4/5 or higher**;
+- at least **3/5 testers** voluntarily continue cleaning after the game has clearly told them the required work is complete.
+
+## Phase sequence
+
+P0 Interaction ✅  
+P1 Material / Relief ✅  
+P2 Tools ✅  
+P3 Fossil ✅  
+P4 Game Feel ✅  
+P5 Complete Session ✅  
+P6 Art Pass / visual pipeline ▶  
+P7 Final tuning
+
+Exact active substep is always in `docs/brain/status.md`.
+
+## References
+
+- [Status](brain/status.md)
+- [Roadmap](ROADMAP.md)
+- [Gameplay Loop](GAMEPLAY_LOOP.md)
+- [Art Direction](ART_DIRECTION.md)
+- [Future Systems](FUTURE_SYSTEMS.md)
+- [Orchestration Handoff](ORCHESTRATION_HANDOFF.md)
