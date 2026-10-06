@@ -368,21 +368,18 @@ Prove the recipe first.
 Do not decorate the whole kitchen before the recipe works.
 
 
-## P6A-2 — Hero Lookdev authorization — 2026-10-06
+## P6A2 — Hero Lookdev prepared, pending geometry foundation — 2026-10-06
 
 Human review of P6A-1: the Material Lab proved integration feasibility but none of
 P5/A/B/C is close enough to the desired art direction.
 
-P6A-2 is now separately authorized and supersedes "pick the prettiest A/B/C" as the
-current visual task.
+P6A2 is fully designed as the later target-match task, but it is **not currently executable**. P6A1.5 Soil semantics were resolved first, and P6A1.6 Natural Matrix Geometry must now be human-decided before Hero Lookdev begins.
 
 Execution source:
 - [P6A2_BRIEF](P6A2_BRIEF.md)
 - [P6A2 canonical visual target guide](../visual-references/P6A2_VISUAL_TARGETS.md)
 
-P6A-1's B/C findings are starting hypotheses only. P6A-2 must target the reference
-pack directly through one small playable Hero Lookdev patch. P6B remains blocked
-until explicit human approval.
+P6A-1's B/C findings are starting hypotheses only. Once P6A1.6 passes its human gate, P6A2 must target the reference pack directly through one small playable Hero Lookdev patch. P6B remains blocked until explicit human approval.
 
 
 ## P6A1.5 — Soil Foundation Spike prerequisite — 2026-10-06
