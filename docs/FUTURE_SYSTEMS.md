@@ -47,9 +47,9 @@ Beyond internal stratigraphy, future specimens should test **different outer blo
 
 The goal is identity and anticipation, not extra friction.
 
-### Soil / loose-overburden redesign — preferred hypothesis to test
+### Soil / loose-overburden redesign — P6A1.5 direction accepted
 
-The current thick structural Soil layer is considered provisional. A preferred future experiment is to reinterpret Soil as a **thin loose dirt / overburden layer sitting on top of the real matrix**, rather than a deep material the player excavates for several centimeters.
+The former thick structural Soil layer is no longer the preferred direction. P6A1.5 human review accepts Soil as a **thin loose dirt / overburden layer sitting on top of the real matrix**, rather than a deep material the player excavates for several centimeters. Exact thickness/coverage remain tunable.
 
 Target tactile sequence:
 
@@ -62,6 +62,19 @@ The visual **contact patina** remains after the loose surplus is removed, so the
 3. fresh Clay/Sandstone interior — structural excavation.
 
 This hypothesis should be tested in a future excavation-polish pass, not pulled into P5. If Soil becomes thin, verticality must remain interesting through matrix geometry, Clay/Sandstone distribution and fossil burial rather than relying on thick Soil depth.
+
+### Natural matrix topography — next foundation spike
+
+P6A1.5 exposed a new issue: once Soil becomes thin and substrate-driven, the top of the Clay/Sandstone matrix still reads too much like a horizontal plane.
+
+Next foundation direction:
+- deterministic broad relief in the matrix itself;
+- shallow bowls/cavities, low ridges, local shelves/steps and irregular interfaces;
+- preserve readable excavation and deterministic QA;
+- remain independent of the fossil silhouette except for safety/validation;
+- keep the future outer jacket/block silhouette system separate.
+
+This becomes P6A1.6 and should be human-tested before P6A2 Hero Lookdev.
 
 ### When to prototype
 
