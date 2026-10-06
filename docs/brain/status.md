@@ -48,22 +48,17 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A1.6 — Natural Matrix Geometry Spike** is next.
+**P6A1.6 — Natural Matrix Geometry Spike : livré techniquement, verdict humain attendu.**
 
-Reason:
-with thin Soil, the remaining weakness is now obvious: the underlying Clay/Sandstone surface still reads too much like a broad horizontal plane.
+- A = Soil mince accepté sur la matrice d’origine ; B = même Soil sur cinq macroformes déterministes du vrai heightfield.
+- Scène : `scenes/p6a16_natural_matrix_lab.tscn` ; lanceur : `Launch-Natural-Matrix-Lab.ps1`.
+- Fixtures départ, matrice nue, trajet Chisel, préparation Bone/Pick et interface. F8 compare A/B en gardant la vue ; F9 montre la matrice nue.
+- Régressions P0–P5 et labs passées ; Bone, interfaces, picking GPU/CPU et performances 1×/3× vérifiés. Détails : `docs/dev/P6A16_NATURAL_GEOMETRY_REPORT.md`.
+- Point de revue : relief encore discret sous la patine/lumière P5 ; travail médian −24,6 %, dont Skull −45,8 %. Aucun retuning outil ; aucune validation artistique ou canonisation de B.
 
-Goal:
-- create deterministic natural macro relief in the starting matrix;
-- introduce broad undulations, shallow cavities/bowls, ridges, local shelves/steps and imperfect transitions;
-- make Soil conform to that substrate;
-- keep the excavation readable and gameplay-safe.
+**Prochaine action : Antoine compare A/B et donne son HUMAN GEOMETRY VERDICT (A / B / correction ciblée). STOP développement après cette livraison.** Aucun P6A2, jacket, matériau/lumière final, P6B ou merge sans nouvelle autorisation.
 
-This is **internal matrix topography**, not the future outer jacket/block-silhouette system.
-
-Detailed brief on active branch: `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md`.
-
-Do not start P6A2 before this geometry spike receives human review.
+Brief : `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md` ; preuves et dix questions dans le rapport.
 
 ## P6A2 status
 
@@ -128,8 +123,4 @@ P6A is currently about proving the geometry + visual-production foundation befor
 
 ## New orchestration chat expectation
 
-If Antoine opens a new chat while this status still names P6A1.6 as next:
-- inspect PR #9;
-- read `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md`;
-- give the launch prompt as one copyable fenced block when asked;
-- do not reopen Soil semantics or P6A2 scope unless new evidence requires it.
+Pour reprendre : inspecter PR #9, lire le rapport P6A1.6 et récupérer le verdict humain avant toute correction ou suite. Donner la commande du lanceur quand Antoine souhaite tester ; ne pas relancer le spike depuis zéro ni déduire une validation des seuls tests automatisés.

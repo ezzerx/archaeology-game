@@ -15,7 +15,7 @@ var soil_shader: Shader
 func _ready() -> void:
 	super._ready()
 	get_window().title = "ArchaeologyGame — P6A1.5 Soil Foundation A/B"
-	profile = SoilFoundationProfile.new(block.working_map)
+	profile = _create_profile()
 	soil_shader = Shader.new()
 	var code := BASE.code
 	code = _hook(code, "void vertex() {", '#include "res://shaders/p6a15_contact_deposits.gdshaderinc"\nvoid vertex() {')
@@ -29,6 +29,9 @@ func _ready() -> void:
 	for material in [block.material, block.skirt_material]: material.shader = soil_shader
 	_controls()
 	reload()
+
+func _create_profile() -> SoilFoundationProfile:
+	return SoilFoundationProfile.new(block.working_map)
 
 static func _hook(code: String, anchor: String, replacement: String) -> String:
 	assert(code.count(anchor) == 1, "Soil lab adapter needs review: " + anchor)

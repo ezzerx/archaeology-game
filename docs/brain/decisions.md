@@ -714,3 +714,9 @@ This spike is about **internal matrix topography**, not the future outer block/j
 
 Sequence becomes:
 > P6A-1 Material Lab ✅ → P6A1.5 Soil Foundation ✅ human direction chosen → **P6A1.6 Natural Geometry Spike** → P6A2 Hero Lookdev → human visual gate → P6B.
+
+## P6A1.6 — séparation géologie / validation Bone (2026-10-06)
+
+Choix technique du spike, sans validation du candidat visuel : les macroformes sont des fonctions UV déterministes centralisées, calculées une fois, indépendantes du fossile. Bone sert à vérifier les plafonds et les budgets de travail après construction, jamais à sculpter/clamp le relief initial. Les fixtures pré-creusées sont séparées de cette génération et les outils restent natifs. Voir [rapport et limites](../dev/P6A16_NATURAL_GEOMETRY_REPORT.md).
+
+Leçon de mesure vérifiée : l’encodage de hauteur GPU par couleurs proches du noir peut produire une fausse divergence sous Compatibility. Encoder dans les tons moyens et comparer aussi à un oracle de triangles natifs avant de conclure à un défaut du picking.

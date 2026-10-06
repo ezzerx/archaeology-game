@@ -10,7 +10,7 @@ var build_count := 0
 var build_usec := 0
 var size: Vector2i
 
-func _init(surface: WorkingSurface) -> void:
+func _init(surface: WorkingSurface, fixture_count := 2) -> void:
 	var started := Time.get_ticks_usec()
 	size = surface.size
 	var broad := FastNoiseLite.new()
@@ -23,7 +23,7 @@ func _init(surface: WorkingSurface) -> void:
 	medium.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
 	medium.frequency = 1.0
 	medium.fractal_type = FastNoiseLite.FRACTAL_NONE
-	for fixture in range(2):
+	for fixture in range(fixture_count):
 		var layer_data := surface.strata.packed_limits.duplicate()
 		var substrate := PackedFloat32Array()
 		var top := PackedFloat32Array()
