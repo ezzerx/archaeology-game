@@ -61,7 +61,9 @@ Goal:
 
 This is **internal matrix topography**, not the future outer jacket/block-silhouette system.
 
-The detailed execution brief is prepared on the active P6A branch. Do not start P6A2 before this geometry spike receives human review.
+Detailed brief on active branch: `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md`.
+
+Do not start P6A2 before this geometry spike receives human review.
 
 ## P6A2 status
 
