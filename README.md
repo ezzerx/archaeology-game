@@ -19,12 +19,6 @@ Stable project handoff:
 
 Engine: **Godot 4.7.2 stable**, GDScript.
 
-## Launch the comparison scenes
-
-- **Soil A/B:** `Launch-Soil-Lab.ps1`, or `scenes/p6a15_soil_lab.tscn` → F6 in Godot. F8 switches Soil and resets the trial while preserving the camera. [Report / short retest](docs/dev/P6A15_SOIL_REPORT.md).
-- **Material Lab:** `Launch-Material-Lab.ps1`, or `scenes/p6a_material_lab.tscn` → F6. [Material comparison report](docs/dev/P6A_REPORT.md).
-- The ordinary project launch remains the P5 preparation scene.
-
 ## Core validated loop
 
 The current prototype lets the player:
