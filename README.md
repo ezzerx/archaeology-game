@@ -2,30 +2,35 @@
 
 **Working title modifiable.**
 
-**Statut : préproduction — P4 validé et mergé ; correctif P5 livré pour retest humain, PR #8 DRAFT.**
+Cozy, tactile fossil-preparation game set in the back rooms of a natural-history museum.
 
-**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET aucun amas osseux caché atteignant le seuil centralisé (connexité8, sans pont entre os). Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. [Rapport courant](docs/dev/P5_HIDDEN_CLUSTER_REPORT.md). **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
-Rapport, preuves et sept étapes de retest : [P5_HIDDEN_CLUSTER_REPORT](docs/dev/P5_HIDDEN_CLUSTER_REPORT.md).
-Moteur : **Godot 4.7.2 stable**, GDScript, 3D Compatibility.
+## Current status
 
-## Progression
+Do **not** use this README as the phase gate.
 
-- P0 Interaction brute ✅
-- P1 Matière / relief ✅
-- P2 Outils ✅
-- P3 Fossile / zoom ✅
-- P4 Game Feel ✅
-- **P5 Session complète / UI / progression — test humain ▶**
-- P6 Art pass
-- P7 Tuning
+Canonical live status:
+`docs/brain/status.md`
 
-### Jouer une session P5
+Documentation roles:
+`docs/DOCUMENTATION_POLICY.md`
 
-Ouvrir `project.godot` dans Godot4.7.2 puis **F5** et jouer librement, sans lire de brief. [1] Brush prépare Soil/film, [2] Chisel la matrice, [3] Blower le mess, [4] Pick les détails.
+Stable project handoff:
+`docs/ORCHESTRATION_HANDOFF.md`
 
-La carte annonce quand le spécimen est prêt à archiver. Continuer est facultatif. **Prepare Another Block** réinitialise le même B-17 déterministe pour ce prototype. R reset complet ; F1 détails et métriques ; molette zoom ; RMB pan ; Home vue initiale.
+Engine: **Godot 4.7.2 stable**, GDScript.
 
-Validation reproductible : `tests/check_p5.ps1 -GodotBin <chemin-vers-Godot> -Graphical`. Les tests emploient des fixtures pour réduire leur durée ; le jeu normal n’a aucun raccourci de completion.
+## Core validated loop
+
+The current prototype lets the player:
+- excavate a deterministic specimen block;
+- use Brush / Chisel / Blower / Precision Pick;
+- progressively reveal and clean Bone;
+- preserve Bone Condition through careful work;
+- reach a museum preparation standard;
+- optionally continue toward Fine Preparation;
+- archive the specimen and reset another block.
+
+The current visual-production phase and next authorized action are always listed in `docs/brain/status.md`.
 
 ### P3 — Fossile
 
