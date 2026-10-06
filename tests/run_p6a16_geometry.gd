@@ -13,6 +13,10 @@ func measure_geometry() -> Dictionary:
 	var clay: Array[float] = []
 	var slopes: Array[float] = []
 	var soil: Array[float] = []
+	var deltas: Array[float] = []
+	var positive := 0
+	var positive_eight := 0
+	var negative_six := 0
 	var effort := [[], [], [], [], []]
 	var stone := [[], [], [], [], []]
 	var gaps: Array[float] = []
@@ -26,6 +30,11 @@ func measure_geometry() -> Dictionary:
 			var top := s.strata.packed_limits[i * 2]
 			var bottom := s.strata.packed_limits[i * 2 + 1]
 			height.append(top * 102)
+			var delta: float = (top-main.profile.substrates[0][i])*102
+			deltas.append(delta)
+			if delta > 0: positive += 1
+			if delta > 8: positive_eight += 1
+			if delta < -6: negative_six += 1
 			clay.append((top - bottom) * 102)
 			soil.append((s._heights[i] - top) * 102)
 			if bottom <= 0 or top <= bottom: bad_order += 1
@@ -51,7 +60,9 @@ func measure_geometry() -> Dictionary:
 		var work: Array[float] = []; work.assign(effort[id])
 		var hard: Array[float] = []; hard.assign(stone[id])
 		populations.append({"component": id, "cells": work.size(), "work": distribution(work), "stone_mm": distribution(hard)})
-	return {"height_mm_above_base": distribution(height), "clay_mm": distribution(clay),
+	return {"delta_from_A_mm":distribution(deltas),"positive_fraction":float(positive)/deltas.size(),
+		"positive_over_8mm_fraction":float(positive_eight)/deltas.size(),"negative_under_6mm_fraction":float(negative_six)/deltas.size(),
+		"height_mm_above_base": distribution(height), "clay_mm": distribution(clay),
 		"flat_fraction_under_6deg": float(flat)/slopes.size(), "step_fraction_over_15deg": float(stepped)/slopes.size(),
 		"slope_degrees": distribution(slopes), "soil_mm": distribution(soil), "matrix_bone_gap_mm": distribution(gaps),
 		"bad_order_cells": bad_order, "invalid_initial_cells": outside, "populations": populations}
@@ -91,10 +102,11 @@ func functional() -> void:
 						"no anatomical work inflation >10%%: %d %s" % [id, metric])
 			check(measured.slope_degrees.P95 > reference.slope_degrees.P95 * 1.5 and measured.slope_degrees.max < 60,
 				"bounded macro slopes for the structured geometry trial")
-			check(measured.flat_fraction_under_6deg > .55 and measured.step_fraction_over_15deg > .08,
-				"broad interiors plus readable step faces, not uniformly rolling terrain")
+			check(measured.flat_fraction_under_6deg > .35 and measured.step_fraction_over_15deg > .08,
+				"meso flats (>35%) and step faces coexist; macro-only 55% flat guard superseded by surface-grammar request")
 			# Structured steps need ~11 mm sampling; the former 34 mm sampling
-			# only represented soft lobes. Keep submillimeter reconstruction error.
+			# only represented soft lobes. This oracle now isolates MACRO from
+			# the explicitly requested 20–48 mm meso forms, measured separately.
 			var coarse := Image.create(97, 61, false, Image.FORMAT_RF)
 			for y in range(61):
 				for x in range(97): coarse.set_pixel(x, y, Color(NaturalMatrixProfile.offsets_mm(Vector2(x / 96.0, y / 60.0)).x, 0, 0))
@@ -111,8 +123,29 @@ func functional() -> void:
 					samples += 1
 					low = minf(low, delta); high = maxf(high, delta)
 			var rms := sqrt(error2 / samples)
-			check(rms < 0.35 and high - low >= 18, "coarse field explains structured >=18 mm forms, RMS <0.35 mm")
+			check(rms < 0.35 and high - low >= 18, "macro-only coarse field explains >=18 mm relief, RMS <0.35 mm")
 			evidence["macro"] = {"coarse_grid": [97,61], "rms_mm": rms, "offset_min_mm": low, "offset_max_mm": high}
+			check(measured.delta_from_A_mm.max > 8 and measured.delta_from_A_mm.min < -6 and measured.positive_over_8mm_fraction > .05,
+				"genuine positive emergence above A plus lower pockets on real map")
+			var meso: Dictionary = main.profile.meso_stats
+			check(meso.min_mm >= -2.81 and meso.max_mm <= 3.61 and meso.min_mm < -1 and meso.max_mm > 2,
+				"bounded signed meso relief exists before any tool hit")
+			check(meso.fraction_over_half_mm > .30 and meso.fraction_over_half_mm < .75,
+				"meso structure has meaningful coverage with calmer gaps")
+			# Verify meso on the authoritative map, not merely generator metadata.
+			var meso_low := INF; var meso_high := -INF; var meso_error2 := 0.0; var meso_samples := 0
+			for y in range(3,s.size.y,7):
+				for x in range(3,s.size.x,7):
+					var i := y*s.size.x+x
+					var uv := (Vector2(x,y)+Vector2.ONE*.5)/Vector2(s.size)
+					var macro := NaturalMatrixProfile.offsets_mm(uv,main.profile._bounds).x
+					var residual: float = (s.strata.packed_limits[i*2]-accepted.substrates[0][i])*102-macro
+					meso_low = minf(meso_low,residual); meso_high = maxf(meso_high,residual)
+					meso_error2 += residual*residual; meso_samples += 1
+			var meso_rms := sqrt(meso_error2/meso_samples)
+			check(meso_low >= -2.81 and meso_low < -1 and meso_high > 2 and meso_high <= 3.61 and meso_rms > .65,
+				"signed meso structure is actually present on authoritative initial heightfield")
+			evidence["meso_on_map"] = {"samples":meso_samples,"min_mm":meso_low,"max_mm":meso_high,"rms_mm":meso_rms}
 			var max_soil_delta := 0.0
 			for i in range(s._heights.size()):
 				max_soil_delta = maxf(max_soil_delta, absf((s._heights[i] - s.strata.packed_limits[i*2]) - (accepted.thin_tops[0][i] - accepted.substrates[0][i])) * 102)
@@ -167,6 +200,7 @@ func functional() -> void:
 	var rebuilt := NaturalMatrixProfile.new(independent)
 	check(rebuilt.limits[1] == main.profile.limits[1] and rebuilt.thin_tops[1] == main.profile.thin_tops[1], "independent deterministic geometry build")
 	evidence["profile_build_usec"] = main.profile.build_usec
+	evidence["meso"] = main.profile.meso_stats
 
 func visual() -> void:
 	main.panel.hide()
@@ -197,10 +231,14 @@ func visual() -> void:
 	main.select_fixture(1)
 	main.select_candidate(1)
 	main.set_patina(false)
-	await zoom_centered(3,Vector2(510,448))
+	await zoom_centered(3,Vector2(210,150))
 	await capture("outcrop-B-3x-no-patina")
-	await zoom_centered(3,Vector2(488,135))
+	await zoom_centered(3,Vector2(375,205))
 	await capture("pocket-B-3x-no-patina")
+	await zoom_centered(3,Vector2(460,445))
+	await capture("meso-B-3x-no-patina")
+	var meso_pose: Transform3D = main.camera.global_transform
+	var meso_size: float = main.camera.size
 	var before := state()
 	var s: WorkingSurface = main.block.working_map
 	for n in range(8):
@@ -208,8 +246,11 @@ func visual() -> void:
 	await settle()
 	check(state().height != before.height and state().bone == before.bone and state().ceilings == before.ceilings,
 		"eight native Chisel hits blend with real relief, immutable Bone")
-	await zoom_centered(3,Vector2(510,448))
-	await capture("outcrop-B-3x-after-8-chisel-no-patina")
+	main.camera.global_transform = meso_pose
+	main.camera.size = meso_size
+	main.camera.target_zoom = main.camera._base_size/meso_size
+	main.camera._anchored = false
+	await capture("meso-B-3x-after-8-chisel-no-patina")
 	await zoom_to(1)
 	await capture("outcrop-B-1x-after-8-chisel-no-patina")
 	main.set_patina(true)
@@ -364,7 +405,7 @@ func benchmark() -> void:
 				FileAccess.open(out+"benchmark.json",FileAccess.WRITE).store_string(JSON.stringify(evidence,"\t"))
 
 func run() -> void:
-	out = "res://work/test-logs/p6a16-outcrops/"
+	out = "res://work/test-logs/p6a16-surface-grammar/"
 	var args := OS.get_cmdline_user_args()
 	var mode := args[0] if not args.is_empty() else "tests"
 	DirAccess.make_dir_recursive_absolute(out)

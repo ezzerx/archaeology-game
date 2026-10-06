@@ -48,18 +48,18 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A1.6 — correction « Affleurements » livrée techniquement, verdict humain attendu.**
+**P6A1.6 — correction finale ciblée « Macro + petites unités » livrée, verdict humain attendu.**
 
-- Retour humain sur B polygonal : niveaux mieux lisibles, mais effet de toile découpée / puzzle ; non validé comme fondation. Direction demandée : masses émergentes, substrat continu calme, fronts localisés et raccords organiques asymétriques.
-- A = Soil mince accepté sur la matrice d’origine, inchangé ; B = quatre affleurements, deux épaulements imbriqués et deux poches dans le vrai heightfield. Shader, patine, lumière, caméra et gameplay conservés.
+- Dernier recadrage humain : tester une matière faite de petites unités minérales dès l’état initial, par le vrai heightfield, avec masses positives et poches. Les seuls macro-affleurements précédents ne sont pas validés comme fondation.
+- A reste exact. B combine quatre masses positives, deux épaulements, trois poches et 444 empreintes méso irrégulières. Déplacement total relatif à A : **−12,88 à +14,91 mm** ; 14,8 % de la surface au-dessus de +8 mm. Pas de nouveau shader/lumière, ni retuning des outils, Soil, Bone ou progression P5.
 - Scène : `scenes/p6a16_natural_matrix_lab.tscn` ; lanceur : `Launch-Natural-Matrix-Lab.ps1`. F8 compare A/B avec reset de la fixture et cadrage conservé ; F9 montre la matrice nue.
-- Rapport actif : `docs/dev/P6A16_OUTCROPS_REPORT.md`, paramètres et 29 captures dont les vues sans patine 1×/3× et huit coups Chisel sur un front. Les deux corrections précédentes et leurs preuves restent historiques.
-- Vérifications : P0–P5 et labs passés, 79 contrôles géométriques conservés, 50 graphiques et 84 benchmark. Bone, interfaces, picking GPU/CPU et progression P5 préservés ; budgets globaux P4 respectés (travail P95 176,71 / max 202,93).
-- Travail médian global −2,7 %, Hind Limb −6,1 % ; cela ne prouve pas une durée de fouille identique. Point de revue : lecture de masses rocheuses émergentes et confort des raccords. Certains arcs/dessus peuvent encore sembler trop lisses ou ronds. Aucun B canonisé.
+- Rapport actif : `docs/dev/P6A16_SURFACE_GRAMMAR_REPORT.md` ; 30 captures dont départ A/B sans patine, matrice 1×, masse/poche/méso 3× et huit coups Chisel. Les versions précédentes restent historiques.
+- Vérifié : P0–P5 et labs, 83 contrôles géométriques, 51 graphiques, 84 benchmark. Aucun Bone initialement exposé, aucune inversion. Travail global P95 **173,41 / max 200,50**, sous 180 / 205 ; médiane −4,4 %. Picking et budgets conservés. L’ancien seuil de grands intérieurs calmes a été explicitement adapté au nouveau méso, voir rapport.
+- Revue requise : structure minérale crédible ou petites plaquettes encore trop dessinées ; cohérence avec les coupes Chisel et confort de fouille. Rendu de prototype et crénelage 3× encore visibles. Aucun candidat canonisé.
 
-**Prochaine action : Antoine compare A/B et donne son verdict sur cette correction ciblée. STOP développement après cette livraison.** Aucun P6A2, jacket, art pass final, P6B ou merge sans nouvelle autorisation.
+**Prochaine action : verdict humain d’Antoine sur la grammaire macro + méso. STOP développement après cette livraison.** Aucun P6A2, preflight, jacket, art pass final, P6B ou merge sans nouvelle autorisation.
 
-Brief historique : `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md` ; les deux retours humains et le rapport actif précisent la cible de correction.
+Le brief historique `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md` est complété par les recadrages humains documentés dans le rapport actif.
 
 ## P6A2 status
 

@@ -729,3 +729,8 @@ Antoine ne valide pas le premier B : les plis doux restent trop proches d’un p
 ## P6A1.6 — retour humain : affleurements, pas puzzle (2026-10-06)
 
 Le B polygonal améliore la lecture des niveaux mais n’est pas approuvé comme fondation : Antoine voit une surface découpée en plaques. Direction confirmée : substrat continu relativement calme, quelques masses minérales émergentes de tailles différentes, épaulements imbriqués et poches ouvertes. Préférer des contours courbes irréguliers, des fronts localisés qui se fondent ailleurs dans la surface, et une variation méso légère sur les dessus. Éviter les anneaux abrupts complets, les tranchées de largeur constante et la mosaïque de poids visuel uniforme. Le vrai heightfield doit porter cette lecture sans patine ; outils et Bone restent verrouillés. La [correction par affleurements](../dev/P6A16_OUTCROPS_REPORT.md) est une proposition technique, pas une validation de cette géométrie.
+
+
+## P6A1.6 — test de grammaire de surface macro + méso (2026-10-06)
+
+Antoine recadre la dernière correction : le matériau doit pouvoir évoquer de petites unités minérales excavables **avant** les coups Chisel, par la vraie géométrie. Il autorise un test associant des masses réellement positives par rapport à A, des poches et une structure méso de petits replats/ressauts/creux irréguliers. Les macroformes seules ne suffisent pas ; éviter membrane, puzzle fermé, grille Minecraft et bruit uniforme. Cette autorisation de test **ne valide pas** une grammaire voxel finale. Conserver A, Soil, lumière, caméra, outils, Bone, picking et discipline de budgets ; adapter la distribution géométrique si nécessaire, jamais les outils. [Implémentation et preuves du test](../dev/P6A16_SURFACE_GRAMMAR_REPORT.md).

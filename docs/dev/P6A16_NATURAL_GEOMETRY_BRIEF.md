@@ -1,5 +1,7 @@
 # P6A1.6 — Natural Matrix Geometry Spike
 
+> **Complément humain du 2026-10-06 :** le test final porte aussi sur une grammaire méso de petites unités minérales visibles avant excavation, en plus de masses réellement positives par rapport à A. Voir le [rapport macro + méso](P6A16_SURFACE_GRAMMAR_REPORT.md). Les règles macro seules ci-dessous documentent le brief initial ; le dernier recadrage humain prévaut.
+
 **Status:** authorized after human approval of P6A1.5 Soil semantics  
 **Date:** 2026-10-06  
 **Branch:** `prototype/p6a-visual-spike`  

@@ -14,7 +14,7 @@ func _controls() -> void:
 	var box := panel.get_child(0)
 	box.get_child(0).text = "P6A1.6 / GÉOMÉTRIE A–B"
 	buttons[0].text = "A · Matrice actuelle + Soil mince"
-	buttons[1].text = "B · Affleurements + Soil mince"
+	buttons[1].text = "B · Macro + petites unités + Soil mince"
 	fixture_select.clear()
 	for title in FIXTURES: fixture_select.add_item(title)
 
@@ -34,7 +34,7 @@ func reload() -> void:
 	super.reload()
 	if fixture >= 2: NaturalMatrixFixtures.apply(self, fixture)
 	note.text = ["Soil mince identique, relief différent.\nBrush → Clay → Chisel / Pick.",
-		"Comparer masses, passages et poches.\nPatine ON/OFF pour lire la forme.",
+		"Comparer masses et structure méso.\nPatine ON/OFF pour lire la forme.",
 		"Même trajet et nombre de coups natifs.\nLe creusement reste jouable.",
 		"Même zone préparée au Pick natif.\nPlafonds Bone et film conservés.",
 		"Coupe témoin à profondeur commune.\nInterfaces réelles, outils actifs."][fixture]

@@ -1,5 +1,7 @@
 # P6A1.6 — B : affleurements sur substrat continu
 
+> **Recadrage humain ultérieur : les macroformes seules ne suffisent pas.** Antoine demande une émergence positive par rapport à A et de petites unités minérales visibles dès la surface. Voir la [correction macro + méso](P6A16_SURFACE_GRAMMAR_REPORT.md). Les preuves ci-dessous décrivent le candidat `db361fd`, conservé comme historique.
+
 2026-10-06. Correction ciblée après le [B polygonal](P6A16_STRUCTURED_MATRIX_REPORT.md) : Antoine reconnaît la meilleure lecture des niveaux, mais refuse l’effet de toile découpée / puzzle. Le [statut canonique](../brain/status.md) porte la gate courante. Ce rapport décrit une proposition à revoir, pas une fondation approuvée.
 
 ## Correction
