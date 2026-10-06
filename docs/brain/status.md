@@ -362,3 +362,22 @@ Code gameplay P4/P5 inchangé ; mesures et captures dans [P6A_REPORT](../dev/P6A
 Préférence technique provisoire : B (atlas peint + masques), **non canonisée**.
 C n'inclut pas de jacket. La scène P5 normale reste le point d'entrée F5.
 **Prochaine action : revue Antoine du Material Lab. STOP jusqu'au verdict.**
+
+
+## P6A2 — Hero Lookdev ready to launch
+
+P6A-1 Material Lab is complete and human-reviewed. Its candidates are not accepted
+as the art target.
+
+Current authorized task: **P6A2 Hero Lookdev / Target Match**.
+
+Read:
+1. `docs/dev/P6A2_BRIEF.md`
+2. `docs/visual-references/P6A2_VISUAL_TARGETS.md`
+3. the PRIMARY reference images
+
+Mandatory preflight: executing Codex must be able to inspect the PRIMARY images.
+If not, stop and ask Antoine to provide/copy them before visual implementation.
+
+P6A2 targets one small real gameplay patch, not the whole workshop. P6B remains
+unauthorized until explicit visual approval.
