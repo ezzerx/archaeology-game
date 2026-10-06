@@ -1,44 +1,49 @@
-# Contexte du projet ArchaeologyGame
+# ArchaeologyGame — Agent Instructions
 
-## Reprise
+## Start here
 
-Lire d'abord `docs/ORCHESTRATION_HANDOFF.md`, puis lire `docs/brain/BRAIN.md`, `docs/brain/status.md` et les documents utiles à la demande. Le contexte propre à ce dépôt est canonique pour ce projet ; le Brain personnel ne conserve qu’un pointeur.
+Read in this order:
 
-## Périmètre actuel
+1. `docs/brain/status.md` — **single source of current phase, active PR, gate and next authorized action**.
+2. `docs/ORCHESTRATION_HANDOFF.md` — stable product mental model.
+3. The active phase brief/report named by `status.md`.
+4. `docs/brain/decisions.md` when decision history matters.
+5. `docs/DOCUMENTATION_POLICY.md`.
 
-**P5 courant — coverage + Condition, 2026-10-05 :** archive = Exposure≥85 % ET Cleanliness≥85 % ET aucun amas osseux caché atteignant le seuil centralisé (connexité8, sans pont entre os). Garde cachée sauf « Major section still covered » quand elle bloque85/85. Carte unique : Museum standard85 %, Reveal/Clean, Condition qualitative (Excellent≥95 / Good≥85 / Fair≥70 / Damaged<70), sans troisième barre. L'étoile globale95/95 reste facultative et indépendante de Condition. Les quatre outils et P4 sont inchangés. `docs/dev/P5_HIDDEN_CLUSTER_REPORT.md`. **P5 non validé humainement, PR #8 DRAFT ; aucun merge/P6.**
+Do not infer project state from README text, old reports, branch names or historical sections.
 
-Sources courantes : `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md` (dernière section Human test5), `docs/dev/P5_HIDDEN_CLUSTER_REPORT.md` et le Brain. Branche `prototype/p5-loop-progression`, base P5 `main@b2a32c8ae97c8fec2c8a583c405ac9274ef566af`. Les anciens rapports P5/fragments sont historiques.
+If documents conflict:
+> newest explicit Antoine instruction > status.md > active brief/report > decisions.md > durable product docs > archive/history.
 
-`PreparationSession` observe les compteurs FossilState/BoneSurfaceFilm, regroupe les signaux et ne recalcule rien au repos. Completion/étoile acquises une seule fois par reset. Les outils restent actifs à85 et95 ; Keep Cleaning enregistre le choix sans reset. Seule Archive bloque la fouille et capture les valeurs finales. Snapshots completion/archive distincts, temps et actions supplémentaires en mémoire/F1. R et Prepare Another Block réarment le même B-17 déterministe ; aucun musée persistant. L'expérience fragments demeure dormante, activée uniquement par son test explicite.
+## Durable product invariants
 
-**Exposure ≠ Cleanliness ≠ Condition.** La propreté porte sur le film des cellules anatomiques exposées ; de nouveaux os sales peuvent baisser son ratio, sans effacer les milestones acquis. Classification interne monotone : Unknown → Vertebrate (5 % global ou composant10 %) → Possible Theropod (Spine15 % + Hind Limb10 %) → Likely small theropod (Skull35 % après stade2). Aucun composant ne constitue un objectif/une étoile.
+- Godot 4.7.2 stable remains the canonical engine unless a concrete blocker justifies a change.
+- Fixed tabletop / near-top-down presentation; no controllable avatar or open world.
+- Excavation feel and material/tool readability take priority over feature volume.
+- Exposure, Cleanliness and Condition are distinct concepts.
+- P4/P5 gameplay is considered frozen during visual work unless an explicitly authorized spike says otherwise.
+- Runtime target:240 FPS cap /60 Hz physics on the reference PC; performance evidence never replaces human validation.
+- The museum is the narrative employer and future collection/meta destination.
+- Current art target: warm stylized2.5D natural-history preparation lab; gameplay readability wins over screenshot beauty.
 
-**Débris** : uniquement Clay/Sandstone, look Matrix P4-V1 4,5 mm max, physique légère et persistance conservées. Clay3 / Stone4 places par zone24×24, cap Matrix256, rétention8 %, capacité0,02. **Soil : aucun grain ni Fine Dust persistant** ; retrait/audio/relief conservés, refonte Dust Soil différée P6/P7. Hard Dust reste active. **Blower = évacuation gameplay** : poids≥0,25, dose0,075 seconde pondérée, oubli après0,15 s hors influence. Au seuil : slots logique/local/physique libérés ; vol FX0,35 s,0,65 m/s horizontal et0,08 m/s vertical, puis rétrécissement/disparition. Le vrai bord n’est plus requis. Un MultiMesh fixe512 places (256 logiques +256 FX maximum), aucune collision terrain pour les FX. F1 sépare Matrix/Clay/Stone/moving/sleeping de Ejecting FX ; Fine Dust hors cap. F3 modifie la physique, pas la règle de nettoyage.
+## Workflow
 
-**Micro-restes** : Brush ne travaille généralement ni Clay ni Sandstone (efficacité structurelle Clay historique0,06 corrigée à0). Un îlot hard ≤1,5 mm, ≤4 cellules8-connectées dans5×5, sans voisin épais ni prolongement, peut devenir une miette via un helper borné à64 inspections/action. Conversion déterministe à l’interface ou au plafond Bone, quantité entière conservée ; pas de fracture/gros chunk Chisel/dégât. Si aucune miette ne peut être admise, la structure reste intacte. Le Brush suivant nettoie la miette. Les vrais morceaux attachés restent au Pick.
+- During a phase: implement/test on the active branch.
+- Between phases: require explicit human review before merge or next gate.
+- Automated tests do not imply human/product validation.
+- Do not start a later phase because a report mentions it; only `status.md` / active brief can authorize it.
+- Preserve deterministic fixtures and regression tests when changing visuals.
 
-**Bone Surface Dirt Film** : nouvelle couche adhérente autorisée par la clôture, distincte de Fine Dust. Signal central de première exposition → film 0,85. Carte RGBA8 au quart par axe (160 KiB), quantité par groupe 4×4 et masque 16bits des cellules fines sales ; cellules déjà propres jamais resalies par une nouvelle voisine. Seul Soft Brush retire le film (`bone_film_clear=1,0/s`, autres outils0), ~1 s au centre ; audio Brush actif sur film seul, aucune émission Matrix par le film lui-même. Blower enlève Dust/débris mais laisse le film. Ivoire identifiable, patches brun terreux sombre distincts du Sandstone et rugosité. **Exposure ≠ Cleanliness ≠ Condition** : aucune autorité film sur relief, plafonds, protection ou dégâts. Reset réarme le film. Gameplay et couleur du film sont validés humainement et inchangés par la micro-passe.
+## Documentation
 
-**Base V1.1 conservée** : un seul profil statique en UV (`BlockVerticalityProfile`), Clay redistribuée par nappe/gradient et deux lobes doux, sans masque Bone. Soil et plafonds Bone V1 exacts (55,35–85,34 mm). Silhouette/IDs/totaux P4 exacts. Budgets Sandstone sur tout le fossile : P95 ≤18–20 mm, maximum ≤22 mm. Oracle relatif F1/tests : Clay au-dessus de Bone ×3 + Sandstone ×5,333… ; aucune prédiction de temps. **Verticality / generation must be effort-aware, not depth-only.** A `(250,230)` Skull, B `(510,307)` Spine, C `(646,441)` Hind Limb à 1024×640. Aucune seed/procgen ni retuning outil.
+Follow `docs/DOCUMENTATION_POLICY.md`.
 
-**V1.2 validée** : interfaces visuelles et matériau du curseur interpolés sur les mêmes triangles que le relief ; delta hauteur/limite calculé aux sommets, tolérance numérique normalisée `1e-6` (0,102 µm). Cartes géologiques et retrait par cellule inchangés. Valeur des faces renforcée sur les parois dures, éclats et miettes avec meshes statiques. Retour humain : grille orange absente, blocs/profondeur mieux lisibles, agrément préservé. Ces acquis restent verrouillés dans V2.
+Keep this file short.
+Do not add:
+- tuning trivia;
+- benchmark numbers;
+- fixture coordinates;
+- micro-thresholds;
+- historical implementation narratives.
 
-Référence P4 : Chisel spectacle A (`42ec46d`) avec éclats transitoires 3–6 mm, 1–5 par plaque cassée, pools bornés, expiration 0,51–0,69 s **dans les deux modes**. Le principe Blower B (`c25b44f`) de chasse directionnelle de petites saletés reste la cible ; ON/OFF utilisent le même seuil d’évacuation, suivi d’un FX sans cap logique. Fréquence persistante finale : trois miettes Clay / quatre Sandstone par zone 24×24, rétention 8 %, capacité 0,02. Retrait Soil et Pick préservés ; mess Soil supprimé. Angle ancien fixe `(0.5, 0, -0.62)`, pointe exacte et corps soulevé localement. **Bone : une protection par composant (Skull / Spine / Ribs / Hind Limb), quatre maximum pour B-17 par reset ; Bone Condition globale.** Premier Chisel direct sur un centre du composant DÉJÀ EXPOSÉ AVANT le coup = petit tik, zéro dégât, protection de ce composant consommée ; suivants sur ce même composant = DING/−3. Toutes les côtes partagent RIBS, toutes les vertèbres SPINE. Révélation même centrale et Pick/Brush/Blower ne consomment rien. `direct_contact_consumed` est un tableau indexé par Component, NONE inutilisé ; reset réarme les quatre, F1 affiche READY/USED. Baseline P4 réévaluable en P7. Exposure inchangée. Proxies statiques Tip/Body, au plus douze sondes terrain, aucune reconstruction de mesh en jeu.
-
-Baselines ressources humaines (rayon / puissance / falloff) : **Brush 40 / 0.70 / 1.25 ; Chisel 22 / 0.64 / 2.25 ; Blower 60 / 0 / 1.00 ; Pick 11 / 0.44 / 1.75**. Blower `residue_clear = 2.5`. **P4 human-validated baseline — tuning final deferred to P7.** Cadences, dégâts, résistances et seuils de fracture préservés ; seules exceptions autorisées : efficacité Clay du Brush à0 et dépôt persistant Soil à0.
-
-Grammaire joueur : **matière attachée / saleté** ; micro-îlot fin presque détaché→mess au Brush. Soil → Brush ; matrice dure → Chisel ; détails près de Bone → Pick ; mess → Brush/Blower. **Dust may obscure detail, never material identity** : Bone garde son ivoire et sa réponse lumineuse. Dust par matériau local, sans nouvelle map ; soulèvement directionnel conservé. **[4] Precision Pick = micro-Chisel** : clic ou maintien immobile, 6 Hz, rayon 11, puissance 0,44, falloff 1,75, efficacités 0,30/ 1,00/ 1,50, interface et plafond osseux respectés, zéro dégât provisoire P4. Sons générés, Brush, proxies, fracture et caméra à préserver ; aucun bonus Brush, marge osseuse ou auto-stop Chisel. RMB pan borné à angle fixe ; Home restaure zoom/pan, R aussi le spécimen. Molette zoom 1–3× ; Shift/Ctrl/Alt puissance/falloff/rayon en debug, F6/F7 en secours. Cap 240 FPS, physique 60 Hz. Tuning final P7 ; la roadmap ne lance pas ses étapes.
-
-## Invariants de conception
-
-- Fouille strictement du dessus / tabletop, sans monde ouvert ni personnage contrôlable.
-- Priorité à la sensation de fouille avant le volume de contenu et les systèmes secondaires.
-- Musée en galerie horizontale ; squelettes visuellement incomplets tant que des pièces manquent.
-- DA non verrouillée avant une comparaison sur le prototype jouable.
-- Godot envisagé ; vérifier la version avant de la choisir.
-- Nom ArchaeologyGame temporaire et modifiable.
-
-## Documentation et mémoire
-
-Répondre en français et conserver une documentation concise, actionnable, en UTF-8. Distinguer décisions confirmées, propositions et résultats réellement vérifiés. Après un changement durable, actualiser le statut et les décisions du Brain du dépôt, sans dupliquer l’état du projet dans le Brain global. Ne pas stocker de secrets ou importer la mémoire personnelle dans GitHub.
+Those belong in active briefs/reports or archive documents.
