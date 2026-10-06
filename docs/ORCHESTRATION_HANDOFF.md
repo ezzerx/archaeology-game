@@ -6,7 +6,7 @@
 
 ## 1. Product in one paragraph
 
-ArchaeologyGame is a cosy, tactile fossil-preparation game set in the back rooms of a natural-history museum. The player is a **specimen preparator/restorer**, not an adventurer avatar: specimens arrive at the museum workshop as excavation blocks, the player removes Soil / Clay / Sandstone, reveals and cleans Bone, recovers pieces, updates a scientific dossier, then archives the prepared specimen for the museum collection. The core fantasy is **quiet scientific craft and discovery**. No open world, no controllable character; the tabletop/workbench is the gameplay space.
+ArchaeologyGame is a cosy, tactile fossil-preparation game set in the back rooms of a natural-history museum. The player is a **specimen preparator/restorer**, not an adventurer avatar: specimens arrive at the museum workshop as excavation blocks, the player removes surface dirt and matrix, reveals and cleans Bone, documents the specimen, then archives the preparation for the museum. Whether future specimens remain in-matrix, are extracted, or contribute to mounted exhibits is intentionally still a Macro Game Design decision. The core fantasy is **quiet scientific craft and discovery**. No open world, no controllable character; the tabletop/workbench is the gameplay space.
 
 Long-term diegetic loop:
 
