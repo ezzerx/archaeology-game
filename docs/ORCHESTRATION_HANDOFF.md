@@ -44,12 +44,11 @@ Documentation roles are defined in `docs/DOCUMENTATION_POLICY.md`.
 When documents conflict, use this order:
 
 1. **Antoine’s newest explicit decision in the current conversation**
-2. **active phase brief** (`docs/dev/Pn_BRIEF.md`)
-3. **active phase report / active PR**
+2. **`docs/brain/status.md` for live phase / gate / next authorized action**
+3. **active phase brief / report / active PR**
 4. `docs/brain/decisions.md`
-5. `docs/brain/status.md`
-6. `docs/CONCEPT.md`, `GAMEPLAY_LOOP.md`, `ART_DIRECTION.md`, `MUSEUM_SYSTEM.md`, `ROADMAP.md`
-7. older phase reports / old prototype text as historical context
+5. `docs/CONCEPT.md`, `GAMEPLAY_LOOP.md`, `ART_DIRECTION.md`, `MUSEUM_SYSTEM.md`, `FUTURE_SYSTEMS.md`, `ROADMAP.md`
+6. older phase reports / archived prototype text as historical context
 
 `PROTOTYPE_V0_1_SPEC.md` is foundational but contains historical sections superseded by later phase decisions. Never resurrect an older rule merely because it is still written there.
 
@@ -101,7 +100,7 @@ Newly exposed Bone carries an adhered dirt film. Brush removes it; Blower/Pick d
 
 These are **not P4 blockers**:
 
-- Soil needs a richer redesign eventually.
+- Soil semantics were reworked in P6A1.5: thin, partial overburden is preferred over thick structural Soil. Final particles/VFX/tuning remain future polish.
 - Matrix debris is good enough but may have a better future solution.
 - occasional visual ambiguity: Pick-removable attached remnant vs Brush-removable mess.
 - Bone dirt can still resemble Sandstone in some views.
@@ -174,11 +173,24 @@ P6A first, then P6B.
 
 Already canonized for P6:
 - museum façade/menu → preparation workshop → gallery visual continuity;
-- **layer contact patina**:
-  - Soil → Clay: dirty/browned Clay surface skin, cleaner orange Clay underneath;
-  - Clay → Sandstone: subtler optional variant;
-  - visual only, no gameplay thickness/resistance/picking.
-- Bone dirt vs Sandstone readability: **try color-only first**.
+- **thin Soil overburden**: partial surface dirt follows the substrate; Brush reveals the real Clay/Sandstone work surface;
+- **contact patina**: original Clay/Sandstone stays readable under irregular dirty deposits/stains; never a uniformly darker material band;
+- **natural matrix topography before Hero Lookdev**: broad deterministic undulations, shallow bowls/cavities, ridges and local shelves/steps so the underlying matrix does not start as a flat plane;
+- Bone dirt vs Sandstone readability: **try color/material-property changes before redesigning the current film pattern**;
+- seasonal museum menu direction: same façade/composition, seasonal ambience (snow/flakes, autumn leaves, etc.), subtle animation rather than a different building.
+
+P6A2 has a dedicated visual target pack and usage guide on the active P6A branch. The new images define style/material/lighting targets, not literal scene layouts.
+
+### P6A foundation state to preserve
+
+Before production Hero Lookdev, the project deliberately resolves geometry/gameplay foundations that would otherwise invalidate art work:
+
+1. P6A-1 Material Lab proved authored/hybrid rendering can coexist with the real dynamic B-17 surface; none of A/B/C is the final art target.
+2. P6A1.5 human review prefers thin irregular Soil overburden and irregular deposit-style contact patina.
+3. The next foundation risk is the overly planar Clay/Sandstone starting surface; P6A1.6 Natural Matrix Geometry is intended to introduce deterministic macro relief/cavities before P6A2.
+4. P6A2 then targets one small real playable Hero Patch against the canonical P6A2 visual-reference pack before any P6B scaling.
+
+Do not conflate **internal matrix topography** with **future outer jacket/block silhouette variation**.
 
 ## 10. Long-term confirmed pillars
 
@@ -196,8 +208,8 @@ These are strong current hypotheses, not final implementations:
 - **Crate identity > crate geometry:** use labels, seals, reinforcement, wear and special handling cues to signal provenance/rarity/exceptional status; different crate shapes are optional and low priority.
 - **Specimen Intake screen baseline:** Variant A is the preferred prototype: fixed/semi-fixed receiving-room view with several directly selectable crates, plus subtle hero-focus on the current crate and a concise scientific dossier/clipboard. No avatar navigation.
 - **Crate opening grammar:** direct mouse manipulation with a small modular set of believable actions (pull straps, flip latches, crowbar lever, lift lid, remove protection). Usually 2–3 short interactions; vary crate hardware rather than repeat one animation. Opening reveals a closed/unprepared block, never already-exposed bones.
-- **Prepared-block silhouette variation:** test visually different block/jacket silhouettes while keeping preparation readable; avoid jumping immediately to unconstrained free-form geometry.
-- **Soil redesign:** preferred hypothesis is a thin removable loose-overburden/dirt layer rather than deep Soil. Brush reveals a dirty/contact-patinated Clay/Sandstone surface; structural excavation then reveals fresh matrix interior. If adopted, preserve verticality through matrix/fossil depth rather than thick Soil.
+- **Prepared-block silhouette variation:** test visually different outer block/jacket silhouettes while keeping preparation readable; this is separate from the current internal-matrix topography spike. Avoid jumping immediately to unconstrained free-form excavation geometry.
+- **Soil baseline after P6A1.5:** thin removable loose overburden/dirt is preferred over deep Soil. Brush reveals a dirty/contact-patinated Clay/Sandstone surface; structural excavation reveals fresh matrix interior. Exact thickness/coverage remain tunable.
 - **Preparation → museum bridge remains open:** Macro Game Design must compare in-matrix display, extractable bones, mounted-skeleton contribution and hybrid specimen rules. A short conservation/mounting ritual is promising, but never as another long 10–15 minute phase. P5 Forceps fragments do not commit the final extraction model.
 
 Do not pull these into P5/P6 without explicit authorization:
@@ -231,6 +243,12 @@ Reusable rule learned in P3/P4:
 
 > **Do not create an earlier-phase workaround for a problem a planned later phase is explicitly expected to reshape unless it blocks current validation.**
 
+## 11.5 Future release / studio context
+
+If the game proves itself, Antoine wants a **commercial studio brand** that can carry credibility into future projects and strengthen CV/LinkedIn positioning. A separate legal company is not required merely to use a studio identity; legal/tax structure can be revisited closer to release/revenue.
+
+Steam/release work is a later production phase, not current P6A scope. See `docs/FUTURE_RELEASE_BUSINESS.md`.
+
 ## 12. How to resume in a new conversation
 
 The new orchestrator should immediately:
@@ -243,11 +261,11 @@ The new orchestrator should immediately:
 6. ask for / consume Antoine’s latest human-test feedback;
 7. only then decide merge, correction pass or next phase.
 
-As of this audit:
-- inspect PR #8;
-- P5 code is delivered;
-- wait for Antoine’s end-to-end test;
-- no P6 yet.
+At every resume:
+- trust `docs/brain/status.md` for the live phase and next authorized action;
+- inspect the active PR named there;
+- read only the active brief/report before deciding what to execute;
+- never resurrect a historical STOP instruction from an old report.
 
 ## 13. What “same wavelength” means
 
