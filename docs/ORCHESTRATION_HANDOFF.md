@@ -24,48 +24,20 @@ P5 adds a second behavioral test:
 
 > **After “Preparation Complete”, does the player voluntarily choose to keep cleaning?**
 
-## 3. Current gate — critical
+## 3. Live project state
 
-### P4 is CLOSED and human-validated
+Do **not** cache the live phase in this handoff.
 
-Merged milestones:
-- P0 ✅
-- P1 ✅
-- P2 ✅
-- P3 ✅
-- P4 Final Feel ✅
-- P4-V1 deterministic effort-aware verticality ✅
-- P4 closure / debris physics / Bone preparation ✅
+Read `docs/brain/status.md` for:
+- validated phases;
+- active branch / PR;
+- current gate;
+- next authorized action;
+- accepted watchpoints/blockers.
 
-P4 closure merge: PR #7 → `bae4ee64268dd6270afb9f0011c316c45c57d251`.
+This handoff is intentionally for the **stable mental model**, not day-to-day status.
 
-### P5 is CLOSED and human-validated; P6A is NEXT
-
-Active branch:
-`prototype/p5-loop-progression`
-
-PR:
-**#8 — Minimal preparation session, 85/95 and archive** (DRAFT)
-
-Current implementation and verification: `docs/dev/P5_HIDDEN_CLUSTER_REPORT.md`.
-
-The latest human review supersedes the original three objectives and the first correction. Required completion is global85/85 AND no remaining hidden 8-connected Bone region at or above the centralized threshold; optional mastery is one global95/95 star. One compact top-left card, four tools, no right dossier, fragments, tray or Forceps in the playable flow. Completion and mastery never interrupt excavation. Archive is a short positive closure. Qualitative Condition (Excellent/Good/Fair/Damaged) appears in the card and archive without gating either milestone. A brief notice accompanies the first drop into a care tier. The earlier Keep Cleaning behavior is not a validated product signal.
-
-Read the final Human test5 section of `docs/dev/P5_HUMAN_CORRECTION_BRIEF.md`, the hidden-cluster report, PR #8 and `docs/brain/status.md`. Original P5 and first-correction reports are historical.
-
-**Antoine has explicitly validated P5 sufficiently to advance. Merge/canonize P5, then P6A becomes the active phase.**
-
-A new orchestrator must not infer project state from `main` code alone while an active phase lives on a draft PR.
-
-### P5 closure watchpoints
-
-Accepted/deferred rather than blockers:
-- Cleanliness can decrease when newly exposed Bone adds dirty cells to the current exposed-Bone denominator.
-- Hidden-cluster coverage is not a perfect human-visual-completeness oracle; do not keep tailoring B-17 completion logic in P5.
-- Final in-matrix / extraction / mounted-skeleton / hybrid destination remains a Macro Game Design question.
-- P5 UI is intentionally greybox. P6 owns visual identity.
-
-P5 active player loop at closure: one compact card, four tools,85/85 museum standard, optional95/95 Fine Preparation, qualitative Condition, Archive / Keep Cleaning. Fragments/Forceps are dormant historical experiments.
+Documentation roles are defined in `docs/DOCUMENTATION_POLICY.md`.
 
 ## 4. Source precedence
 
