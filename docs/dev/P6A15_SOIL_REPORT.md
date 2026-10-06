@@ -119,3 +119,25 @@ Rejouer : `tests/check_p6a15.ps1 -GodotBin <console Godot> -Regression -Graphica
 - Le Soil Lab conserve le Bone Film original, y compris couleur, densité et dessin des taches. Le projet normal démarre toujours dans la scène P5.
 
 La question de revue reste : **le rôle « nettoyage superficiel → vraie matrice → excavation » est-il préférable à A, avec cette épaisseur et cette vitesse ?** Une réponse humaine est nécessaire avant de définir la base P6A2.
+
+
+## Human verdict — 2026-10-06
+
+Antoine prefers **B — thin irregular overburden** over the former thick Soil baseline.
+
+Human observations:
+- the irregular distribution gives the block more life;
+- removing only a thin superficial layer feels better than clearing several centimeters of Soil;
+- the corrected patina reads better as dirt/deposit rather than a full uniform color change;
+- visual quality is still placeholder and not approved as final art.
+
+The test also exposed the next foundation issue:
+> after Soil removal, the underlying Clay/Sandstone top still reads as a broad horizontal plane.
+
+Decision:
+- accept the **Soil semantics** of B as the direction for P6A;
+- keep exact thickness/coverage tunable;
+- do not start P6A2 yet;
+- next run P6A1.6 Natural Matrix Geometry to add believable deterministic macro relief/cavities to the underlying matrix.
+
+Current live state remains authoritative in `docs/brain/status.md`.
