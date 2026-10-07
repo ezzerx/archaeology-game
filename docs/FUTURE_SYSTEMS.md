@@ -225,3 +225,53 @@ First validate:
 4. visual direction / production pipeline.
 
 Then design replayability and long-term progression with dedicated prototypes.
+
+## 9. Mastery achievements as an in-world museum room — concept to study
+
+**Status:** future meta-design idea captured for later workshop; not active P6A scope and not yet a locked production system.
+
+Preferred direction to explore:
+- avoid requiring a separate global "Hardcore" mode just to create high-skill play;
+- keep the normal/cozy game fully playable as-is;
+- layer **optional mastery conditions** onto normal preparation so players who want challenge can self-select harder goals.
+
+Examples of meaningful mastery conditions:
+- 95/95 preparation plus **Excellent** Condition;
+- no Bone damage / pristine preparation;
+- precision-focused constraints tied to careful tool use;
+- specimen-specific mastery goals;
+- other challenges that reward skill and care rather than extra grind or simply spending longer.
+
+The goal is to let the same preparation systems support two readings:
+- relaxed/cozy completion for players who want it;
+- high-precision mastery for players who enjoy pushing the mechanics.
+
+### Physical achievement room / gallery
+
+A strong museum-facing presentation idea is to make achievements **diegetic and visible in the museum**, rather than only a menu list.
+
+Concept:
+- a small achievement/mastery room, gallery or side space in the museum;
+- earned achievements appear as physical display objects;
+- locked achievements still have visible placeholders so the player can imagine the completed room and feel motivated to pursue them;
+- presentation could use medals, old preparation tools, museum plaques, certificates, decorative scientific trophies, small symbolic specimen displays, framed awards, or similar objects;
+- empty mounts, silhouettes, plaques or display cases can communicate missing achievements without turning the space into a generic checklist.
+
+This creates a visual completion fantasy:
+> the player can literally see the room filling with evidence of their mastery.
+
+Some achievements could be semi-secret / easter-egg-like:
+- only a suggestive title, plaque, silhouette or clue is visible before unlock;
+- discovery should feel playful, not obscure or punitive.
+
+### Design guardrails
+
+- Do not lock core fossils, story or essential museum content behind mastery achievements.
+- Rewards should mainly be prestige, visible museum completion, decoration/cosmetics or optional recognition.
+- Prefer a smaller set of **meaningful** achievements over dozens of trivial counters.
+- Avoid grind achievements such as "use Brush 500 times" unless they genuinely represent an interesting behavior.
+- Success conditions should reward precision, care, discovery or mastery of the preparation system.
+- A later "Expert Contract" or explicit hardcore challenge layer can still be explored if the player base wants more, but it is not required for this concept to work.
+
+This idea should be revisited during the future **Macro Game Design / Museum & long-term motivation** workshop, after the current core visual/playtest work is stable.
+
