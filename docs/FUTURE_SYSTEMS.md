@@ -275,3 +275,51 @@ Some achievements could be semi-secret / easter-egg-like:
 
 This idea should be revisited during the future **Macro Game Design / Museum & long-term motivation** workshop, after the current core visual/playtest work is stable.
 
+
+
+## 10. Sensory polish, tool identity and pacing — future production directions
+
+**Status:** product-quality directions surfaced by the first convincing friend-playtest-quality Hero build. Not active implementation scope unless explicitly authorized.
+
+### Tool visual identity
+
+The current Brush / Chisel / Blower / Pick models still read as prototype/dev tools. Future art production should give each one a coherent Archeo preparation-workbench identity:
+- believable paleontology/preparation form language;
+- readable silhouette at gameplay scale;
+- warm, handcrafted / professional museum-lab character;
+- visual hierarchy that makes tools feel like objects the player enjoys using, not debug gizmos.
+
+### ASMR / tactile audio as a quality pillar
+
+Audio should be treated as a major contributor to satisfaction. Target:
+- close, tactile, material-specific brushing/scraping/chipping/blowing sounds;
+- restrained, pleasant ASMR character rather than harsh generic SFX;
+- strong differentiation between Soil, Clay, Sandstone and Bone interactions;
+- layered variation so repeated actions do not sound mechanically looped;
+- careful balance so the experience stays cozy rather than fatiguing.
+
+This deserves a dedicated audio/game-feel pass instead of being left as end-of-project garnish.
+
+### Non-destructive material response
+
+Even when an action does not remove the contacted material, the game can still acknowledge the touch visually/audio-visually.
+
+Example to prototype later:
+- Brush on Clay: no structural excavation, but a tiny local colored dust/powder puff or subtle residue response.
+
+Design intent:
+> preserve the tool rule while making the world feel reactive.
+
+This is best thought of as **material reactivity / game feel / juice**, not persistence.
+
+### Pacing and possible higher-power tool
+
+Current playtest feedback: overall excavation can feel somewhat slow.
+
+Decision order:
+1. first address pacing through P7 fine tuning of existing timings/effort;
+2. do not add an extra tool merely to hide poor tuning;
+3. if a satisfying pace still requires another layer, explore a **higher-power excavation tool** with meaningful trade-offs (higher risk, lower precision, stronger debris/damage potential, limited safe use near Bone, etc.);
+4. in that model, Chisel can become the middle tool between safe/fine work and fast/risky removal.
+
+Any such tool must create a new decision, not just be “Chisel but faster.”

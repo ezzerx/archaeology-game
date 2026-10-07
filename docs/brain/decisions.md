@@ -771,3 +771,21 @@ La préparation d’un playtest entre amis doit ensuite améliorer le confort gr
 Antoine autorise l’implémentation du brief Soil & Playtest Presentation. Le Soil doit changer de **morphologie**, pas seulement devenir moins sombre : dépôts fragmentés, amas de tailles variées, bords cassés, grain v02 et Clay clairement visible entre eux. Examiner les tailles/distributions des amas continus en plus de la couverture. Le critère reste le plaisir d’enlever une vraie couche de terre meuble. Soil mince, retrait rapide au Brush, Clay v02 et patine séparée restent conservés.
 
 L’UI reçoit un véritable restyle papier/musée crème et chaud, avec Reveal / Clean / Condition lisibles, appliqué aussi à Archive / Keep Cleaning et au bilan. Informations et règles P5 inchangées. Plein écran, lampe visible, deux ou trois accessoires maximum et export Windows portable sont dans ce GO ; jacket/emprise intérieure restent exclus. La livraison doit s’arrêter pour revue humaine, sans P6B ni merge implicites.
+
+
+## P6A2 Playtest — Soil enfin positif, nouveaux axes de polish (2026-10-07)
+
+Après test réel de `P6A2 Soil & Playtest Presentation`, Antoine juge que c’est la **première version où Soil ne rend pas le jeu plus laid mais ajoute au contraire un petit charme**. La direction fragmentée/terre meuble est donc acceptée comme baseline actuelle, sans être considérée parfaite ou finale.
+
+Éléments conservés pour maintenant :
+- Clay v02 : bonne direction actuelle ;
+- task light locale : amélioration majeure confirmée ;
+- Sandstone : acceptable mais assez sombre, non prioritaire.
+
+Nouveaux besoins de qualité perçue à garder pour les passes suivantes :
+- les modèles visuels des outils actuels sont trop pauvres et doivent être remplacés par des modèles cohérents avec l’univers Archeo ;
+- l’audio est un levier de satisfaction majeur : viser explicitement des sons **ASMR / tactiles / matière**, à traiter comme un vrai pilier de polish et non comme un simple habillage tardif ;
+- ajouter des réponses matérielles non destructives lorsque pertinent : par exemple Brush sur Clay peut produire un petit puff/poussière colorée cohérente même si l’outil n’excave pas la Clay. Le but est la **réactivité matière / game feel / juice**, sans modifier la règle d’outil ;
+- le rythme global paraît encore un peu lent. Priorité à P7 fine tuning avant toute extension de l’arsenal. Si le tuning ne suffit pas, explorer plus tard un outil plus efficace que le Chisel avec vraies contreparties (risque, précision, contrôle, etc.), ce qui repositionnerait le Chisel comme outil intermédiaire.
+
+Aucun de ces points n’autorise une modification automatique de gameplay pendant P6A.
