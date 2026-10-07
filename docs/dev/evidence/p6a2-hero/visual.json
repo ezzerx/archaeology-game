@@ -1,0 +1,38 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"baseline-reset.png",
+		"hero-reset.png",
+		"hero-reset-3x.png",
+		"baseline-part-brushed.png",
+		"hero-part-brushed.png",
+		"hero-part-brushed-3x.png",
+		"baseline-excavated.png",
+		"hero-excavated.png",
+		"hero-excavated-3x.png",
+		"baseline-dirty-bone.png",
+		"hero-dirty-bone.png",
+		"hero-dirty-bone-3x.png",
+		"baseline-cleaner-bone.png",
+		"hero-cleaner-bone.png",
+		"hero-cleaner-bone-3x.png",
+		"hero-stone-interface-3x.png",
+		"hero-jacket-integration-3x.png"
+	],
+	"checks": 22,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"renderer": "gl_compatibility",
+		"viewport": [
+			1920,
+			1080
+		]
+	}
+}

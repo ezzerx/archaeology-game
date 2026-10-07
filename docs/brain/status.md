@@ -59,7 +59,11 @@ Report on active branch:
 
 ## P6A2 status
 
-Preflight réussi. Prochaine gate : **P6A2 Hero Lookdev / Target Match**, avec **GO explicite d’Antoine requis avant toute implémentation**. Aucun Hero Patch, jacket réel, P6B ou merge dans ce preflight. PR #9 reste DRAFT.
+**P6A2 Hero Lookdev / Target Match livré après GO explicite ; attente du HUMAN VISUAL VERDICT d’Antoine.** Scène isolée `scenes/p6a2_hero_patch.tscn`, B au démarrage, premier jacket statique Blender, matières et table/lumière locales. Lancement : `.\Launch-P6A2-Hero-Patch.ps1` ; F8 compare au témoin B sans reset.
+
+Rapport actif : **`docs/dev/P6A2_HERO_LOOKDEV_REPORT.md`**, captures contrôlées et mesures à 1×/3×. Contrôles techniques réussis ; ce n’est pas une validation artistique. Recommandation de l’agent : **correction ciblée**, notamment jacket encore trop cadre et détail de matière encore provisoire à 3×. Aucun gagnant visuel canonisé.
+
+**Prochaine action : revue humaine des 13 questions du rapport, puis instruction explicite.** Ne pas continuer automatiquement le lookdev, rouvrir P6A1.6/Clay surface breakup grammar, promouvoir les visuels en production, démarrer P6B ou merger. Gameplay P4/P5 et géométrie B restent gelés. PR #9 reste DRAFT.
 
 Références canoniques locales : `docs/visual-references/p6a2/`, matérialisées par `370ba6355a4a03d48e6faa5ae6aa60988aa2cb88`. Rôles : `docs/visual-references/P6A2_VISUAL_TARGETS.md`.
 
@@ -111,4 +115,4 @@ P6A is currently about proving the geometry + visual-production foundation befor
 
 ## New orchestration chat expectation
 
-Lire le rapport de preflight et ses preuves, puis la dernière décision humaine. Ne pas rouvrir P6A1.6 ni confondre préparation de la chaîne et GO d’implémentation P6A2.
+Lire le rapport Hero Lookdev actif et le dernier verdict humain avant toute reprise. Le preflight conserve les conventions d’outils ; les captures Hero sont une proposition visuelle testée, pas une direction approuvée. Ne pas rouvrir P6A1.6 ni déduire un GO P6B des tests.

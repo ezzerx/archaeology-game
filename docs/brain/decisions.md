@@ -749,3 +749,7 @@ Stack retenue : Godot 4.7.2 pour gameplay/rendu/assemblage ; Blender 5.2.2 LTS p
 La chaîne GLB est vérifiée par une sonde non-production : un mètre par unité, Blender Z-up/+Y avant → Godot Y-up/−Z avant, rotation/échelle appliquées, sources DCC exclues de l'import runtime et sorties GLB explicites versionnées. Blender reste hors Git. Voir [rapport de preflight](../dev/P6A2_PREFLIGHT_REPORT.md) pour conventions et preuves.
 
 Le cœur dynamique Godot garde l'autorité exclusive : heightfield/couches, plafonds Bone, outils, picking, film, fracture et progression. Les assets Blender sont des supports statiques sans autorité de fouille. Les expériences visuelles doivent rester dans une petite scène Hero Patch isolée partageant les systèmes existants avant toute promotion en production. La réussite technique du preflight n'est ni une validation artistique ni un GO implicite de développement.
+
+## P6A2 — GO pour un Hero Patch limité (2026-10-07)
+
+Après preflight READY, Antoine autorise explicitement un seul Hero Patch réel et jouable héritant du lab P6A1.6 B : matières, première coque plâtrée statique Blender, lumière et établi limité. Les visuels restent locaux à cette scène avant revue ; la comparaison au témoin conserve fouille et caméra. Le GO n’autorise ni la grammaire Clay différée, ni du tuning gameplay, ni une généralisation artistique. Une livraison testée doit revenir au verdict visuel humain ; aucune acceptation de direction ou transition P6B n’est implicite. [Rapport de la proposition](../dev/P6A2_HERO_LOOKDEV_REPORT.md).
