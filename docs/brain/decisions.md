@@ -734,3 +734,18 @@ Le B polygonal améliore la lecture des niveaux mais n’est pas approuvé comme
 ## P6A1.6 — test de grammaire de surface macro + méso (2026-10-06)
 
 Antoine recadre la dernière correction : le matériau doit pouvoir évoquer de petites unités minérales excavables **avant** les coups Chisel, par la vraie géométrie. Il autorise un test associant des masses réellement positives par rapport à A, des poches et une structure méso de petits replats/ressauts/creux irréguliers. Les macroformes seules ne suffisent pas ; éviter membrane, puzzle fermé, grille Minecraft et bruit uniforme. Cette autorisation de test **ne valide pas** une grammaire voxel finale. Conserver A, Soil, lumière, caméra, outils, Bone, picking et discipline de budgets ; adapter la distribution géométrique si nécessaire, jamais les outils. [Implémentation et preuves du test](../dev/P6A16_SURFACE_GRAMMAR_REPORT.md).
+
+
+## P6A1 — clôture suffisante pour avancer (2026-10-07)
+
+Antoine a revu le dernier test de grammaire de surface et clôt P6A1 comme **suffisamment validé pour avancer vers P6A2**. Le B macro + méso actuel est la fondation de travail Hero Lookdev pour maintenant ; cette décision n'approuve pas une géométrie finale parfaite. Conserver les preuves historiques et leurs verdicts contemporains.
+
+**Clay surface breakup grammar** est différé : une amélioration ciblée ultérieure pourra rapprocher la surface Clay intacte du langage minéral de petites cassures visible après excavation. Ce n'est pas un blocage P6A2. Soil mince P6A1.5 et patine par dépôts restent acceptés ; P4/P5 restent gelés.
+
+## Production P6A2 — chaîne minimale et autorité (2026-10-07)
+
+Stack retenue : Godot 4.7.2 pour gameplay/rendu/assemblage ; Blender 5.2.2 LTS pour géométrie statique, UV et export GLB ; références canoniques versionnées ; images ChatGPT sélectionnées par Antoine/orchestrateur puis consommées dans le dépôt. Aucun besoin de reproduire ImageGen localement. Meshy/Tripo non requis, Krita/Photoshop seulement sur besoin concret de nettoyage, audio ultérieur.
+
+La chaîne GLB est vérifiée par une sonde non-production : un mètre par unité, Blender Z-up/+Y avant → Godot Y-up/−Z avant, rotation/échelle appliquées, sources DCC exclues de l'import runtime et sorties GLB explicites versionnées. Blender reste hors Git. Voir [rapport de preflight](../dev/P6A2_PREFLIGHT_REPORT.md) pour conventions et preuves.
+
+Le cœur dynamique Godot garde l'autorité exclusive : heightfield/couches, plafonds Bone, outils, picking, film, fracture et progression. Les assets Blender sont des supports statiques sans autorité de fouille. Les expériences visuelles doivent rester dans une petite scène Hero Patch isolée partageant les systèmes existants avant toute promotion en production. La réussite technique du preflight n'est ni une validation artistique ni un GO implicite de développement.

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-07",
+  "godot_version": "4.7.2.stable.official.ed1daf0bf",
+  "godot_executable": "C:\\Users\\antoi\\Downloads\\Godot_v4.7.2-stable_win64.exe\\Godot_v4.7.2-stable_win64_console.exe",
+  "blender_version": "5.2.2 LTS",
+  "blender_build_hash": "d13f752e3b9c",
+  "blender_executable": "C:\\Users\\antoi\\AppData\\Local\\Programs\\ArchaeologyGameTools\\blender-5.2.2-windows-x64\\blender.exe",
+  "official_zip": "https://download.blender.org/release/Blender5.2/blender-5.2.2-windows-x64.zip",
+  "official_checksum_manifest": "https://download.blender.org/release/Blender5.2/blender-5.2.2.sha256",
+  "verified_zip_sha256": "3849d17a682cba006075aaa3f3597ecb5c9c30ec31035b2e092c53e40679b535",
+  "portable_user_space": true,
+  "uac_required": false,
+  "repeated_glb_sha256": "d13a6df29c02fff51f600553ddc57dfe09e7f7853c694e9b4138804750c86d33",
+  "saved_blend_reopened_in_separate_process": true,
+  "godot_import_errors": 0,
+  "godot_script_shader_runtime_errors": 0,
+  "source_geometry_commit": "26f3552e28a425b8fea82dd5099c7e324b68466d",
+  "reference_pack_commit": "370ba6355a4a03d48e6faa5ae6aa60988aa2cb88"
+}

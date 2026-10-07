@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date:** 2026-10-06  
+**Date:** 2026-10-07
 **Projet:** ArchaeologyGame (working title)  
 **Source unique du statut courant:** ce fichier. Voir aussi `docs/DOCUMENTATION_POLICY.md`.
 
@@ -48,33 +48,20 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A1.6 — correction finale ciblée « Macro + petites unités » livrée, verdict humain attendu.**
+**P6A1 est suffisamment validé humainement pour avancer vers P6A2.**
 
-- Dernier recadrage humain : tester une matière faite de petites unités minérales dès l’état initial, par le vrai heightfield, avec masses positives et poches. Les seuls macro-affleurements précédents ne sont pas validés comme fondation.
-- A reste exact. B combine quatre masses positives, deux épaulements, trois poches et 444 empreintes méso irrégulières. Déplacement total relatif à A : **−12,88 à +14,91 mm** ; 14,8 % de la surface au-dessus de +8 mm. Pas de nouveau shader/lumière, ni retuning des outils, Soil, Bone ou progression P5.
-- Scène : `scenes/p6a16_natural_matrix_lab.tscn` ; lanceur : `Launch-Natural-Matrix-Lab.ps1`. F8 compare A/B avec reset de la fixture et cadrage conservé ; F9 montre la matrice nue.
-- Rapport actif : `docs/dev/P6A16_SURFACE_GRAMMAR_REPORT.md` ; 30 captures dont départ A/B sans patine, matrice 1×, masse/poche/méso 3× et huit coups Chisel. Les versions précédentes restent historiques.
-- Vérifié : P0–P5 et labs, 83 contrôles géométriques, 51 graphiques, 84 benchmark. Aucun Bone initialement exposé, aucune inversion. Travail global P95 **173,41 / max 200,50**, sous 180 / 205 ; médiane −4,4 %. Picking et budgets conservés. L’ancien seuil de grands intérieurs calmes a été explicitement adapté au nouveau méso, voir rapport.
-- Revue requise : structure minérale crédible ou petites plaquettes encore trop dessinées ; cohérence avec les coupes Chisel et confort de fouille. Rendu de prototype et crénelage 3× encore visibles. Aucun candidat canonisé.
+- Le B actuel P6A1.6 (macro + méso, `natural_matrix_profile.gd`, livraison `26f3552`) est accepté comme fondation de travail P6A2 pour maintenant, pas comme géométrie finale parfaite.
+- **Clay surface breakup grammar** est une amélioration ciblée future : rapprocher la surface Clay intacte du langage minéral cassé visible après excavation. Différée, non bloquante, à ne pas implémenter maintenant.
+- Soil mince et patine par dépôts P6A1.5 restent acceptés ; gameplay P4/P5 gelé.
+- Les rapports/candidats P6A1.6 restent des preuves historiques, sans réécriture de leurs verdicts contemporains.
 
-**Prochaine action : verdict humain d’Antoine sur la grammaire macro + méso. STOP développement après cette livraison.** Aucun P6A2, preflight, jacket, art pass final, P6B ou merge sans nouvelle autorisation.
-
-Le brief historique `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md` est complété par les recadrages humains documentés dans le rapport actif.
+**P6A2 Hero Lookdev PREFLIGHT terminé — READY.** Six références inspectées ; Blender 5.2.2 LTS portable vérifié ; export GLB reproductible et import/rendu Godot 4.7.2 validés (31 contrôles). Aucun fichier gameplay retuné. Rapport actif : `docs/dev/P6A2_PREFLIGHT_REPORT.md`.
 
 ## P6A2 status
 
-`P6A2 — Hero Lookdev / Target Match` is prepared and documented on the active P6A branch, with a canonical reference pack.
+Preflight réussi. Prochaine gate : **P6A2 Hero Lookdev / Target Match**, avec **GO explicite d’Antoine requis avant toute implémentation**. Aucun Hero Patch, jacket réel, P6B ou merge dans ce preflight. PR #9 reste DRAFT.
 
-Execution remains **blocked until P6A1.6 Natural Matrix Geometry is human-decided**.
-
-P6A2 visual intent:
-- cozy, warm, stylized natural-history preparation lab;
-- authored tactile materials;
-- irregular plaster jacket around the dynamic core;
-- strong material readability;
-- real lighting/lookdev rather than P6A-1 wallpaper-like test textures.
-
-Do not start P6B before explicit human approval of the P6A2 Hero Patch.
+Références canoniques locales : `docs/visual-references/p6a2/`, matérialisées par `370ba6355a4a03d48e6faa5ae6aa60988aa2cb88`. Rôles : `docs/visual-references/P6A2_VISUAL_TARGETS.md`.
 
 ## P5 closure baseline
 
@@ -124,4 +111,4 @@ P6A is currently about proving the geometry + visual-production foundation befor
 
 ## New orchestration chat expectation
 
-Pour reprendre : inspecter PR #9, lire le rapport P6A1.6 et récupérer le verdict humain avant toute correction ou suite. Donner la commande du lanceur quand Antoine souhaite tester ; ne pas relancer le spike depuis zéro ni déduire une validation des seuls tests automatisés.
+Lire le rapport de preflight et ses preuves, puis la dernière décision humaine. Ne pas rouvrir P6A1.6 ni confondre préparation de la chaîne et GO d’implémentation P6A2.
