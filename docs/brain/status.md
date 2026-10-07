@@ -59,13 +59,21 @@ Report on active branch:
 
 ## P6A2 status
 
-**Verdict humain reçu : TARGETED CORRECTION REQUIRED.** La chaîne Blender → GLB → Godot, l’isolation, la préservation du gameplay et la performance sont validées. Le look livré `a9d47b6` est rejeté : jacket perçu comme cadre/blanc osseux, ancien atlas Material Lab pauvre, absence de véritable lampe locale.
+**Dernier verdict humain après test de la correction `d535c31` : progrès partiellement validés, Soil prioritaire.**
 
-**Proposition de correction livrée pour revue : coque remaniée, nouvelles sources ImageGen v02 et vraie lampe locale.** Set sélectionné par l’orchestrateur dans `5a3d340`, puis intégration explicitement autorisée par Antoine. L’atlas Material Lab et les anciennes cartes de données sont débranchés du Hero. Sources reçues : miroirs JPEG 1254², dérivés runtime 1024² ; aucune hauteur ou aucun masque de gameplay généré. Rapport actif : `docs/dev/P6A2_TARGETED_CORRECTION_REPORT.md`. Le rapport Hero initial reste historique.
+- Clay peut rester en l’état pour maintenant.
+- La lampe locale est une amélioration majeure à conserver.
+- Sandstone est acceptable pour maintenant, encore un peu sombre mais non prioritaire.
+- **Soil est le problème visuel principal** : trop proche d’un camouflage sombre sur Clay. Le conserver comme matériau de gameplay, mais viser une terre superficielle, meuble, granulaire et naturelle, avec moins de grandes taches sombres.
+- L’intégration jacket/bloc reste à améliorer après Soil. Une emprise intérieure moins rectangulaire est une piste à examiner ultérieurement, pas une modification autorisée du cœur dynamique maintenant.
+- Pour un playtest entre amis : confort plein écran/grand écran, présentation des objectifs et de fin de session, lampe visible et décor d’établi limité.
+- Simulation conservée à **60 Hz** ; direction Clay et éclairage local préservés.
 
-Architecture et B conservés. La nouvelle coque reste statique et hors aire jouable ; SpotLight avec ombres actualisées après excavation, faible rebond Omni, comparaison F11. Même lanceur / scène isolée ; F8 conserve le témoin B. Captures et tests sont documentés dans le rapport. **Réserve principale de l’agent : le contact intérieur rectangulaire reste visible ; la disparition complète de l’effet cadre n’est pas revendiquée.** Les matières/lampe sont proposées à la revue, pas canonisées.
+La chaîne technique, l’isolation et la performance restent validées. Sources ImageGen v02 intégrées, ancien atlas Material Lab débranché du Hero. Scène : `scenes/p6a2_hero_patch.tscn`, fondation géométrique B inchangée. Preuves de la livraison : `docs/dev/P6A2_TARGETED_CORRECTION_REPORT.md` ; les rapports précédents restent historiques.
 
-**Prochaine action : HUMAN VISUAL VERDICT d’Antoine sur cette correction.** Ne pas promouvoir les visuels, rouvrir P6A1.6/Clay surface breakup grammar, démarrer P6B ou merger. Gameplay P4/P5 gelé. PR #9 reste DRAFT.
+**P6A2 Soil & Playtest Presentation livré pour revue humaine après GO explicite.** Rapport actif : `docs/dev/P6A2_PLAYTEST_PRESENTATION_REPORT.md` ; brief : `docs/dev/P6A2_PLAYTEST_PRESENTATION_BRIEF.md`. Vrais dépôts Soil fragmentés, frange mince et patine séparée ; Clay v02 et lumière conservées. Restyle papier/musée de la fiche, outils et archive ; plein écran natif, lampe visible + deux accessoires ; ZIP Windows autonome testé. Aucun retuning P4/P5. Les métriques de fragmentation et tests techniques ne valident pas le plaisir de brosser ni la direction artistique.
+
+**Prochaine action : HUMAN VISUAL VERDICT d’Antoine**, d’abord « cette terre meuble apporte-t-elle une vraie couche de matière plaisante à nettoyer ? », puis UI/affichage et ambiance. Même scène et lanceur Hero ; F10 compare les deux Soil avec reset, H expose la patine ON/OFF. Export local : `builds/ArchaeologyGame-P6A2-Playtest-Windows.zip`, reproductible via `tools/p6a2/Export-Playtest.ps1`. Limites : Soil moins abondant ; patine encore présente ; jacket/emprise rectangulaires inchangés ; 4K/autres PC non testés. STOP après livraison, aucune suite automatique. Jacket/emprise intérieure, P6A1.6/Clay surface breakup grammar, P6B et merge restent hors mission. Cap 240 FPS / physique 60 Hz. PR #9 reste DRAFT.
 
 Références canoniques locales : `docs/visual-references/p6a2/`, matérialisées par `370ba6355a4a03d48e6faa5ae6aa60988aa2cb88`. Rôles : `docs/visual-references/P6A2_VISUAL_TARGETS.md`.
 
@@ -117,4 +125,4 @@ P6A is currently about proving the geometry + visual-production foundation befor
 
 ## New orchestration chat expectation
 
-Lire le rapport Hero Lookdev actif et le dernier verdict humain avant toute reprise. Le preflight conserve les conventions d’outils ; les captures Hero sont une proposition visuelle testée, pas une direction approuvée. Ne pas rouvrir P6A1.6 ni déduire un GO P6B des tests.
+Lire le dernier verdict humain et le rapport actif avant toute reprise. Distinguer les éléments déjà acceptés du candidat Soil/présentation à retester ; le rapport de livraison conserve les preuves techniques et le preflight les conventions d’outils. Ne pas déduire un GO P6B ou une correction jacket des tests.

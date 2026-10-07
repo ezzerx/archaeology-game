@@ -757,3 +757,17 @@ Après preflight READY, Antoine autorise explicitement un seul Hero Patch réel 
 ## P6A2 — rejet artistique et correction ciblée (2026-10-07)
 
 Antoine valide la chaîne technique, l’isolation et la performance du Hero `a9d47b6`, mais rejette son look. Le jacket doit se lire comme le contenant physique irrégulier d’un unique bloc de préparation, pas un cadre clair indépendant. L’atlas Material Lab, déjà jugé pauvre, est exclu de la fondation visuelle P6A2 : demander de nouvelles sources ImageGen précises à Antoine/orchestrateur avant finalisation matière. La lumière doit venir d’une véritable lampe locale (Spot/Omni), pas seulement d’un directionnel réchauffé. Ces trois priorités précèdent tout accessoire/polish secondaire. Architecture, géométrie B et gameplay restent conservés ; aucune validation de direction artistique n’est implicite.
+
+## P6A2 — verdict après test réel : Soil puis présentation playtest (2026-10-07)
+
+Antoine accepte Clay pour maintenant, veut conserver la lampe locale comme amélioration majeure et juge Sandstone acceptable malgré une valeur encore un peu sombre. Ces éléments ne doivent pas devenir les sujets d’une nouvelle refonte pendant la correction Soil.
+
+Soil reste dans le jeu pour sa variété de lecture et de gameplay. Sa lecture de grandes taches sombres/camouflage est rejetée : viser une couche de terre superficielle, meuble, granulaire, naturelle et compatible avec Clay. C’est la première priorité, devant l’intégration jacket/bloc. Une forme intérieure excavable moins rectangulaire reste une piste future, pas une décision d’architecture acquise.
+
+La préparation d’un playtest entre amis doit ensuite améliorer le confort grand écran/plein écran, la présentation des objectifs et de fin de session, et ajouter une lampe visible avec quelques accessoires discrets. La simulation reste à 60 Hz ; le confort de rendu n’autorise pas à changer le gameplay. Ce retour demande une proposition de mission, sans validation implicite de toute la direction Hero ni lancement de P6B.
+
+## P6A2 — GO Soil et présentation playtest, critères humains précisés (2026-10-07)
+
+Antoine autorise l’implémentation du brief Soil & Playtest Presentation. Le Soil doit changer de **morphologie**, pas seulement devenir moins sombre : dépôts fragmentés, amas de tailles variées, bords cassés, grain v02 et Clay clairement visible entre eux. Examiner les tailles/distributions des amas continus en plus de la couverture. Le critère reste le plaisir d’enlever une vraie couche de terre meuble. Soil mince, retrait rapide au Brush, Clay v02 et patine séparée restent conservés.
+
+L’UI reçoit un véritable restyle papier/musée crème et chaud, avec Reveal / Clean / Condition lisibles, appliqué aussi à Archive / Keep Cleaning et au bilan. Informations et règles P5 inchangées. Plein écran, lampe visible, deux ou trois accessoires maximum et export Windows portable sont dans ce GO ; jacket/emprise intérieure restent exclus. La livraison doit s’arrêter pour revue humaine, sans P6B ni merge implicites.

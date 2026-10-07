@@ -3,6 +3,7 @@ uniform sampler2D hero_soil : source_color, filter_linear_mipmap_anisotropic, re
 uniform sampler2D hero_clay : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D hero_stone : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D hero_bone : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform bool hero_fragmented_soil = true;
 vec3 hero_source(sampler2D source, vec2 p) {
  // Both samples are authored color at ~24 cm. The gentle blend only breaks
  // periodic alignment; it does not synthesize material grain or broad color.

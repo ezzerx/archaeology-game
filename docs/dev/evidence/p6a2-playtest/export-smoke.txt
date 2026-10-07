@@ -1,0 +1,4 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 610.88 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 5080
+
+P6A2 EXPORT SMOKE PASS | engine=4.7.2-stable (official) | template=true | native tools/reset=true | capture=C:/Users/antoi/AppData/Roaming/Godot/app_userdata/ArchaeologyGame Playtest/p6a2_export_smoke.png
