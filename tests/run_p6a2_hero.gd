@@ -1,6 +1,18 @@
 extends "res://tests/run_p6a16_geometry.gd"
 ## Reuse native capture/zoom/state/timer helpers. P6A2 never edits the kernel.
 
+func capture(label: String) -> Image:
+	main.feedback.proxies_enabled=false
+	main.session_ui.notice_label.hide()
+	await settle(4)
+	# Camera settling can refresh the cursor; hide only after that update.
+	main.block.show_cursor({"inside":false},1)
+	await RenderingServer.frame_post_draw
+	var picture:=root.get_texture().get_image()
+	check(picture.save_png(out+label+".png")==OK,"capture "+label)
+	evidence.captures.append(label+".png")
+	return picture
+
 func hero_state(index: int) -> void:
 	main.select_fixture(0)
 	main.select_candidate(1)
@@ -25,6 +37,13 @@ func hero_state(index: int) -> void:
 
 func visual() -> void:
 	main.panel.hide()
+	await shadow_regression()
+	hero_state(0)
+	await zoom_to(1)
+	main.task_light_enabled=false;main.set_hero_look(true)
+	await capture("full-block-directional-debug")
+	main.task_light_enabled=true;main.set_hero_look(true)
+	await capture("full-block-task-light")
 	var labels := ["reset","part-brushed","excavated","dirty-bone","cleaner-bone"]
 	for i in range(5):
 		hero_state(i)
@@ -43,6 +62,95 @@ func visual() -> void:
 	hero_state(0)
 	await zoom_centered(3,Vector2(965,535))
 	await capture("hero-jacket-integration-3x")
+	main.select_fixture(1)
+	await zoom_centered(3,Vector2(595,370))
+	await capture("clay-source-3x")
+	await stone_review()
+	hero_state(3)
+	await zoom_centered(3,Vector2(270,250))
+	await capture("bone-film-dirty-3x")
+	var unclean:=state()
+	for y in range(195,308,12):
+		main.block.working_map.apply_continuous(Vector2(195,y),Vector2(357,y),main.controller.tools[0],2.0)
+	await settle()
+	var cleaned:=state()
+	check(unclean.height==cleaned.height and unclean.bone==cleaned.bone and unclean.ceilings==cleaned.ceilings,"Brush-only Film comparison preserves geometry")
+	check(cleaned.clean>unclean.clean,"Brush-only comparison actually removes Film")
+	await capture("bone-film-clean-3x")
+	# Documentary overview only: controls/default 1x and max 3x stay untouched.
+	hero_state(0)
+	await zoom_to(1)
+	main.camera.set_process(false)
+	main.camera.size=1.05
+	main.set_hero_look(true)
+	await capture("full-block-overview-task")
+	main.task_light_enabled=false;main.set_hero_look(true)
+	await capture("full-block-overview-directional")
+	main.task_light_enabled=true;main.set_hero_look(true)
+	main.camera.set_process(true)
+	await zoom_to(1)
+
+func stone_review() -> void:
+	# Native Chisel raster; skip fossil-bearing centres (nearby Bone may still
+	# be revealed by the native footprint). Stop at the existing Stone boundary.
+	main.select_fixture(1)
+	var s: WorkingSurface=main.block.working_map
+	var impacts:=0
+	for y in range(110,311,12):
+		for x in range(705,890,12):
+			var cell:=Vector2i(x,y)
+			var i:=y*s.size.x+x
+			if s.structural_ceilings[i]>0: continue
+			for n in range(80):
+				if s._heights[i]<=s.strata.packed_limits[i*2+1]-.006: break
+				s.apply_impact(Vector2(cell),main.controller.tools[1]);impacts+=1
+	# Native air jet clears accumulated debris for the material close-up.
+	for y in range(110,311,30):
+		s.apply_continuous(Vector2(705,y),Vector2(890,y),main.controller.tools[2],1.0)
+	await settle()
+	await zoom_centered(3,Vector2(800,205))
+	evidence["stone_review_native_impacts"]=impacts
+	await capture("sandstone-source-3x")
+
+func shadow_regression() -> void:
+	# A local shadow atlas can cache the undisplaced MeshInstance while its
+	# vertex height texture changes. Compare excavation with a newly made light.
+	hero_state(0)
+	await zoom_to(1)
+	await settle(10)
+	hero_state(4)
+	await settle(10)
+	await RenderingServer.frame_post_draw
+	var edited := root.get_texture().get_image()
+	var fresh := main.task_light.duplicate() as SpotLight3D
+	main.task_light.free()
+	main.add_child(fresh)
+	main.task_light=fresh
+	await settle(10)
+	await RenderingServer.frame_post_draw
+	var oracle := root.get_texture().get_image()
+	var mean_error:=0.0
+	var worst:=0.0
+	var samples:=0
+	for y in range(180,900,3):
+		for x in range(300,1580,3):
+			var a:=edited.get_pixel(x,y)
+			var b:=oracle.get_pixel(x,y)
+			var difference:=maxf(absf(a.r-b.r),maxf(absf(a.g-b.g),absf(a.b-b.b)))
+			mean_error+=difference
+			worst=maxf(worst,difference)
+			samples+=1
+	mean_error/=samples
+	evidence["shadow_refresh"]={"mean_rgb_error":mean_error,"max_rgb_error":worst,"samples":samples,"oracle":"new SpotLight3D after real height edit"}
+	check(mean_error<.002 and worst<.025,"height edit shadow matches freshly instantiated local light")
+	var unchanged:=state()
+	var radius: float=main.controller.config.radius
+	var key:=InputEventKey.new()
+	key.physical_keycode=KEY_F11;key.pressed=true
+	root.push_input(key)
+	check(not main.task_light_enabled,"F11 reaches local light debug through normal input routing")
+	root.push_input(key)
+	check(state()==unchanged and main.controller.config.radius==radius and main.task_light_enabled,"lighting debug preserves gameplay and tool radius")
 
 func functional() -> void:
 	check(main.candidate == 1, "Hero explicitly starts on B")
@@ -78,6 +186,11 @@ func functional() -> void:
 	var film_base: String=main.witness_shader.code.get_slice("vec4 film =",1).get_slice("color = mix",0)
 	check(film_code==film_base,"film amount, bit mask, pattern and density byte-identical")
 	check(main.jacket.find_children("*","CollisionObject3D",true,false).is_empty(),"static jacket has no collision/picking authority")
+	check(main.task_light is SpotLight3D and main.task_light.shadow_enabled and main.task_light.visible,"real local shadow-casting preparation lamp")
+	check(not main.hero_shader.code.contains("hero_painted") and not main.hero_shader.code.contains("surface_data"),"rejected atlas and previous data plates absent")
+	for material in ["soil","clay","stone","bone"]:
+		var texture: Texture2D=main.block.material.get_shader_parameter("hero_"+material)
+		check(texture!=null and texture.resource_path.ends_with("_albedo_v02.png") and texture.get_size()==Vector2(1024,1024),"selected v02 source bound: "+material)
 	var triangles:=0
 	var intruding:=0
 	var faces := PackedVector3Array()
@@ -94,6 +207,7 @@ func functional() -> void:
 	# Fixed camera direction at any zoom: test the four boundary rows at floor
 	# depth, where a static lip is most likely to hide an excavatable point.
 	var occlusions:=0
+	var occluded_points:=[]
 	var rays:=0
 	for side in range(4):
 		for n in range(33):
@@ -107,10 +221,11 @@ func functional() -> void:
 				var hit=Geometry3D.ray_intersects_triangle(origin,direction,faces[j],faces[j+1],faces[j+2])
 				if hit!=null and origin.distance_to(hit)<origin.distance_to(target):
 					occlusions+=1
+					occluded_points.append({"target":str(target),"hit":str(hit),"triangle":j/3})
 					break
 			rays+=1
 	check(occlusions==0,"jacket does not occlude 132 floor-depth boundary rays")
-	evidence["jacket_occlusion"]={"rays":rays,"occluded":occlusions}
+	evidence["jacket_occlusion"]={"rays":rays,"occluded":occlusions,"points":occluded_points}
 	var s: WorkingSurface=main.block.working_map
 	P5Fixture.reveal(s,[100,100,100,100]);P5Fixture.clean(s);main.session.flush()
 	check(main.session.preparation_complete and main.session.fine_preparation,"85/85 and 95/95 milestones retained")
@@ -189,7 +304,7 @@ func benchmark() -> void:
 				FileAccess.open(out+"benchmark.json",FileAccess.WRITE).store_string(JSON.stringify(evidence,"\t"))
 
 func run() -> void:
-	out = "res://work/test-logs/p6a2-hero/"
+	out = "res://work/test-logs/p6a2-correction/"
 	DirAccess.make_dir_recursive_absolute(out)
 	root.size=Vector2i(1920,1080);root.content_scale_size=root.size
 	evidence["runtime"]={"engine":Engine.get_version_info().string,"cpu":OS.get_processor_name(),
@@ -205,6 +320,20 @@ func run() -> void:
 	if mode == "visual": await visual()
 	elif mode == "tests": await functional()
 	elif mode == "benchmark": await benchmark()
+	elif mode == "shadows": await shadow_regression()
+	elif mode == "lightstudy":
+		main.panel.hide()
+		for index in [0,4]:
+			hero_state(index)
+			await zoom_to(1)
+			main.task_light_enabled=false;main.set_hero_look(true)
+			await capture("study-"+str(index)+"-directional")
+			main.task_light_enabled=true;main.set_hero_look(true)
+			main.task_light.shadow_enabled=true
+			await capture("study-"+str(index)+"-spot-shadow")
+			main.task_light.shadow_enabled=false
+			await capture("study-"+str(index)+"-spot-no-shadow")
+			main.task_light.shadow_enabled=true
 	elif mode == "preview":
 		main.panel.hide()
 		main.set_hero_look(false)

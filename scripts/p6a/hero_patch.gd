@@ -10,22 +10,25 @@ var original_colors: Array = []
 var original_crumb_colors: Array = []
 var ready_for_look := false
 var look_button: Button
+var task_light: SpotLight3D
+var bench_bounce: OmniLight3D
+var task_light_enabled := true
+var light_button: Button
+var shadow_height_revision := -1
 
 func _ready() -> void:
 	super._ready()
 	select_candidate(1)
-	get_window().title = "ArchaeologyGame — P6A2 Hero Patch"
+	get_window().title = "P6A2 — Hero correction · sources ImageGen v02 · lampe locale"
 	witness_shader = soil_shader
 	hero_shader = Shader.new()
 	var code := witness_shader.code
 	code = _hook(code, "void vertex() {", '#include "res://shaders/p6a2_materials.gdshaderinc"\nvoid vertex() {')
 	code = _hook(code, "float contact_deposit = 0.0;", """
-vec4 hero_data = hero_plate(UV, layer, exposed_bone);
 if (debug_view == 0) {
- float variation = (hero_data.r - .5) * (exposed_bone ? .20 : .65);
- color *= 1.0 + variation;
- color *= mix(1.0,hero_painted_value(UV,layer,exposed_bone),exposed_bone ? .32 : (layer == 0 ? .45 : .72));
- if (!exposed_bone) { color *= 1.0 - (hero_data.a-.5)*.22; }
+ vec3 hero_position = (inverse(MODEL_MATRIX)*INV_VIEW_MATRIX*vec4(VERTEX,1.0)).xyz;
+ vec3 hero_normal = normalize(transpose(mat3(VIEW_MATRIX*MODEL_MATRIX))*relief_normal);
+ color = hero_albedo(hero_position, hero_normal, exposed_bone ? 3 : layer);
  color *= 1.0 - hero_cavity(UV, surface_height) * (exposed_bone ? .35 : 1.0);
 }
 float contact_deposit = 0.0;
@@ -35,11 +38,10 @@ float contact_deposit = 0.0;
 	code = _hook(code, "vec3(0.86, 0.76, 0.58)", "vec3(0.47, 0.37, 0.25)")
 	code = _hook(code, "if (debug_view != 0) {", """
 if (debug_view == 0) {
- float dry = exposed_bone ? .49 : (layer == 0 ? .98 : (layer == 1 ? .87 : .91));
- ROUGHNESS = clamp(dry + (hero_data.b-.5)*.16 + film_cover*.28 + dust_cover*.12, .4, 1.0);
+ float dry = exposed_bone ? .73 : (layer == 0 ? .98 : (layer == 1 ? .89 : .94));
+ ROUGHNESS = clamp(dry + film_cover*.28 + dust_cover*.12, .4, 1.0);
  vec3 cosmetic_normal = exposed_bone ? normalize((VIEW_MATRIX*MODEL_MATRIX*vec4(hero_bone_normal(UV),0.0)).xyz) : relief_normal;
- float micro = (hero_data.g-.5)*.3 + (hero_painted_value(UV,layer,exposed_bone)-1.0)*.7;
- NORMAL = hero_bump_normal(VERTEX, cosmetic_normal, micro*(exposed_bone ? .000025 : .00012));
+ NORMAL = cosmetic_normal;
 }
 if (debug_view != 0) {
 """)
@@ -52,12 +54,38 @@ if (debug_view != 0) {
 	jacket.name = "StaticJacket"
 	add_child(jacket)
 	for mesh: MeshInstance3D in jacket.find_children("*", "MeshInstance3D", true, false):
-		mesh.material_override = preload("res://materials/p6a2/plaster.tres") if mesh.name == "jacket_shell" else preload("res://materials/p6a2/canvas.tres")
+		mesh.material_override = preload("res://materials/p6a2/canvas.tres") if mesh.name == "jacket_burlap" else preload("res://materials/p6a2/plaster.tres")
+	task_light = SpotLight3D.new()
+	task_light.name = "PreparationLamp"
+	add_child(task_light)
+	task_light.position = Vector3(-.45,.80,-.30)
+	task_light.look_at(Vector3(-.06,.04,-.01),Vector3.UP)
+	task_light.light_color = Color(1.0,.94,.83)
+	task_light.light_energy = 1.20
+	task_light.spot_range = 1.9
+	task_light.spot_attenuation = 1.1
+	task_light.spot_angle = 50.0
+	task_light.spot_angle_attenuation = 1.3
+	task_light.shadow_enabled = true
+	task_light.shadow_bias = .03
+	task_light.shadow_normal_bias = .5
+	# Restrained table bounce keeps the front matrix wall readable. It does not
+	# cast competing shadows or flatten the main upper-left lamp direction.
+	bench_bounce = OmniLight3D.new()
+	bench_bounce.name = "WorkbenchBounce"
+	add_child(bench_bounce)
+	bench_bounce.position = Vector3(.12,.18,.65)
+	bench_bounce.light_color = Color(1.0,.91,.80)
+	bench_bounce.light_energy = .30
+	bench_bounce.omni_range = 1.2
+	bench_bounce.omni_attenuation = 2.0
+	bench_bounce.shadow_enabled = false
 	panel.hide()
 	var box := panel.get_child(0)
 	box.get_child(0).text = "P6A2 / HERO LOOKDEV"
 	for button in buttons: button.hide()
 	look_button = _button("F8 · Voir le témoin B", box, toggle_look)
+	light_button = _button("F11 · Lampe locale / témoin directionnel",box,toggle_task_light)
 	box.get_child(0).tooltip_text = "Même état de fouille et même caméra."
 	# Replace the inherited geometry-key hint, not the gameplay HUD.
 	for child in box.get_children():
@@ -74,34 +102,53 @@ func set_hero_look(enabled: bool) -> void:
 	if not ready_for_look: return
 	for mat in [block.material, block.skirt_material]:
 		mat.shader = hero_shader if enabled else witness_shader
+		mat.set_shader_parameter("hero_soil",preload("res://assets/p6a2/textures/soil/p6a2_soil_albedo_v02.png"))
+		mat.set_shader_parameter("hero_clay",preload("res://assets/p6a2/textures/clay/p6a2_clay_albedo_v02.png"))
+		mat.set_shader_parameter("hero_stone",preload("res://assets/p6a2/textures/sandstone/p6a2_sandstone_albedo_v02.png"))
+		mat.set_shader_parameter("hero_bone",preload("res://assets/p6a2/textures/bone/p6a2_bone_albedo_v02.png"))
 		mat.set_shader_parameter("soil_color", Color(.265,.175,.10) if enabled else block.material_definitions[0].debug_color)
-		mat.set_shader_parameter("clay_color", Color(.47,.225,.11) if enabled else block.material_definitions[1].debug_color)
+		mat.set_shader_parameter("clay_color", Color(.30,.145,.075) if enabled else block.material_definitions[1].debug_color)
 		mat.set_shader_parameter("sandstone_color", Color(.34,.285,.215) if enabled else block.material_definitions[2].debug_color)
-		mat.set_shader_parameter("bone_color", Color(.70,.67,.61) if enabled else Color(.94,.87,.72))
-		mat.set_shader_parameter("hero_soil", preload("res://assets/p6a2/textures/soil/p6a2_soil_surface_data.png"))
-		mat.set_shader_parameter("hero_clay", preload("res://assets/p6a2/textures/clay/p6a2_clay_surface_data.png"))
-		mat.set_shader_parameter("hero_stone", preload("res://assets/p6a2/textures/sandstone/p6a2_sandstone_surface_data.png"))
-		mat.set_shader_parameter("hero_bone", preload("res://assets/p6a2/textures/bone/p6a2_bone_surface_data.png"))
-		mat.set_shader_parameter("hero_painted", preload("res://assets/p6a/material-atlas.png"))
+		mat.set_shader_parameter("bone_color", Color(.46,.405,.31) if enabled else Color(.94,.87,.72))
 	jacket.visible = enabled
 	$TableEnvironment/Table.material_override = preload("res://materials/p6a2/workbench.tres") if enabled else original_table
 	var environment := original_environment.duplicate() as Environment
 	if enabled:
 		environment.background_color = Color(.14,.105,.069)
 		environment.ambient_light_color = Color(.91,.89,.86)
-		environment.ambient_light_energy = .45
+		environment.ambient_light_energy = .30 if task_light_enabled else .45
 	$TableEnvironment/WorldEnvironment.environment = environment
 	var light: DirectionalLight3D = $TableEnvironment/Light
 	light.light_color = Color(1,.95,.89) if enabled else Color(1,.91,.79)
-	light.light_energy = .65 if enabled else 1.0
+	light.light_energy = (.20 if task_light_enabled else .65) if enabled else 1.0
 	light.rotation_degrees = Vector3(-52,-135,0) if enabled else Vector3(-48,-145,0)
-	feedback.colors = [Color(.33,.24,.14),Color(.59,.30,.155),Color(.34,.285,.215),Color(.78,.71,.55)] if enabled else original_colors.duplicate()
-	feedback.loose_view.colors = [Color(.29,.20,.12),Color(.50,.28,.14),Color(.35,.29,.22)] if enabled else original_crumb_colors.duplicate()
+	task_light.visible = enabled and task_light_enabled
+	bench_bounce.visible = enabled and task_light_enabled
+	feedback.colors = [Color(.28,.18,.10),Color(.46,.23,.11),Color(.27,.23,.18),Color(.71,.65,.53)] if enabled else original_colors.duplicate()
+	feedback.loose_view.colors = [Color(.26,.17,.09),Color(.42,.22,.11),Color(.27,.23,.18)] if enabled else original_crumb_colors.duplicate()
 	# Refresh only display instance colors, never mark logical debris dirty.
 	for i in range(feedback.loose_view.keys.size()): feedback.loose_view.draw_key(i, feedback.loose_view.keys[i])
 	look_button.text = "F8 · Voir le témoin B" if enabled else "F8 · Voir le Hero Patch"
+	light_button.text = "F11 · Voir l’éclairage directionnel" if task_light_enabled else "F11 · Voir la lampe locale"
+
+func toggle_task_light() -> void:
+	task_light_enabled = not task_light_enabled
+	set_hero_look(hero_enabled)
+
+func _process(delta: float) -> void:
+	super._process(delta)
+	if not ready_for_look or block.upload_count == shadow_height_revision: return
+	shadow_height_revision = block.upload_count
+	# Vertex texture edits do not move the MeshInstance. Invalidate the local
+	# light shadow cache when the real height texture changes, not on Film edits.
+	task_light.shadow_enabled = false
+	task_light.shadow_enabled = true
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_F11:
+		toggle_task_light()
+		get_viewport().set_input_as_handled()
+		return
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_F8:
 		toggle_look()
 		get_viewport().set_input_as_handled()

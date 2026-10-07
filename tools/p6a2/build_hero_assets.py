@@ -1,168 +1,178 @@
-"""P6A2 authored prototype. Fixed composition; no excavation/Bone input.
-Run with Blender 5.2.2 --background --factory-startup --python this_file.
+"""P6A2 targeted jacket correction. Static shell only; never reads/writes excavation.
+Blender 5.2.2; original construction, fixed seed; no rejected atlas or data plates.
 """
 from pathlib import Path
-import math, random, json, hashlib
-import bpy
-import numpy as np
+import math, random
+import bpy, bmesh
 
 assert bpy.app.version == (5, 2, 2), bpy.app.version_string
-
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = ROOT / 'art/source/p6a2/meshes'
-SOURCE.mkdir(parents=True, exist_ok=True)
+rng = random.Random(627207)
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete(use_global=False)
 bpy.context.scene.unit_settings.system = 'METRIC'
 bpy.context.scene.unit_settings.scale_length = 1
 bpy.context.preferences.filepaths.save_version = 0
 
-def material(name, color):
-    m = bpy.data.materials.new(name)
-    m.diffuse_color = (*color, 1)
-    node = m.node_tree.nodes.get('Principled BSDF')
-    node.inputs['Base Color'].default_value = (*color, 1)
-    node.inputs['Roughness'].default_value = .87
+# Deliberately asymmetric outline, not an offset rectangle. Coordinates Godot XZ.
+OUTLINE = [(.601,.018),(.624,.151),(.610,.280),(.579,.381),(.428,.406),
+ (.264,.386),(.094,.409),(-.095,.380),(-.272,.402),(-.444,.416),
+ (-.586,.379),(-.611,.258),(-.586,.108),(-.599,-.078),(-.622,-.245),
+ (-.592,-.382),(-.451,-.410),(-.268,-.379),(-.126,-.399),(.059,-.376),
+ (.229,-.413),(.442,-.390),(.586,-.376),(.608,-.268),(.582,-.117)]
+def cross(a,b): return a[0]*b[1]-a[1]*b[0]
+def radii(t):
+    d=(math.cos(t),math.sin(t))
+    inner=min(.55015/max(abs(d[0]),1e-9),.35015/max(abs(d[1]),1e-9))
+    outer=10
+    for a,b in zip(OUTLINE,OUTLINE[1:]+OUTLINE[:1]):
+        v=(b[0]-a[0],b[1]-a[1]); den=cross(d,v)
+        if abs(den)<1e-10: continue
+        r=cross(a,v)/den; u=cross(a,d)/den
+        if r>0 and 0<=u<=1: outer=min(outer,r)
+    assert outer>inner+.014,(t,outer,inner)
+    return inner,outer
+
+def vertex(t,r,y):
+    x,z=r*math.cos(t),r*math.sin(t)
+    # Keep every point outside the footprint. A leaning front wall clears the
+    # actual 84-degree camera ray all the way down to Y=.018 (excavation floor).
+    # Include the corner shoulder: triangles between the lip and outer ring
+    # also need to clear the camera ray, not only the inner-ring vertices.
+    if z>.28 and abs(x)<.58:
+        z=max(z,.35015+max(y-.017,0)*math.tan(math.radians(6))+.00025)
+    return (x,-z,y) # Blender +Z up -> Godot +Y up
+
+def material(name,color):
+    m=bpy.data.materials.new(name);m.diffuse_color=(*color,1)
+    node=m.node_tree.nodes.get('Principled BSDF')
+    node.inputs['Roughness'].default_value=.96
+    vc=m.node_tree.nodes.new('ShaderNodeVertexColor');vc.layer_name='Color'
+    m.node_tree.links.new(vc.outputs['Color'],node.inputs['Base Color'])
     return m
+plaster=material('jacket_plaster_v02',(.48,.46,.40))
+contact=material('jacket_dirty_fibre',(.26,.22,.16))
+fabric=material('jacket_burlap',(.30,.23,.14))
 
-plaster = material('jacket_plaster', (.70, .64, .49))
-fabric = material('jacket_canvas', (.26, .19, .105))
-
-# Work in Godot coordinates, convert to Blender (x,-z,y) before saving.
-# Every shell vertex is outside |x|<=.55 AND |z|<=.35; front extra clearance
-# preserves the fixed 84-degree camera's access even at the excavation floor.
-N = 256
-vertices, faces = [], []
-for ring in range(6):
-    for i in range(N):
-        t = i * math.tau / N
-        c, s = math.cos(t), math.sin(t)
-        inner = min(.553 / max(abs(c), 1e-8), (.369 if s > 0 else .357) / max(abs(s), 1e-8))
-        width = .027 + .026*(.5+.5*math.sin(5*t+.4)) + .021*(.5+.5*math.sin(9*t+1.1))
-        width = min(width, max(.018, .411/max(abs(s),1e-8)-inner))
-        ripple = .003*math.sin(31*t)+.0025*math.sin(53*t+.7)
-        chip = .020*max(0, math.sin(17*t+.3))**6
-        lip = .075 + .009*math.sin(3*t+.8)+.006*math.sin(11*t)-chip
-        retreat=.008*(.5+.5*math.sin(19*t))+.003*(.5+.5*math.sin(43*t))
-        radius, height = [(inner,.009), (inner+retreat,lip-.016), (inner+.012+retreat,lip),
-                          (inner+width,lip-.010+ripple), (inner+width+.003,.028),
-                          (inner+width*.70,.009)][ring]
-        vertices.append((radius*c, -radius*s, height))
-for ring in range(6):
-    for i in range(N):
-        j = (i+1)%N
-        faces.append((ring*N+i, ring*N+j, ((ring+1)%6)*N+j, ((ring+1)%6)*N+i))
-mesh = bpy.data.meshes.new('jacket_shell')
-mesh.from_pydata(vertices, [], faces)
-mesh.update()
-obj = bpy.data.objects.new('jacket_shell', mesh)
-bpy.context.collection.objects.link(obj)
-obj.data.materials.append(plaster)
-bpy.context.view_layer.objects.active=obj
-obj.select_set(True)
-bpy.ops.object.mode_set(mode='EDIT')
-bpy.ops.mesh.select_all(action='SELECT')
-bpy.ops.mesh.normals_make_consistent(inside=False)
-bpy.ops.uv.smart_project(angle_limit=1.1519, island_margin=.02)
-bpy.ops.object.mode_set(mode='OBJECT')
-bevel=obj.modifiers.new('Soft broken plaster edges','BEVEL')
-bevel.width=.0018; bevel.segments=2
-bpy.ops.object.modifier_apply(modifier=bevel.name)
-for p in obj.data.polygons: p.use_smooth=True
-
-# Small overlapping plaster flakes break the cast rim into hand-laid sheets.
-# All are on the shell's outer half, never over the dynamic work footprint.
-rng_shell=random.Random(62722)
-flakes=[]
-for i in range(72):
-    t=i*math.tau/72+rng_shell.uniform(-.018,.018)
-    c,s=math.cos(t),math.sin(t)
-    inner=min(.553/max(abs(c),1e-8),(.369 if s>0 else .357)/max(abs(s),1e-8))
-    width=.027+.026*(.5+.5*math.sin(5*t+.4))+.021*(.5+.5*math.sin(9*t+1.1))
-    width=min(width,max(.018,.411/max(abs(s),1e-8)-inner))
-    chip=.020*max(0,math.sin(17*t+.3))**6
-    lip=.075+.009*math.sin(3*t+.8)+.006*math.sin(11*t)-chip
-    radius=inner+width*.60
-    outline=[]
-    length=rng_shell.uniform(.009,.023); depth=width*.22
-    for j in range(6):
-        a=j*math.tau/6
-        along=math.cos(a)*length*rng_shell.uniform(.75,1.1)
-        across=math.sin(a)*depth*rng_shell.uniform(.75,1.0)
-        outline.append(((radius+across)*c-along*s,-((radius+across)*s+along*c)))
-    thick=rng_shell.uniform(.001,.003)
-    vv=[(x,y,lip-.004+k*thick) for k in [0,1] for x,y in outline]
-    ff=[tuple(range(5,-1,-1)),tuple(range(6,12))]+[(j,(j+1)%6,(j+1)%6+6,j+6) for j in range(6)]
-    mm=bpy.data.meshes.new('plaster_flake');mm.from_pydata(vv,[],ff);mm.update()
-    flake=bpy.data.objects.new('plaster_flake',mm);bpy.context.collection.objects.link(flake)
-    mm.materials.append(plaster);flakes.append(flake)
-bpy.ops.object.select_all(action='DESELECT')
-obj.select_set(True)
-for flake in flakes: flake.select_set(True)
-bpy.context.view_layer.objects.active=obj
-bpy.ops.object.join()
-
-# Small external canvas reinforcement tabs; never bridge the digging area.
-for x in [-.34,.29]:
-    for z, side in [(-.389,-1),(.398,1)]:
-        bpy.ops.mesh.primitive_cube_add(size=1, location=(x,-z,.028))
-        tab=bpy.context.object; tab.name='canvas_tab'
-        tab.dimensions=(.049,.050,.010)
-        bpy.ops.object.transform_apply(location=False,rotation=True,scale=True)
-        tab.data.materials.append(fabric)
-        mod=tab.modifiers.new('Rounded folded cloth','BEVEL'); mod.width=.003; mod.segments=3
+def mesh_object(name,verts,faces,colors,mat,bevel=0):
+    mesh=bpy.data.meshes.new(name);mesh.from_pydata(verts,[],faces);mesh.update()
+    bm=bmesh.new();bm.from_mesh(mesh);bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(mesh);bm.free()
+    attr=mesh.color_attributes.new(name='Color',type='FLOAT_COLOR',domain='POINT')
+    for i,col in enumerate(colors): attr.data[i].color=(*col,1)
+    uv=mesh.uv_layers.new(name='UVMap')
+    for loop in mesh.loops:
+        p=mesh.vertices[loop.vertex_index].co
+        uv.data[loop.index].uv=((p.x+.75)/1.5,(p.y+.45)/.9)
+    ob=bpy.data.objects.new(name,mesh);bpy.context.collection.objects.link(ob)
+    ob.data.materials.append(mat)
+    bpy.ops.object.select_all(action='DESELECT');ob.select_set(True);bpy.context.view_layer.objects.active=ob
+    if bevel:
+        mod=ob.modifiers.new('Small worn fracture edges','BEVEL');mod.width=bevel;mod.segments=2;mod.angle_limit=.55
         bpy.ops.object.modifier_apply(modifier=mod.name)
+    for p in ob.data.polygons:p.use_smooth=True
+    return ob
 
-bpy.ops.wm.save_as_mainfile(filepath=str(SOURCE/'b17_jacket.blend'))
-runtime=ROOT/'assets/p6a2/static';runtime.mkdir(parents=True,exist_ok=True)
-bpy.ops.export_scene.gltf(filepath=str(runtime/'b17_jacket.glb'),export_format='GLB',export_yup=True,
-    export_apply=True,export_normals=True,export_texcoords=True,export_materials='EXPORT',
-    export_animations=False,export_cameras=False,export_lights=False)
+def blend(a,b,k):return tuple(a[i]*(1-k)+b[i]*k for i in range(3))
 
-# Non-repeating data plates, authored for the full 1.1 x .7 m dynamic core.
-# R broad brush values, G tiny surface height, B roughness variation, A inclusions.
-# No concept-image pixels, baked lights, albedo, fossil masks, or geometry input.
-W,H=1024,640
-yy,xx=np.mgrid[0:H,0:W].astype(np.float32)
-def field(rng, nx, ny):
-    grid=rng.random((ny+1,nx+1)).astype(np.float32)
-    x=xx/W*nx; y=yy/H*ny
-    ix=x.astype(int);iy=y.astype(int);fx=x-ix;fy=y-iy
-    fx=fx*fx*(3-2*fx);fy=fy*fy*(3-2*fy)
-    return (grid[iy,ix]*(1-fx)+grid[iy,ix+1]*fx)*(1-fy)+(grid[iy+1,ix]*(1-fx)+grid[iy+1,ix+1]*fx)*fy
-manifest=[]
-for index,name in enumerate(['soil','clay','sandstone','bone']):
-    rng=np.random.default_rng(62720+index)
-    broad=field(rng,11,7); medium=field(rng,85,53); fine=field(rng,460,288)
-    value=.52+.40*(broad-.5)+.30*(medium-.5)
-    detail=.5+.38*(fine-.5)
-    inclusion=np.zeros((H,W),dtype=np.float32)
-    # Deliberately different mark families: clustered granules / dragged dabs /
-    # angular mineral flecks / sparse elongated ivory mottles.
-    for n in range([1100,230,780,100][index]):
-        cx,cy=rng.uniform(0,W),rng.uniform(0,H)
-        rx,ry=([rng.uniform(1,4),rng.uniform(1,3)] if index==0 else
-               [rng.uniform(4,19),rng.uniform(1,5)] if index==1 else
-               [rng.uniform(1,7),rng.uniform(1,5)] if index==2 else
-               [rng.uniform(3,12),rng.uniform(2,7)])
-        x0=max(0,int(cx-rx*2));x1=min(W,int(cx+rx*2+1))
-        y0=max(0,int(cy-ry*2));y1=min(H,int(cy+ry*2+1))
-        dx=(xx[y0:y1,x0:x1]-cx)/rx;dy=(yy[y0:y1,x0:x1]-cy)/ry
-        d=np.abs(dx+.3*dy)+np.abs(dy) if index==2 else dx*dx+dy*dy
-        mark=np.clip(1-d,0,1)
-        value[y0:y1,x0:x1]+=mark*rng.uniform(-.30,.14)
-        detail[y0:y1,x0:x1]+=mark*rng.uniform(-.14,.10)
-        inclusion[y0:y1,x0:x1]=np.maximum(inclusion[y0:y1,x0:x1],mark)
-    rough=.5+.4*(medium-.5)+.15*(fine-.5)
-    data=np.stack((value,detail,rough,.5+.5*inclusion),axis=-1)
-    data=np.clip(data,0,1).astype(np.float32)
-    path=ROOT/f'assets/p6a2/textures/{name}/p6a2_{name}_surface_data.png'
-    path.parent.mkdir(parents=True,exist_ok=True)
-    img=bpy.data.images.new(name,W,H,alpha=True)
-    img.colorspace_settings.name='Non-Color'
-    img.pixels.foreach_set(data.ravel())
-    img.file_format='PNG';img.filepath_raw=str(path);img.save()
-    bpy.data.images.remove(img)
-    manifest.append({'file':str(path.relative_to(ROOT)).replace('\\','/'),'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
-(SOURCE/'asset_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
-print('P6A2_ASSETS_SAVED',manifest)
+# Continuous dirty plaster/fibre support, with no clean bright inner line.
+angles=sorted(set([math.tau*i/192 for i in range(192)]+[math.atan2(z,x)%math.tau for x in [-.55015,.55015] for z in [-.35015,.35015]]))
+N=len(angles);v=[];f=[];cols=[]
+for ring in range(6):
+    for i in range(N):
+        t=angles[i];ri,ro=radii(t)
+        lip=.055+.013*math.sin(t*3+.3)+.009*math.sin(t*11)
+        rr,yy=[(ri,.003),(ri,lip-.011),(ri+(ro-ri)*.42,lip),
+               (ro-.008,lip-.008),(ro+.002,.017),(ro-.009,.002)][ring]
+        v.append(vertex(t,rr,yy))
+        cols.append(blend((.20,.17,.125),(.34,.295,.22),.35+.25*math.sin(t*5+ring)))
+for r in range(6):
+    for i in range(N):
+        j=(i+1)%N;f.append((r*N+i,r*N+j,((r+1)%6)*N+j,((r+1)%6)*N+i))
+mesh_object('jacket_contact',v,f,cols,contact)
+
+# Coherent plaster mass, eroded locally. No radial planks or decorative rim.
+notches=[(rng.uniform(0,math.tau),rng.uniform(.025,.09),rng.uniform(.012,.038)) for _ in range(23)]
+def erosion(t):
+    return max(depth*math.exp(-((math.atan2(math.sin(t-c),math.cos(t-c)))/width)**2) for c,width,depth in notches)
+def lip_profile(t):
+    erode=erosion(t)
+    return .067+.021*math.sin(3*t+.4)+.010*math.sin(7*t)-erode*.70
+def worn_through(t):
+    # Long asymmetric missing shoulders. The lower dirty fibre body survives;
+    # the pale plaster must not form a continuous ring of comparable width.
+    return max(depth*math.exp(-(math.atan2(math.sin(t-c),math.cos(t-c))/span)**2)
+               for c,span,depth in [(1.25,.20,.88),(3.22,.30,.82),(4.52,.13,.70),(.15,.13,.65)])
+angles=sorted(set([math.tau*i/256 for i in range(256)]+[math.atan2(z,x)%math.tau for x in [-.55015,.55015] for z in [-.35015,.35015]]))
+N=len(angles);v=[];f=[];cols=[]
+for ring in range(6):
+    for i in range(N):
+        t=angles[i];ri,ro=radii(t)
+        ro+=.002*math.sin(37*t)+.0015*math.sin(67*t+.7)
+        ro=ri+(ro-ri)*(1-worn_through(t))
+        width=ro-ri
+        erode=erosion(t)
+        retreat=min(width*.72,.001+.008*(.5+.5*math.sin(9*t+1))+.6*erode)
+        lip=lip_profile(t)
+        irregular=.002*math.sin(47*t)+.0015*math.sin(73*t+.4)
+        rr,yy=[(ri,.005),(ri,lip-.008),(ri+retreat,lip+irregular),
+               (ro,lip-.006+irregular),(ro+.001,.019),(max(ri+.0005,ro-.008),.004)][ring]
+        v.append(vertex(t,rr,yy))
+        tone=.50+.13*math.sin(11*t)+.08*math.sin(29*t)
+        chalk=blend((.33,.345,.35),(.50,.505,.50),tone)
+        dirt=(.68 if ring==1 else .24 if ring==2 else .18 if ring==4 else .30 if ring==5 else .5)
+        dirt=min(.85,dirt+erode*6)
+        cols.append(blend(chalk,(.26,.22,.17),dirt))
+for r in range(6):
+    for i in range(N):
+        j=(i+1)%N;f.append((r*N+i,r*N+j,((r+1)%6)*N+j,((r+1)%6)*N+i))
+plaster_ob=mesh_object('jacket_shell',v,f,cols,plaster)
+edge_split=plaster_ob.modifiers.new('Broken plaster crease normals','EDGE_SPLIT')
+edge_split.split_angle=.65
+bpy.ops.object.modifier_apply(modifier=edge_split.name)
+
+# Local volumetric broken plaster chips, short in both directions; no flakes.
+chips=[]
+for k in range(38):
+    t=rng.uniform(0,math.tau);ri,ro=radii(t)
+    rad=ri+(ro-ri)*rng.uniform(.40,.86)
+    x,z=rad*math.cos(t),rad*math.sin(t)
+    y=lip_profile(t)-.006
+    # Avoid projecting over the working footprint at the near wall.
+    if abs(x)<.565 and z>0:z=max(z,.3508+(y+.012-.017)*math.tan(math.radians(6)))
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1,radius=1,location=(x,-z,y))
+    chip=bpy.context.object;chip.name='plaster_chip'
+    chip.scale=(rng.uniform(.004,.013),rng.uniform(.004,.009),rng.uniform(.003,.009))
+    chip.rotation_euler=(rng.uniform(-.3,.3),rng.uniform(-.3,.3),rng.uniform(0,math.tau))
+    bpy.ops.object.transform_apply(location=False,rotation=True,scale=True)
+    attr=chip.data.color_attributes.new(name='Color',type='FLOAT_COLOR',domain='POINT')
+    for c in attr.data:c.color=(.43,.445,.44,1)
+    chip.data.materials.append(plaster)
+    for face in chip.data.polygons:face.use_smooth=False
+    chips.append(chip)
+bpy.ops.object.select_all(action='DESELECT');plaster_ob.select_set(True)
+for chip in chips:chip.select_set(True)
+bpy.context.view_layer.objects.active=plaster_ob;bpy.ops.object.join()
+
+# Two localized folded strips on the OUTSIDE shoulders, not evenly spaced tabs.
+v=[];f=[];cols=[]
+for center,width in [(2.18,.11),(5.69,.08)]:
+    base=len(v);cols_n=7;rows=8
+    for row in range(rows):
+        u=row/(rows-1)
+        for col in range(cols_n):
+            t=center+(col/(cols_n-1)-.5)*width;ri,ro=radii(t)
+            r=ro-.007+.021*math.sin(u*math.pi)
+            y=.006+u*.071+.001*math.sin(col*2.2+row)
+            v.append(vertex(t,r,y));cols.append((.29,.23,.145))
+    for row in range(rows-1):
+        for col in range(cols_n-1):
+            a=base+row*cols_n+col;f.append((a,a+1,a+1+cols_n,a+cols_n))
+mesh_object('jacket_burlap',v,f,cols,fabric)
+
+source=ROOT/'art/source/p6a2/meshes/b17_jacket.blend'
+bpy.ops.wm.save_as_mainfile(filepath=str(source))
+output=ROOT/'assets/p6a2/static/b17_jacket.glb'
+bpy.ops.export_scene.gltf(filepath=str(output),export_format='GLB',export_yup=True,
+ export_apply=True,export_normals=True,export_texcoords=True,export_materials='EXPORT',
+ export_animations=False,export_cameras=False,export_lights=False)
+print('P6A2_JACKET_CORRECTION_SAVED',output)

@@ -8,7 +8,7 @@ $version = & $BlenderBin --background --factory-startup --version
 if ($LASTEXITCODE -ne 0 -or $version[0] -notmatch '^Blender 5\.2\.2 LTS') { throw "Expected Blender 5.2.2 LTS: $version" }
 $repoRoot = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
 if ($Regenerate) {
-    # Explicit opt-in: replaces the authored .blend and four data plates.
+    # Explicit opt-in: rebuilds only the authored static jacket source.
     & $BlenderBin --background --factory-startup --python-exit-code 1 --python (Join-Path $PSScriptRoot 'build_hero_assets.py')
     if ($LASTEXITCODE -ne 0) { throw 'Hero source generation failed' }
 }
@@ -17,3 +17,14 @@ $output = Join-Path $repoRoot 'assets/p6a2/static/b17_jacket.glb'
 & $BlenderBin --background --factory-startup $source --python-exit-code 1 --python (Join-Path $repoRoot 'tools/preflight/export_static.py') -- --output $output
 if ($LASTEXITCODE -ne 0) { throw 'Saved Hero .blend to GLB export failed' }
 Get-FileHash -LiteralPath $output -Algorithm SHA256
+$manifest = [ordered]@{
+    blender = '5.2.2 LTS'
+    source = 'art/source/p6a2/meshes/b17_jacket.blend'
+    source_sha256 = (Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash.ToLowerInvariant()
+    source_bytes = (Get-Item -LiteralPath $source).Length
+    runtime = 'assets/p6a2/static/b17_jacket.glb'
+    runtime_sha256 = (Get-FileHash -LiteralPath $output -Algorithm SHA256).Hash.ToLowerInvariant()
+    runtime_bytes = (Get-Item -LiteralPath $output).Length
+    export = 'GLB Y-up; applied modifiers; normals, UVs, vertex colors and materials; no cameras/lights/animation'
+}
+$manifest | ConvertTo-Json | Set-Content -Encoding utf8 (Join-Path $repoRoot 'art/source/p6a2/meshes/jacket_manifest.json')

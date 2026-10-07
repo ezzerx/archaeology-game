@@ -1,78 +1,76 @@
 # P6A2 Hero Patch — sources et provenance
 
-Prototype de lookdev du 7 octobre 2026, créé par Codex pour ArchaeologyGame.
-Sélection technique pour revue, **aucune validation artistique humaine implicite**.
-La gate courante reste dans `docs/brain/status.md`.
+Sources originales de lookdev pour ArchaeologyGame. Gate courante :
+`docs/brain/status.md`. Première livraison : commit `a9d47b6` et rapport
+`docs/dev/P6A2_HERO_LOOKDEV_REPORT.md` (preuves historiques conservées).
 
-## Jacket Blender
+## Coque de correction — 7 octobre 2026
 
 - Source : `meshes/b17_jacket.blend`, Blender **5.2.2 LTS**.
-- Auteur : construction scriptée originale `tools/p6a2/build_hero_assets.py` ;
-  aucune base externe, scan, mesh IA ou copie d’anatomie.
-- Références visuelles : pack canonique 01/03/00, pour le langage plâtre,
-  sans extraction de pixels/meshes.
-- Une unité = 1 m. Blender Z-up/+Y avant → Godot Y-up/−Z avant.
-  Origine au centre du bloc, plan inférieur proche de Y=0.009 m dans Godot.
-  Échelles/rotations appliquées ; translations des quatre tabs conservées.
-- 256 points × 6 anneaux, rebord d’épaisseur variable, encoches, bevel 1.8 mm,
-  72 petites écailles et quatre renforts toile. Normales sortantes ; UV smart-project.
-- Export GLB Y-up, modifiers/normales/UV/matériaux, sans animation/caméra/lumière.
-  Slots `jacket_plaster` / `jacket_canvas` remplacés **localement** par les
-  ShaderMaterials Godot `materials/p6a2/`. Les UV sont exportés mais ce premier
-  traitement statique utilise les coordonnées locales.
-- Runtime : `assets/p6a2/static/b17_jacket.glb`, racine importée à échelle 1.
-  11 790 triangles, cinq meshes, aucune collision, script ou autorité de fouille.
-  Contour extérieur statique autour du cœur de 1.1 × 0.7 m, jamais un substitut.
+- Construction scriptée originale : `tools/p6a2/build_hero_assets.py`, graine
+  627207. Aucune base externe, scan, anatomie ou données fossiles.
+- Références 01/03/00 : langage de contenant plâtré, sans extraction de pixels.
+- Une unité = 1 m ; Blender Z-up/+Y avant → Godot Y-up/−Z avant.
+  Origine au centre du bloc ; rotations/échelles appliquées.
+- Contour extérieur asymétrique de 25 points, corps à six anneaux, 23 érosions
+  locales, quatre épaules amincies, hauteur variable, 38 petits éclats solides
+  intégrés, deux bandes de toile extérieures. Normales recalculées avec
+  cassures marquées sur les changements de plan ; UV planaires et COLOR_0.
+- Trois meshes : `jacket_contact`, `jacket_shell`, `jacket_burlap`.
+  **6 400 triangles** ; GLB 320 216 octets ; .blend 262 763 octets.
+- Overrides locaux Godot dans `materials/p6a2/`. Plâtre/contact : nouvelle
+  source plaster v02 + teintes de sommets (plâtre gris chaud / contact sale).
+  Toile et établi : shaders de la première livraison, sans nouveaux props.
+- Aucun sommet dans le cœur XZ de 1.1 × 0.7 m, aucune collision ; test des
+  132 rayons de bord jusqu’au fond. Aucun recouvrement volontaire du cœur.
+- Le contour intérieur reste rectangulaire : amélioration expérimentale,
+  pas acceptation humaine d’une coque finale. Rapport de correction détaillé :
+  `docs/dev/P6A2_TARGETED_CORRECTION_REPORT.md`.
 
 ```powershell
-# Exporter une source .blend éditée ; ne régénère pas le modèle.
+# Exporter une source éditée sans la reconstruire.
 .\tools\p6a2\Export-Hero.ps1
-# Reconstruire explicitement source + GLB + quatre cartes de données.
+# Reconstruire explicitement la coque scriptée et son GLB seulement.
 .\tools\p6a2\Export-Hero.ps1 -Regenerate
 ```
 
-Le helper accepte `BLENDER_BIN` / `-BlenderBin`, sinon utilise la convention
+Le helper utilise `BLENDER_BIN` / `-BlenderBin`, sinon
 `%LOCALAPPDATA%\Programs\ArchaeologyGameTools\blender-5.2.2-windows-x64`.
-`-Regenerate` écrase volontairement ces sources : ne pas l’utiliser pour
-exporter une sculpture manuelle ultérieure. Le `.blend` n’est pas promis
-octet-déterministe ; le GLB réexporté depuis le fichier rouvert l’est dans
-la version vérifiée. Les binaires Blender/caches restent hors Git.
+`-Regenerate` écrase intentionnellement la source scriptée : ne pas l’utiliser
+pour exporter une sculpture manuelle ultérieure. Export depuis le .blend
+rouvert, GLB Y-up, modifiers, normales/UV/couleurs/matériaux ; sans animations,
+caméra ou lumière. Empreintes/tailles : `meshes/jacket_manifest.json`.
+Installation Blender et caches hors Git.
 
-## Cartes de données des matières
+## Sources ImageGen v02 sélectionnées
 
-Quatre PNG RGBA8 **1024 × 640**, générés par ce même script avec le NumPy
-embarqué de Blender ; graines 62720–62723. Empreintes dans
-`meshes/asset_manifest.json`. Source exécutable originale, pas de licence tierce.
+Commit externe `5a3d340`, sélection orchestrateur et autorisation d’intégration
+explicite d’Antoine. Cinq **miroirs JPEG 1254²**, pas les PNG originaux ni des
+2048² : Clay, Sandstone, Soil, Bone, plaster. Provenance, SHA des originaux,
+limites de raccord et prompts : `images/README.md`, `images/P6A2_IMAGEGEN_PROMPTS.md`.
+La demande historique reste dans `docs/dev/P6A2_IMAGEGEN_SOURCE_REQUEST.md`.
 
-| Canal | Rôle |
-|---|---|
-| R | Valeur large, dabs/granules/flecks propres à chaque matière |
-| G | Microvariation de normale dérivée, bornée, sans déplacement |
-| B | Variation de roughness |
-| A | Inclusions supplémentaires ; données, pas transparence |
+Dérivés runtime : `assets/p6a2/textures/<material>/p6a2_<material>_albedo_v02.png`.
+Reproduction : Godot 4.7.2 `--headless --path . --script tools/p6a2/prepare_textures.gd`.
+Conversion RGB8 et réduction Lanczos 1254→1024 uniquement. Pas d’upscale,
+retouche lumineuse, normal/height map ou masque inventé. SHA réels des JPEG
+et des PNG dérivés dans `images/runtime_manifest.json`.
 
-Chaque carte couvre **une fois 1.1 × 0.7 m** ; pas de répétition/tile. Marques
-Soil granulaires, Clay étirées, Sandstone angulaires, Bone rares et douces.
-Le shader fixe la couleur séparément ; aucune lumière, ombre, profondeur de
-fouille ou forme de fossile n’est cuite dans ces cartes. Godot : import lossless,
-mipmaps, sans traitement alpha, sampler linéaire sans `source_color`, repeat off.
-Budget alloué théorique RGBA8+mips : 13.33 MiB pour les quatre cartes.
+Import lossless, mipmaps, filtrage anisotrope dans les samplers `source_color`.
+Projection triplanaire à échelle nominale 24 cm ; deux lectures décalées/tournées réduisent la répétition
+périodique du cœur. Plâtre : projection triplanaire à 24 cm sur les côtés aussi.
+Assombrissement/désaturation Stone et légère correction Bone **dans le shader
+Hero seulement** ; roughness mate. Les sources ne sont jamais interprétées en
+hauteur. Le relief et Bone Film proviennent uniquement du système Godot natif.
 
-## Source peinte existante
+## Sources historiques retirées du Hero
 
-`assets/p6a/material-atlas.png` est réutilisé sans modification. Provenance et
-prompt d’origine : `assets/p6a/README.md` / `generation-prompt.txt`.
-ImageGen du 6 octobre 2026, 1254² RGB, quatre quadrants. Ce n’est ni un scan
-PBR ni un asset final approuvé. SHA256 dans les preuves du rapport Hero.
+L’atlas `assets/p6a/material-atlas.png` a été rejeté humainement.
+**Il n’est plus référencé par le Hero.** Sa provenance reste dans
+`assets/p6a/README.md` et `generation-prompt.txt`, pour l’expérience historique.
 
-Le Hero échantillonne une seule fois chaque quadrant avec inset, en données de
-valeur uniquement, puis module sa palette et son bump. Aucune reprise des
-pixels des concepts canoniques ; aucun nouveau service ou ImageGen local.
-Budget conservateur de l’atlas avec mips : ~8 MiB RGBA8. Bone Film continue
-d’utiliser exclusivement le masque/pattern dynamique natif.
-
-Pas de nouveaux originaux raster sélectionnés : `art/source/p6a2/images/`
-n’est donc pas rempli artificiellement. Une future source fournie par Antoine
-suivra les conventions du preflight (original, rôle/échelle/canaux, provenance,
-prompt, SHA, sélection humaine, traitement documenté), puis textures dérivées
-dans `assets/p6a2/textures/<material>/`.
+Les quatre `p6a2_*_surface_data.png` initiaux sont aussi débranchés.
+`meshes/asset_manifest.json` conserve leurs empreintes historiques.
+Leur générateur reste récupérable au commit `a9d47b6` ; le générateur courant
+ne reconstruit que la coque. Aucun fichier historique n’est présenté comme
+nouvelle source acceptée. Pas de suppression des preuves antérieures.

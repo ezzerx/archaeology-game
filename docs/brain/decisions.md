@@ -753,3 +753,7 @@ Le cœur dynamique Godot garde l'autorité exclusive : heightfield/couches, plaf
 ## P6A2 — GO pour un Hero Patch limité (2026-10-07)
 
 Après preflight READY, Antoine autorise explicitement un seul Hero Patch réel et jouable héritant du lab P6A1.6 B : matières, première coque plâtrée statique Blender, lumière et établi limité. Les visuels restent locaux à cette scène avant revue ; la comparaison au témoin conserve fouille et caméra. Le GO n’autorise ni la grammaire Clay différée, ni du tuning gameplay, ni une généralisation artistique. Une livraison testée doit revenir au verdict visuel humain ; aucune acceptation de direction ou transition P6B n’est implicite. [Rapport de la proposition](../dev/P6A2_HERO_LOOKDEV_REPORT.md).
+
+## P6A2 — rejet artistique et correction ciblée (2026-10-07)
+
+Antoine valide la chaîne technique, l’isolation et la performance du Hero `a9d47b6`, mais rejette son look. Le jacket doit se lire comme le contenant physique irrégulier d’un unique bloc de préparation, pas un cadre clair indépendant. L’atlas Material Lab, déjà jugé pauvre, est exclu de la fondation visuelle P6A2 : demander de nouvelles sources ImageGen précises à Antoine/orchestrateur avant finalisation matière. La lumière doit venir d’une véritable lampe locale (Spot/Omni), pas seulement d’un directionnel réchauffé. Ces trois priorités précèdent tout accessoire/polish secondaire. Architecture, géométrie B et gameplay restent conservés ; aucune validation de direction artistique n’est implicite.

@@ -3,6 +3,10 @@ extends SceneTree
 func _initialize() -> void:
 	var source := "res://work/test-logs/p6a2-hero/"
 	var target := "res://docs/dev/evidence/p6a2-hero/"
+	var correction := "--correction" in OS.get_cmdline_user_args()
+	if correction:
+		source="res://work/test-logs/p6a2-correction/"
+		target="res://docs/dev/evidence/p6a2-correction/"
 	DirAccess.make_dir_recursive_absolute(target)
 	for mode in ["tests","visual","benchmark"]:
 		var result: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(source+mode+".json"))
@@ -21,6 +25,10 @@ func _initialize() -> void:
 		names.append("hero-"+state)
 		names.append("hero-"+state+"-3x")
 	names.append_array(["hero-stone-interface-3x","hero-jacket-integration-3x"])
+	if correction:
+		var visual: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(source+"visual.json"))
+		names.clear()
+		for capture_name: String in visual.captures: names.append(capture_name.trim_suffix(".png"))
 	for label in names:
 		var picture:=Image.load_from_file(source+label+".png")
 		if picture==null or picture.save_jpg(target+label+".jpg",.93)!=OK:

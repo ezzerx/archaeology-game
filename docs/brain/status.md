@@ -59,11 +59,13 @@ Report on active branch:
 
 ## P6A2 status
 
-**P6A2 Hero Lookdev / Target Match livré après GO explicite ; attente du HUMAN VISUAL VERDICT d’Antoine.** Scène isolée `scenes/p6a2_hero_patch.tscn`, B au démarrage, premier jacket statique Blender, matières et table/lumière locales. Lancement : `.\Launch-P6A2-Hero-Patch.ps1` ; F8 compare au témoin B sans reset.
+**Verdict humain reçu : TARGETED CORRECTION REQUIRED.** La chaîne Blender → GLB → Godot, l’isolation, la préservation du gameplay et la performance sont validées. Le look livré `a9d47b6` est rejeté : jacket perçu comme cadre/blanc osseux, ancien atlas Material Lab pauvre, absence de véritable lampe locale.
 
-Rapport actif : **`docs/dev/P6A2_HERO_LOOKDEV_REPORT.md`**, captures contrôlées et mesures à 1×/3×. Contrôles techniques réussis ; ce n’est pas une validation artistique. Recommandation de l’agent : **correction ciblée**, notamment jacket encore trop cadre et détail de matière encore provisoire à 3×. Aucun gagnant visuel canonisé.
+**Proposition de correction livrée pour revue : coque remaniée, nouvelles sources ImageGen v02 et vraie lampe locale.** Set sélectionné par l’orchestrateur dans `5a3d340`, puis intégration explicitement autorisée par Antoine. L’atlas Material Lab et les anciennes cartes de données sont débranchés du Hero. Sources reçues : miroirs JPEG 1254², dérivés runtime 1024² ; aucune hauteur ou aucun masque de gameplay généré. Rapport actif : `docs/dev/P6A2_TARGETED_CORRECTION_REPORT.md`. Le rapport Hero initial reste historique.
 
-**Prochaine action : revue humaine des 13 questions du rapport, puis instruction explicite.** Ne pas continuer automatiquement le lookdev, rouvrir P6A1.6/Clay surface breakup grammar, promouvoir les visuels en production, démarrer P6B ou merger. Gameplay P4/P5 et géométrie B restent gelés. PR #9 reste DRAFT.
+Architecture et B conservés. La nouvelle coque reste statique et hors aire jouable ; SpotLight avec ombres actualisées après excavation, faible rebond Omni, comparaison F11. Même lanceur / scène isolée ; F8 conserve le témoin B. Captures et tests sont documentés dans le rapport. **Réserve principale de l’agent : le contact intérieur rectangulaire reste visible ; la disparition complète de l’effet cadre n’est pas revendiquée.** Les matières/lampe sont proposées à la revue, pas canonisées.
+
+**Prochaine action : HUMAN VISUAL VERDICT d’Antoine sur cette correction.** Ne pas promouvoir les visuels, rouvrir P6A1.6/Clay surface breakup grammar, démarrer P6B ou merger. Gameplay P4/P5 gelé. PR #9 reste DRAFT.
 
 Références canoniques locales : `docs/visual-references/p6a2/`, matérialisées par `370ba6355a4a03d48e6faa5ae6aa60988aa2cb88`. Rôles : `docs/visual-references/P6A2_VISUAL_TARGETS.md`.
 

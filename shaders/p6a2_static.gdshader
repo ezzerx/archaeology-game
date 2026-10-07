@@ -1,6 +1,7 @@
 shader_type spatial;
 render_mode diffuse_burley;
 uniform int kind = 0; // plaster, wood, canvas
+uniform sampler2D plaster_source : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 varying vec3 local_pos;
 void vertex() { local_pos = VERTEX; }
 float hash(vec3 p) { return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453); }
@@ -13,10 +14,15 @@ void fragment() {
  vec3 p=local_pos;
  float broad=noise(p*26.0), fine=noise(p*750.0);
  if(kind==0) {
-  float streak=noise(p*vec3(155,480,155));
-  ALBEDO=mix(vec3(.27,.25,.22),vec3(.65,.625,.56),.45+.40*broad);
-  ALBEDO*=.91+.13*streak+.05*fine;
-  ROUGHNESS=.92;SPECULAR=.16;
+  vec3 weights=pow(abs(NORMAL),vec3(5.0));
+  // Object-space triplanar color: static sides retain authored scale too.
+  vec3 normal_local=normalize(cross(dFdx(p),dFdy(p)));
+  weights=pow(abs(normal_local),vec3(5.0));weights/=max(dot(weights,vec3(1.0)),.0001);
+  vec3 source=texture(plaster_source,p.yz/.24).rgb*weights.x
+   +texture(plaster_source,p.xz/.24).rgb*weights.y
+   +texture(plaster_source,p.xy/.24).rgb*weights.z;
+  ALBEDO=source*COLOR.rgb*1.6;
+  ROUGHNESS=.96;SPECULAR=.09;
  } else if(kind==1) {
   float wave=sin(p.x*85.0+noise(p*vec3(6,2,11))*7.0);
   float grain=noise(vec3(p.x*240.0+wave*2.0,p.y*2.0,p.z*9.0));
