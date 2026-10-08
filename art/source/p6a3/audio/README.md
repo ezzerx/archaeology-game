@@ -81,3 +81,16 @@ At P6A3 kickoff, Codex should:
 
 Do not treat these transfer URLs as permanent production storage. The repository copies become authoritative once materialized.
 
+## Sources materialized — 2026-10-08
+
+The three original transfers are preserved byte-for-byte under `raw/`. All identify
+as MP3, stereo, 44,100 Hz with ffprobe; full ffmpeg decoding completed without errors.
+No trimming, normalization or re-encoding was applied to these source files.
+
+| Source | Duration | Bytes | SHA256 |
+| --- | ---: | ---: | --- |
+| `raw/brush_soil_test_v01.mp3` | 1.000 s | 34306 | `af94e9f6c1f54341819d409c037dec5b27d2302566df17343e5080c85bb6c7b6` |
+| `raw/chisel_clay_test_v01.mp3` | 1.000 s | 34306 | `41a79bf2aebaf706cf51ee1aa17fcf3b54b0cf1975adb5f8f835cf22ff502e95` |
+| `raw/chisel_sandstone_test_v01.mp3` | 2.000 s | 50188 | `dbb81322c0dbce1f6ca8796e758fa6b5e29965d986c7bf81c00967d25c959c00` |
+
+These remain test candidates for the combined in-game human game-feel review.
