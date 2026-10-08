@@ -30,7 +30,7 @@ func _create_proxies() -> void:
 		proxy.hide()
 
 func _create_audio() -> MaterialAudio:
-	return preload("res://scripts/p6a3/foley_audio.gd").new()
+	return MaterialAudio.new() # Human playtest rollback: original P4/P5 audio.
 
 func setup(target: ExcavationBlock, input: ToolController) -> void:
 	super.setup(target,input)
@@ -223,10 +223,18 @@ func _update_proxy_pose(selected: int) -> void:
 		rotation.z=envelope*(.065 if selected==1 else .02)
 	elif selected==2 and pressed:
 		rotation.z=.012*sin(motion_time*35)
-	proxy.global_position=controller.hit.world
-	proxy.global_basis=ToolProxyPose.fixed_basis(selected)*Basis.from_euler(rotation)
-	proxy_poses[selected].fit(proxy,block,lift)
-	proxy.scale=Vector3.ONE* (1.0-.025*(.5+.5*sin(motion_time*22)) if selected==2 and pressed else 1.0)
+	# Presentation anchor, independent of hit height/position and excavation.
+	# A foreground camera plane prevents the mesh entering the working matrix.
+	var camera := controller.camera
+	var viewport_size := get_viewport().get_visible_rect().size
+	var anchor := viewport_size * Vector2(.86, .80)
+	var depth := camera.near + .12
+	var pixel_unit := camera.project_position(anchor + Vector2(0,1), depth).distance_to(camera.project_position(anchor,depth))
+	var visual_scale := pixel_unit * 150.0 / .105
+	proxy.global_position = camera.project_position(anchor,depth) + camera.global_basis.y * lift * visual_scale
+	proxy.global_basis = camera.global_basis * Basis.from_euler(Vector3(.25,0,-.4)) * Basis.from_euler(rotation)
+	proxy.scale = Vector3.ONE * visual_scale * (1.0-.025*(.5+.5*sin(motion_time*22)) if selected==2 and pressed else 1.0)
+	proxy_poses[selected].body.position = Vector3.ZERO
 
 func reset() -> void:
 	super.reset()

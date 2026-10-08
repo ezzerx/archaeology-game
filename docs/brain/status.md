@@ -93,7 +93,14 @@ Gameplay P4/P5, Soil/Clay/Sandstone, géométrie B, picking, Bone/Condition/Film
 jacket/emprise et task light conservés. Physique 60 Hz / cap rendu 240 FPS.
 Tests et mesures passent ; ils ne valident pas le ressenti humain.
 
-**Prochaine action : HUMAN GAME-FEEL VERDICT d'Antoine. STOP après commit/push.**
+**Hotfix playtest autorisé le 8 octobre : outils fixes à l'écran, animations
+courtes conservées, rollback audio P4/P5/P6A2.** Rapport actif :
+`docs/dev/P6A3_PLAYTEST_HOTFIX_REPORT.md`. Les corrections outil/audio sont testées ;
+le setting Chisel précis reste en attente de l'image annoncée mais absente du
+message reçu. Ne pas annoncer sa conformité sans cette référence.
+
+**Prochaine action : recevoir la référence Chisel manquante et le verdict humain
+sur le hotfix. STOP après commit/push ; aucun autre chantier.**
 PR #9 reste DRAFT. Aucun merge, P6B, P7, nouvelle génération ni travail
 jacket/emprise automatique. Les outils et Foley restent des candidats de revue.
 Tripo Studio/API ont des soldes distincts ; accès/génération ne vaut pas validation

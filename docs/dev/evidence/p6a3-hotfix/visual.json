@@ -1,0 +1,43 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"before-brush-soil.png",
+		"before-brush-clay.png",
+		"before-chisel-clay.png",
+		"before-chisel-sandstone.png",
+		"before-pick-matrix.png",
+		"before-pick-near-bone.png",
+		"before-blower-debris.png",
+		"before-bone-film.png",
+		"after-brush-soil.png",
+		"after-brush-clay.png",
+		"after-chisel-clay.png",
+		"after-chisel-sandstone.png",
+		"after-pick-matrix.png",
+		"after-pick-near-bone.png",
+		"after-blower-debris.png",
+		"after-bone-film.png",
+		"workbench-1x.png",
+		"workbench-before-1x.png",
+		"brush-3x.png",
+		"chisel-1x.png",
+		"pick-1x.png",
+		"blower-1x.png",
+		"lamp-after-overview.png",
+		"lamp-before-overview.png"
+	],
+	"checks": 24,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"render_size": "(1920.0, 1080.0)",
+		"renderer": "gl_compatibility",
+		"window": "(1920, 1080)"
+	}
+}

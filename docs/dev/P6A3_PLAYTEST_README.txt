@@ -23,9 +23,9 @@ Cette version ne sauvegarde pas la progression de fouille entre lancements.
 Le mode d'affichage est mémorisé. Un seul spécimen déterministe est proposé.
 Le jacket et les accessoires sont fixes ; seule la matrice centrale se fouille.
 
-F12 : comparer les anciens/nouveaux outils, lampe, mouvements, VFX et sons,
-sans recommencer la fouille. H : panneau de fixtures, F9 : matrice nue.
-Les nouveaux sons sont des candidats de test.
+Hotfix : outils ancrés en bas à droite, petites animations et audio précédent.
+F12 : témoin historique P6A2 (ancien placement), sans recommencer la fouille.
+H : panneau de fixtures, F9 : matrice nue.
 
 APRÈS VOTRE ESSAI
 La terre donne-t-elle envie de brosser ? Les matières et l'objectif se comprennent-ils ?

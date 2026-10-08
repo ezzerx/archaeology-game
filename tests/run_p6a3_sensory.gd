@@ -28,7 +28,12 @@ func prepare(item: Array) -> void:
 					s.apply_impact(Vector2(x,y),main.controller.tools[3])
 		main.block.flush_texture()
 	main.controller.select_tool(item[2])
+	main.camera.set_process(true)
 	await zoom_to(item[3],item[4])
+	# Freeze the QA framing after zoom: render-timed easing must not alter
+	# float-precise native picking between the two compared runs.
+	main.camera.size=main.camera._base_size/float(item[3])
+	main.camera.set_process(false)
 	main.feedback.reset()
 	main.feedback.set_physics_process(false)
 	main.feedback.proxies_enabled=true
@@ -57,6 +62,7 @@ func snap(label: String) -> void:
 
 func functional() -> void:
 	var reset:=state()
+	check(main.feedback.audio.get_script()==load("res://scripts/material_audio.gd"),"playtest restores original audio implementation")
 	evidence["models"] = []
 	var names := ["brush","chisel","blower","pick"]
 	for i in range(4):
@@ -101,11 +107,14 @@ func functional() -> void:
 			var inside:=0
 			var motion:=false
 			var pose:Basis=main.feedback.proxies[item[2]].basis
+			var anchors: Array[Vector2] = []
 			for tick in range(90):
 				await physics_frame
 				step(item,tick)
 				if main.controller.hit.inside: inside+=1
 				if main.feedback.proxies[item[2]].basis!=pose: motion=true
+				if sensory:
+					anchors.append(main.camera.unproject_position(main.feedback.proxies[item[2]].global_position))
 			main.controller.cancel_stroke()
 			main.block.flush_texture()
 			var after:=state()
@@ -116,6 +125,9 @@ func functional() -> void:
 				check(after==states[item[0]],"byte-identical gameplay P6A2/P6A3: "+item[0])
 				check(inside==90,"native picking stays valid: "+item[0])
 				check(motion,"input moves the tool: "+item[0])
+				var spread := 0.0
+				for anchor in anchors: spread=maxf(spread,anchor.distance_to(Vector2(root.size)*Vector2(.86,.80)))
+				check(spread<10.0,"fixed screen anchor, bounded recoil under 10px: "+item[0])
 				check(main.feedback.peak_particles<=416,"bounded VFX: "+item[0])
 				if item[0]=="brush-clay":
 					check(before.height==after.height and before.ceilings==after.ceilings,"dry Brush never excavates Clay")

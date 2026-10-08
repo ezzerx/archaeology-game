@@ -836,3 +836,11 @@ Une génération vue de face ne valide pas un outil : Antoine a identifié une
 seconde lame du Chisel depuis un autre angle. Examiner face, dos, profil et
 vue de jeu avant intégration ; conserver les sources et la correction Blender
 reproductible. Un master généré ne devient jamais directement le runtime.
+
+## P6A3 — priorité playtest, retour humain correctif (2026-10-08)
+
+Antoine demande une présentation des outils fixe à l'écran, sans déplacement
+libre dans la matière, avec de courtes animations sur input. Les Foley P6A3 sont
+rejetés pour le playtest immédiat : restaurer l'audio précédent, sans retuning
+ni génération. Conserver les assets/VFX utiles et les règles P4/P5 ; pas de
+nouvelle direction, de bake-off, de travail matériaux/jacket ou de P6B/P7.
