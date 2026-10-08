@@ -808,3 +808,31 @@ Audio correction:
 - Target **realistic, satisfying tactile Foley**: credible material response, clean short transients, restrained proximity/detail and pleasant repetition.
 - ElevenLabs remains useful as a source generator, but generated sounds are test material rather than automatically final production SFX.
 - Current in-game candidates to test first: Brush→Soil, Chisel→Clay and the corrected stone-dominant Chisel→Sandstone. Final judgement happens synchronized with tool animation/VFX in game.
+
+## P6A3 — GO Tool Feel & Sensory, autorité inchangée (2026-10-08)
+
+Antoine autorise les quatre modèles depuis leurs références ImageGen approuvées,
+via Tripo puis nettoyage/optimisation Blender, ainsi qu'un remplacement visuel
+statique de la lampe. La task light P6A2 reste la référence ; seul l'alignement
+physique du modèle peut être adapté. Les masters générés sont des sources, jamais
+des meshes runtime bruts.
+
+Les motions, les réactions matière et le Foley doivent répondre immédiatement aux
+inputs sans retuning de la fouille. Un Brush sur Clay peut recevoir une réponse
+cosmétique sans devenir excavateur de Clay. Soil, Bone/plafonds/Condition, outils,
+P5, géométrie B, jacket/emprise et cadence 60 Hz/240 FPS restent conservés. Le
+rythme global est réservé au tuning P7. La réussite technique ne valide pas le
+ressenti ; la livraison P6A3 complète doit revenir au HUMAN GAME-FEEL VERDICT.
+
+## P6A3 — voie Studio autorisée et contrôle des faces cachées (2026-10-08)
+
+Antoine autorise la reprise complète P6A3 via Playwright et les crédits Studio,
+puis livraison/revue humaine. Le solde Studio et le solde API sont distincts :
+un connecteur API authentifié n'implique pas l'accès aux crédits de l'abonnement
+Studio. Le pipeline artistique reste image approuvée → Tripo → retopo → Blender
+→ Godot ; Meshy demeure un fallback, sans bake-off supplémentaire.
+
+Une génération vue de face ne valide pas un outil : Antoine a identifié une
+seconde lame du Chisel depuis un autre angle. Examiner face, dos, profil et
+vue de jeu avant intégration ; conserver les sources et la correction Blender
+reproductible. Un master généré ne devient jamais directement le runtime.

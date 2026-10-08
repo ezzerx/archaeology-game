@@ -1,0 +1,180 @@
+{
+  "provider": "Tripo Studio Max",
+  "control": "Official Microsoft Playwright MCP 0.0.83 / Chrome extension 0.4.0",
+  "initial_credits": 25070,
+  "runtime_raw_highpoly": false,
+  "jobs": [
+    {
+      "asset": "brush",
+      "stage": "high",
+      "model": "H3.1",
+      "source": "art/source/p6a3/tool-concepts/01-brush-3d-reference.jpg",
+      "project_id": "351d5df0-8edc-4d30-b1f4-87b6d7dfb7aa",
+      "submitted_utc": "2026-10-08T16:21:17Z",
+      "cost": 55
+    },
+    {
+      "asset": "lamp",
+      "stage": "retopo",
+      "source_project_id": "f32be606-c368-40ad-9de7-92d58af179b9",
+      "model": "Smart Mesh P1.0",
+      "target_triangles": 20000,
+      "submitted_utc": "2026-10-08T16:24:21Z",
+      "cost": 35
+    },
+    {
+      "asset": "brush",
+      "stage": "retopo",
+      "source_project_id": "351d5df0-8edc-4d30-b1f4-87b6d7dfb7aa",
+      "model": "Smart Mesh P1.0",
+      "target_triangles": 12000,
+      "cost": 35
+    },
+    {
+      "asset": "chisel",
+      "stage": "high",
+      "model": "H3.1",
+      "source": "art/source/p6a3/tool-concepts/02-chisel-3d-reference.jpg",
+      "project_id": "7c8a9054-c6b5-432c-8e30-081859ae9515",
+      "submitted_utc": "2026-10-08T16:27:13Z",
+      "cost": 55
+    },
+    {
+      "asset": "chisel",
+      "stage": "retopo",
+      "source_project_id": "7c8a9054-c6b5-432c-8e30-081859ae9515",
+      "model": "Smart Mesh P1.0",
+      "target_triangles": 8000,
+      "cost": 35
+    },
+    {
+      "asset": "pick",
+      "stage": "high",
+      "model": "H3.1",
+      "source": "art/source/p6a3/tool-concepts/03-precision-pick-3d-reference.jpg",
+      "project_id": "f3a891dd-cd83-4b6d-8d11-470f052888f8",
+      "submitted_utc": "2026-10-08T16:33:15Z",
+      "cost": 55
+    },
+    {
+      "asset": "pick",
+      "stage": "retopo",
+      "source_project_id": "f3a891dd-cd83-4b6d-8d11-470f052888f8",
+      "model": "Smart Mesh P1.0",
+      "target_triangles": 7000,
+      "submitted_utc": "2026-10-08T16:42:14Z",
+      "cost": 35
+    },
+    {
+      "asset": "blower",
+      "stage": "high",
+      "model": "H3.1",
+      "source": "art/source/p6a3/tool-concepts/04-air-blower-3d-reference.jpg",
+      "project_id": "52391ae6-ac8b-47cf-b09d-3aaba4168b74",
+      "submitted_utc": "2026-10-08T16:44:13Z",
+      "cost": 55
+    },
+    {
+      "asset": "blower",
+      "stage": "retopo",
+      "source_project_id": "52391ae6-ac8b-47cf-b09d-3aaba4168b74",
+      "model": "Smart Mesh P1.0",
+      "target_triangles": 15000,
+      "cost": 35
+    }
+  ],
+  "current_credits": 24675,
+  "spent_credits": 395,
+  "source_exports": [
+    {
+      "file": "blower_high.glb",
+      "bytes": 22363616,
+      "sha256": "d444365c0adcfe89119ecad37c68649d688c95bfaca7de714cabf695e8d33785",
+      "triangles": 1987658,
+      "extensions": [
+        "KHR_mesh_quantization",
+        "EXT_meshopt_compression"
+      ]
+    },
+    {
+      "file": "blower_low.glb",
+      "bytes": 6621132,
+      "sha256": "5cf87269dd917a20f455c24ecb00b9bf629da9fab9363b263a1cc59286c36b14",
+      "triangles": 14472,
+      "extensions": []
+    },
+    {
+      "file": "brush_high.glb",
+      "bytes": 60803172,
+      "sha256": "76190b6cbec94c8fc2042d9732468d6ee43c6eab6481d4f5438d1d6541b4fca1",
+      "triangles": 1871676,
+      "extensions": []
+    },
+    {
+      "file": "brush_low.glb",
+      "bytes": 8828000,
+      "sha256": "6b10779d04a891c160437ab1c76a1caa6060f56fed0058ffbddb3542efdc9154",
+      "triangles": 10897,
+      "extensions": []
+    },
+    {
+      "file": "chisel_high.glb",
+      "bytes": 67218912,
+      "sha256": "bd824750a9d82d5a30f67a073f76fffa0fc5081c0ffd00a238b9c4c055da234a",
+      "triangles": 1933666,
+      "extensions": []
+    },
+    {
+      "file": "chisel_low.glb",
+      "bytes": 6775500,
+      "sha256": "11613c7a4e4a0873a8bca1b2c404797a58a00a52e595fcc60de06c50dadd9285",
+      "triangles": 7235,
+      "extensions": []
+    },
+    {
+      "file": "lamp_high.glb",
+      "bytes": 62225500,
+      "sha256": "3800592726347cd3050dd831068f36f0e1ae0e2339ec3bdbac333066c2e36861",
+      "triangles": 1940580,
+      "extensions": []
+    },
+    {
+      "file": "lamp_low.glb",
+      "bytes": 8352832,
+      "sha256": "6af823adbf149d56e6b7afa93eed9b8092c8a3ef29173db20a7f8368ed1fc41d",
+      "triangles": 19324,
+      "extensions": []
+    },
+    {
+      "file": "pick_high.glb",
+      "bytes": 61424836,
+      "sha256": "68c7027079a9c0c52c75bd6c03a3a2a3cafa380261746914376e09c7011e64be",
+      "triangles": 1937847,
+      "extensions": []
+    },
+    {
+      "file": "pick_low.glb",
+      "bytes": 7488536,
+      "sha256": "ba2adeff1f557183a15a1409e18c127901b333b0f8d07873aa75236969228238",
+      "triangles": 9226,
+      "extensions": []
+    }
+  ],
+  "lamp_source": {
+    "project_id": "f32be606-c368-40ad-9de7-92d58af179b9",
+    "origin": "Existing Antoine Studio lamp retrieved; no new lamp generation",
+    "source_image": "Not recovered locally; existing approved Studio generation is the starting point"
+  },
+  "blower_high_note": "Official Studio high viewer GLB with EXT_meshopt_compression; 1,987,658 triangles successfully imported by Blender 5.2.2. Expiring converter download link was unreliable; no regeneration.",
+  "license": {
+    "plan": "Studio Max (human confirmed)",
+    "reference": "https://www.tripo3d.ai/help/privacy-policy/how-to-use-tripo-models-commercially",
+    "checked": "2026-10-08",
+    "note": "Paid-plan commercial use, modification and distribution; input rights remain separate. No claim of artistic human validation."
+  },
+  "cleanup": {
+    "chisel": "Human found mirrored second blade. Blender script removes the mirrored branch, straightens and thins the surviving branch, closes cuts, recalculates normals, preserves surviving UVs. Original high/low retained unchanged.",
+    "lamp": "Uniform 0.30 scale with extended lower arm, smaller shade for camera clearance; assembly aligned with unchanged task light. Dark-arm UV stretch acknowledged.",
+    "tools": "Contact-tip pivots, metre scale, whole rigid mesh, no colliders; 1K runtime PBR textures; 2K source textures retained."
+  }
+}

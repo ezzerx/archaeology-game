@@ -23,7 +23,7 @@ var fragment_tray: FragmentTray3D
 
 func _ready() -> void:
 	get_window().title = "ArchaeologyGame — P5 Museum Preparation Lab"
-	feedback = MaterialFeedback.new()
+	feedback = _create_feedback()
 	feedback.name = "MaterialFeedback"
 	add_child(feedback)
 	feedback.setup(block, controller)
@@ -67,6 +67,9 @@ func _ready() -> void:
 	debug_panel.hide()
 	bone_panel.hide()
 	bone_notice.hide()
+
+func _create_feedback() -> MaterialFeedback:
+	return MaterialFeedback.new()
 
 func reset_specimen() -> void:
 	controller.reset_surface()

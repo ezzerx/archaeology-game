@@ -1,0 +1,54 @@
+{
+  "asset": "brush",
+  "blender": "5.2.2 LTS",
+  "source": "art\\source\\p6a3\\meshes\\tripo\\brush_low.glb",
+  "source_triangles": 10897,
+  "source_dimensions": [
+    0.3691101372241974,
+    0.5029907822608948,
+    0.977264404296875
+  ],
+  "runtime_triangles": 10897,
+  "parts": {
+    "Body": 10897
+  },
+  "textures": [
+    {
+      "name": "archeo_brush_low_p6a3_basecolor",
+      "source_dimensions": [
+        2048,
+        2048
+      ],
+      "runtime_dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "archeo_brush_low_p6a3_normal",
+      "source_dimensions": [
+        2048,
+        2048
+      ],
+      "runtime_dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "archeo_brush_low_p6a3_rm",
+      "source_dimensions": [
+        2048,
+        2048
+      ],
+      "runtime_dimensions": [
+        1024,
+        1024
+      ]
+    }
+  ],
+  "units": "metres",
+  "axis": "Blender Z up -> Godot Y up",
+  "pivot": "actual contact tip",
+  "colliders": 0
+}

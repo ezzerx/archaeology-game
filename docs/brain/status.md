@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date:** 2026-10-07
+**Date:** 2026-10-08
 **Projet:** ArchaeologyGame (working title)  
 **Source unique du statut courant:** ce fichier. Voir aussi `docs/DOCUMENTATION_POLICY.md`.
 
@@ -75,47 +75,30 @@ Points différés, explicitement hors de P6A3 :
 - nouveau tool gameplay pour accélérer la fouille ;
 - P6B.
 
-## P6A3 pre-production
+## P6A3 — livraison Tool Feel & Sensory, revue humaine attendue
 
-**P6A3 — Tool Feel & Sensory Pass est prêt pour GO humain explicite.**
+La passe autorisée par Antoine le 2026-10-08 via Playwright/Tripo Studio est
+implémentée : quatre outils depuis les images approuvées, lampe existante adaptée,
+masters conservés, retopo/nettoyage Blender, motions, VFX et trois Foley tests.
+Le Chisel à double lame signalé par Antoine est corrigé dans le runtime Blender.
+Les modèles bruts restent des preuves source, pas les versions à retester.
 
-Pipeline 3D retenu :
-> **ImageGen validé → Tripo image-to-3D → source/high conservé → Smart Mesh / retopo si utile → Blender 5.2.2 cleanup/bake → Godot 4.7.2**
+Scène : `scenes/p6a3_tool_feel.tscn`, héritée du Hero P6A2 accepté.
+Lancement : `.\Launch-P6A3-Tool-Feel.ps1` ; F12 compare avant/après sans reset.
+Package autonome : `builds/ArchaeologyGame-P6A3-Playtest-Windows.zip` (hors Git).
+Rapport de livraison, vidéo, preuves et limites :
+`docs/dev/P6A3_TOOL_FEEL_SENSORY_REPORT.md`.
 
-- Tripo = pipeline principal Astra/Codex.
-- Meshy = fallback / second opinion uniquement.
-- Antoine dispose d'un abonnement Tripo Max avec crédits abondants ; le plugin Codex officiel était déjà connecté lors du preflight précédent.
-- Les références Tool Art approuvées sont versionnées sous `art/source/p6a3/tool-concepts/` :
-  - family board ;
-  - Brush ;
-  - Chisel ;
-  - Precision Pick ;
-  - Air Blower.
+Gameplay P4/P5, Soil/Clay/Sandstone, géométrie B, picking, Bone/Condition/Film,
+jacket/emprise et task light conservés. Physique 60 Hz / cap rendu 240 FPS.
+Tests et mesures passent ; ils ne valident pas le ressenti humain.
 
-Audio :
-- cible = **Foley réaliste, tactile, crédible et satisfaisant**, pas esthétique ASMR littérale ;
-- trois candidats ElevenLabs doivent être testés en jeu avec animation + VFX :
-  - Brush → Soil ;
-  - Chisel → Clay ;
-  - Chisel → Sandstone corrigé ;
-- provenance, prompts et liens de transfert sont dans `art/source/p6a3/audio/README.md`.
-- À l'ouverture de P6A3, Astra doit télécharger ces trois sources, les renommer sous `art/source/p6a3/audio/raw/`, les vérifier puis les versionner avant dérivés runtime.
-
-P6A3 doit se concentrer sur :
-- nouveaux modèles des quatre outils ;
-- micro-animation/réponse visible aux inputs ;
-- réactions matière même non destructives quand pertinent ;
-- VFX de Brush/Chisel/Pick/Blower beaucoup plus satisfaisants et material-specific ;
-- intégration des trois sons tests ;
-- comparaison avant/après et performance.
-
-Gameplay gelé :
-- ne pas retuner profondément les outils ;
-- ne pas changer Bone/Condition/P5 ;
-- ne pas ajouter un nouvel outil puissant maintenant ;
-- physique 60 Hz / cap rendu 240 FPS conservés.
-
-**Prochaine action autorisée : GO humain P6A3, puis STOP obligatoire après livraison pour revue.** PR #9 reste DRAFT ; aucun merge ou P6B automatique.
+**Prochaine action : HUMAN GAME-FEEL VERDICT d'Antoine. STOP après commit/push.**
+PR #9 reste DRAFT. Aucun merge, P6B, P7, nouvelle génération ni travail
+jacket/emprise automatique. Les outils et Foley restent des candidats de revue.
+Tripo Studio/API ont des soldes distincts ; accès/génération ne vaut pas validation
+artistique. Pour reprendre le workflow, suivre le rapport, pas les anciens
+blocages techniques du preflight.
 
 ## P5 closure baseline
 
