@@ -289,16 +289,22 @@ The current Brush / Chisel / Blower / Pick models still read as prototype/dev to
 - warm, handcrafted / professional museum-lab character;
 - visual hierarchy that makes tools feel like objects the player enjoys using, not debug gizmos.
 
-### ASMR / tactile audio as a quality pillar
+### Satisfying tactile Foley as a quality pillar
 
-Audio should be treated as a major contributor to satisfaction. Target:
-- close, tactile, material-specific brushing/scraping/chipping/blowing sounds;
-- restrained, pleasant ASMR character rather than harsh generic SFX;
+Audio should be treated as a major contributor to satisfaction. The earlier word
+"ASMR" described the desired **satisfaction/detail**, not the literal aesthetic.
+
+Target:
+- realistic, close, tactile, material-specific brushing/scraping/chipping/blowing Foley;
+- satisfying short transients and believable material response;
 - strong differentiation between Soil, Clay, Sandstone and Bone interactions;
 - layered variation so repeated actions do not sound mechanically looped;
-- careful balance so the experience stays cozy rather than fatiguing.
+- careful balance so the experience stays cozy rather than fatiguing;
+- restrained preparation music that supports focus while keeping tool/material
+  sounds in the foreground.
 
-This deserves a dedicated audio/game-feel pass instead of being left as end-of-project garnish.
+This deserves a dedicated Sound Design & Music pass instead of being left as
+end-of-project garnish.
 
 ### Non-destructive material response
 
@@ -311,6 +317,23 @@ Design intent:
 > preserve the tool rule while making the world feel reactive.
 
 This is best thought of as **material reactivity / game feel / juice**, not persistence.
+
+### Interactive task light as relief-reading mechanic
+
+Friend playtest feedback suggests that a fixed light direction can make some
+cavities and relief harder to read. Explore a future dedicated spike where the
+player can reposition/orient the preparation lamp and intentionally change shadow
+direction to inspect the specimen.
+
+Design goals:
+- improve reading of crevices, steps and shallow relief;
+- keep manipulation simple and bounded rather than fiddly;
+- preserve the cozy task-light art direction;
+- use the visible workbench lamp as the natural interaction affordance if viable;
+- test whether this creates meaningful preparation skill rather than mere settings UI.
+
+Do not turn this into a required mechanic until a focused human playtest proves
+that moving the light is useful and pleasant.
 
 ### Pacing and possible higher-power tool
 

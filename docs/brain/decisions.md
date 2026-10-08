@@ -853,3 +853,44 @@ dans le playtest P6A3 ; aucun autre tuning n'est demandé.
 Précision suivante : reprendre la pose de présentation P6A2 elle-même en gardant
 les nouveaux modèles ; ne pas substituer un nouvel angle caméra ou une taille
 écran constante. Les petites animations input restent souhaitées.
+
+
+## P6A3 — friend playtest: mastery hook and next sequence (2026-10-08)
+
+Informal friend playtest, sample **n=3**. All three engaged through archive-or-beyond.
+One player reached **99% and kept pushing specifically because they wanted 100%**;
+the other two archived before max completion. This is directional qualitative
+evidence that Archeo's preparation loop now carries the intended "one more bit"
+pull and that optional mastery can motivate behavior. Do not overgeneralize from
+the small sample.
+
+Durable follow-up direction:
+- displayed **100% must be attainable**. For the next focused pass, allow a
+  relevant internal value of >=99% to resolve to 100% when existing completion
+  guards are satisfied, rather than strand a visually complete specimen at 99%;
+- preserve completion/hidden-cluster guards so display rounding never hides a
+  genuinely missing region;
+- **Perfect Preparation** is a preferred future mastery label for displayed
+  full preparation plus excellent care; exact achievement/meta wiring remains
+  deferred;
+- Chisel feedback: reduce only the **visual crosshair circle**, not its actual
+  excavation radius;
+- Bone Condition: retain Excellent / Good / Fair / Damaged but make state more
+  explicit with a readable gauge/presentation; progressively reflect real damage
+  on the Bone material/geometry visually without creating a second gameplay state;
+- Bone cleanliness readability: at 94% Cleanliness the Bone can already read
+  fully clean, so dirty-vs-clean Film contrast must remain actionable near 100%;
+- Brush cleaning Bone Film should emit a small, localized dust/removal response
+  tied to real Film removal.
+
+Sequencing agreed:
+1. P6A3.1 — playtest feedback / mastery readability quick pass;
+2. dedicated Sound Design & Music phase;
+3. dedicated Interactive Task Light spike;
+4. another playtest.
+
+Audio direction is **satisfying tactile Foley**, not literal ASMR. The sound
+phase must be treated as a real quality pillar and include restrained preparation
+music. The task-light spike should test player-controlled light direction as a
+possible relief-reading mechanic because fixed one-sided lighting can hide some
+cavities. Neither phase is auto-authorized by documentation alone.

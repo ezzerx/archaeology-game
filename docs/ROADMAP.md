@@ -97,6 +97,36 @@ Questions to answer:
 
 P6A is not a separate roadmap gate. It is the **first substep of P6**.
 
+### P6A3.1 — Friend Playtest Feedback / Mastery Readability
+
+A short focused follow-up after the first friend playtest.
+
+Targets:
+- make displayed 100% attainable without fake 99% stalls;
+- smaller visual Chisel crosshair with unchanged real effect radius;
+- improve Bone dirty/clean readability near full Cleanliness;
+- visible dust response while brushing Bone Film;
+- clearer Bone Condition presentation and first visual damage language.
+
+No broad retuning, new tool or audio overhaul in this substep.
+
+### P6A-Sound — Dedicated Sound Design & Music Pass
+
+Treat audio as a real quality pillar:
+- satisfying tactile Foley per tool/material;
+- controlled variation and layering;
+- repeated-use fatigue testing;
+- Brush/Blower continuous interaction handling;
+- restrained preparation music.
+
+### P6A-Light — Interactive Task Light Spike
+
+Test player-controlled lamp direction as a possible relief-reading mechanic:
+- move/orient the task light;
+- reveal crevices and height changes through shadows;
+- preserve the validated cozy lighting language;
+- human-test whether the interaction adds skill/value.
+
 ### P6B — V0.1 Art Pass
 
 Once P6A proves the direction and pipeline, apply it to the complete V0.1 slice:

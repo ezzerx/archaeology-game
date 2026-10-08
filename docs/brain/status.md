@@ -103,13 +103,37 @@ Référence Chisel reçue : Radius 26 / Power 0.84 / Falloff 2.25, autorisés un
 dans le playtest P6A3 ; presets partagés P4/P5 conservés. Rapport actif :
 `docs/dev/P6A3_PLAYTEST_HOTFIX_REPORT.md`.
 
-**Prochaine action : verdict humain sur le ZIP playtest corrigé.
-STOP après commit/push ; aucun autre chantier.**
-PR #9 reste DRAFT. Aucun merge, P6B, P7, nouvelle génération ni travail
-jacket/emprise automatique. Les outils et Foley restent des candidats de revue.
-Tripo Studio/API ont des soldes distincts ; accès/génération ne vaut pas validation
-artistique. Pour reprendre le workflow, suivre le rapport, pas les anciens
-blocages techniques du preflight.
+**Friend playtest effectué le 8 octobre : signal qualitatif positif sur la boucle.**
+Trois amis ont testé la build corrigée : un joueur a poursuivi jusqu'à 99% parce
+qu'il voulait atteindre 100%, deux autres ont archivé avant. Petit échantillon,
+mais le "one more bit" / mastery hook recherché apparaît spontanément.
+
+Feedback canonique principal :
+- 100% doit être réellement atteignable ; cible suivante : >=99% interne + guards
+  satisfaits peut se présenter comme 100% pour éviter un faux blocage à 99%;
+- le cercle visuel du Chisel doit être plus petit sans modifier sa vraie zone d'effet;
+- Bone Condition doit être plus explicite et les dégâts doivent devenir progressivement
+  visibles sur l'os sans créer une seconde autorité gameplay;
+- à 94% Cleanliness, Bone peut déjà sembler entièrement propre : renforcer la
+  différence dirty/clean dans la fin du nettoyage;
+- Brush retirant le Bone Film doit produire un petit feedback de poussière synchronisé;
+- tool audio reste à refondre dans une vraie phase Sound Design;
+- ajouter ensuite une musique de préparation discrète;
+- une lampe orientable/déplaçable mérite un spike séparé comme potentiel outil de
+  lecture des creux/reliefs.
+
+Rapport actif : `docs/dev/P6A3_FRIEND_PLAYTEST_REPORT.md`.
+
+Séquence préférée pour la reprise :
+1. **P6A3.1 Playtest Feedback / Mastery Readability** — quick wins ci-dessus;
+2. **Dedicated Sound Design & Music Pass**;
+3. **Interactive Task Light Spike**;
+4. nouveau playtest.
+
+**Prochaine action : préparer P6A3.1 puis attendre GO humain explicite.
+Aucune implémentation supplémentaire n'est autorisée automatiquement ce soir.**
+PR #9 reste DRAFT. Aucun merge, P6B, P7, jacket/emprise ou nouveau tool gameplay
+n'est déclenché par ce playtest.
 
 ## P5 closure baseline
 
