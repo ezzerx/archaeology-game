@@ -784,8 +784,27 @@ Après test réel de `P6A2 Soil & Playtest Presentation`, Antoine juge que c’e
 
 Nouveaux besoins de qualité perçue à garder pour les passes suivantes :
 - les modèles visuels des outils actuels sont trop pauvres et doivent être remplacés par des modèles cohérents avec l’univers Archeo ;
-- l’audio est un levier de satisfaction majeur : viser explicitement des sons **ASMR / tactiles / matière**, à traiter comme un vrai pilier de polish et non comme un simple habillage tardif ;
+- l’audio est un levier de satisfaction majeur : viser des **Foley satisfaisants, tactiles, crédibles et propres**. Le terme « ASMR » utilisé initialement décrivait le niveau de satisfaction recherché, pas une esthétique sonore littérale ;
 - ajouter des réponses matérielles non destructives lorsque pertinent : par exemple Brush sur Clay peut produire un petit puff/poussière colorée cohérente même si l’outil n’excave pas la Clay. Le but est la **réactivité matière / game feel / juice**, sans modifier la règle d’outil ;
 - le rythme global paraît encore un peu lent. Priorité à P7 fine tuning avant toute extension de l’arsenal. Si le tuning ne suffit pas, explorer plus tard un outil plus efficace que le Chisel avec vraies contreparties (risque, précision, contrôle, etc.), ce qui repositionnerait le Chisel comme outil intermédiaire.
 
 Aucun de ces points n’autorise une modification automatique de gameplay pendant P6A.
+
+
+## P6A3 pre-production — Tripo primary pipeline and audio target (2026-10-08)
+
+After a bounded Meshy vs Tripo bake-off on a preparation lamp and Chisel, Antoine concludes that both generators can reach comparable visual quality when used well. The deciding factor for Archeo is **agent workflow compatibility**, not a claimed universal quality winner.
+
+Decision:
+- **Tripo is the primary 3D generation pipeline for Astra/Codex** because the official Tripo 3D Codex plugin is already authenticated, agent-friendly and lowest-friction for project-integrated generation.
+- Meshy remains a fallback / second opinion for difficult assets, not the default production path.
+- Preferred tool-asset pipeline: **approved ImageGen reference → Tripo image-to-3D → source/high asset retained → Smart Mesh / retopo as appropriate → Blender 5.2.2 cleanup and bake → Godot 4.7.2**.
+- Raw multi-million-face generations are source masters, never runtime assets. Runtime topology is chosen by visual need after cleanup and in-engine comparison.
+
+Antoine approved the P6A3 tool family art direction and the four individual ImageGen references now versioned under `art/source/p6a3/tool-concepts/`.
+
+Audio correction:
+- Do **not** target literal “ASMR sound”.
+- Target **realistic, satisfying tactile Foley**: credible material response, clean short transients, restrained proximity/detail and pleasant repetition.
+- ElevenLabs remains useful as a source generator, but generated sounds are test material rather than automatically final production SFX.
+- Current in-game candidates to test first: Brush→Soil, Chisel→Clay and the corrected stone-dominant Chisel→Sandstone. Final judgement happens synchronized with tool animation/VFX in game.
