@@ -844,3 +844,8 @@ libre dans la matière, avec de courtes animations sur input. Les Foley P6A3 son
 rejetés pour le playtest immédiat : restaurer l'audio précédent, sans retuning
 ni génération. Conserver les assets/VFX utiles et les règles P4/P5 ; pas de
 nouvelle direction, de bake-off, de travail matériaux/jacket ou de P6B/P7.
+
+Clarification humaine : « fixe » signifie angle constant en suivant la souris,
+pas ancrage dans un coin d'écran. Supprime l'interprétation précédente.
+La capture fournie autorise explicitement le réglage Chisel 26 / 0.84 / 2.25
+dans le playtest P6A3 ; aucun autre tuning n'est demandé.

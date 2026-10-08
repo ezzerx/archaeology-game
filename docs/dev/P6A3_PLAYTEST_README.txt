@@ -23,7 +23,7 @@ Cette version ne sauvegarde pas la progression de fouille entre lancements.
 Le mode d'affichage est mémorisé. Un seul spécimen déterministe est proposé.
 Le jacket et les accessoires sont fixes ; seule la matrice centrale se fouille.
 
-Hotfix : outils ancrés en bas à droite, petites animations et audio précédent.
+Hotfix : outils suivant la souris à angle constant, petites animations et audio précédent.
 F12 : témoin historique P6A2 (ancien placement), sans recommencer la fouille.
 H : panneau de fixtures, F9 : matrice nue.
 

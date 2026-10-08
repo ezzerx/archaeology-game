@@ -2,6 +2,30 @@
 
 Correction ciblée demandée après test humain. Le statut du dépôt conserve la gate.
 
+## Correction de l'interprétation — version à tester
+
+Antoine précise que « fixe » désigne **l'angle**, pas la position écran.
+L'ancrage en bas à droite livré dans `6909214` était une mauvaise interprétation.
+Les outils suivent désormais le curseur, avec la même orientation quelle que soit
+la hauteur/pente du terrain. Le plan de présentation devant la matrice empêche
+les intersections ; les petites animations sur action et l'ancien audio restent.
+
+La référence reçue indique **Radius 26 texels / Power 0.84 par impact /
+Falloff 2.25**. Ces valeurs sont appliquées au Chisel dans l'assemblage P6A3,
+sur sa ressource dupliquée ; les presets partagés P4/P5 sont inchangés. C'est
+l'unique exception de tuning explicitement demandée pour ce playtest.
+
+Validation et captures actualisées dans `evidence/p6a3-cursor-hotfix/`.
+**83 contrôles passent** : suivi du curseur, angle invariant malgré changement
+du point/hauteur, animations, réglages Chisel et états gameplay comparés avec le
+même réglage autorisé. Les autres presets restent inchangés. Ancien audio vérifié.
+24 captures réalisées ; Chisel inspecté en jeu. Le ZIP décompressé passe
+PACKED ART et outils natifs/reset, sortie 0, sans installation de Godot.
+Le ZIP Windows est reconstruit après cette correction. La description ci-dessous
+conserve le premier hotfix comme historique et ne décrit plus son placement actuel.
+
+## Premier hotfix — historique remplacé pour le placement
+
 - Les quatre modèles P6A3 restent, mais leur placement au hit et leur redressement
   adaptatif sont retirés du chemin actif. Ancrage caméra à 86 % de la largeur,
   80 % de la hauteur ; taille de présentation constante (environ 150 px),

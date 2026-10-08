@@ -10,6 +10,11 @@ func _create_feedback() -> MaterialFeedback:
 
 func _ready() -> void:
 	super._ready()
+	# Explicit human playtest settings (screenshot, 2026-10-08).
+	# Controller owns duplicated resources; production P4/P5 presets stay intact.
+	controller.tools[1].radius = 26.0
+	controller.tools[1].power = .84
+	controller.tools[1].falloff = 2.25
 	get_window().title = "ArchaeologyGame — P6A3 Tool Feel"
 	panel.get_child(0).get_child(0).text = "P6A3 / TOOL FEEL · F12 comparison"
 	sensory_button=_button("F12 · Outils/feedback P6A2",panel.get_child(0),toggle_sensory)

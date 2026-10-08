@@ -90,7 +90,7 @@ func functional() -> void:
 	main.toggle_sensory()
 	check(not main.old_lamp.visible and main.lamp_art.visible,"comparison restores authored lamp only")
 	check(state()==reset and main.task_light.transform==light and settings==[main.task_light.light_energy,main.task_light.light_color,main.task_light.spot_angle],"comparison preserves reset and accepted lighting")
-	var expected:=[Vector3(40,.7,1.25),Vector3(22,.64,2.25),Vector3(60,0,1),Vector3(11,.44,1.75)]
+	var expected:=[Vector3(40,.7,1.25),Vector3(26,.84,2.25),Vector3(60,0,1),Vector3(11,.44,1.75)]
 	for i in range(4):
 		var t:ToolDefinition=main.controller.tools[i]
 		check(Vector3(t.radius,t.power,t.falloff)==expected[i],"native tool tuning "+str(i))
@@ -107,14 +107,15 @@ func functional() -> void:
 			var inside:=0
 			var motion:=false
 			var pose:Basis=main.feedback.proxies[item[2]].basis
-			var anchors: Array[Vector2] = []
+			var anchor_errors: Array[float] = []
 			for tick in range(90):
 				await physics_frame
 				step(item,tick)
 				if main.controller.hit.inside: inside+=1
 				if main.feedback.proxies[item[2]].basis!=pose: motion=true
 				if sensory:
-					anchors.append(main.camera.unproject_position(main.feedback.proxies[item[2]].global_position))
+					main.feedback._update_proxy_pose(item[2])
+					anchor_errors.append(main.camera.unproject_position(main.feedback.proxies[item[2]].global_position).distance_to(main.camera.unproject_position(main.controller.hit.world)))
 			main.controller.cancel_stroke()
 			main.block.flush_texture()
 			var after:=state()
@@ -126,8 +127,16 @@ func functional() -> void:
 				check(inside==90,"native picking stays valid: "+item[0])
 				check(motion,"input moves the tool: "+item[0])
 				var spread := 0.0
-				for anchor in anchors: spread=maxf(spread,anchor.distance_to(Vector2(root.size)*Vector2(.86,.80)))
-				check(spread<10.0,"fixed screen anchor, bounded recoil under 10px: "+item[0])
+				for error in anchor_errors: spread=maxf(spread,error)
+				check(spread<10.0,"follows pointer, bounded recoil under 10px: "+item[0])
+				main.feedback.impact_age=1.0
+				main.feedback._update_proxy_pose(item[2])
+				var idle_basis:Basis=main.feedback.proxies[item[2]].global_basis
+				var saved_hit:Vector3=main.controller.hit.world
+				main.controller.hit.world+=Vector3(.1,-.15,.05)
+				main.feedback._update_proxy_pose(item[2])
+				check(main.feedback.proxies[item[2]].global_basis.is_equal_approx(idle_basis),"terrain cannot rotate tool: "+item[0])
+				main.controller.hit.world=saved_hit
 				check(main.feedback.peak_particles<=416,"bounded VFX: "+item[0])
 				if item[0]=="brush-clay":
 					check(before.height==after.height and before.ceilings==after.ceilings,"dry Brush never excavates Clay")

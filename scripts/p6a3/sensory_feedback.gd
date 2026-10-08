@@ -223,13 +223,13 @@ func _update_proxy_pose(selected: int) -> void:
 		rotation.z=envelope*(.065 if selected==1 else .02)
 	elif selected==2 and pressed:
 		rotation.z=.012*sin(motion_time*35)
-	# Presentation anchor, independent of hit height/position and excavation.
+	# Follow the pointer, with a fixed presentation angle independent of terrain.
 	# A foreground camera plane prevents the mesh entering the working matrix.
 	var camera := controller.camera
-	var viewport_size := get_viewport().get_visible_rect().size
-	var anchor := viewport_size * Vector2(.86, .80)
+	var anchor := camera.unproject_position(controller.hit.world)
 	var depth := camera.near + .12
-	var pixel_unit := camera.project_position(anchor + Vector2(0,1), depth).distance_to(camera.project_position(anchor,depth))
+	# Measure scale on one fixed ray pair, avoiding pointer-dependent float jitter.
+	var pixel_unit := camera.project_position(Vector2(0,1), depth).distance_to(camera.project_position(Vector2.ZERO,depth))
 	var visual_scale := pixel_unit * 150.0 / .105
 	proxy.global_position = camera.project_position(anchor,depth) + camera.global_basis.y * lift * visual_scale
 	proxy.global_basis = camera.global_basis * Basis.from_euler(Vector3(.25,0,-.4)) * Basis.from_euler(rotation)
