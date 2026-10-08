@@ -59,27 +59,63 @@ Report on active branch:
 
 ## P6A2 status
 
-**Dernier verdict humain après test de la correction `d535c31` : progrès partiellement validés, Soil prioritaire.**
+**P6A2 est suffisamment validé humainement pour avancer.**
 
-- Clay peut rester en l’état pour maintenant.
-- La lampe locale est une amélioration majeure à conserver.
-- Sandstone est acceptable pour maintenant, encore un peu sombre mais non prioritaire.
-- **Soil est le problème visuel principal** : trop proche d’un camouflage sombre sur Clay. Le conserver comme matériau de gameplay, mais viser une terre superficielle, meuble, granulaire et naturelle, avec moins de grandes taches sombres.
-- L’intégration jacket/bloc reste à améliorer après Soil. Une emprise intérieure moins rectangulaire est une piste à examiner ultérieurement, pas une modification autorisée du cœur dynamique maintenant.
-- Pour un playtest entre amis : confort plein écran/grand écran, présentation des objectifs et de fin de session, lampe visible et décor d’établi limité.
-- Simulation conservée à **60 Hz** ; direction Clay et éclairage local préservés.
+Baseline actuelle à conserver :
+- Soil fragmentée : première version jugée positivement en jeu ; apporte désormais du charme, sans être considérée finale ;
+- Clay v02 : bonne baseline actuelle ;
+- task light locale : amélioration majeure confirmée ;
+- Sandstone : acceptable pour maintenant, assez sombre mais non prioritaire ;
+- UI / présentation playtest / fullscreen : suffisamment propres pour ne plus bloquer le travail sensoriel suivant.
 
-La chaîne technique, l’isolation et la performance restent validées. Sources ImageGen v02 intégrées, ancien atlas Material Lab débranché du Hero. Scène : `scenes/p6a2_hero_patch.tscn`, fondation géométrique B inchangée. Preuves de la livraison : `docs/dev/P6A2_TARGETED_CORRECTION_REPORT.md` ; les rapports précédents restent historiques.
+Points différés, explicitement hors de P6A3 :
+- jacket et emprise intérieure moins rectangulaire ;
+- Clay surface breakup grammar ;
+- retuning final Sandstone ;
+- nouveau tool gameplay pour accélérer la fouille ;
+- P6B.
 
-**P6A2 Soil & Playtest Presentation livré pour revue humaine après GO explicite.** Rapport actif : `docs/dev/P6A2_PLAYTEST_PRESENTATION_REPORT.md` ; brief : `docs/dev/P6A2_PLAYTEST_PRESENTATION_BRIEF.md`. Vrais dépôts Soil fragmentés, frange mince et patine séparée ; Clay v02 et lumière conservées. Restyle papier/musée de la fiche, outils et archive ; plein écran natif, lampe visible + deux accessoires ; ZIP Windows autonome testé. Aucun retuning P4/P5. Les métriques de fragmentation et tests techniques ne valident pas le plaisir de brosser ni la direction artistique.
+## P6A3 pre-production
 
-**Verdict humain Playtest Presentation : première version où Soil devient un apport positif au lieu de dégrader le rendu.** Antoine juge la nouvelle Soil nettement meilleure et lui trouve désormais un charme réel, sans la considérer comme finale. La direction fragmentée devient la baseline actuelle à conserver pour la suite. Clay reste bonne pour maintenant ; la lampe locale est confirmée comme un gain visuel majeur ; Sandstone reste acceptable mais sombre et non prioritaire.
+**P6A3 — Tool Feel & Sensory Pass est prêt pour GO humain explicite.**
 
-Nouveaux watchpoints issus du jeu réel : les modèles d’outils sont visuellement trop pauvres et devront recevoir un vrai art pass ; l’audio doit viser une sensation ASMR/tactile ambitieuse ; même lorsqu’un outil n’enlève pas le matériau, un petit retour visuel contextuel (par ex. poussière violette légère au Brush sur Clay) peut renforcer la réactivité/« juice » du contact ; enfin le rythme paraît encore un peu lent. **Ne pas résoudre ce dernier point en ajoutant immédiatement un outil** : P7 fine tuning doit d’abord tester le bon équilibre. Si le rythme reste trop lent ensuite, explorer un outil plus puissant/rapide avec contreparties, le Chisel devenant alors un outil intermédiaire.
+Pipeline 3D retenu :
+> **ImageGen validé → Tripo image-to-3D → source/high conservé → Smart Mesh / retopo si utile → Blender 5.2.2 cleanup/bake → Godot 4.7.2**
 
-Aucune nouvelle implémentation n’est autorisée par ce verdict seul. Jacket/emprise intérieure, P6A1.6/Clay surface breakup grammar, P6B et merge restent hors mission tant qu’un prochain GO n’est pas donné. Cap 240 FPS / physique 60 Hz restent conservés. PR #9 reste DRAFT.
+- Tripo = pipeline principal Astra/Codex.
+- Meshy = fallback / second opinion uniquement.
+- Antoine dispose d'un abonnement Tripo Max avec crédits abondants ; le plugin Codex officiel était déjà connecté lors du preflight précédent.
+- Les références Tool Art approuvées sont versionnées sous `art/source/p6a3/tool-concepts/` :
+  - family board ;
+  - Brush ;
+  - Chisel ;
+  - Precision Pick ;
+  - Air Blower.
 
-Références canoniques locales : `docs/visual-references/p6a2/`, matérialisées par `370ba6355a4a03d48e6faa5ae6aa60988aa2cb88`. Rôles : `docs/visual-references/P6A2_VISUAL_TARGETS.md`.
+Audio :
+- cible = **Foley réaliste, tactile, crédible et satisfaisant**, pas esthétique ASMR littérale ;
+- trois candidats ElevenLabs doivent être testés en jeu avec animation + VFX :
+  - Brush → Soil ;
+  - Chisel → Clay ;
+  - Chisel → Sandstone corrigé ;
+- provenance, prompts et liens de transfert sont dans `art/source/p6a3/audio/README.md`.
+- À l'ouverture de P6A3, Astra doit télécharger ces trois sources, les renommer sous `art/source/p6a3/audio/raw/`, les vérifier puis les versionner avant dérivés runtime.
+
+P6A3 doit se concentrer sur :
+- nouveaux modèles des quatre outils ;
+- micro-animation/réponse visible aux inputs ;
+- réactions matière même non destructives quand pertinent ;
+- VFX de Brush/Chisel/Pick/Blower beaucoup plus satisfaisants et material-specific ;
+- intégration des trois sons tests ;
+- comparaison avant/après et performance.
+
+Gameplay gelé :
+- ne pas retuner profondément les outils ;
+- ne pas changer Bone/Condition/P5 ;
+- ne pas ajouter un nouvel outil puissant maintenant ;
+- physique 60 Hz / cap rendu 240 FPS conservés.
+
+**Prochaine action autorisée : GO humain P6A3, puis STOP obligatoire après livraison pour revue.** PR #9 reste DRAFT ; aucun merge ou P6B automatique.
 
 ## P5 closure baseline
 
