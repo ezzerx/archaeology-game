@@ -56,3 +56,28 @@ Human status: candidate to test in game.
 - Brush/Blower may later use short layered/loopable textures where appropriate.
 - Use variation/randomization rather than one identical sample repeated indefinitely.
 - Final audio direction is judged in context with animation and VFX, not in isolation.
+
+## Transfer sources for P6A3 kickoff
+
+The three user-confirmed MP3 files are available for Codex/Astra to download and place in the repository at kickoff.
+
+| Interaction | Source transfer URL | Expected repo filename |
+| --- | --- | --- |
+| Brush → Soil | https://at.adobe.com/LzARPDV356QENcWv | `art/source/p6a3/audio/raw/brush_soil_test_v01.mp3` |
+| Chisel → Clay | https://at.adobe.com/Tg65GioG7dbxIhcu | `art/source/p6a3/audio/raw/chisel_clay_test_v01.mp3` |
+| Chisel → Sandstone | https://at.adobe.com/v0uHdvKgvzoHW4HV | `art/source/p6a3/audio/raw/chisel_sandstone_test_v01.mp3` |
+
+User-confirmed original mapping:
+- `content.mp3` = Brush → Soil
+- `content (1).mp3` = Chisel → Clay
+- `content (2).mp3` = Chisel → Sandstone
+
+At P6A3 kickoff, Codex should:
+1. download the three files from the transfer URLs above;
+2. verify they are valid MP3 audio;
+3. rename them to the expected repo filenames;
+4. preserve them as raw/source test audio;
+5. commit them before integrating runtime derivatives.
+
+Do not treat these transfer URLs as permanent production storage. The repository copies become authoritative once materialized.
+
