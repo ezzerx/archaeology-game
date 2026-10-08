@@ -849,3 +849,7 @@ Clarification humaine : « fixe » signifie angle constant en suivant la souris,
 pas ancrage dans un coin d'écran. Supprime l'interprétation précédente.
 La capture fournie autorise explicitement le réglage Chisel 26 / 0.84 / 2.25
 dans le playtest P6A3 ; aucun autre tuning n'est demandé.
+
+Précision suivante : reprendre la pose de présentation P6A2 elle-même en gardant
+les nouveaux modèles ; ne pas substituer un nouvel angle caméra ou une taille
+écran constante. Les petites animations input restent souhaitées.

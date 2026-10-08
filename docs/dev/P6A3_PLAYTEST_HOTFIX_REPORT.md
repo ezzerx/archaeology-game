@@ -2,7 +2,23 @@
 
 Correction ciblée demandée après test humain. Le statut du dépôt conserve la gate.
 
-## Correction de l'interprétation — version à tester
+## Rétablissement exact de la pose P6A2 — version à tester
+
+Après `47f9a43`, Antoine demande de reprendre la pose P6A2, sans nouvel angle.
+Le plan de présentation caméra et la taille constante en pixels sont retirés.
+La position est de nouveau `controller.hit.world`, l'orientation de repos est
+exactement `ToolProxyPose.fixed_basis` (0.5, 0, -0.62 radians) et le dégagement
+vertical utilise directement `ToolProxyPose.fit`, comme P6A2. Le fit spécifique
+P6A3 qui redressait les modèles est supprimé. Aucun angle dérivé du terrain.
+
+Les modèles Tripo restent ; les petites animations sur input sont conservées
+autour de cette pose. Chisel 26 / 0.84 / 2.25 et ancien audio conservés.
+Les tests vérifient explicitement l'égalité de l'angle et du contact P6A2.
+Preuves actualisées : `evidence/p6a3-p6a2-pose/`.
+99 contrôles passent ; comparaison visuelle Chisel ancien/nouveau au même
+cadrage inspectée. Le ZIP décompressé passe outils natifs/reset et assets, sortie 0.
+
+## Correction précédente — remplacée pour le placement
 
 Antoine précise que « fixe » désigne **l'angle**, pas la position écran.
 L'ancrage en bas à droite livré dans `6909214` était une mauvaise interprétation.

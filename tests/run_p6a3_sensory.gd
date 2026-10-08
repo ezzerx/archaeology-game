@@ -132,6 +132,8 @@ func functional() -> void:
 				main.feedback.impact_age=1.0
 				main.feedback._update_proxy_pose(item[2])
 				var idle_basis:Basis=main.feedback.proxies[item[2]].global_basis
+				check(idle_basis.is_equal_approx(ToolProxyPose.fixed_basis(item[2])),"exact P6A2 idle angle: "+item[0])
+				check(main.feedback.proxies[item[2]].global_position.is_equal_approx(main.controller.hit.world),"exact P6A2 contact anchor: "+item[0])
 				var saved_hit:Vector3=main.controller.hit.world
 				main.controller.hit.world+=Vector3(.1,-.15,.05)
 				main.feedback._update_proxy_pose(item[2])

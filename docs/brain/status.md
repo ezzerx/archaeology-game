@@ -96,6 +96,9 @@ Tests et mesures passent ; ils ne valident pas le ressenti humain.
 **Hotfix playtest clarifié le 8 octobre : outils suivant la souris, angle constant
 indépendant du terrain, animations courtes et ancien audio P4/P5/P6A2 conservés.**
 L'ancrage en bas à droite était une mauvaise interprétation, corrigée.
+Dernière précision : restaurer exactement la pose P6A2, pas un nouvel angle
+caméra. Placement au hit, `ToolProxyPose.fixed_basis` et clearance verticale
+P6A2 réutilisés ; nouveaux modèles et petites animations conservés.
 Référence Chisel reçue : Radius 26 / Power 0.84 / Falloff 2.25, autorisés uniquement
 dans le playtest P6A3 ; presets partagés P4/P5 conservés. Rapport actif :
 `docs/dev/P6A3_PLAYTEST_HOTFIX_REPORT.md`.

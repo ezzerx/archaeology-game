@@ -25,7 +25,6 @@ func _create_proxies() -> void:
 		var pose := preload("res://scripts/p6a3/authored_tool_pose.gd").new()
 		proxy_poses.append(pose)
 		pose.setup(proxy)
-		pose.air_tool = asset == "blower"
 		pose.attach(load("res://assets/p6a3/models/" + asset + ".glb"))
 		proxy.hide()
 
@@ -223,19 +222,12 @@ func _update_proxy_pose(selected: int) -> void:
 		rotation.z=envelope*(.065 if selected==1 else .02)
 	elif selected==2 and pressed:
 		rotation.z=.012*sin(motion_time*35)
-	# Follow the pointer, with a fixed presentation angle independent of terrain.
-	# A foreground camera plane prevents the mesh entering the working matrix.
-	var camera := controller.camera
-	var anchor := camera.unproject_position(controller.hit.world)
-	var depth := camera.near + .12
-	# Measure scale on one fixed ray pair, avoiding pointer-dependent float jitter.
-	var pixel_unit := camera.project_position(Vector2(0,1), depth).distance_to(camera.project_position(Vector2.ZERO,depth))
-	var visual_scale := pixel_unit * 150.0 / .105
-	proxy.global_position = camera.project_position(anchor,depth) + camera.global_basis.y * lift * visual_scale
-	proxy.global_basis = camera.global_basis * Basis.from_euler(Vector3(.25,0,-.4)) * Basis.from_euler(rotation)
-	proxy.scale = Vector3.ONE * visual_scale * (1.0-.025*(.5+.5*sin(motion_time*22)) if selected==2 and pressed else 1.0)
-	proxy_poses[selected].body.position = Vector3.ZERO
-
+	# Restore the P6A2 world contact, fixed basis and translation-only clearance.
+	# Only the authored mesh and short input motion differ from that witness.
+	proxy.global_position = controller.hit.world
+	proxy.global_basis = ToolProxyPose.fixed_basis(selected) * Basis.from_euler(rotation)
+	proxy.scale = Vector3.ONE * (1.0-.025*(.5+.5*sin(motion_time*22)) if selected==2 and pressed else 1.0)
+	proxy_poses[selected].fit(proxy,block,lift)
 func reset() -> void:
 	super.reset()
 	impact_age=1
