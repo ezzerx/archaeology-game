@@ -126,9 +126,27 @@ Rapport actif : `docs/dev/P6A3_FRIEND_PLAYTEST_REPORT.md`.
 
 Séquence préférée pour la reprise :
 1. **P6A3.1 Playtest Feedback / Mastery Readability** — quick wins ci-dessus;
-2. **Dedicated Sound Design & Music Pass**;
-3. **Interactive Task Light Spike**;
-4. nouveau playtest.
+2. **B-17 Fossil Mesh Lookdev Spike** — nouvelle priorité visuelle proposée, GO séparé;
+3. **Dedicated Sound Design & Music Pass**;
+4. **Interactive Task Light Spike**;
+5. nouveau playtest.
+
+## New visual priority — B-17 3D fossil mesh (2026-10-09)
+
+Antoine souhaite rapidement remplacer/améliorer la représentation actuelle du
+squelette B-17 par un **vrai modèle 3D**, afin de rehausser la beauté du fossile
+visible en cours de préparation. C'est une priorité visuelle nouvelle, pas un GO
+pour modifier immédiatement `FossilField`, le picking ou les plafonds Bone.
+
+Proposer un **spike B-17 Fossil Mesh Lookdev séparé**, après les quick fixes
+P6A3.1 et avant Sound/Light si autorisé. Le mesh doit suivre la révélation
+progressive réelle et ne pas apparaître à travers la matrice. Référence :
+`docs/dev/P6A3_FOSSIL_MESH_DIRECTION.md`.
+
+**Material Column N-slot : évaluation reçue le 9 octobre, faisable avec réserves,
+mais architecture NON validée / NON autorisée.** Garder la variabilité géologique
+comme direction future post-V0.1/P7, après petit test de blocs variés moins coûteux.
+Rapport d'audit : `docs/dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md`.
 
 **Prochaine action : préparer P6A3.1 puis attendre GO humain explicite.
 Aucune implémentation supplémentaire n'est autorisée automatiquement ce soir.**

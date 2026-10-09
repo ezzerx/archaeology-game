@@ -110,6 +110,21 @@ Targets:
 
 No broad retuning, new tool or audio overhaul in this substep.
 
+### P6A3.2 — B-17 Fossil Mesh Lookdev (proposal, separate GO)
+
+A near-term visual spike requested after friend playtesting:
+- improve the excavated B-17 fossil with a genuine anatomical 3D mesh;
+- ensure authored shape matches existing partial B-17 skull/spine/ribs/hind limb;
+- reveal mesh only where the CPU Bone field says Bone is exposed;
+- keep picking, Bone ceilings, exposure, Film, Condition and P5 rules unchanged;
+- validate one component/patch first, then scale only if the overlay reads
+  coherently in the live 1×/3× gameplay camera.
+
+This is **not** an automatic GO and not permission to replace the fossil
+authority with an arbitrary imported skeleton.
+
+Reference: [Fossil Mesh Direction](dev/P6A3_FOSSIL_MESH_DIRECTION.md).
+
 ### P6A-Sound — Dedicated Sound Design & Music Pass
 
 Treat audio as a real quality pillar:
@@ -157,6 +172,16 @@ If the answer is weak, tune/fix the core before adding long-term content systems
 ## Post-core confirmed systems
 
 Once the V0.1 core passes:
+
+### Material Column evaluation — post-core, conditional
+
+Before committing to procedural N-slot stratigraphy, test a small authored set
+with three existing material roles and variable depths/regions. An N-slot,
+per-cell-material architecture is feasible but a high-risk core refactor;
+authorize it only if those simpler witnesses prove insufficient, and before
+building a full seeded generator.
+
+Reference: [Material Column feasibility review](dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md).
 
 ### Block Variability Prototype
 

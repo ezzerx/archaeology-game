@@ -41,6 +41,25 @@ The system should produce blocks that are:
 
 The player should learn to identify materials and choose tools, not learn a fixed timer/depth script.
 
+### Material Column / multi-slot stratigraphy — architecture under evaluation
+
+A future architecture **might** represent N vertically ordered material slots,
+each with a continuous bottom height and per-cell material ID. This could support
+pinched lenses, local inclusions and materials that vary by position/depth without
+abandoning the existing single editable heightfield per cell.
+
+However, N≈5–6 and the representation are **not selected**. Today's code
+assumes three strata throughout CPU tool integration, fracture, debris, audio,
+shader/Patina and quality gates. The structural rewrite is high-risk and belongs
+in the post-core variability work, not in P6A polish.
+
+First test authored multi-block variation using the current three material roles.
+Only if vertically repeated material changes clearly improve play should the
+isolated column refactor be authorized, with frozen P5/P6 regressions and effort
+budget/performance checks.
+
+Full static code review: [Material Column feasibility review](dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md).
+
 ### Block silhouette / prepared-block identity — direction to test
 
 Beyond internal stratigraphy, future specimens should test **different outer block/jacket silhouettes** so every preparation does not begin from the same perfect rectangle. Preferred first approach: preserve a readable/controlled work surface and vary the visible outer mass — compact, elongated, chipped, asymmetric, plaster-jacketed, etc. This is a direction to prototype, not a requirement to move immediately to fully free-form excavation geometry.

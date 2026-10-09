@@ -894,3 +894,27 @@ phase must be treated as a real quality pillar and include restrained preparatio
 music. The task-light spike should test player-controlled light direction as a
 possible relief-reading mechanic because fixed one-sided lighting can hide some
 cavities. Neither phase is auto-authorized by documentation alone.
+
+
+## 2026-10-09 — Fossil mesh visual priority / Material Column evaluation
+
+Antoine demande que l'amélioration du **squelette/fossile B-17 en véritable mesh
+3D** fasse partie des changements à traiter rapidement. Intention acceptée comme
+nouvelle **priorité artistique à prototyper**, pas comme autorisation d'écraser
+les systèmes Bone actuels. La source actuelle est un champ anatomique partiel
+2.5D défini dans `fossil_field.gd`, avec ceilings, exposure, Condition et Film.
+Un asset 3D extérieur posé par-dessus ne serait pas suffisant : il doit rester
+strictement synchronisé avec les zones Bone révélées, la géométrie excavée et la
+caméra/picking. Un prototype visuel limité, avec gate humain avant généralisation,
+est proposé dans `docs/dev/P6A3_FOSSIL_MESH_DIRECTION.md`. Il se placerait
+préférentiellement après P6A3.1 et avant les phases Sound/Light si GO.
+
+Un brief externe « Material Column » propose 5–6 slots géologiques verticaux
+par case avec identités de matériau variables. Après audit du code : faisable,
+mais **réarchitecture majeure** du noyau travail/fracture, lookup GPU, tool
+effectiveness, débris, rendering et validation. Préserver la hauteur unique par
+case est la bonne intuition ; néanmoins ni le nombre N ni l'architecture exacte
+ne sont choisis. **Aucun GO d'implémentation.** Explorer d'abord une variabilité
+contrôlée sur des blocs authored avec les trois rôles actuels, puis envisager la
+généralisation au début de la phase post-core Block Variability Prototype,
+après P7. Voir `docs/dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md`.
