@@ -97,6 +97,51 @@ Questions to answer:
 
 P6A is not a separate roadmap gate. It is the **first substep of P6**.
 
+### P6A3.1 — Friend Playtest Feedback / Mastery Readability
+
+A short focused follow-up after the first friend playtest.
+
+Targets:
+- make displayed 100% attainable without fake 99% stalls;
+- smaller visual Chisel crosshair with unchanged real effect radius;
+- improve Bone dirty/clean readability near full Cleanliness;
+- visible dust response while brushing Bone Film;
+- clearer Bone Condition presentation and first visual damage language.
+
+No broad retuning, new tool or audio overhaul in this substep.
+
+### P6A3.2 — B-17 Fossil Mesh Lookdev (proposal, separate GO)
+
+A near-term visual spike requested after friend playtesting:
+- improve the excavated B-17 fossil with a genuine anatomical 3D mesh;
+- ensure authored shape matches existing partial B-17 skull/spine/ribs/hind limb;
+- reveal mesh only where the CPU Bone field says Bone is exposed;
+- keep picking, Bone ceilings, exposure, Film, Condition and P5 rules unchanged;
+- validate one component/patch first, then scale only if the overlay reads
+  coherently in the live 1×/3× gameplay camera.
+
+This is **not** an automatic GO and not permission to replace the fossil
+authority with an arbitrary imported skeleton.
+
+Reference: [Fossil Mesh Direction](dev/P6A3_FOSSIL_MESH_DIRECTION.md).
+
+### P6A-Sound — Dedicated Sound Design & Music Pass
+
+Treat audio as a real quality pillar:
+- satisfying tactile Foley per tool/material;
+- controlled variation and layering;
+- repeated-use fatigue testing;
+- Brush/Blower continuous interaction handling;
+- restrained preparation music.
+
+### P6A-Light — Interactive Task Light Spike
+
+Test player-controlled lamp direction as a possible relief-reading mechanic:
+- move/orient the task light;
+- reveal crevices and height changes through shadows;
+- preserve the validated cozy lighting language;
+- human-test whether the interaction adds skill/value.
+
 ### P6B — V0.1 Art Pass
 
 Once P6A proves the direction and pipeline, apply it to the complete V0.1 slice:
@@ -114,6 +159,40 @@ Once P6A proves the direction and pipeline, apply it to the complete V0.1 slice:
 
 Do not start mass asset production for the full game here.
 
+## Marketing Milestones — independent of P0–P7
+
+### M1 — First Public Hook Ready
+
+A **marketing-readiness**, not a release-readiness, gate: publishable 15–30s
+authentic gameplay footage that immediately conveys the tactile fossil-preparation
+hook to a viewer unfamiliar with Archeo.
+
+Candidate work to reach it:
+- P6A3.1 mastery/cleanliness/Condition readability and cursor fixes;
+- convincing in-game fossil volume/reveal (B-17 Fossil Mesh Lookdev candidate);
+- a minimally satisfying clip-ready Foley mix;
+- targeted shot-specific visual cleanup, only if the jacket/edges or other
+  placeholders break the illusion;
+- capture/edit 2–3 real gameplay concepts and obtain cold-viewer feedback.
+
+Exit is by explicit human visual/audio judgment and small unfamiliar-audience
+check, not automated performance tests or raw social view counts.
+
+M1 does **not** require a public Steam demo, museum meta, many specimen variants,
+complete P6B/P7, full audio pass or the interactive lamp spike.
+
+Product baseline: build toward self-publishing and keep publisher/PR conversations
+as optional commercial alternatives. Reassess based on real audience/production
+evidence rather than committing publishing rights prematurely.
+
+Full contract: [M1 First Public Hook Ready](marketing/M1_FIRST_PUBLIC_HOOK_READY.md).
+
+### M2 — Steam Wishlist / Public Demo Readiness (later, separate decision)
+
+M2 will need a trustworthy Steam-ready presentation and a stable,
+representative public experience. Passing M1 does not imply passing M2.
+Define this gate later after measuring M1 results.
+
 ## V0.1 validation
 
 After P7, run the first serious external playtest wave.
@@ -127,6 +206,16 @@ If the answer is weak, tune/fix the core before adding long-term content systems
 ## Post-core confirmed systems
 
 Once the V0.1 core passes:
+
+### Material Column evaluation — post-core, conditional
+
+Before committing to procedural N-slot stratigraphy, test a small authored set
+with three existing material roles and variable depths/regions. An N-slot,
+per-cell-material architecture is feasible but a high-risk core refactor;
+authorize it only if those simpler witnesses prove insufficient, and before
+building a full seeded generator.
+
+Reference: [Material Column feasibility review](dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md).
 
 ### Block Variability Prototype
 

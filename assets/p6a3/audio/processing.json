@@ -1,0 +1,83 @@
+{
+  "sample_rate": 44100,
+  "format": "mono PCM16",
+  "sources": {
+    "brush_soil_test_v01.mp3": {
+      "sha256": "af94e9f6c1f54341819d409c037dec5b27d2302566df17343e5080c85bb6c7b6",
+      "decoded_seconds": 1.0
+    },
+    "chisel_clay_test_v01.mp3": {
+      "sha256": "41a79bf2aebaf706cf51ee1aa17fcf3b54b0cf1975adb5f8f835cf22ff502e95",
+      "decoded_seconds": 1.0
+    },
+    "chisel_sandstone_test_v01.mp3": {
+      "sha256": "dbb81322c0dbce1f6ca8796e758fa6b5e29965d986c7bf81c00967d25c959c00",
+      "decoded_seconds": 2.0
+    }
+  },
+  "runtime": {
+    "brush_soil_loop.wav": {
+      "seconds": 0.5550113378684808,
+      "peak_dbfs": -10,
+      "loop": true,
+      "edits": "0.16\u20130.77 s; 55 ms wrap crossfade; -10 dBFS peak",
+      "sha256": "0d706ec9f2c52e93ae6cbb1631b621417e800cef523755973434cb43bbdd5f55"
+    },
+    "chisel_clay_01.wav": {
+      "seconds": 0.27,
+      "peak_dbfs": -6,
+      "loop": false,
+      "edits": "0.160\u20130.430 s; 1.5 ms attack / 35 ms release",
+      "sha256": "052209fedfc52605127c14d34429f689570c7bbe701f8b750eddec9c3b9727c9"
+    },
+    "chisel_clay_02.wav": {
+      "seconds": 0.2850113378684807,
+      "peak_dbfs": -6,
+      "loop": false,
+      "edits": "0.175\u20130.460 s; 1.5 ms attack / 35 ms release",
+      "sha256": "7bc6df14ee0c093364d7c2397292b42a25f4a9dc22a5a92732d8c582fd971fba"
+    },
+    "chisel_clay_03.wav": {
+      "seconds": 0.3050113378684807,
+      "peak_dbfs": -6,
+      "loop": false,
+      "edits": "0.185\u20130.490 s; 1.5 ms attack / 35 ms release",
+      "sha256": "66502955f48380c9ada2e82cf0be041b02dd8fc90c62c2c1e54e3635f8b36aed"
+    },
+    "chisel_clay_04.wav": {
+      "seconds": 0.2849886621315193,
+      "peak_dbfs": -6,
+      "loop": false,
+      "edits": "0.150\u20130.435 s; 1.5 ms attack / 35 ms release",
+      "sha256": "c22a3fa3e17a4e652e9ac69f0887a6e30f3187955eeafa04eff117c5b3db8e4d"
+    },
+    "chisel_stone_01.wav": {
+      "seconds": 0.24,
+      "peak_dbfs": -7,
+      "loop": false,
+      "edits": "0.000\u20130.240 s; 1.5 ms attack / 35 ms release",
+      "sha256": "650261d9ae1b77e2df30740ca87da2738bc5e0d1f0a74170765060c75007e3e8"
+    },
+    "chisel_stone_02.wav": {
+      "seconds": 0.27,
+      "peak_dbfs": -7,
+      "loop": false,
+      "edits": "0.220\u20130.490 s; 1.5 ms attack / 35 ms release",
+      "sha256": "376a7c60c4c1df66c286409a6babd7dec85cbf1381c05e872a3933fe6798a14c"
+    },
+    "chisel_stone_03.wav": {
+      "seconds": 0.24,
+      "peak_dbfs": -7,
+      "loop": false,
+      "edits": "0.370\u20130.610 s; 1.5 ms attack / 35 ms release",
+      "sha256": "2244168de58bf443aac5886a9ca60e98fee2768ec9afa35854d804f3f9a2a3c5"
+    },
+    "chisel_stone_04.wav": {
+      "seconds": 0.23501133786848072,
+      "peak_dbfs": -7,
+      "loop": false,
+      "edits": "0.835\u20131.070 s; 1.5 ms attack / 35 ms release",
+      "sha256": "b0745e4ba7c84780be01ae815481ca1958cebb75ecfa8ab40e0eb3323f51ab90"
+    }
+  }
+}

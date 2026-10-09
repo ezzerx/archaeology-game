@@ -1,0 +1,82 @@
+[
+	{
+		"processing": "RGB8 Lanczos downsample only; color correction in local shader",
+		"runtime": "res://assets/p6a2/textures/clay/p6a2_clay_albedo_v02.png",
+		"runtime_dimensions": [
+			1024,
+			1024
+		],
+		"runtime_sha256": "521792656901965d36f663e5b6939d92de4797bde8721545e8019bf01daad3f0",
+		"scale_m": 0.24,
+		"source": "res://art/source/p6a2/images/p6a2_clay_albedo_source_v02.jpg",
+		"source_dimensions": [
+			1254,
+			1254
+		],
+		"source_sha256": "1d6626bed4df101c41df7ec61c70d5d5ecde92c4a3c830d16f762d0096fa409d"
+	},
+	{
+		"processing": "RGB8 Lanczos downsample only; color correction in local shader",
+		"runtime": "res://assets/p6a2/textures/sandstone/p6a2_sandstone_albedo_v02.png",
+		"runtime_dimensions": [
+			1024,
+			1024
+		],
+		"runtime_sha256": "bafc6d96ab9cec3dd73ca11d0130c85253b986f0d455acd4c56c96b62d7f9b1e",
+		"scale_m": 0.24,
+		"source": "res://art/source/p6a2/images/p6a2_sandstone_albedo_source_v02.jpg",
+		"source_dimensions": [
+			1254,
+			1254
+		],
+		"source_sha256": "8139cd57412d119da923e60e1a3f622c769ae30d152ff65c250d2575d12d6cf0"
+	},
+	{
+		"processing": "RGB8 Lanczos downsample only; color correction in local shader",
+		"runtime": "res://assets/p6a2/textures/soil/p6a2_soil_albedo_v02.png",
+		"runtime_dimensions": [
+			1024,
+			1024
+		],
+		"runtime_sha256": "566476b468a9658b4127743058da856a6dd0b1c5c0c5a76daf28f3a48a891a2a",
+		"scale_m": 0.24,
+		"source": "res://art/source/p6a2/images/p6a2_soil_albedo_source_v02.jpg",
+		"source_dimensions": [
+			1254,
+			1254
+		],
+		"source_sha256": "f12a9aea03b967b6ccd266c8d5f39c96534dc410557764fa30ff889e77ca10fe"
+	},
+	{
+		"processing": "RGB8 Lanczos downsample only; color correction in local shader",
+		"runtime": "res://assets/p6a2/textures/bone/p6a2_bone_albedo_v02.png",
+		"runtime_dimensions": [
+			1024,
+			1024
+		],
+		"runtime_sha256": "4b1d901c69dea2e8346884e4c1af33e6d19ed3a22df1b8da3d505090e6bd59cb",
+		"scale_m": 0.24,
+		"source": "res://art/source/p6a2/images/p6a2_bone_albedo_source_v02.jpg",
+		"source_dimensions": [
+			1254,
+			1254
+		],
+		"source_sha256": "28011ca6331268a9d9a4f12a373ad5d9b5f38590d209e07edd76daa5ba9d776e"
+	},
+	{
+		"processing": "RGB8 Lanczos downsample only; color correction in local shader",
+		"runtime": "res://assets/p6a2/textures/plaster/p6a2_plaster_albedo_v02.png",
+		"runtime_dimensions": [
+			1024,
+			1024
+		],
+		"runtime_sha256": "b34857312a70a7bc97ebf488c37948d3b2cba7abf534ef7f1f87beab3d6ef994",
+		"scale_m": 0.24,
+		"source": "res://art/source/p6a2/images/p6a2_plaster_albedo_source_v02.jpg",
+		"source_dimensions": [
+			1254,
+			1254
+		],
+		"source_sha256": "dbde1c8c00c86b73b5525ef11a2a97d90b86028a74cda74ed507bb76af08aab8"
+	}
+]

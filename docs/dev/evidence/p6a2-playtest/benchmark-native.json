@@ -1,0 +1,99 @@
+{
+	"benchmark": [
+		{
+			"draw_calls": {
+				"max": 105.0,
+				"mean": 105.0,
+				"p95": 105.0
+			},
+			"edit_ms": {
+				"max": 0.0,
+				"mean": 0.0,
+				"p95": 0.0
+			},
+			"frame_ms": {
+				"max": 4.589,
+				"mean": 4.16562526315789,
+				"p95": 4.325
+			},
+			"gpu_ms": {
+				"max": 3.1340000629425,
+				"mean": 2.85436555117118,
+				"p95": 3.10999989509583
+			},
+			"kind": "reset",
+			"new_soil_and_desk": true,
+			"texture_memory_bytes": 64604701.0,
+			"zoom": 1
+		},
+		{
+			"draw_calls": {
+				"max": 75.0,
+				"mean": 75.0,
+				"p95": 75.0
+			},
+			"edit_ms": {
+				"max": 0.0,
+				"mean": 0.0,
+				"p95": 0.0
+			},
+			"frame_ms": {
+				"max": 4.56,
+				"mean": 4.16599790356393,
+				"p95": 4.332
+			},
+			"gpu_ms": {
+				"max": 1.85899996757507,
+				"mean": 1.52423430536581,
+				"p95": 1.71099996566772
+			},
+			"kind": "reset",
+			"new_soil_and_desk": true,
+			"texture_memory_bytes": 64604701.0,
+			"zoom": 3
+		},
+		{
+			"draw_calls": {
+				"max": 105.0,
+				"mean": 105.0,
+				"p95": 105.0
+			},
+			"edit_ms": {
+				"max": 5.174,
+				"mean": 3.94164166666667,
+				"p95": 4.351
+			},
+			"frame_ms": {
+				"max": 9.905,
+				"mean": 4.16600210084033,
+				"p95": 8.666
+			},
+			"gpu_ms": {
+				"max": 6.40199995040894,
+				"mean": 3.50328301883594,
+				"p95": 5.56899976730347
+			},
+			"kind": "brush_soil",
+			"new_soil_and_desk": true,
+			"texture_memory_bytes": 64604701.0,
+			"zoom": 1
+		}
+	],
+	"brush": [],
+	"captures": [],
+	"checks": 3,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"native_image": "(2560, 1440)",
+		"native_window": "(2560, 1440)",
+		"physics_hz": 60,
+		"render": "(1920.0, 1080.0)",
+		"renderer": "gl_compatibility",
+		"window": "(1920, 1080)"
+	}
+}

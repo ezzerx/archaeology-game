@@ -714,3 +714,227 @@ This spike is about **internal matrix topography**, not the future outer block/j
 
 Sequence becomes:
 > P6A-1 Material Lab ✅ → P6A1.5 Soil Foundation ✅ human direction chosen → **P6A1.6 Natural Geometry Spike** → P6A2 Hero Lookdev → human visual gate → P6B.
+
+## P6A1.6 — séparation géologie / validation Bone (2026-10-06)
+
+Choix technique du spike, sans validation du candidat visuel : les macroformes sont des fonctions UV déterministes centralisées, calculées une fois, indépendantes du fossile. Bone sert à vérifier les plafonds et les budgets de travail après construction, jamais à sculpter/clamp le relief initial. Les fixtures pré-creusées sont séparées de cette génération et les outils restent natifs. Voir [rapport et limites](../dev/P6A16_NATURAL_GEOMETRY_REPORT.md).
+
+Leçon de mesure vérifiée : l’encodage de hauteur GPU par couleurs proches du noir peut produire une fausse divergence sous Compatibility. Encoder dans les tons moyens et comparer aussi à un oracle de triangles natifs avant de conclure à un défaut du picking.
+
+## P6A1.6 — retour humain : structure minérale, pas ondulations (2026-10-06)
+
+Antoine ne valide pas le premier B : les plis doux restent trop proches d’un plan continu sous la caméra actuelle. Direction confirmée pour la correction : masses/plaques irrégulières imbriquées, plateaux, marches adoucies et poches ouvertes, portés par le vrai heightfield. Ne pas compenser par du bruit, de la texture ou de la lumière ; préserver l’indépendance du fossile. Le [B corrigé](../dev/P6A16_STRUCTURED_MATRIX_REPORT.md) applique cette direction mais attend son propre verdict humain.
+
+
+## P6A1.6 — retour humain : affleurements, pas puzzle (2026-10-06)
+
+Le B polygonal améliore la lecture des niveaux mais n’est pas approuvé comme fondation : Antoine voit une surface découpée en plaques. Direction confirmée : substrat continu relativement calme, quelques masses minérales émergentes de tailles différentes, épaulements imbriqués et poches ouvertes. Préférer des contours courbes irréguliers, des fronts localisés qui se fondent ailleurs dans la surface, et une variation méso légère sur les dessus. Éviter les anneaux abrupts complets, les tranchées de largeur constante et la mosaïque de poids visuel uniforme. Le vrai heightfield doit porter cette lecture sans patine ; outils et Bone restent verrouillés. La [correction par affleurements](../dev/P6A16_OUTCROPS_REPORT.md) est une proposition technique, pas une validation de cette géométrie.
+
+
+## P6A1.6 — test de grammaire de surface macro + méso (2026-10-06)
+
+Antoine recadre la dernière correction : le matériau doit pouvoir évoquer de petites unités minérales excavables **avant** les coups Chisel, par la vraie géométrie. Il autorise un test associant des masses réellement positives par rapport à A, des poches et une structure méso de petits replats/ressauts/creux irréguliers. Les macroformes seules ne suffisent pas ; éviter membrane, puzzle fermé, grille Minecraft et bruit uniforme. Cette autorisation de test **ne valide pas** une grammaire voxel finale. Conserver A, Soil, lumière, caméra, outils, Bone, picking et discipline de budgets ; adapter la distribution géométrique si nécessaire, jamais les outils. [Implémentation et preuves du test](../dev/P6A16_SURFACE_GRAMMAR_REPORT.md).
+
+
+## P6A1 — clôture suffisante pour avancer (2026-10-07)
+
+Antoine a revu le dernier test de grammaire de surface et clôt P6A1 comme **suffisamment validé pour avancer vers P6A2**. Le B macro + méso actuel est la fondation de travail Hero Lookdev pour maintenant ; cette décision n'approuve pas une géométrie finale parfaite. Conserver les preuves historiques et leurs verdicts contemporains.
+
+**Clay surface breakup grammar** est différé : une amélioration ciblée ultérieure pourra rapprocher la surface Clay intacte du langage minéral de petites cassures visible après excavation. Ce n'est pas un blocage P6A2. Soil mince P6A1.5 et patine par dépôts restent acceptés ; P4/P5 restent gelés.
+
+## Production P6A2 — chaîne minimale et autorité (2026-10-07)
+
+Stack retenue : Godot 4.7.2 pour gameplay/rendu/assemblage ; Blender 5.2.2 LTS pour géométrie statique, UV et export GLB ; références canoniques versionnées ; images ChatGPT sélectionnées par Antoine/orchestrateur puis consommées dans le dépôt. Aucun besoin de reproduire ImageGen localement. Meshy/Tripo non requis, Krita/Photoshop seulement sur besoin concret de nettoyage, audio ultérieur.
+
+La chaîne GLB est vérifiée par une sonde non-production : un mètre par unité, Blender Z-up/+Y avant → Godot Y-up/−Z avant, rotation/échelle appliquées, sources DCC exclues de l'import runtime et sorties GLB explicites versionnées. Blender reste hors Git. Voir [rapport de preflight](../dev/P6A2_PREFLIGHT_REPORT.md) pour conventions et preuves.
+
+Le cœur dynamique Godot garde l'autorité exclusive : heightfield/couches, plafonds Bone, outils, picking, film, fracture et progression. Les assets Blender sont des supports statiques sans autorité de fouille. Les expériences visuelles doivent rester dans une petite scène Hero Patch isolée partageant les systèmes existants avant toute promotion en production. La réussite technique du preflight n'est ni une validation artistique ni un GO implicite de développement.
+
+## P6A2 — GO pour un Hero Patch limité (2026-10-07)
+
+Après preflight READY, Antoine autorise explicitement un seul Hero Patch réel et jouable héritant du lab P6A1.6 B : matières, première coque plâtrée statique Blender, lumière et établi limité. Les visuels restent locaux à cette scène avant revue ; la comparaison au témoin conserve fouille et caméra. Le GO n’autorise ni la grammaire Clay différée, ni du tuning gameplay, ni une généralisation artistique. Une livraison testée doit revenir au verdict visuel humain ; aucune acceptation de direction ou transition P6B n’est implicite. [Rapport de la proposition](../dev/P6A2_HERO_LOOKDEV_REPORT.md).
+
+## P6A2 — rejet artistique et correction ciblée (2026-10-07)
+
+Antoine valide la chaîne technique, l’isolation et la performance du Hero `a9d47b6`, mais rejette son look. Le jacket doit se lire comme le contenant physique irrégulier d’un unique bloc de préparation, pas un cadre clair indépendant. L’atlas Material Lab, déjà jugé pauvre, est exclu de la fondation visuelle P6A2 : demander de nouvelles sources ImageGen précises à Antoine/orchestrateur avant finalisation matière. La lumière doit venir d’une véritable lampe locale (Spot/Omni), pas seulement d’un directionnel réchauffé. Ces trois priorités précèdent tout accessoire/polish secondaire. Architecture, géométrie B et gameplay restent conservés ; aucune validation de direction artistique n’est implicite.
+
+## P6A2 — verdict après test réel : Soil puis présentation playtest (2026-10-07)
+
+Antoine accepte Clay pour maintenant, veut conserver la lampe locale comme amélioration majeure et juge Sandstone acceptable malgré une valeur encore un peu sombre. Ces éléments ne doivent pas devenir les sujets d’une nouvelle refonte pendant la correction Soil.
+
+Soil reste dans le jeu pour sa variété de lecture et de gameplay. Sa lecture de grandes taches sombres/camouflage est rejetée : viser une couche de terre superficielle, meuble, granulaire, naturelle et compatible avec Clay. C’est la première priorité, devant l’intégration jacket/bloc. Une forme intérieure excavable moins rectangulaire reste une piste future, pas une décision d’architecture acquise.
+
+La préparation d’un playtest entre amis doit ensuite améliorer le confort grand écran/plein écran, la présentation des objectifs et de fin de session, et ajouter une lampe visible avec quelques accessoires discrets. La simulation reste à 60 Hz ; le confort de rendu n’autorise pas à changer le gameplay. Ce retour demande une proposition de mission, sans validation implicite de toute la direction Hero ni lancement de P6B.
+
+## P6A2 — GO Soil et présentation playtest, critères humains précisés (2026-10-07)
+
+Antoine autorise l’implémentation du brief Soil & Playtest Presentation. Le Soil doit changer de **morphologie**, pas seulement devenir moins sombre : dépôts fragmentés, amas de tailles variées, bords cassés, grain v02 et Clay clairement visible entre eux. Examiner les tailles/distributions des amas continus en plus de la couverture. Le critère reste le plaisir d’enlever une vraie couche de terre meuble. Soil mince, retrait rapide au Brush, Clay v02 et patine séparée restent conservés.
+
+L’UI reçoit un véritable restyle papier/musée crème et chaud, avec Reveal / Clean / Condition lisibles, appliqué aussi à Archive / Keep Cleaning et au bilan. Informations et règles P5 inchangées. Plein écran, lampe visible, deux ou trois accessoires maximum et export Windows portable sont dans ce GO ; jacket/emprise intérieure restent exclus. La livraison doit s’arrêter pour revue humaine, sans P6B ni merge implicites.
+
+
+## P6A2 Playtest — Soil enfin positif, nouveaux axes de polish (2026-10-07)
+
+Après test réel de `P6A2 Soil & Playtest Presentation`, Antoine juge que c’est la **première version où Soil ne rend pas le jeu plus laid mais ajoute au contraire un petit charme**. La direction fragmentée/terre meuble est donc acceptée comme baseline actuelle, sans être considérée parfaite ou finale.
+
+Éléments conservés pour maintenant :
+- Clay v02 : bonne direction actuelle ;
+- task light locale : amélioration majeure confirmée ;
+- Sandstone : acceptable mais assez sombre, non prioritaire.
+
+Nouveaux besoins de qualité perçue à garder pour les passes suivantes :
+- les modèles visuels des outils actuels sont trop pauvres et doivent être remplacés par des modèles cohérents avec l’univers Archeo ;
+- l’audio est un levier de satisfaction majeur : viser des **Foley satisfaisants, tactiles, crédibles et propres**. Le terme « ASMR » utilisé initialement décrivait le niveau de satisfaction recherché, pas une esthétique sonore littérale ;
+- ajouter des réponses matérielles non destructives lorsque pertinent : par exemple Brush sur Clay peut produire un petit puff/poussière colorée cohérente même si l’outil n’excave pas la Clay. Le but est la **réactivité matière / game feel / juice**, sans modifier la règle d’outil ;
+- le rythme global paraît encore un peu lent. Priorité à P7 fine tuning avant toute extension de l’arsenal. Si le tuning ne suffit pas, explorer plus tard un outil plus efficace que le Chisel avec vraies contreparties (risque, précision, contrôle, etc.), ce qui repositionnerait le Chisel comme outil intermédiaire.
+
+Aucun de ces points n’autorise une modification automatique de gameplay pendant P6A.
+
+
+## P6A3 pre-production — Tripo primary pipeline and audio target (2026-10-08)
+
+After a bounded Meshy vs Tripo bake-off on a preparation lamp and Chisel, Antoine concludes that both generators can reach comparable visual quality when used well. The deciding factor for Archeo is **agent workflow compatibility**, not a claimed universal quality winner.
+
+Decision:
+- **Tripo is the primary 3D generation pipeline for Astra/Codex** because the official Tripo 3D Codex plugin is already authenticated, agent-friendly and lowest-friction for project-integrated generation.
+- Meshy remains a fallback / second opinion for difficult assets, not the default production path.
+- Preferred tool-asset pipeline: **approved ImageGen reference → Tripo image-to-3D → source/high asset retained → Smart Mesh / retopo as appropriate → Blender 5.2.2 cleanup and bake → Godot 4.7.2**.
+- Raw multi-million-face generations are source masters, never runtime assets. Runtime topology is chosen by visual need after cleanup and in-engine comparison.
+
+Antoine approved the P6A3 tool family art direction and the four individual ImageGen references now versioned under `art/source/p6a3/tool-concepts/`.
+
+Audio correction:
+- Do **not** target literal “ASMR sound”.
+- Target **realistic, satisfying tactile Foley**: credible material response, clean short transients, restrained proximity/detail and pleasant repetition.
+- ElevenLabs remains useful as a source generator, but generated sounds are test material rather than automatically final production SFX.
+- Current in-game candidates to test first: Brush→Soil, Chisel→Clay and the corrected stone-dominant Chisel→Sandstone. Final judgement happens synchronized with tool animation/VFX in game.
+
+## P6A3 — GO Tool Feel & Sensory, autorité inchangée (2026-10-08)
+
+Antoine autorise les quatre modèles depuis leurs références ImageGen approuvées,
+via Tripo puis nettoyage/optimisation Blender, ainsi qu'un remplacement visuel
+statique de la lampe. La task light P6A2 reste la référence ; seul l'alignement
+physique du modèle peut être adapté. Les masters générés sont des sources, jamais
+des meshes runtime bruts.
+
+Les motions, les réactions matière et le Foley doivent répondre immédiatement aux
+inputs sans retuning de la fouille. Un Brush sur Clay peut recevoir une réponse
+cosmétique sans devenir excavateur de Clay. Soil, Bone/plafonds/Condition, outils,
+P5, géométrie B, jacket/emprise et cadence 60 Hz/240 FPS restent conservés. Le
+rythme global est réservé au tuning P7. La réussite technique ne valide pas le
+ressenti ; la livraison P6A3 complète doit revenir au HUMAN GAME-FEEL VERDICT.
+
+## P6A3 — voie Studio autorisée et contrôle des faces cachées (2026-10-08)
+
+Antoine autorise la reprise complète P6A3 via Playwright et les crédits Studio,
+puis livraison/revue humaine. Le solde Studio et le solde API sont distincts :
+un connecteur API authentifié n'implique pas l'accès aux crédits de l'abonnement
+Studio. Le pipeline artistique reste image approuvée → Tripo → retopo → Blender
+→ Godot ; Meshy demeure un fallback, sans bake-off supplémentaire.
+
+Une génération vue de face ne valide pas un outil : Antoine a identifié une
+seconde lame du Chisel depuis un autre angle. Examiner face, dos, profil et
+vue de jeu avant intégration ; conserver les sources et la correction Blender
+reproductible. Un master généré ne devient jamais directement le runtime.
+
+## P6A3 — priorité playtest, retour humain correctif (2026-10-08)
+
+Antoine demande une présentation des outils fixe à l'écran, sans déplacement
+libre dans la matière, avec de courtes animations sur input. Les Foley P6A3 sont
+rejetés pour le playtest immédiat : restaurer l'audio précédent, sans retuning
+ni génération. Conserver les assets/VFX utiles et les règles P4/P5 ; pas de
+nouvelle direction, de bake-off, de travail matériaux/jacket ou de P6B/P7.
+
+Clarification humaine : « fixe » signifie angle constant en suivant la souris,
+pas ancrage dans un coin d'écran. Supprime l'interprétation précédente.
+La capture fournie autorise explicitement le réglage Chisel 26 / 0.84 / 2.25
+dans le playtest P6A3 ; aucun autre tuning n'est demandé.
+
+Précision suivante : reprendre la pose de présentation P6A2 elle-même en gardant
+les nouveaux modèles ; ne pas substituer un nouvel angle caméra ou une taille
+écran constante. Les petites animations input restent souhaitées.
+
+
+## P6A3 — friend playtest: mastery hook and next sequence (2026-10-08)
+
+Informal friend playtest, sample **n=3**. All three engaged through archive-or-beyond.
+One player reached **99% and kept pushing specifically because they wanted 100%**;
+the other two archived before max completion. This is directional qualitative
+evidence that Archeo's preparation loop now carries the intended "one more bit"
+pull and that optional mastery can motivate behavior. Do not overgeneralize from
+the small sample.
+
+Durable follow-up direction:
+- displayed **100% must be attainable**. For the next focused pass, allow a
+  relevant internal value of >=99% to resolve to 100% when existing completion
+  guards are satisfied, rather than strand a visually complete specimen at 99%;
+- preserve completion/hidden-cluster guards so display rounding never hides a
+  genuinely missing region;
+- **Perfect Preparation** is a preferred future mastery label for displayed
+  full preparation plus excellent care; exact achievement/meta wiring remains
+  deferred;
+- Chisel feedback: reduce only the **visual crosshair circle**, not its actual
+  excavation radius;
+- Bone Condition: retain Excellent / Good / Fair / Damaged but make state more
+  explicit with a readable gauge/presentation; progressively reflect real damage
+  on the Bone material/geometry visually without creating a second gameplay state;
+- Bone cleanliness readability: at 94% Cleanliness the Bone can already read
+  fully clean, so dirty-vs-clean Film contrast must remain actionable near 100%;
+- Brush cleaning Bone Film should emit a small, localized dust/removal response
+  tied to real Film removal.
+
+Sequencing agreed:
+1. P6A3.1 — playtest feedback / mastery readability quick pass;
+2. dedicated Sound Design & Music phase;
+3. dedicated Interactive Task Light spike;
+4. another playtest.
+
+Audio direction is **satisfying tactile Foley**, not literal ASMR. The sound
+phase must be treated as a real quality pillar and include restrained preparation
+music. The task-light spike should test player-controlled light direction as a
+possible relief-reading mechanic because fixed one-sided lighting can hide some
+cavities. Neither phase is auto-authorized by documentation alone.
+
+
+## 2026-10-09 — Fossil mesh visual priority / Material Column evaluation
+
+Antoine demande que l'amélioration du **squelette/fossile B-17 en véritable mesh
+3D** fasse partie des changements à traiter rapidement. Intention acceptée comme
+nouvelle **priorité artistique à prototyper**, pas comme autorisation d'écraser
+les systèmes Bone actuels. La source actuelle est un champ anatomique partiel
+2.5D défini dans `fossil_field.gd`, avec ceilings, exposure, Condition et Film.
+Un asset 3D extérieur posé par-dessus ne serait pas suffisant : il doit rester
+strictement synchronisé avec les zones Bone révélées, la géométrie excavée et la
+caméra/picking. Un prototype visuel limité, avec gate humain avant généralisation,
+est proposé dans `docs/dev/P6A3_FOSSIL_MESH_DIRECTION.md`. Il se placerait
+préférentiellement après P6A3.1 et avant les phases Sound/Light si GO.
+
+Un brief externe « Material Column » propose 5–6 slots géologiques verticaux
+par case avec identités de matériau variables. Après audit du code : faisable,
+mais **réarchitecture majeure** du noyau travail/fracture, lookup GPU, tool
+effectiveness, débris, rendering et validation. Préserver la hauteur unique par
+case est la bonne intuition ; néanmoins ni le nombre N ni l'architecture exacte
+ne sont choisis. **Aucun GO d'implémentation.** Explorer d'abord une variabilité
+contrôlée sur des blocs authored avec les trois rôles actuels, puis envisager la
+généralisation au début de la phase post-core Block Variability Prototype,
+après P7. Voir `docs/dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md`.
+
+
+## Marketing M1 — self-publishing baseline and public hook readiness (2026-10-09)
+
+Antoine prefers **self-publishing as the current operating assumption**, using
+AI-assisted art/development and the production tools already proven. A publisher
+is an option to compare later when a more representative vertical slice,
+production budget and public demand evidence exist; PR agency is not a current
+purchase commitment.
+
+New milestone **Marketing M1 — First Public Hook Ready** is defined independently
+from P0–P7: a 15–30s genuine-gameplay clip should be attractive, understandable
+and satisfying to new viewers without explanatory narration.
+
+This is NOT equivalent to public-demo or Steam-launch readiness and carries
+no authorization to publish or begin marketing spend. First friend playtest
+(n=3) showed a promising mastery hook, but is not market validation. A small
+cold-viewer check and explicit human acceptance are needed for M1.
+
+Ref: `docs/marketing/M1_FIRST_PUBLIC_HOOK_READY.md`.

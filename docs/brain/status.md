@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date:** 2026-10-06  
+**Date:** 2026-10-08
 **Projet:** ArchaeologyGame (working title)  
 **Source unique du statut courant:** ce fichier. Voir aussi `docs/DOCUMENTATION_POLICY.md`.
 
@@ -48,37 +48,134 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A1.6 — Natural Matrix Geometry Spike** is next.
+**P6A1 est suffisamment validé humainement pour avancer vers P6A2.**
 
-Reason:
-with thin Soil, the remaining weakness is now obvious: the underlying Clay/Sandstone surface still reads too much like a broad horizontal plane.
+- Le B actuel P6A1.6 (macro + méso, `natural_matrix_profile.gd`, livraison `26f3552`) est accepté comme fondation de travail P6A2 pour maintenant, pas comme géométrie finale parfaite.
+- **Clay surface breakup grammar** est une amélioration ciblée future : rapprocher la surface Clay intacte du langage minéral cassé visible après excavation. Différée, non bloquante, à ne pas implémenter maintenant.
+- Soil mince et patine par dépôts P6A1.5 restent acceptés ; gameplay P4/P5 gelé.
+- Les rapports/candidats P6A1.6 restent des preuves historiques, sans réécriture de leurs verdicts contemporains.
 
-Goal:
-- create deterministic natural macro relief in the starting matrix;
-- introduce broad undulations, shallow cavities/bowls, ridges, local shelves/steps and imperfect transitions;
-- make Soil conform to that substrate;
-- keep the excavation readable and gameplay-safe.
-
-This is **internal matrix topography**, not the future outer jacket/block-silhouette system.
-
-Detailed brief on active branch: `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md`.
-
-Do not start P6A2 before this geometry spike receives human review.
+**P6A2 Hero Lookdev PREFLIGHT terminé — READY.** Six références inspectées ; Blender 5.2.2 LTS portable vérifié ; export GLB reproductible et import/rendu Godot 4.7.2 validés (31 contrôles). Aucun fichier gameplay retuné. Rapport actif : `docs/dev/P6A2_PREFLIGHT_REPORT.md`.
 
 ## P6A2 status
 
-`P6A2 — Hero Lookdev / Target Match` is prepared and documented on the active P6A branch, with a canonical reference pack.
+**P6A2 est suffisamment validé humainement pour avancer.**
 
-Execution remains **blocked until P6A1.6 Natural Matrix Geometry is human-decided**.
+Baseline actuelle à conserver :
+- Soil fragmentée : première version jugée positivement en jeu ; apporte désormais du charme, sans être considérée finale ;
+- Clay v02 : bonne baseline actuelle ;
+- task light locale : amélioration majeure confirmée ;
+- Sandstone : acceptable pour maintenant, assez sombre mais non prioritaire ;
+- UI / présentation playtest / fullscreen : suffisamment propres pour ne plus bloquer le travail sensoriel suivant.
 
-P6A2 visual intent:
-- cozy, warm, stylized natural-history preparation lab;
-- authored tactile materials;
-- irregular plaster jacket around the dynamic core;
-- strong material readability;
-- real lighting/lookdev rather than P6A-1 wallpaper-like test textures.
+Points différés, explicitement hors de P6A3 :
+- jacket et emprise intérieure moins rectangulaire ;
+- Clay surface breakup grammar ;
+- retuning final Sandstone ;
+- nouveau tool gameplay pour accélérer la fouille ;
+- P6B.
 
-Do not start P6B before explicit human approval of the P6A2 Hero Patch.
+## P6A3 — livraison Tool Feel & Sensory, revue humaine attendue
+
+La passe autorisée par Antoine le 2026-10-08 via Playwright/Tripo Studio est
+implémentée : quatre outils depuis les images approuvées, lampe existante adaptée,
+masters conservés, retopo/nettoyage Blender, motions, VFX et trois Foley tests.
+Le Chisel à double lame signalé par Antoine est corrigé dans le runtime Blender.
+Les modèles bruts restent des preuves source, pas les versions à retester.
+
+Scène : `scenes/p6a3_tool_feel.tscn`, héritée du Hero P6A2 accepté.
+Lancement : `.\Launch-P6A3-Tool-Feel.ps1` ; F12 compare avant/après sans reset.
+Package autonome : `builds/ArchaeologyGame-P6A3-Playtest-Windows.zip` (hors Git).
+Rapport de livraison, vidéo, preuves et limites :
+`docs/dev/P6A3_TOOL_FEEL_SENSORY_REPORT.md`.
+
+Gameplay P4/P5, Soil/Clay/Sandstone, géométrie B, picking, Bone/Condition/Film,
+jacket/emprise et task light conservés. Physique 60 Hz / cap rendu 240 FPS.
+Tests et mesures passent ; ils ne valident pas le ressenti humain.
+
+**Hotfix playtest clarifié le 8 octobre : outils suivant la souris, angle constant
+indépendant du terrain, animations courtes et ancien audio P4/P5/P6A2 conservés.**
+L'ancrage en bas à droite était une mauvaise interprétation, corrigée.
+Dernière précision : restaurer exactement la pose P6A2, pas un nouvel angle
+caméra. Placement au hit, `ToolProxyPose.fixed_basis` et clearance verticale
+P6A2 réutilisés ; nouveaux modèles et petites animations conservés.
+Référence Chisel reçue : Radius 26 / Power 0.84 / Falloff 2.25, autorisés uniquement
+dans le playtest P6A3 ; presets partagés P4/P5 conservés. Rapport actif :
+`docs/dev/P6A3_PLAYTEST_HOTFIX_REPORT.md`.
+
+**Friend playtest effectué le 8 octobre : signal qualitatif positif sur la boucle.**
+Trois amis ont testé la build corrigée : un joueur a poursuivi jusqu'à 99% parce
+qu'il voulait atteindre 100%, deux autres ont archivé avant. Petit échantillon,
+mais le "one more bit" / mastery hook recherché apparaît spontanément.
+
+Feedback canonique principal :
+- 100% doit être réellement atteignable ; cible suivante : >=99% interne + guards
+  satisfaits peut se présenter comme 100% pour éviter un faux blocage à 99%;
+- le cercle visuel du Chisel doit être plus petit sans modifier sa vraie zone d'effet;
+- Bone Condition doit être plus explicite et les dégâts doivent devenir progressivement
+  visibles sur l'os sans créer une seconde autorité gameplay;
+- à 94% Cleanliness, Bone peut déjà sembler entièrement propre : renforcer la
+  différence dirty/clean dans la fin du nettoyage;
+- Brush retirant le Bone Film doit produire un petit feedback de poussière synchronisé;
+- tool audio reste à refondre dans une vraie phase Sound Design;
+- ajouter ensuite une musique de préparation discrète;
+- une lampe orientable/déplaçable mérite un spike séparé comme potentiel outil de
+  lecture des creux/reliefs.
+
+Rapport actif : `docs/dev/P6A3_FRIEND_PLAYTEST_REPORT.md`.
+
+Séquence préférée pour la reprise :
+1. **P6A3.1 Playtest Feedback / Mastery Readability** — quick wins ci-dessus;
+2. **B-17 Fossil Mesh Lookdev Spike** — nouvelle priorité visuelle proposée, GO séparé;
+3. **Dedicated Sound Design & Music Pass**;
+4. **Interactive Task Light Spike**;
+5. nouveau playtest.
+
+## New visual priority — B-17 3D fossil mesh (2026-10-09)
+
+Antoine souhaite rapidement remplacer/améliorer la représentation actuelle du
+squelette B-17 par un **vrai modèle 3D**, afin de rehausser la beauté du fossile
+visible en cours de préparation. C'est une priorité visuelle nouvelle, pas un GO
+pour modifier immédiatement `FossilField`, le picking ou les plafonds Bone.
+
+Proposer un **spike B-17 Fossil Mesh Lookdev séparé**, après les quick fixes
+P6A3.1 et avant Sound/Light si autorisé. Le mesh doit suivre la révélation
+progressive réelle et ne pas apparaître à travers la matrice. Référence :
+`docs/dev/P6A3_FOSSIL_MESH_DIRECTION.md`.
+
+**Material Column N-slot : évaluation reçue le 9 octobre, faisable avec réserves,
+mais architecture NON validée / NON autorisée.** Garder la variabilité géologique
+comme direction future post-V0.1/P7, après petit test de blocs variés moins coûteux.
+Rapport d'audit : `docs/dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md`.
+
+**Prochaine action : préparer P6A3.1 puis attendre GO humain explicite.
+Aucune implémentation supplémentaire n'est autorisée automatiquement ce soir.**
+PR #9 reste DRAFT. Aucun merge, P6B, P7, jacket/emprise ou nouveau tool gameplay
+n'est déclenché par ce playtest.
+
+## Marketing M1 — First Public Hook Ready (2026-10-09)
+
+**New product/marketing milestone; NOT a new implementation GO, not a change to P0–P7 phase numbering.**
+The strategy baseline is **self-publishing first**, with publisher/PR options to reassess using evidence from a representative vertical slice and early public interest.
+
+Exit test: 15–30 seconds of genuine, repeatable Godot gameplay can make an unfamiliar viewer understand "prepare/excavate a fossil" and want to know more without developer explanation.
+
+Required before HUMAN M1 approval:
+- at least one strongly readable gameplay hook → tool/material action → visibly rewarding fossil reveal;
+- sufficiently production-like captured view: coherent Soil/Clay/Sandstone, task light, tool art, no obvious dev UI/clipping or standout placeholder in the chosen shot;
+- Bone/fossil revelation looks materially convincing; the proposed B-17 Fossil Mesh Lookdev is a leading candidate for closing this gap;
+- sound in the clip is satisfying and not distracting or obviously wrong; **full** sound/music production not required for M1;
+- visible actions and progress shown are honest and mechanically accurate, not simulated via offline render or misleading montage;
+- crosshair, Bone cleanliness/Condition readability and 99%-completion traps must not undermine the claimed experience;
+- no major regression in live recorded gameplay, recording/export works smoothly;
+- a small cold-audience check (ideally 5–10 unfamiliar genre-relevant viewers) without explanation confirms the hook is understood and gathers actual interest/criticism.
+
+Non-blockers for M1: playable public demo, completed museum, several fossils, procedural Material Columns, adjustable lamp gameplay, final jacket/Clay breakup across every possible angle, full P6B/P7 and complete soundtrack. These have their own gates.
+
+**Status: NOT YET MET.** First friend playtest is encouraging (n=3, one player chased 99→100), but not public-market validation. No viral/retention/wishlist outcome is assumed.
+
+Detailed acceptance contract: `docs/marketing/M1_FIRST_PUBLIC_HOOK_READY.md`.
+**Next implementation action remains P6A3.1 only after explicit Antoine GO.**
 
 ## P5 closure baseline
 
@@ -128,8 +225,4 @@ P6A is currently about proving the geometry + visual-production foundation befor
 
 ## New orchestration chat expectation
 
-If Antoine opens a new chat while this status still names P6A1.6 as next:
-- inspect PR #9;
-- read `docs/dev/P6A16_NATURAL_GEOMETRY_BRIEF.md`;
-- give the launch prompt as one copyable fenced block when asked;
-- do not reopen Soil semantics or P6A2 scope unless new evidence requires it.
+Lire le dernier verdict humain et le rapport actif avant toute reprise. Distinguer les éléments déjà acceptés du candidat Soil/présentation à retester ; le rapport de livraison conserve les preuves techniques et le preflight les conventions d’outils. Ne pas déduire un GO P6B ou une correction jacket des tests.

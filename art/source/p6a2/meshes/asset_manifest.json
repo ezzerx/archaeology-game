@@ -1,0 +1,18 @@
+[
+  {
+    "file": "assets/p6a2/textures/soil/p6a2_soil_surface_data.png",
+    "sha256": "00e5330ca36b68fa8606b90ee4d54180c1d15d7f2e3028493a841ab9bddc76b4"
+  },
+  {
+    "file": "assets/p6a2/textures/clay/p6a2_clay_surface_data.png",
+    "sha256": "1604e9918cc29e89f0fd98300e810cfa9993a9f23f6a11360b4a214c10182671"
+  },
+  {
+    "file": "assets/p6a2/textures/sandstone/p6a2_sandstone_surface_data.png",
+    "sha256": "3d67611559123fb4b7c25590fa0ac2fc1f532dad8f8997124a1027c068f27d73"
+  },
+  {
+    "file": "assets/p6a2/textures/bone/p6a2_bone_surface_data.png",
+    "sha256": "23f13ccdf39150be7396c92b578ba2534647f0b45d6d3542d636731dbbbebf71"
+  }
+]

@@ -34,7 +34,7 @@ func setup(target: ExcavationBlock, input: ToolController) -> void:
 	controller = input
 	profile = block.reactions
 	rng.seed = profile.seed
-	audio = MaterialAudio.new()
+	audio = _create_audio()
 	audio.name = "MaterialAudio"
 	add_child(audio)
 	audio.setup(profile)
@@ -59,6 +59,9 @@ func setup(target: ExcavationBlock, input: ToolController) -> void:
 	block.working_map.air_jet_applied.connect(on_air_jet)
 	block.working_map.surface_reset.connect(reset)
 	controller.tool_selected.connect(func(_index: int): recoil_remaining = 0.0)
+
+func _create_audio() -> MaterialAudio:
+	return MaterialAudio.new()
 
 func _material(color: Color) -> StandardMaterial3D:
 	var result := StandardMaterial3D.new()
@@ -295,12 +298,7 @@ func _process(delta: float) -> void:
 		var proxy := proxies[i]
 		proxy.visible = proxies_enabled and controller.hit.inside and i == controller.selected_index
 		if not proxy.visible: continue
-		proxy.global_position = controller.hit.world
-		# Camera orientation is fixed: the handle always goes to the same screen
-		# side. Neither micronormals, depth nor recoil rotate this frame.
-		proxy.global_basis = ToolProxyPose.fixed_basis(i)
-		var recoil := sin(recoil_remaining / 0.14 * PI) * (profile.recoil if i == 1 else 0.002 if i == 3 else 0.0)
-		proxy_poses[i].fit(proxy, block, recoil)
+		_update_proxy_pose(i)
 	last_proxy_usec = Time.get_ticks_usec() - proxy_started
 	var particles_started := Time.get_ticks_usec()
 	for family in [1, 2, 3]:
@@ -333,6 +331,14 @@ func _process(delta: float) -> void:
 		pools[family].visible_instance_count = maxi(active.size(), 1 if _warmup_frames > 0 else 0)
 	_warmup_frames = maxi(0, _warmup_frames - 1)
 	last_particles_usec = Time.get_ticks_usec() - particles_started
+
+func _update_proxy_pose(index: int) -> void:
+	var proxy := proxies[index]
+	proxy.global_position = controller.hit.world
+	# The production baseline retains its fixed camera-relative handle direction.
+	proxy.global_basis = ToolProxyPose.fixed_basis(index)
+	var recoil := sin(recoil_remaining / 0.14 * PI) * (profile.recoil if index == 1 else 0.002 if index == 3 else 0.0)
+	proxy_poses[index].fit(proxy, block, recoil)
 
 func contact_debug(hit: Dictionary) -> String:
 	return "\nContact: %s | Mess: Brush / Blower" % ["BONE" if hit.bone_exposed else "ATTACHED MATERIAL"]

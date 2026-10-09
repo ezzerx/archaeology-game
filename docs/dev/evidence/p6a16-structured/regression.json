@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-06",
+  "command": "tests/check_p6a16.ps1 -Regression -Graphical -Benchmark",
+  "suites": [
+    [
+      "P6A16 tests",
+      79,
+      0
+    ],
+    [
+      "P6A15 tests",
+      64,
+      0
+    ],
+    [
+      "P6A tests",
+      220,
+      0
+    ],
+    [
+      "P0 TESTS",
+      45,
+      0
+    ],
+    [
+      "P1 TESTS",
+      52,
+      0
+    ],
+    [
+      "P2 TESTS",
+      97,
+      0
+    ],
+    [
+      "P3 TESTS",
+      88,
+      0
+    ],
+    [
+      "P3 ZOOM TESTS",
+      160,
+      0
+    ],
+    [
+      "P4 TESTS",
+      72,
+      0
+    ],
+    [
+      "P4 PAN TESTS",
+      43,
+      0
+    ],
+    [
+      "P4 AUDIO TESTS",
+      42,
+      0
+    ],
+    [
+      "P4 COMPONENT CONTACT TESTS",
+      72,
+      0
+    ],
+    [
+      "P4 DIRT TESTS",
+      27,
+      0
+    ],
+    [
+      "P4 DEBRIS BUDGET TESTS",
+      18,
+      0
+    ],
+    [
+      "P4 PICK TESTS",
+      40,
+      0
+    ],
+    [
+      "P4 FEEDBACK TESTS",
+      26,
+      0
+    ],
+    [
+      "P4 PROXY TESTS",
+      737,
+      0
+    ],
+    [
+      "P4V TESTS",
+      90,
+      0
+    ],
+    [
+      "P4V TESTS",
+      90,
+      0
+    ],
+    [
+      "P4V EFFORT TESTS",
+      47,
+      0
+    ],
+    [
+      "P4V12 TESTS",
+      37,
+      0
+    ],
+    [
+      "P4V2 CRUMBS TESTS",
+      91,
+      0
+    ],
+    [
+      "P4V2 CRUMBS TESTS",
+      91,
+      0
+    ],
+    [
+      "P4 CLOSURE TESTS",
+      47,
+      0
+    ],
+    [
+      "P4 MICRO TESTS",
+      64,
+      0
+    ],
+    [
+      "p5h-tests",
+      128,
+      0
+    ],
+    [
+      "p5-fragment-experiment",
+      39,
+      0
+    ],
+    [
+      "P6A15 visual",
+      24,
+      0
+    ],
+    [
+      "P6A16 visual",
+      43,
+      0
+    ],
+    [
+      "P6A16 benchmark",
+      84,
+      0
+    ]
+  ],
+  "P0_P5_assertions_including_replays": 2243,
+  "all_wrappers_exit_code": 0,
+  "initial_editor_shutdown_errors": [
+    "ERROR: 22 resources still in use at exit (run with --verbose for details)."
+  ],
+  "fix": "Bound cache owned by profile instance instead of static script variable",
+  "final_import_recheck_exit_code": 0,
+  "final_geometry_recheck_checks": 79,
+  "final_rechecks_errors": false,
+  "geometry_metrics_unchanged_after_cache_lifetime_fix": true
+}

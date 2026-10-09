@@ -1,0 +1,5 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://scenes/p6a2_hero_patch.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/p6a3/tool_feel.gd" id="2"]
+[node name="ToolFeel" instance=ExtResource("1")]
+script = ExtResource("2")

@@ -1,0 +1,150 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 66,
+	"failures": [],
+	"interactions": [
+		{
+			"audio_family": "brush_soil",
+			"case": "brush-soil",
+			"dry_contacts": 0,
+			"emitted": [
+				69,
+				0,
+				0,
+				23
+			],
+			"motion_impacts": 0,
+			"native_impacts": 0,
+			"peak_particles": 28
+		},
+		{
+			"audio_family": "brush_clay",
+			"case": "brush-clay",
+			"dry_contacts": 23,
+			"emitted": [
+				0,
+				0,
+				0,
+				46
+			],
+			"motion_impacts": 0,
+			"native_impacts": 0,
+			"peak_particles": 14
+		},
+		{
+			"audio_family": "chisel_clay",
+			"case": "chisel-clay",
+			"dry_contacts": 0,
+			"emitted": [
+				0,
+				132,
+				5,
+				25
+			],
+			"motion_impacts": 7,
+			"native_impacts": 7,
+			"peak_particles": 70
+		},
+		{
+			"audio_family": "chisel_stone",
+			"case": "chisel-sandstone",
+			"dry_contacts": 0,
+			"emitted": [
+				0,
+				0,
+				93,
+				22
+			],
+			"motion_impacts": 7,
+			"native_impacts": 7,
+			"peak_particles": 69
+		},
+		{
+			"audio_family": "precision_pick",
+			"case": "pick-matrix",
+			"dry_contacts": 0,
+			"emitted": [
+				0,
+				27,
+				0,
+				36
+			],
+			"motion_impacts": 9,
+			"native_impacts": 9,
+			"peak_particles": 22
+		},
+		{
+			"audio_family": "precision_pick",
+			"case": "pick-near-bone",
+			"dry_contacts": 0,
+			"emitted": [
+				0,
+				0,
+				9,
+				9
+			],
+			"motion_impacts": 9,
+			"native_impacts": 9,
+			"peak_particles": 7
+		},
+		{
+			"audio_family": "air",
+			"case": "blower-debris",
+			"dry_contacts": 0,
+			"emitted": [
+				0,
+				0,
+				0,
+				131
+			],
+			"motion_impacts": 0,
+			"native_impacts": 0,
+			"peak_particles": 54
+		},
+		{
+			"audio_family": "brush_soil",
+			"case": "bone-film",
+			"dry_contacts": 0,
+			"emitted": [
+				0,
+				0,
+				0,
+				23
+			],
+			"motion_impacts": 0,
+			"native_impacts": 0,
+			"peak_particles": 7
+		}
+	],
+	"models": [
+		{
+			"asset": "brush",
+			"triangles": 10897
+		},
+		{
+			"asset": "chisel",
+			"triangles": 5585
+		},
+		{
+			"asset": "blower",
+			"triangles": 14472
+		},
+		{
+			"asset": "pick",
+			"triangles": 9226
+		}
+	],
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"render_size": "(1920.0, 1080.0)",
+		"renderer": "gl_compatibility",
+		"window": "(1920, 1080)"
+	}
+}

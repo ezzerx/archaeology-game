@@ -1,0 +1,24 @@
+{
+  "package": "builds/ArchaeologyGame-P6A3-Playtest-Windows.zip",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "standalone_smoke": "PASS",
+  "extracted_zip_smoke": "PASS",
+  "art_and_native_tools_reset": "PASS",
+  "files": [
+    {
+      "path": "builds/ArchaeologyGame-P6A3-Playtest-Windows.zip",
+      "bytes": 82998499,
+      "sha256": "802cb005a13e63b7e232d8a569f1026b5593654d8a966d6816fc72cf1c000e6c"
+    },
+    {
+      "path": "builds/P6A3-Playtest/ArchaeologyGame.exe",
+      "bytes": 109268480,
+      "sha256": "d34d36f3be1a6c49c56525ae86469b92e4f417ddf0b43cf00dd80c385c4b0562"
+    },
+    {
+      "path": "builds/P6A3-Playtest/ArchaeologyGame.pck",
+      "bytes": 43970664,
+      "sha256": "1ec3e17033bda0b1076ced8c17419000438c758ef2014cb485418b2be32badde"
+    }
+  ]
+}
