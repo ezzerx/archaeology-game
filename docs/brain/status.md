@@ -153,6 +153,30 @@ Aucune implémentation supplémentaire n'est autorisée automatiquement ce soir.
 PR #9 reste DRAFT. Aucun merge, P6B, P7, jacket/emprise ou nouveau tool gameplay
 n'est déclenché par ce playtest.
 
+## Marketing M1 — First Public Hook Ready (2026-10-09)
+
+**New product/marketing milestone; NOT a new implementation GO, not a change to P0–P7 phase numbering.**
+The strategy baseline is **self-publishing first**, with publisher/PR options to reassess using evidence from a representative vertical slice and early public interest.
+
+Exit test: 15–30 seconds of genuine, repeatable Godot gameplay can make an unfamiliar viewer understand "prepare/excavate a fossil" and want to know more without developer explanation.
+
+Required before HUMAN M1 approval:
+- at least one strongly readable gameplay hook → tool/material action → visibly rewarding fossil reveal;
+- sufficiently production-like captured view: coherent Soil/Clay/Sandstone, task light, tool art, no obvious dev UI/clipping or standout placeholder in the chosen shot;
+- Bone/fossil revelation looks materially convincing; the proposed B-17 Fossil Mesh Lookdev is a leading candidate for closing this gap;
+- sound in the clip is satisfying and not distracting or obviously wrong; **full** sound/music production not required for M1;
+- visible actions and progress shown are honest and mechanically accurate, not simulated via offline render or misleading montage;
+- crosshair, Bone cleanliness/Condition readability and 99%-completion traps must not undermine the claimed experience;
+- no major regression in live recorded gameplay, recording/export works smoothly;
+- a small cold-audience check (ideally 5–10 unfamiliar genre-relevant viewers) without explanation confirms the hook is understood and gathers actual interest/criticism.
+
+Non-blockers for M1: playable public demo, completed museum, several fossils, procedural Material Columns, adjustable lamp gameplay, final jacket/Clay breakup across every possible angle, full P6B/P7 and complete soundtrack. These have their own gates.
+
+**Status: NOT YET MET.** First friend playtest is encouraging (n=3, one player chased 99→100), but not public-market validation. No viral/retention/wishlist outcome is assumed.
+
+Detailed acceptance contract: `docs/marketing/M1_FIRST_PUBLIC_HOOK_READY.md`.
+**Next implementation action remains P6A3.1 only after explicit Antoine GO.**
+
 ## P5 closure baseline
 
 Current prototype session:

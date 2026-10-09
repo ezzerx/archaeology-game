@@ -918,3 +918,23 @@ ne sont choisis. **Aucun GO d'implémentation.** Explorer d'abord une variabilit
 contrôlée sur des blocs authored avec les trois rôles actuels, puis envisager la
 généralisation au début de la phase post-core Block Variability Prototype,
 après P7. Voir `docs/dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md`.
+
+
+## Marketing M1 — self-publishing baseline and public hook readiness (2026-10-09)
+
+Antoine prefers **self-publishing as the current operating assumption**, using
+AI-assisted art/development and the production tools already proven. A publisher
+is an option to compare later when a more representative vertical slice,
+production budget and public demand evidence exist; PR agency is not a current
+purchase commitment.
+
+New milestone **Marketing M1 — First Public Hook Ready** is defined independently
+from P0–P7: a 15–30s genuine-gameplay clip should be attractive, understandable
+and satisfying to new viewers without explanatory narration.
+
+This is NOT equivalent to public-demo or Steam-launch readiness and carries
+no authorization to publish or begin marketing spend. First friend playtest
+(n=3) showed a promising mastery hook, but is not market validation. A small
+cold-viewer check and explicit human acceptance are needed for M1.
+
+Ref: `docs/marketing/M1_FIRST_PUBLIC_HOOK_READY.md`.

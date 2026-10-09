@@ -159,6 +159,40 @@ Once P6A proves the direction and pipeline, apply it to the complete V0.1 slice:
 
 Do not start mass asset production for the full game here.
 
+## Marketing Milestones — independent of P0–P7
+
+### M1 — First Public Hook Ready
+
+A **marketing-readiness**, not a release-readiness, gate: publishable 15–30s
+authentic gameplay footage that immediately conveys the tactile fossil-preparation
+hook to a viewer unfamiliar with Archeo.
+
+Candidate work to reach it:
+- P6A3.1 mastery/cleanliness/Condition readability and cursor fixes;
+- convincing in-game fossil volume/reveal (B-17 Fossil Mesh Lookdev candidate);
+- a minimally satisfying clip-ready Foley mix;
+- targeted shot-specific visual cleanup, only if the jacket/edges or other
+  placeholders break the illusion;
+- capture/edit 2–3 real gameplay concepts and obtain cold-viewer feedback.
+
+Exit is by explicit human visual/audio judgment and small unfamiliar-audience
+check, not automated performance tests or raw social view counts.
+
+M1 does **not** require a public Steam demo, museum meta, many specimen variants,
+complete P6B/P7, full audio pass or the interactive lamp spike.
+
+Product baseline: build toward self-publishing and keep publisher/PR conversations
+as optional commercial alternatives. Reassess based on real audience/production
+evidence rather than committing publishing rights prematurely.
+
+Full contract: [M1 First Public Hook Ready](marketing/M1_FIRST_PUBLIC_HOOK_READY.md).
+
+### M2 — Steam Wishlist / Public Demo Readiness (later, separate decision)
+
+M2 will need a trustworthy Steam-ready presentation and a stable,
+representative public experience. Passing M1 does not imply passing M2.
+Define this gate later after measuring M1 results.
+
 ## V0.1 validation
 
 After P7, run the first serious external playtest wave.
