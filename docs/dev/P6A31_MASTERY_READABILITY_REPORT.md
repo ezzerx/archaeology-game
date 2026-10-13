@@ -113,3 +113,6 @@ failed asset requests or JavaScript exceptions. This is a failed interaction
 verification, not a passed Web playtest. Cause is not established; a GPU watchdog
 during slow software rendering is being checked. The private link is a candidate
 for testing on Antoine’s hardware, not a claim of stable browser performance.
+
+The Web shell now handles lost GPU contexts with an explicit reload screen.
+This prevents silent blank playtests; it does not claim to cure the GPU failure.

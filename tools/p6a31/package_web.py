@@ -53,6 +53,27 @@ const engine = new Engine(config);
 const button = document.getElementById('start');
 const status = document.getElementById('status');
 const progress = document.getElementById('progress');
+
+// A lost GPU context must not leave a silently blank playtest.
+function showGraphicsFailure() {
+  window.playtestContextLost = true;
+  document.getElementById('welcome')?.remove();
+  const overlay = document.createElement('div');
+  overlay.id = 'welcome';
+  const card = document.createElement('article');
+  const title = document.createElement('h1');
+  title.textContent = 'Le rendu 3D a été interrompu.';
+  const message = document.createElement('p');
+  message.textContent = 'Le navigateur a perdu son accès au rendu graphique. Recharge la page pour réessayer. Si cela se répète, essaie Chrome ou Edge avec l’accélération graphique activée.';
+  const retry = document.createElement('button');
+  retry.textContent = 'Recharger le playtest';
+  retry.onclick = () => location.reload();
+  card.append(title,message,retry);overlay.append(card);document.body.append(overlay);
+}
+document.getElementById('canvas').addEventListener('webglcontextlost', event => {
+  event.preventDefault();showGraphicsFailure();
+});
+
 button.onclick = async () => {
   button.disabled = true;
   status.textContent = 'Chargement du jeu…';
@@ -63,6 +84,7 @@ button.onclick = async () => {
     await engine.startGame({canvas:document.getElementById('canvas'),onProgress:(current,total)=>{
       if (total>0) {progress.max=total;progress.value=current;} else {progress.removeAttribute('value');}
     }});
+    if (window.playtestContextLost) return;
     document.getElementById('welcome').remove();
     document.getElementById('canvas').focus();
     window.playtestStarted = true;
