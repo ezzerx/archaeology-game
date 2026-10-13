@@ -132,6 +132,7 @@ func skull_budget() -> void:
 	P5Fixture.clean(main.block.working_map)
 	await zoom_to(3,Vector2(275,235))
 	main.camera.set_process(false)
+	await settle(5)
 	var baseline := state()
 	evidence["runtime"]={"engine":Engine.get_version_info().string,"adapter":RenderingServer.get_video_adapter_name(),"size":[root.size.x,root.size.y],"physics_hz":Engine.physics_ticks_per_second,"render_cap":Engine.max_fps}
 	evidence["budget"]=[]

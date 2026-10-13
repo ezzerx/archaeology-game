@@ -69,7 +69,11 @@ with mesh on/off; actual ray picking is unchanged. Native Bone fallback is retai
 where the fitted mesh does not cover the field. F6 compares without resetting.
 Fitting remains visibly rough; this is not approved final art or a full skeleton
 replacement. Current delivery report: `docs/dev/P6A32_TRIPO_SKULL_PILOT_REPORT.md`.
-Portable export / private comparison update in progress for home human review.
+Owner-private screenshot review published; the site landing now opens this
+lightweight review directly, not the Web game:
+https://archeology-private-playtest.toitou2.chatgpt.site/review.html#crane
+Portable P6A3.2 Windows ZIP is on `native.html` for home review. 10 exported-PCK
+smoke checks pass on Linux; Windows execution and human art/feel remain pending.
 Studio options from Antoine’s screenshot are recorded for future iterations in
 `docs/dev/TRIPO_STUDIO_IMAGE_TO_3D_SETTINGS.md`.
 Owner-private browser playtest: https://archeology-private-playtest.toitou2.chatgpt.site
@@ -77,7 +81,7 @@ Human test 2026-10-13: Antoine tried it on his small work laptop and exited due
 to excessive lag. Browser playtesting is not usable on that machine; this does
 not validate or reject P6A3.1 game feel. Next human test should be native on the
 home reference PC. No new Web optimization phase is opened.
-Report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
+P6A3.1 report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
 Annotated screenshot review: https://archeology-private-playtest.toitou2.chatgpt.site/review.html
 Portable Windows build: https://archeology-private-playtest.toitou2.chatgpt.site/native.html
 

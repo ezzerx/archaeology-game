@@ -1,0 +1,9 @@
+{
+  "filename": "ArchaeologyGame-P6A32-Windows.zip",
+  "size": 94717301,
+  "sha256": "a5692c2a28f0fa085b466c0c6545b34eadd72282ded3b7604cb9a69207b2cad2",
+  "game_runtime_commit": "a0ae7f6ed85e227d1c5994b6f6d2be13b7105acb",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "windows_execution_verified": false,
+  "stage": "/workspace/archaeology-game/work/p6a32-native-9g27jrbz"
+}

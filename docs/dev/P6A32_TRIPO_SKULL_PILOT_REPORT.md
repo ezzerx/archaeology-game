@@ -83,3 +83,36 @@ Windows portable packaging and the private comparison page are the delivery
 targets. Windows execution must be checked at home; Linux tests and PE/ZIP
 verification cannot establish it. Audio is unchanged; Claude is reserved for
 the future dedicated sound pass.
+
+## Delivery verification
+
+The final runtime source is `a0ae7f6ed85e227d1c5994b6f6d2be13b7105acb`.
+Official Windows export: 94,717,301-byte portable ZIP, SHA-256
+`a5692c2a28f0fa085b466c0c6545b34eadd72282ded3b7604cb9a69207b2cad2`.
+PE x64 signature, ZIP CRC and multipart SHA-256 all verified. The exported PCK
+passes 10 Linux-engine smoke checks, including actual main scene, imported skull,
+2K atlas, F6 and F7 transitions, retained coverage and matrix-height preservation.
+Windows execution remains unverified. Export helpers: `tools/p6a32/export_native.py`
+and `Export-Playtest.ps1`; repo launch: `Launch-P6A32-Fossil-Mesh.ps1`.
+
+Three steady-state software-render budget checks pass: 49 → 51 draw calls and
+2,653,318 → 2,674,093 primitives with mesh off/on (exactly 20,775 additional
+triangles). Resident texture monitor: 159,009,275 bytes in both states because
+the source asset remains loaded while hidden. Ten frame samples per state under
+llvmpipe are extremely slow and affected by simultaneous cloud work; do not
+project these frame timings onto the reference PC. Physics 60 Hz / render cap
+240 remain set. Initial budget guard failure was a QA fixture/session flush
+ordering issue; settling the fixture before the baseline resolves it. It was
+not a native trajectory regression.
+
+The site landing page now opens the screenshot review directly. Its local
+browser check confirms no canvas, engine script, WASM/PCK or native ZIP download
+on opening the review, and no mobile horizontal overflow. Enlarged details use
+the original screenshot images within SVG viewports; complete screenshots are
+linked and lossless originals remain in evidence. Owner-only access is preserved.
+
+Private screenshot/native delivery succeeded: Site source commit
+`0ada9a0247a6191e8925d132078076566b0fbc8f`, deployment
+`appgdep_6ace44f191c4819195fe2ad76f96050a`.
+Review: https://archeology-private-playtest.toitou2.chatgpt.site/review.html#crane
+Native: https://archeology-private-playtest.toitou2.chatgpt.site/native.html
