@@ -53,6 +53,10 @@ Report on active branch:
 P6A3.1 is implemented as a candidate after Antoine’s explicit GO on 2026-10-13.
 Finish verification and collect human playtest feedback before merging it.
 Owner-private browser playtest: https://archeology-private-playtest.toitou2.chatgpt.site
+Human test 2026-10-13: Antoine tried it on his small work laptop and exited due
+to excessive lag. Browser playtesting is not usable on that machine; this does
+not validate or reject P6A3.1 game feel. Next human test should be native on the
+home reference PC. No new Web optimization phase is opened.
 Report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
 
 ## Accepted P6A1 foundation

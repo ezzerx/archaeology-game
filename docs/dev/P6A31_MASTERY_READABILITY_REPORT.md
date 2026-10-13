@@ -44,7 +44,7 @@ promotion of this new candidate to the project main scene or merge is implied.
 Owner-private link (Sites deployment succeeded):
 https://archeology-private-playtest.toitou2.chatgpt.site
 Site `appgprj_6ace1afd5f2c81919e82f40e93b3ef32`, static source
-`ff5d2c215a138c1815cf7338db0d0942ec1a2f65`, deployment
+`09e5627ad2a7cda314dbc33c4ef4955501601a8d`, deployment
 `appgdep_6ace1fadcc588191a15c9582e6f0f527`.
 
 The private page requires the owner’s ChatGPT sign-in; game assets remain behind
@@ -116,3 +116,11 @@ for testing on Antoine’s hardware, not a claim of stable browser performance.
 
 The Web shell now handles lost GPU contexts with an explicit reload screen.
 This prevents silent blank playtests; it does not claim to cure the GPU failure.
+
+## Human work-PC trial
+
+Antoine accessed the Web game and exited after trial because of excessive lag
+on his small work laptop. No frame-time capture or hardware characterization
+was supplied. This confirms that this setup is unsuitable for judging the
+preparation feel. Human readability/feel approval remains pending a native
+test on his home PC. No automatic optimization scope is inferred.

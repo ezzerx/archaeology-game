@@ -955,3 +955,12 @@ Claude replaces ElevenLabs as Antoine’s selected source-production solution fo
 the dedicated sound phase after his own positive tests. No Claude tool is
 invoked or message sent by this delivery. Existing native audio remains intact
 during P6A3.1; generated sounds are not automatically production-approved.
+
+
+## 2026-10-13 — Work-laptop Web playtest unsuitable
+
+Antoine tried the private Web build, then exited because it lagged too much
+on his small work laptop. The exact hardware/performance cause is not measured.
+This is an unsuitable playtest setup, not a P6A3.1 feel verdict. Use native
+testing on the home reference PC for the human gate; screenshots/video can
+support visual discussion while away. No automatic Web optimization phase.
