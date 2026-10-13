@@ -938,3 +938,20 @@ no authorization to publish or begin marketing spend. First friend playtest
 cold-viewer check and explicit human acceptance are needed for M1.
 
 Ref: `docs/marketing/M1_FIRST_PUBLIC_HOOK_READY.md`.
+
+
+## 2026-10-13 — Merge P6A3, GO P6A3.1, browser playtest and Claude sound
+
+Antoine explicitly requests merging the latest P6A branch into main and starting
+P6A3.1. PR #9 is merged with its exact head `b91ff24`; merge commit `32a85ba9`.
+This is phase advancement authorization, not final artistic approval of every
+P6A3 detail. P6A3.1 stays an isolated candidate for human review.
+
+A private browser link is the requested work-PC playtest route, with no local
+game installation. The actual Godot 4.7.2 Web export must be used; native
+performance and audio feel still require representative hardware/human review.
+
+Claude replaces ElevenLabs as Antoine’s selected source-production solution for
+the dedicated sound phase after his own positive tests. No Claude tool is
+invoked or message sent by this delivery. Existing native audio remains intact
+during P6A3.1; generated sounds are not automatically production-approved.

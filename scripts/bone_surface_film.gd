@@ -16,6 +16,9 @@ var size: Vector2i
 var image: Image
 var dirty := true
 var last_cleared := 0.0
+# Presentation metadata only: a real dirty cell from the strongest removal.
+# Does not change the film mask, amount, counters, or cleaning rules.
+var last_cleaned_cell := Vector2i(-1, -1)
 var last_edit_usec := 0
 var _values := PackedFloat32Array()
 var _seen := PackedInt32Array()
@@ -43,6 +46,7 @@ func reset() -> void:
 	exposed_totals.fill(0)
 	dirt_totals.fill(0)
 	last_cleared = 0
+	last_cleaned_cell = Vector2i(-1, -1)
 	last_edit_usec = 0
 	_image_pending = true
 	dirty = true
@@ -93,6 +97,7 @@ func value_at(uv: Vector2) -> float:
 func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> void:
 	var start := Time.get_ticks_usec()
 	last_cleared = 0
+	last_cleaned_cell = Vector2i(-1, -1)
 	last_edit_usec = 0
 	if tool.id != &"soft_brush" or tool.bone_film_clear <= 0 or delta <= 0: return
 	var radius := tool.radius
@@ -100,6 +105,7 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 	var high := Vector2i(((from.max(to) + Vector2.ONE * radius) / STRIDE).ceil()).min(size - Vector2i.ONE)
 	var segment := to - from
 	var inverse := 1.0 / segment.length_squared() if not segment.is_zero_approx() else 0.0
+	var strongest := 0.0
 	for y in range(low.y, high.y + 1):
 		for x in range(low.x, high.x + 1):
 			var index := y * size.x + x
@@ -108,6 +114,12 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 			var t := clampf((point - from).dot(segment) * inverse, 0, 1)
 			var amount := minf(_values[index], tool.bone_film_clear * delta * WorkingSurface.weight(point.distance_to(from + segment * t) / radius, tool.falloff))
 			if amount <= 0: continue
+			if amount > strongest:
+				strongest = amount
+				for bit_index in range(STRIDE * STRIDE):
+					if _masks[index] & (1 << bit_index):
+						last_cleaned_cell = Vector2i(x * STRIDE + bit_index % STRIDE, y * STRIDE + bit_index / STRIDE)
+						break
 			_values[index] -= amount
 			last_cleared += amount
 			# At most five small counters per edited coarse cell; no bone scan.

@@ -302,6 +302,7 @@ func _apply_tool(from: Vector2, to: Vector2, tool: ToolDefinition, amount: float
 		last_action = {"tool": tool.id, "point": to, "removed": last_removed,
 			"changed": changed, "marks": marks, "chunks": fracture.last_chunks.duplicate(true) if is_fracture else [],
 			"micro_detached": last_micro_cells, "bone_film_cleared": bone_film.last_cleared, "residue_cleared": residue.last_cleared, "loose_cleared": loose_cleared,
+			"bone_film_point": Vector2(bone_film.last_cleaned_cell),
 			"cleared_dust": residue.cleared_packets.duplicate(true),
 			"direction": loose_debris.jet if loose_debris != null else Vector2(-1, -1).normalized(), "bone_revealed": bone_revealed,
 			"bone_first_contact": bone_first_contact,

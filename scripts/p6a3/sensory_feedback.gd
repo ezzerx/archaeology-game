@@ -181,7 +181,7 @@ func _physics_process(delta: float) -> void:
 			_emit(0,point,3)
 			_dust(point,colors[0],1,.003)
 		elif bone:
-			if block.working_map.bone_film.last_cleared>0: _dust(point,colors[0].lightened(.2),1,.002)
+			_pointer_film_dust(point)
 		else:
 			# Dry contact is cosmetic: a tiny colored abrasion puff, no material removal.
 			_dust(point,colors[family].lightened(.13),2,.0045)
@@ -202,6 +202,10 @@ func _physics_process(delta: float) -> void:
 	previous_contact=point
 	working_last_tick=true
 	last_contact_usec=Time.get_ticks_usec()-started
+
+func _pointer_film_dust(point: Vector2) -> void:
+	if block.working_map.bone_film.last_cleared > 0:
+		_dust(point, colors[0].lightened(.2), 1, .002)
 
 func _process(delta: float) -> void:
 	motion_time+=delta
