@@ -52,6 +52,12 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
+**Reprise locale — Antoine est rentré le 2026-10-13 et poursuit avec son agent
+local.** Travail cloud livré sur la branche ci-dessus. Prochaine action :
+récupérer cette branche, lancer explicitement la scène P6A3.2 et effectuer la
+revue native à la maison. Handoff : `docs/dev/P6A32_LOCAL_HANDOFF.md`.
+PR #10/#11 restent candidates DRAFT ; aucun merge automatique.
+
 P6A3.1 is implemented as a candidate. Antoine now explicitly authorizes advancing
 B-17 visual mesh lookdev before tonight and combining review in a larger native
 home playtest, with screenshot comparisons during work. P6A3.1 human review is
