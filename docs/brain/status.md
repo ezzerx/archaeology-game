@@ -19,7 +19,7 @@
 ## Active branch / PR
 
 Active branch: `prototype/p6a31-mastery-readability`
-PR: P6A3.1 candidate (pending creation).
+PR: **#10 — P6A3.1 Mastery / Bone Readability** (DRAFT).
 
 PR #9 merged into main on 2026-10-13 at Antoine’s explicit request; merge commit `32a85ba9efc04fd508ee838d3c63252ca6b2d04f`. Latest P6A3 source included: `b91ff24bf57e76599204e9d12bd23eb6d229dbc5`.
 

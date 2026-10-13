@@ -104,3 +104,12 @@ ElevenLabs provenance remains truthful; current original runtime audio is retain
 
 Deferred: B-17 true 3D fossil mesh, sound/music production, interactive lamp,
 jacket/footprint, Clay breakup, Sandstone tuning, new tools, museum/meta, P6B/P7.
+
+## Browser verification limit
+
+Chromium/Mesa produced the actual rendered game. Subsequent software-GPU
+automation also encountered `CONTEXT_LOST_WEBGL` and blank captures, without
+failed asset requests or JavaScript exceptions. This is a failed interaction
+verification, not a passed Web playtest. Cause is not established; a GPU watchdog
+during slow software rendering is being checked. The private link is a candidate
+for testing on Antoine’s hardware, not a claim of stable browser performance.
