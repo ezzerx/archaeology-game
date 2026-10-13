@@ -79,3 +79,28 @@ corrigées ; seules les preuves finales sous `docs/dev/evidence/p6a33/` sont liv
 L’appréciation tactile et artistique reste humaine. La production de nouveaux
 fossiles paramétriques, les sons dédiés, la lampe interactive et la collection
 complète restent hors de cette passe.
+
+
+## Retour humain ciblé — 2026-10-13
+
+Antoine valide explicitement :
+- Brush sur la saleté de l’os : « parfait » ;
+- dégâts localisés : « parfait ».
+
+Ces deux interactions et leurs réglages sont acceptés pour maintenant. Aucun
+verdict sur la distinction sauvegardée ni validation globale de la phase n’est
+inféré. Captures humaines conservées dans `evidence/p6a33/home-bone-baseline.png`
+et `evidence/p6a33/home-bone-tripo-hybrid.png`.
+
+Antoine observe que Tripo paraît superposé au crâne en code. Le code confirme
+un remplacement partiel : le masque supprime le Bone précédent sur 4 497 cellules
+sur 7 756 (environ 58 %) ; les 3 259 autres (environ 42 %) restent rendues en Bone
+historique. Le mesh est adapté à la silhouette native, sans remplacement de son
+champ physique. Le rendu est donc un hybride avec raccords visibles, pas un
+crâne Tripo autonome comparé à un crâne entièrement remplacé. Cette limite
+technique était conservée pour éviter des trous ; elle ne valide pas le résultat
+artistique. Les captures seules ne démontrent pas un z-fighting généralisé.
+
+Recommandation : garder le style précédent comme référence jouable. Un éventuel
+nouveau test de modèle 3D doit distinguer adaptation complète, raccords et
+qualité propre de l’asset ; aucune nouvelle production n’est lancée ici.

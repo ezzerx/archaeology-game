@@ -52,7 +52,7 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.3 — passe locale Préparation tactile livrée, revue humaine attendue.**
+**P6A3.3 — Brush sur os et dégâts localisés validés humainement ; revue partielle.**
 Antoine autorise le 2026-10-13 : quelques petits allers-retours de Brush avec
 résultat rapide et visible, dégâts localisés, binds corrigés et distinction à
 100/100, sans bonus de progression. Style des os précédents au démarrage ;
@@ -66,9 +66,16 @@ Retour source : `docs/dev/P6A32_HOME_PLAYTEST_FEEDBACK.md`.
 La distinction est sauvegardée à l’archivage dans un registre local, prévu pour
 la future collection ; aucun écran musée/meta n’est créé.
 
-**Prochaine action : retest humain natif du candidat P6A3.3.** Les contrôles
-techniques passent ; le rythme et le feedback tactile restent à valider par
-Antoine. Correction locale, pas encore publiée sur la PR #11 distante.
+**Dernier verdict humain — 2026-10-13 :** Brush sur la saleté de l’os et dégâts
+localisés jugés « parfaits ». Conserver ces réglages. Les captures F6 révèlent
+le rendu hybride du pilote Tripo : remplacement partiel et ancien Bone conservé
+ailleurs ; aucune validation artistique du crâne Tripo n’est donnée.
+La distinction 100/100 et sa persistance n’ont pas encore de verdict humain explicite.
+
+**Prochaine action : conserver les deux interactions validées, clarifier le
+pilote hybride Tripo et recueillir les retours restants sans ouvrir un nouveau
+chantier.** Aucun GO de correction/génération supplémentaire n’est déduit de la
+question sur le crâne. Correction locale, pas encore publiée sur la PR #11 distante.
 Aucun merge automatique, extension Sound/Light ou démarrage P6B/P7.
 
 ## Livraison cloud précédente — contexte historique

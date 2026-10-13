@@ -1007,3 +1007,17 @@ Direction autorisée pour la correction P6A3.3 :
 Le registre local de distinctions à l’archivage est le support minimal en
 attendant la collection ; il n’ouvre pas le chantier musée/meta. Rapport :
 `docs/dev/P6A33_TACTILE_PREPARATION_REPORT.md`. Le candidat reste soumis au retest humain.
+
+
+## 2026-10-13 — Validation humaine ciblée P6A3.3
+
+Antoine juge « parfaits » le Brush sur la saleté de l’os et les dégâts localisés.
+Conserver ces interactions et leurs réglages. Cette validation est ciblée :
+elle ne vaut ni validation du crâne Tripo hybride, ni confirmation de la
+persistance de la distinction, ni autorisation de merge/phase suivante.
+
+Le comparatif Tripo contient volontairement du Bone historique dans les zones
+non remplacées. Une préférence artistique issue de ce test ne doit pas être
+présentée comme la comparaison de deux crânes intégralement autonomes. Le style
+précédent reste la référence jouable choisie ; tout nouvel asset/protocole reste
+à convenir. Voir l’addendum humain du rapport P6A3.3.
