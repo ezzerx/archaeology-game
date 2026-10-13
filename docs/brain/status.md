@@ -19,7 +19,7 @@
 ## Active branch / PR
 
 Active branch: `prototype/p6a32-fossil-mesh`
-PR: **#11 DRAFT**, technical B-17 mesh preparation, stacked on **#10**.
+PR: **#11 DRAFT**, bounded actual Tripo skull pilot, stacked on **#10**.
 https://github.com/ezzerx/archaeology-game/pull/11
 PR #10 remains DRAFT for the combined home playtest.
 
@@ -59,14 +59,17 @@ not a blocker to this specifically authorized next step; no automatic merge.
 The requested asset pipeline is ImageGen → Tripo Max Studio → Blender → Godot.
 Shared Studio access failed: the interactive link was unusable, then Firecrawl
 reported insufficient browser credits. No Tripo generation was performed here.
-Antoine chose to generate in his own Tripo Studio from the supplied ImageGen
-reference and return a textured GLB. Reference and instructions:
+Antoine generated in his own Tripo Studio and supplied the textured GLB.
+Reference, recorded Studio settings and instructions:
 https://archeology-private-playtest.toitou2.chatgpt.site/fossil.html
-Native-field binding preparation is isolated in `scenes/p6a32_fossil_mesh.tscn`.
-Its current GLB is an offline technical probe, not the Tripo artwork; keep it out
-of the home playtest until graphical exposure/edge/picking validation passes.
-Preparation report: `docs/dev/P6A32_FOSSIL_MESH_PREPARATION.md`.
-141 headless regression/binding checks pass; graphical acceptance is pending.
+Actual Tripo skull candidate is isolated in `scenes/p6a32_fossil_mesh.tscn`.
+20,775 triangles / 2K runtime textures; source GLB and Blender master preserved.
+142 functional and 17 final graphical checks pass. Intact matrix is pixel-identical
+with mesh on/off; actual ray picking is unchanged. Native Bone fallback is retained
+where the fitted mesh does not cover the field. F6 compares without resetting.
+Fitting remains visibly rough; this is not approved final art or a full skeleton
+replacement. Current delivery report: `docs/dev/P6A32_TRIPO_SKULL_PILOT_REPORT.md`.
+Portable export / private comparison update in progress for home human review.
 Studio options from Antoine’s screenshot are recorded for future iterations in
 `docs/dev/TRIPO_STUDIO_IMAGE_TO_3D_SETTINGS.md`.
 Owner-private browser playtest: https://archeology-private-playtest.toitou2.chatgpt.site

@@ -1,0 +1,17 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"hidden-before.png",
+		"hidden-after.png",
+		"skull-half-dirty.png",
+		"skull-before.png",
+		"skull-after.png",
+		"skull-condition-85.png",
+		"skull-condition-70.png",
+		"skull-overview.png"
+	],
+	"checks": 17,
+	"failures": [],
+	"profiles": []
+}

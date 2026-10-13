@@ -1,5 +1,8 @@
 # B-17 mesh — preparation, 2026-10-13
 
+Preparation evidence retained below. Antoine subsequently supplied the GLB;
+current candidate and remaining limits are in `P6A32_TRIPO_SKULL_PILOT_REPORT.md`.
+
 Antoine authorizes the visual fossil pilot before a combined native home test.
 The intended pipeline is ImageGen → Tripo Max Studio → Blender → Godot.
 This report records preparation only; it does not approve a new fossil asset.
