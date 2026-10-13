@@ -44,8 +44,8 @@ promotion of this new candidate to the project main scene or merge is implied.
 Owner-private link (Sites deployment succeeded):
 https://archeology-private-playtest.toitou2.chatgpt.site
 Site `appgprj_6ace1afd5f2c81919e82f40e93b3ef32`, static source
-`09e5627ad2a7cda314dbc33c4ef4955501601a8d`, deployment
-`appgdep_6ace22914988819186e7fd862be1e94b`.
+`1d68f284e430ad36a759367f55ce0cabf9d7cb77`, deployment
+`appgdep_6ace25f0133c81918fa7eef626d9c8e2`.
 
 The private page requires the owner’s ChatGPT sign-in; game assets remain behind
 that access boundary. No public sharing is enabled.
