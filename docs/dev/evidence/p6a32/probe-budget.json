@@ -1,0 +1,25 @@
+{
+  "blender": "4.3.2",
+  "parts": [
+    {
+      "part": "skull",
+      "source_triangles": 76994,
+      "runtime_triangles": 15398
+    },
+    {
+      "part": "spine",
+      "source_triangles": 77234,
+      "runtime_triangles": 15446
+    },
+    {
+      "part": "ribs",
+      "source_triangles": 117030,
+      "runtime_triangles": 23406
+    },
+    {
+      "part": "hind-limb",
+      "source_triangles": 69940,
+      "runtime_triangles": 13988
+    }
+  ]
+}

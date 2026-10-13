@@ -18,8 +18,8 @@
 
 ## Active branch / PR
 
-Active branch: `prototype/p6a31-mastery-readability`
-PR: **#10 — P6A3.1 Mastery / Bone Readability** (DRAFT).
+Active branch: `prototype/p6a32-fossil-mesh`
+PR: new B-17 mesh candidate (pending creation), stacked on **#10**. PR #10 remains DRAFT for the combined home playtest.
 
 PR #9 merged into main on 2026-10-13 at Antoine’s explicit request; merge commit `32a85ba9efc04fd508ee838d3c63252ca6b2d04f`. Latest P6A3 source included: `b91ff24bf57e76599204e9d12bd23eb6d229dbc5`.
 
@@ -50,8 +50,20 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-P6A3.1 is implemented as a candidate after Antoine’s explicit GO on 2026-10-13.
-Finish verification and collect human playtest feedback before merging it.
+P6A3.1 is implemented as a candidate. Antoine now explicitly authorizes advancing
+B-17 visual mesh lookdev before tonight and combining review in a larger native
+home playtest, with screenshot comparisons during work. P6A3.1 human review is
+not a blocker to this specifically authorized next step; no automatic merge.
+The requested asset pipeline is ImageGen → Tripo Max Studio → Blender → Godot.
+Shared Studio access failed: the interactive link was unusable, then Firecrawl
+reported insufficient browser credits. No Tripo generation was performed here.
+Antoine chose to generate in his own Tripo Studio from the supplied ImageGen
+reference and return a textured GLB. Reference and instructions:
+https://archeology-private-playtest.toitou2.chatgpt.site/fossil.html
+Native-field binding preparation is isolated in `scenes/p6a32_fossil_mesh.tscn`.
+Its current GLB is an offline technical probe, not the Tripo artwork; keep it out
+of the home playtest until graphical exposure/edge/picking validation passes.
+Preparation report: `docs/dev/P6A32_FOSSIL_MESH_PREPARATION.md`.
 Owner-private browser playtest: https://archeology-private-playtest.toitou2.chatgpt.site
 Human test 2026-10-13: Antoine tried it on his small work laptop and exited due
 to excessive lag. Browser playtesting is not usable on that machine; this does
@@ -168,7 +180,7 @@ P6A3.1 is now the active candidate: `scenes/p6a31_mastery_readability.tscn`.
 Delivery/report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
 Private browser playtesting is explicitly requested, with no game installation.
 Next action: complete/verify delivery, then collect Antoine’s human playtest verdict.
-Do not auto-merge the new P6A3.1 candidate or begin Fossil Mesh/Sound/Light phases.
+Do not auto-merge the candidates. B-17 mesh GO is received; Sound/Light remain separate future work.
 
 **Sound pipeline update:** Antoine has tested Claude and selects it instead of
 ElevenLabs for the dedicated sound phase. Current playtest audio stays unchanged;

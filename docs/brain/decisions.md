@@ -964,3 +964,23 @@ on his small work laptop. The exact hardware/performance cause is not measured.
 This is an unsuitable playtest setup, not a P6A3.1 feel verdict. Use native
 testing on the home reference PC for the human gate; screenshots/video can
 support visual discussion while away. No automatic Web optimization phase.
+
+
+## 2026-10-13 — GO B-17 mesh before combined home test
+
+Antoine wants larger progress before returning home, with refinement afterward.
+He explicitly identifies skeleton visual improvement as next and offers his
+Tripo Max Studio session for ImageGen → Tripo → Blender → Godot. Proceed with
+a bounded real mesh pilot on top of P6A3.1 without waiting for its separate
+feel verdict. Preserve native exposure/Film/Condition and progressive occlusion;
+combine human review in the evening. No merge or Sound/Light GO is inferred.
+
+## 2026-10-13 — Manual Tripo Studio handoff after shared-browser failure
+
+Antoine chose to generate the B-17 reference in his own Tripo Studio and return
+its textured GLB. Firecrawl browser credit exhaustion is the access blocker,
+not evidence about his Tripo Max credits. No Tripo generation was performed by
+the agent. Continue independent Bone-field binding preparation; inspect and
+fit the returned asset before graphical/gameplay acceptance or playtest export.
+The offline native-field mesh is a technical probe and must not be presented
+as the requested Tripo skeleton or as validated production artwork.
