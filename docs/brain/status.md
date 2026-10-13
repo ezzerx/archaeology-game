@@ -19,7 +19,9 @@
 ## Active branch / PR
 
 Active branch: `prototype/p6a32-fossil-mesh`
-PR: new B-17 mesh candidate (pending creation), stacked on **#10**. PR #10 remains DRAFT for the combined home playtest.
+PR: **#11 DRAFT**, technical B-17 mesh preparation, stacked on **#10**.
+https://github.com/ezzerx/archaeology-game/pull/11
+PR #10 remains DRAFT for the combined home playtest.
 
 PR #9 merged into main on 2026-10-13 at Antoine’s explicit request; merge commit `32a85ba9efc04fd508ee838d3c63252ca6b2d04f`. Latest P6A3 source included: `b91ff24bf57e76599204e9d12bd23eb6d229dbc5`.
 
@@ -64,6 +66,9 @@ Native-field binding preparation is isolated in `scenes/p6a32_fossil_mesh.tscn`.
 Its current GLB is an offline technical probe, not the Tripo artwork; keep it out
 of the home playtest until graphical exposure/edge/picking validation passes.
 Preparation report: `docs/dev/P6A32_FOSSIL_MESH_PREPARATION.md`.
+141 headless regression/binding checks pass; graphical acceptance is pending.
+Studio options from Antoine’s screenshot are recorded for future iterations in
+`docs/dev/TRIPO_STUDIO_IMAGE_TO_3D_SETTINGS.md`.
 Owner-private browser playtest: https://archeology-private-playtest.toitou2.chatgpt.site
 Human test 2026-10-13: Antoine tried it on his small work laptop and exited due
 to excessive lag. Browser playtesting is not usable on that machine; this does
