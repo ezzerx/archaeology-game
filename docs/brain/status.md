@@ -58,6 +58,8 @@ to excessive lag. Browser playtesting is not usable on that machine; this does
 not validate or reject P6A3.1 game feel. Next human test should be native on the
 home reference PC. No new Web optimization phase is opened.
 Report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
+Annotated screenshot review: https://archeology-private-playtest.toitou2.chatgpt.site/review.html
+Portable Windows build: https://archeology-private-playtest.toitou2.chatgpt.site/native.html
 
 ## Accepted P6A1 foundation
 

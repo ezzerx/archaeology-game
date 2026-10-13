@@ -45,7 +45,7 @@ Owner-private link (Sites deployment succeeded):
 https://archeology-private-playtest.toitou2.chatgpt.site
 Site `appgprj_6ace1afd5f2c81919e82f40e93b3ef32`, static source
 `09e5627ad2a7cda314dbc33c4ef4955501601a8d`, deployment
-`appgdep_6ace1fadcc588191a15c9582e6f0f527`.
+`appgdep_6ace22914988819186e7fd862be1e94b`.
 
 The private page requires the owner’s ChatGPT sign-in; game assets remain behind
 that access boundary. No public sharing is enabled.
@@ -124,3 +124,21 @@ on his small work laptop. No frame-time capture or hardware characterization
 was supplied. This confirms that this setup is unsuitable for judging the
 preparation feel. Human readability/feel approval remains pending a native
 test on his home PC. No automatic optimization scope is inferred.
+
+## Review capture pack and native Windows delivery
+
+Antoine requests annotated screenshots while away and one larger home playtest.
+Actual engine-controlled capture pack: 6 additional checks, zero failures,
+showing the unchanged Chisel effect radius and guarded displayed 100/100.
+Screenshots use controlled native QA states, not a claim of a full recorded play.
+
+Lightweight private review: `/review.html` on the playtest Site.
+Private portable Windows download: `/native.html` on the same Site.
+Official Godot 4.7.2 Windows x64 template; export completed, ZIP CRC and PE x64
+header verified. **Windows executable launch is not verified in Linux**; retest
+on the home PC. SHA-256/package manifest retained with Site source.
+ZIP: `ArchaeologyGame-P6A31-Windows.zip` (82,954,555 bytes).
+Reproduce natively: `tools/p6a31/Export-Playtest.ps1` with matching engine/templates.
+
+Review-page image loading and mobile-width layout, plus actual browser native-ZIP
+download and ZIP CRC, were verified successfully in Chromium without starting 3D.

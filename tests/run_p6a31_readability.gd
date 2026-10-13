@@ -110,11 +110,12 @@ func run() -> void:
 	root.size = Vector2i(1920,1080)
 	main.controller.set_physics_process(false)
 	main.panel.hide()
-	if mode == "film94": root.size = Vector2i(1280,720)
+	if mode in ["film94", "review"]: root.size = Vector2i(1280,720)
 	await settle()
 	evidence["runtime"] = {"engine":Engine.get_version_info().string, "gpu":RenderingServer.get_video_adapter_name(), "physics_hz":Engine.physics_ticks_per_second}
 	if mode == "tests": await functional()
 	elif mode in ["visual", "film94"]: await visual()
+	elif mode == "review": await review_captures()
 	evidence["checks"] = checks
 	evidence["failures"] = failures
 	FileAccess.open(out+mode+".json", FileAccess.WRITE).store_string(JSON.stringify(evidence,"\t"))
@@ -122,3 +123,27 @@ func run() -> void:
 	main.queue_free()
 	await create_timer(.3).timeout
 	quit(0 if failures.is_empty() else 1)
+
+func review_captures() -> void:
+	# QA setup uses native state/APIs; these are illustrative controlled states.
+	main.feedback.proxies_enabled = false
+	var s: WorkingSurface = main.block.working_map
+	main.select_fixture(1)
+	await zoom_to(3, Vector2(470,310))
+	main.controller.select_tool(1)
+	for enabled in [false, true]:
+		if main.readability_enabled != enabled: main.toggle_readability()
+		main.feedback.proxies_enabled = false
+		await settle(2)
+		main.block.show_cursor({"inside":true,"uv":(Vector2(470,310)+Vector2.ONE*.5)/Vector2(s.size)},main.controller.config.radius)
+		await snap("chisel-"+("after" if enabled else "before"))
+		check(main.controller.config.radius == 26.0, "capture keeps actual Chisel work radius")
+	main.reset_specimen()
+	P5Fixture.distributed(s,99.1)
+	P5Fixture.clean(s)
+	main.block.flush_texture()
+	main.session.flush()
+	await zoom_to(1)
+	main.block.show_cursor({"inside":false},1)
+	await snap("mastery-100")
+	check(main.session_ui.exposure_label.text == "100%" and main.session.snapshot().exposure < 100,"capture shows guarded completion without changing raw state")
