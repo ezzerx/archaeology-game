@@ -52,6 +52,27 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
+**P6A3.3 — passe locale Préparation tactile livrée, revue humaine attendue.**
+Antoine autorise le 2026-10-13 : quelques petits allers-retours de Brush avec
+résultat rapide et visible, dégâts localisés, binds corrigés et distinction à
+100/100, sans bonus de progression. Style des os précédents au démarrage ;
+crâne Tripo disponible en comparaison. La génération de futurs fossiles en code
+reste une piste à évaluer, sans GO de production supplémentaire.
+
+Candidat local sur la branche active ci-dessus : `scenes/p6a33_tactile_preparation.tscn`.
+Lancement : `Launch-P6A33-Tactile-Preparation.ps1` avec Godot 4.7.2 stable.
+Rapport actif : `docs/dev/P6A33_TACTILE_PREPARATION_REPORT.md`.
+Retour source : `docs/dev/P6A32_HOME_PLAYTEST_FEEDBACK.md`.
+La distinction est sauvegardée à l’archivage dans un registre local, prévu pour
+la future collection ; aucun écran musée/meta n’est créé.
+
+**Prochaine action : retest humain natif du candidat P6A3.3.** Les contrôles
+techniques passent ; le rythme et le feedback tactile restent à valider par
+Antoine. Correction locale, pas encore publiée sur la PR #11 distante.
+Aucun merge automatique, extension Sound/Light ou démarrage P6B/P7.
+
+## Livraison cloud précédente — contexte historique
+
 **Reprise locale — Antoine est rentré le 2026-10-13 et poursuit avec son agent
 local.** Travail cloud livré sur la branche ci-dessus. Prochaine action :
 récupérer cette branche, lancer explicitement la scène P6A3.2 et effectuer la

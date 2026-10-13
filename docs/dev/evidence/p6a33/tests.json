@@ -1,0 +1,14 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 40,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"adapter": "",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

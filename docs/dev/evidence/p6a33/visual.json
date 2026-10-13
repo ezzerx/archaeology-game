@@ -1,0 +1,25 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"brush-dirty.png",
+		"brush-two-passes.png",
+		"brush-four-passes.png",
+		"brush-removal-dust.png",
+		"brush-removal-dust-hidden.png",
+		"bone-undamaged.png",
+		"bone-local-impact.png",
+		"bone-repeated-local-impact.png",
+		"integral-distinction-live.png",
+		"integral-distinction-archive.png"
+	],
+	"checks": 17,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

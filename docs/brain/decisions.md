@@ -984,3 +984,26 @@ the agent. Continue independent Bone-field binding preparation; inspect and
 fit the returned asset before graphical/gameplay acceptance or playtest export.
 The offline native-field mesh is a technical probe and must not be presented
 as the requested Tripo skeleton or as validated production artwork.
+
+## 2026-10-13 — Préparation tactile après le test natif
+
+Antoine préfère le style du squelette précédent pour sa cohérence avec le thème.
+L’essai de comparaison Tripo est non concluant : F6/F7 étaient interceptés par
+le tuning debug et modifiaient le vrai rayon. Le style précédent redevient la
+présentation initiale du candidat ; le crâne Tripo reste conservé pour comparaison.
+Le dessin paramétrique de futurs os est une piste viable à évaluer, pas un GO
+pour produire de nouveaux spécimens ou remplacer l’architecture Bone.
+
+Direction autorisée pour la correction P6A3.3 :
+
+- Brush : quelques petits allers-retours, retrait rapide et clairement visible ;
+  aucun besoin de frottement prolongé sans raison perceptible ;
+- dégâts : marques locales liées aux impacts réellement dommageables et orientées
+  de façon variée ; Condition globale reste l’unique autorité de dégâts ;
+- 100/100 : distinction de collection suffisante pour maintenant, indépendante de
+  l’état de conservation, sans mode séparé ni récompense économique ;
+- binds : comparaisons réservées sans interception par le tuning debug.
+
+Le registre local de distinctions à l’archivage est le support minimal en
+attendant la collection ; il n’ouvre pas le chantier musée/meta. Rapport :
+`docs/dev/P6A33_TACTILE_PREPARATION_REPORT.md`. Le candidat reste soumis au retest humain.
