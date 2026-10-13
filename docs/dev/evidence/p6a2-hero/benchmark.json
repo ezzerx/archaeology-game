@@ -1,0 +1,2181 @@
+{
+	"benchmark": [
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 42.0,
+				"mean": 42.0,
+				"p95": 42.0
+			},
+			"edit_ms": {
+				"max": 0.0,
+				"mean": 0.0,
+				"p95": 0.0
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 4.48,
+				"mean": 4.15990449438202,
+				"p95": 4.312
+			},
+			"gpu_ms": {
+				"max": 1.22500002384186,
+				"mean": 0.995438995401455,
+				"p95": 1.19900000095367
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "reset",
+			"pick_ms": {
+				"max": 0.122,
+				"mean": 0.0523111111111112,
+				"p95": 0.056
+			},
+			"render_cpu_ms": {
+				"max": 0.666999995708466,
+				"mean": 0.281845722655762,
+				"p95": 0.345999985933304
+			},
+			"texture_memory_bytes": 52922191.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 52.0,
+				"mean": 52.0,
+				"p95": 52.0
+			},
+			"edit_ms": {
+				"max": 0.0,
+				"mean": 0.0,
+				"p95": 0.0
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 4.473,
+				"mean": 4.15985915492958,
+				"p95": 4.313
+			},
+			"gpu_ms": {
+				"max": 1.62600004673004,
+				"mean": 1.29294656684462,
+				"p95": 1.47800004482269
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "reset",
+			"pick_ms": {
+				"max": 0.103,
+				"mean": 0.0529722222222222,
+				"p95": 0.061
+			},
+			"render_cpu_ms": {
+				"max": 0.52700001001358,
+				"mean": 0.291805908419244,
+				"p95": 0.34400001168251
+			},
+			"texture_memory_bytes": 52922191.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 42.0,
+				"mean": 42.0,
+				"p95": 42.0
+			},
+			"edit_ms": {
+				"max": 4.661,
+				"mean": 3.82620555555556,
+				"p95": 4.109
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "847d27f906f0abb8a96942140f2180bba00f6384ba09329175af20d7dddab27d",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 9.164,
+				"mean": 4.15521518987342,
+				"p95": 8.385
+			},
+			"gpu_ms": {
+				"max": 1.26900005340576,
+				"mean": 1.01632162962067,
+				"p95": 1.2039999961853
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "brush_soil",
+			"pick_ms": {
+				"max": 0.192,
+				"mean": 0.102805555555556,
+				"p95": 0.123
+			},
+			"render_cpu_ms": {
+				"max": 0.515999972820282,
+				"mean": 0.268823033115,
+				"p95": 0.319999992847443
+			},
+			"texture_memory_bytes": 52922191.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 52.0,
+				"mean": 52.0,
+				"p95": 52.0
+			},
+			"edit_ms": {
+				"max": 4.261,
+				"mean": 3.82971111111111,
+				"p95": 4.134
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "847d27f906f0abb8a96942140f2180bba00f6384ba09329175af20d7dddab27d",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 8.751,
+				"mean": 4.15503366058906,
+				"p95": 8.42
+			},
+			"gpu_ms": {
+				"max": 1.73500001430511,
+				"mean": 1.32170028629757,
+				"p95": 1.48800003528595
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "brush_soil",
+			"pick_ms": {
+				"max": 0.151,
+				"mean": 0.100327777777778,
+				"p95": 0.109
+			},
+			"render_cpu_ms": {
+				"max": 0.50900000333786,
+				"mean": 0.279624650500068,
+				"p95": 0.360000014305115
+			},
+			"texture_memory_bytes": 52922191.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 33.0,
+				"mean": 32.1388888888889,
+				"p95": 33.0
+			},
+			"edit_ms": {
+				"max": 6.228,
+				"mean": 0.390472222222222,
+				"p95": 4.814
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 45,
+				"dust": "9d15a3cb3bfedd69bf300faf86c236873fda949b573d4e03e5597d12f4d70d91",
+				"exposed": "cd138adae2c7ccadbe87941ec907b30d518f7bba3f7b3d9ba4e64067cac7a754",
+				"film": "6a81d12a505aa0c23062d503b4dd73ec2949bc1b490d1ad1881a316fd556a0ae",
+				"fracture": "67d86e93156a483fb0bbddbecd3e9a9c2b298df31c5c76e0dca3bf1318653bcb",
+				"height": "571fe98a0347bc530e410ec57e041344d309c89bf60432f5bde9dc141747790a",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 10.919,
+				"mean": 4.15724259520452,
+				"p95": 4.7
+			},
+			"gpu_ms": {
+				"max": 1.25,
+				"mean": 1.03382534905219,
+				"p95": 1.23599994182587
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "8119f2914525978f07e702147a7fbdbda882a88ae56ddd3206c4e0b5115aea2c",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "chisel",
+			"pick_ms": {
+				"max": 0.162,
+				"mean": 0.0659333333333333,
+				"p95": 0.118
+			},
+			"render_cpu_ms": {
+				"max": 5.08900022506714,
+				"mean": 0.287491549677412,
+				"p95": 0.342000007629395
+			},
+			"texture_memory_bytes": 53096953.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 43.0,
+				"mean": 42.15,
+				"p95": 43.0
+			},
+			"edit_ms": {
+				"max": 5.604,
+				"mean": 0.392272222222222,
+				"p95": 4.845
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 45,
+				"dust": "9d15a3cb3bfedd69bf300faf86c236873fda949b573d4e03e5597d12f4d70d91",
+				"exposed": "cd138adae2c7ccadbe87941ec907b30d518f7bba3f7b3d9ba4e64067cac7a754",
+				"film": "6a81d12a505aa0c23062d503b4dd73ec2949bc1b490d1ad1881a316fd556a0ae",
+				"fracture": "67d86e93156a483fb0bbddbecd3e9a9c2b298df31c5c76e0dca3bf1318653bcb",
+				"height": "571fe98a0347bc530e410ec57e041344d309c89bf60432f5bde9dc141747790a",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 10.302,
+				"mean": 4.15511938202248,
+				"p95": 4.69
+			},
+			"gpu_ms": {
+				"max": 1.69099998474121,
+				"mean": 1.34415847873955,
+				"p95": 1.52600002288818
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "8119f2914525978f07e702147a7fbdbda882a88ae56ddd3206c4e0b5115aea2c",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "chisel",
+			"pick_ms": {
+				"max": 0.232,
+				"mean": 0.0667833333333333,
+				"p95": 0.117
+			},
+			"render_cpu_ms": {
+				"max": 0.545000016689301,
+				"mean": 0.296012623238196,
+				"p95": 0.379999995231628
+			},
+			"texture_memory_bytes": 53096953.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 33.0,
+				"mean": 32.9555555555556,
+				"p95": 33.0
+			},
+			"edit_ms": {
+				"max": 0.864,
+				"mean": 0.0664222222222222,
+				"p95": 0.611
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "0e9a2546ae1bf382b89fdb69d63be68afee2e14bb923afa6a96ee4c3ef7a4225",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "177b76bb14bb6b2fa9da56d1390dd1a2b75428f16c7fd2ff80dddde3dca6b77b",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 7.518,
+				"mean": 4.15648387096774,
+				"p95": 6.481
+			},
+			"gpu_ms": {
+				"max": 1.39300000667572,
+				"mean": 1.02645658077646,
+				"p95": 1.23599994182587
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "c84e688d1c4cce143239c8163b6d3365e86e31e729faf13816215e4fa4e7a9ba",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "pick_near_bone",
+			"pick_ms": {
+				"max": 0.155,
+				"mean": 0.0697055555555556,
+				"p95": 0.121
+			},
+			"render_cpu_ms": {
+				"max": 0.504000008106232,
+				"mean": 0.279882352913962,
+				"p95": 0.345999985933304
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 43.0,
+				"mean": 42.95,
+				"p95": 43.0
+			},
+			"edit_ms": {
+				"max": 1.06,
+				"mean": 0.0686,
+				"p95": 0.603
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "0e9a2546ae1bf382b89fdb69d63be68afee2e14bb923afa6a96ee4c3ef7a4225",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "177b76bb14bb6b2fa9da56d1390dd1a2b75428f16c7fd2ff80dddde3dca6b77b",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 7.466,
+				"mean": 4.16017762237762,
+				"p95": 6.485
+			},
+			"gpu_ms": {
+				"max": 1.69599997997284,
+				"mean": 1.3488756929363,
+				"p95": 1.52799999713898
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "c84e688d1c4cce143239c8163b6d3365e86e31e729faf13816215e4fa4e7a9ba",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "pick_near_bone",
+			"pick_ms": {
+				"max": 0.227,
+				"mean": 0.0707777777777778,
+				"p95": 0.12
+			},
+			"render_cpu_ms": {
+				"max": 0.568000018596649,
+				"mean": 0.290910616080022,
+				"p95": 0.375
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 33.0,
+				"mean": 31.2333333333333,
+				"p95": 33.0
+			},
+			"edit_ms": {
+				"max": 0.516,
+				"mean": 0.343166666666667,
+				"p95": 0.447
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 183,
+				"dust": "6ee71a569e6cc8c8e74d0d58c8b3c84283b1f8b6bcf96dfc4f6c91809ab15e2a",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "fd9367ec2150fed05b5de896aae463806804599a532460e68aed94a8d6241c4f",
+				"height": "1e811081d1401e5fb64a3666f0a4cfe66362ccaa7766e5271b8e8038b6d8ea60",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 8.053,
+				"mean": 4.15648169014085,
+				"p95": 6.862
+			},
+			"gpu_ms": {
+				"max": 1.38999998569489,
+				"mean": 1.0278030896321,
+				"p95": 1.24000000953674
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 221,
+				"dust": "4169b2496d672f131474732e66cff9299c7746d0102fd2f8d253e293ab56e3b7",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "fd9367ec2150fed05b5de896aae463806804599a532460e68aed94a8d6241c4f",
+				"height": "1e811081d1401e5fb64a3666f0a4cfe66362ccaa7766e5271b8e8038b6d8ea60",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "blower_debris",
+			"pick_ms": {
+				"max": 0.095,
+				"mean": 0.0599444444444443,
+				"p95": 0.067
+			},
+			"render_cpu_ms": {
+				"max": 2.41300010681152,
+				"mean": 0.278732770668806,
+				"p95": 0.333000004291534
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 43.0,
+				"mean": 41.2444444444444,
+				"p95": 43.0
+			},
+			"edit_ms": {
+				"max": 0.532,
+				"mean": 0.347216666666667,
+				"p95": 0.46
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 183,
+				"dust": "6ee71a569e6cc8c8e74d0d58c8b3c84283b1f8b6bcf96dfc4f6c91809ab15e2a",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "fd9367ec2150fed05b5de896aae463806804599a532460e68aed94a8d6241c4f",
+				"height": "1e811081d1401e5fb64a3666f0a4cfe66362ccaa7766e5271b8e8038b6d8ea60",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 8.238,
+				"mean": 4.15550777934937,
+				"p95": 6.901
+			},
+			"gpu_ms": {
+				"max": 1.85300004482269,
+				"mean": 1.34776270726306,
+				"p95": 1.53100001811981
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 221,
+				"dust": "4169b2496d672f131474732e66cff9299c7746d0102fd2f8d253e293ab56e3b7",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "fd9367ec2150fed05b5de896aae463806804599a532460e68aed94a8d6241c4f",
+				"height": "1e811081d1401e5fb64a3666f0a4cfe66362ccaa7766e5271b8e8038b6d8ea60",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "blower_debris",
+			"pick_ms": {
+				"max": 0.132,
+				"mean": 0.0605277777777777,
+				"p95": 0.07
+			},
+			"render_cpu_ms": {
+				"max": 0.532999992370605,
+				"mean": 0.288960452638777,
+				"p95": 0.351999998092651
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 46.0,
+				"mean": 45.9444444444444,
+				"p95": 46.0
+			},
+			"edit_ms": {
+				"max": 4.179,
+				"mean": 3.56812222222222,
+				"p95": 3.984
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 49.8947811658674,
+				"condition": 100.0,
+				"crumbs": 99,
+				"dust": "f6e1a38b050c472c21c6782c54a0ca16c4b0c5a0f62633705bd7f6fe969148c0",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "f2113ff411898251b91f585b48989e502b45474769c2dc05810c17823133fafd",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 10.883,
+				"mean": 4.16017622377623,
+				"p95": 9.787
+			},
+			"gpu_ms": {
+				"max": 1.39699995517731,
+				"mean": 1.04559636590534,
+				"p95": 1.24199998378754
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "c84e688d1c4cce143239c8163b6d3365e86e31e729faf13816215e4fa4e7a9ba",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "bone_film",
+			"pick_ms": {
+				"max": 0.17,
+				"mean": 0.0634333333333333,
+				"p95": 0.072
+			},
+			"render_cpu_ms": {
+				"max": 0.680999994277954,
+				"mean": 0.283636871662886,
+				"p95": 0.352999985218048
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+			"camera_size": 0.850000023841858,
+			"draw_calls": {
+				"max": 56.0,
+				"mean": 55.95,
+				"p95": 56.0
+			},
+			"edit_ms": {
+				"max": 3.99,
+				"mean": 3.55010555555555,
+				"p95": 3.815
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 49.8947811658674,
+				"condition": 100.0,
+				"crumbs": 99,
+				"dust": "f6e1a38b050c472c21c6782c54a0ca16c4b0c5a0f62633705bd7f6fe969148c0",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "f2113ff411898251b91f585b48989e502b45474769c2dc05810c17823133fafd",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 10.214,
+				"mean": 4.15556241234222,
+				"p95": 9.782
+			},
+			"gpu_ms": {
+				"max": 1.77100002765656,
+				"mean": 1.37126190789273,
+				"p95": 1.58700001239777
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "c84e688d1c4cce143239c8163b6d3365e86e31e729faf13816215e4fa4e7a9ba",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "bone_film",
+			"pick_ms": {
+				"max": 0.158,
+				"mean": 0.0629777777777778,
+				"p95": 0.07
+			},
+			"render_cpu_ms": {
+				"max": 0.550999999046326,
+				"mean": 0.290201680124307,
+				"p95": 0.35699999332428
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 1
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.02972, 3.108244, 0.26902)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 42.0,
+				"mean": 42.0,
+				"p95": 42.0
+			},
+			"edit_ms": {
+				"max": 0.0,
+				"mean": 0.0,
+				"p95": 0.0
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 4.503,
+				"mean": 4.16017482517483,
+				"p95": 4.329
+			},
+			"gpu_ms": {
+				"max": 0.804000020027161,
+				"mean": 0.54583798290631,
+				"p95": 0.787999987602234
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "reset",
+			"pick_ms": {
+				"max": 0.107,
+				"mean": 0.0527111111111111,
+				"p95": 0.06
+			},
+			"render_cpu_ms": {
+				"max": 0.507000029087067,
+				"mean": 0.286729050789798,
+				"p95": 0.368000000715256
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.02972, 3.108244, 0.26902)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 45.0,
+				"mean": 45.0,
+				"p95": 45.0
+			},
+			"edit_ms": {
+				"max": 0.0,
+				"mean": 0.0,
+				"p95": 0.0
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 4.433,
+				"mean": 4.16017342657343,
+				"p95": 4.325
+			},
+			"gpu_ms": {
+				"max": 0.876999974250793,
+				"mean": 0.622142465171201,
+				"p95": 0.862999975681305
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "reset",
+			"pick_ms": {
+				"max": 0.1,
+				"mean": 0.0535833333333333,
+				"p95": 0.067
+			},
+			"render_cpu_ms": {
+				"max": 0.677999973297119,
+				"mean": 0.293804469971017,
+				"p95": 0.345999985933304
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.02972, 3.108244, 0.26902)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 42.0,
+				"mean": 42.0,
+				"p95": 42.0
+			},
+			"edit_ms": {
+				"max": 4.394,
+				"mean": 3.81271666666667,
+				"p95": 4.058
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "839c3e248b46eecd43826b4d82a67081dedff0eb1ac25962e0838a8908b2203a",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 9.127,
+				"mean": 4.16017342657343,
+				"p95": 8.424
+			},
+			"gpu_ms": {
+				"max": 0.927999973297119,
+				"mean": 0.573751395391352,
+				"p95": 0.800999999046326
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "brush_soil",
+			"pick_ms": {
+				"max": 0.312,
+				"mean": 0.1005,
+				"p95": 0.114
+			},
+			"render_cpu_ms": {
+				"max": 0.537000000476837,
+				"mean": 0.268261173209332,
+				"p95": 0.321000009775162
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.02972, 3.108244, 0.26902)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 45.0,
+				"mean": 45.0,
+				"p95": 45.0
+			},
+			"edit_ms": {
+				"max": 5.509,
+				"mean": 3.84455,
+				"p95": 4.211
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "839c3e248b46eecd43826b4d82a67081dedff0eb1ac25962e0838a8908b2203a",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 10.027,
+				"mean": 4.16017342657343,
+				"p95": 8.46
+			},
+			"gpu_ms": {
+				"max": 1.02900004386902,
+				"mean": 0.643474863311432,
+				"p95": 0.871999979019165
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "brush_soil",
+			"pick_ms": {
+				"max": 0.172,
+				"mean": 0.100055555555556,
+				"p95": 0.116
+			},
+			"render_cpu_ms": {
+				"max": 0.526000022888184,
+				"mean": 0.274567039881172,
+				"p95": 0.337000012397766
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.02972, 3.10825, 0.269108)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 33.0,
+				"mean": 32.15,
+				"p95": 33.0
+			},
+			"edit_ms": {
+				"max": 6.388,
+				"mean": 0.393827777777778,
+				"p95": 4.897
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 45,
+				"dust": "9d15a3cb3bfedd69bf300faf86c236873fda949b573d4e03e5597d12f4d70d91",
+				"exposed": "cd138adae2c7ccadbe87941ec907b30d518f7bba3f7b3d9ba4e64067cac7a754",
+				"film": "6a81d12a505aa0c23062d503b4dd73ec2949bc1b490d1ad1881a316fd556a0ae",
+				"fracture": "67d86e93156a483fb0bbddbecd3e9a9c2b298df31c5c76e0dca3bf1318653bcb",
+				"height": "571fe98a0347bc530e410ec57e041344d309c89bf60432f5bde9dc141747790a",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 11.148,
+				"mean": 4.16016666666667,
+				"p95": 4.691
+			},
+			"gpu_ms": {
+				"max": 0.842999994754791,
+				"mean": 0.581423781635044,
+				"p95": 0.824999988079071
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "8119f2914525978f07e702147a7fbdbda882a88ae56ddd3206c4e0b5115aea2c",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "chisel",
+			"pick_ms": {
+				"max": 0.149,
+				"mean": 0.0652833333333333,
+				"p95": 0.112
+			},
+			"render_cpu_ms": {
+				"max": 0.518999993801117,
+				"mean": 0.282749650486699,
+				"p95": 0.352999985218048
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.02972, 3.10825, 0.269108)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 36.0,
+				"mean": 35.15,
+				"p95": 36.0
+			},
+			"edit_ms": {
+				"max": 5.785,
+				"mean": 0.394077777777778,
+				"p95": 4.894
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 45,
+				"dust": "9d15a3cb3bfedd69bf300faf86c236873fda949b573d4e03e5597d12f4d70d91",
+				"exposed": "cd138adae2c7ccadbe87941ec907b30d518f7bba3f7b3d9ba4e64067cac7a754",
+				"film": "6a81d12a505aa0c23062d503b4dd73ec2949bc1b490d1ad1881a316fd556a0ae",
+				"fracture": "67d86e93156a483fb0bbddbecd3e9a9c2b298df31c5c76e0dca3bf1318653bcb",
+				"height": "571fe98a0347bc530e410ec57e041344d309c89bf60432f5bde9dc141747790a",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 10.49,
+				"mean": 4.1601488764045,
+				"p95": 4.679
+			},
+			"gpu_ms": {
+				"max": 0.921000003814697,
+				"mean": 0.649768579223547,
+				"p95": 0.894999980926514
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "8119f2914525978f07e702147a7fbdbda882a88ae56ddd3206c4e0b5115aea2c",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "chisel",
+			"pick_ms": {
+				"max": 0.141,
+				"mean": 0.0649444444444444,
+				"p95": 0.115
+			},
+			"render_cpu_ms": {
+				"max": 0.535000026226044,
+				"mean": 0.292814867463888,
+				"p95": 0.34799998998642
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.165788, 3.108827, 0.263712)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 33.0,
+				"mean": 32.6833333333333,
+				"p95": 33.0
+			},
+			"edit_ms": {
+				"max": 0.906,
+				"mean": 0.0686444444444444,
+				"p95": 0.63
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "0e9a2546ae1bf382b89fdb69d63be68afee2e14bb923afa6a96ee4c3ef7a4225",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "43356e70cc0fef6855380bbb2537cef884b4cca3841a589c23cc9f7a076fe433",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 7.551,
+				"mean": 4.16019246861925,
+				"p95": 6.49
+			},
+			"gpu_ms": {
+				"max": 1.01400005817413,
+				"mean": 0.600142063702714,
+				"p95": 0.837000012397766
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "c84e688d1c4cce143239c8163b6d3365e86e31e729faf13816215e4fa4e7a9ba",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "pick_near_bone",
+			"pick_ms": {
+				"max": 0.145,
+				"mean": 0.0685944444444444,
+				"p95": 0.118
+			},
+			"render_cpu_ms": {
+				"max": 0.540000021457672,
+				"mean": 0.275639275239371,
+				"p95": 0.335999995470047
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.165788, 3.108827, 0.263712)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 36.0,
+				"mean": 35.6833333333333,
+				"p95": 36.0
+			},
+			"edit_ms": {
+				"max": 0.878,
+				"mean": 0.0676666666666666,
+				"p95": 0.646
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "0e9a2546ae1bf382b89fdb69d63be68afee2e14bb923afa6a96ee4c3ef7a4225",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "43356e70cc0fef6855380bbb2537cef884b4cca3841a589c23cc9f7a076fe433",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 7.363,
+				"mean": 4.16017622377622,
+				"p95": 6.477
+			},
+			"gpu_ms": {
+				"max": 1.057000041008,
+				"mean": 0.660044683424454,
+				"p95": 0.898999989032745
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "c84e688d1c4cce143239c8163b6d3365e86e31e729faf13816215e4fa4e7a9ba",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "pick_near_bone",
+			"pick_ms": {
+				"max": 0.17,
+				"mean": 0.0702888888888888,
+				"p95": 0.125
+			},
+			"render_cpu_ms": {
+				"max": 0.544000029563904,
+				"mean": 0.282604749205226,
+				"p95": 0.335999995470047
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.02972, 3.108017, 0.271188)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 31.0,
+				"mean": 30.9944444444444,
+				"p95": 31.0
+			},
+			"edit_ms": {
+				"max": 0.598,
+				"mean": 0.348133333333333,
+				"p95": 0.464
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 183,
+				"dust": "6ee71a569e6cc8c8e74d0d58c8b3c84283b1f8b6bcf96dfc4f6c91809ab15e2a",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "fd9367ec2150fed05b5de896aae463806804599a532460e68aed94a8d6241c4f",
+				"height": "1e811081d1401e5fb64a3666f0a4cfe66362ccaa7766e5271b8e8038b6d8ea60",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 8.454,
+				"mean": 4.15600840336135,
+				"p95": 6.89
+			},
+			"gpu_ms": {
+				"max": 0.986000001430511,
+				"mean": 0.592153848801459,
+				"p95": 0.832000017166138
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 221,
+				"dust": "4169b2496d672f131474732e66cff9299c7746d0102fd2f8d253e293ab56e3b7",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "fd9367ec2150fed05b5de896aae463806804599a532460e68aed94a8d6241c4f",
+				"height": "1e811081d1401e5fb64a3666f0a4cfe66362ccaa7766e5271b8e8038b6d8ea60",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "blower_debris",
+			"pick_ms": {
+				"max": 0.129,
+				"mean": 0.060761111111111,
+				"p95": 0.075
+			},
+			"render_cpu_ms": {
+				"max": 0.501999974250793,
+				"mean": 0.275629370070838,
+				"p95": 0.331000000238419
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.02972, 3.108017, 0.271188)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 34.0,
+				"mean": 33.9944444444444,
+				"p95": 34.0
+			},
+			"edit_ms": {
+				"max": 0.608,
+				"mean": 0.349988888888889,
+				"p95": 0.457
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 183,
+				"dust": "6ee71a569e6cc8c8e74d0d58c8b3c84283b1f8b6bcf96dfc4f6c91809ab15e2a",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "fd9367ec2150fed05b5de896aae463806804599a532460e68aed94a8d6241c4f",
+				"height": "1e811081d1401e5fb64a3666f0a4cfe66362ccaa7766e5271b8e8038b6d8ea60",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 8.208,
+				"mean": 4.16017202797204,
+				"p95": 6.866
+			},
+			"gpu_ms": {
+				"max": 1.07000005245209,
+				"mean": 0.65691759541381,
+				"p95": 0.896000027656555
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 221,
+				"dust": "4169b2496d672f131474732e66cff9299c7746d0102fd2f8d253e293ab56e3b7",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "fd9367ec2150fed05b5de896aae463806804599a532460e68aed94a8d6241c4f",
+				"height": "1e811081d1401e5fb64a3666f0a4cfe66362ccaa7766e5271b8e8038b6d8ea60",
+				"progress": [
+					false,
+					false,
+					false,
+					0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "blower_debris",
+			"pick_ms": {
+				"max": 0.176,
+				"mean": 0.0608388888888888,
+				"p95": 0.069
+			},
+			"render_cpu_ms": {
+				"max": 0.521000027656555,
+				"mean": 0.278847765968332,
+				"p95": 0.32600000500679
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.165788, 3.108827, 0.263712)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 46.0,
+				"mean": 45.6777777777778,
+				"p95": 46.0
+			},
+			"edit_ms": {
+				"max": 3.914,
+				"mean": 3.53067777777778,
+				"p95": 3.707
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 49.8947884674451,
+				"condition": 100.0,
+				"crumbs": 99,
+				"dust": "f6e1a38b050c472c21c6782c54a0ca16c4b0c5a0f62633705bd7f6fe969148c0",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "f2113ff411898251b91f585b48989e502b45474769c2dc05810c17823133fafd",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 10.214,
+				"mean": 4.16017062937063,
+				"p95": 9.754
+			},
+			"gpu_ms": {
+				"max": 0.901000022888184,
+				"mean": 0.598920396419877,
+				"p95": 0.834999978542328
+			},
+			"hero": false,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "c84e688d1c4cce143239c8163b6d3365e86e31e729faf13816215e4fa4e7a9ba",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "bone_film",
+			"pick_ms": {
+				"max": 0.104,
+				"mean": 0.0635833333333333,
+				"p95": 0.078
+			},
+			"render_cpu_ms": {
+				"max": 0.515999972820282,
+				"mean": 0.277797486466569,
+				"p95": 0.328999996185303
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		},
+		{
+			"camera": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.165788, 3.108827, 0.263712)]",
+			"camera_size": 0.283333331346512,
+			"draw_calls": {
+				"max": 49.0,
+				"mean": 48.6722222222222,
+				"p95": 49.0
+			},
+			"edit_ms": {
+				"max": 4.065,
+				"mean": 3.57772777777778,
+				"p95": 3.901
+			},
+			"final": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 49.8947884674451,
+				"condition": 100.0,
+				"crumbs": 99,
+				"dust": "f6e1a38b050c472c21c6782c54a0ca16c4b0c5a0f62633705bd7f6fe969148c0",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "f2113ff411898251b91f585b48989e502b45474769c2dc05810c17823133fafd",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"frame_ms": {
+				"max": 10.549,
+				"mean": 4.16017062937064,
+				"p95": 9.832
+			},
+			"gpu_ms": {
+				"max": 1.04900002479553,
+				"mean": 0.675987423465239,
+				"p95": 0.907000005245209
+			},
+			"hero": true,
+			"initial": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"ceilings": "0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9",
+				"clean": 0.0,
+				"condition": 100.0,
+				"crumbs": 201,
+				"dust": "c84e688d1c4cce143239c8163b6d3365e86e31e729faf13816215e4fa4e7a9ba",
+				"exposed": "1438cecf8a6cb23dcf07d28a12655bffd391023d46c8ab859da4db882fde80b3",
+				"film": "282d7ee8b5b7d2fb83b32748c89e99e2d970e5e6d2a02c16bf1eb771ca5edaea",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7a9825efd3bb05240784db8bd3012a1d8506763abddd8fc52fd5a18eb811da1c",
+				"progress": [
+					false,
+					false,
+					false,
+					1
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2"
+			},
+			"kind": "bone_film",
+			"pick_ms": {
+				"max": 0.128,
+				"mean": 0.0629611111111111,
+				"p95": 0.071
+			},
+			"render_cpu_ms": {
+				"max": 0.63400000333786,
+				"mean": 0.289488827653604,
+				"p95": 0.388999998569489
+			},
+			"texture_memory_bytes": 53053263.0,
+			"zoom": 3
+		}
+	],
+	"brush": [],
+	"captures": [],
+	"checks": 72,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"renderer": "gl_compatibility",
+		"viewport": [
+			1920,
+			1080
+		]
+	}
+}

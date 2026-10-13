@@ -1,0 +1,4905 @@
+{
+  "hardware": {
+    "adapter": "NVIDIA GeForce RTX 5080",
+    "cap": 240,
+    "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+    "engine": "4.7.2-stable (official)",
+    "gpu_note": "Viewport timer; zero means unavailable, never zero GPU cost. Timings exclude setup/readbacks.",
+    "physics_hz": 60,
+    "renderer": "gl_compatibility",
+    "resolution": [
+      1920,
+      1080
+    ]
+  },
+  "benchmark": [
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 0,
+      "changed_cells": 0,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.708,
+        "mean": 4.15827542372881,
+        "p95": 4.401
+      },
+      "frames": 708,
+      "gpu_ms": {
+        "max": 1.26400005817413,
+        "mean": 0.927224585902219,
+        "p95": 1.25100004673004
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "intact_idle",
+      "pick_ms": {
+        "max": 0.159,
+        "mean": 0.0418888888888889,
+        "p95": 0.053
+      },
+      "render_cpu_ms": {
+        "max": 0.671000003814697,
+        "mean": 0.292629943813308,
+        "p95": 0.388999998569489
+      },
+      "video_memory_bytes": 92646975.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 1,
+      "changed_cells": 0,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.859,
+        "mean": 4.15945365168539,
+        "p95": 4.424
+      },
+      "frames": 712,
+      "gpu_ms": {
+        "max": 1.29999995231628,
+        "mean": 0.942561798885967,
+        "p95": 1.26999998092651
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "intact_idle",
+      "pick_ms": {
+        "max": 0.187,
+        "mean": 0.0430888888888889,
+        "p95": 0.058
+      },
+      "render_cpu_ms": {
+        "max": 0.507000029087067,
+        "mean": 0.288985954744093,
+        "p95": 0.377000004053116
+      },
+      "video_memory_bytes": 96901071.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 2,
+      "changed_cells": 0,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.717,
+        "mean": 4.15812201963534,
+        "p95": 4.393
+      },
+      "frames": 713,
+      "gpu_ms": {
+        "max": 1.36600005626678,
+        "mean": 1.05017110567441,
+        "p95": 1.34700000286102
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "intact_idle",
+      "pick_ms": {
+        "max": 0.07,
+        "mean": 0.0413,
+        "p95": 0.048
+      },
+      "render_cpu_ms": {
+        "max": 0.595000028610229,
+        "mean": 0.287148667460237,
+        "p95": 0.361999988555908
+      },
+      "video_memory_bytes": 96897927.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 3,
+      "changed_cells": 0,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.455,
+        "mean": 4.15860674157304,
+        "p95": 4.367
+      },
+      "frames": 712,
+      "gpu_ms": {
+        "max": 1.38300001621246,
+        "mean": 1.06160112344817,
+        "p95": 1.36099994182587
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "intact_idle",
+      "pick_ms": {
+        "max": 0.078,
+        "mean": 0.0421833333333333,
+        "p95": 0.062
+      },
+      "render_cpu_ms": {
+        "max": 0.524999976158142,
+        "mean": 0.287991573971309,
+        "p95": 0.352999985218048
+      },
+      "video_memory_bytes": 96894783.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.106571, 0.285099)]",
+      "candidate": 0,
+      "changed_cells": 0,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.806,
+        "mean": 4.16019134078212,
+        "p95": 4.36
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 0.910000026226044,
+        "mean": 0.514825416052475,
+        "p95": 0.873000025749207
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "intact_idle",
+      "pick_ms": {
+        "max": 0.126,
+        "mean": 0.0413611111111112,
+        "p95": 0.045
+      },
+      "render_cpu_ms": {
+        "max": 0.697000026702881,
+        "mean": 0.289473464327485,
+        "p95": 0.365000009536743
+      },
+      "video_memory_bytes": 96894783.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.106571, 0.285099)]",
+      "candidate": 1,
+      "changed_cells": 0,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.784,
+        "mean": 4.16017482517482,
+        "p95": 4.42
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 0.935999989509583,
+        "mean": 0.569492304241741,
+        "p95": 0.921000003814697
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "intact_idle",
+      "pick_ms": {
+        "max": 0.078,
+        "mean": 0.0451611111111111,
+        "p95": 0.068
+      },
+      "render_cpu_ms": {
+        "max": 0.609000027179718,
+        "mean": 0.294001398053203,
+        "p95": 0.409000009298325
+      },
+      "video_memory_bytes": 96894783.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.106571, 0.285099)]",
+      "candidate": 2,
+      "changed_cells": 0,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.04,
+        "mean": 4.16014106145252,
+        "p95": 4.403
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 0.955999970436096,
+        "mean": 0.563765359907177,
+        "p95": 0.922999978065491
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "intact_idle",
+      "pick_ms": {
+        "max": 0.125,
+        "mean": 0.0417055555555556,
+        "p95": 0.052
+      },
+      "render_cpu_ms": {
+        "max": 0.488000005483627,
+        "mean": 0.292956704409096,
+        "p95": 0.391999989748001
+      },
+      "video_memory_bytes": 96894783.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.106571, 0.285099)]",
+      "candidate": 3,
+      "changed_cells": 0,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.965,
+        "mean": 4.16017762237762,
+        "p95": 4.455
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 0.944000005722046,
+        "mean": 0.570318880447975,
+        "p95": 0.930999994277954
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "intact_idle",
+      "pick_ms": {
+        "max": 0.098,
+        "mean": 0.0434222222222222,
+        "p95": 0.061
+      },
+      "render_cpu_ms": {
+        "max": 0.579999983310699,
+        "mean": 0.293139860680053,
+        "p95": 0.375999987125397
+      },
+      "video_memory_bytes": 101155167.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 0,
+      "changed_cells": 0,
+      "draw_calls": 43.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.869,
+        "mean": 4.15870926966292,
+        "p95": 4.433
+      },
+      "frames": 712,
+      "gpu_ms": {
+        "max": 1.307000041008,
+        "mean": 0.981436795732948,
+        "p95": 1.29100000858307
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "study_idle",
+      "pick_ms": {
+        "max": 0.138,
+        "mean": 0.0737111111111111,
+        "p95": 0.096
+      },
+      "render_cpu_ms": {
+        "max": 0.630999982357025,
+        "mean": 0.292955057046721,
+        "p95": 0.377999991178513
+      },
+      "video_memory_bytes": 101330457.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 1,
+      "changed_cells": 0,
+      "draw_calls": 43.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.046,
+        "mean": 4.15887955182073,
+        "p95": 4.387
+      },
+      "frames": 714,
+      "gpu_ms": {
+        "max": 1.34599995613098,
+        "mean": 1.03153221279967,
+        "p95": 1.33000004291534
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "study_idle",
+      "pick_ms": {
+        "max": 0.232,
+        "mean": 0.0740999999999999,
+        "p95": 0.092
+      },
+      "render_cpu_ms": {
+        "max": 0.537000000476837,
+        "mean": 0.290600841202322,
+        "p95": 0.370999991893768
+      },
+      "video_memory_bytes": 101330457.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 2,
+      "changed_cells": 0,
+      "draw_calls": 43.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.724,
+        "mean": 4.15869144460029,
+        "p95": 4.387
+      },
+      "frames": 713,
+      "gpu_ms": {
+        "max": 1.43599998950958,
+        "mean": 1.11745861820553,
+        "p95": 1.41499996185303
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "study_idle",
+      "pick_ms": {
+        "max": 0.192,
+        "mean": 0.0724055555555555,
+        "p95": 0.085
+      },
+      "render_cpu_ms": {
+        "max": 0.564999997615814,
+        "mean": 0.295137448071765,
+        "p95": 0.391000002622604
+      },
+      "video_memory_bytes": 101330457.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 3,
+      "changed_cells": 0,
+      "draw_calls": 43.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.868,
+        "mean": 4.15916666666666,
+        "p95": 4.415
+      },
+      "frames": 714,
+      "gpu_ms": {
+        "max": 1.44599997997284,
+        "mean": 1.14244116955445,
+        "p95": 1.43499994277954
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "study_idle",
+      "pick_ms": {
+        "max": 0.147,
+        "mean": 0.0748388888888889,
+        "p95": 0.101
+      },
+      "render_cpu_ms": {
+        "max": 0.510999977588654,
+        "mean": 0.289893558421055,
+        "p95": 0.36599999666214
+      },
+      "video_memory_bytes": 101330457.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.105919, 0.291177)]",
+      "candidate": 0,
+      "changed_cells": 0,
+      "draw_calls": 43.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.708,
+        "mean": 4.16017062937063,
+        "p95": 4.41
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 0.906000018119812,
+        "mean": 0.529594406464717,
+        "p95": 0.89300000667572
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "study_idle",
+      "pick_ms": {
+        "max": 0.152,
+        "mean": 0.0748888888888888,
+        "p95": 0.1
+      },
+      "render_cpu_ms": {
+        "max": 0.517000019550323,
+        "mean": 0.297528671634781,
+        "p95": 0.393999993801117
+      },
+      "video_memory_bytes": 101330457.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.105919, 0.291177)]",
+      "candidate": 1,
+      "changed_cells": 0,
+      "draw_calls": 43.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.81,
+        "mean": 4.16016061452515,
+        "p95": 4.368
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 0.973999977111816,
+        "mean": 0.604410621540507,
+        "p95": 0.949000000953674
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "study_idle",
+      "pick_ms": {
+        "max": 0.212,
+        "mean": 0.0750888888888888,
+        "p95": 0.097
+      },
+      "render_cpu_ms": {
+        "max": 0.528999984264374,
+        "mean": 0.294857543086706,
+        "p95": 0.395999997854233
+      },
+      "video_memory_bytes": 101330457.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.105919, 0.291177)]",
+      "candidate": 2,
+      "changed_cells": 0,
+      "draw_calls": 43.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.105,
+        "mean": 4.16034265734266,
+        "p95": 4.452
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 0.973999977111816,
+        "mean": 0.598415386343336,
+        "p95": 0.955999970436096
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "study_idle",
+      "pick_ms": {
+        "max": 0.123,
+        "mean": 0.0745388888888889,
+        "p95": 0.101
+      },
+      "render_cpu_ms": {
+        "max": 0.51800000667572,
+        "mean": 0.288639162011913,
+        "p95": 0.375999987125397
+      },
+      "video_memory_bytes": 101330457.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.105919, 0.291177)]",
+      "candidate": 3,
+      "changed_cells": 0,
+      "draw_calls": 43.0,
+      "edit_ms": {
+        "max": 0.0,
+        "mean": 0.0,
+        "p95": 0.0
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 4.731,
+        "mean": 4.158194092827,
+        "p95": 4.408
+      },
+      "frames": 711,
+      "gpu_ms": {
+        "max": 0.992999970912933,
+        "mean": 0.61204078311491,
+        "p95": 0.967000007629395
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "study_idle",
+      "pick_ms": {
+        "max": 0.16,
+        "mean": 0.0762277777777777,
+        "p95": 0.103
+      },
+      "render_cpu_ms": {
+        "max": 0.561999976634979,
+        "mean": 0.294315049731279,
+        "p95": 0.372000008821487
+      },
+      "video_memory_bytes": 101330457.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 0,
+      "changed_cells": 696265,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 4.127,
+        "mean": 3.41479444444444,
+        "p95": 3.785
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "5ef0bc34a7acede22fff77c39d0b52c8ef48a813024416b709d54f6613724a96",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 8.705,
+        "mean": 4.1553487394958,
+        "p95": 7.992
+      },
+      "frames": 714,
+      "gpu_ms": {
+        "max": 1.40600001811981,
+        "mean": 0.927920172778832,
+        "p95": 1.13800001144409
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_soil",
+      "pick_ms": {
+        "max": 0.23,
+        "mean": 0.103072222222222,
+        "p95": 0.123
+      },
+      "render_cpu_ms": {
+        "max": 0.50900000333786,
+        "mean": 0.276271707996601,
+        "p95": 0.354000002145767
+      },
+      "video_memory_bytes": 92646975.0,
+      "zoom": 1,
+      "source_run": "benchmark-brush_soil.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 1,
+      "changed_cells": 696265,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 4.993,
+        "mean": 3.43643333333333,
+        "p95": 3.698
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "5ef0bc34a7acede22fff77c39d0b52c8ef48a813024416b709d54f6613724a96",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 9.528,
+        "mean": 4.15500987306065,
+        "p95": 8.051
+      },
+      "frames": 709,
+      "gpu_ms": {
+        "max": 1.32799994945526,
+        "mean": 0.955194638461421,
+        "p95": 1.15699994564056
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_soil",
+      "pick_ms": {
+        "max": 0.152,
+        "mean": 0.103311111111111,
+        "p95": 0.124
+      },
+      "render_cpu_ms": {
+        "max": 0.639999985694885,
+        "mean": 0.277366713677206,
+        "p95": 0.356000006198883
+      },
+      "video_memory_bytes": 99031263.0,
+      "zoom": 1,
+      "source_run": "benchmark-brush_soil.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 2,
+      "changed_cells": 696265,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 4.428,
+        "mean": 3.39287777777778,
+        "p95": 3.652
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "5ef0bc34a7acede22fff77c39d0b52c8ef48a813024416b709d54f6613724a96",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 8.96,
+        "mean": 4.15504067321178,
+        "p95": 7.99
+      },
+      "frames": 713,
+      "gpu_ms": {
+        "max": 1.39699995517731,
+        "mean": 1.03368022599026,
+        "p95": 1.23800003528595
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_soil",
+      "pick_ms": {
+        "max": 0.154,
+        "mean": 0.103411111111111,
+        "p95": 0.121
+      },
+      "render_cpu_ms": {
+        "max": 0.515999972820282,
+        "mean": 0.274053295711147,
+        "p95": 0.337999999523163
+      },
+      "video_memory_bytes": 101158311.0,
+      "zoom": 1,
+      "source_run": "benchmark-brush_soil.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 3,
+      "changed_cells": 696265,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 5.8,
+        "mean": 3.52170555555556,
+        "p95": 4.039
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "5ef0bc34a7acede22fff77c39d0b52c8ef48a813024416b709d54f6613724a96",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.358,
+        "mean": 4.16018016759777,
+        "p95": 8.218
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 1.40299999713898,
+        "mean": 1.04132122608869,
+        "p95": 1.24800002574921
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_soil",
+      "pick_ms": {
+        "max": 0.242,
+        "mean": 0.107311111111111,
+        "p95": 0.131
+      },
+      "render_cpu_ms": {
+        "max": 0.699999988079071,
+        "mean": 0.283459497855029,
+        "p95": 0.393999993801117
+      },
+      "video_memory_bytes": 101155167.0,
+      "zoom": 1,
+      "source_run": "benchmark-brush_soil.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.106571, 0.285099)]",
+      "candidate": 0,
+      "changed_cells": 696264,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 5.52,
+        "mean": 3.62774444444444,
+        "p95": 4.388
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "beaac9e48536973df21b97513a1a1cc8f2ae79c498e16f488c8691c8cfdce2c0",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.096,
+        "mean": 4.16023496503497,
+        "p95": 8.357
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 0.903999984264374,
+        "mean": 0.517295103139811,
+        "p95": 0.75900000333786
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_soil",
+      "pick_ms": {
+        "max": 0.252,
+        "mean": 0.111822222222222,
+        "p95": 0.15
+      },
+      "render_cpu_ms": {
+        "max": 0.680999994277954,
+        "mean": 0.293286713478449,
+        "p95": 0.423000007867813
+      },
+      "video_memory_bytes": 101155167.0,
+      "zoom": 3,
+      "source_run": "benchmark-brush_soil.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.106571, 0.285099)]",
+      "candidate": 1,
+      "changed_cells": 696264,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 5.647,
+        "mean": 3.51715,
+        "p95": 3.796
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "beaac9e48536973df21b97513a1a1cc8f2ae79c498e16f488c8691c8cfdce2c0",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.286,
+        "mean": 4.16017622377622,
+        "p95": 8.135
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 0.818000018596649,
+        "mean": 0.564812584106739,
+        "p95": 0.805000007152557
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_soil",
+      "pick_ms": {
+        "max": 0.18,
+        "mean": 0.1076,
+        "p95": 0.129
+      },
+      "render_cpu_ms": {
+        "max": 0.508000016212463,
+        "mean": 0.285609790140932,
+        "p95": 0.375
+      },
+      "video_memory_bytes": 101155167.0,
+      "zoom": 3,
+      "source_run": "benchmark-brush_soil.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.106571, 0.285099)]",
+      "candidate": 2,
+      "changed_cells": 696264,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 5.087,
+        "mean": 3.49585555555556,
+        "p95": 3.944
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "beaac9e48536973df21b97513a1a1cc8f2ae79c498e16f488c8691c8cfdce2c0",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 9.613,
+        "mean": 4.16017482517483,
+        "p95": 8.14
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 0.842999994754791,
+        "mean": 0.564413983171636,
+        "p95": 0.810000002384186
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_soil",
+      "pick_ms": {
+        "max": 0.167,
+        "mean": 0.107016666666667,
+        "p95": 0.137
+      },
+      "render_cpu_ms": {
+        "max": 0.601000010967255,
+        "mean": 0.28768251813375,
+        "p95": 0.388000011444092
+      },
+      "video_memory_bytes": 101155167.0,
+      "zoom": 3,
+      "source_run": "benchmark-brush_soil.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.106571, 0.285099)]",
+      "candidate": 3,
+      "changed_cells": 696264,
+      "draw_calls": 42.0,
+      "edit_ms": {
+        "max": 5.784,
+        "mean": 3.61258888888889,
+        "p95": 4.43
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "beaac9e48536973df21b97513a1a1cc8f2ae79c498e16f488c8691c8cfdce2c0",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.766,
+        "mean": 4.15861830985915,
+        "p95": 8.263
+      },
+      "frames": 710,
+      "gpu_ms": {
+        "max": 1.06299996376038,
+        "mean": 0.574523944586096,
+        "p95": 0.818000018596649
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_soil",
+      "pick_ms": {
+        "max": 0.278,
+        "mean": 0.111766666666667,
+        "p95": 0.145
+      },
+      "render_cpu_ms": {
+        "max": 0.712999999523163,
+        "mean": 0.29353521168232,
+        "p95": 0.41499999165535
+      },
+      "video_memory_bytes": 101155167.0,
+      "zoom": 3,
+      "source_run": "benchmark-brush_soil.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 0,
+      "changed_cells": 0,
+      "draw_calls": 44.0,
+      "edit_ms": {
+        "max": 4.39,
+        "mean": 3.59054444444445,
+        "p95": 4.146
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "ab80f3e8273ce4c96be723fefa0bd9783e0ff8b01541eedaedbcb1cb6d7a66c7",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          6.09319895567776
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 8.947,
+        "mean": 4.16018156424581,
+        "p95": 8.305
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 1.5789999961853,
+        "mean": 0.947015360663723,
+        "p95": 1.37399995326996
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_film",
+      "pick_ms": {
+        "max": 0.222,
+        "mean": 0.0666055555555555,
+        "p95": 0.087
+      },
+      "render_cpu_ms": {
+        "max": 0.611999988555908,
+        "mean": 0.290392458979977,
+        "p95": 0.398999989032745
+      },
+      "video_memory_bytes": 101334129.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 1,
+      "changed_cells": 0,
+      "draw_calls": 44.0,
+      "edit_ms": {
+        "max": 4.892,
+        "mean": 3.58789444444445,
+        "p95": 4.196
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "ab80f3e8273ce4c96be723fefa0bd9783e0ff8b01541eedaedbcb1cb6d7a66c7",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          6.09319895567776
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 9.375,
+        "mean": 4.16024929971988,
+        "p95": 8.224
+      },
+      "frames": 714,
+      "gpu_ms": {
+        "max": 1.49300003051758,
+        "mean": 0.984435573762872,
+        "p95": 1.41999995708466
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_film",
+      "pick_ms": {
+        "max": 0.133,
+        "mean": 0.0653722222222222,
+        "p95": 0.082
+      },
+      "render_cpu_ms": {
+        "max": 0.667999982833862,
+        "mean": 0.292953781825321,
+        "p95": 0.41100001335144
+      },
+      "video_memory_bytes": 101334129.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 2,
+      "changed_cells": 0,
+      "draw_calls": 44.0,
+      "edit_ms": {
+        "max": 4.477,
+        "mean": 3.57263333333333,
+        "p95": 4.149
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "ab80f3e8273ce4c96be723fefa0bd9783e0ff8b01541eedaedbcb1cb6d7a66c7",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          6.09319895567776
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 9.007,
+        "mean": 4.16018296089386,
+        "p95": 8.276
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 1.60599994659424,
+        "mean": 1.08588826656342,
+        "p95": 1.44900000095367
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_film",
+      "pick_ms": {
+        "max": 0.163,
+        "mean": 0.0675722222222222,
+        "p95": 0.099
+      },
+      "render_cpu_ms": {
+        "max": 0.592999994754791,
+        "mean": 0.29290223529552,
+        "p95": 0.400999993085861
+      },
+      "video_memory_bytes": 101334129.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 3,
+      "changed_cells": 0,
+      "draw_calls": 44.0,
+      "edit_ms": {
+        "max": 4.496,
+        "mean": 3.54643888888889,
+        "p95": 4.012
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "ab80f3e8273ce4c96be723fefa0bd9783e0ff8b01541eedaedbcb1cb6d7a66c7",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          6.09319895567776
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 8.89,
+        "mean": 4.16017482517482,
+        "p95": 8.18
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.67299997806549,
+        "mean": 1.1045398615457,
+        "p95": 1.47399997711182
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_film",
+      "pick_ms": {
+        "max": 0.167,
+        "mean": 0.0653222222222222,
+        "p95": 0.085
+      },
+      "render_cpu_ms": {
+        "max": 0.538999974727631,
+        "mean": 0.285850350006477,
+        "p95": 0.375999987125397
+      },
+      "video_memory_bytes": 101334129.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.180111, 3.109931, 0.253032)]",
+      "candidate": 0,
+      "changed_cells": 0,
+      "draw_calls": 44.0,
+      "edit_ms": {
+        "max": 5.008,
+        "mean": 3.65629444444444,
+        "p95": 4.262
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "ab80f3e8273ce4c96be723fefa0bd9783e0ff8b01541eedaedbcb1cb6d7a66c7",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          6.0931997687859
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 9.499,
+        "mean": 4.16017062937063,
+        "p95": 8.339
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.01300001144409,
+        "mean": 0.510928670009533,
+        "p95": 0.667999982833862
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_film",
+      "pick_ms": {
+        "max": 0.211,
+        "mean": 0.0702333333333334,
+        "p95": 0.095
+      },
+      "render_cpu_ms": {
+        "max": 0.66100001335144,
+        "mean": 0.303611188835197,
+        "p95": 0.442999988794327
+      },
+      "video_memory_bytes": 101334129.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.180111, 3.109931, 0.253032)]",
+      "candidate": 1,
+      "changed_cells": 0,
+      "draw_calls": 44.0,
+      "edit_ms": {
+        "max": 5.402,
+        "mean": 3.67003888888889,
+        "p95": 4.177
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "ab80f3e8273ce4c96be723fefa0bd9783e0ff8b01541eedaedbcb1cb6d7a66c7",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          6.0931997687859
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.12,
+        "mean": 4.15536197183099,
+        "p95": 8.304
+      },
+      "frames": 710,
+      "gpu_ms": {
+        "max": 1.15900003910065,
+        "mean": 0.566019715725536,
+        "p95": 0.722000002861023
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_film",
+      "pick_ms": {
+        "max": 0.18,
+        "mean": 0.0714888888888888,
+        "p95": 0.115
+      },
+      "render_cpu_ms": {
+        "max": 0.735000014305115,
+        "mean": 0.308253521629622,
+        "p95": 0.449000000953674
+      },
+      "video_memory_bytes": 101334129.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.180111, 3.109931, 0.253032)]",
+      "candidate": 2,
+      "changed_cells": 0,
+      "draw_calls": 44.0,
+      "edit_ms": {
+        "max": 5.031,
+        "mean": 3.59913333333333,
+        "p95": 4.352
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "ab80f3e8273ce4c96be723fefa0bd9783e0ff8b01541eedaedbcb1cb6d7a66c7",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          6.0931997687859
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 9.801,
+        "mean": 4.15500281293952,
+        "p95": 8.346
+      },
+      "frames": 711,
+      "gpu_ms": {
+        "max": 1.16799998283386,
+        "mean": 0.577904364311578,
+        "p95": 0.732999980449677
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_film",
+      "pick_ms": {
+        "max": 0.182,
+        "mean": 0.0679388888888889,
+        "p95": 0.091
+      },
+      "render_cpu_ms": {
+        "max": 0.675999999046326,
+        "mean": 0.297471167899553,
+        "p95": 0.416000008583069
+      },
+      "video_memory_bytes": 101334129.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.180111, 3.109931, 0.253032)]",
+      "candidate": 3,
+      "changed_cells": 0,
+      "draw_calls": 44.0,
+      "edit_ms": {
+        "max": 4.418,
+        "mean": 3.60321666666667,
+        "p95": 4.167
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "ab80f3e8273ce4c96be723fefa0bd9783e0ff8b01541eedaedbcb1cb6d7a66c7",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          6.0931997687859
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 8.894,
+        "mean": 4.16017202797202,
+        "p95": 8.278
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.15400004386902,
+        "mean": 0.587341258909319,
+        "p95": 0.744000017642975
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "brush_film",
+      "pick_ms": {
+        "max": 0.175,
+        "mean": 0.0688166666666666,
+        "p95": 0.101
+      },
+      "render_cpu_ms": {
+        "max": 0.651000022888184,
+        "mean": 0.289521678990417,
+        "p95": 0.397000014781952
+      },
+      "video_memory_bytes": 101334129.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 0,
+      "changed_cells": 6216,
+      "draw_calls": 34.0,
+      "edit_ms": {
+        "max": 5.537,
+        "mean": 0.394894444444444,
+        "p95": 5.007
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 55,
+        "dust": "33541f58827a6b329faeef909950c8d7498b94193212200b5186b350ce85aae6",
+        "exposed": "11d87d75dc3852c980e92f930b615e05b68a92d1cdfb51c7ae46ee661d128b03",
+        "film": "518317526ff552b8495e4c8ddc2d77eff50705c13676ea6f9dde4dc6847acdc5",
+        "fracture": "c1d2254fb2090e58808e86f0c0e662964a58f3461aa25e772714b391b81fc6b9",
+        "height": "dca98e4227941ea5139f78731b4bdec95d723d109d20dc5bf5cfec7a0b9fb079",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.436,
+        "mean": 4.16017482517483,
+        "p95": 4.698
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.39100003242493,
+        "mean": 0.918194410767589,
+        "p95": 1.07000005245209
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "chisel",
+      "pick_ms": {
+        "max": 0.183,
+        "mean": 0.0693722222222223,
+        "p95": 0.121
+      },
+      "render_cpu_ms": {
+        "max": 4.94700002670288,
+        "mean": 0.295141259523538,
+        "p95": 0.363999992609024
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 1,
+      "changed_cells": 6216,
+      "draw_calls": 34.0,
+      "edit_ms": {
+        "max": 5.445,
+        "mean": 0.394105555555555,
+        "p95": 5.055
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 55,
+        "dust": "33541f58827a6b329faeef909950c8d7498b94193212200b5186b350ce85aae6",
+        "exposed": "11d87d75dc3852c980e92f930b615e05b68a92d1cdfb51c7ae46ee661d128b03",
+        "film": "518317526ff552b8495e4c8ddc2d77eff50705c13676ea6f9dde4dc6847acdc5",
+        "fracture": "c1d2254fb2090e58808e86f0c0e662964a58f3461aa25e772714b391b81fc6b9",
+        "height": "dca98e4227941ea5139f78731b4bdec95d723d109d20dc5bf5cfec7a0b9fb079",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.375,
+        "mean": 4.16017062937063,
+        "p95": 4.706
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.53600001335144,
+        "mean": 0.957367830593269,
+        "p95": 1.38800001144409
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "chisel",
+      "pick_ms": {
+        "max": 0.16,
+        "mean": 0.0705166666666667,
+        "p95": 0.123
+      },
+      "render_cpu_ms": {
+        "max": 0.601000010967255,
+        "mean": 0.29428111990015,
+        "p95": 0.381999999284744
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 2,
+      "changed_cells": 6216,
+      "draw_calls": 34.0,
+      "edit_ms": {
+        "max": 6.247,
+        "mean": 0.402988888888889,
+        "p95": 5.013
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 55,
+        "dust": "33541f58827a6b329faeef909950c8d7498b94193212200b5186b350ce85aae6",
+        "exposed": "11d87d75dc3852c980e92f930b615e05b68a92d1cdfb51c7ae46ee661d128b03",
+        "film": "518317526ff552b8495e4c8ddc2d77eff50705c13676ea6f9dde4dc6847acdc5",
+        "fracture": "c1d2254fb2090e58808e86f0c0e662964a58f3461aa25e772714b391b81fc6b9",
+        "height": "dca98e4227941ea5139f78731b4bdec95d723d109d20dc5bf5cfec7a0b9fb079",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 11.164,
+        "mean": 4.15518960674158,
+        "p95": 4.714
+      },
+      "frames": 712,
+      "gpu_ms": {
+        "max": 1.60800004005432,
+        "mean": 1.04009550257345,
+        "p95": 1.47800004482269
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "chisel",
+      "pick_ms": {
+        "max": 0.159,
+        "mean": 0.0693555555555556,
+        "p95": 0.119
+      },
+      "render_cpu_ms": {
+        "max": 0.609000027179718,
+        "mean": 0.289664325984509,
+        "p95": 0.388999998569489
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 3,
+      "changed_cells": 6216,
+      "draw_calls": 34.0,
+      "edit_ms": {
+        "max": 5.93,
+        "mean": 0.398133333333333,
+        "p95": 4.958
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 55,
+        "dust": "33541f58827a6b329faeef909950c8d7498b94193212200b5186b350ce85aae6",
+        "exposed": "11d87d75dc3852c980e92f930b615e05b68a92d1cdfb51c7ae46ee661d128b03",
+        "film": "518317526ff552b8495e4c8ddc2d77eff50705c13676ea6f9dde4dc6847acdc5",
+        "fracture": "c1d2254fb2090e58808e86f0c0e662964a58f3461aa25e772714b391b81fc6b9",
+        "height": "dca98e4227941ea5139f78731b4bdec95d723d109d20dc5bf5cfec7a0b9fb079",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.777,
+        "mean": 4.15507876230662,
+        "p95": 4.714
+      },
+      "frames": 711,
+      "gpu_ms": {
+        "max": 1.59700000286102,
+        "mean": 1.05722504208695,
+        "p95": 1.49100005626678
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "chisel",
+      "pick_ms": {
+        "max": 0.227,
+        "mean": 0.0697555555555556,
+        "p95": 0.12
+      },
+      "render_cpu_ms": {
+        "max": 0.527999997138977,
+        "mean": 0.288777777623862,
+        "p95": 0.381000012159348
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.10627, 0.288047)]",
+      "candidate": 0,
+      "changed_cells": 6216,
+      "draw_calls": 34.0,
+      "edit_ms": {
+        "max": 5.772,
+        "mean": 0.40145,
+        "p95": 5.021
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 55,
+        "dust": "33541f58827a6b329faeef909950c8d7498b94193212200b5186b350ce85aae6",
+        "exposed": "11d87d75dc3852c980e92f930b615e05b68a92d1cdfb51c7ae46ee661d128b03",
+        "film": "518317526ff552b8495e4c8ddc2d77eff50705c13676ea6f9dde4dc6847acdc5",
+        "fracture": "c1d2254fb2090e58808e86f0c0e662964a58f3461aa25e772714b391b81fc6b9",
+        "height": "dca98e4227941ea5139f78731b4bdec95d723d109d20dc5bf5cfec7a0b9fb079",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.786,
+        "mean": 4.16016783216783,
+        "p95": 4.732
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 0.916999995708466,
+        "mean": 0.509391607938113,
+        "p95": 0.662999987602234
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "chisel",
+      "pick_ms": {
+        "max": 0.162,
+        "mean": 0.0723388888888889,
+        "p95": 0.124
+      },
+      "render_cpu_ms": {
+        "max": 0.518999993801117,
+        "mean": 0.293869930255663,
+        "p95": 0.372999995946884
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.10627, 0.288047)]",
+      "candidate": 1,
+      "changed_cells": 6216,
+      "draw_calls": 34.0,
+      "edit_ms": {
+        "max": 5.524,
+        "mean": 0.399688888888889,
+        "p95": 5.058
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 55,
+        "dust": "33541f58827a6b329faeef909950c8d7498b94193212200b5186b350ce85aae6",
+        "exposed": "11d87d75dc3852c980e92f930b615e05b68a92d1cdfb51c7ae46ee661d128b03",
+        "film": "518317526ff552b8495e4c8ddc2d77eff50705c13676ea6f9dde4dc6847acdc5",
+        "fracture": "c1d2254fb2090e58808e86f0c0e662964a58f3461aa25e772714b391b81fc6b9",
+        "height": "dca98e4227941ea5139f78731b4bdec95d723d109d20dc5bf5cfec7a0b9fb079",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.508,
+        "mean": 4.16017062937063,
+        "p95": 4.715
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.10699999332428,
+        "mean": 0.561186018690363,
+        "p95": 0.718999981880188
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "chisel",
+      "pick_ms": {
+        "max": 0.188,
+        "mean": 0.0702666666666666,
+        "p95": 0.127
+      },
+      "render_cpu_ms": {
+        "max": 0.507000029087067,
+        "mean": 0.289848950901232,
+        "p95": 0.368000000715256
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.10627, 0.288047)]",
+      "candidate": 2,
+      "changed_cells": 6216,
+      "draw_calls": 34.0,
+      "edit_ms": {
+        "max": 6.295,
+        "mean": 0.40115,
+        "p95": 4.969
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 55,
+        "dust": "33541f58827a6b329faeef909950c8d7498b94193212200b5186b350ce85aae6",
+        "exposed": "11d87d75dc3852c980e92f930b615e05b68a92d1cdfb51c7ae46ee661d128b03",
+        "film": "518317526ff552b8495e4c8ddc2d77eff50705c13676ea6f9dde4dc6847acdc5",
+        "fracture": "c1d2254fb2090e58808e86f0c0e662964a58f3461aa25e772714b391b81fc6b9",
+        "height": "dca98e4227941ea5139f78731b4bdec95d723d109d20dc5bf5cfec7a0b9fb079",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 11.343,
+        "mean": 4.16017342657343,
+        "p95": 4.715
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.067999958992,
+        "mean": 0.564328676087039,
+        "p95": 0.722000002861023
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "chisel",
+      "pick_ms": {
+        "max": 0.192,
+        "mean": 0.0699777777777778,
+        "p95": 0.124
+      },
+      "render_cpu_ms": {
+        "max": 0.577000021934509,
+        "mean": 0.293797203460773,
+        "p95": 0.384999990463257
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (-0.001074, 3.10627, 0.288047)]",
+      "candidate": 3,
+      "changed_cells": 6216,
+      "draw_calls": 34.0,
+      "edit_ms": {
+        "max": 5.92,
+        "mean": 0.402283333333333,
+        "p95": 5.097
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 55,
+        "dust": "33541f58827a6b329faeef909950c8d7498b94193212200b5186b350ce85aae6",
+        "exposed": "11d87d75dc3852c980e92f930b615e05b68a92d1cdfb51c7ae46ee661d128b03",
+        "film": "518317526ff552b8495e4c8ddc2d77eff50705c13676ea6f9dde4dc6847acdc5",
+        "fracture": "c1d2254fb2090e58808e86f0c0e662964a58f3461aa25e772714b391b81fc6b9",
+        "height": "dca98e4227941ea5139f78731b4bdec95d723d109d20dc5bf5cfec7a0b9fb079",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 10.876,
+        "mean": 4.160162464986,
+        "p95": 4.709
+      },
+      "frames": 714,
+      "gpu_ms": {
+        "max": 1.05299997329712,
+        "mean": 0.572549019374099,
+        "p95": 0.731000006198883
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+        "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+        "progress": [
+          false,
+          false,
+          false,
+          0,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "chisel",
+      "pick_ms": {
+        "max": 0.221,
+        "mean": 0.0694999999999999,
+        "p95": 0.122
+      },
+      "render_cpu_ms": {
+        "max": 0.503000020980835,
+        "mean": 0.290156862899369,
+        "p95": 0.356000006198883
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 0,
+      "changed_cells": 6600,
+      "draw_calls": 32.0,
+      "edit_ms": {
+        "max": 1.64,
+        "mean": 0.143711111111111,
+        "p95": 1.43
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 34,
+        "dust": "54aa50b999e119039c5d7632b1ea6bc790707ae7370e1cb78b22deb2ab13b8b3",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "153209fdad8c93bcf7220f905dd11477708e13ee29cb07e350ca49a65f2ffd30",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 6.425,
+        "mean": 4.15656417489422,
+        "p95": 4.604
+      },
+      "frames": 709,
+      "gpu_ms": {
+        "max": 1.47899997234344,
+        "mean": 0.939244001893634,
+        "p95": 1.37999999523163
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "pick",
+      "pick_ms": {
+        "max": 0.245,
+        "mean": 0.0837388888888888,
+        "p95": 0.149
+      },
+      "render_cpu_ms": {
+        "max": 0.527999997138977,
+        "mean": 0.29155994346431,
+        "p95": 0.379000008106232
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 1,
+      "changed_cells": 6600,
+      "draw_calls": 32.0,
+      "edit_ms": {
+        "max": 1.569,
+        "mean": 0.142283333333333,
+        "p95": 1.431
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 34,
+        "dust": "54aa50b999e119039c5d7632b1ea6bc790707ae7370e1cb78b22deb2ab13b8b3",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "153209fdad8c93bcf7220f905dd11477708e13ee29cb07e350ca49a65f2ffd30",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 6.417,
+        "mean": 4.16017202797203,
+        "p95": 4.597
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.54999995231628,
+        "mean": 0.96879720471122,
+        "p95": 1.40799999237061
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "pick",
+      "pick_ms": {
+        "max": 0.187,
+        "mean": 0.0847888888888888,
+        "p95": 0.15
+      },
+      "render_cpu_ms": {
+        "max": 0.638000011444092,
+        "mean": 0.294520280119422,
+        "p95": 0.381000012159348
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 2,
+      "changed_cells": 6600,
+      "draw_calls": 32.0,
+      "edit_ms": {
+        "max": 1.808,
+        "mean": 0.150772222222222,
+        "p95": 1.475
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 34,
+        "dust": "54aa50b999e119039c5d7632b1ea6bc790707ae7370e1cb78b22deb2ab13b8b3",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "153209fdad8c93bcf7220f905dd11477708e13ee29cb07e350ca49a65f2ffd30",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 6.623,
+        "mean": 4.15655196629214,
+        "p95": 4.623
+      },
+      "frames": 712,
+      "gpu_ms": {
+        "max": 1.64600002765656,
+        "mean": 1.0675603852848,
+        "p95": 1.50600004196167
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "pick",
+      "pick_ms": {
+        "max": 0.255,
+        "mean": 0.0881166666666666,
+        "p95": 0.166
+      },
+      "render_cpu_ms": {
+        "max": 0.584999978542328,
+        "mean": 0.29566292138247,
+        "p95": 0.409999996423721
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 3,
+      "changed_cells": 6600,
+      "draw_calls": 32.0,
+      "edit_ms": {
+        "max": 1.604,
+        "mean": 0.145794444444445,
+        "p95": 1.436
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 34,
+        "dust": "54aa50b999e119039c5d7632b1ea6bc790707ae7370e1cb78b22deb2ab13b8b3",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "153209fdad8c93bcf7220f905dd11477708e13ee29cb07e350ca49a65f2ffd30",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 6.407,
+        "mean": 4.16017482517482,
+        "p95": 4.605
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.65600001811981,
+        "mean": 1.0853622313146,
+        "p95": 1.51999998092651
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "pick",
+      "pick_ms": {
+        "max": 0.228,
+        "mean": 0.0854388888888888,
+        "p95": 0.15
+      },
+      "render_cpu_ms": {
+        "max": 0.522000014781952,
+        "mean": 0.293282518165928,
+        "p95": 0.379000008106232
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.152897, 3.10252, 0.323632)]",
+      "candidate": 0,
+      "changed_cells": 6600,
+      "draw_calls": 32.0,
+      "edit_ms": {
+        "max": 1.63,
+        "mean": 0.143216666666667,
+        "p95": 1.387
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 34,
+        "dust": "54aa50b999e119039c5d7632b1ea6bc790707ae7370e1cb78b22deb2ab13b8b3",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "d99728fa54c8a64c8bf9f373011968bc867dbc0177a93f09ff7b66984b5b8e05",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 6.438,
+        "mean": 4.16016923076924,
+        "p95": 4.597
+      },
+      "frames": 715,
+      "gpu_ms": {
+        "max": 1.02799999713898,
+        "mean": 0.508756642408304,
+        "p95": 0.665000021457672
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "pick",
+      "pick_ms": {
+        "max": 0.172,
+        "mean": 0.0836944444444444,
+        "p95": 0.147
+      },
+      "render_cpu_ms": {
+        "max": 0.591000020503998,
+        "mean": 0.293285314311514,
+        "p95": 0.381000012159348
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.152897, 3.10252, 0.323632)]",
+      "candidate": 1,
+      "changed_cells": 6600,
+      "draw_calls": 32.0,
+      "edit_ms": {
+        "max": 1.786,
+        "mean": 0.152738888888889,
+        "p95": 1.478
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 34,
+        "dust": "54aa50b999e119039c5d7632b1ea6bc790707ae7370e1cb78b22deb2ab13b8b3",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "d99728fa54c8a64c8bf9f373011968bc867dbc0177a93f09ff7b66984b5b8e05",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 6.787,
+        "mean": 4.15620786516854,
+        "p95": 4.665
+      },
+      "frames": 712,
+      "gpu_ms": {
+        "max": 1.2039999961853,
+        "mean": 0.564610955839077,
+        "p95": 0.72299998998642
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "pick",
+      "pick_ms": {
+        "max": 0.231,
+        "mean": 0.0928333333333333,
+        "p95": 0.159
+      },
+      "render_cpu_ms": {
+        "max": 0.708000004291534,
+        "mean": 0.302320225101508,
+        "p95": 0.41100001335144
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.152897, 3.10252, 0.323632)]",
+      "candidate": 2,
+      "changed_cells": 6600,
+      "draw_calls": 32.0,
+      "edit_ms": {
+        "max": 1.793,
+        "mean": 0.150094444444444,
+        "p95": 1.436
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 34,
+        "dust": "54aa50b999e119039c5d7632b1ea6bc790707ae7370e1cb78b22deb2ab13b8b3",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "d99728fa54c8a64c8bf9f373011968bc867dbc0177a93f09ff7b66984b5b8e05",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 6.575,
+        "mean": 4.15675070422536,
+        "p95": 4.611
+      },
+      "frames": 710,
+      "gpu_ms": {
+        "max": 1.16299998760223,
+        "mean": 0.588367609490811,
+        "p95": 0.828999996185303
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "pick",
+      "pick_ms": {
+        "max": 0.254,
+        "mean": 0.0865499999999999,
+        "p95": 0.155
+      },
+      "render_cpu_ms": {
+        "max": 0.642000019550323,
+        "mean": 0.30226619816582,
+        "p95": 0.446000009775162
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.152897, 3.10252, 0.323632)]",
+      "candidate": 3,
+      "changed_cells": 6600,
+      "draw_calls": 32.0,
+      "edit_ms": {
+        "max": 1.945,
+        "mean": 0.148205555555556,
+        "p95": 1.45
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 34,
+        "dust": "54aa50b999e119039c5d7632b1ea6bc790707ae7370e1cb78b22deb2ab13b8b3",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "d99728fa54c8a64c8bf9f373011968bc867dbc0177a93f09ff7b66984b5b8e05",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 6.747,
+        "mean": 4.16017737430167,
+        "p95": 4.613
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 1.17599999904633,
+        "mean": 0.597452508837151,
+        "p95": 0.833999991416931
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+        "film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+        "fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+        "height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+        "progress": [
+          false,
+          false,
+          false,
+          3,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "pick",
+      "pick_ms": {
+        "max": 0.21,
+        "mean": 0.0878499999999999,
+        "p95": 0.162
+      },
+      "render_cpu_ms": {
+        "max": 0.587999999523163,
+        "mean": 0.302128491808749,
+        "p95": 0.412999987602234
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 0,
+      "changed_cells": 0,
+      "draw_calls": 31.0,
+      "edit_ms": {
+        "max": 0.495,
+        "mean": 0.143011111111111,
+        "p95": 0.258
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.095,
+        "mean": 4.15737235543019,
+        "p95": 4.644
+      },
+      "frames": 709,
+      "gpu_ms": {
+        "max": 1.50600004196167,
+        "mean": 0.948916782192854,
+        "p95": 1.45700001716614
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 37,
+        "dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "blower",
+      "pick_ms": {
+        "max": 0.289,
+        "mean": 0.0681277777777778,
+        "p95": 0.09
+      },
+      "render_cpu_ms": {
+        "max": 2.73900008201599,
+        "mean": 0.299451340531092,
+        "p95": 0.382999986410141
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 1,
+      "changed_cells": 0,
+      "draw_calls": 31.0,
+      "edit_ms": {
+        "max": 0.435,
+        "mean": 0.17665,
+        "p95": 0.317
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.561,
+        "mean": 4.1582191011236,
+        "p95": 4.868
+      },
+      "frames": 712,
+      "gpu_ms": {
+        "max": 1.83899998664856,
+        "mean": 0.968990167205253,
+        "p95": 1.2039999961853
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 37,
+        "dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "blower",
+      "pick_ms": {
+        "max": 0.348,
+        "mean": 0.0881222222222222,
+        "p95": 0.13
+      },
+      "render_cpu_ms": {
+        "max": 0.873000025749207,
+        "mean": 0.346998596166292,
+        "p95": 0.517000019550323
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 2,
+      "changed_cells": 0,
+      "draw_calls": 31.0,
+      "edit_ms": {
+        "max": 0.459,
+        "mean": 0.144466666666667,
+        "p95": 0.268
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.134,
+        "mean": 4.15727605633803,
+        "p95": 4.665
+      },
+      "frames": 710,
+      "gpu_ms": {
+        "max": 1.62399995326996,
+        "mean": 1.06836619528247,
+        "p95": 1.49800002574921
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 37,
+        "dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "blower",
+      "pick_ms": {
+        "max": 0.209,
+        "mean": 0.0715777777777778,
+        "p95": 0.11
+      },
+      "render_cpu_ms": {
+        "max": 0.555000007152557,
+        "mean": 0.301340846066744,
+        "p95": 0.414000004529953
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.850000023841858,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.0, 3.103566, 0.313585)]",
+      "candidate": 3,
+      "changed_cells": 0,
+      "draw_calls": 31.0,
+      "edit_ms": {
+        "max": 0.369,
+        "mean": 0.141766666666667,
+        "p95": 0.239
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.114,
+        "mean": 4.15794803370786,
+        "p95": 4.653
+      },
+      "frames": 712,
+      "gpu_ms": {
+        "max": 1.63800001144409,
+        "mean": 1.09381179729204,
+        "p95": 1.51999998092651
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 37,
+        "dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "blower",
+      "pick_ms": {
+        "max": 0.148,
+        "mean": 0.0693444444444444,
+        "p95": 0.104
+      },
+      "render_cpu_ms": {
+        "max": 0.606000006198883,
+        "mean": 0.297113764403241,
+        "p95": 0.38400000333786
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 1,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.152181, 3.113139, 0.222691)]",
+      "candidate": 0,
+      "changed_cells": 0,
+      "draw_calls": 31.0,
+      "edit_ms": {
+        "max": 0.362,
+        "mean": 0.140288888888889,
+        "p95": 0.237
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.202,
+        "mean": 4.16019107391911,
+        "p95": 4.635
+      },
+      "frames": 717,
+      "gpu_ms": {
+        "max": 1.08399999141693,
+        "mean": 0.515485354131568,
+        "p95": 0.675999999046326
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 37,
+        "dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "blower",
+      "pick_ms": {
+        "max": 0.121,
+        "mean": 0.0684833333333333,
+        "p95": 0.089
+      },
+      "render_cpu_ms": {
+        "max": 0.518999993801117,
+        "mean": 0.297794978842243,
+        "p95": 0.381000012159348
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.152181, 3.113139, 0.222691)]",
+      "candidate": 1,
+      "changed_cells": 0,
+      "draw_calls": 31.0,
+      "edit_ms": {
+        "max": 0.363,
+        "mean": 0.139305555555556,
+        "p95": 0.27
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.103,
+        "mean": 4.15795211267606,
+        "p95": 4.647
+      },
+      "frames": 710,
+      "gpu_ms": {
+        "max": 1.06200003623962,
+        "mean": 0.56890986461035,
+        "p95": 0.72299998998642
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 37,
+        "dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "blower",
+      "pick_ms": {
+        "max": 0.191,
+        "mean": 0.0682722222222222,
+        "p95": 0.09
+      },
+      "render_cpu_ms": {
+        "max": 0.524999976158142,
+        "mean": 0.297700000816668,
+        "p95": 0.398999989032745
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.152181, 3.113139, 0.222691)]",
+      "candidate": 2,
+      "changed_cells": 0,
+      "draw_calls": 31.0,
+      "edit_ms": {
+        "max": 0.436,
+        "mean": 0.141072222222222,
+        "p95": 0.278
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.367,
+        "mean": 4.16017877094972,
+        "p95": 4.647
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 1.15100002288818,
+        "mean": 0.573677378410068,
+        "p95": 0.727999985218048
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 37,
+        "dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "blower",
+      "pick_ms": {
+        "max": 0.176,
+        "mean": 0.0688333333333334,
+        "p95": 0.092
+      },
+      "render_cpu_ms": {
+        "max": 0.545000016689301,
+        "mean": 0.296146648701842,
+        "p95": 0.375999987125397
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    },
+    {
+      "camera_size": 0.283333331346512,
+      "camera_transform": "[X: (1.0, 0.0, 0.0), Y: (0.0, 0.104528, -0.994522), Z: (0.0, 0.994522, 0.104528), O: (0.152181, 3.113139, 0.222691)]",
+      "candidate": 3,
+      "changed_cells": 0,
+      "draw_calls": 31.0,
+      "edit_ms": {
+        "max": 0.35,
+        "mean": 0.140077777777778,
+        "p95": 0.229
+      },
+      "final_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 0,
+        "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "frame_ms": {
+        "max": 5.24,
+        "mean": 4.16017877094973,
+        "p95": 4.69
+      },
+      "frames": 716,
+      "gpu_ms": {
+        "max": 1.19099998474121,
+        "mean": 0.592205304923004,
+        "p95": 0.748000025749207
+      },
+      "initial_state": {
+        "bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+        "condition": 100.0,
+        "crumbs": 37,
+        "dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+        "exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+        "film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+        "fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+        "height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+        "progress": [
+          false,
+          false,
+          false,
+          2,
+          0.0
+        ],
+        "protected": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+      },
+      "kind": "blower",
+      "pick_ms": {
+        "max": 0.122,
+        "mean": 0.0675444444444444,
+        "p95": 0.084
+      },
+      "render_cpu_ms": {
+        "max": 0.531000018119812,
+        "mean": 0.296747207704037,
+        "p95": 0.386000007390976
+      },
+      "video_memory_bytes": 101286767.0,
+      "zoom": 3,
+      "source_run": "benchmark-full.json"
+    }
+  ],
+  "checks": 224,
+  "failures": [],
+  "source_runs": [
+    {
+      "file": "benchmark-full.json",
+      "failures": [
+        "same benchmark final state"
+      ],
+      "superseded_workload": "brush_soil"
+    },
+    {
+      "file": "benchmark-brush_soil.json",
+      "failures": []
+    }
+  ],
+  "note": "Brush Soil replay isolates the scripted gesture from native focus cancellation. Other workloads retained verbatim. All 56 final map/progress states and camera poses match P5."
+}

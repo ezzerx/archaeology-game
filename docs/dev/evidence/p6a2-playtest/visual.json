@@ -1,0 +1,31 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"soil-before-1x.png",
+		"soil-before-no-patina.png",
+		"soil-before-3x.png",
+		"soil-after-1x.png",
+		"soil-after-no-patina.png",
+		"soil-after-3x.png",
+		"soil-part-brushed.png",
+		"soil-cleared.png",
+		"bone-prepared.png",
+		"ready-to-archive.png",
+		"keep-cleaning.png",
+		"archive.png"
+	],
+	"checks": 13,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"render": "(1920.0, 1080.0)",
+		"renderer": "gl_compatibility",
+		"window": "(1920, 1080)"
+	}
+}

@@ -1,0 +1,29 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 18,
+	"failures": [],
+	"jacket_occlusion": {
+		"occluded": 0,
+		"rays": 132
+	},
+	"picking": {
+		"rays": 48,
+		"worst_mm": 0.00000745058060580561
+	},
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "",
+		"physics_hz": 60,
+		"renderer": "gl_compatibility",
+		"viewport": [
+			1920,
+			1080
+		]
+	},
+	"static_triangles": 11790
+}

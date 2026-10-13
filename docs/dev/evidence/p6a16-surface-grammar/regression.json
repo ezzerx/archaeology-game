@@ -1,0 +1,167 @@
+{
+  "suites": [
+    {
+      "suite": "P6A16 tests",
+      "checks": 82,
+      "failures": 0
+    },
+    {
+      "suite": "P6A15 tests",
+      "checks": 64,
+      "failures": 0
+    },
+    {
+      "suite": "P6A tests",
+      "checks": 220,
+      "failures": 0
+    },
+    {
+      "suite": "P0 TESTS",
+      "checks": 45,
+      "failures": 0
+    },
+    {
+      "suite": "P1 TESTS",
+      "checks": 52,
+      "failures": 0
+    },
+    {
+      "suite": "P2 TESTS",
+      "checks": 97,
+      "failures": 0
+    },
+    {
+      "suite": "P3 TESTS",
+      "checks": 88,
+      "failures": 0
+    },
+    {
+      "suite": "P3 ZOOM TESTS",
+      "checks": 160,
+      "failures": 0
+    },
+    {
+      "suite": "P4 TESTS",
+      "checks": 72,
+      "failures": 0
+    },
+    {
+      "suite": "P4 PAN TESTS",
+      "checks": 43,
+      "failures": 0
+    },
+    {
+      "suite": "P4 AUDIO TESTS",
+      "checks": 42,
+      "failures": 0
+    },
+    {
+      "suite": "P4 COMPONENT CONTACT TESTS",
+      "checks": 72,
+      "failures": 0
+    },
+    {
+      "suite": "P4 DIRT TESTS",
+      "checks": 27,
+      "failures": 0
+    },
+    {
+      "suite": "P4 DEBRIS BUDGET TESTS",
+      "checks": 18,
+      "failures": 0
+    },
+    {
+      "suite": "P4 PICK TESTS",
+      "checks": 40,
+      "failures": 0
+    },
+    {
+      "suite": "P4 FEEDBACK TESTS",
+      "checks": 26,
+      "failures": 0
+    },
+    {
+      "suite": "P4 PROXY TESTS",
+      "checks": 737,
+      "failures": 0
+    },
+    {
+      "suite": "P4V TESTS",
+      "checks": 90,
+      "failures": 0
+    },
+    {
+      "suite": "P4V TESTS",
+      "checks": 90,
+      "failures": 0
+    },
+    {
+      "suite": "P4V EFFORT TESTS",
+      "checks": 47,
+      "failures": 0
+    },
+    {
+      "suite": "P4V12 TESTS",
+      "checks": 37,
+      "failures": 0
+    },
+    {
+      "suite": "P4V2 CRUMBS TESTS",
+      "checks": 91,
+      "failures": 0
+    },
+    {
+      "suite": "P4V2 CRUMBS TESTS",
+      "checks": 91,
+      "failures": 0
+    },
+    {
+      "suite": "P4 CLOSURE TESTS",
+      "checks": 47,
+      "failures": 0
+    },
+    {
+      "suite": "P4 MICRO TESTS",
+      "checks": 64,
+      "failures": 0
+    },
+    {
+      "suite": "p5h-tests",
+      "checks": 128,
+      "failures": 0
+    },
+    {
+      "suite": "p5-fragment-experiment",
+      "checks": 39,
+      "failures": 0
+    },
+    {
+      "suite": "P6A15 visual",
+      "checks": 24,
+      "failures": 0
+    },
+    {
+      "suite": "P6A16 benchmark",
+      "checks": 84,
+      "failures": 0
+    }
+  ],
+  "final_geometry": [
+    {
+      "suite": "P6A16 tests",
+      "checks": 83,
+      "failures": 0
+    }
+  ],
+  "graphics": [
+    {
+      "suite": "P6A16 visual",
+      "checks": 51,
+      "failures": 0
+    }
+  ],
+  "import_errors": [],
+  "export_errors": [],
+  "p0_p5_assertions_with_replays": 2243,
+  "notes": "Final geometry suite adds one direct RF-map meso residual check after the 82-check full regression. Geometry bytes unchanged; final 83/83. Visual run 51/51; benchmark 84/84. Macro-only flatness criterion explicitly updated for requested meso surface grammar; Bone/work/picking thresholds unchanged."
+}

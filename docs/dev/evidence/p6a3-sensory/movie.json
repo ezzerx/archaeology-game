@@ -1,0 +1,132 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 0,
+	"failures": [],
+	"movie_segments": [
+		{
+			"case": "brush-soil",
+			"end_frame": 147,
+			"fps": 60,
+			"sensory": false,
+			"start_frame": 7
+		},
+		{
+			"case": "brush-clay",
+			"end_frame": 348,
+			"fps": 60,
+			"sensory": false,
+			"start_frame": 208
+		},
+		{
+			"case": "chisel-clay",
+			"end_frame": 549,
+			"fps": 60,
+			"sensory": false,
+			"start_frame": 409
+		},
+		{
+			"case": "chisel-sandstone",
+			"end_frame": 750,
+			"fps": 60,
+			"sensory": false,
+			"start_frame": 610
+		},
+		{
+			"case": "pick-matrix",
+			"end_frame": 951,
+			"fps": 60,
+			"sensory": false,
+			"start_frame": 811
+		},
+		{
+			"case": "pick-near-bone",
+			"end_frame": 1152,
+			"fps": 60,
+			"sensory": false,
+			"start_frame": 1012
+		},
+		{
+			"case": "blower-debris",
+			"end_frame": 1353,
+			"fps": 60,
+			"sensory": false,
+			"start_frame": 1213
+		},
+		{
+			"case": "bone-film",
+			"end_frame": 1554,
+			"fps": 60,
+			"sensory": false,
+			"start_frame": 1414
+		},
+		{
+			"case": "brush-soil",
+			"end_frame": 1699,
+			"fps": 60,
+			"sensory": true,
+			"start_frame": 1559
+		},
+		{
+			"case": "brush-clay",
+			"end_frame": 1900,
+			"fps": 60,
+			"sensory": true,
+			"start_frame": 1760
+		},
+		{
+			"case": "chisel-clay",
+			"end_frame": 2101,
+			"fps": 60,
+			"sensory": true,
+			"start_frame": 1961
+		},
+		{
+			"case": "chisel-sandstone",
+			"end_frame": 2302,
+			"fps": 60,
+			"sensory": true,
+			"start_frame": 2162
+		},
+		{
+			"case": "pick-matrix",
+			"end_frame": 2503,
+			"fps": 60,
+			"sensory": true,
+			"start_frame": 2363
+		},
+		{
+			"case": "pick-near-bone",
+			"end_frame": 2704,
+			"fps": 60,
+			"sensory": true,
+			"start_frame": 2564
+		},
+		{
+			"case": "blower-debris",
+			"end_frame": 2905,
+			"fps": 60,
+			"sensory": true,
+			"start_frame": 2765
+		},
+		{
+			"case": "bone-film",
+			"end_frame": 3106,
+			"fps": 60,
+			"sensory": true,
+			"start_frame": 2966
+		}
+	],
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"render_size": "(1920.0, 1080.0)",
+		"renderer": "gl_compatibility",
+		"window": "(1920, 1080)"
+	}
+}

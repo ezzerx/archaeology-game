@@ -1,0 +1,5 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://scenes/p6a16_natural_matrix_lab.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/p6a/hero_patch.gd" id="2"]
+[node name="HeroPatch" instance=ExtResource("1")]
+script = ExtResource("2")

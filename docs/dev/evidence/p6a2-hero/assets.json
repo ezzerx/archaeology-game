@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-07",
+  "blender": "5.2.2 LTS",
+  "source": "tools/p6a2/build_hero_assets.py",
+  "reopened_blend_glb_byte_identical": true,
+  "glb_sha256": "acdd618c1b2f627b7d370d8eec036456ed3c8735927f624894a669c6ccad60bb",
+  "static_triangles": 11790,
+  "meshes": 5,
+  "jacket_occlusion": {
+    "occluded": 0,
+    "rays": 132
+  },
+  "data_maps_mib_including_mips": 13.333333333333334,
+  "p5_regression": {
+    "script": "tests/run_p5_tests.gd",
+    "checks": 128,
+    "failures": 0
+  },
+  "files": [
+    {
+      "path": "art/source/p6a2/meshes/b17_jacket.blend",
+      "bytes": 337066,
+      "sha256": "5b4816da6a8d934c07154217042482738af514a574295732e533b4496ffb4d0c"
+    },
+    {
+      "path": "assets/p6a2/static/b17_jacket.glb",
+      "bytes": 405984,
+      "sha256": "acdd618c1b2f627b7d370d8eec036456ed3c8735927f624894a669c6ccad60bb"
+    },
+    {
+      "path": "assets/p6a/material-atlas.png",
+      "bytes": 3097732,
+      "sha256": "87debda25f4dca3727e5cfdae3c5ea0db45e4d3eb15458b1d85c2390178ab553",
+      "pixels": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "path": "assets/p6a2/textures/bone/p6a2_bone_surface_data.png",
+      "bytes": 1365343,
+      "sha256": "23f13ccdf39150be7396c92b578ba2534647f0b45d6d3542d636731dbbbebf71",
+      "pixels": [
+        1024,
+        640
+      ]
+    },
+    {
+      "path": "assets/p6a2/textures/clay/p6a2_clay_surface_data.png",
+      "bytes": 1386821,
+      "sha256": "1604e9918cc29e89f0fd98300e810cfa9993a9f23f6a11360b4a214c10182671",
+      "pixels": [
+        1024,
+        640
+      ]
+    },
+    {
+      "path": "assets/p6a2/textures/sandstone/p6a2_sandstone_surface_data.png",
+      "bytes": 1399166,
+      "sha256": "3d67611559123fb4b7c25590fa0ac2fc1f532dad8f8997124a1027c068f27d73",
+      "pixels": [
+        1024,
+        640
+      ]
+    },
+    {
+      "path": "assets/p6a2/textures/soil/p6a2_soil_surface_data.png",
+      "bytes": 1400388,
+      "sha256": "00e5330ca36b68fa8606b90ee4d54180c1d15d7f2e3028493a841ab9bddc76b4",
+      "pixels": [
+        1024,
+        640
+      ]
+    }
+  ]
+}

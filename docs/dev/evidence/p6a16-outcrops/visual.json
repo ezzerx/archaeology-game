@@ -1,0 +1,73 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"state0-A-1x.png",
+		"start-A-1x-no-patina.png",
+		"state0-B-1x.png",
+		"start-B-1x-no-patina.png",
+		"state1-A-1x.png",
+		"matrix-A-1x-no-patina.png",
+		"state1-B-1x.png",
+		"matrix-B-1x-no-patina.png",
+		"state1-A-3x.png",
+		"matrix-A-3x-no-patina.png",
+		"state1-B-3x.png",
+		"matrix-B-3x-no-patina.png",
+		"state2-A-1x.png",
+		"state2-B-1x.png",
+		"state2-A-3x.png",
+		"state2-B-3x.png",
+		"state3-A-1x.png",
+		"state3-B-1x.png",
+		"state3-A-3x.png",
+		"state3-B-3x.png",
+		"state4-A-1x.png",
+		"state4-B-1x.png",
+		"state4-A-3x.png",
+		"state4-B-3x.png",
+		"outcrop-B-3x-no-patina.png",
+		"pocket-B-3x-no-patina.png",
+		"outcrop-B-3x-after-8-chisel-no-patina.png",
+		"outcrop-B-1x-after-8-chisel-no-patina.png",
+		"controls-B.png"
+	],
+	"checks": 50,
+	"failures": [],
+	"gpu_pick": {
+		"height_quantization_mm": 0.000389100605394765,
+		"max_error_mm": 0.00886642146233063,
+		"native_max_mm": 0.000111758708951193,
+		"native_rays": 16,
+		"raster_probes": 2,
+		"raw_max_mm": 0.0194159431881519,
+		"rays": 16639,
+		"spatial_tolerance_texels": 0.01,
+		"worst": {
+			"candidate": 0,
+			"cpu": 0.280361432363005,
+			"fixture": 3,
+			"gpu": 0.280274506662394,
+			"native": 0.280361432363005,
+			"rgb": "(0.3176, 0.7373, 0.7529, 1.0)",
+			"screen": [
+				610,
+				470
+			],
+			"zoom": 1
+		}
+	},
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"renderer": "gl_compatibility",
+		"viewport": [
+			1920,
+			1080
+		]
+	}
+}

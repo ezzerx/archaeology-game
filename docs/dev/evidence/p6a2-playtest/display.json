@@ -1,0 +1,58 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"display-1280x720.png",
+		"display-1920x1080.png",
+		"display-2560x1440.png",
+		"display-1600x1000.png",
+		"display-native-fullscreen.png"
+	],
+	"checks": 20,
+	"display": [
+		{
+			"actual_window": "(1280, 720)",
+			"logical_viewport": "(1920.0, 1080.0)",
+			"pick_errors": 0,
+			"requested": "(1280, 720)"
+		},
+		{
+			"actual_window": "(1920, 1080)",
+			"logical_viewport": "(1920.0, 1080.0)",
+			"pick_errors": 0,
+			"requested": "(1920, 1080)"
+		},
+		{
+			"actual_window": "(2560, 1440)",
+			"logical_viewport": "(1920.0, 1080.0)",
+			"pick_errors": 0,
+			"requested": "(2560, 1440)"
+		},
+		{
+			"actual_window": "(1600, 1000)",
+			"logical_viewport": "(1920.0, 1080.0)",
+			"pick_errors": 0,
+			"requested": "(1600, 1000)"
+		}
+	],
+	"failures": [],
+	"fullscreen": {
+		"image": "(2560, 1440)",
+		"logical": "(1920.0, 1080.0)",
+		"screen": "(2560, 1440)",
+		"screen_dpi": 96,
+		"screen_scale": 1.0,
+		"window": "(2560, 1440)"
+	},
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"render": "(1920.0, 1080.0)",
+		"renderer": "gl_compatibility",
+		"window": "(1920, 1080)"
+	}
+}

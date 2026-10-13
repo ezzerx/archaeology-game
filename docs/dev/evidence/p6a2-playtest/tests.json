@@ -1,0 +1,63 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 42,
+	"desk": {
+		"accessories": 2,
+		"new_lights": 0,
+		"occluded_core_rays": 0,
+		"tested_rays": 345,
+		"triangles": 2772
+	},
+	"failures": [],
+	"jacket_occlusion": {
+		"occluded": 0,
+		"points": [],
+		"rays": 132
+	},
+	"morphology": {
+		"after": {
+			"component_area_cells_p50": 2,
+			"component_area_cells_p95": 363,
+			"components": 1786,
+			"connectivity": 8,
+			"coverage": 0.183245849609375,
+			"largest_bounds_diagonal_mm": 116.685119628906,
+			"largest_component_fraction": 0.00467071533203125,
+			"largest_share_of_soil": 0.0254887919261899,
+			"max_thickness_mm": 1.64098906517029,
+			"mean_thickness_mm": 0.150944358517972,
+			"threshold_mm": 0.01
+		},
+		"before": {
+			"component_area_cells_p50": 218,
+			"component_area_cells_p95": 302318,
+			"components": 9,
+			"connectivity": 8,
+			"coverage": 0.55596923828125,
+			"largest_bounds_diagonal_mm": 1303.84045410156,
+			"largest_component_fraction": 0.461300659179687,
+			"largest_share_of_soil": 0.82972335053244,
+			"max_thickness_mm": 2.00000292062759,
+			"mean_thickness_mm": 0.719301003228429,
+			"threshold_mm": 0.01
+		}
+	},
+	"picking": {
+		"rays": 48,
+		"worst_mm": 0.00000745058060580561
+	},
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "",
+		"physics_hz": 60,
+		"render": "(1920.0, 1080.0)",
+		"renderer": "gl_compatibility",
+		"window": "(1920, 1080)"
+	},
+	"static_triangles": 6400
+}

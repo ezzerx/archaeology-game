@@ -1,0 +1,298 @@
+{
+	"benchmark": [],
+	"captures": [],
+	"checks": 220,
+	"failures": [],
+	"presets": [
+		{
+			"exposed_cells": 0,
+			"preset": 0,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "7e8b067095f4ec928d7134b0e5017d214a3ccdb2220b436091276ffbde560561",
+				"progress": [
+					false,
+					false,
+					false,
+					0,
+					0.0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 0,
+			"preset": 1,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "571ff49327820e7afd18000b942824d15ac228ddacd63eba58116b17ecaedd75",
+				"progress": [
+					false,
+					false,
+					false,
+					0,
+					0.0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 0,
+			"preset": 2,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "1cd7ba1631c029566b17ddba30a1edc9acb587898e3e76665328168f84a34500",
+				"progress": [
+					false,
+					false,
+					false,
+					0,
+					0.0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 0,
+			"preset": 3,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "83105625e1532b837b84b49d1114af8b53983f2b70c8a67cdc8ee7870abca42a",
+				"progress": [
+					false,
+					false,
+					false,
+					0,
+					0.0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 0,
+			"preset": 4,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "290025ca520d0d54f182cb905706a71ac837c9d14f1369634649114e2d04b76d",
+				"progress": [
+					false,
+					false,
+					false,
+					0,
+					0.0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 21345,
+			"preset": 5,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 37,
+				"dust": "8d99dcb40866dece5c9438807647e2b18a5c99be085f7fc8db128e82b67121f1",
+				"exposed": "f7034551b27f88de16acb7d0b3aede0edde119a392c1c216a163c5380037345f",
+				"film": "b4d5a2c4e488b860956cddb17251a632b35d94b765e1c07790dc90b2c88cd46f",
+				"fracture": "f797ef8f20dbff759f27cba6d1cfe7c7a0b4a6e331d12d5c4f13cd19f6fb372c",
+				"height": "eb47ef29560c3cf3391865ce240c92d354c34a96c545bdbb0b0028d4fbadcf01",
+				"progress": [
+					false,
+					false,
+					false,
+					2,
+					0.0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 28809,
+			"preset": 6,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+				"film": "fa213f571f7f66339ce4d5fb771972483b8b21886e3e305a9da07d5df1cb029e",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+				"progress": [
+					false,
+					false,
+					false,
+					3,
+					0.0
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 28809,
+			"preset": 7,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+				"film": "c40e9417755887abd2c182eafd575ca5013f60ce7caab39ef32aeabddb503489",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+				"progress": [
+					false,
+					false,
+					false,
+					3,
+					26.3294880304214
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 28809,
+			"preset": 8,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+				"film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+				"progress": [
+					false,
+					false,
+					false,
+					3,
+					99.9999987972481
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		},
+		{
+			"exposed_cells": 28809,
+			"preset": 9,
+			"state": {
+				"bone": "1f1b9622b3aecb19cefb3b6a3266469c5ac170cf7579a695219fdee57ad8d73e",
+				"condition": 100.0,
+				"crumbs": 0,
+				"dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+				"exposed": "24ef455a41b4740603015301bbf9fa55310546cd515d0f0b74aa5cc467fc7412",
+				"film": "c40e9417755887abd2c182eafd575ca5013f60ce7caab39ef32aeabddb503489",
+				"fracture": "c00c2710e75a550abf612c4c61dbc852ae01778d81addc8f7b232f8ca9c4b0f8",
+				"height": "e768b51ae99f6d7921c9fcacffc300cfa62b2cd4bf4302475e7ad524fdb0c29a",
+				"progress": [
+					false,
+					false,
+					false,
+					3,
+					26.3294880304214
+				],
+				"protected": [
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"strata": "189ff3573bf91c0c7742cd76d4d5e3b45e08f198d8302de1821c35059e9b06c9"
+			}
+		}
+	]
+}

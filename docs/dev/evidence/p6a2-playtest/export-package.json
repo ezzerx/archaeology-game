@@ -1,0 +1,32 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "export_template": "4.7.2.stable Windows x86_64 release",
+  "portable_smoke": "PASS: extracted ZIP, template=true, render + native tools + exact reset + 240 FPS cap / 60 Hz",
+  "files": [
+    {
+      "file": "ArchaeologyGame.exe",
+      "bytes": 109268480,
+      "sha256": "d34d36f3be1a6c49c56525ae86469b92e4f417ddf0b43cf00dd80c385c4b0562"
+    },
+    {
+      "file": "ArchaeologyGame.pck",
+      "bytes": 17235604,
+      "sha256": "c014cdf059361cb399a714bacdbb821012eaa2a691eb00997a665dc934f39602"
+    },
+    {
+      "file": "LISEZ-MOI.txt",
+      "bytes": 1521,
+      "sha256": "171427b1f633c762fb5548e692dc6d6c642df03d64fcce9ac6c611f1fcd5401d"
+    },
+    {
+      "file": "LICENCES.txt",
+      "bytes": 106318,
+      "sha256": "122cb7db2f02dfd424b4484c71821be73fd4badbaa266a96cf168ed28c00370f"
+    }
+  ],
+  "zip": {
+    "file": "builds/ArchaeologyGame-P6A2-Playtest-Windows.zip",
+    "bytes": 56305982,
+    "sha256": "25473df61dc05dbc2b08e98fa530f1a553932fca0c5c1b4af3e11bc109bc4e39"
+  }
+}

@@ -1,0 +1,35 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"fixture0-A-start.png",
+		"fixture0-A-brushed.png",
+		"fixture0-B-start.png",
+		"fixture0-B-brushed.png",
+		"fixture0-matrix-1x-patinatrue.png",
+		"fixture0-matrix-1x-patinafalse.png",
+		"fixture0-matrix-3x-patinatrue.png",
+		"fixture0-matrix-3x-patinafalse.png",
+		"fixture1-A-start.png",
+		"fixture1-A-brushed.png",
+		"fixture1-B-start.png",
+		"fixture1-B-brushed.png",
+		"fixture1-matrix-1x-patinatrue.png",
+		"fixture1-matrix-1x-patinafalse.png",
+		"fixture1-matrix-3x-patinatrue.png",
+		"fixture1-matrix-3x-patinafalse.png",
+		"controls-B-start.png",
+		"deposit-mask.png",
+		"bone-mask-0.png",
+		"bone-mask-1.png",
+		"bone-and-cavity.png"
+	],
+	"checks": 24,
+	"deposit_pixels": {
+		"clear": 334343,
+		"dirty": 268879,
+		"intermediate": 55978
+	},
+	"failures": [],
+	"profiles": []
+}

@@ -1,0 +1,20 @@
+{
+  "blender": "5.2.2 LTS",
+  "units": "metres",
+  "triangles": {
+    "task_lamp": 1088,
+    "brush_pot": 852,
+    "field_notebook": 832
+  },
+  "total_triangles": 2772,
+  "source": "art/source/p6a2/meshes/preparation_desk.blend",
+  "runtime": "assets/p6a2/static/preparation_desk.glb",
+  "light_origin_godot": [
+    -0.44999998807907104,
+    0.800000011920929,
+    -0.30000001192092896
+  ],
+  "new_lights": 0,
+  "accessories": 2,
+  "gameplay_authority": false
+}

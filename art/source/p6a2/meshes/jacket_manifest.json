@@ -1,0 +1,10 @@
+{
+  "blender": "5.2.2 LTS",
+  "source": "art/source/p6a2/meshes/b17_jacket.blend",
+  "source_sha256": "6e0254646d442e11bc4e671a89b7094655a6a6e6c210a5b68968d4387ceaed48",
+  "source_bytes": 262763,
+  "runtime": "assets/p6a2/static/b17_jacket.glb",
+  "runtime_sha256": "3946f0cb888507f99dc55640310909ec2e347f51189ac5091450ab7f1bafe386",
+  "runtime_bytes": 320216,
+  "export": "GLB Y-up; applied modifiers; normals, UVs, vertex colors and materials; no cameras/lights/animation"
+}

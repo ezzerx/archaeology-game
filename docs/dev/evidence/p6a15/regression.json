@@ -1,0 +1,183 @@
+{
+  "date": "2026-10-06",
+  "checks": 2243.0,
+  "failures": 0.0,
+  "suites": [
+    {
+      "suite": "p0-regression",
+      "checks": 45,
+      "failures": 0,
+      "log_sha256": "150a1ef81e6b5ab7e311a8d8831e5d50b61a7efad97de123ee8071b3caa0e4de",
+      "modified": "2026-10-06T19:19:32"
+    },
+    {
+      "suite": "p1-tests",
+      "checks": 52,
+      "failures": 0,
+      "log_sha256": "84146cf1c8261e9097557d41aab90447f3a0950f74cbf811c764e0b6062e37d6",
+      "modified": "2026-10-06T19:19:33"
+    },
+    {
+      "suite": "p2-tests",
+      "checks": 97,
+      "failures": 0,
+      "log_sha256": "3667e9f0a514e763be22fbf1fa374b1081fddbf377edc1ace93f1c9c061d0d88",
+      "modified": "2026-10-06T19:19:36"
+    },
+    {
+      "suite": "p3-tests",
+      "checks": 88,
+      "failures": 0,
+      "log_sha256": "d65b15c2dcf422521d4e7ba9848b4ce25cad536baaa94ed56d5a135b1ff1928f",
+      "modified": "2026-10-06T19:19:39"
+    },
+    {
+      "suite": "p3-zoom-tests",
+      "checks": 160,
+      "failures": 0,
+      "log_sha256": "9736f0543f4d24ba3544a60c8702372822462af608516eaa08422deb0d7bd2aa",
+      "modified": "2026-10-06T19:19:40"
+    },
+    {
+      "suite": "p4-tests",
+      "checks": 72,
+      "failures": 0,
+      "log_sha256": "77f243118af73ef8d1b5c1ff14a3d98f716a26a20951fe4f61080e1629af6f3a",
+      "modified": "2026-10-06T19:19:41"
+    },
+    {
+      "suite": "p4-pan-tests",
+      "checks": 43,
+      "failures": 0,
+      "log_sha256": "ad53f38335b8d92de6feebff859a593066377de8cb083d7e36b4b61eee4dd519",
+      "modified": "2026-10-06T19:19:42"
+    },
+    {
+      "suite": "p4-audio-tests",
+      "checks": 42,
+      "failures": 0,
+      "log_sha256": "385d8a677fc4aaf38ffbe408d4f10a058891b2ee2c808df3e9372c53471e45c9",
+      "modified": "2026-10-06T19:19:44"
+    },
+    {
+      "suite": "p4-component-contact-tests",
+      "checks": 72,
+      "failures": 0,
+      "log_sha256": "0fbb1aa2cfced32d01a29df3e46da099be75fc86c6c2f18731361ab583092ff2",
+      "modified": "2026-10-06T19:19:45"
+    },
+    {
+      "suite": "p4-dirt-tests",
+      "checks": 27,
+      "failures": 0,
+      "log_sha256": "29cd9866b5cae9eef2fb3424e4b5e1cb4e7d6023d83c6d67af60dee87fade599",
+      "modified": "2026-10-06T19:19:47"
+    },
+    {
+      "suite": "p4-debris-budget-tests",
+      "checks": 18,
+      "failures": 0,
+      "log_sha256": "74dc4f9b0e5ad3100c55e55123f1def0e83a2f2205a7039e25ebdfe9a176e5a8",
+      "modified": "2026-10-06T19:19:48"
+    },
+    {
+      "suite": "p4-pick-tests",
+      "checks": 40,
+      "failures": 0,
+      "log_sha256": "b3c2eb31e7ff8c8ffc8b4571d8328eeb7f93242486e9bd605010f7aea9cec10f",
+      "modified": "2026-10-06T19:19:49"
+    },
+    {
+      "suite": "p4-feedback-tests",
+      "checks": 26,
+      "failures": 0,
+      "log_sha256": "2232417b88929ad7e476e6a5de70807e4831b2fa0f09c1130e7d1fd142380ad4",
+      "modified": "2026-10-06T19:19:50"
+    },
+    {
+      "suite": "p4-proxy-tests",
+      "checks": 737,
+      "failures": 0,
+      "log_sha256": "872d83e106afe447521cdcea35366546c38b535a6cccdb12d27a5ffc97706e54",
+      "modified": "2026-10-06T19:19:51"
+    },
+    {
+      "suite": "p4v-tests",
+      "checks": 90,
+      "failures": 0,
+      "log_sha256": "ecf725fbdd60d096ae67c0ad3c52b0f722eaf9f27f8f535083aa46d5658b10f0",
+      "modified": "2026-10-06T19:20:00"
+    },
+    {
+      "suite": "p4v-repeat",
+      "checks": 90,
+      "failures": 0,
+      "log_sha256": "4fbb0a77d9d7b641895a0b87399db2132f7279c425c936a788b416f5c2ef9180",
+      "modified": "2026-10-06T19:20:05"
+    },
+    {
+      "suite": "p4v-effort-tests",
+      "checks": 47,
+      "failures": 0,
+      "log_sha256": "9d757033c28a4133f0813e8d5290cc4ed603941cc75c2acf63e58318088c45cd",
+      "modified": "2026-10-06T19:20:07"
+    },
+    {
+      "suite": "p4v12-tests",
+      "checks": 37,
+      "failures": 0,
+      "log_sha256": "267d9319b4fad36e8937a71cc30a60b22d660332067abe09ed7ece63da07a868",
+      "modified": "2026-10-06T19:20:09"
+    },
+    {
+      "suite": "p4v2-tests",
+      "checks": 91,
+      "failures": 0,
+      "log_sha256": "bf3892908fcbc7674081211693a161e93f3b3ef01663e794e8b7ea62d4a2ca2f",
+      "modified": "2026-10-06T19:20:14"
+    },
+    {
+      "suite": "p4v2-repeat",
+      "checks": 91,
+      "failures": 0,
+      "log_sha256": "bf3892908fcbc7674081211693a161e93f3b3ef01663e794e8b7ea62d4a2ca2f",
+      "modified": "2026-10-06T19:20:19"
+    },
+    {
+      "suite": "p4-closure-tests",
+      "checks": 47,
+      "failures": 0,
+      "log_sha256": "75554ce8b9cf539acd5a8f7e82c6056bb2c0f3d165399ac86cc1a88811c3e813",
+      "modified": "2026-10-06T19:20:22"
+    },
+    {
+      "suite": "p4-micro-tests",
+      "checks": 64,
+      "failures": 0,
+      "log_sha256": "11d0819fe7c2d552e94183762f53f721f84be67ba9f29ff13f88ad0e9f7e97a2",
+      "modified": "2026-10-06T19:20:28"
+    },
+    {
+      "suite": "p5h-tests",
+      "checks": 128,
+      "failures": 0,
+      "log_sha256": "0e6b2379e70f2a87f9c63bcd108b256e81bfd221607e858e6f85140f75590bdf",
+      "modified": "2026-10-06T19:20:32"
+    },
+    {
+      "suite": "p5-fragment-experiment",
+      "checks": 39,
+      "failures": 0,
+      "log_sha256": "786f26d5eee12c5e21ec0ec5953dc1a1b609573a101e724a8a35c78798f00385",
+      "modified": "2026-10-06T19:20:34"
+    }
+  ],
+  "extra_checks": [
+    "p1-scene",
+    "p4-proxy-cost",
+    "p4-condition",
+    "P4V cross-process 9 hashes",
+    "P4V2 cross-process replay",
+    "P6A Material Lab: 220 checks, 0 failures"
+  ]
+}

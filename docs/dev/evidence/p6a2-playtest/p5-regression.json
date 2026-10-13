@@ -1,0 +1,54 @@
+{
+	"boundary_events": [
+		2,
+		1
+	],
+	"checks": 128,
+	"coverage": {
+		"distributed85": {
+			"classification": "Likely small theropod",
+			"cleanliness": 99.9999987720376,
+			"condition": 100.0,
+			"condition_tier": "Excellent",
+			"coverage_passed": true,
+			"exposure": 85.0015484670177,
+			"fine_preparation": false,
+			"largest_hidden_cluster": 49
+		},
+		"human_failure": {
+			"classification": "Likely small theropod",
+			"cleanliness": 99.99999878772,
+			"condition": 100.0,
+			"condition_tier": "Excellent",
+			"coverage_passed": false,
+			"exposure": 95.8872716011149,
+			"fine_preparation": true,
+			"largest_hidden_cluster": 1328
+		},
+		"same_score_allowed": {
+			"classification": "Likely small theropod",
+			"cleanliness": 99.9999987721017,
+			"condition": 100.0,
+			"condition_tier": "Excellent",
+			"coverage_passed": true,
+			"exposure": 95.8872716011149,
+			"fine_preparation": true,
+			"largest_hidden_cluster": 49
+		},
+		"threshold_cells": 646
+	},
+	"failures": 0,
+	"metrics": {
+		"additional_tool_actions_after_completion": 2,
+		"cleanliness_at_archive": 99.9999987926829,
+		"cleanliness_at_completion": 97.6737473690794,
+		"condition_at_archive": 97.0,
+		"condition_at_completion": 100.0,
+		"exposure_at_archive": 99.4239702694333,
+		"exposure_at_completion": 86.0018581604212,
+		"fine_at_archive": true,
+		"fine_at_completion": false,
+		"keep_cleaning_chosen": true,
+		"time_after_completion": 0.121869
+	}
+}

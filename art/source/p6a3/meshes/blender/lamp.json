@@ -1,0 +1,54 @@
+{
+  "asset": "lamp",
+  "blender": "5.2.2 LTS",
+  "source": "art\\source\\p6a3\\meshes\\tripo\\lamp_low.glb",
+  "source_triangles": 19324,
+  "source_dimensions": [
+    0.8164368867874146,
+    0.5219727754592896,
+    0.97705078125
+  ],
+  "runtime_triangles": 19324,
+  "parts": {
+    "PreparationLampArt": 19324
+  },
+  "textures": [
+    {
+      "name": "archeo_lamp_low_p6a3_basecolor",
+      "source_dimensions": [
+        2048,
+        2048
+      ],
+      "runtime_dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "archeo_lamp_low_p6a3_normal",
+      "source_dimensions": [
+        2048,
+        2048
+      ],
+      "runtime_dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "name": "archeo_lamp_low_p6a3_rm",
+      "source_dimensions": [
+        2048,
+        2048
+      ],
+      "runtime_dimensions": [
+        1024,
+        1024
+      ]
+    }
+  ],
+  "units": "metres",
+  "axis": "Blender Z up -> Godot Y up",
+  "pivot": "source base",
+  "colliders": 0
+}

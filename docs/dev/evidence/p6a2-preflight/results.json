@@ -1,0 +1,181 @@
+{
+	"checks": [
+		{
+			"check": "reference decode 00-style-north-star.jpg",
+			"pass": true
+		},
+		{
+			"check": "reference decode 01-gameplay-target.jpg",
+			"pass": true
+		},
+		{
+			"check": "reference decode 02-material-closeup.jpg",
+			"pass": true
+		},
+		{
+			"check": "reference decode 03-closed-block.jpg",
+			"pass": true
+		},
+		{
+			"check": "reference decode 04-progression-states.jpg",
+			"pass": true
+		},
+		{
+			"check": "reference decode 05-workbench-target.jpg",
+			"pass": true
+		},
+		{
+			"check": "four authored meshes imported",
+			"pass": true
+		},
+		{
+			"check": "named body imported",
+			"pass": true
+		},
+		{
+			"check": "vertex dimensions XYZ = 200 / 50 / 100 mm",
+			"pass": true
+		},
+		{
+			"check": "parent and local translations survive axis conversion",
+			"pass": true
+		},
+		{
+			"check": "applied rotation/scale remains identity",
+			"pass": true
+		},
+		{
+			"check": "two body material slots survive",
+			"pass": true
+		},
+		{
+			"check": "material imported as StandardMaterial3D",
+			"pass": true
+		},
+		{
+			"check": "roughness survives probe_neutral",
+			"pass": true
+		},
+		{
+			"check": "material imported as StandardMaterial3D",
+			"pass": true
+		},
+		{
+			"check": "roughness survives probe_top",
+			"pass": true
+		},
+		{
+			"check": "material names retained",
+			"pass": true
+		},
+		{
+			"check": "axis orientation axis_x",
+			"pass": true
+		},
+		{
+			"check": "axis orientation axis_y",
+			"pass": true
+		},
+		{
+			"check": "axis orientation axis_z",
+			"pass": true
+		},
+		{
+			"check": "all mesh normals unit length and outward",
+			"pass": true
+		},
+		{
+			"check": "48 source triangles retained",
+			"pass": true
+		},
+		{
+			"check": "probe has no gameplay collision",
+			"pass": true
+		},
+		{
+			"check": "capture probe",
+			"pass": true
+		},
+		{
+			"check": "capture baseline-B-with-static-probe",
+			"pass": true
+		},
+		{
+			"check": "static sibling leaves heightfield, strata and Bone ceilings byte-identical",
+			"pass": true
+		},
+		{
+			"check": "working baseline B + intact thin Soil + contact patina",
+			"pass": true
+		},
+		{
+			"check": "native tools and P5 session instantiated",
+			"pass": true
+		},
+		{
+			"check": "60 Hz physics / 240 FPS cap retained",
+			"pass": true
+		},
+		{
+			"check": "capture baseline-P5",
+			"pass": true
+		},
+		{
+			"check": "normal P5 baseline opens",
+			"pass": true
+		}
+	],
+	"display": "Windows",
+	"failures": 0,
+	"godot": "4.7.2-stable (official)",
+	"measurements": {
+		"baseline_B_hashes_height_strata_ceilings": [
+			"d4cc98d3e27dded376cca650b46eab6398fbc9fefb6381aa2bcb730b4c864a29",
+			"522a1782722b9a00c371f343a04fbda8f1285698ea2513e1bcef236f31b879a2",
+			"0e3d31f280158f60d9974ee88f32e074ec773ece626a86e4a8b3ce915c3a34b9"
+		],
+		"body_culling_aabb_size_m": "(0.2, 0.05001, 0.1)",
+		"body_position_godot_m": "(0.3, 0.025, -0.2)",
+		"body_size_godot_m": "(0.2, 0.05, 0.1)",
+		"glb_sha256": "d13a6df29c02fff51f600553ddc57dfe09e7f7853c694e9b4138804750c86d33",
+		"triangles": 48
+	},
+	"references": [
+		{
+			"file": "res://docs/visual-references/p6a2/00-style-north-star.jpg",
+			"height": 576,
+			"sha256": "198242df20e164c9ad6a4e111b53e0ca2fa0c8f1591a1fcbf83ff4f1c219f79a",
+			"width": 1024
+		},
+		{
+			"file": "res://docs/visual-references/p6a2/01-gameplay-target.jpg",
+			"height": 576,
+			"sha256": "4c1a5131972af856739226dcb476b9b516618f9126e784379db6748c3c919999",
+			"width": 1024
+		},
+		{
+			"file": "res://docs/visual-references/p6a2/02-material-closeup.jpg",
+			"height": 768,
+			"sha256": "5893ead9ba22f54f3ca835e698430b34294a3c010fc2a745bc4b537123c9481e",
+			"width": 1024
+		},
+		{
+			"file": "res://docs/visual-references/p6a2/03-closed-block.jpg",
+			"height": 432,
+			"sha256": "fe20ac42f0551078d44ca7b9bebbf36ba897f471f98e326af86dbd8a9075737a",
+			"width": 768
+		},
+		{
+			"file": "res://docs/visual-references/p6a2/04-progression-states.jpg",
+			"height": 432,
+			"sha256": "de0525bf7c2fd4ea9c6679b90efd419bd72c5d972ab953b11b9aaa06efffc640",
+			"width": 768
+		},
+		{
+			"file": "res://docs/visual-references/p6a2/05-workbench-target.jpg",
+			"height": 360,
+			"sha256": "b8d1459366e06086cbf12065593b9442ac2e69cc9bb9fa24e22afd043689e63a",
+			"width": 640
+		}
+	]
+}

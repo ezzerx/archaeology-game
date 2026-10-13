@@ -41,6 +41,25 @@ The system should produce blocks that are:
 
 The player should learn to identify materials and choose tools, not learn a fixed timer/depth script.
 
+### Material Column / multi-slot stratigraphy — architecture under evaluation
+
+A future architecture **might** represent N vertically ordered material slots,
+each with a continuous bottom height and per-cell material ID. This could support
+pinched lenses, local inclusions and materials that vary by position/depth without
+abandoning the existing single editable heightfield per cell.
+
+However, N≈5–6 and the representation are **not selected**. Today's code
+assumes three strata throughout CPU tool integration, fracture, debris, audio,
+shader/Patina and quality gates. The structural rewrite is high-risk and belongs
+in the post-core variability work, not in P6A polish.
+
+First test authored multi-block variation using the current three material roles.
+Only if vertically repeated material changes clearly improve play should the
+isolated column refactor be authorized, with frozen P5/P6 regressions and effort
+budget/performance checks.
+
+Full static code review: [Material Column feasibility review](dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md).
+
 ### Block silhouette / prepared-block identity — direction to test
 
 Beyond internal stratigraphy, future specimens should test **different outer block/jacket silhouettes** so every preparation does not begin from the same perfect rectangle. Preferred first approach: preserve a readable/controlled work surface and vary the visible outer mass — compact, elongated, chipped, asymmetric, plaster-jacketed, etc. This is a direction to prototype, not a requirement to move immediately to fully free-form excavation geometry.
@@ -225,3 +244,124 @@ First validate:
 4. visual direction / production pipeline.
 
 Then design replayability and long-term progression with dedicated prototypes.
+
+## 9. Mastery achievements as an in-world museum room — concept to study
+
+**Status:** future meta-design idea captured for later workshop; not active P6A scope and not yet a locked production system.
+
+Preferred direction to explore:
+- avoid requiring a separate global "Hardcore" mode just to create high-skill play;
+- keep the normal/cozy game fully playable as-is;
+- layer **optional mastery conditions** onto normal preparation so players who want challenge can self-select harder goals.
+
+Examples of meaningful mastery conditions:
+- 95/95 preparation plus **Excellent** Condition;
+- no Bone damage / pristine preparation;
+- precision-focused constraints tied to careful tool use;
+- specimen-specific mastery goals;
+- other challenges that reward skill and care rather than extra grind or simply spending longer.
+
+The goal is to let the same preparation systems support two readings:
+- relaxed/cozy completion for players who want it;
+- high-precision mastery for players who enjoy pushing the mechanics.
+
+### Physical achievement room / gallery
+
+A strong museum-facing presentation idea is to make achievements **diegetic and visible in the museum**, rather than only a menu list.
+
+Concept:
+- a small achievement/mastery room, gallery or side space in the museum;
+- earned achievements appear as physical display objects;
+- locked achievements still have visible placeholders so the player can imagine the completed room and feel motivated to pursue them;
+- presentation could use medals, old preparation tools, museum plaques, certificates, decorative scientific trophies, small symbolic specimen displays, framed awards, or similar objects;
+- empty mounts, silhouettes, plaques or display cases can communicate missing achievements without turning the space into a generic checklist.
+
+This creates a visual completion fantasy:
+> the player can literally see the room filling with evidence of their mastery.
+
+Some achievements could be semi-secret / easter-egg-like:
+- only a suggestive title, plaque, silhouette or clue is visible before unlock;
+- discovery should feel playful, not obscure or punitive.
+
+### Design guardrails
+
+- Do not lock core fossils, story or essential museum content behind mastery achievements.
+- Rewards should mainly be prestige, visible museum completion, decoration/cosmetics or optional recognition.
+- Prefer a smaller set of **meaningful** achievements over dozens of trivial counters.
+- Avoid grind achievements such as "use Brush 500 times" unless they genuinely represent an interesting behavior.
+- Success conditions should reward precision, care, discovery or mastery of the preparation system.
+- A later "Expert Contract" or explicit hardcore challenge layer can still be explored if the player base wants more, but it is not required for this concept to work.
+
+This idea should be revisited during the future **Macro Game Design / Museum & long-term motivation** workshop, after the current core visual/playtest work is stable.
+
+
+
+## 10. Sensory polish, tool identity and pacing — future production directions
+
+**Status:** product-quality directions surfaced by the first convincing friend-playtest-quality Hero build. Not active implementation scope unless explicitly authorized.
+
+### Tool visual identity
+
+The current Brush / Chisel / Blower / Pick models still read as prototype/dev tools. Future art production should give each one a coherent Archeo preparation-workbench identity:
+- believable paleontology/preparation form language;
+- readable silhouette at gameplay scale;
+- warm, handcrafted / professional museum-lab character;
+- visual hierarchy that makes tools feel like objects the player enjoys using, not debug gizmos.
+
+### Satisfying tactile Foley as a quality pillar
+
+Audio should be treated as a major contributor to satisfaction. The earlier word
+"ASMR" described the desired **satisfaction/detail**, not the literal aesthetic.
+
+Target:
+- realistic, close, tactile, material-specific brushing/scraping/chipping/blowing Foley;
+- satisfying short transients and believable material response;
+- strong differentiation between Soil, Clay, Sandstone and Bone interactions;
+- layered variation so repeated actions do not sound mechanically looped;
+- careful balance so the experience stays cozy rather than fatiguing;
+- restrained preparation music that supports focus while keeping tool/material
+  sounds in the foreground.
+
+This deserves a dedicated Sound Design & Music pass instead of being left as
+end-of-project garnish.
+
+### Non-destructive material response
+
+Even when an action does not remove the contacted material, the game can still acknowledge the touch visually/audio-visually.
+
+Example to prototype later:
+- Brush on Clay: no structural excavation, but a tiny local colored dust/powder puff or subtle residue response.
+
+Design intent:
+> preserve the tool rule while making the world feel reactive.
+
+This is best thought of as **material reactivity / game feel / juice**, not persistence.
+
+### Interactive task light as relief-reading mechanic
+
+Friend playtest feedback suggests that a fixed light direction can make some
+cavities and relief harder to read. Explore a future dedicated spike where the
+player can reposition/orient the preparation lamp and intentionally change shadow
+direction to inspect the specimen.
+
+Design goals:
+- improve reading of crevices, steps and shallow relief;
+- keep manipulation simple and bounded rather than fiddly;
+- preserve the cozy task-light art direction;
+- use the visible workbench lamp as the natural interaction affordance if viable;
+- test whether this creates meaningful preparation skill rather than mere settings UI.
+
+Do not turn this into a required mechanic until a focused human playtest proves
+that moving the light is useful and pleasant.
+
+### Pacing and possible higher-power tool
+
+Current playtest feedback: overall excavation can feel somewhat slow.
+
+Decision order:
+1. first address pacing through P7 fine tuning of existing timings/effort;
+2. do not add an extra tool merely to hide poor tuning;
+3. if a satisfying pace still requires another layer, explore a **higher-power excavation tool** with meaningful trade-offs (higher risk, lower precision, stronger debris/damage potential, limited safe use near Bone, etc.);
+4. in that model, Chisel can become the middle tool between safe/fine work and fast/risky removal.
+
+Any such tool must create a new decision, not just be “Chisel but faster.”

@@ -1,0 +1,53 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"full-block-directional-debug.png",
+		"full-block-task-light.png",
+		"baseline-reset.png",
+		"hero-reset.png",
+		"hero-reset-3x.png",
+		"baseline-part-brushed.png",
+		"hero-part-brushed.png",
+		"hero-part-brushed-3x.png",
+		"baseline-excavated.png",
+		"hero-excavated.png",
+		"hero-excavated-3x.png",
+		"baseline-dirty-bone.png",
+		"hero-dirty-bone.png",
+		"hero-dirty-bone-3x.png",
+		"baseline-cleaner-bone.png",
+		"hero-cleaner-bone.png",
+		"hero-cleaner-bone-3x.png",
+		"hero-stone-interface-3x.png",
+		"hero-jacket-integration-3x.png",
+		"clay-source-3x.png",
+		"sandstone-source-3x.png",
+		"bone-film-dirty-3x.png",
+		"bone-film-clean-3x.png",
+		"full-block-overview-task.png",
+		"full-block-overview-directional.png"
+	],
+	"checks": 35,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+		"engine": "4.7.2-stable (official)",
+		"fps_cap": 240,
+		"gpu": "NVIDIA GeForce RTX 5080",
+		"physics_hz": 60,
+		"renderer": "gl_compatibility",
+		"viewport": [
+			1920,
+			1080
+		]
+	},
+	"shadow_refresh": {
+		"max_rgb_error": 0.0,
+		"mean_rgb_error": 0.0,
+		"oracle": "new SpotLight3D after real height edit",
+		"samples": 102480
+	},
+	"stone_review_native_impacts": 504
+}
