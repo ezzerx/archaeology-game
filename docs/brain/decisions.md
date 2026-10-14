@@ -1221,3 +1221,13 @@ Antoine juge la passe P6A41 « déjà sympa pour le moment » et demande la suit
 Conserver cette référence pour avancer, sans prolonger spontanément le polissage
 des bords. La prochaine étape doit être proposée puis choisie ; ce retour ne
 vaut pas GO pour la variabilité, un catalogue ou une fusion.
+
+
+## 2026-10-14 — GO essai de trois géologies B-17
+
+Antoine autorise les trois préparations proposées avec B-17, outils et interactions
+validés conservés. La variation doit porter sur la manière de fouiller, sans être
+une simple augmentation de durée. Tester d’abord des profils façonnés avec les
+matériaux actuels ; conserver les plafonds et la source du même spécimen pour
+isoler la géologie. Le rapport P6A42 garde budgets, parcours et limites ; le
+verdict humain décidera si les accès changent réellement les choix du joueur.

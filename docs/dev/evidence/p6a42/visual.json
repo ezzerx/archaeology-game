@@ -1,0 +1,21 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"trial-1-intact.png",
+		"trial-1-opening.png",
+		"trial-2-intact.png",
+		"trial-2-opening.png",
+		"trial-3-intact.png",
+		"trial-3-opening.png"
+	],
+	"checks": 26,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

@@ -18,7 +18,7 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a41-rough-edges`, depuis le bloc naturel `1547364`.
+Active branch: `codex/p6a42-three-blocks`, depuis la référence de bords bruts `da3fc2f`.
 PR courante : **#15 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/15,
 basée sur main et incluant le bloc naturel, le contour corrigé et la lumière
 centrée. #14 est fermée car remplacée par cette passe complète. #12/#13 fermées.
@@ -58,18 +58,15 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A4.1 — passe de bords bruts autorisée par Antoine le 2026-10-14.**
-Retour P6A40 : silhouette irrégulière bien meilleure, mais flancs/arête trop nets,
-aspect disqueuse. GO pour cassures de tailles variées, pans inclinés et matière
-plus lisible sur les flancs. Conserver squelette, domaine et interactions validés.
-Rapport actif : `docs/dev/P6A41_ROUGH_EDGES_REPORT.md`.
-Candidat : `scenes/p6a41_rough_edges.tscn`, lancement `Launch-Game.ps1`.
-**Candidat livré : 411 contrôles, zéro échec. Retour humain : « déjà sympa
-pour le moment » ; les bords bruts constituent une base acceptable pour poursuivre.
-Prochaine action : proposer la suite et attendre le choix d’Antoine ; aucun
-nouveau chantier ou merge automatique.** Correction du contour orange et
-lumière chaude centrée à conserver ; modèle de lampe hors champ de fouille.
-Pas de nouveaux matériaux/outils, musée/meta, catalogue ou N-slots. Son différé.
+**P6A4.2 — essai de trois blocs B-17 autorisé le 2026-10-14.**
+Trois géologies façonnées : découverte rapide, banc oblique, accès séparés pour
+la précision. Garder les outils/interactions, B-17, style chaud, bords naturels,
+lumière centrée et protection des os enterrés. Varier les décisions de fouille,
+sans rallonger simplement la préparation. Rapport/brief actif :
+`docs/dev/P6A42_THREE_BLOCKS_REPORT.md`. Candidat livré : 439 contrôles, zéro échec.
+Prochaine action : revue humaine des trois profils, de leurs choix de fouille
+et du rythme réel. Aucun merge automatique.
+Pas de nouveaux matériaux/outils, catalogue, musée/meta ou N-slots. Son différé.
 
 ## Livraison cloud précédente — contexte historique
 

@@ -1,0 +1,5 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://scenes/p6a41_rough_edges.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/p6a42/three_preparations.gd" id="2"]
+[node name="ThreePreparations" instance=ExtResource("1")]
+script = ExtResource("2")
