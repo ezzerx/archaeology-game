@@ -1,0 +1,111 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 218,
+	"contact": {
+		"max_gap_m": 0.0,
+		"samples": 370
+	},
+	"embedded_volume": {
+		"interior_samples": 2649,
+		"maximum_thickness_mm": 35.0,
+		"minimum_thickness_mm": 6.0,
+		"seam_cells_by_impact": [
+			665,
+			1278,
+			1343
+		],
+		"sloped_bottom_vertices": 2642,
+		"underside_error_m": 0.0000000043520703985056
+	},
+	"failures": [],
+	"footprint": {
+		"boundary_segments": 3296,
+		"lost_bone_cells": 0,
+		"outside_cells": 116925
+	},
+	"geometry": {
+		"baked_samples": 25404,
+		"misses": 0,
+		"missing_cells": [],
+		"native_joint_occlusion": 0,
+		"roof_max_error_m": 0.00000000661611557206676,
+		"triangles": 83431,
+		"winning_mesh_cells": 25404
+	},
+	"native_review_cost": {
+		"impacts": 4735,
+		"seconds": 6.030808
+	},
+	"native_skeleton_review": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999996279168,
+		"condition": 100.0,
+		"condition_tier": "Excellent",
+		"coverage_passed": true,
+		"exposure": 100.0,
+		"fine_preparation": true,
+		"largest_hidden_cluster": 0
+	},
+	"natural_art": {
+		"covered_cells": 4016,
+		"exposed_stone_cells": 6844,
+		"groove_cells": 792,
+		"mesh_cache_builds": 1,
+		"outline_points": 86
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	},
+	"shadow_geometry": {
+		"ao_min": 0.376470595598221,
+		"build_usec": 3579,
+		"max_build_usec": 3579,
+		"partial_cells": 3126,
+		"triangles": 6252,
+		"wrong_cells": 0
+	},
+	"slab": {
+		"brute_chisel_impacts": 50,
+		"changed_geology_cells": 19558,
+		"distributed_pick_impacts": 3,
+		"outcomes": [
+			{
+				"order": [
+					0,
+					1,
+					2
+				],
+				"release_usec": 18843,
+				"removed_cells": 10860,
+				"triangles": 11436
+			},
+			{
+				"order": [
+					2,
+					0,
+					1
+				],
+				"release_usec": 18517,
+				"removed_cells": 10860,
+				"triangles": 11436
+			},
+			{
+				"order": [
+					1,
+					2,
+					0
+				],
+				"release_usec": 18567,
+				"removed_cells": 10860,
+				"triangles": 11436
+			}
+		],
+		"plate_cells": 10860
+	}
+}

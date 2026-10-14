@@ -27,14 +27,17 @@ func setup(target: ExcavationBlock, shape: RefCounted) -> void:
  configure()
 func _plate_roof_at(i: int) -> float:
  return surface.strata.packed_limits[i*2]
+func _plate_floor_at(i: int, upper: float) -> float:
+ var floor := upper-.12
+ if surface.structural_ceilings[i] > 0: floor = maxf(floor,surface.structural_ceilings[i]+.01)
+ return floor
 func configure() -> void:
  reset()
  targets.clear()
  initial_volume = 0.0
  for i in layout.cells:
   var upper: float = _plate_roof_at(i)
-  var floor := upper-.12
-  if surface.structural_ceilings[i] > 0: floor = maxf(floor,surface.structural_ceilings[i]+.01)
+  var floor := _plate_floor_at(i,upper)
   assert(floor < upper,"Plate must have positive thickness above Bone")
   targets[i] = floor
   initial_volume += upper-floor

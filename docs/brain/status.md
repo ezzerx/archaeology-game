@@ -18,9 +18,10 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a45-manual-slab`, depuis `6feb48c`.
-PR courante : **#19 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/19,
-basée sur main et incluant le levier manuel au Pick, les fractures brutes, la
+Active branch: `codex/p6a46-buried-slab-volume`, depuis `7503d03`.
+PR précédente : **#19 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/19,
+une PR distincte pour P6A46 est en préparation sur la branche active. #19 inclut
+le levier manuel au Pick, les fractures brutes, la
 lumière plus uniforme et les précédents candidats de plaque/bloc naturel.
 #18 est remplacée sans fusion ; #12/#13/#14/#15/#16/#17/#18 sont fermées.
 Les scènes/branches historiques sont conservées, dont les trois géologies
@@ -60,20 +61,17 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A4.5 — GO explicite le 2026-10-14 : lumière plus uniforme, fissures plus
-brutes et retrait manuel au Pick avec un petit geste de levier.** Conserver outils,
-B-17, ambiance chaude, relief/ombres et protection des os enterrés. Rapport actif :
-`docs/dev/P6A45_MANUAL_SLAB_REPORT.md`. Candidat livré : 672 contrôles, zéro échec.
-Scène `scenes/p6a45_manual_slab.tscn`, entrée `Launch-Game.ps1`.
-Retour humain : Antoine préfère le levier manuel. L’intégration reste insuffisante :
-frontière grès/argile trop nette, influence de la plaque sur l’argile peu lisible,
-rupture périphérique attendue quand elle devient mobile, dessous/empreinte trop
-plats. Direction souhaitée : volume enfoui irrégulier et empreinte correspondante.
-Aucun nouveau verdict sur la lumière. Prochaine action : cadrer une correction
-ciblée de l’intégration et du volume en gardant le levier ; proposition dans
-l’addendum du rapport actif, sans nouveau GO d’implémentation déduit du retour.
-Aucun merge automatique ; autres mécaniques, génération de blocs, catalogue,
-musée/meta et N-slots hors périmètre. Son différé.
+**P6A4.6 — GO explicite : essai de l’intégration plaque–argile–empreinte.**
+Transition morcelée et influence de surface sur l’argile, rupture périphérique
+progressive, volume enfoui irrégulier et empreinte issue de la même forme.
+Conserver le levier préféré, les outils, B-17, lumière chaude et os enterrés
+protégés. Rapport actif : `docs/dev/P6A46_EMBEDDED_SLAB_REPORT.md`.
+Candidat livré : 729 contrôles, zéro échec. Scène `scenes/p6a46_embedded_slab.tscn`,
+entrée `Launch-Game.ps1`. Prochaine action : essai humain de la cohérence
+plaque/argile/empreinte et du levier, pour décider de retenir ou non ce système.
+Aucun merge automatique ni validation définitive déduite du GO d’essai.
+Autres mécaniques, génération de blocs, catalogue, musée/meta et N-slots hors
+périmètre. Son différé.
 
 ## Livraison cloud précédente — contexte historique
 

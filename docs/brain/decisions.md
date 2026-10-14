@@ -1324,3 +1324,17 @@ rupture autour de la plaque quand elle est prête à sortir. L’idée d’un «
 désigne un volume enfoui irrégulier avec une empreinte correspondante après retrait.
 Le rapport P6A45 conserve captures, diagnostic et proposition ; la gate du statut
 canonique conserve seule la prochaine action autorisée.
+
+
+## 2026-10-14 — GO essai de roche enchâssée pour décider du système
+
+Antoine autorise l’essai de la proposition plaque–argile–empreinte après avoir
+préféré le levier manuel. Garder ce geste, rendre la transition plus morcelée,
+faire progresser une rupture autour de la plaque et donner au volume enfoui une
+forme irrégulière dont dérivent ensemble le morceau et le creux.
+
+Le but de l’essai est de décider humainement si ce système est à retenir dans le
+jeu. Ce GO ne constitue donc pas la validation définitive, la généralisation à
+d’autres blocs ou le merge. Le rapport P6A46 garde les preuves, le modèle de volume
+et ses limites ; les autres interactions validées et les os enterrés restent
+protégés. La gate du statut canonique conserve seule la prochaine action.
