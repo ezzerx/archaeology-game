@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date:** 2026-10-08
+**Date:** 2026-10-13
 **Projet:** ArchaeologyGame (working title)  
 **Source unique du statut courant:** ce fichier. Voir aussi `docs/DOCUMENTATION_POLICY.md`.
 
@@ -18,8 +18,10 @@
 
 ## Active branch / PR
 
-Active branch: `prototype/p6a-visual-spike`  
-PR: **#9 — P6A Visual Direction / Production Spike** (DRAFT)
+Active branch: `prototype/p6a31-mastery-readability`
+PR: **#10 — P6A3.1 Mastery / Bone Readability** (DRAFT).
+
+PR #9 merged into main on 2026-10-13 at Antoine’s explicit request; merge commit `32a85ba9efc04fd508ee838d3c63252ca6b2d04f`. Latest P6A3 source included: `b91ff24bf57e76599204e9d12bd23eb6d229dbc5`.
 
 P6A-1 Material Lab is complete and human-reviewed.
 
@@ -47,6 +49,19 @@ Report on active branch:
 `docs/dev/P6A15_SOIL_REPORT.md`
 
 ## Current gate / next authorized action
+
+P6A3.1 is implemented as a candidate after Antoine’s explicit GO on 2026-10-13.
+Finish verification and collect human playtest feedback before merging it.
+Owner-private browser playtest: https://archeology-private-playtest.toitou2.chatgpt.site
+Human test 2026-10-13: Antoine tried it on his small work laptop and exited due
+to excessive lag. Browser playtesting is not usable on that machine; this does
+not validate or reject P6A3.1 game feel. Next human test should be native on the
+home reference PC. No new Web optimization phase is opened.
+Report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
+Annotated screenshot review: https://archeology-private-playtest.toitou2.chatgpt.site/review.html
+Portable Windows build: https://archeology-private-playtest.toitou2.chatgpt.site/native.html
+
+## Accepted P6A1 foundation
 
 **P6A1 est suffisamment validé humainement pour avancer vers P6A2.**
 
@@ -148,10 +163,16 @@ mais architecture NON validée / NON autorisée.** Garder la variabilité géolo
 comme direction future post-V0.1/P7, après petit test de blocs variés moins coûteux.
 Rapport d'audit : `docs/dev/MATERIAL_COLUMN_FEASIBILITY_REVIEW.md`.
 
-**Prochaine action : préparer P6A3.1 puis attendre GO humain explicite.
-Aucune implémentation supplémentaire n'est autorisée automatiquement ce soir.**
-PR #9 reste DRAFT. Aucun merge, P6B, P7, jacket/emprise ou nouveau tool gameplay
-n'est déclenché par ce playtest.
+**2026-10-13 — Antoine authorizes P6A3.1 implementation and the merge of PR #9.**
+P6A3.1 is now the active candidate: `scenes/p6a31_mastery_readability.tscn`.
+Delivery/report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
+Private browser playtesting is explicitly requested, with no game installation.
+Next action: complete/verify delivery, then collect Antoine’s human playtest verdict.
+Do not auto-merge the new P6A3.1 candidate or begin Fossil Mesh/Sound/Light phases.
+
+**Sound pipeline update:** Antoine has tested Claude and selects it instead of
+ElevenLabs for the dedicated sound phase. Current playtest audio stays unchanged;
+Claude-produced files will still be reviewed in-game for tactile/material fit.
 
 ## Marketing M1 — First Public Hook Ready (2026-10-09)
 
@@ -175,7 +196,7 @@ Non-blockers for M1: playable public demo, completed museum, several fossils, pr
 **Status: NOT YET MET.** First friend playtest is encouraging (n=3, one player chased 99→100), but not public-market validation. No viral/retention/wishlist outcome is assumed.
 
 Detailed acceptance contract: `docs/marketing/M1_FIRST_PUBLIC_HOOK_READY.md`.
-**Next implementation action remains P6A3.1 only after explicit Antoine GO.**
+**P6A3.1 GO received 2026-10-13; human review of its delivery is next.**
 
 ## P5 closure baseline
 
@@ -211,7 +232,7 @@ P6A is currently about proving the geometry + visual-production foundation befor
 - Gameplay loop: `docs/GAMEPLAY_LOOP.md`
 - Visual direction: `docs/ART_DIRECTION.md`
 - Future systems / Soil hypothesis: `docs/FUTURE_SYSTEMS.md`
-- Active P6A implementation and reports live on PR #9 / `prototype/p6a-visual-spike`.
+- P6A3 baseline is now on main; current P6A3.1 implementation lives on `prototype/p6a31-mastery-readability`.
 
 ## Source precedence
 
