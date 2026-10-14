@@ -66,10 +66,13 @@ Branche : `prototype/p6a32-fossil-mesh`, travail local non poussé.
 **Retour humain du 2026-10-14 :** Antoine valide le résultat et retient cette
 méthode pour les futurs squelettes/reliques de la collection. B-17 constitue la
 référence artistique acceptée ; adapter les matières aux futurs objets.
-**Prochaine action : proposer la suite cohérente après cette validation.**
-Recommandation à discuter : consolidation de la référence, puis passe Sound
-Design ciblée pour préparer un nouveau playtest et le jalon M1. Aucun GO Sound
-ou production du catalogue complet reçu par cette demande de recommandation.
+**GO du 2026-10-14 : publier la dernière version jouable validée sur main et
+mettre les PR/GitHub au propre.** Consolidation et vérification du lancement par
+défaut, puis intégration ordonnée des PR #10/#11. Publication en cours.
+Sound Design différé à la demande d’Antoine, crédits Claude indisponibles.
+Suite en discussion : lampe orientable, forme naturelle des blocs, variété des
+spécimens/géologies puis éventuels matériaux/outils. Aucun GO d’implémentation
+de ces nouveaux systèmes reçu dans cette demande.
 F5 inspecte les pièces ; F6 compare mesh/relief du même champ ; H propose deux
 préparations de revue avec reset annoncé, dont une au Pick natif inchangé.
 461 contrôles passent ; qualité artistique de cette extension acceptée humainement.
@@ -80,8 +83,8 @@ Périmètre limité au B-17 existant, pas de catalogue multi-spécimens.
 Ivoire chaud et ombres des seules cellules dégagées conservés. Brush sur os,
 dégâts localisés et binds validés sont inchangés, sans retuning des outils.
 La distinction 100/100 reste sans verdict humain explicite.
-Les scènes historiques restent comparables. Aucun merge automatique,
-musée/meta, Sound/Light ou P6B/P7.
+Les scènes historiques restent comparables. Merge main explicitement autorisé ;
+aucun nouveau système musée/meta, Sound/Light ou P6B/P7 autorisé.
 
 ## Livraison cloud précédente — contexte historique
 

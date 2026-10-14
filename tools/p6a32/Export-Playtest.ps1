@@ -22,7 +22,7 @@ foreach ($folder in @('scripts','scenes','config','shaders','materials','assets'
     Copy-Item -LiteralPath (Join-Path $repoRoot $folder) -Destination $stage -Recurse
 }
 $project = [System.IO.File]::ReadAllText((Join-Path $repoRoot 'project.godot'))
-$project = $project.Replace('res://scenes/prototype_main.tscn','res://scenes/p6a32_fossil_mesh.tscn')
+$project = [regex]::Replace($project, '(?m)^run/main_scene="[^"\r\n]*"', 'run/main_scene="res://scenes/p6a32_fossil_mesh.tscn"')
 $project = $project.Replace('config/name="ArchaeologyGame — P4"','config/name="ArchaeologyGame Playtest"')
 [System.IO.File]::WriteAllText((Join-Path $stage 'project.godot'),$project,[System.Text.UTF8Encoding]::new($false))
 $templatePath = $template.Replace('\','/')

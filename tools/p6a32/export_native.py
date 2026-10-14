@@ -1,4 +1,5 @@
 """Export the actual skull pilot to official Godot 4.7.2 Windows templates."""
+import re
 import argparse,hashlib,json,shutil,struct,subprocess,tempfile,zipfile
 from pathlib import Path
 
@@ -12,8 +13,8 @@ assert (templates/'version.txt').read_text().strip()=='4.7.2.stable'
 stage=Path(tempfile.mkdtemp(prefix='p6a32-native-',dir=root/'work'))
 for folder in ['scripts','scenes','config','shaders','materials','assets']:
     shutil.copytree(root/folder,stage/folder)
-project=(root/'project.godot').read_text().replace('res://scenes/prototype_main.tscn','res://scenes/p6a32_fossil_mesh.tscn').replace('config/name="ArchaeologyGame — P4"','config/name="ArchaeologyGame — B-17 Skull Pilot"')
-(stage/'project.godot').write_text(project)
+project=re.sub(r'^run/main_scene="[^"\r\n]*"', 'run/main_scene="res://scenes/p6a32_fossil_mesh.tscn"', (root/'project.godot').read_text(encoding='utf-8'), flags=re.M).replace('config/name="ArchaeologyGame — P4"','config/name="ArchaeologyGame — B-17 Skull Pilot"')
+(stage/'project.godot').write_text(project,encoding='utf-8')
 # Reuse immutable import artifacts, then let the editor verify the stage.
 cache=stage/'.godot';cache.mkdir()
 shutil.copytree(root/'.godot/imported',cache/'imported')

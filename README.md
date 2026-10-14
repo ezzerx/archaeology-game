@@ -26,6 +26,22 @@ Documentation rules:
 - desktop prototype
 - current renderer baseline: Compatibility/OpenGL unless an active visual spike proves a concrete reason to change
 
+## Run the game
+
+Open `project.godot` in Godot **4.7.2 stable** and press F6 (Run Project),
+or run `./Launch-Game.ps1` on Windows. Pass `-GodotBin` if the engine is installed
+elsewhere. The default entry point uses the modeled B-17 and starts fully buried.
+
+In game: left click works, 1–4 selects tools, wheel zooms, right drag pans,
+Home returns to overview and R restarts. F5 inspects the source model outside
+the matrix; Escape closes inspection. F6 compares mesh/relief and F7 compares
+preparation feedback. These in-game keys differ from Godot editor shortcuts.
+
+The versioned GLB and baked field are sufficient to play; Blender is only needed
+to rebuild the model. Historical scenes and dedicated comparison launchers remain
+available. See the [B-17 report](docs/dev/P6A37_SKELETON_REPORT.md) for source,
+verification and known limits; use the Brain status for the current gate.
+
 ## Validated core
 
 - fixed tabletop / near-top-down excavation
@@ -65,4 +81,4 @@ Run `./Launch-Natural-Matrix-Lab.ps1` or open
 `scenes/p6a16_natural_matrix_lab.tscn` in Godot and press F6.
 F8 compares the two substrates with the same thin Soil; F9 removes Soil for inspection.
 The [geometry report](docs/dev/P6A16_SURFACE_GRAMMAR_REPORT.md) contains the fixtures,
-measurements and human retest procedure. The normal project launch remains the P5 scene.
+measurements and human retest procedure. The normal project launch uses the entry point documented above.

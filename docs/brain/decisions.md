@@ -1106,3 +1106,15 @@ Le détail doit servir la beauté et l’intérêt de la précision, tout en res
 Préserver le langage chaleureux et les interactions ; adapter la matière aux
 objets futurs. Cette décision retient une direction de production, sans autoriser
 implicitement la fabrication immédiate du catalogue ou une nouvelle phase.
+
+
+## 2026-10-14 — Publication main autorisée, son différé
+
+Antoine demande explicitement la mise à jour de GitHub et la publication de la
+dernière version jouable validée sur main. Consolider le lancement par défaut
+sur B-17 modelé, puis intégrer les PR empilées ; préserver les scènes historiques.
+Le Sound Design est différé faute de crédits Claude disponibles actuellement.
+
+Lampe orientable, silhouette naturelle du bloc et variété matériaux/outils sont
+remis en discussion pour la rejouabilité. Cette demande de cadrage n’autorise
+pas leur implémentation immédiate ni une architecture de strates N-slots.
