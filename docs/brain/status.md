@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date:** 2026-10-13
+**Date:** 2026-10-14
 **Projet:** ArchaeologyGame (working title)  
 **Source unique du statut courant:** ce fichier. Voir aussi `docs/DOCUMENTATION_POLICY.md`.
 
@@ -52,31 +52,26 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.3 — Brush sur os et dégâts localisés validés humainement ; revue partielle.**
-Antoine autorise le 2026-10-13 : quelques petits allers-retours de Brush avec
-résultat rapide et visible, dégâts localisés, binds corrigés et distinction à
-100/100, sans bonus de progression. Style des os précédents au démarrage ;
-crâne Tripo disponible en comparaison. La génération de futurs fossiles en code
-reste une piste à évaluer, sans GO de production supplémentaire.
+**P6A3.4 — essai de production 3D livré localement, revue humaine attendue.**
+Antoine donne GO pour un crâne et quelques côtes stylisés : remplacement complet
+des pièces testées, vraie géométrie 3D et inspection hors matrice du même asset.
+La surface de fouille est dérivée du modèle dans la scène isolée ; ce GO couvre
+ce pilote borné, pas une migration générale ni la production du catalogue.
 
-Candidat local sur la branche active ci-dessus : `scenes/p6a33_tactile_preparation.tscn`.
-Lancement : `Launch-P6A33-Tactile-Preparation.ps1` avec Godot 4.7.2 stable.
-Rapport actif : `docs/dev/P6A33_TACTILE_PREPARATION_REPORT.md`.
-Retour source : `docs/dev/P6A32_HOME_PLAYTEST_FEEDBACK.md`.
-La distinction est sauvegardée à l’archivage dans un registre local, prévu pour
-la future collection ; aucun écran musée/meta n’est créé.
-
-**Dernier verdict humain — 2026-10-13 :** Brush sur la saleté de l’os et dégâts
-localisés jugés « parfaits ». Conserver ces réglages. Les captures F6 révèlent
-le rendu hybride du pilote Tripo : remplacement partiel et ancien Bone conservé
-ailleurs ; aucune validation artistique du crâne Tripo n’est donnée.
-La distinction 100/100 et sa persistance n’ont pas encore de verdict humain explicite.
-
-**Prochaine action : conserver les deux interactions validées, clarifier le
-pilote hybride Tripo et recueillir les retours restants sans ouvrir un nouveau
-chantier.** Aucun GO de correction/génération supplémentaire n’est déduit de la
-question sur le crâne. Correction locale, pas encore publiée sur la PR #11 distante.
-Aucun merge automatique, extension Sound/Light ou démarrage P6B/P7.
+Rapport actif : `docs/dev/P6A34_PRODUCTION_PILOT_REPORT.md`.
+Brief : `docs/dev/P6A34_PRODUCTION_PILOT_BRIEF.md`.
+Candidat : `scenes/p6a34_production_pilot.tscn`.
+Lancement : `Launch-P6A34-Production-Pilot.ps1`, Godot 4.7.2 stable.
+F5 : même asset hors matrice ; F6 : mesh / relief du champ dérivé, sans reset.
+Branche conservée : `prototype/p6a32-fossil-mesh`, corrections locales non poussées.
+**Prochaine action : revue humaine du pilote, en fouille et hors matrice.**
+Les contrôles et captures passent ; ils ne valident pas le style, le ressenti ni
+le pipeline du catalogue complet. Détails, budgets et limites dans le rapport.
+Préserver les scènes historiques et les interactions P6A3.3. Brush sur os et
+dégâts localisés ont été jugés « parfaits » le 2026-10-13 ; aucun retuning.
+La distinction 100/100 et sa persistance restent sans verdict humain explicite.
+Le rendu Tripo précédent est un hybride limité, pas un remplacement validé.
+Aucun merge automatique, nouveau système musée/meta, Sound/Light ou P6B/P7.
 
 ## Livraison cloud précédente — contexte historique
 

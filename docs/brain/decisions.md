@@ -1021,3 +1021,23 @@ non remplacées. Une préférence artistique issue de ce test ne doit pas être
 présentée comme la comparaison de deux crânes intégralement autonomes. Le style
 précédent reste la référence jouable choisie ; tout nouvel asset/protocole reste
 à convenir. Voir l’addendum humain du rapport P6A3.3.
+
+
+## 2026-10-14 — GO essai de production 3D borné
+
+Antoine choisit l’essai proposé : un crâne et quelques côtes stylisés, un
+remplacement complet des pièces testées et une inspection du même asset hors
+matrice pour évaluer son potentiel de collection. Le GO couvre la projection
+mesh → champ Bone dans cette scène isolée ; aucune migration générale du noyau
+ou production du catalogue n’est autorisée implicitement.
+
+La fabrication locale paramétrique Blender produit de vrais meshes fermés,
+distincts du relief raster précédent. Les formes réutilisent la direction
+ivoire chaude et la matière acceptée, sans nouvelle génération Tripo. L’asset
+source garde sept pièces, regroupées en une surface pour le rendu de fouille.
+Les sources et le pipeline sont conservés dans le rapport P6A3.4.
+
+La faisabilité technique vérifiée ne vaut pas validation artistique. L’anatomie
+aplatie reste simplifiée et la projection à hauteur unique limite les usages
+possibles. Verdict humain à recueillir avant de choisir le pipeline de production.
+Le Brush sur os et les dégâts localisés validés restent inchangés.

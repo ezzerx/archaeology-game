@@ -48,10 +48,13 @@ func _on_debris_ejected(point: Vector2, direction: Vector2, amount: float, layer
 func _on_physical_crumb_ejected(at: Vector3, direction: Vector3, amount: float, layer: int) -> void:
 	debris_ejected.emit(to_global(at), (global_basis * direction).normalized(), amount, material_definitions[layer].id)
 
+func _create_fossil_field() -> FossilField:
+	return FossilField.new(map_resolution)
+
 func _ready() -> void:
 	assert(surface_size.x > 0.0 and surface_size.y > 0.0 and thickness > base_height)
 	var strata := Stratigraphy.new(map_resolution, material_definitions)
-	working_map = WorkingSurface.new(map_resolution, strata, FossilField.new(map_resolution), reactions)
+	working_map = WorkingSurface.new(map_resolution, strata, _create_fossil_field(), reactions)
 	if fragment_experiment:
 		working_map.enable_fragments(RecoverableFragmentField.new(map_resolution))
 	working_map.excavatable_depth = thickness - base_height
