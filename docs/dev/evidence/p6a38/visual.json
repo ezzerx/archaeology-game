@@ -1,0 +1,182 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"budget": [
+		{
+			"draw_calls": 85.0,
+			"frame_median_ms": 4.165,
+			"mesh": false,
+			"primitives": 2672302.0,
+			"texture_bytes": 177957368.0
+		},
+		{
+			"draw_calls": 88.0,
+			"frame_median_ms": 4.164,
+			"mesh": true,
+			"primitives": 2806541.0,
+			"texture_bytes": 177957368.0
+		}
+	],
+	"captures": [
+		"intact-shadow-off.png",
+		"intact-shadow-on.png",
+		"partial-shadow-on.png",
+		"partial-shadow-off.png",
+		"skull-shadow-on.png",
+		"skull-shadow-off.png",
+		"intact-mesh.png",
+		"intact-relief.png",
+		"partial-skull.png",
+		"prepared-overview.png",
+		"skull-mesh.png",
+		"skull-relief.png",
+		"skull-local-damage.png",
+		"rib-mesh.png",
+		"rib-relief.png",
+		"inspection-ensemble.png",
+		"inspection-skull.png",
+		"inspection-skull-underside.png",
+		"inspection-ribs.png",
+		"modeled-source-0-ivory.png",
+		"modeled-source-0-three-quarter.png",
+		"modeled-source-0-shape.png",
+		"modeled-source-2-ivory.png",
+		"modeled-source-2-three-quarter.png",
+		"modeled-source-2-shape.png",
+		"modeled-source-3-ivory.png",
+		"modeled-source-3-three-quarter.png",
+		"modeled-source-3-shape.png",
+		"modeled-source-4-ivory.png",
+		"modeled-source-4-three-quarter.png",
+		"modeled-source-4-shape.png",
+		"previous-ribs-reference.png",
+		"native-skeleton-dirty.png",
+		"native-skeleton-clean.png",
+		"native-detail-430-352.png",
+		"native-detail-520-308.png",
+		"native-detail-624-423.png",
+		"native-detail-642-523.png",
+		"lamp-intact--125.png",
+		"lamp-intact--85.png",
+		"lamp-intact--45.png",
+		"lamp-intact-0.png",
+		"lamp-intact-35.png",
+		"lamp-partial--125.png",
+		"lamp-partial--85.png",
+		"lamp-partial--45.png",
+		"lamp-partial-0.png",
+		"lamp-partial-35.png",
+		"lamp-prepared--125.png",
+		"lamp-prepared--45.png",
+		"lamp-prepared-0.png",
+		"lamp-prepared-35.png",
+		"lamp-controls.png"
+	],
+	"checks": 108,
+	"completed_draw_intervals": {
+		"max_ms": 4.49,
+		"median_ms": 4.18,
+		"min_ms": 3.617,
+		"p95_ms": 4.471,
+		"samples": 30
+	},
+	"failures": [],
+	"intact_angles": [
+		{
+			"degrees": -125.0,
+			"shadows_off_sha256": "93905385be40d61257638599e336376eaf310ee580d599d211b6b5138db68e90",
+			"source_off_sha256": "93905385be40d61257638599e336376eaf310ee580d599d211b6b5138db68e90",
+			"source_on_sha256": "93905385be40d61257638599e336376eaf310ee580d599d211b6b5138db68e90"
+		},
+		{
+			"degrees": -85.0,
+			"shadows_off_sha256": "0f495708a0753c25e35134688cd8c3c8350dfc73ef892a0bbbf8a778d25caa3c",
+			"source_off_sha256": "0f495708a0753c25e35134688cd8c3c8350dfc73ef892a0bbbf8a778d25caa3c",
+			"source_on_sha256": "0f495708a0753c25e35134688cd8c3c8350dfc73ef892a0bbbf8a778d25caa3c"
+		},
+		{
+			"degrees": -45.0,
+			"shadows_off_sha256": "d9be49705a1b03ff765abfd1c72ce6ed23c3e621dcbde68e6762819fc34b1cbe",
+			"source_off_sha256": "d9be49705a1b03ff765abfd1c72ce6ed23c3e621dcbde68e6762819fc34b1cbe",
+			"source_on_sha256": "d9be49705a1b03ff765abfd1c72ce6ed23c3e621dcbde68e6762819fc34b1cbe"
+		},
+		{
+			"degrees": 0.0,
+			"shadows_off_sha256": "68cd8a2284e2f41510af84e917f2042bdeb5e5d7b006018127451d045a2db223",
+			"source_off_sha256": "68cd8a2284e2f41510af84e917f2042bdeb5e5d7b006018127451d045a2db223",
+			"source_on_sha256": "68cd8a2284e2f41510af84e917f2042bdeb5e5d7b006018127451d045a2db223"
+		},
+		{
+			"degrees": 35.0,
+			"shadows_off_sha256": "838316662fe90b09cb7e1308708c606f2488b4cc7c02f6c90874aabfa85f0ffb",
+			"source_off_sha256": "838316662fe90b09cb7e1308708c606f2488b4cc7c02f6c90874aabfa85f0ffb",
+			"source_on_sha256": "838316662fe90b09cb7e1308708c606f2488b4cc7c02f6c90874aabfa85f0ffb"
+		}
+	],
+	"native_skeleton_review": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999996279168,
+		"condition": 100.0,
+		"condition_tier": "Excellent",
+		"coverage_passed": true,
+		"exposure": 100.0,
+		"fine_preparation": true,
+		"largest_hidden_cluster": 0
+	},
+	"partial_angles": [
+		{
+			"caster_indices_sha256": "dca0c1879f99bcd373e1d58cd5690dcf9da977c6fdc6025477e67f2d51356fbb",
+			"covered_regions_equal": true,
+			"degrees": -125.0,
+			"submitted_cells": 2189
+		},
+		{
+			"caster_indices_sha256": "dca0c1879f99bcd373e1d58cd5690dcf9da977c6fdc6025477e67f2d51356fbb",
+			"covered_regions_equal": true,
+			"degrees": -85.0,
+			"submitted_cells": 2189
+		},
+		{
+			"caster_indices_sha256": "dca0c1879f99bcd373e1d58cd5690dcf9da977c6fdc6025477e67f2d51356fbb",
+			"covered_regions_equal": true,
+			"degrees": -45.0,
+			"submitted_cells": 2189
+		},
+		{
+			"caster_indices_sha256": "dca0c1879f99bcd373e1d58cd5690dcf9da977c6fdc6025477e67f2d51356fbb",
+			"covered_regions_equal": true,
+			"degrees": 0.0,
+			"submitted_cells": 2189
+		},
+		{
+			"caster_indices_sha256": "dca0c1879f99bcd373e1d58cd5690dcf9da977c6fdc6025477e67f2d51356fbb",
+			"covered_regions_equal": true,
+			"degrees": 35.0,
+			"submitted_cells": 2189
+		}
+	],
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	},
+	"shadow_cost": {
+		"build_count": 6,
+		"cells": 25404,
+		"last_build_usec": 5457,
+		"max_build_usec": 6073,
+		"triangles": 50808
+	},
+	"shadow_pixels": {
+		"brighter": 0,
+		"darker": 69532
+	},
+	"steady_native_frames": {
+		"average_fps": 240.196063774547,
+		"engine_reported_fps": 189.0,
+		"frames": 241,
+		"seconds": 1.003347
+	}
+}

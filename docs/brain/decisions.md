@@ -1132,3 +1132,18 @@ identité du bloc (silhouette) et variété des décisions de fouille (spécimen
 géologie, placement et effort). Tester d’abord un petit lot de blocs façonnés
 avec les rôles matériaux existants avant une migration de strates ou une
 multiplication des outils. C’est une recommandation, pas un GO d’implémentation.
+
+
+## 2026-10-14 — GO essai de lampe orientable
+
+Antoine autorise explicitement l’essai, avec ambiance chaude, interactions
+validées et secret des os enterrés conservés. La source se déplace autour du
+bloc pour changer le sens des ombres ; l’objet et ses réglages acceptés sont réutilisés.
+Mode de manipulation explicite, retour simple aux outils, capture sans excavation.
+
+La référence main reste inchangée. Le candidat P6A3.8 est isolé et sa validation
+humaine doit porter sur l’aide à lire le relief et le confort de manipulation.
+La protection des os enterrés reste indépendante de l’orientation de lumière :
+masque d’exposition réel et caster des seules cellules dégagées. Vérifier à la
+fois pixels et indices, car les ombres d’os déjà dégagés sur de la matrice couverte
+sont légitimes et ne constituent pas une révélation d’os encore enterrés.

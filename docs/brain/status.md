@@ -18,7 +18,7 @@
 
 ## Active branch / PR
 
-Active branch: `main` — version jouable validée publiée le 2026-10-14.
+Active branch: `codex/p6a38-orientable-lamp` — essai isolé depuis main `ff3ffd7`.
 Aucune PR active.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
 PR #11 fusionnée : `c8672d72eb025bfe35488891280ea3145d172041`.
@@ -54,32 +54,27 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**B-17 P6A3.7 et préparation tactile validés, intégrés à main.**
-Antoine a validé le squelette et retenu cette méthode pour les futurs squelettes
-et reliques. Sa demande explicite de publication est réalisée : PR #10 puis #11
-fusionnées, dernière version jouable configurée comme lancement normal.
+**P6A3.8 — lampe orientable livrée en scène isolée, verdict humain attendu.**
+GO Antoine du 2026-10-14 : lampe manipulable, ambiance chaude et interactions
+validées conservées, aucun os enterré révélé. Référence main `ff3ffd7`.
 
-Rapport de publication : `docs/dev/MAIN_PLAYABLE_2026_10_14.md`.
-Référence artistique : `docs/dev/P6A37_SKELETON_REPORT.md`.
-Scène par défaut : `scenes/p6a37_modeled_skeleton.tscn`.
-Lancement : `Launch-Game.ps1` ou Run Project dans Godot 4.7.2 stable.
-B-17 démarre recouvert ; F5 inspecte les pièces, F6 compare mesh/relief, F7 le
-feedback tactile. H propose des préparations de revue avec reset annoncé.
+Rapport actif : `docs/dev/P6A38_ORIENTABLE_LAMP_REPORT.md`.
+Brief : `docs/dev/P6A38_ORIENTABLE_LAMP_BRIEF.md`.
+Scène : `scenes/p6a38_orientable_lamp.tscn`.
+Lanceur : `Launch-P6A38-Orientable-Lamp.ps1`, Godot 4.7.2 stable.
+L ou bouton Lampe, glisser gauche/droite, L/Échap ou 1–4 pour reprendre les outils.
+Reset de lampe distinct du spécimen ; pose initiale et paramètres chauds conservés.
+**Prochaine action : revue humaine de la manipulation et de son aide à lire le
+relief pendant la fouille. Aucun merge automatique ou nouveau chantier.**
 
-**Prochaine action : cadrer avec Antoine la suite lampe / forme des blocs /
-variété entre préparations. Aucun GO d’implémentation de ces systèmes reçu.**
-Sound Design différé à sa demande : crédits Claude indisponibles actuellement.
-Recommandation à discuter : lampe bornée, silhouettes naturelles, petit lot de
-blocs différenciés avec les matériaux/outils existants, puis nouveaux couples
-matériau/outil s’ils apportent un choix distinct. Architecture N-slots non autorisée.
-
-Ivoire chaud, ombres des seules cellules dégagées, Brush réactif, dégâts localisés
-et binds corrigés conservés. Les scènes et sources historiques restent disponibles.
-461 contrôles artistiques précédents ; publication vérifiée par 213 régressions,
-lancement par défaut headless/natif et smoke des invariants. Durée de fouille et
-240 FPS soutenus restent non validés dans une session isolée.
-La distinction 100/100 garde ses preuves techniques, sans verdict humain distinct.
-Aucun nouveau musée/meta, catalogue, Sound/Light ou P6B/P7 implémenté.
+565 contrôles exécutés avec répétition headless/natif ; zéro échec. Matrice intacte
+pixel-identique et régions enterrées protégées aux cinq orientations contrôlées.
+Le terrain, les outils, le champ et le caster de B-17 restent inchangés.
+B-17 et préparation tactile restent la référence acceptée sur main ; son lancement
+normal `Launch-Game.ps1` reste inchangé. Sources historiques conservées.
+240 FPS soutenus et durée de session restent sans nouvelle validation isolée.
+Sound Design différé à la demande d’Antoine. Formes de blocs, variabilité,
+matériaux/outils supplémentaires, N-slots et musée/meta restent hors de cet essai.
 
 ## Livraison cloud précédente — contexte historique
 

@@ -1,0 +1,32 @@
+{
+  "suites": [
+    {
+      "suite": "P5 regression",
+      "checks": 128,
+      "failures": 0
+    },
+    {
+      "suite": "B17 regression",
+      "checks": 85,
+      "failures": 0
+    },
+    {
+      "suite": "Lamp headless",
+      "checks": 121,
+      "failures": 0
+    },
+    {
+      "suite": "Lamp native input",
+      "checks": 123,
+      "failures": 0
+    },
+    {
+      "suite": "Lamp native graphics",
+      "checks": 108,
+      "failures": 0
+    }
+  ],
+  "executed_checks": 565,
+  "failures": 0,
+  "note": "Input checks repeated on headless and native renderer; counts describe executions, not unique assertions."
+}
