@@ -119,3 +119,12 @@ La suite dépend de la revue : est-ce que la plaque paraît appartenir au bloc, 
 joints restent-ils assez lisibles et le détachement garde-t-il son intérêt ? Aucun
 verdict artistique final, nouveau comportement ou merge n’est déduit des contrôles.
 
+
+
+## Livraison de revue
+
+Source `1766ba7`, branche `codex/p6a44-natural-slab`,
+[PR #18 DRAFT](https://github.com/ezzerx/archaeology-game/pull/18) directement sur main.
+#17 est remplacée sans fusion ; ses sources, scène et verdict humain restent
+conservés. Aucun merge automatique. Les autres préparations ouvertes sont
+préservées.
