@@ -115,3 +115,12 @@ ressemble à trois clics imposés ou à un bonus sans lecture de matière, le sp
 n’aura pas prouvé le comportement recherché. Pas de déploiement généralisé,
 nouveau catalogue ou validation artistique finale déduits des tests.
 
+
+
+## Livraison de revue
+
+Source `3d288c6`, branche `codex/p6a43-fractured-slab`,
+[PR #17 DRAFT](https://github.com/ezzerx/archaeology-game/pull/17) directement sur main.
+#16 est remplacée sans fusion ; ses sources/scènes et son verdict humain sont
+conservés. Aucun merge automatique. Les préparations des fenêtres précédentes
+sont préservées.

@@ -19,10 +19,11 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a43-fractured-slab`, depuis `2709686`.
-PR courante : **#16 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/16,
-basée sur main et incluant les trois géologies, les bords bruts, le bloc naturel,
-le contour corrigé et la lumière centrée. #15 est remplacée sans fusion ;
-#12/#13/#14 fermées.
+PR courante : **#17 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/17,
+basée sur main et incluant la plaque fracturée, les bords bruts, le bloc naturel,
+le contour corrigé et la lumière centrée. #16 est remplacée sans fusion ;
+les trois géologies restent dans leur scène historique, sans verdict de rejouabilité.
+#12/#13/#14/#15 fermées.
 Les branches/sources historiques sont conservées ; aucune de ces PR n’est fusionnée.
 Main conserve la référence B-17 validée.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
