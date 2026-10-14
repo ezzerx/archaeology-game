@@ -57,3 +57,12 @@ flottantes avec tolérance, puis flusher la session après le nettoyage QA avant
 la prise d’empreinte. Le témoin initial trop clair a été abaissé et un contrôle
 anti-saturation ajouté. Aucun changement runtime nécessaire pour ces corrections.
 La qualité artistique et le confort de lumière restent à juger humainement.
+
+
+## Livraison de revue
+
+Branche `codex/p6a39-centered-light`, source `6532f35`,
+[PR #13 DRAFT](https://github.com/ezzerx/archaeology-game/pull/13) basée sur main.
+`Launch-Game.ps1` a ouvert une nouvelle fenêtre Godot 4.7.2 / Compatibility,
+titrée B-17 · Lumière centrée, répondante et sans erreur stderr. Les sessions
+précédentes n’ont pas été fermées ou réinitialisées. Aucun merge effectué.

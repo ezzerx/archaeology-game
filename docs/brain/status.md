@@ -19,7 +19,8 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a39-centered-light`, correction ciblée depuis main `ff3ffd7`.
-PR courante : pas encore créée. La PR #12 reste DRAFT, mise de côté après retour
+PR courante : **#13 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/13.
+La PR #12 reste DRAFT, mise de côté après retour
 humain ; ne pas fusionner le déplacement de lampe.
 Main conserve la référence B-17 validée.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
