@@ -128,3 +128,7 @@ Source `1766ba7`, branche `codex/p6a44-natural-slab`,
 #17 est remplacée sans fusion ; ses sources, scène et verdict humain restent
 conservés. Aucun merge automatique. Les autres préparations ouvertes sont
 préservées.
+
+`Launch-Game.ps1` a ouvert « B-17 · Plaque naturelle » avec Godot 4.7.2 /
+Compatibility, fenêtre répondante et stderr vide. Le lancement ne vaut pas
+validation artistique humaine de cette intégration.
