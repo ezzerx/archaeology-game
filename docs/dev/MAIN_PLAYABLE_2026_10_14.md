@@ -47,3 +47,18 @@ Sound Design différé à la demande d’Antoine, crédits Claude indisponibles.
 Lampe orientable, silhouette naturelle des blocs et variété entre préparations
 sont des sujets de cadrage, sans implémentation dans cette publication.
 La gate et les références GitHub actuelles vivent uniquement dans le Brain du dépôt.
+
+
+## Reçu de publication GitHub
+
+Publication confirmée le 2026-10-14 : PR #10 fusionnée dans main
+(`267d3154916f29417d4889416c560ac84f727396`), puis PR #11 retargetée sur main et
+fusionnée (`c8672d72eb025bfe35488891280ea3145d172041`).
+La source consolidée `81360a52b5bce8feadcb179f56a8dd63448681df` est ancêtre du
+main distant vérifié. Les deux PR ont une description actualisée au périmètre
+livré ; aucune PR ouverte restante lors de cette vérification.
+
+Les deux branches distantes fusionnées sont supprimées après contrôle de leur
+inclusion à main ; commits, sources, anciens essais et discussions restent
+conservés dans l’historique. Le worktree de cette conversation suit main ; la
+copie principale locale sur son ancienne branche et ses modifications sont préservées.

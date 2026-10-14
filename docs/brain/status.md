@@ -18,10 +18,12 @@
 
 ## Active branch / PR
 
-Active branch: `prototype/p6a32-fossil-mesh`
-PR: **#11 DRAFT**, bounded actual Tripo skull pilot, stacked on **#10**.
-https://github.com/ezzerx/archaeology-game/pull/11
-PR #10 remains DRAFT for the combined home playtest.
+Active branch: `main` — version jouable validée publiée le 2026-10-14.
+Aucune PR active.
+PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
+PR #11 fusionnée : `c8672d72eb025bfe35488891280ea3145d172041`.
+Source jouable consolidée : `81360a52b5bce8feadcb179f56a8dd63448681df`.
+Les deux branches distantes de ces PR sont nettoyées après fusion.
 
 PR #9 merged into main on 2026-10-13 at Antoine’s explicit request; merge commit `32a85ba9efc04fd508ee838d3c63252ca6b2d04f`. Latest P6A3 source included: `b91ff24bf57e76599204e9d12bd23eb6d229dbc5`.
 
@@ -52,39 +54,32 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.7 — squelette B-17 et méthode artistique validés humainement.**
-GO Antoine le 2026-10-14 : appliquer le niveau du crâne validé aux côtes et au
-reste du squelette, même style et interactions conservés. Les 49 pièces du B-17
-actuel sont intégrées ; le crâne P6A3.6 accepté reste exactement conservé.
+**B-17 P6A3.7 et préparation tactile validés, intégrés à main.**
+Antoine a validé le squelette et retenu cette méthode pour les futurs squelettes
+et reliques. Sa demande explicite de publication est réalisée : PR #10 puis #11
+fusionnées, dernière version jouable configurée comme lancement normal.
 
-Rapport actif : `docs/dev/P6A37_SKELETON_REPORT.md`.
-Brief : `docs/dev/P6A37_SKELETON_BRIEF.md`.
-Référence humaine précédente : `docs/dev/P6A36_HERO_SKULL_REPORT.md`.
-Scène : `scenes/p6a37_modeled_skeleton.tscn`.
-Lancement : `Launch-P6A37-Modeled-Skeleton.ps1`, Godot 4.7.2 stable.
-Branche : `prototype/p6a32-fossil-mesh`, travail local non poussé.
-**Retour humain du 2026-10-14 :** Antoine valide le résultat et retient cette
-méthode pour les futurs squelettes/reliques de la collection. B-17 constitue la
-référence artistique acceptée ; adapter les matières aux futurs objets.
-**GO du 2026-10-14 : publier la dernière version jouable validée sur main et
-mettre les PR/GitHub au propre.** Consolidation et vérification du lancement par
-défaut, puis intégration ordonnée des PR #10/#11. Publication en cours.
-Sound Design différé à la demande d’Antoine, crédits Claude indisponibles.
-Suite en discussion : lampe orientable, forme naturelle des blocs, variété des
-spécimens/géologies puis éventuels matériaux/outils. Aucun GO d’implémentation
-de ces nouveaux systèmes reçu dans cette demande.
-F5 inspecte les pièces ; F6 compare mesh/relief du même champ ; H propose deux
-préparations de revue avec reset annoncé, dont une au Pick natif inchangé.
-461 contrôles passent ; qualité artistique de cette extension acceptée humainement.
-Durée de fouille non mesurée humainement ; mesures natives non isolées :
-240 FPS soutenus non validés.
-Périmètre limité au B-17 existant, pas de catalogue multi-spécimens.
+Rapport de publication : `docs/dev/MAIN_PLAYABLE_2026_10_14.md`.
+Référence artistique : `docs/dev/P6A37_SKELETON_REPORT.md`.
+Scène par défaut : `scenes/p6a37_modeled_skeleton.tscn`.
+Lancement : `Launch-Game.ps1` ou Run Project dans Godot 4.7.2 stable.
+B-17 démarre recouvert ; F5 inspecte les pièces, F6 compare mesh/relief, F7 le
+feedback tactile. H propose des préparations de revue avec reset annoncé.
 
-Ivoire chaud et ombres des seules cellules dégagées conservés. Brush sur os,
-dégâts localisés et binds validés sont inchangés, sans retuning des outils.
-La distinction 100/100 reste sans verdict humain explicite.
-Les scènes historiques restent comparables. Merge main explicitement autorisé ;
-aucun nouveau système musée/meta, Sound/Light ou P6B/P7 autorisé.
+**Prochaine action : cadrer avec Antoine la suite lampe / forme des blocs /
+variété entre préparations. Aucun GO d’implémentation de ces systèmes reçu.**
+Sound Design différé à sa demande : crédits Claude indisponibles actuellement.
+Recommandation à discuter : lampe bornée, silhouettes naturelles, petit lot de
+blocs différenciés avec les matériaux/outils existants, puis nouveaux couples
+matériau/outil s’ils apportent un choix distinct. Architecture N-slots non autorisée.
+
+Ivoire chaud, ombres des seules cellules dégagées, Brush réactif, dégâts localisés
+et binds corrigés conservés. Les scènes et sources historiques restent disponibles.
+461 contrôles artistiques précédents ; publication vérifiée par 213 régressions,
+lancement par défaut headless/natif et smoke des invariants. Durée de fouille et
+240 FPS soutenus restent non validés dans une session isolée.
+La distinction 100/100 garde ses preuves techniques, sans verdict humain distinct.
+Aucun nouveau musée/meta, catalogue, Sound/Light ou P6B/P7 implémenté.
 
 ## Livraison cloud précédente — contexte historique
 

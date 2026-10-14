@@ -1118,3 +1118,17 @@ Le Sound Design est différé faute de crédits Claude disponibles actuellement.
 Lampe orientable, silhouette naturelle du bloc et variété matériaux/outils sont
 remis en discussion pour la rejouabilité. Cette demande de cadrage n’autorise
 pas leur implémentation immédiate ni une architecture de strates N-slots.
+
+
+## 2026-10-14 — Version validée publiée sur main
+
+Publication demandée par Antoine réalisée via les PR #10 puis #11 ; B-17 modelé
+est désormais le lancement normal du projet. Les PR fusionnées ne constituent
+plus des gates actives. Garder sources, scènes et preuves historiques, et conserver
+le répertoire de données utilisateur existant. Le Sound Design reste différé.
+
+Pour la discussion de rejouabilité, distinguer lecture/interaction (lampe),
+identité du bloc (silhouette) et variété des décisions de fouille (spécimen,
+géologie, placement et effort). Tester d’abord un petit lot de blocs façonnés
+avec les rôles matériaux existants avant une migration de strates ou une
+multiplication des outils. C’est une recommandation, pas un GO d’implémentation.
