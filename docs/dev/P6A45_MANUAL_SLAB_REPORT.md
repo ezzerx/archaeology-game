@@ -131,3 +131,46 @@ Source du candidat de jeu : `5914c00`, branche `codex/p6a45-manual-slab`.
 #18 remplacée et fermée sans fusion. Le témoin ancien est capturé à la même taille
 native 1280 × 720, pose et échelle de caméra vérifiées après chargement de ses
 préférences de fenêtre. Les sources et préparations historiques sont conservées.
+
+
+## Retour humain — levier préféré, intégration et volume à reprendre
+
+Antoine préfère la mécanique de levier de ce candidat. Cette préférence porte
+sur le retrait actif ; elle ne valide pas toute la passe ni son art final.
+Il trouve encore la plaque mal intégrée, surtout à la frontière nette entre grès
+fissuré et argile. Il souhaite que l’argile autour porte une influence perceptible
+de la plaque ou une continuité de fracture. Quand la plaque est prête à sortir,
+une craquelure périphérique devrait rendre sa séparation visible.
+
+Le fond après retrait paraît plat. Antoine décrit l’idée d’un « iceberg » : la
+partie affleurante annonce un volume enfoui irrégulier. Le morceau et son empreinte
+devraient avoir une épaisseur et une profondeur variables. Aucun nouveau retour
+sur la lumière ne doit être inféré de ce message.
+
+Captures conservées : `evidence/p6a45/human-matrix-border.png` et
+`evidence/p6a45/human-flat-socket.png`.
+
+Diagnostic du code : la base est calculée principalement à partir du toit de grès
+moins une profondeur fixe (.12 normalisé), avec bornage par les plafonds Bone.
+Elle hérite du petit relief du toit, mais ne définit pas un volume enfoui façonné.
+Le shader de joints est limité au grès exposé ; la couverture Clay remplit les
+sillons cachés. L’état mobile ajoute du jeu visuel, sans fracture progressive de
+la matrice autour de la plaque. Ces choix expliquent une partie des défauts,
+sans prétendre reproduire exactement l’état de fouille des captures humaines.
+
+Proposition pour une correction ciblée :
+- Une zone de contact morcelée avec langues d’argile, petits affleurements et relief
+  de transition. L’argile porte ses propres plis/fentes de surface cohérents avec
+  les joints proches, atténués avec l’épaisseur de couverture.
+- Des ruptures locales liées au travail, qui rejoignent progressivement le bord.
+  À l’état mobile, une séparation périphérique irrégulière devient lisible ;
+  son contour complet ne doit pas être tracé systématiquement au départ.
+- Une base de rupture façonnée à profondeur variable : lobes, bosses et décrochements.
+  Le dessous du morceau et l’empreinte doivent dériver des mêmes données de volume,
+  avec retrait réel et plafonds de protection, plutôt que deux décors indépendants.
+
+Conserver le geste de levier et les autres outils. La proposition vise un volume
+compatible avec la surface de fouille actuelle ; aucun solveur volumétrique général
+ou générateur de situations n’est requis pour ce premier essai. Les déformations
+et fissures de matrice restent indépendantes des os et ne révèlent aucun Bone
+enterré. Aucune modification de gameplay ou de rendu n’a été faite sur ce retour.

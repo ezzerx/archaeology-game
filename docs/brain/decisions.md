@@ -1313,3 +1313,14 @@ Le candidat P6A45 conserve les scènes témoins et les réglages des quatre outi
 Le rapport dédié garde la distinction entre prévisualisation attachée, retrait de
 vraie matière et dépose assistée, ainsi que les preuves centre/bords. La validation
 artistique et tactile reste humaine ; aucun GO de généralisation ou de merge.
+
+
+## 2026-10-14 — Levier préféré ; plaque à penser comme un volume enfoui
+
+Antoine préfère le retrait manuel au Pick. Conserver cette direction sans assimiler
+la préférence à une validation artistique de la plaque. Il relève encore une
+frontière grès/argile trop nette, souhaite une influence visible sur l’argile et une
+rupture autour de la plaque quand elle est prête à sortir. L’idée d’un « iceberg »
+désigne un volume enfoui irrégulier avec une empreinte correspondante après retrait.
+Le rapport P6A45 conserve captures, diagnostic et proposition ; la gate du statut
+canonique conserve seule la prochaine action autorisée.

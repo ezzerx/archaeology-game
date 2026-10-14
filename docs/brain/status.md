@@ -64,8 +64,14 @@ Report on active branch:
 brutes et retrait manuel au Pick avec un petit geste de levier.** Conserver outils,
 B-17, ambiance chaude, relief/ombres et protection des os enterrés. Rapport actif :
 `docs/dev/P6A45_MANUAL_SLAB_REPORT.md`. Candidat livré : 672 contrôles, zéro échec.
-Scène `scenes/p6a45_manual_slab.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
-revue humaine de la lumière, des fractures et du geste de levier.
+Scène `scenes/p6a45_manual_slab.tscn`, entrée `Launch-Game.ps1`.
+Retour humain : Antoine préfère le levier manuel. L’intégration reste insuffisante :
+frontière grès/argile trop nette, influence de la plaque sur l’argile peu lisible,
+rupture périphérique attendue quand elle devient mobile, dessous/empreinte trop
+plats. Direction souhaitée : volume enfoui irrégulier et empreinte correspondante.
+Aucun nouveau verdict sur la lumière. Prochaine action : cadrer une correction
+ciblée de l’intégration et du volume en gardant le levier ; proposition dans
+l’addendum du rapport actif, sans nouveau GO d’implémentation déduit du retour.
 Aucun merge automatique ; autres mécaniques, génération de blocs, catalogue,
 musée/meta et N-slots hors périmètre. Son différé.
 
