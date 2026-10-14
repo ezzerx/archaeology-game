@@ -282,3 +282,11 @@ la priorité au geste, au nettoyage lisible et aux dégâts réellement localis�
 
 Preuves et périmètre de la validation : [rapport B-17](dev/P6A37_SKELETON_REPORT.md).
 Les adaptations techniques à de nouvelles formes restent à vérifier par asset.
+
+
+## Lumière de préparation — retour humain du 2026-10-14
+
+Privilégier une lumière fixe, chaude et bien centrée sur la zone de travail.
+L’essai de déplacement de lampe n’a pas apporté assez d’intérêt de gameplay et
+son glissement autour de la table n’est pas une direction visuelle retenue.
+Conserver relief lisible et ombres des seuls os réellement exposés.

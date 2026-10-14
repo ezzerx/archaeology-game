@@ -1147,3 +1147,16 @@ La protection des os enterrés reste indépendante de l’orientation de lumièr
 masque d’exposition réel et caster des seules cellules dégagées. Vérifier à la
 fois pixels et indices, car les ombres d’os déjà dégagés sur de la matrice couverte
 sont légitimes et ne constituent pas une révélation d’os encore enterrés.
+
+
+## 2026-10-14 — Lampe mobile mise de côté après essai humain
+
+Antoine juge le déplacement de lampe trop gadget actuellement : bénéfice de
+jeu insuffisant, geste peu intuitif et objet qui glisse autour de la table peu
+convaincant. Ne pas intégrer cet essai ; privilégier une bonne lumière fixe,
+chaude et centrée. Cela ne remet pas en cause le B-17 modelé ou les interactions
+acceptées. Aucun redesign supplémentaire de lampe n’est déclenché.
+
+Le signalement de restes orange autour des os doit distinguer matrice attachée,
+miettes libres et défaut de rendu. Ne pas masquer cosmétiquement un matériau
+encore présent, ni modifier la Brush validée sur la seule base d’une capture.

@@ -1,0 +1,45 @@
+extends "res://tests/run_p6a37_skeleton.gd"
+func _output_directory() -> String:
+	return "res://work/test-logs/orange-probe/"
+func _collection_store() -> String:
+	return "res://work/test-logs/orange-probe/collection.json"
+func pilot_visual() -> void:
+	main.feedback.proxies_enabled = false
+	main.feedback.set_physics_process(false)
+	main.prepare_native_skeleton_review()
+	P5Fixture.clean(main.block.working_map)
+	main.camera.set_process(true)
+	await zoom_to(3,Vector2(634,413))
+	main.camera.set_process(false)
+	await skull_picture("before-broad-cut")
+	var s: WorkingSurface = main.block.working_map
+	var heights_before := s._heights.duplicate()
+	var floors_before := s.structural_ceilings.duplicate()
+	var clay_before := 0
+	for y in range(300,550):
+		for x in range(560,760):
+			var i := y*1024+x
+			if s._heights[i] > s.strata.packed_limits[i*2+1]+.000001 and s.fossil.exposed[i] == 0: clay_before += 1
+	evidence["clay_before"] = clay_before
+	for y in range(285,558,6):
+		for x in range(540,780,6):
+			for n in range(4): s.apply_impact(Vector2(x,y),main.controller.tools[3])
+	main.block.flush_texture()
+	main.session.flush()
+	P5Fixture.clean(s)
+	await skull_picture("after-broad-cut")
+	var remaining := []
+	for y in range(300,550):
+		for x in range(560,760):
+			var i := y*1024+x
+			var h: float = s._heights[i]
+			var lower: float = s.strata.packed_limits[i*2+1]
+			if h > lower+.000001 and s.fossil.exposed[i] == 0:
+				remaining.append({"x":x,"y":y,"h":h,"roof":s.structural_ceilings[i],"bone":s.fossil.field.component_ids[i]})
+	evidence["remaining_clay"] = remaining
+	print("Remaining clay: ",remaining.size())
+	check(remaining.is_empty() and clay_before > 0,"real Pick removes every attached Clay remnant in the tested pelvis/leg rectangle")
+	check(s.fossil.condition == 100 and floors_before == s.structural_ceilings,"finishing preserves Condition and immutable Bone roofs")
+	check(heights_before != s._heights,"removal changes the actual terrain, not a cosmetic orange mask")
+	main.block.surface.hide()
+	await skull_picture("bone-only")

@@ -111,3 +111,42 @@ Livraison de revue : branche `codex/p6a38-orientable-lamp`, source `2ca49f1`,
 [PR #12 draft](https://github.com/ezzerx/archaeology-game/pull/12).
 Le lanceur a ouvert Godot 4.7.2 / Compatibility avec une fenêtre P6A3.8 répondante
 et sans erreur stderr. La référence main et les autres sessions locales sont conservées.
+
+
+## Retour humain — 2026-10-14
+
+Antoine ne retient pas la lampe mobile pour le moment : trop gadget, bénéfice de
+gameplay insuffisant, geste peu intuitif et glissement autour de la table peu
+convaincant. Sa priorité est une bonne lumière fixe et centrée. Les contrôles
+techniques précédents ne valent donc pas validation produit de cet essai.
+
+## Diagnostic ciblé — restes orange autour des os
+
+Signalement humain : depuis le nouveau squelette, de l’argile semble bloquée en
+liseré autour des os, notamment bassin et patte. Capture d’une session partielle,
+non sauvegardée sous forme d’état reproductible. Aucun changement de terrain,
+matériaux, outils ou champ Bone n’avait été effectué par la lampe.
+
+Reproduction indépendante sur **la scène B-17 P6A3.7 à lampe fixe**, Godot 4.7.2,
+RTX 5080 : préparation au vrai Pick via la fixture native, puis retrait au Pick
+inchangé de la matrice voisine du bassin et de la patte. Dans le rectangle mesuré,
+37 471 cellules contenaient encore de la matrice au-dessus de l’interface basse ;
+après les impacts, zéro cellule Clay attachée restante hors Bone exposé.
+Condition reste 100 et plafonds Bone identiques. Le terrain change réellement :
+ce n’est pas une recoloration orange supprimée artificiellement. Les captures
+avant/après et une vue sans terrain distinguent os, parois et miettes libres.
+
+**Interprétation bornée :** des restes durs près des formes peuvent bien subsister
+pendant la fouille et demandent le Pick, tandis que Brush/Blower traitent la
+poussière ou les miettes. Le modèle ne porte pas une couche orange volontaire.
+Ce test n’a pas reproduit de matrice impossible à retirer ; il n’a pas rejoué
+exactement la session humaine, ni testé chaque résidu par les événements souris.
+Il ne suffit donc pas à exclure un défaut spécifique de contour/picking.
+Le retour de lisibilité est conservé sans retoucher les interactions validées.
+
+6 contrôles, zéro échec : trois captures et trois assertions de diagnostic.
+La première exécution exploratoire avait une erreur de nom de nœud dans la vue
+sans terrain ; corrigée puis relancée intégralement, sans erreur. Preuve finale :
+`docs/dev/evidence/p6a38/orange-remnants/`. Script de reproduction conservé en
+texte (copier sous work/orange_probe.gd et exécuter avec -- visual --qa et stockage
+collection isolé). Aucun correctif runtime ni nouvelle validation humaine déduit.

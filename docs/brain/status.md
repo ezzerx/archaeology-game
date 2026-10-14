@@ -19,7 +19,7 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a38-orientable-lamp` — essai isolé depuis main `ff3ffd7`.
-PR active : **#12 DRAFT**, essai de lampe orientable.
+PR active : **#12 DRAFT**, essai de lampe orientable mis de côté après retour humain ; ne pas fusionner.
 https://github.com/ezzerx/archaeology-game/pull/12
 Main reste sur la référence validée ; aucun merge de cet essai.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
@@ -56,27 +56,25 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.8 — lampe orientable livrée en scène isolée, verdict humain attendu.**
-GO Antoine du 2026-10-14 : lampe manipulable, ambiance chaude et interactions
-validées conservées, aucun os enterré révélé. Référence main `ff3ffd7`.
+**P6A3.8 — essai de lampe mobile non retenu pour le moment.**
+Retour Antoine du 2026-10-14 : bénéfice de gameplay trop faible, manipulation peu
+intuitive et glissement de l’objet autour de la table peu convaincant visuellement.
+Priorité confirmée : bonne lumière fixe, chaude et centrée. Main et son lancement
+`Launch-Game.ps1` restent la référence acceptée ; aucun merge de la lampe mobile.
 
-Rapport actif : `docs/dev/P6A38_ORIENTABLE_LAMP_REPORT.md`.
-Brief : `docs/dev/P6A38_ORIENTABLE_LAMP_BRIEF.md`.
-Scène : `scenes/p6a38_orientable_lamp.tscn`.
-Lanceur : `Launch-P6A38-Orientable-Lamp.ps1`, Godot 4.7.2 stable.
-L ou bouton Lampe, glisser gauche/droite, L/Échap ou 1–4 pour reprendre les outils.
-Reset de lampe distinct du spécimen ; pose initiale et paramètres chauds conservés.
-**Prochaine action : revue humaine de la manipulation et de son aide à lire le
-relief pendant la fouille. Aucun merge automatique ou nouveau chantier.**
+Rapport actif : `docs/dev/P6A38_ORIENTABLE_LAMP_REPORT.md`, addendum humain et
+investigation des restes orange au contact des nouvelles formes. Le diagnostic
+natif sur bassin/patte retire la matrice Clay restante avec le Pick inchangé,
+sans altérer Condition ni les plafonds Bone. Il ne reproduit pas exactement la
+session de la capture humaine et ne prouve pas l’absence de tout défaut de bord.
+Aucun changement de rendu, outil ou matériau effectué à partir de ce diagnostic.
 
-565 contrôles exécutés avec répétition headless/natif ; zéro échec. Matrice intacte
-pixel-identique et régions enterrées protégées aux cinq orientations contrôlées.
-Le terrain, les outils, le champ et le caster de B-17 restent inchangés.
-B-17 et préparation tactile restent la référence acceptée sur main ; son lancement
-normal `Launch-Game.ps1` reste inchangé. Sources historiques conservées.
-240 FPS soutenus et durée de session restent sans nouvelle validation isolée.
-Sound Design différé à la demande d’Antoine. Formes de blocs, variabilité,
-matériaux/outils supplémentaires, N-slots et musée/meta restent hors de cet essai.
+**Prochaine action : discuter le retour de lisibilité des restes attachés ;
+isoler un éventuel résidu réellement impossible à retirer s’il est confirmé.
+Aucun nouveau chantier, redesign de lampe ou merge automatique autorisé.**
+B-17, Brush et dégâts localisés restent acceptés. Sound Design reste différé.
+Formes de blocs, variabilité, nouveaux matériaux/outils, N-slots et musée/meta
+restent hors du diagnostic.
 
 ## Livraison cloud précédente — contexte historique
 

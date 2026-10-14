@@ -1,0 +1,20 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"before-broad-cut.png",
+		"after-broad-cut.png",
+		"bone-only.png"
+	],
+	"checks": 6,
+	"clay_before": 37471,
+	"failures": [],
+	"profiles": [],
+	"remaining_clay": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}
