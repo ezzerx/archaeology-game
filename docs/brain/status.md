@@ -18,7 +18,7 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a42-three-blocks`, depuis la référence de bords bruts `da3fc2f`.
+Active branch: `codex/p6a43-fractured-slab`, depuis `2709686`.
 PR courante : **#16 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/16,
 basée sur main et incluant les trois géologies, les bords bruts, le bloc naturel,
 le contour corrigé et la lumière centrée. #15 est remplacée sans fusion ;
@@ -59,19 +59,18 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A4.2 — essai de trois blocs B-17 autorisé le 2026-10-14.**
-Trois géologies façonnées : découverte rapide, banc oblique, accès séparés pour
-la précision. Garder les outils/interactions, B-17, style chaud, bords naturels,
-lumière centrée et protection des os enterrés. Varier les décisions de fouille,
-sans rallonger simplement la préparation. Rapport/brief actif :
-`docs/dev/P6A42_THREE_BLOCKS_REPORT.md`. Scène :
-`scenes/p6a42_three_blocks.tscn`, lancement `Launch-Game.ps1`. Candidat livré : 439 contrôles, zéro échec.
-Retour humain : variation surtout visuelle ; même stratégie Chisel en masse,
-puis Pick et Brush près des os. **L’essai ne valide pas la rejouabilité.**
-Prochaine action : discuter un comportement de matériau qui change réellement
-les gestes/choix avant tout nouveau spike. Aucun GO d’implémentation supplémentaire
-ou merge automatique.
-Pas de nouveaux matériaux/outils, catalogue, musée/meta ou N-slots. Son différé.
+**P6A4.3 — plaque de grès fracturée, spike de gameplay autorisé le 2026-10-14.**
+Antoine autorise un essai sur une plaque avec fissures lisibles et détachement
+satisfaisant. Garder le feeling actuel des outils, B-17, le rendu chaud, les bords
+et les protections des os enterrés. Exception de gameplay bornée à cette plaque :
+attaques Pick sur le joint permettant un retrait conséquent, sans ordre imposé ;
+Chisel ordinaire toujours utilisable. Rapport/brief actif :
+`docs/dev/P6A43_FRACTURED_SLAB_REPORT.md`. Candidat livré : 548 contrôles, zéro échec.
+Scène `scenes/p6a43_fractured_slab.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
+revue humaine de la lecture des joints et du plaisir/intérêt du détachement.
+Aucun merge automatique. Les trois géologies P6A42 restent un essai non
+concluant pour la rejouabilité. Pas de nouveau catalogue, musée/meta ou N-slots.
+Son différé ; pas de retuning global des outils.
 
 ## Livraison cloud précédente — contexte historique
 

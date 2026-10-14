@@ -51,10 +51,13 @@ func _on_physical_crumb_ejected(at: Vector3, direction: Vector3, amount: float, 
 func _create_fossil_field() -> FossilField:
 	return FossilField.new(map_resolution)
 
+func _create_working_surface(strata: Stratigraphy) -> WorkingSurface:
+	return WorkingSurface.new(map_resolution, strata, _create_fossil_field(), reactions)
+
 func _ready() -> void:
 	assert(surface_size.x > 0.0 and surface_size.y > 0.0 and thickness > base_height)
 	var strata := Stratigraphy.new(map_resolution, material_definitions)
-	working_map = WorkingSurface.new(map_resolution, strata, _create_fossil_field(), reactions)
+	working_map = _create_working_surface(strata)
 	if fragment_experiment:
 		working_map.enable_fragments(RecoverableFragmentField.new(map_resolution))
 	working_map.excavatable_depth = thickness - base_height

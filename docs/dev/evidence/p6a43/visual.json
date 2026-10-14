@@ -1,0 +1,22 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"slab-intact-overview.png",
+		"slab-joints-close.png",
+		"slab-first-joint.png",
+		"slab-second-joint.png",
+		"slab-lifting.png",
+		"slab-landed-overview.png",
+		"slab-reset.png"
+	],
+	"checks": 17,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

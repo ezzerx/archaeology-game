@@ -1242,3 +1242,18 @@ rejouabilité. Le coût structurel inférieur à la référence garantit un budg
 mais ne démontre pas de diversité d’actions. Discuter des comportements de
 matériaux et des choix qu’ils créent avant d’étendre les profils ou les outils.
 Conserver le tactile et l’art appréciés ; le nouveau gameplay exige un GO dédié.
+
+
+## 2026-10-14 — GO plaque de grès fracturée
+
+Antoine autorise un essai borné : garder le feeling des outils, proposer des
+fissures lisibles et un détachement satisfaisant. Le candidat repart des bords
+bruts avec un comportement local de joint ; les trois géologies restent une
+expérience non concluante pour la rejouabilité.
+
+L’impact natif doit conserver cadence, contact préalable et décisions Bone.
+Le retrait de plaque vient ensuite, limité à la matrice réellement restante et
+à ses plafonds. La pièce animée ne remplace pas la matière attachée : elle vient
+de la matière retirée et quitte le domaine jouable. Le Chisel reste une voie
+possible. Le rapport P6A43 garde seuils, preuves, coût ponctuel et limites ;
+le verdict humain sur le nouveau geste reste nécessaire.
