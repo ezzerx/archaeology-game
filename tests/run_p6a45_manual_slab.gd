@@ -437,6 +437,11 @@ func pilot_visual() -> void:
  main.feedback.proxies_enabled = false
  main.feedback.set_physics_process(false)
  main.camera.set_process(false)
+ # Display preferences load during ready; pin the same native window afterward.
+ root.mode = Window.MODE_WINDOWED
+ root.size = Vector2i(1280,720)
+ await settle(5)
  main.camera.global_transform = transform
  main.camera.size = view_size
- await skull_picture("previous-plate-same-view")
+ var previous := await skull_picture("previous-plate-same-view")
+ check(previous.get_size() == Vector2i(1280,720) and main.camera.size == view_size and main.camera.global_transform == transform,"old/new plate comparison preserves native image dimensions, camera pose and scale")

@@ -45,7 +45,7 @@ du bloc, x = -.42 / 0 / .42 m, z = -.24 / 0 / .24 m, 25 pixels par patch.
 L’étendue relative (max-min)/max passe de **34.76 % à 10.19 %**. Le centre passe de
 .3400 à .2607 de luminance écran ; les extrémités les plus sombres restent lisibles.
 Ce témoin isole l’éclairage de la texture et des faces inclinées ; il ne promet
-pas une luminosité identique sur tous les reliefs. 4 633 pixels du témoin B-17
+pas une luminosité identique sur tous les reliefs. 4 659 pixels du témoin B-17
 préparé sont encore assombris de plus de .025 par les seules ombres Bone exposées.
 
 ## Fractures plus brutes
@@ -82,7 +82,7 @@ est une action distincte, sans réutiliser le volume du dernier coup natif.
 
 ## Vérification
 
-**671 contrôles, zéro échec** : candidat 202, natif 32, référence P6A44 166,
+**672 contrôles, zéro échec** : candidat 202, natif 33, référence P6A44 166,
 P1 52, P5 128 et miettes P4V2 91. Quinze captures natives générées ; neuf
 comparaisons et étapes représentatives sont conservées dans les preuves du dépôt.
 
@@ -124,3 +124,10 @@ ou tactiles. Aucun merge automatique, nouveau catalogue ou Sound Design.
 4.7.2 / Compatibility. Fenêtre répondante, stderr vide au lancement. Les deux
 préparations précédentes restent ouvertes ; aucun reset ou arrêt de leur état.
 Le lancement ne constitue pas la validation humaine du geste ou de l’art.
+
+
+Source du candidat de jeu : `5914c00`, branche `codex/p6a45-manual-slab`.
+[PR #19 DRAFT](https://github.com/ezzerx/archaeology-game/pull/19) basée sur main ;
+#18 remplacée et fermée sans fusion. Le témoin ancien est capturé à la même taille
+native 1280 × 720, pose et échelle de caméra vérifiées après chargement de ses
+préférences de fenêtre. Les sources et préparations historiques sont conservées.

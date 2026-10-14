@@ -1,6 +1,6 @@
 {
 	"benchmark": [],
-	"bone_shadow_pixels": 4629,
+	"bone_shadow_pixels": 4659,
 	"brush": [],
 	"captures": [
 		"neutral-uniform.png",
@@ -19,7 +19,7 @@
 		"natural-matrix-close.png",
 		"previous-plate-same-view.png"
 	],
-	"checks": 32,
+	"checks": 33,
 	"failures": [],
 	"illumination": {
 		"new": {

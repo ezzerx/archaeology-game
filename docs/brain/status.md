@@ -19,12 +19,12 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a45-manual-slab`, depuis `6feb48c`.
-PR courante : **#18 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/18,
-basée sur main et incluant la plaque naturellement intégrée, les bords bruts,
-le bloc naturel, le contour corrigé et la lumière centrée. #17 est remplacée
-sans fusion ; les trois géologies restent dans leur scène historique, sans
-verdict de rejouabilité. #12/#13/#14/#15/#16 fermées.
-Les branches/sources historiques sont conservées ; aucune de ces PR n’est fusionnée.
+PR courante : **#19 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/19,
+basée sur main et incluant le levier manuel au Pick, les fractures brutes, la
+lumière plus uniforme et les précédents candidats de plaque/bloc naturel.
+#18 est remplacée sans fusion ; #12/#13/#14/#15/#16/#17/#18 sont fermées.
+Les scènes/branches historiques sont conservées, dont les trois géologies
+sans verdict de rejouabilité. Aucune de ces PR n’est fusionnée.
 Main conserve la référence B-17 validée.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
 PR #11 fusionnée : `c8672d72eb025bfe35488891280ea3145d172041`.
@@ -63,7 +63,7 @@ Report on active branch:
 **P6A4.5 — GO explicite le 2026-10-14 : lumière plus uniforme, fissures plus
 brutes et retrait manuel au Pick avec un petit geste de levier.** Conserver outils,
 B-17, ambiance chaude, relief/ombres et protection des os enterrés. Rapport actif :
-`docs/dev/P6A45_MANUAL_SLAB_REPORT.md`. Candidat livré : 671 contrôles, zéro échec.
+`docs/dev/P6A45_MANUAL_SLAB_REPORT.md`. Candidat livré : 672 contrôles, zéro échec.
 Scène `scenes/p6a45_manual_slab.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
 revue humaine de la lumière, des fractures et du geste de levier.
 Aucun merge automatique ; autres mécaniques, génération de blocs, catalogue,
