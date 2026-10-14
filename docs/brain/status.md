@@ -52,22 +52,22 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.5 — passe esthétique crâne/côtes livrée localement, revue humaine attendue.**
-GO explicite Antoine le 2026-10-14 : garder l’ivoire chaud et retrouver les
-ombres et le relief de l’ancien rendu sans révéler les os enterrés. Périmètre :
-les sept pièces du pilote P6A3.4 ; interactions Brush/dégâts validées conservées.
+**P6A3.6 — crâne de référence artistique livré localement, verdict humain attendu.**
+GO explicite Antoine le 2026-10-14 : réaliser le vrai travail de modelage pour
+juger une qualité artistique représentative de la production. Reprendre les
+formes du crâne ; conserver ivoire chaud, ombres sans révélation des os enterrés,
+Brush et dégâts validés. Les côtes P6A3.5 restent un témoin stable.
 
-Rapport actif : `docs/dev/P6A35_AESTHETIC_REPORT.md`.
-Brief : `docs/dev/P6A35_AESTHETIC_BRIEF.md`.
-Référence précédente : `docs/dev/P6A34_PRODUCTION_PILOT_REPORT.md`.
-Candidat : `scenes/p6a35_aesthetic_pilot.tscn`.
-Lancement : `Launch-P6A35-Aesthetic-Pilot.ps1`, Godot 4.7.2 stable.
+Rapport actif : `docs/dev/P6A36_HERO_SKULL_REPORT.md`.
+Brief : `docs/dev/P6A36_HERO_SKULL_BRIEF.md`.
+Référence précédente : `docs/dev/P6A35_AESTHETIC_REPORT.md`.
+Candidat : `scenes/p6a36_hero_skull.tscn`.
+Lancement : `Launch-P6A36-Hero-Skull.ps1`, Godot 4.7.2 stable.
 Branche conservée : `prototype/p6a32-fossil-mesh`, corrections locales non poussées.
-**Prochaine action : poursuivre la revue humaine et préciser le cap artistique
-avant une nouvelle passe de modèle.** Antoine juge les ombres meilleures le
-2026-10-14 ; aucune approbation de la qualité artistique finale n’est donnée.
-Les ombres ne proviennent que des cellules dégagées ; le modèle complet enterré
-ne projette pas d’ombre. Le pilote précédent reste accessible pour comparaison.
+**Prochaine action : verdict humain sur la qualité artistique du modèle Godot,
+en fouille et hors matrice, avant extension de production.** Aucun GO catalogue.
+F5 compare les vrais modèles nouveau/précédent et permet une étude sans texture.
+H propose une préparation contrôlée au Pick natif ; lancement normalement couvert.
 Les contrôles et captures passent ; ils ne valident pas le style, le ressenti ni
 le pipeline du catalogue complet. Détails, budgets et limites dans le rapport.
 Préserver les scènes historiques et les interactions P6A3.3. Brush sur os et

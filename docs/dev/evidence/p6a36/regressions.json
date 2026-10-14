@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "suite": "P5",
+      "count": 128,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.3 tactile",
+      "count": 40,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.4 functional",
+      "count": 26,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.5 functional",
+      "count": 38,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.5 native visual",
+      "count": 31,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.6 functional",
+      "count": 50,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.6 native visual",
+      "count": 43,
+      "failures": 0
+    }
+  ],
+  "total": 356
+}

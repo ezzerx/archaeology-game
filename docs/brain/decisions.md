@@ -1054,3 +1054,17 @@ Le candidat livré conserve le caster complet désactivé et projette les ombres
 depuis les seules cellules dégagées ; matrice intacte pixel-identique vérifiée.
 La réussite technique ne vaut pas acceptation esthétique humaine. Preuves et
 limites dans `docs/dev/P6A35_AESTHETIC_REPORT.md`.
+
+
+## 2026-10-14 — GO crâne de référence artistique P6A3.6
+
+Antoine autorise le vrai travail de modelage pour voir un candidat représentatif
+de la qualité artistique de production. L’objectif est de valider cette qualité
+avant extension du catalogue, avec ivoire chaud et ombres exposées conservés.
+Le pilote paramétrique en tubes ne constitue pas cette référence.
+
+Le candidat livré utilise des cages anatomiques et des volumes creux, avec
+comparaison directe des deux GLB et étude sans texture dans Godot. Le concept
+ImageGen est une intention, pas une preuve de qualité du runtime. Le contact
+des os réellement dégagés est affiné sur leurs triangles dans cette scène
+isolée ; règles et presets restent conservés. Le verdict artistique reste humain.

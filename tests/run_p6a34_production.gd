@@ -22,6 +22,7 @@ func geometry_checks() -> void:
 	check(field.native_occlusion_cells > 0,"higher existing vertebrae keep authority above rib joints")
 	check(main.mesh_view.source_piece_count == 7 and main.mesh_view.meshes.size() == 1,"seven source pieces are batched into one rendering surface")
 	var faces := PackedVector3Array()
+	var render_faces := PackedVector3Array()
 	var triangle_count := 0
 	for mesh: MeshInstance3D in main.mesh_view.meshes:
 		var transform: Transform3D = main.block.global_transform.affine_inverse()*mesh.global_transform
@@ -31,7 +32,9 @@ func geometry_checks() -> void:
 			var arrays := mesh.mesh.surface_get_arrays(surface)
 			var positions: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
 			var indices: PackedInt32Array = arrays[Mesh.ARRAY_INDEX]
-			for index in indices: faces.append((transform*positions[index])*1000.0)
+			for index in indices:
+				render_faces.append(transform*positions[index])
+				faces.append((transform*positions[index])*1000.0)
 			triangle_count += indices.size()/3
 		check(mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_OFF,"hidden mesh cannot cast an outline shadow: "+str(mesh.name))
 	check(triangle_count > 5000 and triangle_count <= 40000,"imported triangle budget matches the finalized source")
@@ -43,39 +46,51 @@ func geometry_checks() -> void:
 	projected.resize(1024*640)
 	var present := PackedByteArray()
 	present.resize(projected.size())
-	for t in range(0,faces.size(),3):
-		var va := faces[t]*.001
-		var vb := faces[t+1]*.001
-		var vc := faces[t+2]*.001
-		var a := Vector2((va.x+.55)/1.1*1024,(va.z+.35)/.7*640)
-		var b := Vector2((vb.x+.55)/1.1*1024,(vb.z+.35)/.7*640)
-		var c := Vector2((vc.x+.55)/1.1*1024,(vc.z+.35)/.7*640)
-		var ab := b-a
-		var ac := c-a
-		var determinant := ab.cross(ac)
-		if absf(determinant) < .000001: continue
-		var low := Vector2i(a.min(b).min(c).floor()).max(Vector2i.ZERO)
-		var high := Vector2i(a.max(b).max(c).ceil()).min(Vector2i(1023,639))
+	# Raster arithmetic uses scalar doubles and the original render positions.
+	# Converting to mm and back or Vector2 cross products introduces cancellation
+	# on very narrow, steep triangles in the new cranial margins.
+	for t in range(0,render_faces.size(),3):
+		var va := render_faces[t]
+		var vb := render_faces[t+1]
+		var vc := render_faces[t+2]
+		var ax: float = (float(va.x)+.55)/1.1*1024
+		var ay: float = (float(va.z)+.35)/.7*640
+		var bx: float = (float(vb.x)+.55)/1.1*1024
+		var by: float = (float(vb.z)+.35)/.7*640
+		var cx: float = (float(vc.x)+.55)/1.1*1024
+		var cy: float = (float(vc.z)+.35)/.7*640
+		var abx := bx-ax
+		var aby := by-ay
+		var acx := cx-ax
+		var acy := cy-ay
+		var determinant := abx*acy-aby*acx
+		if absf(determinant) < .000000000001: continue
+		var low := Vector2i(floori(minf(ax,minf(bx,cx))-.5),floori(minf(ay,minf(by,cy))-.5)).max(Vector2i.ZERO)
+		var high := Vector2i(ceili(maxf(ax,maxf(bx,cx))-.5),ceili(maxf(ay,maxf(by,cy))-.5)).min(Vector2i(1023,639))
 		for y in range(low.y,high.y+1):
 			for x in range(low.x,high.x+1):
-				var ap := Vector2(x+.5,y+.5)-a
-				var u := ap.cross(ac)/determinant
-				var v := ab.cross(ap)/determinant
+				var px: float = x+.5-ax
+				var py: float = y+.5-ay
+				var u := (px*acy-py*acx)/determinant
+				var v := (abx*py-aby*px)/determinant
 				if u < -.000001 or v < -.000001 or u+v > 1.000001: continue
 				var index := y*1024+x
-				projected[index] = maxf(projected[index],va.y+(vb.y-va.y)*u+(vc.y-va.y)*v)
+				projected[index] = maxf(projected[index],float(va.y)+(float(vb.y)-va.y)*u+(float(vc.y)-va.y)*v)
 				present[index] = 1
 	var misses := 0
+	var missing_cells := []
 	var max_error := 0.0
 	var samples := 0
 	for i in range(field.patch.components.size()):
 		if field.patch.components[i] == 0: continue
-		if present[i] == 0: misses += 1
+		if present[i] == 0:
+			misses += 1
+			missing_cells.append([i%1024,i/1024,field.patch.components[i]])
 		else: max_error = maxf(max_error,absf(projected[i]-(.018+field.patch.ceilings[i]*.102)))
 		samples += 1
 	check(misses == 0 and samples > 9000,"every baked mesh cell is covered by the actual imported geometry")
 	check(max_error < .000001,"all imported roof samples match the bake within one micrometre")
-	evidence["geometry"] = {"triangles":triangle_count,"baked_samples":samples,"winning_mesh_cells":selected_cells,"native_joint_occlusion":field.native_occlusion_cells,"roof_max_error_m":max_error,"misses":misses}
+	evidence["geometry"] = {"triangles":triangle_count,"baked_samples":samples,"winning_mesh_cells":selected_cells,"native_joint_occlusion":field.native_occlusion_cells,"roof_max_error_m":max_error,"misses":misses,"missing_cells":missing_cells}
 
 func pilot_checks() -> void:
 	geometry_checks()
@@ -111,7 +126,7 @@ func pilot_checks() -> void:
 	check(not main.inspection.opened and state() == baseline,"inspection rotation and closing preserve the complete preparation state")
 	var s: WorkingSurface = main.block.working_map
 	P5Fixture.reveal(s,[100,100,100,100])
-	var index := s.fossil.field.index_at_map(Vector2(240,220))
+	var index := s.fossil.field.index_at_map(_contact_point())
 	check(s.fossil.exposed[index] != 0,"contact test targets real mesh-authored Bone")
 	var point := Vector2(index%1024,index/1024)
 	s.apply_impact(point,main.controller.tools[1])
@@ -189,15 +204,15 @@ func pilot_visual() -> void:
 	await zoom_to(3,Vector2(266,233))
 	main.camera.set_process(false)
 	var mesh := await skull_picture("skull-mesh")
-	var picked: Dictionary = main.block.pick(at(Vector2(240,220)),main.camera)
+	var picked: Dictionary = main.block.pick(at(_contact_point()),main.camera)
 	var state_before := state()
 	main.toggle_mesh()
 	var relief := await skull_picture("skull-relief")
 	check(digest(mesh.get_data()) != digest(relief.get_data()),"production geometry visibly changes the fully exposed Skull")
-	check(state() == state_before and main.block.pick(at(Vector2(240,220)),main.camera) == picked,"mesh/relief comparison preserves real picking and preparation")
+	check(state() == state_before and main.block.pick(at(_contact_point()),main.camera) == picked,"mesh/relief comparison preserves real picking and preparation")
 	main.toggle_mesh()
-	s.fossil.contact_at(s.fossil.field.index_at_map(Vector2(240,220)),3,true)
-	s.fossil.contact_at(s.fossil.field.index_at_map(Vector2(240,220)),3,true)
+	s.fossil.contact_at(s.fossil.field.index_at_map(_contact_point()),3,true)
+	s.fossil.contact_at(s.fossil.field.index_at_map(_contact_point()),3,true)
 	await skull_picture("skull-local-damage")
 	main.camera.set_process(true)
 	await zoom_to(3,Vector2(424,329))
@@ -280,3 +295,6 @@ func _collection_store() -> String:
 
 func _suite_name() -> String:
 	return "P6A3.4"
+
+func _contact_point() -> Vector2:
+	return Vector2(240,220)

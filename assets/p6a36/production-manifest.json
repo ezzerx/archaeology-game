@@ -1,0 +1,153 @@
+{
+	"baked_cells": 10658.0,
+	"blender": "5.2.2 LTS",
+	"editable_cages": 12.0,
+	"glb_sha256": "064a0f1981d08fc1b1ff97c1f28c8d911607708344cb3d4dbf9e6195919aef12",
+	"parts": [
+		{
+			"baked_hits": 6252.0,
+			"bounds": [
+				[
+					-0.361884772777557,
+					0.0339639745652676,
+					-0.152536824345589
+				],
+				[
+					-0.201182842254639,
+					0.074394017457962,
+					-0.0420847944915295
+				]
+			],
+			"closed": true,
+			"component": 1.0,
+			"name": "B17_Production_Skull",
+			"triangles": 26798.0
+		},
+		{
+			"baked_hits": 599.0,
+			"bounds": [
+				[
+					-0.0762480273842812,
+					0.0394859984517097,
+					-0.121510356664658
+				],
+				[
+					-0.0469468459486961,
+					0.0521334186196327,
+					-0.0330212824046612
+				]
+			],
+			"closed": true,
+			"component": 3.0,
+			"name": "B17_Rib_3_Upper",
+			"triangles": 1480.0
+		},
+		{
+			"baked_hits": 1000.0,
+			"bounds": [
+				[
+					-0.0832372009754181,
+					0.0394859984517097,
+					-0.00601812824606895
+				],
+				[
+					-0.0426263362169266,
+					0.0521342642605305,
+					0.132920458912849
+				]
+			],
+			"closed": true,
+			"component": 3.0,
+			"name": "B17_Rib_3_Lower",
+			"triangles": 1960.0
+		},
+		{
+			"baked_hits": 580.0,
+			"bounds": [
+				[
+					-0.106326147913933,
+					0.0402860008180141,
+					-0.118224285542965
+				],
+				[
+					-0.0770101547241211,
+					0.0529334209859371,
+					-0.0330330990254879
+				]
+			],
+			"closed": true,
+			"component": 3.0,
+			"name": "B17_Rib_2_Upper",
+			"triangles": 1480.0
+		},
+		{
+			"baked_hits": 912.0,
+			"bounds": [
+				[
+					-0.113315224647522,
+					0.0402860008180141,
+					-0.00598391517996788
+				],
+				[
+					-0.0726772174239159,
+					0.0529342629015446,
+					0.119794562458992
+				]
+			],
+			"closed": true,
+			"component": 3.0,
+			"name": "B17_Rib_2_Lower",
+			"triangles": 1960.0
+		},
+		{
+			"baked_hits": 545.0,
+			"bounds": [
+				[
+					-0.136404275894165,
+					0.0410859994590282,
+					-0.11290717124939
+				],
+				[
+					-0.107064709067345,
+					0.0537334196269512,
+					-0.0330517925322056
+				]
+			],
+			"closed": true,
+			"component": 3.0,
+			"name": "B17_Rib_1_Upper",
+			"triangles": 1480.0
+		},
+		{
+			"baked_hits": 771.0,
+			"bounds": [
+				[
+					-0.143393129110336,
+					0.0410859994590282,
+					-0.00593047635629773
+				],
+				[
+					-0.102712757885456,
+					0.0537342615425587,
+					0.0985560640692711
+				]
+			],
+			"closed": true,
+			"component": 3.0,
+			"name": "B17_Rib_1_Lower",
+			"triangles": 1960.0
+		}
+	],
+	"removed_zero_volume_islands": 1.0,
+	"runtime_baked_cells": 10660,
+	"runtime_rib_bake": "P6A35 retained exactly",
+	"source": "original volumetric anatomical cage modeling; P6A35 ribs retained",
+	"triangles": 37118.0,
+	"windows": [
+		"External_nares",
+		"Antorbital_fenestra",
+		"Orbital_fenestra",
+		"Temporal_fenestra",
+		"Mandibular_fenestra"
+	]
+}
