@@ -9,7 +9,7 @@ var source_piece_count := 0
 
 func setup(target: ExcavationBlock) -> void:
 	block = target
-	var source: Node3D = preload("res://assets/p6a34/b17_production_patch.glb").instantiate()
+	var source: Node3D = _source_scene().instantiate()
 	add_child(source)
 	var batch := SurfaceTool.new()
 	batch.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -27,7 +27,7 @@ func setup(target: ExcavationBlock) -> void:
 	instance.mesh = batch.commit()
 	model.add_child(instance)
 	material = ShaderMaterial.new()
-	material.shader = preload("res://shaders/p6a34_production_bone.gdshader")
+	material.shader = _bone_shader()
 	var field: FossilField = block.working_map.fossil.field
 	var bytes: PackedByteArray = field.replacement.duplicate()
 	for i in range(bytes.size()): bytes[i] *= 255
@@ -52,3 +52,9 @@ func _process(_delta: float) -> void:
 	if visible:
 		for key in ["cursor_uv","cursor_radius","cursor_visible","cursor_color","mastery_cursor_scale"]:
 			material.set_shader_parameter(key,block.material.get_shader_parameter(key))
+
+func _source_scene() -> PackedScene:
+	return preload("res://assets/p6a34/b17_production_patch.glb")
+
+func _bone_shader() -> Shader:
+	return preload("res://shaders/p6a34_production_bone.gdshader")

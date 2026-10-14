@@ -234,20 +234,20 @@ func pilot_visual() -> void:
 			frame_ms.append((Time.get_ticks_usec()-began)/1000.0)
 		frame_ms.sort()
 		evidence.budget.append({"mesh":enabled,"draw_calls":Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),"primitives":Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME),"texture_bytes":Performance.get_monitor(Performance.RENDER_TEXTURE_MEM_USED),"frame_median_ms":frame_ms[10]})
-	check(evidence.budget[1].primitives-evidence.budget[0].primitives == 26562,"all seven meshes add exactly their finalized triangle count at overview")
+	check(evidence.budget[1].primitives-evidence.budget[0].primitives == _expected_triangles()+_expected_shadow_triangles(),"source meshes and exposed casters add exactly their separate triangle budgets at overview")
 	check(evidence.budget[1].draw_calls-evidence.budget[0].draw_calls <= 10,"production overlay stays within ten additional draw calls")
 	check(state() == stable,"render sampling never changes preparation")
 
 
 func run() -> void:
-	out = "res://work/test-logs/p6a34/"
+	out = _output_directory()
 	DirAccess.make_dir_recursive_absolute(out)
-	if FileAccess.file_exists(PILOT_STORE): DirAccess.remove_absolute(PILOT_STORE)
+	if FileAccess.file_exists(_collection_store()): DirAccess.remove_absolute(_collection_store())
 	root.size = Vector2i(1280,720)
 	AudioServer.set_bus_mute(0,true)
 	var args := OS.get_cmdline_user_args()
 	mode = args[0] if not args.is_empty() else "tests"
-	main = load("res://scenes/p6a34_production_pilot.tscn").instantiate()
+	main = _pilot_scene().instantiate()
 	root.add_child(main)
 	main.display.persist = false
 	root.mode = Window.MODE_WINDOWED
@@ -261,7 +261,22 @@ func run() -> void:
 	evidence["checks"] = checks
 	evidence["failures"] = failures
 	FileAccess.open(out+mode+".json",FileAccess.WRITE).store_string(JSON.stringify(evidence,"\t"))
-	print("P6A3.4 ",mode,": ",checks," checks, ",failures.size()," failures")
+	print(_suite_name()," ",mode,": ",checks," checks, ",failures.size()," failures")
 	main.queue_free()
 	await create_timer(.3).timeout
 	quit(0 if failures.is_empty() else 1)
+
+func _pilot_scene() -> PackedScene:
+	return preload("res://scenes/p6a34_production_pilot.tscn")
+func _output_directory() -> String:
+	return "res://work/test-logs/p6a34/"
+func _expected_triangles() -> int:
+	return 26562
+
+func _expected_shadow_triangles() -> int:
+	return 0
+func _collection_store() -> String:
+	return PILOT_STORE
+
+func _suite_name() -> String:
+	return "P6A3.4"

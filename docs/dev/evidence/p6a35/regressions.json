@@ -1,0 +1,36 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "checks": [
+    {
+      "suite": "P5",
+      "count": 128,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.3 tactile",
+      "count": 40,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.4 functional",
+      "count": 26,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.4 native visual",
+      "count": 21,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.5 functional",
+      "count": 38,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.5 native visual",
+      "count": 31,
+      "failures": 0
+    }
+  ],
+  "total": 284
+}

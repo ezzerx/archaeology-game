@@ -52,23 +52,20 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.4 — essai de production 3D livré localement, premier retour humain reçu.**
-Antoine donne GO pour un crâne et quelques côtes stylisés : remplacement complet
-des pièces testées, vraie géométrie 3D et inspection hors matrice du même asset.
-La surface de fouille est dérivée du modèle dans la scène isolée ; ce GO couvre
-ce pilote borné, pas une migration générale ni la production du catalogue.
+**P6A3.5 — passe esthétique crâne/côtes livrée localement, revue humaine attendue.**
+GO explicite Antoine le 2026-10-14 : garder l’ivoire chaud et retrouver les
+ombres et le relief de l’ancien rendu sans révéler les os enterrés. Périmètre :
+les sept pièces du pilote P6A3.4 ; interactions Brush/dégâts validées conservées.
 
-Rapport actif : `docs/dev/P6A34_PRODUCTION_PILOT_REPORT.md`.
-Brief : `docs/dev/P6A34_PRODUCTION_PILOT_BRIEF.md`.
-Candidat : `scenes/p6a34_production_pilot.tscn`.
-Lancement : `Launch-P6A34-Production-Pilot.ps1`, Godot 4.7.2 stable.
-F5 : même asset hors matrice ; F6 : mesh / relief du champ dérivé, sans reset.
+Rapport actif : `docs/dev/P6A35_AESTHETIC_REPORT.md`.
+Brief : `docs/dev/P6A35_AESTHETIC_BRIEF.md`.
+Référence précédente : `docs/dev/P6A34_PRODUCTION_PILOT_REPORT.md`.
+Candidat : `scenes/p6a35_aesthetic_pilot.tscn`.
+Lancement : `Launch-P6A35-Aesthetic-Pilot.ps1`, Godot 4.7.2 stable.
 Branche conservée : `prototype/p6a32-fossil-mesh`, corrections locales non poussées.
-**Prochaine action : préciser la passe de qualité visuelle proposée sur ces mêmes
-pièces et poursuivre la revue humaine, notamment hors matrice.**
-Le 2026-10-14, Antoine accueille positivement la proximité du style avec le rendu
-en code et signale le manque d’ombres du nouveau modèle. Ce retour partiel ne
-valide pas l’art final ; la passe suivante reste une proposition à confirmer.
+**Prochaine action : revue humaine de ce candidat en fouille et hors matrice.**
+Les ombres ne proviennent que des cellules dégagées ; le modèle complet enterré
+ne projette pas d’ombre. Le pilote précédent reste accessible pour comparaison.
 Les contrôles et captures passent ; ils ne valident pas le style, le ressenti ni
 le pipeline du catalogue complet. Détails, budgets et limites dans le rapport.
 Préserver les scènes historiques et les interactions P6A3.3. Brush sur os et

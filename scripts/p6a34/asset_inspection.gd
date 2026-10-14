@@ -49,10 +49,10 @@ func setup(pilot: Node3D) -> void:
 	fill.light_energy = .35
 	pivot = Node3D.new()
 	world.add_child(pivot)
-	model = preload("res://assets/p6a34/b17_production_patch.glb").instantiate()
+	model = _source_scene().instantiate()
 	pivot.add_child(model)
 	var material := ShaderMaterial.new()
-	material.shader = preload("res://shaders/p6a34_production_bone.gdshader")
+	material.shader = _bone_shader()
 	material.set_shader_parameter("inspection",true)
 	material.set_shader_parameter("hero_bone",preload("res://assets/p6a2/textures/bone/p6a2_bone_albedo_v02.png"))
 	for mesh: MeshInstance3D in model.find_children("*","MeshInstance3D",true,false):
@@ -121,3 +121,9 @@ func _on_gui_input(event: InputEvent) -> void:
 		pivot.rotation.y += event.relative.x*.008
 		pivot.rotation.x = clampf(pivot.rotation.x+event.relative.y*.008,-1.35,1.35)
 	root_control.accept_event()
+
+func _source_scene() -> PackedScene:
+	return preload("res://assets/p6a34/b17_production_patch.glb")
+
+func _bone_shader() -> Shader:
+	return preload("res://shaders/p6a34_production_bone.gdshader")

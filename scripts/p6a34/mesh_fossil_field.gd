@@ -6,7 +6,7 @@ var native_occlusion_cells := 0
 
 func _init(resolution := Vector2i(1024,640)) -> void:
 	super(resolution)
-	patch = load("res://assets/p6a34/mesh_patch_data.res")
+	patch = _load_patch()
 	assert(size == patch.size,"Pilot bake uses the canonical resolution")
 	replacement.resize(component_ids.size())
 	for i in range(component_ids.size()):
@@ -37,3 +37,6 @@ func _init(resolution := Vector2i(1024,640)) -> void:
 		highest_ceiling = maxf(highest_ceiling,ceilings[i])
 		@warning_ignore("integer_division")
 		image.set_pixel(i%size.x,i/size.x,Color(ceilings[i],component,0,1))
+
+func _load_patch() -> Resource:
+	return load("res://assets/p6a34/mesh_patch_data.res")

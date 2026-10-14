@@ -1,0 +1,34 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 38,
+	"contact": {
+		"max_gap_m": 0.00026245680055581,
+		"samples": 185
+	},
+	"failures": [],
+	"geometry": {
+		"baked_samples": 11403,
+		"misses": 0,
+		"native_joint_occlusion": 118,
+		"roof_max_error_m": 0.000000539630651483214,
+		"triangles": 28798,
+		"winning_mesh_cells": 11285
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	},
+	"shadow_geometry": {
+		"ao_min": 0.34901961684227,
+		"build_usec": 1528,
+		"max_build_usec": 1528,
+		"partial_cells": 3498,
+		"triangles": 6996,
+		"wrong_cells": 0
+	}
+}

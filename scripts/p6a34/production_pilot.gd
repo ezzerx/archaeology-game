@@ -6,7 +6,7 @@ var inspection: CanvasLayer
 func _ready() -> void:
 	super._ready()
 	mesh_view.free()
-	mesh_view = preload("res://scripts/p6a34/production_mesh_view.gd").new()
+	mesh_view = _create_mesh_view()
 	block.add_child(mesh_view)
 	mesh_view.setup(block)
 	mesh_surface_shader = Shader.new()
@@ -15,7 +15,7 @@ func _ready() -> void:
 	production_ready = true
 	mesh_enabled = true
 	_apply_mesh()
-	inspection = preload("res://scripts/p6a34/asset_inspection.gd").new()
+	inspection = _create_inspection()
 	add_child(inspection)
 	inspection.setup(self)
 	_button("F5 · Inspecter hors matrice",panel.get_child(0),inspection.toggle)
@@ -88,3 +88,9 @@ func prepare_review_patch() -> void:
 	session.flush()
 	controller.select_tool(0)
 	controller.refresh_view()
+
+func _create_mesh_view() -> Node3D:
+	return preload("res://scripts/p6a34/production_mesh_view.gd").new()
+
+func _create_inspection() -> CanvasLayer:
+	return preload("res://scripts/p6a34/asset_inspection.gd").new()

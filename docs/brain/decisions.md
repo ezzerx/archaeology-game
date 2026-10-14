@@ -1041,3 +1041,16 @@ La faisabilité technique vérifiée ne vaut pas validation artistique. L’anat
 aplatie reste simplifiée et la projection à hauteur unique limite les usages
 possibles. Verdict humain à recueillir avant de choisir le pipeline de production.
 Le Brush sur os et les dégâts localisés validés restent inchangés.
+
+
+## 2026-10-14 — GO passe esthétique P6A3.5
+
+Antoine autorise une passe esthétique sur le crâne et les côtes du pilote :
+conserver le style ivoire chaud et retrouver ombres/relief, sans révéler les
+os enterrés. Préserver les interactions Brush et dégâts localisés validées.
+Le retour positif sur la proximité du style ne canonise pas encore le catalogue.
+
+Le candidat livré conserve le caster complet désactivé et projette les ombres
+depuis les seules cellules dégagées ; matrice intacte pixel-identique vérifiée.
+La réussite technique ne vaut pas acceptation esthétique humaine. Preuves et
+limites dans `docs/dev/P6A35_AESTHETIC_REPORT.md`.
