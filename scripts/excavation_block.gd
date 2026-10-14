@@ -178,7 +178,7 @@ func flush_texture() -> void:
 	last_fracture_upload_usec = 0
 	if working_map.dirty:
 		var start := Time.get_ticks_usec()
-		texture.update(working_map.image)
+		texture.update(_height_image_for_rendering())
 		last_upload_usec = Time.get_ticks_usec() - start
 		upload_count += 1
 		working_map.dirty = false
@@ -194,3 +194,6 @@ func flush_texture() -> void:
 		last_fracture_upload_usec = Time.get_ticks_usec() - start
 		fracture_upload_count += 1
 		working_map.fracture.dirty = false
+
+func _height_image_for_rendering() -> Image:
+	return working_map.image

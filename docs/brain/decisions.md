@@ -1199,3 +1199,17 @@ restent trop propres, comme découpés à la disqueuse. Conserver l’irrégular
 extérieure comme direction ; rechercher des cassures et volumes de roche brute
 sur les bords. Ce retour ne valide pas toute la phase et ne déclenche pas seul
 une nouvelle implémentation. Le rapport P6A40 conserve le détail de la proposition.
+
+
+## 2026-10-14 — GO passe des bords bruts
+
+Antoine autorise la passe proposée : volumes cassés de tailles variées, pans
+inclinés et arête ébréchée avec portions préservées, matière des flancs plus lisible.
+Conserver la silhouette supérieure appréciée, B-17 et les interactions validées.
+
+Pour un domaine de hauteur irrégulier, le vide logique ne doit pas être moyenné
+comme un échantillon de roche à hauteur zéro sur le bord. Un guard de rendu hors
+domaine peut porter l’échantillon voisin, à condition de rester hors matière
+jouable et d’être partagé avec le picker. Garder la mise à jour immédiate des
+contacts après édition. Le rapport P6A41 conserve preuves et limites ; aucune
+validation artistique de cette nouvelle passe n’est déduite des contrôles.

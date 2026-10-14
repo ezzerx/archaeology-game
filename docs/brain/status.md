@@ -18,7 +18,7 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a40-natural-block`, depuis le candidat centré `cf19051`.
+Active branch: `codex/p6a41-rough-edges`, depuis le bloc naturel `1547364`.
 PR courante : **#14 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/14,
 basée sur main et incluant la correction centrée. #13 est fermée car remplacée
 par ce candidat complet ; #12 est fermée, essai mobile non retenu.
@@ -58,24 +58,16 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A4.0 — premier bloc naturel autorisé par Antoine le 2026-10-14.**
-Périmètre : silhouette extérieure naturelle, squelette et interactions validées
-conservés ; corriger le contour orange si une cause et un correctif sont trouvés ;
-dégager le modèle de lampe qui masque la partie supérieure du bloc.
-La source fixe, chaude et centrée reste la référence de lumière.
-Rapport actif : `docs/dev/P6A40_NATURAL_BLOCK_REPORT.md`.
-Candidat : `scenes/p6a40_natural_block.tscn`, lancement `Launch-Game.ps1`.
-**Candidat livré et vérifié : 401 contrôles, zéro échec. Retour humain : silhouette
-irrégulière jugée bien meilleure, mais bords trop droits/nets, aspect découpé à la
-disqueuse ; caractère brut à améliorer.** Discussion d’une passe de modelage des
-bords ; aucun nouveau GO d’implémentation ou merge reçu dans ce retour. Aucun
-verdict humain distinct sur le contour orange ou la lampe. Rapport actif ci-dessus.
-
-Préserver champ/mesh B-17, Bone enterré invisible, Brush, dégâts, presets et
-complétion. Les restes orange se retirent déjà : le défaut est visuel, pas un
-blocage d’outil. Ne pas supprimer artificiellement de matière pour le cacher.
-Pas de nouveaux matériaux, outils, N-slots, musée/meta ou catalogue.
-Sound Design reste différé.
+**P6A4.1 — passe de bords bruts autorisée par Antoine le 2026-10-14.**
+Retour P6A40 : silhouette irrégulière bien meilleure, mais flancs/arête trop nets,
+aspect disqueuse. GO pour cassures de tailles variées, pans inclinés et matière
+plus lisible sur les flancs. Conserver squelette, domaine et interactions validés.
+Rapport actif : `docs/dev/P6A41_ROUGH_EDGES_REPORT.md`.
+Candidat : `scenes/p6a41_rough_edges.tscn`, lancement `Launch-Game.ps1`.
+**Candidat livré : 411 contrôles, zéro échec. Prochaine action : revue humaine
+des cassures, pans et lisibilité des flancs en jeu ; aucun merge automatique.** Correction du contour orange et
+lumière chaude centrée à conserver ; modèle de lampe hors champ de fouille.
+Pas de nouveaux matériaux/outils, musée/meta, catalogue ou N-slots. Son différé.
 
 ## Livraison cloud précédente — contexte historique
 
