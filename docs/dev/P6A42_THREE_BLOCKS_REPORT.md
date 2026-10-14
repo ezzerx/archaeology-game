@@ -99,3 +99,12 @@ hérités sont conservés. Cap 240 FPS / physique 60 Hz inchangés ; pas de nouv
 mesure soutenue isolée de performance. Les contrôles ne valent pas validation
 humaine de la variété proposée.
 
+
+
+## Livraison de revue
+
+Source `969eda7`, branche `codex/p6a42-three-blocks`,
+[PR #16 DRAFT](https://github.com/ezzerx/archaeology-game/pull/16) sur main.
+La PR #15 est remplacée sans fusion ; ses scènes et sa branche sont conservées.
+Main reste la référence précédente. Les fenêtres et préparations en cours n’ont
+pas été fermées pour ce nouvel essai.

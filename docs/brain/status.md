@@ -19,9 +19,10 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a42-three-blocks`, depuis la référence de bords bruts `da3fc2f`.
-PR courante : **#15 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/15,
-basée sur main et incluant le bloc naturel, le contour corrigé et la lumière
-centrée. #14 est fermée car remplacée par cette passe complète. #12/#13 fermées.
+PR courante : **#16 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/16,
+basée sur main et incluant les trois géologies, les bords bruts, le bloc naturel,
+le contour corrigé et la lumière centrée. #15 est remplacée sans fusion ;
+#12/#13/#14 fermées.
 Les branches/sources historiques sont conservées ; aucune de ces PR n’est fusionnée.
 Main conserve la référence B-17 validée.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
@@ -63,7 +64,8 @@ Trois géologies façonnées : découverte rapide, banc oblique, accès séparé
 la précision. Garder les outils/interactions, B-17, style chaud, bords naturels,
 lumière centrée et protection des os enterrés. Varier les décisions de fouille,
 sans rallonger simplement la préparation. Rapport/brief actif :
-`docs/dev/P6A42_THREE_BLOCKS_REPORT.md`. Candidat livré : 439 contrôles, zéro échec.
+`docs/dev/P6A42_THREE_BLOCKS_REPORT.md`. Scène :
+`scenes/p6a42_three_blocks.tscn`, lancement `Launch-Game.ps1`. Candidat livré : 439 contrôles, zéro échec.
 Prochaine action : revue humaine des trois profils, de leurs choix de fouille
 et du rythme réel. Aucun merge automatique.
 Pas de nouveaux matériaux/outils, catalogue, musée/meta ou N-slots. Son différé.
