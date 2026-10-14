@@ -52,7 +52,7 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.6 — crâne de référence artistique livré localement, verdict humain attendu.**
+**P6A3.6 — direction artistique du nouveau crâne validée humainement.**
 GO explicite Antoine le 2026-10-14 : réaliser le vrai travail de modelage pour
 juger une qualité artistique représentative de la production. Reprendre les
 formes du crâne ; conserver ivoire chaud, ombres sans révélation des os enterrés,
@@ -64,12 +64,17 @@ Référence précédente : `docs/dev/P6A35_AESTHETIC_REPORT.md`.
 Candidat : `scenes/p6a36_hero_skull.tscn`.
 Lancement : `Launch-P6A36-Hero-Skull.ps1`, Godot 4.7.2 stable.
 Branche conservée : `prototype/p6a32-fossil-mesh`, corrections locales non poussées.
-**Prochaine action : verdict humain sur la qualité artistique du modèle Godot,
-en fouille et hors matrice, avant extension de production.** Aucun GO catalogue.
+**Retour humain du 2026-10-14 :** Antoine juge le nouveau crâne joli et confirme
+que les détails supplémentaires, notamment les dents, donnent davantage
+d’intérêt à la précision pendant la fouille. Cette direction constitue désormais
+la référence artistique du crâne.
+**Prochaine action : conserver cette référence validée et cadrer une prochaine
+extension bornée avant un nouveau GO.** Aucun GO catalogue.
 F5 compare les vrais modèles nouveau/précédent et permet une étude sans texture.
 H propose une préparation contrôlée au Pick natif ; lancement normalement couvert.
-Les contrôles et captures passent ; ils ne valident pas le style, le ressenti ni
-le pipeline du catalogue complet. Détails, budgets et limites dans le rapport.
+Les contrôles et captures passent. Le retour humain valide la direction du crâne
+et l’intérêt de ses détails ; il ne valide pas le pipeline du catalogue complet
+ni une durée de session. Détails, budgets et limites dans le rapport.
 Préserver les scènes historiques et les interactions P6A3.3. Brush sur os et
 dégâts localisés ont été jugés « parfaits » le 2026-10-13 ; aucun retuning.
 La distinction 100/100 et sa persistance restent sans verdict humain explicite.

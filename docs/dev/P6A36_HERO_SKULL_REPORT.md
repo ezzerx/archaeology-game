@@ -134,3 +134,18 @@ volumes à l’angle de fouille et en inspection, dentition, ivoire et cohérenc
 la terre et les côtes. Le concept illustre une intention ; juger la qualité de
 production à partir du modèle Godot, sans texture puis en ivoire. La gate reste
 exclusivement dans `docs/brain/status.md`.
+
+
+## Retour humain — 2026-10-14
+
+Antoine : « Ok ca rend bien ! les détails en plus avec dents etc donne plus
+d’interet à être précis et c’est plus jolie ».
+
+La direction artistique du nouveau crâne est acceptée comme référence : les
+détails anatomiques, notamment la dentition, améliorent à la fois le rendu et
+l’intérêt de la précision en fouille. Préserver cette richesse de formes ainsi
+que l’ivoire chaud, les ombres exposées, le Brush et les dégâts localisés validés.
+
+Ce verdict porte sur le crâne présenté ; il ne constitue ni un GO de fabrication
+du catalogue complet, ni une validation de durée de session ou de toute la phase.
+La prochaine extension reste à cadrer avant un nouveau GO, selon le statut canonique.

@@ -1068,3 +1068,15 @@ comparaison directe des deux GLB et étude sans texture dans Godot. Le concept
 ImageGen est une intention, pas une preuve de qualité du runtime. Le contact
 des os réellement dégagés est affiné sur leurs triangles dans cette scène
 isolée ; règles et presets restent conservés. Le verdict artistique reste humain.
+
+
+## 2026-10-14 — Référence artistique du crâne acceptée
+
+Antoine valide positivement le nouveau crâne P6A3.6 : plus joli, avec des détails
+supplémentaires et des dents qui donnent davantage d’intérêt à la précision
+pendant la fouille. Conserver ce modèle comme référence artistique pour cadrer
+les prochains assets. Le détail anatomique a ici une valeur visuelle et tactile
+confirmée ; ne pas réduire cette richesse à de la décoration de texture.
+
+Ce retour ne déclenche pas automatiquement la production du catalogue ou une
+phase suivante. Brush et dégâts localisés restent conservés tels que validés.
