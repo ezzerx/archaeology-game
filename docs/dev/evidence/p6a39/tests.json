@@ -1,0 +1,49 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 90,
+	"contact": {
+		"max_gap_m": 0.0,
+		"samples": 370
+	},
+	"failures": [],
+	"geometry": {
+		"baked_samples": 25404,
+		"misses": 0,
+		"missing_cells": [],
+		"native_joint_occlusion": 0,
+		"roof_max_error_m": 0.00000000661611557206676,
+		"triangles": 83431,
+		"winning_mesh_cells": 25404
+	},
+	"native_review_cost": {
+		"impacts": 4716,
+		"seconds": 5.747967
+	},
+	"native_skeleton_review": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999996279168,
+		"condition": 100.0,
+		"condition_tier": "Excellent",
+		"coverage_passed": true,
+		"exposure": 100.0,
+		"fine_preparation": true,
+		"largest_hidden_cluster": 0
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	},
+	"shadow_geometry": {
+		"ao_min": 0.376470595598221,
+		"build_usec": 3424,
+		"max_build_usec": 3424,
+		"partial_cells": 3126,
+		"triangles": 6252,
+		"wrong_cells": 0
+	}
+}

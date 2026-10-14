@@ -18,8 +18,10 @@
 
 ## Active branch / PR
 
-Active branch: `main` — version jouable validée publiée le 2026-10-14.
-Aucune PR active.
+Active branch: `codex/p6a39-centered-light`, correction ciblée depuis main `ff3ffd7`.
+PR courante : pas encore créée. La PR #12 reste DRAFT, mise de côté après retour
+humain ; ne pas fusionner le déplacement de lampe.
+Main conserve la référence B-17 validée.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
 PR #11 fusionnée : `c8672d72eb025bfe35488891280ea3145d172041`.
 Source jouable consolidée : `81360a52b5bce8feadcb179f56a8dd63448681df`.
@@ -54,32 +56,26 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**B-17 P6A3.7 et préparation tactile validés, intégrés à main.**
-Antoine a validé le squelette et retenu cette méthode pour les futurs squelettes
-et reliques. Sa demande explicite de publication est réalisée : PR #10 puis #11
-fusionnées, dernière version jouable configurée comme lancement normal.
+**P6A3.9 — lampe fixe centrée, autorisée par Antoine le 2026-10-14.**
+Après essai mobile non retenu (gadget, peu intuitif, glissement visuel), demande
+explicite d’une lumière centrée plus uniforme, sans biais uniquement à gauche.
+Rapport actif : `docs/dev/P6A39_CENTERED_LIGHT_REPORT.md`.
+Candidat : `scenes/p6a39_centered_light.tscn`, lancement `Launch-Game.ps1`.
+**Recentrage livré : 107 contrôles, zéro échec. Prochaine action : revue humaine
+de la lumière centrée ; aucun merge automatique.** B-17 et ses interactions
+validées restent conservés. Équilibre latéral contrôlé sur témoin neutre ; relief
+et os enterrés vérifiés séparément. Détails et limites dans le rapport actif.
 
-Rapport de publication : `docs/dev/MAIN_PLAYABLE_2026_10_14.md`.
-Référence artistique : `docs/dev/P6A37_SKELETON_REPORT.md`.
-Scène par défaut : `scenes/p6a37_modeled_skeleton.tscn`.
-Lancement : `Launch-Game.ps1` ou Run Project dans Godot 4.7.2 stable.
-B-17 démarre recouvert ; F5 inspecte les pièces, F6 compare mesh/relief, F7 le
-feedback tactile. H propose des préparations de revue avec reset annoncé.
+Retour clarifié sur l’argile : elle se retire bien ; le défaut signalé est le
+contour artificiel qu’elle dessine autour des os, pas un blocage du Pick.
+Garder ce point artistique à reprendre ; aucun retuning d’outil implicite.
 
-**Prochaine action : cadrer avec Antoine la suite lampe / forme des blocs /
-variété entre préparations. Aucun GO d’implémentation de ces systèmes reçu.**
-Sound Design différé à sa demande : crédits Claude indisponibles actuellement.
-Recommandation à discuter : lampe bornée, silhouettes naturelles, petit lot de
-blocs différenciés avec les matériaux/outils existants, puis nouveaux couples
-matériau/outil s’ils apportent un choix distinct. Architecture N-slots non autorisée.
-
-Ivoire chaud, ombres des seules cellules dégagées, Brush réactif, dégâts localisés
-et binds corrigés conservés. Les scènes et sources historiques restent disponibles.
-461 contrôles artistiques précédents ; publication vérifiée par 213 régressions,
-lancement par défaut headless/natif et smoke des invariants. Durée de fouille et
-240 FPS soutenus restent non validés dans une session isolée.
-La distinction 100/100 garde ses preuves techniques, sans verdict humain distinct.
-Aucun nouveau musée/meta, catalogue, Sound/Light ou P6B/P7 implémenté.
+Formes naturelles des blocs : prochaine étape recommandée et en discussion.
+Ne pas déduire de cette question un GO sur les nouvelles formes, les matériaux,
+les outils ou un lot de contenus. Sound Design reste différé. N-slots, musée/meta
+et catalogue ne sont pas autorisés. Référence artistique acceptée : rapport
+`docs/dev/P6A37_SKELETON_REPORT.md` ; publication main :
+`docs/dev/MAIN_PLAYABLE_2026_10_14.md`.
 
 ## Livraison cloud précédente — contexte historique
 

@@ -1,0 +1,45 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"centered-intact.png",
+		"centered-partial.png",
+		"neutral-centered.png",
+		"neutral-previous-left.png",
+		"centered-prepared-overview.png",
+		"centered-prepared-detail.png",
+		"centered-prepared-shadow-off.png"
+	],
+	"checks": 17,
+	"exposed_shadow_darkened_pixels": 20784,
+	"failures": [],
+	"neutral_light_balance": {
+		"centred": {
+			"left": 0.234371860822042,
+			"relative_difference": 0.0,
+			"right": 0.234371860822042
+		},
+		"patch_pixels": 25,
+		"positions_x": [
+			-0.42,
+			0.42
+		],
+		"positions_z": [
+			-0.22,
+			0,
+			0.22
+		],
+		"previous": {
+			"left": 0.272350708842278,
+			"relative_difference": 0.23993323010307,
+			"right": 0.207004723548889
+		}
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}
