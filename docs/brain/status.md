@@ -64,8 +64,10 @@ aspect disqueuse. GO pour cassures de tailles variées, pans inclinés et matiè
 plus lisible sur les flancs. Conserver squelette, domaine et interactions validés.
 Rapport actif : `docs/dev/P6A41_ROUGH_EDGES_REPORT.md`.
 Candidat : `scenes/p6a41_rough_edges.tscn`, lancement `Launch-Game.ps1`.
-**Candidat livré : 411 contrôles, zéro échec. Prochaine action : revue humaine
-des cassures, pans et lisibilité des flancs en jeu ; aucun merge automatique.** Correction du contour orange et
+**Candidat livré : 411 contrôles, zéro échec. Retour humain : « déjà sympa
+pour le moment » ; les bords bruts constituent une base acceptable pour poursuivre.
+Prochaine action : proposer la suite et attendre le choix d’Antoine ; aucun
+nouveau chantier ou merge automatique.** Correction du contour orange et
 lumière chaude centrée à conserver ; modèle de lampe hors champ de fouille.
 Pas de nouveaux matériaux/outils, musée/meta, catalogue ou N-slots. Son différé.
 

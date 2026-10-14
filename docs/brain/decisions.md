@@ -1213,3 +1213,11 @@ domaine peut porter l’échantillon voisin, à condition de rester hors matièr
 jouable et d’être partagé avec le picker. Garder la mise à jour immédiate des
 contacts après édition. Le rapport P6A41 conserve preuves et limites ; aucune
 validation artistique de cette nouvelle passe n’est déduite des contrôles.
+
+
+## 2026-10-14 — Bords bruts appréciés comme base de travail
+
+Antoine juge la passe P6A41 « déjà sympa pour le moment » et demande la suite.
+Conserver cette référence pour avancer, sans prolonger spontanément le polissage
+des bords. La prochaine étape doit être proposée puis choisie ; ce retour ne
+vaut pas GO pour la variabilité, un catalogue ou une fusion.

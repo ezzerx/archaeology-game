@@ -82,3 +82,11 @@ La PR #14 est remplacée et fermée sans merge ; ses sources et scène P6A40 res
 conservées. `Launch-Game.ps1` a ouvert « B-17 · Bords bruts » avec Godot 4.7.2 /
 Compatibility, fenêtre répondante et stderr vide. Les préparations des autres
 fenêtres sont préservées. Aucune validation humaine ou fusion déduite de ce lancement.
+
+
+## Retour humain — 2026-10-14
+
+Antoine : « C’est déjà sympa pour le moment !! On peut faire quoi maintenant ».
+La passe de bords bruts est appréciée comme base de travail suffisante à ce stade.
+Ce retour ne constitue pas une exigence de finition artistique finale. La suite
+reste à choisir ; le détail des contrôles ci-dessus reste inchangé.
