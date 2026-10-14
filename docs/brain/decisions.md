@@ -1190,3 +1190,12 @@ les os cachés. Le défaut de liseré reproduit vient de l’interpolation d’u
 Bone dans la matière voisine ; corriger l’identité locale réelle sans supprimer
 la matrice ni déplacer les plafonds. Le rapport P6A40 garde les preuves et limites.
 Cette livraison ne vaut pas validation humaine du nouveau bloc ou du correctif.
+
+
+## 2026-10-14 — Retour humain sur les bords du premier bloc naturel
+
+Antoine préfère nettement la silhouette irrégulière, mais les flancs et l’arête
+restent trop propres, comme découpés à la disqueuse. Conserver l’irrégularité
+extérieure comme direction ; rechercher des cassures et volumes de roche brute
+sur les bords. Ce retour ne valide pas toute la phase et ne déclenche pas seul
+une nouvelle implémentation. Le rapport P6A40 conserve le détail de la proposition.

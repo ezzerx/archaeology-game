@@ -65,9 +65,11 @@ dégager le modèle de lampe qui masque la partie supérieure du bloc.
 La source fixe, chaude et centrée reste la référence de lumière.
 Rapport actif : `docs/dev/P6A40_NATURAL_BLOCK_REPORT.md`.
 Candidat : `scenes/p6a40_natural_block.tscn`, lancement `Launch-Game.ps1`.
-**Candidat livré et vérifié : 401 contrôles, zéro échec. Prochaine action : revue
-humaine du bloc, du contour corrigé et du champ de fouille libéré. Aucun merge
-automatique ou lot de nouveaux contenus.**
+**Candidat livré et vérifié : 401 contrôles, zéro échec. Retour humain : silhouette
+irrégulière jugée bien meilleure, mais bords trop droits/nets, aspect découpé à la
+disqueuse ; caractère brut à améliorer.** Discussion d’une passe de modelage des
+bords ; aucun nouveau GO d’implémentation ou merge reçu dans ce retour. Aucun
+verdict humain distinct sur le contour orange ou la lampe. Rapport actif ci-dessus.
 
 Préserver champ/mesh B-17, Bone enterré invisible, Brush, dégâts, presets et
 complétion. Les restes orange se retirent déjà : le défaut est visuel, pas un

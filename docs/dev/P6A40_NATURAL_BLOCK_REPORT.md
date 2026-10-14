@@ -102,3 +102,18 @@ Source `ab6ba7a`, branche `codex/p6a40-natural-block`,
 [PR #14 DRAFT](https://github.com/ezzerx/archaeology-game/pull/14) directement sur main.
 Elle inclut le recentrage et remplace la PR #13, fermée sans merge. La PR #12
 mobile non retenue est également fermée ; ses sources restent sur sa branche.
+
+
+## Retour humain — silhouette et bords
+
+Antoine juge la silhouette irrégulière déjà bien meilleure. Les captures zoomées
+montrent toutefois des flancs droits et une arête supérieure trop nette, avec un
+aspect découpé à la disqueuse ; il souhaite davantage de caractère brut.
+C’est un retour positif sur la silhouette, pas une validation artistique complète
+du bloc. Aucun verdict distinct reçu ici sur le contour orange ou la lampe.
+
+Recommandation : reprendre les volumes de la bande extérieure avec des cassures
+anguleuses de tailles variées, des pans inclinés et une arête irrégulièrement
+ébréchée ; rendre la matière des flancs plus lisible et atténuer les petites
+marches répétées du bord. Préserver domaine de fouille, squelette et interactions.
+Discussion de la passe suivante, sans implémentation ou merge déclenché.
