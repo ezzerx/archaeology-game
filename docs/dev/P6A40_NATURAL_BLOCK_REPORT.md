@@ -96,3 +96,9 @@ d’argile effectivement présents restent naturellement possibles près des os.
 Fenêtre « B-17 · Bloc naturel » lancée avec Godot 4.7.2 / Compatibility,
 répondante et sans erreur stderr. Les sessions précédentes sont préservées.
 La référence main n’a pas été fusionnée ou remplacée automatiquement.
+
+
+Source `ab6ba7a`, branche `codex/p6a40-natural-block`,
+[PR #14 DRAFT](https://github.com/ezzerx/archaeology-game/pull/14) directement sur main.
+Elle inclut le recentrage et remplace la PR #13, fermée sans merge. La PR #12
+mobile non retenue est également fermée ; ses sources restent sur sa branche.

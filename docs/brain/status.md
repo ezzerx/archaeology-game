@@ -19,9 +19,10 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a40-natural-block`, depuis le candidat centré `cf19051`.
-PR courante : à créer. Dépendance : **#13 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/13.
-La PR #12 reste DRAFT, mise de côté après retour
-humain ; ne pas fusionner le déplacement de lampe.
+PR courante : **#14 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/14,
+basée sur main et incluant la correction centrée. #13 est fermée car remplacée
+par ce candidat complet ; #12 est fermée, essai mobile non retenu.
+Les branches/sources historiques sont conservées ; aucune de ces PR n’est fusionnée.
 Main conserve la référence B-17 validée.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
 PR #11 fusionnée : `c8672d72eb025bfe35488891280ea3145d172041`.
