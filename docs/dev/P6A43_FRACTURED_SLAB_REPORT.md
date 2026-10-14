@@ -106,8 +106,8 @@ visuelle du morceau est plus grossière que celle du terrain. Le commit et la
 création de pièce prennent ~16–17 ms dans le harnais headless : un coût ponctuel,
 pas une preuve de maintien à 240 FPS. Cap 240 / physique 60 Hz conservés ; pas de
 nouvelle mesure soutenue isolée, les fenêtres de préparation antérieures restant
-ouvertes. Le passage d’une latence d’import ponctuelle à une production plus riche
-nécessiterait une mise en cache/optimisation supplémentaire.
+ouvertes. La génération du morceau au moment du retrait devra être mise en cache ou
+optimisée avant une généralisation à des plaques plus nombreuses.
 
 À juger humainement : lisibilité des joints, plaisir du détachement, intérêt de
 choisir le Pick avant les os et caractère naturel des attaques espacées. Si cela
@@ -124,3 +124,7 @@ Source `3d288c6`, branche `codex/p6a43-fractured-slab`,
 #16 est remplacée sans fusion ; ses sources/scènes et son verdict humain sont
 conservés. Aucun merge automatique. Les préparations des fenêtres précédentes
 sont préservées.
+
+`Launch-Game.ps1` a ouvert « B-17 · Grès fracturé » avec Godot 4.7.2 /
+Compatibility, fenêtre répondante et stderr vide. Ce lancement ne constitue pas
+un verdict humain sur la nouvelle interaction.
