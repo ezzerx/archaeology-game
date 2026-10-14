@@ -63,7 +63,9 @@ Référence précédente : `docs/dev/P6A34_PRODUCTION_PILOT_REPORT.md`.
 Candidat : `scenes/p6a35_aesthetic_pilot.tscn`.
 Lancement : `Launch-P6A35-Aesthetic-Pilot.ps1`, Godot 4.7.2 stable.
 Branche conservée : `prototype/p6a32-fossil-mesh`, corrections locales non poussées.
-**Prochaine action : revue humaine de ce candidat en fouille et hors matrice.**
+**Prochaine action : poursuivre la revue humaine et préciser le cap artistique
+avant une nouvelle passe de modèle.** Antoine juge les ombres meilleures le
+2026-10-14 ; aucune approbation de la qualité artistique finale n’est donnée.
 Les ombres ne proviennent que des cellules dégagées ; le modèle complet enterré
 ne projette pas d’ombre. Le pilote précédent reste accessible pour comparaison.
 Les contrôles et captures passent ; ils ne valident pas le style, le ressenti ni

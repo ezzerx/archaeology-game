@@ -113,3 +113,16 @@ volume et lisibilité des côtes à 1× / 3×, ivoire et rendu sale/propre. Vér
 également que la découverte reste intacte en fouillant normalement. Brush et
 dégâts sont déjà acceptés, leur nouveau retuning n’est pas demandé. La gate
 et la prochaine action autorisée sont exclusivement dans `docs/brain/status.md`.
+
+
+## Retour humain du 2026-10-14
+
+Antoine : « ça passe mieux avec les ombres ». Amélioration de l’ancrage accueillie
+positivement. Il demande si ce candidat représente la qualité artistique finale ;
+ce retour ne vaut pas approbation finale du modèle ou de toute la phase.
+
+Évaluation de l’agent : le crâne conserve une construction paramétrique trop
+tubulaire et une anatomie trop simplifiée pour servir de référence artistique
+finale. La passe a amélioré ombres, volume et matière du prototype ; le prochain
+cap de qualité demande un travail de forme plus profond, pas seulement davantage
+de textures. Cette évaluation est une recommandation, pas un nouveau GO humain.
