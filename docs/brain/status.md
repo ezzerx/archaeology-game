@@ -19,13 +19,12 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a46-buried-slab-volume`, depuis `7503d03`.
-PR précédente : **#19 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/19,
-une PR distincte pour P6A46 est en préparation sur la branche active. #19 inclut
-le levier manuel au Pick, les fractures brutes, la
-lumière plus uniforme et les précédents candidats de plaque/bloc naturel.
-#18 est remplacée sans fusion ; #12/#13/#14/#15/#16/#17/#18 sont fermées.
-Les scènes/branches historiques sont conservées, dont les trois géologies
-sans verdict de rejouabilité. Aucune de ces PR n’est fusionnée.
+PR courante : **#20 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/20,
+basée sur main et incluant la roche enchâssée, sa rupture progressive, le volume
+irrégulier et les précédents candidats de levier/plaque/bloc naturel.
+#19 est remplacée sans fusion ; #12/#13/#14/#15/#16/#17/#18/#19 sont fermées.
+Les scènes/branches historiques sont conservées, dont les trois géologies sans
+verdict de rejouabilité. Aucune de ces PR n’est fusionnée.
 Main conserve la référence B-17 validée.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
 PR #11 fusionnée : `c8672d72eb025bfe35488891280ea3145d172041`.

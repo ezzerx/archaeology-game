@@ -128,3 +128,9 @@ ce système définitivement, de le généraliser ou de fusionner la branche.
 4.7.2 / Compatibility ; fenêtre répondante et stderr vide au lancement.
 L’ouverture de cette version ne vaut pas verdict artistique ou décision finale
 sur le système. Les anciennes scènes et branches restent conservées.
+
+
+Source du candidat : `d588468`, branche `codex/p6a46-buried-slab-volume`.
+[PR #20 DRAFT](https://github.com/ezzerx/archaeology-game/pull/20) basée sur main ;
+#19 remplacée sans fusion. La décision de retenir définitivement ce système
+attend l’essai humain de ce candidat.
