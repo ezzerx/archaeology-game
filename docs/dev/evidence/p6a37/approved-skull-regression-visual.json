@@ -1,0 +1,85 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"budget": [
+		{
+			"draw_calls": 73.0,
+			"frame_median_ms": 3.027,
+			"mesh": false,
+			"primitives": 2671124.0,
+			"texture_bytes": 177520462.0
+		},
+		{
+			"draw_calls": 76.0,
+			"frame_median_ms": 3.082,
+			"mesh": true,
+			"primitives": 2729300.0,
+			"texture_bytes": 177520462.0
+		}
+	],
+	"captures": [
+		"intact-shadow-off.png",
+		"intact-shadow-on.png",
+		"partial-shadow-on.png",
+		"partial-shadow-off.png",
+		"skull-shadow-on.png",
+		"skull-shadow-off.png",
+		"intact-mesh.png",
+		"intact-relief.png",
+		"partial-skull.png",
+		"prepared-overview.png",
+		"skull-mesh.png",
+		"skull-relief.png",
+		"skull-local-damage.png",
+		"rib-mesh.png",
+		"rib-relief.png",
+		"inspection-ensemble.png",
+		"inspection-skull.png",
+		"inspection-skull-underside.png",
+		"inspection-ribs.png",
+		"hero-ivory.png",
+		"previous-ivory.png",
+		"previous-shape.png",
+		"hero-shape.png",
+		"hero-three-quarter-shape.png",
+		"hero-three-quarter-ivory.png",
+		"hero-underside.png",
+		"native-pick-dirty.png",
+		"native-pick-clean.png"
+	],
+	"checks": 43,
+	"failures": [],
+	"native_pick_fixture": {
+		"condition": 100.0,
+		"exposure_percent": 100.0,
+		"impacts": 2128,
+		"snapshot_before_clean": {
+			"classification": "Vertebrate remains",
+			"cleanliness": 0.0,
+			"condition": 100.0,
+			"condition_tier": "Excellent",
+			"coverage_passed": false,
+			"exposure": 21.9722194195002,
+			"fine_preparation": false,
+			"largest_hidden_cluster": -1
+		}
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	},
+	"shadow_cost": {
+		"build_count": 6,
+		"cells": 10529,
+		"last_build_usec": 3032,
+		"max_build_usec": 3032,
+		"triangles": 21058
+	},
+	"shadow_pixels": {
+		"brighter": 0,
+		"darker": 34455
+	}
+}

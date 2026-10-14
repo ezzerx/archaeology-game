@@ -11,7 +11,7 @@ func geometry_checks() -> void:
 	var old_rib_fallback := 0
 	var selected_cells := 0
 	for i in range(field.component_ids.size()):
-		var selected: bool = native.component_ids[i] == 1 or (native.component_ids[i] == 3 and field.patch.old_rib_selection[i] != 0)
+		var selected: bool = _selected_native(field,native,i)
 		if not selected and field.replacement[i] == 0:
 			if native.component_ids[i] != field.component_ids[i] or native.ceilings[i] != field.ceilings[i]: wrong += 1
 		if field.component_ids[i] == 1 and field.replacement[i] == 0: old_skull_fallback += 1
@@ -19,8 +19,8 @@ func geometry_checks() -> void:
 		selected_cells += field.replacement[i]
 	check(wrong == 0,"every unrelated native Bone cell retains exact ID and ceiling")
 	check(old_skull_fallback == 0 and old_rib_fallback == 0,"tested pieces have no historical Bone fallback")
-	check(field.native_occlusion_cells > 0,"higher existing vertebrae keep authority above rib joints")
-	check(main.mesh_view.source_piece_count == 7 and main.mesh_view.meshes.size() == 1,"seven source pieces are batched into one rendering surface")
+	check((field.native_occlusion_cells > 0) == _expects_native_occlusion(),"native joint occlusion matches this source coverage")
+	check(main.mesh_view.source_piece_count == _expected_source_pieces() and main.mesh_view.meshes.size() == 1,"source pieces are batched into one rendering surface")
 	var faces := PackedVector3Array()
 	var render_faces := PackedVector3Array()
 	var triangle_count := 0
@@ -37,7 +37,7 @@ func geometry_checks() -> void:
 				faces.append((transform*positions[index])*1000.0)
 			triangle_count += indices.size()/3
 		check(mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_OFF,"hidden mesh cannot cast an outline shadow: "+str(mesh.name))
-	check(triangle_count > 5000 and triangle_count <= 40000,"imported triangle budget matches the finalized source")
+	check(triangle_count > 5000 and triangle_count <= _triangle_budget(),"imported triangle budget matches the finalized source")
 	check(main.mesh_view.model.find_children("*","CollisionObject3D",true,false).is_empty(),"display meshes add no tool-picking collision")
 	# Independent triangle raster oracle. Millimetre coordinates avoid tiny-face
 	# determinant tolerances in TriangleMesh ray helpers.
@@ -298,3 +298,12 @@ func _suite_name() -> String:
 
 func _contact_point() -> Vector2:
 	return Vector2(240,220)
+
+func _selected_native(field: FossilField, native: FossilField, i: int) -> bool:
+	return native.component_ids[i] == 1 or (native.component_ids[i] == 3 and field.patch.old_rib_selection[i] != 0)
+func _expected_source_pieces() -> int:
+	return 7
+func _expects_native_occlusion() -> bool:
+	return true
+func _triangle_budget() -> int:
+	return 40000

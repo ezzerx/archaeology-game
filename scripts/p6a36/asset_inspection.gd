@@ -21,7 +21,7 @@ func setup(pilot: Node3D) -> void:
 	lights[1].light_energy = .28
 	var review_environment: WorldEnvironment = viewport.find_children("*","WorldEnvironment",true,false)[0]
 	review_environment.environment.ambient_light_energy = .45
-	previous_model = preload("res://assets/p6a35/b17_production_patch.glb").instantiate()
+	previous_model = _previous_source_scene().instantiate()
 	pivot.add_child(previous_model)
 	var material: ShaderMaterial = meshes[0].material_override.duplicate()
 	for mesh: MeshInstance3D in previous_model.find_children("*","MeshInstance3D",true,false):
@@ -72,3 +72,6 @@ func toggle_shape_study() -> void:
 	for mesh in meshes+previous_meshes:
 		mesh.material_override.set_shader_parameter("shape_study",shape_study)
 	shape_button.text = "Matière : étude de forme" if shape_study else "Matière : ivoire"
+
+func _previous_source_scene() -> PackedScene:
+	return preload("res://assets/p6a35/b17_production_patch.glb")

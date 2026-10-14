@@ -52,34 +52,30 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.6 — direction artistique du nouveau crâne validée humainement.**
-GO explicite Antoine le 2026-10-14 : réaliser le vrai travail de modelage pour
-juger une qualité artistique représentative de la production. Reprendre les
-formes du crâne ; conserver ivoire chaud, ombres sans révélation des os enterrés,
-Brush et dégâts validés. Les côtes P6A3.5 restent un témoin stable.
+**P6A3.7 — squelette B-17 modelé livré localement, revue humaine attendue.**
+GO Antoine le 2026-10-14 : appliquer le niveau du crâne validé aux côtes et au
+reste du squelette, même style et interactions conservés. Les 49 pièces du B-17
+actuel sont intégrées ; le crâne P6A3.6 accepté reste exactement conservé.
 
-Rapport actif : `docs/dev/P6A36_HERO_SKULL_REPORT.md`.
-Brief : `docs/dev/P6A36_HERO_SKULL_BRIEF.md`.
-Référence précédente : `docs/dev/P6A35_AESTHETIC_REPORT.md`.
-Candidat : `scenes/p6a36_hero_skull.tscn`.
-Lancement : `Launch-P6A36-Hero-Skull.ps1`, Godot 4.7.2 stable.
-Branche conservée : `prototype/p6a32-fossil-mesh`, corrections locales non poussées.
-**Retour humain du 2026-10-14 :** Antoine juge le nouveau crâne joli et confirme
-que les détails supplémentaires, notamment les dents, donnent davantage
-d’intérêt à la précision pendant la fouille. Cette direction constitue désormais
-la référence artistique du crâne.
-**Prochaine action : conserver cette référence validée et cadrer une prochaine
-extension bornée avant un nouveau GO.** Aucun GO catalogue.
-F5 compare les vrais modèles nouveau/précédent et permet une étude sans texture.
-H propose une préparation contrôlée au Pick natif ; lancement normalement couvert.
-Les contrôles et captures passent. Le retour humain valide la direction du crâne
-et l’intérêt de ses détails ; il ne valide pas le pipeline du catalogue complet
-ni une durée de session. Détails, budgets et limites dans le rapport.
-Préserver les scènes historiques et les interactions P6A3.3. Brush sur os et
-dégâts localisés ont été jugés « parfaits » le 2026-10-13 ; aucun retuning.
-La distinction 100/100 et sa persistance restent sans verdict humain explicite.
-Le rendu Tripo précédent est un hybride limité, pas un remplacement validé.
-Aucun merge automatique, nouveau système musée/meta, Sound/Light ou P6B/P7.
+Rapport actif : `docs/dev/P6A37_SKELETON_REPORT.md`.
+Brief : `docs/dev/P6A37_SKELETON_BRIEF.md`.
+Référence humaine précédente : `docs/dev/P6A36_HERO_SKULL_REPORT.md`.
+Scène : `scenes/p6a37_modeled_skeleton.tscn`.
+Lancement : `Launch-P6A37-Modeled-Skeleton.ps1`, Godot 4.7.2 stable.
+Branche : `prototype/p6a32-fossil-mesh`, travail local non poussé.
+**Prochaine action : revue humaine des côtes, vertèbres et bassin/patte,
+en inspection et en vraie fouille, avant extension ou canonisation.**
+F5 inspecte les pièces ; F6 compare mesh/relief du même champ ; H propose deux
+préparations de revue avec reset annoncé, dont une au Pick natif inchangé.
+461 contrôles passent ; qualité artistique de cette extension et durée de fouille
+restent à juger. Mesures natives non isolées : 240 FPS soutenus non validés.
+Périmètre limité au B-17 existant, pas de catalogue multi-spécimens.
+
+Ivoire chaud et ombres des seules cellules dégagées conservés. Brush sur os,
+dégâts localisés et binds validés sont inchangés, sans retuning des outils.
+La distinction 100/100 reste sans verdict humain explicite.
+Les scènes historiques restent comparables. Aucun merge automatique,
+musée/meta, Sound/Light ou P6B/P7.
 
 ## Livraison cloud précédente — contexte historique
 

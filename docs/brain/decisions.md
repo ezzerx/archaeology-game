@@ -1080,3 +1080,16 @@ confirmée ; ne pas réduire cette richesse à de la décoration de texture.
 
 Ce retour ne déclenche pas automatiquement la production du catalogue ou une
 phase suivante. Brush et dégâts localisés restent conservés tels que validés.
+
+
+## 2026-10-14 — GO modelage du squelette B-17 après validation du crâne
+
+Antoine autorise explicitement l’application du niveau artistique accepté aux
+côtes et au reste du squelette, même style et interactions validées conservés.
+Le périmètre couvre le B-17 actuel ; il ne déclenche pas un catalogue multi-spécimens.
+
+Conserver le crâne accepté exactement et reprendre les autres pièces en volumes
+anatomiques : articulations, lames, creux, phalanges et griffes. Le candidat P6A3.7
+remplace entièrement le relief Bone dans sa scène isolée, sans changer les quatre
+composantes canoniques ni leurs règles. La réussite technique et la référence du
+crâne ne valent pas validation humaine automatique des nouvelles régions.

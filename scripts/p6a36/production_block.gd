@@ -7,7 +7,7 @@ func _create_fossil_field() -> FossilField:
 
 func _ready() -> void:
 	super._ready()
-	var source: Node3D = preload("res://assets/p6a36/b17_production_patch.glb").instantiate()
+	var source: Node3D = _contact_source_scene().instantiate()
 	add_child(source)
 	var faces := PackedVector3Array()
 	for mesh: MeshInstance3D in source.find_children("*","MeshInstance3D",true,false):
@@ -45,3 +45,6 @@ func pick(screen: Vector2, camera: Camera3D) -> Dictionary:
 		"material":working_map.strata.surface_material_at(uv,height),"bone_component":field.component_ids[index],
 		"bone_ceiling":field.ceilings[index],"cell_height":working_map._heights[index]},true)
 	return native
+
+func _contact_source_scene() -> PackedScene:
+	return preload("res://assets/p6a36/b17_production_patch.glb")
