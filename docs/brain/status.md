@@ -68,7 +68,11 @@ attaques Pick sur le joint permettant un retrait conséquent, sans ordre imposé
 Chisel ordinaire toujours utilisable. Rapport/brief actif :
 `docs/dev/P6A43_FRACTURED_SLAB_REPORT.md`. Candidat livré : 548 contrôles, zéro échec.
 Scène `scenes/p6a43_fractured_slab.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
-revue humaine de la lecture des joints et du plaisir/intérêt du détachement.
+discuter la suite à partir du retour humain positif sur l’incitation à utiliser
+le Pick. Intégration visuelle encore imparfaite ; rendu final non validé.
+Direction souhaitée : répartition variable des plaques et combinaison avec
+d’autres comportements pour varier les blocs. Ce retour ne déclenche pas
+l’implémentation de génération ni de nouvelles mécaniques.
 Aucun merge automatique. Les trois géologies P6A42 restent un essai non
 concluant pour la rejouabilité. Pas de nouveau catalogue, musée/meta ou N-slots.
 Son différé ; pas de retuning global des outils.

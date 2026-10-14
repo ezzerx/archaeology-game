@@ -1257,3 +1257,17 @@ Le retrait de plaque vient ensuite, limité à la matrice réellement restante e
 de la matière retirée et quitte le domaine jouable. Le Chisel reste une voie
 possible. Le rapport P6A43 garde seuils, preuves, coût ponctuel et limites ;
 le verdict humain sur le nouveau geste reste nécessaire.
+
+
+## 2026-10-14 — Plaque : incitation réussie, direction de composition variable
+
+Antoine juge la plaque imparfaite, mais elle donne une raison d’utiliser autre
+chose que le Chisel. Retenir ce signal positif sur la variation des gestes,
+sans assimiler le spike à une mécanique équilibrée ou visuellement finale.
+L’intégration artistique reste à améliorer.
+
+La direction souhaitée est un mélange de situations locales, avec des plaques
+réparties de manière variable et d’autres comportements complémentaires dans
+les blocs. La variété doit donc porter sur les gestes et choix, en plus de la
+géologie visible. Les règles de placement et la palette de situations restent
+à concevoir ; la gate du statut canonique détermine la prochaine action.

@@ -128,3 +128,18 @@ sont préservées.
 `Launch-Game.ps1` a ouvert « B-17 · Grès fracturé » avec Godot 4.7.2 /
 Compatibility, fenêtre répondante et stderr vide. Ce lancement ne constitue pas
 un verdict humain sur la nouvelle interaction.
+
+
+## Retour humain — principe encourageant, intégration à améliorer
+
+Antoine a essayé la plaque : ce n’est pas parfait, mais elle incite à faire autre
+chose qu’utiliser uniquement le Chisel. **Le principe de variation des gestes est
+encourageant**, à la différence de l’essai de géologies P6A42. Cela ne valide pas
+un équilibrage final ni une diversité de sessions sur la durée.
+
+L’intégration visuelle paraît encore imparfaite. La direction appréciée est de
+répartir ces situations de manière variable dans les blocs, puis de les combiner
+avec d’autres fonctionnalités qui apportent de la variété. Le mélange est une
+piste de production ; fréquence, contraintes de placement, autres comportements
+et forme finale restent à définir. Les seuils et la plaque façonnée du spike ne
+sont pas validés comme standard à dupliquer partout.
