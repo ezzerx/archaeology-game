@@ -264,3 +264,21 @@ Future menu direction: preserve one recognizable museum façade and composition 
 - Spring / summer: restrained seasonal vegetation and light shifts.
 
 Target effect: a quiet, living, cozy museum the player recognizes and wants to return to. Seasonal motion should remain subtle and low-noise. This is a strong later-P6 direction, not part of the initial Material Lab spike.
+
+
+## Assets à excaver — référence artistique acceptée — 2026-10-14
+
+Le B-17 modelé constitue la référence acceptée pour les futurs squelettes et
+reliques : vrais volumes 3D stylisés, silhouettes distinctes, articulations,
+ouvertures et petits détails qui rendent la précision de fouille intéressante.
+Sur les os : ivoire chaud, surfaces douces et relief lisible sous la lampe.
+Sur les reliques : conserver ce langage de formes en adaptant la matière à l’objet.
+
+Méthode retenue : modelage local Blender aidé par script, masters éditables,
+export GLB et champ de fouille dérivé des surfaces ; juger le même modèle dans
+Godot pendant la révélation et hors matrice. La géométrie et ses ombres ne doivent
+jamais révéler un objet encore enterré. Cette référence reste compatible avec
+la priorité au geste, au nettoyage lisible et aux dégâts réellement localisés.
+
+Preuves et périmètre de la validation : [rapport B-17](dev/P6A37_SKELETON_REPORT.md).
+Les adaptations techniques à de nouvelles formes restent à vérifier par asset.

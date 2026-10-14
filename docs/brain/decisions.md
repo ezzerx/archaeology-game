@@ -1093,3 +1093,16 @@ anatomiques : articulations, lames, creux, phalanges et griffes. Le candidat P6A
 remplace entièrement le relief Bone dans sa scène isolée, sans changer les quatre
 composantes canoniques ni leurs règles. La réussite technique et la référence du
 crâne ne valent pas validation humaine automatique des nouvelles régions.
+
+
+## 2026-10-14 — Squelette modelé et méthode artistique acceptés
+
+Antoine valide le B-17 P6A3.7 et souhaite employer cette approche pour les futurs
+squelettes et reliques de la collection. La référence devient le modelage local
+Blender de vrais volumes anatomiques/structurels, aidé par script, export GLB,
+champ de fouille dérivé des surfaces et contrôle dans Godot en fouille/hors matrice.
+Le détail doit servir la beauté et l’intérêt de la précision, tout en restant lisible.
+
+Préserver le langage chaleureux et les interactions ; adapter la matière aux
+objets futurs. Cette décision retient une direction de production, sans autoriser
+implicitement la fabrication immédiate du catalogue ou une nouvelle phase.

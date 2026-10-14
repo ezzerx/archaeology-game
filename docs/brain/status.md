@@ -52,7 +52,7 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.7 — squelette B-17 modelé livré localement, revue humaine attendue.**
+**P6A3.7 — squelette B-17 et méthode artistique validés humainement.**
 GO Antoine le 2026-10-14 : appliquer le niveau du crâne validé aux côtes et au
 reste du squelette, même style et interactions conservés. Les 49 pièces du B-17
 actuel sont intégrées ; le crâne P6A3.6 accepté reste exactement conservé.
@@ -63,12 +63,18 @@ Référence humaine précédente : `docs/dev/P6A36_HERO_SKULL_REPORT.md`.
 Scène : `scenes/p6a37_modeled_skeleton.tscn`.
 Lancement : `Launch-P6A37-Modeled-Skeleton.ps1`, Godot 4.7.2 stable.
 Branche : `prototype/p6a32-fossil-mesh`, travail local non poussé.
-**Prochaine action : revue humaine des côtes, vertèbres et bassin/patte,
-en inspection et en vraie fouille, avant extension ou canonisation.**
+**Retour humain du 2026-10-14 :** Antoine valide le résultat et retient cette
+méthode pour les futurs squelettes/reliques de la collection. B-17 constitue la
+référence artistique acceptée ; adapter les matières aux futurs objets.
+**Prochaine action : proposer la suite cohérente après cette validation.**
+Recommandation à discuter : consolidation de la référence, puis passe Sound
+Design ciblée pour préparer un nouveau playtest et le jalon M1. Aucun GO Sound
+ou production du catalogue complet reçu par cette demande de recommandation.
 F5 inspecte les pièces ; F6 compare mesh/relief du même champ ; H propose deux
 préparations de revue avec reset annoncé, dont une au Pick natif inchangé.
-461 contrôles passent ; qualité artistique de cette extension et durée de fouille
-restent à juger. Mesures natives non isolées : 240 FPS soutenus non validés.
+461 contrôles passent ; qualité artistique de cette extension acceptée humainement.
+Durée de fouille non mesurée humainement ; mesures natives non isolées :
+240 FPS soutenus non validés.
 Périmètre limité au B-17 existant, pas de catalogue multi-spécimens.
 
 Ivoire chaud et ombres des seules cellules dégagées conservés. Brush sur os,

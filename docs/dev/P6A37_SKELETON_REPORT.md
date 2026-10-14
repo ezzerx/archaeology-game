@@ -144,3 +144,18 @@ chaque export ; le GLB/master/champ versionnés sont la référence de cette liv
 À juger humainement : cohérence des nouvelles pièces avec le crâne accepté,
 lecture des articulations et pointes, intérêt de la précision sur côtes/patte,
 et confort pendant la vraie fouille. Le statut canonique conserve la gate.
+
+
+## Retour humain — 2026-10-14
+
+Antoine : « Ok je valide ça me plait, on pourrait faire les futurs squelettes /
+reliques de la collection comme ça ! ».
+
+Le squelette B-17 modelé et cette méthode artistique sont acceptés comme référence
+pour les futurs assets à excaver. Conserver les vrais volumes et détails utiles à
+la précision, le style chaleureux et les interactions validées. Pour les reliques,
+adapter la matière à l’objet, sans imposer la matière osseuse à toute la collection.
+
+Ce verdict artistique ne mesure pas une durée de session ou les performances
+isolées. La demande suivante porte sur une recommandation de prochaine étape,
+pas sur un démarrage automatique du Sound Design, du musée ou du catalogue.
