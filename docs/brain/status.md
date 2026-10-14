@@ -18,8 +18,8 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a39-centered-light`, correction ciblée depuis main `ff3ffd7`.
-PR courante : **#13 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/13.
+Active branch: `codex/p6a40-natural-block`, depuis le candidat centré `cf19051`.
+PR courante : à créer. Dépendance : **#13 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/13.
 La PR #12 reste DRAFT, mise de côté après retour
 humain ; ne pas fusionner le déplacement de lampe.
 Main conserve la référence B-17 validée.
@@ -57,26 +57,22 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.9 — lampe fixe centrée, autorisée par Antoine le 2026-10-14.**
-Après essai mobile non retenu (gadget, peu intuitif, glissement visuel), demande
-explicite d’une lumière centrée plus uniforme, sans biais uniquement à gauche.
-Rapport actif : `docs/dev/P6A39_CENTERED_LIGHT_REPORT.md`.
-Candidat : `scenes/p6a39_centered_light.tscn`, lancement `Launch-Game.ps1`.
-**Recentrage livré : 107 contrôles, zéro échec. Prochaine action : revue humaine
-de la lumière centrée ; aucun merge automatique.** B-17 et ses interactions
-validées restent conservés. Équilibre latéral contrôlé sur témoin neutre ; relief
-et os enterrés vérifiés séparément. Détails et limites dans le rapport actif.
+**P6A4.0 — premier bloc naturel autorisé par Antoine le 2026-10-14.**
+Périmètre : silhouette extérieure naturelle, squelette et interactions validées
+conservés ; corriger le contour orange si une cause et un correctif sont trouvés ;
+dégager le modèle de lampe qui masque la partie supérieure du bloc.
+La source fixe, chaude et centrée reste la référence de lumière.
+Rapport actif : `docs/dev/P6A40_NATURAL_BLOCK_REPORT.md`.
+Candidat : `scenes/p6a40_natural_block.tscn`, lancement `Launch-Game.ps1`.
+**Candidat livré et vérifié : 401 contrôles, zéro échec. Prochaine action : revue
+humaine du bloc, du contour corrigé et du champ de fouille libéré. Aucun merge
+automatique ou lot de nouveaux contenus.**
 
-Retour clarifié sur l’argile : elle se retire bien ; le défaut signalé est le
-contour artificiel qu’elle dessine autour des os, pas un blocage du Pick.
-Garder ce point artistique à reprendre ; aucun retuning d’outil implicite.
-
-Formes naturelles des blocs : prochaine étape recommandée et en discussion.
-Ne pas déduire de cette question un GO sur les nouvelles formes, les matériaux,
-les outils ou un lot de contenus. Sound Design reste différé. N-slots, musée/meta
-et catalogue ne sont pas autorisés. Référence artistique acceptée : rapport
-`docs/dev/P6A37_SKELETON_REPORT.md` ; publication main :
-`docs/dev/MAIN_PLAYABLE_2026_10_14.md`.
+Préserver champ/mesh B-17, Bone enterré invisible, Brush, dégâts, presets et
+complétion. Les restes orange se retirent déjà : le défaut est visuel, pas un
+blocage d’outil. Ne pas supprimer artificiellement de matière pour le cacher.
+Pas de nouveaux matériaux, outils, N-slots, musée/meta ou catalogue.
+Sound Design reste différé.
 
 ## Livraison cloud précédente — contexte historique
 

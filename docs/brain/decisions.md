@@ -1173,3 +1173,20 @@ artificiellement les os qui pose problème. Le diagnostic de retrait au Pick
 répondait à une autre question et ne constitue pas une validation artistique.
 Conserver ce retour sans modifier les outils acceptés. Les formes naturelles
 extérieures sont proposées comme suite, sans GO implicite sur tout le chantier.
+
+
+## 2026-10-14 — GO premier bloc naturel, contour et lampe
+
+Antoine autorise un premier bloc aux formes naturelles, B-17 et interactions
+validées conservés, ainsi que la correction du contour orange si un fix est
+identifié. Il signale que le modèle de lampe centré masque le dessus du bloc.
+La source chaude centrée reste la référence ; la géométrie décorative est retirée
+du champ de fouille dans le candidat, sans réintroduire de manipulation.
+
+Pour une silhouette de bloc, partager le domaine entre rendu, matière initiale,
+picking et évacuation des miettes ; ne pas produire seulement une découpe visuelle
+qui conserve des coins invisibles jouables. Ne pas façonner le contour d’après
+les os cachés. Le défaut de liseré reproduit vient de l’interpolation d’une hauteur
+Bone dans la matière voisine ; corriger l’identité locale réelle sans supprimer
+la matrice ni déplacer les plafonds. Le rapport P6A40 garde les preuves et limites.
+Cette livraison ne vaut pas validation humaine du nouveau bloc ou du correctif.
