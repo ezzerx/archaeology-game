@@ -1299,3 +1299,17 @@ mesuré entre points symétriques gauche/droite ne prouve pas l’uniformité en
 centre et les bords. Conserver cette distinction dans les prochaines revues de
 lumière. Le rapport P6A44 détaille le diagnostic et les propositions ; la gate du
 statut canonique conserve seule la prochaine action autorisée.
+
+
+## 2026-10-14 — GO lumière uniforme, fractures brutes et levier manuel
+
+Antoine autorise une passe ciblée sur les trois problèmes du retour P6A44 :
+éclairage plus uniforme, fissures plus brutes et retrait manuel au Pick par un
+petit geste de levier. Garder les outils, B-17, la chaleur, le relief et les os
+enterrés protégés. Le travail sur les joints doit rendre la plaque mobile ; le
+joueur décide ensuite de la décoller. Relâcher avant la fin doit être réversible.
+
+Le candidat P6A45 conserve les scènes témoins et les réglages des quatre outils.
+Le rapport dédié garde la distinction entre prévisualisation attachée, retrait de
+vraie matière et dépose assistée, ainsi que les preuves centre/bords. La validation
+artistique et tactile reste humaine ; aucun GO de généralisation ou de merge.

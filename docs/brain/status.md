@@ -18,7 +18,7 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a44-natural-slab`, depuis `bc4fbd4`.
+Active branch: `codex/p6a45-manual-slab`, depuis `6feb48c`.
 PR courante : **#18 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/18,
 basée sur main et incluant la plaque naturellement intégrée, les bords bruts,
 le bloc naturel, le contour corrigé et la lumière centrée. #17 est remplacée
@@ -60,21 +60,14 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A4.4 — intégration naturelle de la plaque autorisée le 2026-10-14.**
-Améliorer contour, fissures liées au relief et enfouissement partiel. Conserver
-le geste au Pick et le détachement encourageants de P6A43, les outils, B-17,
-lumière et occultation validés. Rapport/brief actif :
-`docs/dev/P6A44_NATURAL_SLAB_REPORT.md`. Candidat livré : 608 contrôles, zéro échec.
-Scène `scenes/p6a44_natural_slab.tscn`, entrée `Launch-Game.ps1`.
-Retour humain du 2026-10-14 : intégration un peu meilleure, encore peu naturelle ;
-fissures trop lisses et retrait automatique remis en question. Centre du bloc
-jugé trop éclairé par rapport aux côtés. Le signal positif de variation des
-outils reste acquis, sans validation artistique ou du retrait automatique.
-Prochaine action : discuter un essai ciblé d’éclairage plus uniforme, de fractures
-plus brutes et d’extraction active. Le levier court au Pick est une proposition,
-pas encore un GO d’implémentation. Détails dans l’addendum du rapport actif.
-Aucun merge automatique. Pas de nouvelle mécanique complémentaire,
-génération aléatoire, catalogue, musée/meta ou N-slots. Son différé.
+**P6A4.5 — GO explicite le 2026-10-14 : lumière plus uniforme, fissures plus
+brutes et retrait manuel au Pick avec un petit geste de levier.** Conserver outils,
+B-17, ambiance chaude, relief/ombres et protection des os enterrés. Rapport actif :
+`docs/dev/P6A45_MANUAL_SLAB_REPORT.md`. Candidat livré : 671 contrôles, zéro échec.
+Scène `scenes/p6a45_manual_slab.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
+revue humaine de la lumière, des fractures et du geste de levier.
+Aucun merge automatique ; autres mécaniques, génération de blocs, catalogue,
+musée/meta et N-slots hors périmètre. Son différé.
 
 ## Livraison cloud précédente — contexte historique
 
