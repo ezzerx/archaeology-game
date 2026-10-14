@@ -132,3 +132,37 @@ préservées.
 `Launch-Game.ps1` a ouvert « B-17 · Plaque naturelle » avec Godot 4.7.2 /
 Compatibility, fenêtre répondante et stderr vide. Le lancement ne vaut pas
 validation artistique humaine de cette intégration.
+
+
+## Retour humain — 2026-10-14 : lumière, fractures et extraction
+
+Antoine observe un centre trop lumineux par rapport aux côtés sur deux vues de
+la même plaque. L’intégration est un peu meilleure, mais reste peu naturelle ;
+les fissures semblent trop lisses. Le départ automatique lui fait envisager
+un autre système de retrait. Ce retour ne valide ni la qualité artistique finale
+ni le retrait automatique. L’incitation à varier les outils relevée en P6A43 reste
+un signal positif distinct.
+
+Captures fournies : `codex-clipboard-4a686cca-78ab-42e8-b76f-d7d34bb49d92.png`
+et `codex-clipboard-a7e13dba-1be9-4c64-b025-0c080b6e2db2.png`.
+
+Diagnostic par lecture du code, sans nouvelle mesure graphique :
+- La source fixe centrée reste un Spot à puissance 1.2, ouverture 50°, atténuation
+  angulaire 1.3. Le contrôle P6A39 comparait des paires gauche/droite symétriques ;
+  il ne contrôlait pas la différence centre/bords. La prochaine comparaison devra
+  couvrir le centre et les extrémités sur un témoin identique, en gardant chaleur,
+  relief et protection des os enterrés.
+- Les joints sont interpolés en courbes Catmull–Rom avec un petit décalage sinusoïdal.
+  Le sillon existe réellement, mais ce tracé continu et doux conserve un aspect
+  dessiné. Proposition : changements de direction plus anguleux, largeur et
+  profondeur variables, lèvres ébréchées et ramifications secondaires discrètes.
+- Le troisième contact distinct suffisamment espacé déclenche immédiatement le
+  retrait ; une érosion suffisante le déclenche aussi. Il n’existe pas encore
+  d’état « libérée, à extraire » contrôlé par le joueur.
+
+Proposition à discuter : travailler les joints au Pick, rendre perceptible le jeu
+sur un bord libéré, puis maintenir le clic et effectuer un court geste de levier
+pour soulever et sortir le morceau. Un geste bref doit suffire ; l’annulation
+avant extraction doit reposer la plaque. Conserver les outils existants et rendre
+la zone de prise lisible par la réaction physique du bord. Aucun comportement de
+ce type n’a été ajouté pendant ce retour ; seules les notes ont été mises à jour.

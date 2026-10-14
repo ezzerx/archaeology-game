@@ -1285,3 +1285,17 @@ Le morceau détaché doit conserver la matrice restante, son relief et ses couch
 avec des normales/faces cohérentes et ses ombres. Le rapport P6A44 garde les preuves,
 coûts et limites. Cette passe ne constitue pas le GO d’une autre mécanique ou d’un
 générateur de blocs ; la revue artistique reste la prochaine étape.
+
+
+## 2026-10-14 — Revue de la plaque et limite de l’éclairage centré
+
+Antoine juge l’intégration de la plaque un peu meilleure mais encore peu naturelle,
+avec des fissures trop lisses, et remet en question son retrait automatique. Ne pas
+transformer l’intérêt déjà reconnu de varier les outils en validation de ce retrait
+ou de l’art final. Une extraction active reste à discuter.
+
+Le centre trop lumineux est un nouveau défaut signalé sur captures. L’équilibre
+mesuré entre points symétriques gauche/droite ne prouve pas l’uniformité entre le
+centre et les bords. Conserver cette distinction dans les prochaines revues de
+lumière. Le rapport P6A44 détaille le diagnostic et les propositions ; la gate du
+statut canonique conserve seule la prochaine action autorisée.

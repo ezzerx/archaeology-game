@@ -65,8 +65,14 @@ Améliorer contour, fissures liées au relief et enfouissement partiel. Conserve
 le geste au Pick et le détachement encourageants de P6A43, les outils, B-17,
 lumière et occultation validés. Rapport/brief actif :
 `docs/dev/P6A44_NATURAL_SLAB_REPORT.md`. Candidat livré : 608 contrôles, zéro échec.
-Scène `scenes/p6a44_natural_slab.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
-revue humaine de l’intégration au bloc, de la lisibilité et du détachement.
+Scène `scenes/p6a44_natural_slab.tscn`, entrée `Launch-Game.ps1`.
+Retour humain du 2026-10-14 : intégration un peu meilleure, encore peu naturelle ;
+fissures trop lisses et retrait automatique remis en question. Centre du bloc
+jugé trop éclairé par rapport aux côtés. Le signal positif de variation des
+outils reste acquis, sans validation artistique ou du retrait automatique.
+Prochaine action : discuter un essai ciblé d’éclairage plus uniforme, de fractures
+plus brutes et d’extraction active. Le levier court au Pick est une proposition,
+pas encore un GO d’implémentation. Détails dans l’addendum du rapport actif.
 Aucun merge automatique. Pas de nouvelle mécanique complémentaire,
 génération aléatoire, catalogue, musée/meta ou N-slots. Son différé.
 
