@@ -18,7 +18,7 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a43-fractured-slab`, depuis `2709686`.
+Active branch: `codex/p6a44-natural-slab`, depuis `bc4fbd4`.
 PR courante : **#17 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/17,
 basée sur main et incluant la plaque fracturée, les bords bruts, le bloc naturel,
 le contour corrigé et la lumière centrée. #16 est remplacée sans fusion ;
@@ -60,22 +60,15 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A4.3 — plaque de grès fracturée, spike de gameplay autorisé le 2026-10-14.**
-Antoine autorise un essai sur une plaque avec fissures lisibles et détachement
-satisfaisant. Garder le feeling actuel des outils, B-17, le rendu chaud, les bords
-et les protections des os enterrés. Exception de gameplay bornée à cette plaque :
-attaques Pick sur le joint permettant un retrait conséquent, sans ordre imposé ;
-Chisel ordinaire toujours utilisable. Rapport/brief actif :
-`docs/dev/P6A43_FRACTURED_SLAB_REPORT.md`. Candidat livré : 548 contrôles, zéro échec.
-Scène `scenes/p6a43_fractured_slab.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
-discuter la suite à partir du retour humain positif sur l’incitation à utiliser
-le Pick. Intégration visuelle encore imparfaite ; rendu final non validé.
-Direction souhaitée : répartition variable des plaques et combinaison avec
-d’autres comportements pour varier les blocs. Ce retour ne déclenche pas
-l’implémentation de génération ni de nouvelles mécaniques.
-Aucun merge automatique. Les trois géologies P6A42 restent un essai non
-concluant pour la rejouabilité. Pas de nouveau catalogue, musée/meta ou N-slots.
-Son différé ; pas de retuning global des outils.
+**P6A4.4 — intégration naturelle de la plaque autorisée le 2026-10-14.**
+Améliorer contour, fissures liées au relief et enfouissement partiel. Conserver
+le geste au Pick et le détachement encourageants de P6A43, les outils, B-17,
+lumière et occultation validés. Rapport/brief actif :
+`docs/dev/P6A44_NATURAL_SLAB_REPORT.md`. Candidat livré : 608 contrôles, zéro échec.
+Scène `scenes/p6a44_natural_slab.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
+revue humaine de l’intégration au bloc, de la lisibilité et du détachement.
+Aucun merge automatique. Pas de nouvelle mécanique complémentaire,
+génération aléatoire, catalogue, musée/meta ou N-slots. Son différé.
 
 ## Livraison cloud précédente — contexte historique
 

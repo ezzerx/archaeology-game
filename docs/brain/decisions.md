@@ -1271,3 +1271,17 @@ réparties de manière variable et d’autres comportements complémentaires dan
 les blocs. La variété doit donc porter sur les gestes et choix, en plus de la
 géologie visible. Les règles de placement et la palette de situations restent
 à concevoir ; la gate du statut canonique détermine la prochaine action.
+
+
+## 2026-10-14 — GO intégration naturelle de la plaque
+
+Antoine autorise la proposition : contour moins découpé, fissures liées au relief
+et enfouissement partiel. Conserver le geste encourageant, les outils et B-17.
+Une couverture Clay doit être une vraie interface, pas un recoloriage ; elle
+remplit les fissures cachées au lieu d’en imprimer le contour. Le crédit de joint
+vient d’un grès réellement visible avant l’impact.
+
+Le morceau détaché doit conserver la matrice restante, son relief et ses couches,
+avec des normales/faces cohérentes et ses ombres. Le rapport P6A44 garde les preuves,
+coûts et limites. Cette passe ne constitue pas le GO d’une autre mécanique ou d’un
+générateur de blocs ; la revue artistique reste la prochaine étape.

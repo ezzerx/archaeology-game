@@ -2,9 +2,11 @@ extends "res://scripts/p6a41/rough_preparation.gd"
 var slab: Node
 func _create_profile() -> SoilFoundationProfile:
  return preload("res://scripts/p6a43/slab_profile.gd").new(block.working_map,block.footprint,block.rim)
+func _create_slab() -> Node:
+ return preload("res://scripts/p6a43/fractured_slab.gd").new()
 func _ready() -> void:
  super._ready()
- slab = preload("res://scripts/p6a43/fractured_slab.gd").new()
+ slab = _create_slab()
  add_child(slab)
  slab.setup(block,profile.layout)
  block.working_map.slab = slab

@@ -25,12 +25,14 @@ func setup(target: ExcavationBlock, shape: RefCounted) -> void:
  texture = ImageTexture.create_from_image(image)
  surface.surface_reset.connect(reset)
  configure()
+func _plate_roof_at(i: int) -> float:
+ return surface.strata.packed_limits[i*2]
 func configure() -> void:
  reset()
  targets.clear()
  initial_volume = 0.0
  for i in layout.cells:
-  var upper: float = surface.strata.packed_limits[i*2]
+  var upper: float = _plate_roof_at(i)
   var floor := upper-.12
   if surface.structural_ceilings[i] > 0: floor = maxf(floor,surface.structural_ceilings[i]+.01)
   assert(floor < upper,"Plate must have positive thickness above Bone")
@@ -68,7 +70,7 @@ func accepts_contact(point: Vector2, tool: ToolDefinition) -> bool:
  var i := int(round(point.y))*1024+int(round(point.x))
  if not targets.has(i): return false
  var h: float = surface._heights[i]
- var upper: float = surface.strata.packed_limits[i*2]
+ var upper: float = _plate_roof_at(i)
  # Eligibility is sampled BEFORE native work: buried Soil cannot activate a joint.
  return h <= upper+Stratigraphy.SURFACE_EPSILON and h > targets[i]+.006 and layout.crack_distance(point) <= 5.5
 func after_impact(point: Vector2, tool: ToolDefinition, contact: bool) -> int:
@@ -88,7 +90,7 @@ func after_impact(point: Vector2, tool: ToolDefinition, contact: bool) -> int:
  # Normal excavation remains viable: an already eroded plate loses its support.
  var remaining := 0.0
  for i: int in targets:
-  remaining += maxf(0.0,minf(surface._heights[i],surface.strata.packed_limits[i*2])-targets[i])
+  remaining += maxf(0.0,minf(surface._heights[i],_plate_roof_at(i))-targets[i])
  if remaining < initial_volume*.45 and remaining > .001: return _release(tool,"erosion")
  return 0
 func _release(tool: ToolDefinition, reason: String) -> int:
@@ -99,17 +101,22 @@ func _release(tool: ToolDefinition, reason: String) -> int:
  release_count += 1
  # Capture remaining real matrix BEFORE removing it. No intact replacement prop.
  _make_piece()
- var removed := Vector3.ZERO
+ var removed_soil := 0.0
+ var removed_clay := 0.0
+ var removed_stone := 0.0
  var changed := 0
  for i: int in targets:
   var old: float = surface._heights[i]
   var next: float = minf(old,targets[i])
   if next >= old: continue
   var upper: float = surface.strata.packed_limits[i*2]
-  removed.x += maxf(old-upper,0.0)
-  removed.z += minf(old,upper)-next
+  removed_soil += maxf(old-upper,0.0)
+  var lower: float = surface.strata.packed_limits[i*2+1]
+  removed_clay += maxf(0.0,minf(old,upper)-maxf(next,lower))
+  removed_stone += maxf(0.0,minf(old,lower)-next)
   surface._heights[i] = next
   changed += 1
+ var removed := Vector3(removed_soil,removed_clay,removed_stone)
  surface.last_removed += removed
  surface.image.set_data(1024,640,false,Image.FORMAT_RF,surface._heights.to_byte_array())
  surface.dirty = true
