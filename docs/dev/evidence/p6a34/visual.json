@@ -1,0 +1,44 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"budget": [
+		{
+			"draw_calls": 73.0,
+			"frame_median_ms": 4.165,
+			"mesh": false,
+			"primitives": 2671124.0,
+			"texture_bytes": 177520462.0
+		},
+		{
+			"draw_calls": 75.0,
+			"frame_median_ms": 4.165,
+			"mesh": true,
+			"primitives": 2697686.0,
+			"texture_bytes": 177520462.0
+		}
+	],
+	"captures": [
+		"intact-mesh.png",
+		"intact-relief.png",
+		"partial-skull.png",
+		"prepared-overview.png",
+		"skull-mesh.png",
+		"skull-relief.png",
+		"skull-local-damage.png",
+		"rib-mesh.png",
+		"rib-relief.png",
+		"inspection-ensemble.png",
+		"inspection-skull.png",
+		"inspection-skull-underside.png",
+		"inspection-ribs.png"
+	],
+	"checks": 21,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 26,
+	"contact": {
+		"max_gap_m": 0.000248089083470404,
+		"samples": 183
+	},
+	"failures": [],
+	"geometry": {
+		"baked_samples": 11008,
+		"misses": 0,
+		"native_joint_occlusion": 125,
+		"roof_max_error_m": 0.000000404745340354395,
+		"triangles": 26562,
+		"winning_mesh_cells": 10883
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

@@ -1,6 +1,7 @@
 """Reproducible Godot 4.7.2 Web playtest; staging never edits project.godot.
 Usage: python3 tools/p6a31/export_web.py --godot BIN --templates DIR --output DIR
 """
+import re
 import argparse, shutil, subprocess
 from pathlib import Path
 
@@ -22,8 +23,8 @@ if stage.exists(): shutil.rmtree(stage)
 stage.mkdir(parents=True)
 for folder in ['scripts','scenes','config','shaders','materials','assets']:
     shutil.copytree(root/folder,stage/folder)
-project=(root/'project.godot').read_text().replace('res://scenes/prototype_main.tscn','res://scenes/p6a31_mastery_readability.tscn').replace('config/name="ArchaeologyGame — P4"','config/name="ArchaeologyGame Playtest"')
-(stage/'project.godot').write_text(project)
+project=re.sub(r'^run/main_scene="[^"\r\n]*"', 'run/main_scene="res://scenes/p6a31_mastery_readability.tscn"', (root/'project.godot').read_text(encoding='utf-8'), flags=re.M).replace('config/name="ArchaeologyGame — P4"','config/name="ArchaeologyGame Playtest"')
+(stage/'project.godot').write_text(project,encoding='utf-8')
 (stage/'export_presets.cfg').write_text(f'''[preset.0]
 name="Web Playtest"
 platform="Web"

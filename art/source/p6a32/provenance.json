@@ -1,0 +1,25 @@
+{
+  "origin": "Antoine upload: dinosaur skeleton 3d model.glb",
+  "generator": "Tripo (GLB asset metadata)",
+  "source": "art/source/p6a32/b17-tripo-original.glb",
+  "source_bytes": 15383008,
+  "source_sha256": "daf9aaf3715f7cdc7cf4f85bd614eb9377adf9b577961064e5fdf5b6922c270a",
+  "source_triangles": 189252,
+  "source_texture_size": 4096,
+  "studio_profile_reference": "docs/dev/TRIPO_STUDIO_IMAGE_TO_3D_SETTINGS.md",
+  "studio_profile_is_recommendation": true,
+  "model_version_not_embedded_in_export": true,
+  "blender": "4.3.2",
+  "runtime": "assets/p6a32/b17_tripo_skull.glb",
+  "runtime_triangles": 20775,
+  "runtime_texture_size": 2048,
+  "scope": "skull only; native Bone fallback retained",
+  "hidden_viewport_diff": {
+    "size": [
+      1280,
+      720
+    ],
+    "max_channel_difference": 0,
+    "different_pixels": 0
+  }
+}

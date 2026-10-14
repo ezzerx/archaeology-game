@@ -1,0 +1,42 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"budget": [
+		{
+			"draw_calls": 49.0,
+			"frame_ms": {
+				"max": 3843.376,
+				"mean": 2933.8459,
+				"p95": 3822.397
+			},
+			"mesh_enabled": false,
+			"rendered_primitives": 2653318.0,
+			"texture_bytes": 159009275.0
+		},
+		{
+			"draw_calls": 51.0,
+			"frame_ms": {
+				"max": 6789.971,
+				"mean": 4972.8351,
+				"p95": 6521.374
+			},
+			"mesh_enabled": true,
+			"rendered_primitives": 2674093.0,
+			"texture_bytes": 159009275.0
+		}
+	],
+	"captures": [],
+	"checks": 3,
+	"failures": [],
+	"profiles": [],
+	"runtime": {
+		"adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240,
+		"size": [
+			1280,
+			720
+		]
+	}
+}

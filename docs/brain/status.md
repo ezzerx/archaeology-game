@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date:** 2026-10-13
+**Date:** 2026-10-14
 **Projet:** ArchaeologyGame (working title)  
 **Source unique du statut courant:** ce fichier. Voir aussi `docs/DOCUMENTATION_POLICY.md`.
 
@@ -18,8 +18,10 @@
 
 ## Active branch / PR
 
-Active branch: `prototype/p6a31-mastery-readability`
-PR: **#10 — P6A3.1 Mastery / Bone Readability** (DRAFT).
+Active branch: `prototype/p6a32-fossil-mesh`
+PR: **#11 DRAFT**, bounded actual Tripo skull pilot, stacked on **#10**.
+https://github.com/ezzerx/archaeology-game/pull/11
+PR #10 remains DRAFT for the combined home playtest.
 
 PR #9 merged into main on 2026-10-13 at Antoine’s explicit request; merge commit `32a85ba9efc04fd508ee838d3c63252ca6b2d04f`. Latest P6A3 source included: `b91ff24bf57e76599204e9d12bd23eb6d229dbc5`.
 
@@ -50,14 +52,78 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-P6A3.1 is implemented as a candidate after Antoine’s explicit GO on 2026-10-13.
-Finish verification and collect human playtest feedback before merging it.
+**P6A3.7 — squelette B-17 et méthode artistique validés humainement.**
+GO Antoine le 2026-10-14 : appliquer le niveau du crâne validé aux côtes et au
+reste du squelette, même style et interactions conservés. Les 49 pièces du B-17
+actuel sont intégrées ; le crâne P6A3.6 accepté reste exactement conservé.
+
+Rapport actif : `docs/dev/P6A37_SKELETON_REPORT.md`.
+Brief : `docs/dev/P6A37_SKELETON_BRIEF.md`.
+Référence humaine précédente : `docs/dev/P6A36_HERO_SKULL_REPORT.md`.
+Scène : `scenes/p6a37_modeled_skeleton.tscn`.
+Lancement : `Launch-P6A37-Modeled-Skeleton.ps1`, Godot 4.7.2 stable.
+Branche : `prototype/p6a32-fossil-mesh`, travail local non poussé.
+**Retour humain du 2026-10-14 :** Antoine valide le résultat et retient cette
+méthode pour les futurs squelettes/reliques de la collection. B-17 constitue la
+référence artistique acceptée ; adapter les matières aux futurs objets.
+**GO du 2026-10-14 : publier la dernière version jouable validée sur main et
+mettre les PR/GitHub au propre.** Consolidation et vérification du lancement par
+défaut, puis intégration ordonnée des PR #10/#11. Publication en cours.
+Sound Design différé à la demande d’Antoine, crédits Claude indisponibles.
+Suite en discussion : lampe orientable, forme naturelle des blocs, variété des
+spécimens/géologies puis éventuels matériaux/outils. Aucun GO d’implémentation
+de ces nouveaux systèmes reçu dans cette demande.
+F5 inspecte les pièces ; F6 compare mesh/relief du même champ ; H propose deux
+préparations de revue avec reset annoncé, dont une au Pick natif inchangé.
+461 contrôles passent ; qualité artistique de cette extension acceptée humainement.
+Durée de fouille non mesurée humainement ; mesures natives non isolées :
+240 FPS soutenus non validés.
+Périmètre limité au B-17 existant, pas de catalogue multi-spécimens.
+
+Ivoire chaud et ombres des seules cellules dégagées conservés. Brush sur os,
+dégâts localisés et binds validés sont inchangés, sans retuning des outils.
+La distinction 100/100 reste sans verdict humain explicite.
+Les scènes historiques restent comparables. Merge main explicitement autorisé ;
+aucun nouveau système musée/meta, Sound/Light ou P6B/P7 autorisé.
+
+## Livraison cloud précédente — contexte historique
+
+**Reprise locale — Antoine est rentré le 2026-10-13 et poursuit avec son agent
+local.** Travail cloud livré sur la branche ci-dessus. Prochaine action :
+récupérer cette branche, lancer explicitement la scène P6A3.2 et effectuer la
+revue native à la maison. Handoff : `docs/dev/P6A32_LOCAL_HANDOFF.md`.
+PR #10/#11 restent candidates DRAFT ; aucun merge automatique.
+
+P6A3.1 is implemented as a candidate. Antoine now explicitly authorizes advancing
+B-17 visual mesh lookdev before tonight and combining review in a larger native
+home playtest, with screenshot comparisons during work. P6A3.1 human review is
+not a blocker to this specifically authorized next step; no automatic merge.
+The requested asset pipeline is ImageGen → Tripo Max Studio → Blender → Godot.
+Shared Studio access failed: the interactive link was unusable, then Firecrawl
+reported insufficient browser credits. No Tripo generation was performed here.
+Antoine generated in his own Tripo Studio and supplied the textured GLB.
+Reference, recorded Studio settings and instructions:
+https://archeology-private-playtest.toitou2.chatgpt.site/fossil.html
+Actual Tripo skull candidate is isolated in `scenes/p6a32_fossil_mesh.tscn`.
+20,775 triangles / 2K runtime textures; source GLB and Blender master preserved.
+142 functional and 17 final graphical checks pass. Intact matrix is pixel-identical
+with mesh on/off; actual ray picking is unchanged. Native Bone fallback is retained
+where the fitted mesh does not cover the field. F6 compares without resetting.
+Fitting remains visibly rough; this is not approved final art or a full skeleton
+replacement. Current delivery report: `docs/dev/P6A32_TRIPO_SKULL_PILOT_REPORT.md`.
+Owner-private screenshot review published; the site landing now opens this
+lightweight review directly, not the Web game:
+https://archeology-private-playtest.toitou2.chatgpt.site/review.html#crane
+Portable P6A3.2 Windows ZIP is on `native.html` for home review. 10 exported-PCK
+smoke checks pass on Linux; Windows execution and human art/feel remain pending.
+Studio options from Antoine’s screenshot are recorded for future iterations in
+`docs/dev/TRIPO_STUDIO_IMAGE_TO_3D_SETTINGS.md`.
 Owner-private browser playtest: https://archeology-private-playtest.toitou2.chatgpt.site
 Human test 2026-10-13: Antoine tried it on his small work laptop and exited due
 to excessive lag. Browser playtesting is not usable on that machine; this does
 not validate or reject P6A3.1 game feel. Next human test should be native on the
 home reference PC. No new Web optimization phase is opened.
-Report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
+P6A3.1 report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
 Annotated screenshot review: https://archeology-private-playtest.toitou2.chatgpt.site/review.html
 Portable Windows build: https://archeology-private-playtest.toitou2.chatgpt.site/native.html
 
@@ -168,7 +234,7 @@ P6A3.1 is now the active candidate: `scenes/p6a31_mastery_readability.tscn`.
 Delivery/report: `docs/dev/P6A31_MASTERY_READABILITY_REPORT.md`.
 Private browser playtesting is explicitly requested, with no game installation.
 Next action: complete/verify delivery, then collect Antoine’s human playtest verdict.
-Do not auto-merge the new P6A3.1 candidate or begin Fossil Mesh/Sound/Light phases.
+Do not auto-merge the candidates. B-17 mesh GO is received; Sound/Light remain separate future work.
 
 **Sound pipeline update:** Antoine has tested Claude and selects it instead of
 ElevenLabs for the dedicated sound phase. Current playtest audio stays unchanged;

@@ -1,0 +1,69 @@
+{
+  "bytes": 15383008,
+  "sha256": "daf9aaf3715f7cdc7cf4f85bd614eb9377adf9b577961064e5fdf5b6922c270a",
+  "asset": {
+    "version": "2.0",
+    "generator": "Tripo"
+  },
+  "meshes": [
+    {
+      "name": "meshes[0]",
+      "primitives": [
+        {
+          "vertices": 108828,
+          "triangles": 189252,
+          "position": {
+            "max": [
+              0.4893035888671875,
+              0.56988525390625,
+              0.15606689453125
+            ],
+            "min": [
+              -0.4893035888671875,
+              0.0,
+              -0.15606689453125
+            ]
+          },
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "tripo_node_fa28ea49-16ee-47d6-9047-f698c8bf1f46",
+      "mesh": 0
+    }
+  ],
+  "textures": [
+    {
+      "source": 0,
+      "sampler": 0
+    },
+    {
+      "source": 1,
+      "sampler": 1
+    },
+    {
+      "source": 2,
+      "sampler": 2
+    }
+  ],
+  "images": [
+    {
+      "name": "dinosaur+skeleton+3d+model_basecolor.jpg",
+      "bufferView": 0,
+      "mimeType": "image/jpeg"
+    },
+    {
+      "name": "dinosaur+skeleton+3d+model_rm.jpg",
+      "bufferView": 1,
+      "mimeType": "image/jpeg"
+    },
+    {
+      "name": "dinosaur+skeleton+3d+model_normal.png",
+      "bufferView": 2,
+      "mimeType": "image/png"
+    }
+  ]
+}

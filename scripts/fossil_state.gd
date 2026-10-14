@@ -6,6 +6,7 @@ signal bone_first_contact(cell: Vector2i, component: int)
 signal bone_cell_exposed(cell: Vector2i, component: int)
 signal bone_component_exposure_changed(component: int, exposed: int, total: int)
 signal bone_condition_changed(condition: float, damage: float)
+signal bone_damaged_at(cell: Vector2i, component: int, damage: float)
 signal specimen_reset
 
 var field: FossilField
@@ -94,3 +95,4 @@ func damage_at(index: int, amount: float) -> void:
 	if _condition < before:
 		last_damage_event = "Chisel / %s / -%.0f" % [FossilField.COMPONENT_NAMES[field.component_ids[index]], before - _condition]
 		bone_condition_changed.emit(_condition, before - _condition)
+		bone_damaged_at.emit(Vector2i(index % field.size.x, index / field.size.x), field.component_ids[index], before - _condition)

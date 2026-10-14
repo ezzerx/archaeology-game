@@ -1,0 +1,30 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "default_scene": "res://scenes/p6a37_modeled_skeleton.tscn",
+  "p5_checks": 128,
+  "skeleton_checks": 85,
+  "failures": 0,
+  "actual_default_launch": {
+    "headless": true,
+    "native_compatibility": true,
+    "adapter": "NVIDIA GeForce RTX 5080"
+  },
+  "startup_invariants": [
+    "49 source pieces",
+    "25404 Bone cells",
+    "zero initial exposure",
+    "Condition 100",
+    "no buried shadow caster",
+    "inspection closed",
+    "accepted Brush multiplier",
+    "240 FPS cap / 60 Hz physics"
+  ],
+  "historical_exports": {
+    "python_setting_cases": 8,
+    "powershell_syntax_scripts": 5,
+    "powershell_scene_rewrites": 4
+  },
+  "binary_export_rebuilt": false,
+  "previous_art_regressions": "docs/dev/evidence/p6a37/regressions.json",
+  "human_art_approval": "docs/dev/P6A37_SKELETON_REPORT.md"
+}

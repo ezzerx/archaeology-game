@@ -5,6 +5,11 @@ extends RefCounted
 ## Seen bits keep a cleaned cell clean when adjacent cells are first exposed.
 const STRIDE := 4
 const INITIAL := 0.85
+# Opt-in feel profile; historical scenes retain exact default behavior.
+var moving_clear_multiplier := 1.0
+var stationary_clear_multiplier := 1.0
+var cleaning_falloff_scale := 1.0
+var finish_threshold := 0.0
 signal cleaned
 # Counters derive directly from the film's existing cohorts. Component 0 is
 # independent fragments; overall cleanliness sums only anatomical IDs 1..4.
@@ -105,6 +110,8 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 	var high := Vector2i(((from.max(to) + Vector2.ONE * radius) / STRIDE).ceil()).min(size - Vector2i.ONE)
 	var segment := to - from
 	var inverse := 1.0 / segment.length_squared() if not segment.is_zero_approx() else 0.0
+	var motion := clampf(from.distance_to(to) / delta / 120.0, 0.0, 1.0)
+	var gain := lerpf(stationary_clear_multiplier, moving_clear_multiplier, motion)
 	var strongest := 0.0
 	for y in range(low.y, high.y + 1):
 		for x in range(low.x, high.x + 1):
@@ -112,8 +119,11 @@ func clean(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> vo
 			if _masks[index] == 0: continue
 			var point := Vector2(x, y) * STRIDE + Vector2.ONE * 1.5
 			var t := clampf((point - from).dot(segment) * inverse, 0, 1)
-			var amount := minf(_values[index], tool.bone_film_clear * delta * WorkingSurface.weight(point.distance_to(from + segment * t) / radius, tool.falloff))
+			var amount := minf(_values[index], tool.bone_film_clear * delta * gain * WorkingSurface.weight(point.distance_to(from + segment * t) / radius, tool.falloff * cleaning_falloff_scale))
 			if amount <= 0: continue
+			# Finish a genuinely worked trace instead of leaving an invisible tail.
+			if finish_threshold > 0.0 and _values[index] - amount <= finish_threshold:
+				amount = _values[index]
 			if amount > strongest:
 				strongest = amount
 				for bit_index in range(STRIDE * STRIDE):

@@ -964,3 +964,157 @@ on his small work laptop. The exact hardware/performance cause is not measured.
 This is an unsuitable playtest setup, not a P6A3.1 feel verdict. Use native
 testing on the home reference PC for the human gate; screenshots/video can
 support visual discussion while away. No automatic Web optimization phase.
+
+
+## 2026-10-13 — GO B-17 mesh before combined home test
+
+Antoine wants larger progress before returning home, with refinement afterward.
+He explicitly identifies skeleton visual improvement as next and offers his
+Tripo Max Studio session for ImageGen → Tripo → Blender → Godot. Proceed with
+a bounded real mesh pilot on top of P6A3.1 without waiting for its separate
+feel verdict. Preserve native exposure/Film/Condition and progressive occlusion;
+combine human review in the evening. No merge or Sound/Light GO is inferred.
+
+## 2026-10-13 — Manual Tripo Studio handoff after shared-browser failure
+
+Antoine chose to generate the B-17 reference in his own Tripo Studio and return
+its textured GLB. Firecrawl browser credit exhaustion is the access blocker,
+not evidence about his Tripo Max credits. No Tripo generation was performed by
+the agent. Continue independent Bone-field binding preparation; inspect and
+fit the returned asset before graphical/gameplay acceptance or playtest export.
+The offline native-field mesh is a technical probe and must not be presented
+as the requested Tripo skeleton or as validated production artwork.
+
+## 2026-10-13 — Préparation tactile après le test natif
+
+Antoine préfère le style du squelette précédent pour sa cohérence avec le thème.
+L’essai de comparaison Tripo est non concluant : F6/F7 étaient interceptés par
+le tuning debug et modifiaient le vrai rayon. Le style précédent redevient la
+présentation initiale du candidat ; le crâne Tripo reste conservé pour comparaison.
+Le dessin paramétrique de futurs os est une piste viable à évaluer, pas un GO
+pour produire de nouveaux spécimens ou remplacer l’architecture Bone.
+
+Direction autorisée pour la correction P6A3.3 :
+
+- Brush : quelques petits allers-retours, retrait rapide et clairement visible ;
+  aucun besoin de frottement prolongé sans raison perceptible ;
+- dégâts : marques locales liées aux impacts réellement dommageables et orientées
+  de façon variée ; Condition globale reste l’unique autorité de dégâts ;
+- 100/100 : distinction de collection suffisante pour maintenant, indépendante de
+  l’état de conservation, sans mode séparé ni récompense économique ;
+- binds : comparaisons réservées sans interception par le tuning debug.
+
+Le registre local de distinctions à l’archivage est le support minimal en
+attendant la collection ; il n’ouvre pas le chantier musée/meta. Rapport :
+`docs/dev/P6A33_TACTILE_PREPARATION_REPORT.md`. Le candidat reste soumis au retest humain.
+
+
+## 2026-10-13 — Validation humaine ciblée P6A3.3
+
+Antoine juge « parfaits » le Brush sur la saleté de l’os et les dégâts localisés.
+Conserver ces interactions et leurs réglages. Cette validation est ciblée :
+elle ne vaut ni validation du crâne Tripo hybride, ni confirmation de la
+persistance de la distinction, ni autorisation de merge/phase suivante.
+
+Le comparatif Tripo contient volontairement du Bone historique dans les zones
+non remplacées. Une préférence artistique issue de ce test ne doit pas être
+présentée comme la comparaison de deux crânes intégralement autonomes. Le style
+précédent reste la référence jouable choisie ; tout nouvel asset/protocole reste
+à convenir. Voir l’addendum humain du rapport P6A3.3.
+
+
+## 2026-10-14 — GO essai de production 3D borné
+
+Antoine choisit l’essai proposé : un crâne et quelques côtes stylisés, un
+remplacement complet des pièces testées et une inspection du même asset hors
+matrice pour évaluer son potentiel de collection. Le GO couvre la projection
+mesh → champ Bone dans cette scène isolée ; aucune migration générale du noyau
+ou production du catalogue n’est autorisée implicitement.
+
+La fabrication locale paramétrique Blender produit de vrais meshes fermés,
+distincts du relief raster précédent. Les formes réutilisent la direction
+ivoire chaude et la matière acceptée, sans nouvelle génération Tripo. L’asset
+source garde sept pièces, regroupées en une surface pour le rendu de fouille.
+Les sources et le pipeline sont conservés dans le rapport P6A3.4.
+
+La faisabilité technique vérifiée ne vaut pas validation artistique. L’anatomie
+aplatie reste simplifiée et la projection à hauteur unique limite les usages
+possibles. Verdict humain à recueillir avant de choisir le pipeline de production.
+Le Brush sur os et les dégâts localisés validés restent inchangés.
+
+
+## 2026-10-14 — GO passe esthétique P6A3.5
+
+Antoine autorise une passe esthétique sur le crâne et les côtes du pilote :
+conserver le style ivoire chaud et retrouver ombres/relief, sans révéler les
+os enterrés. Préserver les interactions Brush et dégâts localisés validées.
+Le retour positif sur la proximité du style ne canonise pas encore le catalogue.
+
+Le candidat livré conserve le caster complet désactivé et projette les ombres
+depuis les seules cellules dégagées ; matrice intacte pixel-identique vérifiée.
+La réussite technique ne vaut pas acceptation esthétique humaine. Preuves et
+limites dans `docs/dev/P6A35_AESTHETIC_REPORT.md`.
+
+
+## 2026-10-14 — GO crâne de référence artistique P6A3.6
+
+Antoine autorise le vrai travail de modelage pour voir un candidat représentatif
+de la qualité artistique de production. L’objectif est de valider cette qualité
+avant extension du catalogue, avec ivoire chaud et ombres exposées conservés.
+Le pilote paramétrique en tubes ne constitue pas cette référence.
+
+Le candidat livré utilise des cages anatomiques et des volumes creux, avec
+comparaison directe des deux GLB et étude sans texture dans Godot. Le concept
+ImageGen est une intention, pas une preuve de qualité du runtime. Le contact
+des os réellement dégagés est affiné sur leurs triangles dans cette scène
+isolée ; règles et presets restent conservés. Le verdict artistique reste humain.
+
+
+## 2026-10-14 — Référence artistique du crâne acceptée
+
+Antoine valide positivement le nouveau crâne P6A3.6 : plus joli, avec des détails
+supplémentaires et des dents qui donnent davantage d’intérêt à la précision
+pendant la fouille. Conserver ce modèle comme référence artistique pour cadrer
+les prochains assets. Le détail anatomique a ici une valeur visuelle et tactile
+confirmée ; ne pas réduire cette richesse à de la décoration de texture.
+
+Ce retour ne déclenche pas automatiquement la production du catalogue ou une
+phase suivante. Brush et dégâts localisés restent conservés tels que validés.
+
+
+## 2026-10-14 — GO modelage du squelette B-17 après validation du crâne
+
+Antoine autorise explicitement l’application du niveau artistique accepté aux
+côtes et au reste du squelette, même style et interactions validées conservés.
+Le périmètre couvre le B-17 actuel ; il ne déclenche pas un catalogue multi-spécimens.
+
+Conserver le crâne accepté exactement et reprendre les autres pièces en volumes
+anatomiques : articulations, lames, creux, phalanges et griffes. Le candidat P6A3.7
+remplace entièrement le relief Bone dans sa scène isolée, sans changer les quatre
+composantes canoniques ni leurs règles. La réussite technique et la référence du
+crâne ne valent pas validation humaine automatique des nouvelles régions.
+
+
+## 2026-10-14 — Squelette modelé et méthode artistique acceptés
+
+Antoine valide le B-17 P6A3.7 et souhaite employer cette approche pour les futurs
+squelettes et reliques de la collection. La référence devient le modelage local
+Blender de vrais volumes anatomiques/structurels, aidé par script, export GLB,
+champ de fouille dérivé des surfaces et contrôle dans Godot en fouille/hors matrice.
+Le détail doit servir la beauté et l’intérêt de la précision, tout en restant lisible.
+
+Préserver le langage chaleureux et les interactions ; adapter la matière aux
+objets futurs. Cette décision retient une direction de production, sans autoriser
+implicitement la fabrication immédiate du catalogue ou une nouvelle phase.
+
+
+## 2026-10-14 — Publication main autorisée, son différé
+
+Antoine demande explicitement la mise à jour de GitHub et la publication de la
+dernière version jouable validée sur main. Consolider le lancement par défaut
+sur B-17 modelé, puis intégrer les PR empilées ; préserver les scènes historiques.
+Le Sound Design est différé faute de crédits Claude disponibles actuellement.
+
+Lampe orientable, silhouette naturelle du bloc et variété matériaux/outils sont
+remis en discussion pour la rejouabilité. Cette demande de cadrage n’autorise
+pas leur implémentation immédiate ni une architecture de strates N-slots.

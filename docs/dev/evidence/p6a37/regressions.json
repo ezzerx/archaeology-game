@@ -1,0 +1,46 @@
+{
+  "suites": [
+    {
+      "suite": "P5",
+      "checks": 128,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.3",
+      "checks": 40,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.4",
+      "checks": 26,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.5",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.6",
+      "checks": 50,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.6 graphique",
+      "checks": 43,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.7",
+      "checks": 85,
+      "failures": 0
+    },
+    {
+      "suite": "P6A3.7 graphique",
+      "checks": 51,
+      "failures": 0
+    }
+  ],
+  "checks": 461,
+  "failures": 0
+}

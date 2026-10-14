@@ -1,0 +1,47 @@
+[
+	{
+		"bounds": [
+			"(387, 338)",
+			"(387, 338)"
+		],
+		"image": "skull-mesh",
+		"mean_rgb_abs_sum": 0.00000121697984771648,
+		"pixels_changed_over_0_03": 1
+	},
+	{
+		"bounds": [
+			"(1280, 720)",
+			"(0, 0)"
+		],
+		"image": "skull-relief",
+		"mean_rgb_abs_sum": 0.000000319138085210903,
+		"pixels_changed_over_0_03": 0
+	},
+	{
+		"bounds": [
+			"(387, 338)",
+			"(387, 338)"
+		],
+		"image": "skull-local-damage",
+		"mean_rgb_abs_sum": 0.00000122123502175479,
+		"pixels_changed_over_0_03": 1
+	},
+	{
+		"bounds": [
+			"(1280, 720)",
+			"(0, 0)"
+		],
+		"image": "rib-mesh",
+		"mean_rgb_abs_sum": 0.0,
+		"pixels_changed_over_0_03": 0
+	},
+	{
+		"bounds": [
+			"(1280, 720)",
+			"(0, 0)"
+		],
+		"image": "rib-relief",
+		"mean_rgb_abs_sum": 0.0,
+		"pixels_changed_over_0_03": 0
+	}
+]

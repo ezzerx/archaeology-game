@@ -35,6 +35,9 @@ ALBEDO = mix(color, cursor_color.rgb, marker);
 	controller.tool_selected.connect(_sync_cursor)
 	apply_readability()
 
+func _create_mastery_ui() -> PreparationUI:
+	return preload("res://scripts/p6a31/mastery_ui.gd").new()
+
 func apply_readability() -> void:
 	hero_shader = readability_shader if readability_enabled else original_hero_shader
 	set_hero_look(hero_enabled)
@@ -43,7 +46,7 @@ func apply_readability() -> void:
 	if fullscreen_button.get_parent() != null:
 		fullscreen_button.get_parent().remove_child(fullscreen_button)
 	session_ui.free()
-	session_ui = (preload("res://scripts/p6a31/mastery_ui.gd") if readability_enabled else preload("res://scripts/p6a/playtest_preparation_ui.gd")).new()
+	session_ui = _create_mastery_ui() if readability_enabled else preload("res://scripts/p6a/playtest_preparation_ui.gd").new()
 	add_child(session_ui)
 	session_ui.setup(session, controller, reset_specimen)
 	session_ui.root_control.add_child(fullscreen_button)
@@ -70,9 +73,8 @@ func _sync_visuals() -> void:
 		mat.set_shader_parameter("mastery_condition", block.working_map.fossil.condition)
 		mat.set_shader_parameter("mastery_cursor_scale", .55 if controller.selected_index == 1 else 1.0)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_F7:
 		toggle_readability()
 		get_viewport().set_input_as_handled()
 		return
-	super._unhandled_input(event)
