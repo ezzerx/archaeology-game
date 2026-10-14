@@ -66,8 +66,11 @@ lumière centrée et protection des os enterrés. Varier les décisions de fouil
 sans rallonger simplement la préparation. Rapport/brief actif :
 `docs/dev/P6A42_THREE_BLOCKS_REPORT.md`. Scène :
 `scenes/p6a42_three_blocks.tscn`, lancement `Launch-Game.ps1`. Candidat livré : 439 contrôles, zéro échec.
-Prochaine action : revue humaine des trois profils, de leurs choix de fouille
-et du rythme réel. Aucun merge automatique.
+Retour humain : variation surtout visuelle ; même stratégie Chisel en masse,
+puis Pick et Brush près des os. **L’essai ne valide pas la rejouabilité.**
+Prochaine action : discuter un comportement de matériau qui change réellement
+les gestes/choix avant tout nouveau spike. Aucun GO d’implémentation supplémentaire
+ou merge automatique.
 Pas de nouveaux matériaux/outils, catalogue, musée/meta ou N-slots. Son différé.
 
 ## Livraison cloud précédente — contexte historique

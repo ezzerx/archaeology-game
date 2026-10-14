@@ -108,3 +108,17 @@ Source `969eda7`, branche `codex/p6a42-three-blocks`,
 La PR #15 est remplacée sans fusion ; ses scènes et sa branche sont conservées.
 Main reste la référence précédente. Les fenêtres et préparations en cours n’ont
 pas été fermées pour ce nouvel essai.
+
+
+## Verdict humain — 2026-10-14
+
+Antoine a essayé les profils : avec les deux matériaux structurels actuels, les
+changements restent surtout visuels à la surface. Sa séquence reste Chisel pour
+déblayer largement jusqu’aux os, puis Precision Pick et Brush à proximité.
+**Objectif de variété stratégique non atteint par cet essai.** Les budgets et
+preuves techniques restent valides, mais ne démontrent pas des choix distincts.
+
+Conserver les profils comme preuve exploratoire, sans multiplier ces variantes
+pour en faire du contenu de production. La discussion suivante doit porter sur
+un comportement lisible de matériau qui appelle une action différente. Aucune
+modification des outils ou nouvelle mécanique n’est autorisée par ce seul retour.

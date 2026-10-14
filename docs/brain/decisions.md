@@ -1231,3 +1231,14 @@ une simple augmentation de durée. Tester d’abord des profils façonnés avec 
 matériaux actuels ; conserver les plafonds et la source du même spécimen pour
 isoler la géologie. Le rapport P6A42 garde budgets, parcours et limites ; le
 verdict humain décidera si les accès changent réellement les choix du joueur.
+
+
+## 2026-10-14 — Géologies variées, stratégie inchangée : essai non concluant
+
+Retour humain P6A42 : les trois profils restent essentiellement une variation
+visuelle. Le Chisel est utilisé en masse, puis le Pick et la Brush près des os.
+Changer la distribution de Clay/Sandstone ne suffit donc pas à prouver la
+rejouabilité. Le coût structurel inférieur à la référence garantit un budget,
+mais ne démontre pas de diversité d’actions. Discuter des comportements de
+matériaux et des choix qu’ils créent avant d’étendre les profils ou les outils.
+Conserver le tactile et l’art appréciés ; le nouveau gameplay exige un GO dédié.
