@@ -52,7 +52,7 @@ Report on active branch:
 
 ## Current gate / next authorized action
 
-**P6A3.4 — essai de production 3D livré localement, revue humaine attendue.**
+**P6A3.4 — essai de production 3D livré localement, premier retour humain reçu.**
 Antoine donne GO pour un crâne et quelques côtes stylisés : remplacement complet
 des pièces testées, vraie géométrie 3D et inspection hors matrice du même asset.
 La surface de fouille est dérivée du modèle dans la scène isolée ; ce GO couvre
@@ -64,7 +64,11 @@ Candidat : `scenes/p6a34_production_pilot.tscn`.
 Lancement : `Launch-P6A34-Production-Pilot.ps1`, Godot 4.7.2 stable.
 F5 : même asset hors matrice ; F6 : mesh / relief du champ dérivé, sans reset.
 Branche conservée : `prototype/p6a32-fossil-mesh`, corrections locales non poussées.
-**Prochaine action : revue humaine du pilote, en fouille et hors matrice.**
+**Prochaine action : préciser la passe de qualité visuelle proposée sur ces mêmes
+pièces et poursuivre la revue humaine, notamment hors matrice.**
+Le 2026-10-14, Antoine accueille positivement la proximité du style avec le rendu
+en code et signale le manque d’ombres du nouveau modèle. Ce retour partiel ne
+valide pas l’art final ; la passe suivante reste une proposition à confirmer.
 Les contrôles et captures passent ; ils ne valident pas le style, le ressenti ni
 le pipeline du catalogue complet. Détails, budgets et limites dans le rapport.
 Préserver les scènes historiques et les interactions P6A3.3. Brush sur os et

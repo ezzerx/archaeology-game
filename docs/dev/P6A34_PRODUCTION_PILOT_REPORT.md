@@ -122,3 +122,19 @@ par rapport au relief, propreté des révélations/bords et cohérence des outil
 puis valeur visuelle des mêmes pièces hors matrice. Garder le Brush sur os et les
 dégâts localisés validés. Aucun GO catalogue, merge, musée/meta, Sound/Light ou
 P6B/P7 automatique ; le prochain choix dépend du verdict humain sur ce candidat.
+
+
+## Retour humain du 2026-10-14
+
+Antoine trouve le candidat assez similaire au rendu généré en code et accueille
+positivement cette proximité de style. Il relève une différence importante :
+le nouveau modèle manque d’ombres. Ce constat correspond à la désactivation
+explicite du shadow casting du mesh en fouille, documentée ci-dessus ; la solution
+reste à travailler sans révéler de silhouette sous la matrice intacte.
+
+Les deux captures de comparaison fournies sont conservées sous
+`evidence/p6a34/home-comparison-1.png` et `home-comparison-2.png`.
+Ce retour ne constitue pas une approbation de l’art final, de l’inspection à 360°
+ou du catalogue complet. La question sur la suite esthétique appelle une
+clarification du rôle du pilote : faisabilité intégrée et premier candidat visuel,
+puis recommandation d’une passe de qualité sur les mêmes pièces avant extension.
