@@ -19,9 +19,9 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a41-rough-edges`, depuis le bloc naturel `1547364`.
-PR courante : **#14 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/14,
-basée sur main et incluant la correction centrée. #13 est fermée car remplacée
-par ce candidat complet ; #12 est fermée, essai mobile non retenu.
+PR courante : **#15 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/15,
+basée sur main et incluant le bloc naturel, le contour corrigé et la lumière
+centrée. #14 est fermée car remplacée par cette passe complète. #12/#13 fermées.
 Les branches/sources historiques sont conservées ; aucune de ces PR n’est fusionnée.
 Main conserve la référence B-17 validée.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.

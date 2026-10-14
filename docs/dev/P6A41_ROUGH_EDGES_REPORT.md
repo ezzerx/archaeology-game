@@ -72,3 +72,13 @@ restent visibles à fort zoom ; l’effet de peigne du filtrage/éclairage est a
 Les coupes initiales se limitent à la bande extérieure, les flancs suivent ensuite
 le retrait réel de matière. Pas de simulation volumétrique de rupture latérale.
 240 FPS cap / 60 Hz physique conservés, sans nouvelle mesure soutenue isolée.
+
+
+## Livraison de revue
+
+Source `a8c1bba`, branche `codex/p6a41-rough-edges`,
+[PR #15 DRAFT](https://github.com/ezzerx/archaeology-game/pull/15) directement sur main.
+La PR #14 est remplacée et fermée sans merge ; ses sources et scène P6A40 restent
+conservées. `Launch-Game.ps1` a ouvert « B-17 · Bords bruts » avec Godot 4.7.2 /
+Compatibility, fenêtre répondante et stderr vide. Les préparations des autres
+fenêtres sont préservées. Aucune validation humaine ou fusion déduite de ce lancement.
