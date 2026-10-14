@@ -105,3 +105,9 @@ isolée de fluidité ou de coût soutenu. Mesures graphiques héritées dans vis
 Retour utile : facilité de manipulation, aide réelle à lire les creux/restes de matrice,
 confort de l’ambiance et envie d’utiliser la lampe pendant une préparation normale.
 Les tests ne constituent pas cette validation. La gate vit dans le Brain du dépôt.
+
+
+Livraison de revue : branche `codex/p6a38-orientable-lamp`, source `2ca49f1`,
+[PR #12 draft](https://github.com/ezzerx/archaeology-game/pull/12).
+Le lanceur a ouvert Godot 4.7.2 / Compatibility avec une fenêtre P6A3.8 répondante
+et sans erreur stderr. La référence main et les autres sessions locales sont conservées.

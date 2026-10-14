@@ -19,7 +19,9 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a38-orientable-lamp` — essai isolé depuis main `ff3ffd7`.
-Aucune PR active.
+PR active : **#12 DRAFT**, essai de lampe orientable.
+https://github.com/ezzerx/archaeology-game/pull/12
+Main reste sur la référence validée ; aucun merge de cet essai.
 PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
 PR #11 fusionnée : `c8672d72eb025bfe35488891280ea3145d172041`.
 Source jouable consolidée : `81360a52b5bce8feadcb179f56a8dd63448681df`.
