@@ -19,8 +19,9 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a47-friable-pocket`, depuis `ce2713f`.
-PR courante : publication de la candidate P6A4.7 en préparation ; #20 sera
-remplacée sans fusion. Main conserve la référence B-17 validée.
+PR courante : **#21 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/21,
+basée sur main. #20 est remplacée et fermée sans fusion ; les scènes/branches
+historiques restent conservées. Main conserve la référence B-17 validée.
 
 ## Current gate / next authorized action
 

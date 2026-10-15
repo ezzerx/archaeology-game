@@ -106,3 +106,14 @@ Le retrait reste une surface de hauteur : pas de tunnels ni surplombs persistant
 La plaque reste conservée dans sa scène historique. La lisibilité et le plaisir
 attendent le test humain ; aucun verdict définitif ou merge n’est déduit.
 
+
+
+## Livraison native et GitHub
+
+Source du candidat : `82e003c`, branche `codex/p6a47-friable-pocket`.
+[PR #21 DRAFT](https://github.com/ezzerx/archaeology-game/pull/21), basée sur main ;
+#20 remplacée sans fusion. Dossier local :
+`C:\Users\antoi\.codex\worktrees\p6a32-fossil-mesh\ArchaeologyGame`.
+Le lancement passe par `Launch-Game.ps1` et ouvre la scène P6A47 sous Godot 4.7.2.
+Le test humain porte sur la lecture de la matière, le plaisir des courts balayages
+et l’intérêt de retrouver cette situation dans un autre bloc.
