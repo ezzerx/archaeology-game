@@ -137,3 +137,15 @@ Les preuves finales sont dans `docs/dev/evidence/p6a50/`.
 et [description d'une ammonite du Smithsonian](https://naturalhistory.si.edu/visit/accessibility/audio-and-visual-description/from-these-lands-visual-description-tour).
 Le mesh et ses matériaux sont originaux ; aucun scan ou asset de ces collections
 n'est redistribué.
+
+## Livraison GitHub et locale
+
+Source `ebd1b72`, branche `codex/p6a50-collection-loop`.
+[PR #24 DRAFT](https://github.com/ezzerx/archaeology-game/pull/24), sur main,
+remplace #23 sans fusion. La validation produit de M–08/collection reste humaine.
+Worktree : `C:\Users\antoi\.codex\worktrees\p6a32-fossil-mesh\ArchaeologyGame`.
+Le checkout principal et ses modifications utilisateur restent intacts.
+
+Lanceur final vérifié sous Godot 4.7.2 : fenêtre native répondante
+« ArchaeologyGame — Atelier des collections », arrivée sur le dépôt, stdout
+moteur attendu et stderr vide. Les anciennes fenêtres utilisateur sont conservées.

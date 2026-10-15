@@ -19,8 +19,9 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a50-collection-loop`, depuis `9c683f4`.
-PR de référence : [#23 DRAFT](https://github.com/ezzerx/archaeology-game/pull/23).
-Nouvelle candidate à publier après vérification ; aucun merge automatique.
+PR courante : [#24 DRAFT](https://github.com/ezzerx/archaeology-game/pull/24),
+basée sur main ; #23 remplacée sans merge. Source `ebd1b72`.
+Main conserve la référence précédente. Aucun merge automatique.
 
 ## Current gate / next authorized action
 
