@@ -1349,3 +1349,15 @@ portait sur le mode de retrait. Reprendre le signal P6A42 : varier les deux
 matériaux visuellement n’avait pas suffi à varier la stratégie. Le rapport P6A46
 conserve ce retour et les hypothèses proposées, sans les canoniser comme choix
 humains. La gate du statut conserve seule la prochaine action autorisée.
+
+
+## 2026-10-15 — GO poche friable : premier essai cohérent de game design
+
+Antoine sélectionne la poche friable pour un essai et demande de concevoir une
+proposition convaincante dès la première livraison, plutôt que plusieurs retours
+sur une intégration minimale. Isoler une situation courte : ouvrir une croûte,
+évacuer les grains au souffleur, puis poursuivre la préparation du squelette.
+Le choix réutilise les outils existants et vise un vrai changement de geste,
+sans rallonger le bloc. Ce GO ne valide pas encore le plaisir, l’art final ou la
+généralisation ; la plaque précédente conserve son verdict incertain.
+Les preuves de l’essai sont dans le rapport P6A47 ; la gate demeure dans le statut.

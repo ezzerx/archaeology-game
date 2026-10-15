@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P1 PICK ORACLE: 180 rays, maximum error 0.00000016 m
+P1 TESTS: 52 checks, 0 failures
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+p5h-tests: 128 checks, 0 failures
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+P4V2 CRUMBS TESTS: 91 checks, 0 failures

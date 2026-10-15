@@ -18,64 +18,22 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a46-buried-slab-volume`, depuis `7503d03`.
-PR courante : **#20 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/20,
-basée sur main et incluant la roche enchâssée, sa rupture progressive, le volume
-irrégulier et les précédents candidats de levier/plaque/bloc naturel.
-#19 est remplacée sans fusion ; #12/#13/#14/#15/#16/#17/#18/#19 sont fermées.
-Les scènes/branches historiques sont conservées, dont les trois géologies sans
-verdict de rejouabilité. Aucune de ces PR n’est fusionnée.
-Main conserve la référence B-17 validée.
-PR #10 fusionnée : `267d3154916f29417d4889416c560ac84f727396`.
-PR #11 fusionnée : `c8672d72eb025bfe35488891280ea3145d172041`.
-Source jouable consolidée : `81360a52b5bce8feadcb179f56a8dd63448681df`.
-Les deux branches distantes de ces PR sont nettoyées après fusion.
-
-PR #9 merged into main on 2026-10-13 at Antoine’s explicit request; merge commit `32a85ba9efc04fd508ee838d3c63252ca6b2d04f`. Latest P6A3 source included: `b91ff24bf57e76599204e9d12bd23eb6d229dbc5`.
-
-P6A-1 Material Lab is complete and human-reviewed.
-
-P6A1.5 Soil Foundation Spike is also human-reviewed.
-
-## P6A1.5 human verdict
-
-Antoine prefers the thin-overburden candidate.
-
-Accepted direction:
-- Soil = thin, partial, irregular surface dirt / overburden;
-- Soil follows the substrate instead of creating a flat independent top plane;
-- Brush removes the superficial dirt quickly;
-- Clay/Sandstone is the real structural work surface;
-- exact spike thickness/coverage values remain tunable, not final production constants.
-
-Contact patina direction:
-- original Clay/Sandstone color remains visible;
-- contact history appears as irregular dirty deposits/stains;
-- no uniform dark band / full-material recolor.
-
-Visual quality of the spike is **not** approved as final art; only the Soil semantics and patina language are accepted.
-
-Report on active branch:
-`docs/dev/P6A15_SOIL_REPORT.md`
+Active branch: `codex/p6a47-friable-pocket`, depuis `ce2713f`.
+PR courante : publication de la candidate P6A4.7 en préparation ; #20 sera
+remplacée sans fusion. Main conserve la référence B-17 validée.
 
 ## Current gate / next authorized action
 
-**P6A4.6 — GO explicite : essai de l’intégration plaque–argile–empreinte.**
-Transition morcelée et influence de surface sur l’argile, rupture périphérique
-progressive, volume enfoui irrégulier et empreinte issue de la même forme.
-Conserver le levier préféré, les outils, B-17, lumière chaude et os enterrés
-protégés. Rapport actif : `docs/dev/P6A46_EMBEDDED_SLAB_REPORT.md`.
-Candidat livré : 729 contrôles, zéro échec. Scène `scenes/p6a46_embedded_slab.tscn`,
-entrée `Launch-Game.ps1`. Retour humain du 2026-10-15 : Antoine doute de
-l’intérêt de la nouvelle fonctionnalité et demande d’autres pistes de rejouabilité.
-La plaque n’est pas retenue définitivement ; son retrait actif avait été préféré
-au départ automatique, ce qui ne valide pas l’utilité du système complet.
-Prochaine action : discussion de comportements/situations qui changent les choix
-pendant la fouille. Les propositions du dernier addendum restent à sélectionner ;
-aucun nouvel essai, abandon définitif ou merge n’est déduit de ce retour.
-Aucun merge automatique ni validation définitive déduite du GO d’essai.
-Autres mécaniques, génération de blocs, catalogue, musée/meta et N-slots hors
-périmètre. Son différé.
+**P6A4.7 — GO explicite : essai d’une poche friable avec un design convaincant.**
+Une ouverture au Chisel, puis évacuation courte et lisible au souffleur, pour
+changer les choix pendant la fouille sans allonger artificiellement la session.
+Conserver B-17, outils/interactions validés, lumière chaude uniforme et protection
+des os enterrés. Rapport actif : `docs/dev/P6A47_FRIABLE_POCKET_REPORT.md`.
+La plaque P6A4.6 reste un essai incertain, sans validation définitive, conservé
+séparément. Candidat livré : 442 contrôles, zéro échec ; scène
+`scenes/p6a47_friable_pocket.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
+revue humaine de la lisibilité, du rythme et de l’utilité pendant la fouille. Aucun merge automatique,
+génération aléatoire, autre mécanique, catalogue, musée/meta ou N-slots. Son différé.
 
 ## Livraison cloud précédente — contexte historique
 

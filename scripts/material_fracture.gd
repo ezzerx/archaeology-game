@@ -122,6 +122,7 @@ func apply(surface: WorkingSurface, point: Vector2, tool: ToolDefinition) -> int
 func _remove(surface: WorkingSurface, index: int, next: float, layer: int,
 		tool: ToolDefinition, exposed: PackedInt32Array) -> int:
 	var old := surface._heights[index]
+	next = surface.constrain_removal(index, next, tool.id)
 	if next >= old:
 		return 0
 	surface._heights[index] = next
