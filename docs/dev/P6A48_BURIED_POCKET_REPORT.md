@@ -140,3 +140,58 @@ Source du candidat : `61e9297`, branche `codex/p6a48-buried-pocket`.
 `C:\Users\antoi\.codex\worktrees\p6a32-fossil-mesh\ArchaeologyGame`.
 `Launch-Game.ps1` ouvre « ArchaeologyGame — B-17 · Poche enfouie » sous Godot 4.7.2.
 La livraison reste un essai à évaluer humainement en fouillant normalement.
+
+
+## Retour humain — 2026-10-15 : dynamique validée, demander une finition bornée
+
+Antoine valide la nouvelle dynamique de la poche enfouie. Il souhaite des
+suggestions pour améliorer son game design, sa beauté et son apparition, puis
+une dernière passe permettant de valider l’implémentation et de passer à d’autres
+missions. Ce retour valide l’intérêt du comportement actuel ; il ne valide pas
+encore l’art final, la fréquence ou une distribution variable de production.
+
+### Proposition de passe finale — à sélectionner
+
+1. **Découverte progressive.** À l’approche réelle de la poche, montrer quelques
+   inclusions dans la dernière pellicule d’argile, puis une petite libération de
+   grains au contact et enfin une ouverture lisible. Aucun indice à travers une
+   couverture épaisse ni contour complet peint. Réduire l’aide au premier contact
+   pour vérifier que la matière suffit ensuite à inviter au souffleur.
+2. **Matière identifiable et cohérente.** Grain mat, mélange de trois tailles et
+   petits agrégats, palette sable/ocre chaude distincte de la Soil. Morceler la
+   transition argile/grains et lire le front de retrait jusque dans le creux.
+   Éviter les éclats trop lumineux. Conserver l’éclairage global accepté ; traiter
+   la lisibilité locale et le fond compact, sans imposer une silhouette de creux
+   artificielle différente du vrai travail du joueur.
+3. **Geste court et fin lisible.** Donner l’impression que les grains roulent et
+   se libèrent par petits groupes sous le jet, à partir du volume réellement
+   retiré. Viser quelques courts balayages sur la partie accessible. Le lit compact
+   doit clairement signaler quand reprendre le travail normal. Une finition
+   tolérante des seuls grains déjà libres doit éviter de poursuivre des miettes
+   invisibles, sans auto-retirer un volume caché ni couper de matrice solide.
+4. **Rencontres variées mais bornées.** Pour la première consolidation, proposer
+   zéro ou une poche par préparation d’essai, avec position, orientation, taille
+   et profondeur variant dans des enveloppes géologiques admissibles. Choisir le
+   volume dès la création du bloc ; R le reproduit. Ne pas le faire apparaître en
+   réaction au curseur ou à l’usage d’un outil. Préserver des trajets complets,
+   un effort raisonnable et une couverture sûre ; rejeter les volumes invalides
+   plutôt que les découper selon le contour des os. La distribution globale des
+   strates et le générateur de toute la collection restent des sujets distincts.
+
+Consolider ensuite ces paramètres dans un composant de poche réutilisable par les
+futurs blocs, avec cas déterministes et protections existantes. Conserver B-17,
+les quatre outils, dégâts, Brush, distinction de collection et lumière. Le Sound
+Design conserve sa passe dédiée ; pas de nouveau système de récompense ou outil.
+
+### Critère proposé pour clore la fonctionnalité
+
+Un court playtest sur quatre ou cinq situations, incluant une absence et des
+profondeurs/formes différentes : repérer les grains sans consigne répétée, passer
+spontanément au souffleur, obtenir un résultat franc et savoir reprendre le Pick
+sans chercher des restes invisibles. La poche doit aider la préparation et
+préserver l’envie de continuer. Os enterrés, complétabilité et contrôles de
+régression restent protégés. Une fois ce verdict reçu, figer le comportement et
+le rendu de référence pour avancer ; les nouveaux spécimens pourront le réutiliser.
+
+Cette section constitue une proposition de design. Aucun code, rendu, placement
+variable ou nouveau test de cette passe finale n’a été produit dans ce tour.

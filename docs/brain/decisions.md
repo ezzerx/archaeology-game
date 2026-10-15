@@ -1383,3 +1383,14 @@ répartition variable. Préserver les outils, le soufflage court et les os couve
 Ce GO n’autorise pas implicitement la génération globale, l’art final ou le merge.
 Le rapport P6A48 conserve les preuves et les limites de la représentation actuelle ;
 le statut conserve seul la prochaine action.
+
+
+## 2026-10-15 — Dynamique de poche enfouie validée ; viser une dernière finition
+
+Antoine valide explicitement la nouvelle dynamique apportée par la poche à
+mi-profondeur. Il veut une passe finale de game design, de rendu et d’apparition
+pour arrêter l’itération sur cette fonctionnalité et avancer vers d’autres
+missions. Retenir le comportement comme direction sélectionnée, sans assimiler
+ce verdict à l’approbation de l’art final ou de la distribution des rencontres.
+Le dernier addendum P6A48 conserve une proposition bornée et ses critères de
+clôture ; ces suggestions ne sont pas encore des décisions humaines.

@@ -25,20 +25,20 @@ historiques sont conservées. Main conserve la référence B-17 validée.
 
 ## Current gate / next authorized action
 
-**P6A4.8 — GO explicite : poche découverte à mi-profondeur.**
-Après le signal positif P6A47, Antoine autorise la suite proposée : une poche
-cachée dans l’épaisseur, avec quelques implantations contrôlées pour l’essai.
-Conserver le soufflage court, B-17, les interactions validées, la lumière chaude
-uniforme et la protection des os enterrés.
-Rapport actif : `docs/dev/P6A48_BURIED_POCKET_REPORT.md`.
-Candidat livré : 629 contrôles, zéro échec ; scène
-`scenes/p6a48_buried_pocket.tscn`, entrée `Launch-Game.ps1`. H permet de changer
-d’implantation d’essai ; R rejoue la même. Prochaine action : revue humaine de la
-découverte en fouillant, du soufflage local et de la reprise vers le fossile.
-P6A47 reste la référence
-friable historique ; la plaque reste incertaine. Aucun merge automatique,
-génération globale des blocs, autre mécanique, catalogue, musée/meta ou N-slots.
-Son différé.
+**P6A4.8 — dynamique de la poche enfouie validée humainement.**
+Antoine confirme que la poche apporte une nouvelle dynamique. Il demande des
+suggestions pour une passe finale de game design, d’intégration visuelle et
+d’apparition, afin de figer cette fonctionnalité puis avancer sur d’autres missions.
+L’art final, la fréquence des rencontres et la distribution variable ne sont pas
+encore validés. Rapport actif : `docs/dev/P6A48_BURIED_POCKET_REPORT.md`, dernier
+addendum : verdict humain et proposition de finition bornée.
+Candidat inchangé : 629 contrôles, zéro échec ; scène
+`scenes/p6a48_buried_pocket.tscn`, entrée `Launch-Game.ps1`. H change l’essai,
+R rejoue la même implantation. Prochaine action : convenir du périmètre de la
+passe finale proposée ; aucune des suggestions n’est encore implémentée.
+P6A47 reste la référence friable historique ; la plaque reste incertaine.
+Aucun merge automatique, génération globale des blocs, autre mécanique,
+catalogue, musée/meta ou N-slots. Son différé.
 
 ## Livraison cloud précédente — contexte historique
 
