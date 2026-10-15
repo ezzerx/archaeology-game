@@ -1,0 +1,110 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"buried_variants": [
+		{
+			"accessible_grains_removed": 0.999899641721585,
+			"band_impacts": 23,
+			"bone_cells": 2275,
+			"cells": 9743,
+			"cover_mm": [
+				15.2872059345245,
+				23.928386092186
+			],
+			"first_half_second_removed": 0.093641002745014,
+			"opening_impacts": 2,
+			"removed_after_three_sweeps": 0.818114580706756,
+			"thickness_mm": [
+				1.22608172893524,
+				17.215845644474
+			],
+			"variant": 0
+		},
+		{
+			"accessible_grains_removed": 0.998799106753426,
+			"band_impacts": 21,
+			"bone_cells": 1221,
+			"cells": 9643,
+			"cover_mm": [
+				15.7789664268494,
+				23.8998481035233
+			],
+			"first_half_second_removed": 0.0709877893196302,
+			"opening_impacts": 2,
+			"removed_after_three_sweeps": 0.782427413925934,
+			"thickness_mm": [
+				1.22982680797577,
+				18.0167514681816
+			],
+			"variant": 1
+		},
+		{
+			"accessible_grains_removed": 0.996433444396342,
+			"band_impacts": 21,
+			"bone_cells": 1388,
+			"cells": 9763,
+			"cover_mm": [
+				17.0498067140579,
+				26.4823415279388
+			],
+			"first_half_second_removed": 0.0853549599221085,
+			"opening_impacts": 2,
+			"removed_after_three_sweeps": 0.730055483557284,
+			"thickness_mm": [
+				1.22744357585907,
+				18.8196818232536
+			],
+			"variant": 2
+		}
+	],
+	"captures": [],
+	"checks": 163,
+	"contact": {
+		"max_gap_m": 0.0,
+		"samples": 370
+	},
+	"failures": [],
+	"footprint": {
+		"boundary_segments": 3296,
+		"lost_bone_cells": 0,
+		"outside_cells": 116925
+	},
+	"geometry": {
+		"baked_samples": 25404,
+		"misses": 0,
+		"missing_cells": [],
+		"native_joint_occlusion": 0,
+		"roof_max_error_m": 0.00000000661611557206676,
+		"triangles": 83431,
+		"winning_mesh_cells": 25404
+	},
+	"native_review_cost": {
+		"impacts": 4831,
+		"seconds": 8.671011
+	},
+	"native_skeleton_review": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999996279168,
+		"condition": 100.0,
+		"condition_tier": "Excellent",
+		"coverage_passed": true,
+		"exposure": 100.0,
+		"fine_preparation": true,
+		"largest_hidden_cluster": 0
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	},
+	"shadow_geometry": {
+		"ao_min": 0.376470595598221,
+		"build_usec": 3725,
+		"max_build_usec": 3725,
+		"partial_cells": 3126,
+		"triangles": 6252,
+		"wrong_cells": 0
+	}
+}

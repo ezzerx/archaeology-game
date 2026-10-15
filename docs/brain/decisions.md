@@ -1372,3 +1372,14 @@ présence aléatoire entre blocs. Retenir cette direction pour le design de
 rejouabilité, sans transformer ce signal en validation artistique finale,
 fréquence imposée ou génération déjà approuvée. Le rapport P6A47 conserve le
 retour et la proposition de suite ; le statut conserve seul la gate.
+
+
+## 2026-10-15 — GO poche à mi-profondeur
+
+Antoine autorise l’essai de poche enfouie proposé après le retour positif P6A47.
+L’objectif est de la découvrir pendant la fouille et d’explorer un volume dans
+l’épaisseur, avec quelques implantations contrôlées avant une éventuelle
+répartition variable. Préserver les outils, le soufflage court et les os couverts.
+Ce GO n’autorise pas implicitement la génération globale, l’art final ou le merge.
+Le rapport P6A48 conserve les preuves et les limites de la représentation actuelle ;
+le statut conserve seul la prochaine action.

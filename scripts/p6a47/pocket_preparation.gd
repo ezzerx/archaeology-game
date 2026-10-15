@@ -5,9 +5,11 @@ func _create_profile() -> SoilFoundationProfile:
 func _create_feedback() -> MaterialFeedback:
  if sensory_enabled and readability_enabled: return preload("res://scripts/p6a47/pocket_feedback.gd").new()
  return super._create_feedback()
+func _create_pocket() -> Node:
+ return preload("res://scripts/p6a47/friable_pocket.gd").new()
 func _ready() -> void:
  super._ready()
- pocket = preload("res://scripts/p6a47/friable_pocket.gd").new()
+ pocket = _create_pocket()
  add_child(pocket)
  pocket.setup(block,profile.layout)
  block.working_map.pocket = pocket

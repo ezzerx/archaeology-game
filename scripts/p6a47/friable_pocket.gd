@@ -57,9 +57,8 @@ func configure() -> void:
   var y: int = i/surface.size.x
   var n: float = layout.noise_values[slot]
   var weight: float = layout.weights[slot]
-  var roof: float = surface.strata.packed_limits[i*2]-.015
-  var depth := .045+.17*weight+.027*n+.018*sin(x*.09+y*.07)
-  var floor := maxf(roof-depth,cover_floor+.012+.012*sin(x*.09+y*.07)+.014*(n+.5))
+  var roof := roof_at(i,weight,n)
+  var floor := floor_at(i,roof,weight,n)
   if floor >= roof-.012: continue
   cells.append(i)
   roofs[i] = roof
@@ -69,6 +68,15 @@ func configure() -> void:
  remaining_cache = initial_volume
  texture.update(image)
  uploads += 1
+func contact_bounds() -> Rect2i:
+ return BOUNDS
+func roof_at(i: int, _weight: float, _noise: float) -> float:
+ return surface.strata.packed_limits[i*2]-.015
+func floor_at(i: int, roof: float, weight: float, noise: float) -> float:
+ var x: int = i%surface.size.x
+ var y: int = i/surface.size.x
+ var depth := .045+.17*weight+.027*noise+.018*sin(x*.09+y*.07)
+ return maxf(roof-depth,cover_floor+.012+.012*sin(x*.09+y*.07)+.014*(noise+.5))
 func constrain(i: int, next: float, tool: StringName) -> float:
  if roofs.is_empty() or roofs[i] <= 0: return next
  var old: float = surface._heights[i]
@@ -99,8 +107,8 @@ func _undercut(i: int) -> bool:
  return false
 func blow(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> int:
  if not is_open: return 0
- var low := Vector2i((from.min(to)-Vector2.ONE*tool.radius).floor()).max(BOUNDS.position)
- var high := Vector2i((from.max(to)+Vector2.ONE*tool.radius).ceil()).min(BOUNDS.end-Vector2i.ONE)
+ var low := Vector2i((from.min(to)-Vector2.ONE*tool.radius).floor()).max(contact_bounds().position)
+ var high := Vector2i((from.max(to)+Vector2.ONE*tool.radius).ceil()).min(contact_bounds().end-Vector2i.ONE)
  if low.x>high.x or low.y>high.y: return 0
  accumulator += minf(delta,.125)
  var iterations := mini(8,floori((accumulator+.0000001)/STEP))

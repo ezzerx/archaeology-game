@@ -18,30 +18,26 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a47-friable-pocket`, depuis `ce2713f`.
-PR courante : **#21 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/21,
-basée sur main. #20 est remplacée et fermée sans fusion ; les scènes/branches
-historiques restent conservées. Main conserve la référence B-17 validée.
+Active branch: `codex/p6a48-buried-pocket`, depuis `626786c`.
+PR courante : candidate P6A4.8 en préparation ; #21 DRAFT conservée pendant
+l’implémentation. Main conserve la référence B-17 validée.
 
 ## Current gate / next authorized action
 
-**P6A4.7 — GO explicite : essai d’une poche friable avec un design convaincant.**
-Une ouverture au Chisel, puis évacuation courte et lisible au souffleur, pour
-changer les choix pendant la fouille sans allonger artificiellement la session.
-Conserver B-17, outils/interactions validés, lumière chaude uniforme et protection
-des os enterrés. Rapport actif : `docs/dev/P6A47_FRIABLE_POCKET_REPORT.md`.
-La plaque P6A4.6 reste un essai incertain, sans validation définitive, conservé
-séparément. Candidat livré : 442 contrôles, zéro échec ; scène
-`scenes/p6a47_friable_pocket.tscn`, entrée `Launch-Game.ps1`.
-Retour humain du 2026-10-15 : Antoine trouve la poche sympa, avec un potentiel
-conditionné à une bonne intégration. Il souhaite pouvoir en découvrir à des
-emplacements variables, y compris dans l’épaisseur du bloc au cours de la fouille,
-et envisage une présence aléatoire entre blocs. Signal positif sur cette piste,
-sans validation artistique finale ni de la répétition/génération.
-Prochaine action : cadrer une passe de découverte en profondeur et de variation
-contrôlée ; le dernier retour oriente cette suite sans constituer un nouveau GO
-d’implémentation. Aucun merge automatique, autre mécanique, catalogue, musée/meta
-ou N-slots. Son différé.
+**P6A4.8 — GO explicite : poche découverte à mi-profondeur.**
+Après le signal positif P6A47, Antoine autorise la suite proposée : une poche
+cachée dans l’épaisseur, avec quelques implantations contrôlées pour l’essai.
+Conserver le soufflage court, B-17, les interactions validées, la lumière chaude
+uniforme et la protection des os enterrés.
+Rapport actif : `docs/dev/P6A48_BURIED_POCKET_REPORT.md`.
+Candidat livré : 629 contrôles, zéro échec ; scène
+`scenes/p6a48_buried_pocket.tscn`, entrée `Launch-Game.ps1`. H permet de changer
+d’implantation d’essai ; R rejoue la même. Prochaine action : revue humaine de la
+découverte en fouillant, du soufflage local et de la reprise vers le fossile.
+P6A47 reste la référence
+friable historique ; la plaque reste incertaine. Aucun merge automatique,
+génération globale des blocs, autre mécanique, catalogue, musée/meta ou N-slots.
+Son différé.
 
 ## Livraison cloud précédente — contexte historique
 
