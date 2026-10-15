@@ -1361,3 +1361,14 @@ Le choix réutilise les outils existants et vise un vrai changement de geste,
 sans rallonger le bloc. Ce GO ne valide pas encore le plaisir, l’art final ou la
 généralisation ; la plaque précédente conserve son verdict incertain.
 Les preuves de l’essai sont dans le rapport P6A47 ; la gate demeure dans le statut.
+
+
+## 2026-10-15 — Retour positif sur la poche ; variation et profondeur souhaitées
+
+Antoine trouve la poche friable sympa, avec un potentiel conditionné à une bonne
+intégration. Il souhaite des découvertes à des endroits variables, qui puissent
+se prolonger dans le bloc plutôt que rester uniquement en surface, et une
+présence aléatoire entre blocs. Retenir cette direction pour le design de
+rejouabilité, sans transformer ce signal en validation artistique finale,
+fréquence imposée ou génération déjà approuvée. Le rapport P6A47 conserve le
+retour et la proposition de suite ; le statut conserve seul la gate.

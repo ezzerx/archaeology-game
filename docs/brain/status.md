@@ -32,9 +32,16 @@ Conserver B-17, outils/interactions validés, lumière chaude uniforme et protec
 des os enterrés. Rapport actif : `docs/dev/P6A47_FRIABLE_POCKET_REPORT.md`.
 La plaque P6A4.6 reste un essai incertain, sans validation définitive, conservé
 séparément. Candidat livré : 442 contrôles, zéro échec ; scène
-`scenes/p6a47_friable_pocket.tscn`, entrée `Launch-Game.ps1`. Prochaine action :
-revue humaine de la lisibilité, du rythme et de l’utilité pendant la fouille. Aucun merge automatique,
-génération aléatoire, autre mécanique, catalogue, musée/meta ou N-slots. Son différé.
+`scenes/p6a47_friable_pocket.tscn`, entrée `Launch-Game.ps1`.
+Retour humain du 2026-10-15 : Antoine trouve la poche sympa, avec un potentiel
+conditionné à une bonne intégration. Il souhaite pouvoir en découvrir à des
+emplacements variables, y compris dans l’épaisseur du bloc au cours de la fouille,
+et envisage une présence aléatoire entre blocs. Signal positif sur cette piste,
+sans validation artistique finale ni de la répétition/génération.
+Prochaine action : cadrer une passe de découverte en profondeur et de variation
+contrôlée ; le dernier retour oriente cette suite sans constituer un nouveau GO
+d’implémentation. Aucun merge automatique, autre mécanique, catalogue, musée/meta
+ou N-slots. Son différé.
 
 ## Livraison cloud précédente — contexte historique
 

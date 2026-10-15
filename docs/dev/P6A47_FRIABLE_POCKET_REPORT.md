@@ -117,3 +117,24 @@ Source du candidat : `82e003c`, branche `codex/p6a47-friable-pocket`.
 Le lancement passe par `Launch-Game.ps1` et ouvre la scène P6A47 sous Godot 4.7.2.
 Le test humain porte sur la lecture de la matière, le plaisir des courts balayages
 et l’intérêt de retrouver cette situation dans un autre bloc.
+
+
+## Retour humain — 2026-10-15 : piste positive, découverte dans le bloc
+
+Antoine trouve l’essai sympa et voit un potentiel si la poche est bien intégrée.
+Il souhaite la rencontrer à différents endroits, qu’elle puisse se prolonger
+vers l’intérieur et ne soit pas uniquement une situation en surface. Une
+présence variable/aléatoire entre les blocs lui paraît intéressante.
+
+Ce retour soutient la piste, pas une validation de l’intégration finale, d’une
+fréquence précise ou d’une génération déjà éprouvée. Le candidat livré reste
+une inclusion unique avec une amorce visible en surface.
+
+Proposition de prochaine passe : une lentille partiellement ou entièrement
+enterrée, découverte pendant le dégagement normal ; un volume irrégulier qui
+continue en profondeur ; des emplacements/profondeurs variables mais reproductibles.
+Garder les balayages courts, la protection des os et le budget global de fouille.
+Commencer par quelques situations contrôlées pour vérifier la surprise et le
+rythme avant de composer une distribution sur tous les blocs. Éviter d’imposer
+la même séquence Chisel–Blower sur chaque spécimen. Il s’agit d’une proposition
+de design ; aucune nouvelle mécanique ou génération n’est implémentée ici.

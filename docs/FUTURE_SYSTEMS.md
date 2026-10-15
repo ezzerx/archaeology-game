@@ -51,6 +51,13 @@ after the later human test. Treat slabs as an experiment, not a selected product
 rule. See [the initial signal](dev/P6A43_FRACTURED_SLAB_REPORT.md) and
 [the latest human feedback](dev/P6A46_EMBEDDED_SLAB_REPORT.md).
 
+The friable-pocket trial received a positive initial human signal, conditional
+on convincing integration. The desired direction is to discover these pockets
+at varied positions and depths during excavation, with an irregular volume
+continuing into the block and controlled variation between blocks. This supports
+the candidate behaviour without validating final art, encounter frequency or
+repeatability. See [the pocket trial and human feedback](dev/P6A47_FRIABLE_POCKET_REPORT.md).
+
 Vary the placement and frequency of these situations plausibly and reproducibly,
 while preserving preparation rhythm, Bone occlusion and completion. A future
 palette of complementary behaviours should create a different mixture between
