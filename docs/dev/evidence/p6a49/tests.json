@@ -1,0 +1,169 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 197,
+	"contact": {
+		"max_gap_m": 0.0,
+		"samples": 370
+	},
+	"failures": [],
+	"footprint": {
+		"boundary_segments": 3296,
+		"lost_bone_cells": 0,
+		"outside_cells": 116925
+	},
+	"geometry": {
+		"baked_samples": 25404,
+		"misses": 0,
+		"missing_cells": [],
+		"native_joint_occlusion": 0,
+		"roof_max_error_m": 0.00000000661611557206676,
+		"triangles": 83431,
+		"winning_mesh_cells": 25404
+	},
+	"grain_sizes_sample": [
+		103,
+		52,
+		11
+	],
+	"native_review_cost": {
+		"impacts": 4817,
+		"seconds": 7.435565
+	},
+	"native_skeleton_review": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999996279168,
+		"condition": 100.0,
+		"condition_tier": "Excellent",
+		"coverage_passed": true,
+		"exposure": 100.0,
+		"fine_preparation": true,
+		"largest_hidden_cluster": 0
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	},
+	"seed_audit": {
+		"absent": 4,
+		"admitted": 28,
+		"tested": 32,
+		"trimmed": 0,
+		"unsafe": 0
+	},
+	"seeded_variants": [
+		{
+			"accessible_grains_removed": 0.998779951507044,
+			"angle": -0.0295889973640442,
+			"axes": "(66.98891, 37.30996)",
+			"band_impacts": 23,
+			"bone_cells": 1931,
+			"cells": 7903,
+			"centre_drop_mm": 16.7696644663811,
+			"cover_mm": [
+				14.4844336509705,
+				21.8400242328644
+			],
+			"first_half_second_removed": 0.149724067580569,
+			"maximum_local_drop_mm": 19.985541343689,
+			"opening_impacts": 2,
+			"present": true,
+			"removed_after_three_sweeps": 0.909071647704984,
+			"seed": 49301,
+			"thickness_mm": [
+				1.42627930641174,
+				16.9451208114624
+			],
+			"variant": 0
+		},
+		{
+			"accessible_grains_removed": 0.999999976436879,
+			"angle": 0.18749064207077,
+			"axes": "(64.13332, 35.80701)",
+			"band_impacts": 22,
+			"bone_cells": 785,
+			"cells": 7207,
+			"centre_drop_mm": 12.785708963871,
+			"cover_mm": [
+				14.0112769603729,
+				20.0780253410339
+			],
+			"first_half_second_removed": 0.162798674288747,
+			"maximum_local_drop_mm": 18.0427572727203,
+			"opening_impacts": 2,
+			"present": true,
+			"removed_after_three_sweeps": 0.953841341447634,
+			"seed": 49302,
+			"thickness_mm": [
+				1.42246735095978,
+				14.6806460022926
+			],
+			"variant": 1
+		},
+		{
+			"accessible_grains_removed": 0.998905338828604,
+			"angle": -0.035474956035614,
+			"axes": "(70.97149, 39.40605)",
+			"band_impacts": 22,
+			"bone_cells": 1338,
+			"cells": 8856,
+			"centre_drop_mm": 14.9865721464157,
+			"cover_mm": [
+				15.0271418094635,
+				21.6482834815979
+			],
+			"first_half_second_removed": 0.128105297999609,
+			"maximum_local_drop_mm": 16.9459020495415,
+			"opening_impacts": 2,
+			"present": true,
+			"removed_after_three_sweeps": 0.849555143007466,
+			"seed": 49303,
+			"thickness_mm": [
+				1.3543689250946,
+				13.0944469571114
+			],
+			"variant": 2
+		},
+		{
+			"present": false,
+			"seed": 49304,
+			"variant": 3
+		},
+		{
+			"accessible_grains_removed": 0.99909056048627,
+			"angle": -0.499322414398193,
+			"axes": "(71.73136, 39.80598)",
+			"band_impacts": 26,
+			"bone_cells": 2031,
+			"cells": 9094,
+			"centre_drop_mm": 15.1732606887817,
+			"cover_mm": [
+				14.0837527513504,
+				21.0165233016014
+			],
+			"first_half_second_removed": 0.118864028718633,
+			"maximum_local_drop_mm": 17.2121796011925,
+			"opening_impacts": 2,
+			"present": true,
+			"removed_after_three_sweeps": 0.747575080718463,
+			"seed": 49305,
+			"thickness_mm": [
+				1.36576223373413,
+				14.4909936189651
+			],
+			"variant": 4
+		}
+	],
+	"shadow_geometry": {
+		"ao_min": 0.376470595598221,
+		"build_usec": 3312,
+		"max_build_usec": 3312,
+		"partial_cells": 3126,
+		"triangles": 6252,
+		"wrong_cells": 0
+	}
+}

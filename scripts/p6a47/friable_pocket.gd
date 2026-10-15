@@ -105,6 +105,8 @@ func _undercut(i: int) -> bool:
   var j: int = i+offset
   if roofs[j]>0 and surface._heights[j] < roofs[j]-.020: return true
  return false
+func flow_height(i: int, old: float, weight: float, delta: float) -> float:
+ return maxf(floors[i],minf(old,roofs[i])-.60*delta*weight)
 func blow(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> int:
  if not is_open: return 0
  var low := Vector2i((from.min(to)-Vector2.ONE*tool.radius).floor()).max(contact_bounds().position)
@@ -150,7 +152,7 @@ func blow(from: Vector2, to: Vector2, tool: ToolDefinition, delta: float) -> int
   for n in range(eligible.size()):
    var i := eligible[n]
    var old: float = surface._heights[i]
-   var next := maxf(floors[i],minf(old,roofs[i])-.60*STEP*weights[n])
+   var next := flow_height(i,old,weights[n],STEP)
    surface._heights[i] = next
    next = surface._heights[i] # Account from committed float32, not a proposed height.
    var volume := old-next

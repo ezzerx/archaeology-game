@@ -1,0 +1,22 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"finish-0-grains-in-motion.png"
+	],
+	"checks": 6,
+	"failures": [],
+	"motion": {
+		"floor_samples_last_frame": 9,
+		"grains": 70,
+		"rolling": 22,
+		"visible_pixels": 477
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

@@ -1394,3 +1394,14 @@ missions. Retenir le comportement comme direction sélectionnée, sans assimiler
 ce verdict à l’approbation de l’art final ou de la distribution des rencontres.
 Le dernier addendum P6A48 conserve une proposition bornée et ses critères de
 clôture ; ces suggestions ne sont pas encore des décisions humaines.
+
+
+## 2026-10-15 — GO finition bornée des poches et revue interne
+
+Antoine sélectionne la passe de découverte progressive, grain mat, souffle court
+avec une fin lisible et zéro/une poche variable par préparation. Il demande une
+revue attentive et des corrections internes avant livraison. La dynamique P6A48
+reste validée ; ce GO ne vaut pas approbation de l’art final ou merge. La recette
+sépare génération géologique et admission Bone : rejeter entier un volume unsafe
+évite de révéler l’anatomie par le fond. Les preuves et limites de cette finition
+sont dans le rapport P6A49 ; le statut conserve seul la prochaine action.

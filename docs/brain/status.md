@@ -18,27 +18,25 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a48-buried-pocket`, depuis `626786c`.
-PR courante : **#22 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/22,
-basée sur main. #21 est remplacée et fermée sans fusion ; les scènes/branches
-historiques sont conservées. Main conserve la référence B-17 validée.
+Active branch: `codex/p6a49-pocket-finish`, depuis `699c5cc`.
+PR courante : candidate P6A4.9 en préparation ; #22 DRAFT conservée pendant le
+travail. Main conserve la référence B-17 validée.
 
 ## Current gate / next authorized action
 
-**P6A4.8 — dynamique de la poche enfouie validée humainement.**
-Antoine confirme que la poche apporte une nouvelle dynamique. Il demande des
-suggestions pour une passe finale de game design, d’intégration visuelle et
-d’apparition, afin de figer cette fonctionnalité puis avancer sur d’autres missions.
-L’art final, la fréquence des rencontres et la distribution variable ne sont pas
-encore validés. Rapport actif : `docs/dev/P6A48_BURIED_POCKET_REPORT.md`, dernier
-addendum : verdict humain et proposition de finition bornée.
-Candidat inchangé : 629 contrôles, zéro échec ; scène
-`scenes/p6a48_buried_pocket.tscn`, entrée `Launch-Game.ps1`. H change l’essai,
-R rejoue la même implantation. Prochaine action : convenir du périmètre de la
-passe finale proposée ; aucune des suggestions n’est encore implémentée.
-P6A47 reste la référence friable historique ; la plaque reste incertaine.
-Aucun merge automatique, génération globale des blocs, autre mécanique,
-catalogue, musée/meta ou N-slots. Son différé.
+**P6A4.9 — candidat terminé, revue humaine finale attendue.**
+La dynamique enfouie P6A48 est validée. La finition autorisée est implémentée :
+apparition progressive, grains/agrégats mats, souffle court et fond lisible,
+zéro ou une poche choisie au départ parmi cinq préparations reproductibles.
+Revue interne native et itérations terminées ; 708 contrôles sans échec.
+Rapport actif : `docs/dev/P6A49_POCKET_FINISH_REPORT.md`.
+Prochaine action : playtest humain des cinq cas via `Launch-Game.ps1` ; H ouvre
+« Nouvelle préparation · recommencer », R rejoue le même cas. Juger la découverte,
+le souffle franc et la reprise au Pick avant de figer la référence et avancer.
+B-17, outils, Brush, dégâts, collection, lumière et os enterrés restent protégés.
+Aucun merge automatique, générateur global, nouvelle mécanique, N-slots ou musée.
+Son différé. Les candidats précédents restent disponibles ; aucune validation
+artistique finale ou fréquence de production n’est déduite des tests.
 
 ## Livraison cloud précédente — contexte historique
 
