@@ -130,3 +130,13 @@ Le test humain doit surtout juger la surprise pendant une fouille normale,
 la lisibilité des premiers grains, l’intérêt du changement d’outil et la reprise
 vers le squelette. Le GO d’essai ne vaut pas généralisation ni merge.
 
+
+
+## Livraison locale et GitHub
+
+Source du candidat : `61e9297`, branche `codex/p6a48-buried-pocket`.
+[PR #22 DRAFT](https://github.com/ezzerx/archaeology-game/pull/22), basée sur main ;
+#21 remplacée sans fusion. Dossier local :
+`C:\Users\antoi\.codex\worktrees\p6a32-fossil-mesh\ArchaeologyGame`.
+`Launch-Game.ps1` ouvre « ArchaeologyGame — B-17 · Poche enfouie » sous Godot 4.7.2.
+La livraison reste un essai à évaluer humainement en fouillant normalement.

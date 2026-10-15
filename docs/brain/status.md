@@ -19,8 +19,9 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a48-buried-pocket`, depuis `626786c`.
-PR courante : candidate P6A4.8 en préparation ; #21 DRAFT conservée pendant
-l’implémentation. Main conserve la référence B-17 validée.
+PR courante : **#22 DRAFT**, https://github.com/ezzerx/archaeology-game/pull/22,
+basée sur main. #21 est remplacée et fermée sans fusion ; les scènes/branches
+historiques sont conservées. Main conserve la référence B-17 validée.
 
 ## Current gate / next authorized action
 
