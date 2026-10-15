@@ -1338,3 +1338,14 @@ jeu. Ce GO ne constitue donc pas la validation définitive, la généralisation 
 d’autres blocs ou le merge. Le rapport P6A46 garde les preuves, le modèle de volume
 et ses limites ; les autres interactions validées et les os enterrés restent
 protégés. La gate du statut canonique conserve seule la prochaine action.
+
+
+## 2026-10-15 — Rejouabilité : utilité de la plaque encore incertaine
+
+Antoine doute de la nouvelle fonctionnalité de plaque et demande d’autres idées
+pour la rejouabilité. Conserver l’expérimentation sans la considérer comme une
+fonctionnalité de production retenue ; la préférence antérieure pour le levier
+portait sur le mode de retrait. Reprendre le signal P6A42 : varier les deux
+matériaux visuellement n’avait pas suffi à varier la stratégie. Le rapport P6A46
+conserve ce retour et les hypothèses proposées, sans les canoniser comme choix
+humains. La gate du statut conserve seule la prochaine action autorisée.

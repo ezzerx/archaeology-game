@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date:** 2026-10-14
+**Date:** 2026-10-15
 **Projet:** ArchaeologyGame (working title)  
 **Source unique du statut courant:** ce fichier. Voir aussi `docs/DOCUMENTATION_POLICY.md`.
 
@@ -66,8 +66,13 @@ progressive, volume enfoui irrégulier et empreinte issue de la même forme.
 Conserver le levier préféré, les outils, B-17, lumière chaude et os enterrés
 protégés. Rapport actif : `docs/dev/P6A46_EMBEDDED_SLAB_REPORT.md`.
 Candidat livré : 729 contrôles, zéro échec. Scène `scenes/p6a46_embedded_slab.tscn`,
-entrée `Launch-Game.ps1`. Prochaine action : essai humain de la cohérence
-plaque/argile/empreinte et du levier, pour décider de retenir ou non ce système.
+entrée `Launch-Game.ps1`. Retour humain du 2026-10-15 : Antoine doute de
+l’intérêt de la nouvelle fonctionnalité et demande d’autres pistes de rejouabilité.
+La plaque n’est pas retenue définitivement ; son retrait actif avait été préféré
+au départ automatique, ce qui ne valide pas l’utilité du système complet.
+Prochaine action : discussion de comportements/situations qui changent les choix
+pendant la fouille. Les propositions du dernier addendum restent à sélectionner ;
+aucun nouvel essai, abandon définitif ou merge n’est déduit de ce retour.
 Aucun merge automatique ni validation définitive déduite du GO d’essai.
 Autres mécaniques, génération de blocs, catalogue, musée/meta et N-slots hors
 périmètre. Son différé.

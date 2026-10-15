@@ -45,9 +45,11 @@ The player should learn to identify materials and choose tools, not learn a fixe
 ### Local behaviours / composed preparation situations
 
 Block variety should combine readable situations that invite different gestures
-and choices, alongside the geological layout. The fractured-slab experiment gives
-an encouraging human signal for this direction; its visual integration and final
-balancing remain unfinished. See [the experiment and human feedback](dev/P6A43_FRACTURED_SLAB_REPORT.md).
+and choices, alongside the geological layout. The fractured-slab experiment first gave
+an encouraging signal, but its usefulness as a retained system remains uncertain
+after the later human test. Treat slabs as an experiment, not a selected production
+rule. See [the initial signal](dev/P6A43_FRACTURED_SLAB_REPORT.md) and
+[the latest human feedback](dev/P6A46_EMBEDDED_SLAB_REPORT.md).
 
 Vary the placement and frequency of these situations plausibly and reproducibly,
 while preserving preparation rhythm, Bone occlusion and completion. A future

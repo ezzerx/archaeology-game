@@ -134,3 +134,42 @@ Source du candidat : `d588468`, branche `codex/p6a46-buried-slab-volume`.
 [PR #20 DRAFT](https://github.com/ezzerx/archaeology-game/pull/20) basée sur main ;
 #19 remplacée sans fusion. La décision de retenir définitivement ce système
 attend l’essai humain de ce candidat.
+
+
+## Retour humain — 2026-10-15 : système incertain, chercher d’autres pistes
+
+Antoine n’est finalement pas sûr de l’intérêt de cette nouvelle fonctionnalité.
+Il souhaite toujours trouver des méthodes de rejouabilité et demande d’autres
+idées. Ne pas assimiler la préférence précédente pour le levier à une décision
+de garder les plaques. Le candidat et ses preuves sont conservés ; ce retour
+n’ordonne pas leur suppression ni une nouvelle implémentation.
+
+Le verdict P6A42 reste déterminant : la seule redistribution des deux matériaux
+structurels n’avait pas changé la séquence dominante Chisel → Pick/Brush. Les
+prochaines hypothèses doivent donc être évaluées sur de vrais changements de
+choix/gestes, des résultats courts et lisibles, et un intérêt qui survit aux
+répétitions. La collection et de nouveaux spécimens apportent une motivation
+complémentaire ; ils ne prouvent pas seuls la variété du travail de matrice.
+
+Pistes proposées, non sélectionnées :
+- Poche friable/granuleuse sous une petite croûte : ouverture limitée au Chisel,
+  puis évacuation courte au Blower. Donner à un outil existant un rôle distinct,
+  avec retrait réel contrôlé par le joueur et os enterrés protégés. Priorité
+  recommandée pour un prochain essai isolé, sans généralisation aux blocs.
+- Raclage d’argile : un court geste directionnel retire des copeaux sur certaines
+  zones, tandis que les impacts gardent leur rôle dans la roche. Une éventuelle
+  humidification est une variante plus coûteuse à concevoir, pas une étape ajoutée
+  systématiquement à chaque bloc.
+- Fragilité locale/consolidation : choisir entre dégagement précis et protection
+  préalable de quelques parties lisibles. Piste ultérieure, avec vigilance sur
+  le rythme cosy et l’absence de punition surprise ou d’entretien répétitif.
+- Spécimens contrastés et découvertes secondaires : comparer un objet compact
+  à des structures fines/ajourées et rendre la découverte moins prévisible.
+  La méthode artistique de collection est acceptée, pas la fabrication du
+  catalogue ni un nouveau spécimen précis à ce stade.
+
+Un premier essai devrait isoler une seule situation sur B-17 pour comparer son
+intérêt à la référence, puis tester la répétition et la composition avec d’autres
+situations. Ne pas compenser un signal faible par plus de durée, de nouveaux
+outils empilés, de plaques ou de récompenses. Aucune règle de ces pistes n’a été
+implémentée pendant cette discussion.
