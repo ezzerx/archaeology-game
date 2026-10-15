@@ -7,11 +7,11 @@ var outline := PackedVector2Array()
 var texture: ImageTexture
 var size: Vector2i
 var edge_segments: Array[Vector4] = []
-func _init(resolution: Vector2i) -> void:
+func _init(resolution: Vector2i, points: Array = POINTS) -> void:
 	size = resolution
-	for n in range(POINTS.size()):
-		var a: Vector2 = POINTS[n]
-		var b: Vector2 = POINTS[(n+1)%POINTS.size()]
+	for n in range(points.size()):
+		var a: Vector2 = points[n]
+		var b: Vector2 = points[(n+1)%points.size()]
 		for part in range(3):
 			var p := a.lerp(b,float(part)/3.0)
 			if part > 0: p += (b-a).orthogonal().normalized()*.006*sin(float(n*7+part*13))

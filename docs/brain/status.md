@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date:** 2026-10-15
+**Date:** 2026-10-16
 **Projet:** ArchaeologyGame (working title)  
 **Source unique du statut courant:** ce fichier. Voir aussi `docs/DOCUMENTATION_POLICY.md`.
 
@@ -18,25 +18,27 @@
 
 ## Active branch / PR
 
-Active branch: `codex/p6a49-pocket-finish`, depuis `699c5cc`.
-PR courante : [#23 DRAFT](https://github.com/ezzerx/archaeology-game/pull/23), basée
-sur main ; #22 remplacée sans merge. Source `2546e74`. Main conserve la référence
-B-17 validée.
+Active branch: `codex/p6a50-collection-loop`, depuis `9c683f4`.
+PR de référence : [#23 DRAFT](https://github.com/ezzerx/archaeology-game/pull/23).
+Nouvelle candidate à publier après vérification ; aucun merge automatique.
 
 ## Current gate / next authorized action
 
-**P6A4.9 — validée humainement comme référence de travail.**
-Antoine valide la poche friable dans son état actuel. Figer cette référence et
-réserver une éventuelle nouvelle finition aux croisements avec d’autres systèmes.
-Rapport actif : `docs/dev/P6A49_POCKET_FINISH_REPORT.md`, dernier verdict humain.
-La preuve technique reste 708 contrôles sans échec ; le verdict humain vient
-explicitement du retour d’Antoine, pas des tests.
-Prochaine action : recommander le chantier au plus fort levier, puis définir son
-périmètre après sélection humaine. Aucun nouveau chantier d’implémentation lancé.
-La fréquence de production et la composition de toute la collection restent à
-concevoir ; la validation actuelle n’implique pas leur généralisation.
-B-17, outils, Brush, dégâts, collection, lumière et os enterrés restent protégés.
-PR #23 conservée sans merge automatique. Sound Design toujours différé.
+**P6A5.0 — candidate vérifiée, première revue humaine attendue.**
+Mission autorisée par Antoine : deuxième fossile, petite collection persistante
+et transition entre préparations, avec revue et itérations internes.
+Livraison : M–08 (ammonite modélisée), B–17, dépôt de deux caisses, photographies
+des préparations, distinction intégrale et meilleurs résultats conservés.
+Rapport actif : `docs/dev/P6A50_COLLECTION_LOOP_REPORT.md`.
+622 contrôles ciblés passent, dont parcours natif, erreur/réessai d'archivage et
+rechargement dans un nouveau processus. Ce résultat ne remplace pas l'avis humain.
+Prochaine action : lancer le dépôt, tester M–08 puis la collection et l'envie de
+préparer B–17 ; corriger les retours dans ce périmètre. Aucun merge automatique.
+P6A49 reste validée. Outils, Brush, dégâts localisés, lumière et non-révélation du
+fossile enfoui restent protégés. Sound Design toujours différé.
+Collection durable ; fouille non archivée conservée seulement pendant le lancement.
+Le musée complet, l'économie, le montage final et le générateur global restent
+hors de cette passe. Ne pas ouvrir un nouveau chantier sans sélection humaine.
 
 ## Livraison cloud précédente — contexte historique
 

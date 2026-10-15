@@ -6,6 +6,7 @@ var windowed_position := Vector2i.ZERO
 var fullscreen_button: Button
 var controller: ToolController
 var persist := true
+var load_preferences := true
 
 func setup(input: ToolController) -> void:
 	controller = input
@@ -16,7 +17,7 @@ func setup(input: ToolController) -> void:
 	# Keep a stable 16:9 working view on other aspect ratios; no cropped tools.
 	window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 	window.min_size = Vector2i(960,540)
-	if not persist: return
+	if not persist or not load_preferences: return
 	var settings := ConfigFile.new()
 	settings.load(SETTINGS)
 	var available := DisplayServer.screen_get_usable_rect(window.current_screen)
@@ -28,7 +29,7 @@ func setup(input: ToolController) -> void:
 
 func set_fullscreen(enabled: bool) -> void:
 	var window := get_window()
-	controller.cancel_stroke()
+	if controller != null: controller.cancel_stroke()
 	if enabled:
 		windowed_size = window.size
 		windowed_position = window.position

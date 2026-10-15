@@ -36,7 +36,7 @@ func on_archive(_values: Dictionary) -> void:
 	observe()
 	session.archive_snapshot["integral_preparation"] = earned
 	if not earned: return
-	records[FossilField.SPECIMEN_NAME] = {"integral_preparation":true, "achievement":earned_snapshot.duplicate(true)}
+	records[session.surface.fossil.field.specimen_name()] = {"integral_preparation":true, "achievement":earned_snapshot.duplicate(true)}
 	var file := FileAccess.open(storage_path,FileAccess.WRITE)
 	if file == null:
 		save_error = FileAccess.get_open_error()
@@ -47,7 +47,7 @@ func on_archive(_values: Dictionary) -> void:
 	changed.emit()
 
 func has_collection_distinction() -> bool:
-	return records.get(FossilField.SPECIMEN_NAME,{}).get("integral_preparation",false)
+	return records.get(session.surface.fossil.field.specimen_name(),{}).get("integral_preparation",false)
 
 func reset() -> void:
 	earned = false

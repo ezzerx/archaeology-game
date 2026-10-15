@@ -58,7 +58,7 @@ func _on_condition(condition: float, _damage: float) -> void:
 	invalidate()
 
 func _on_discovery(_cell: Vector2i, _component: int) -> void:
-	notice.emit("Bone detected — delicate material underneath")
+	notice.emit(surface.fossil.field.discovery_notice())
 
 func invalidate() -> void:
 	if _pending: return
@@ -83,10 +83,10 @@ func flush() -> void:
 		largest_hidden_cluster = coverage.largest_cluster()
 		coverage_passed = largest_hidden_cluster < PreparationRules.coverage_threshold(fossil.field.total_cells)
 		coverage_checks += 1
-	var stage := PreparationRules.classification(classification_stage, fossil.exposure_percent(), exposures)
+	var stage := fossil.field.classify(classification_stage, fossil.exposure_percent(), exposures)
 	if stage != classification_stage:
 		classification_stage = stage
-		notice.emit("Discovery updated: " + PreparationRules.CLASSIFICATIONS[stage])
+		notice.emit("Discovery updated: " + fossil.field.classification_name(stage))
 	var values := snapshot()
 	if not fine_preparation and PreparationRules.fine_preparation(values.exposure, values.cleanliness):
 		fine_preparation = true
@@ -102,7 +102,7 @@ func flush() -> void:
 	changed.emit()
 
 func snapshot() -> Dictionary:
-	return {"classification": PreparationRules.CLASSIFICATIONS[classification_stage],
+	return {"classification": surface.fossil.field.classification_name(classification_stage),
 		"exposure": surface.fossil.exposure_percent(), "cleanliness": surface.bone_film.cleanliness_percent(),
 		"condition": surface.fossil.condition, "fine_preparation": fine_preparation,
 		"condition_tier": PreparationRules.CONDITION_TIERS[PreparationRules.condition_tier(surface.fossil.condition)],

@@ -5,7 +5,7 @@ var replacement := PackedByteArray()
 var native_occlusion_cells := 0
 func _init(resolution := Vector2i(1024,640)) -> void:
 	super(resolution)
-	patch = load("res://assets/p6a37/mesh_patch_data.res")
+	patch = _patch_resource()
 	assert(size == patch.size)
 	ceilings = patch.ceilings.duplicate()
 	component_ids = patch.components.duplicate()
@@ -23,3 +23,6 @@ func _init(resolution := Vector2i(1024,640)) -> void:
 		highest_ceiling = maxf(highest_ceiling,ceilings[i])
 		@warning_ignore("integer_division")
 		image.set_pixel(i%size.x,i/size.x,Color(ceilings[i],component,0,1))
+
+func _patch_resource() -> Resource:
+	return load("res://assets/p6a37/mesh_patch_data.res")

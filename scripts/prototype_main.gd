@@ -143,19 +143,19 @@ func _process(delta: float) -> void:
 		var component: int = hit.bone_component
 		hovered = "Hovered bone: %s | Exposed: %s\nComponent: %s\nCell height %.5f | Bone ceiling %s" % [
 			"yes" if hit.bone else "no", "yes" if hit.bone_exposed else "no",
-			FossilField.COMPONENT_NAMES[component], hit.cell_height, "%.5f" % hit.bone_ceiling if hit.bone else "—"]
+			block.working_map.fossil.field.component_name(component), hit.cell_height, "%.5f" % hit.bone_ceiling if hit.bone else "—"]
 	bone_label.text = ("%s / DEBUG\nExposure %.2f%% | %d / %d cells\nBone Condition %.0f%%\n" % [
-		FossilField.SPECIMEN_NAME, fossil.exposure_percent(), fossil.exposed_cells, fossil.field.total_cells, fossil.condition]
+		block.working_map.fossil.field.specimen_name(), fossil.exposure_percent(), fossil.exposed_cells, fossil.field.total_cells, fossil.condition]
 		+ hovered + "\n")
 	bone_label.text += "Component exposure / Direct protection:\n"
 	for component in range(1, FossilField.COMPONENT_NAMES.size()):
-		bone_label.text += "%s: %.2f%% | %s\n" % [FossilField.COMPONENT_NAMES[component], fossil.exposure_percent(component),
+		bone_label.text += "%s: %.2f%% | %s\n" % [block.working_map.fossil.field.component_name(component), fossil.exposure_percent(component),
 			"READY" if fossil.is_direct_contact_protected(component) else "USED"]
 	bone_label.text += "Contact: %s\nDamage: %s\nCap %d FPS | Physics %d Hz" % [fossil.last_bone_event,
 		fossil.last_damage_event, Engine.max_fps, Engine.physics_ticks_per_second]
 	var metrics := session.metrics()
 	bone_label.text += "\n\nP5 / %s\nCleanliness %.1f%% | Fine Preparation %s\nCoverage %s | Hidden max %d | Checks %d\nComplete %s | Keep Cleaning %s | Archived %s\nAfter completion %.1f s | Actions %d\nCompletion E/C/Q: %.1f / %.1f / %.1f\nArchive E/C/Q: %.1f / %.1f / %.1f\nSession %d us / UI %d us | Refreshes %d" % [
-		PreparationRules.CLASSIFICATIONS[session.classification_stage], block.working_map.bone_film.cleanliness_percent(), session.fine_preparation, session.coverage_passed, session.largest_hidden_cluster, session.coverage_checks,
+		block.working_map.fossil.field.classification_name(session.classification_stage), block.working_map.bone_film.cleanliness_percent(), session.fine_preparation, session.coverage_passed, session.largest_hidden_cluster, session.coverage_checks,
 		session.preparation_complete, session.keep_cleaning_chosen, session.archived, metrics.time_after_completion,
 		session.additional_tool_actions_after_completion, metrics.exposure_at_completion, metrics.cleanliness_at_completion, metrics.condition_at_completion,
 		metrics.exposure_at_archive, metrics.cleanliness_at_archive, metrics.condition_at_archive,

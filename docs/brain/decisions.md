@@ -1413,3 +1413,14 @@ aux interactions avec d’autres systèmes, plutôt que prolonger la finition de
 cette fonctionnalité isolée. Cette décision clôt la revue humaine de la passe ;
 elle ne sélectionne pas encore le prochain chantier et ne demande pas de merge.
 Le rapport P6A49 conserve le verdict et les preuves ; le statut conserve la gate.
+
+## 2026-10-16 — GO deuxième spécimen et petite collection persistante
+
+Après validation de la poche friable, Antoine autorise la mission proposée :
+un deuxième fossile distinct, deux places de collection et une transition entre
+préparations. Priorité à un premier essai amusant et soigné, avec revue et
+itérations internes. Le prototype retient M–08, une ammonite stylisée, face à
+B–17 ; cela n'est pas encore une validation humaine de son art ou de la boucle.
+Conserver les outils et interactions acquis ; différer l'économie, le musée
+complet et le Sound Design. Le rapport P6A50 conserve les choix candidats et les
+preuves ; seul le statut porte la prochaine action autorisée.

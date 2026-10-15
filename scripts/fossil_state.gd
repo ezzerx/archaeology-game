@@ -93,6 +93,6 @@ func damage_at(index: int, amount: float) -> void:
 	var before := _condition
 	_condition = clampf(_condition - amount, 0.0, 100.0)
 	if _condition < before:
-		last_damage_event = "Chisel / %s / -%.0f" % [FossilField.COMPONENT_NAMES[field.component_ids[index]], before - _condition]
+		last_damage_event = "Chisel / %s / -%.0f" % [field.component_name(field.component_ids[index]), before - _condition]
 		bone_condition_changed.emit(_condition, before - _condition)
 		bone_damaged_at.emit(Vector2i(index % field.size.x, index / field.size.x), field.component_ids[index], before - _condition)

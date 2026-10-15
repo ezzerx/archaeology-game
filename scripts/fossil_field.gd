@@ -104,3 +104,15 @@ func _bone(component: int, a: Vector2, b: Vector2, radius: float, base: float, d
 			if ceiling > ceilings[index]:
 				ceilings[index] = ceiling
 				component_ids[index] = component
+
+# Specimen metadata hooks. Reference B-17 behavior is unchanged.
+func specimen_name() -> String:
+	return SPECIMEN_NAME
+func component_name(component:int) -> String:
+	return COMPONENT_NAMES[component]
+func classification_name(stage:int) -> String:
+	return PreparationRules.CLASSIFICATIONS[stage]
+func classify(previous:int,overall:float,components:Array[float]) -> int:
+	return PreparationRules.classification(previous,overall,components)
+func discovery_notice() -> String:
+	return "Bone detected — delicate material underneath"

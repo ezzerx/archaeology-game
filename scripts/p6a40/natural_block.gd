@@ -4,7 +4,7 @@ var natural_wall: MeshInstance3D
 var matrix_edges: Node
 func _ready() -> void:
 	super._ready()
-	footprint = preload("res://scripts/p6a40/footprint.gd").new(map_resolution)
+	footprint = _create_footprint()
 	relief.surface_domain = footprint.contains_uv
 	var loose := working_map.loose_debris
 	loose.physics = preload("res://scripts/p6a40/natural_debris.gd").new(relief,loose.physics.profile,loose.profile.matrix_crumb_cap)
@@ -37,3 +37,6 @@ func pick(screen: Vector2, camera: Camera3D) -> Dictionary:
 	var layer := Stratigraphy.index_at(working_map._heights[i]-Stratigraphy.SURFACE_EPSILON,limits)
 	hit.material = working_map.strata.materials[layer]
 	return hit
+
+func _create_footprint() -> RefCounted:
+	return preload("res://scripts/p6a40/footprint.gd").new(map_resolution)
