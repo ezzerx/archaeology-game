@@ -19,8 +19,9 @@
 ## Active branch / PR
 
 Active branch: `codex/p6a49-pocket-finish`, depuis `699c5cc`.
-PR courante : candidate P6A4.9 en préparation ; #22 DRAFT conservée pendant le
-travail. Main conserve la référence B-17 validée.
+PR courante : [#23 DRAFT](https://github.com/ezzerx/archaeology-game/pull/23), basée
+sur main ; #22 remplacée sans merge. Source `2546e74`. Main conserve la référence
+B-17 validée.
 
 ## Current gate / next authorized action
 

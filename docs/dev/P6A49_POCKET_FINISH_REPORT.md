@@ -157,5 +157,11 @@ la valide, et avancer vers la mission suivante.
 
 ## Livraison GitHub
 
-Branche `codex/p6a49-pocket-finish`. Métadonnées de livraison à compléter après
-création de la PR candidate ; aucun merge automatique.
+Source du candidat : `2546e74`, branche `codex/p6a49-pocket-finish`.
+[PR #23 DRAFT](https://github.com/ezzerx/archaeology-game/pull/23), basée sur main ;
+#22 remplacée sans fusion, branche et preuves précédentes conservées.
+Dossier local : `C:\Users\antoi\.codex\worktrees\p6a32-fossil-mesh\ArchaeologyGame`.
+`Launch-Game.ps1` ouvre « ArchaeologyGame — B-17 · Poches friables » sous Godot
+4.7.2. Lancement vérifié : fenêtre native répondante, sortie moteur attendue,
+aucune erreur stderr. La nouvelle fenêtre garde un bloc initial à découvrir ;
+les anciennes sessions utilisateur sont conservées.
