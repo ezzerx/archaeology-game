@@ -165,3 +165,13 @@ Dossier local : `C:\Users\antoi\.codex\worktrees\p6a32-fossil-mesh\ArchaeologyGa
 4.7.2. Lancement vérifié : fenêtre native répondante, sortie moteur attendue,
 aucune erreur stderr. La nouvelle fenêtre garde un bloc initial à découvrir ;
 les anciennes sessions utilisateur sont conservées.
+
+## Retour humain — 2026-10-15 : référence validée, finition ultérieure différée
+
+Antoine valide explicitement le résultat actuel. La poche friable peut servir
+de référence de travail ; une nouvelle passe de finition pourra être envisagée
+plus tard lorsque d’autres systèmes interagiront avec elle. Clore cette itération
+plutôt que poursuivre des corrections isolées. Ce retour ne définit pas la
+fréquence de production ni le générateur global de la collection. Antoine demande
+ensuite une recommandation sur le prochain chantier au plus fort levier ; la
+sélection de ce chantier reste distincte de la présente validation.

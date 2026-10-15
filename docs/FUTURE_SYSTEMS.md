@@ -51,13 +51,12 @@ after the later human test. Treat slabs as an experiment, not a selected product
 rule. See [the initial signal](dev/P6A43_FRACTURED_SLAB_REPORT.md) and
 [the latest human feedback](dev/P6A46_EMBEDDED_SLAB_REPORT.md).
 
-The buried friable-pocket behaviour is human-validated as adding a new excavation
-dynamic. Its selected direction is discovery at varied positions and depths,
-with an irregular volume continuing into the block and short evacuation using
-the existing Blower. Final visual integration, encounter frequency and variable
-placement still need their finishing pass and human review; the behaviour verdict
-does not validate a global block generator. See [the buried trial and latest human
-feedback](dev/P6A48_BURIED_POCKET_REPORT.md).
+The buried friable-pocket behaviour and its P6A49 finishing pass are human-validated
+as the current working reference. Discovery at varied positions and depths,
+an irregular volume continuing into the block and short evacuation use the
+existing Blower. Further refinement is deferred until other systems interact
+with it. Production encounter frequency and global collection/block composition
+remain separate design questions. See [the finishing pass and human verdict](dev/P6A49_POCKET_FINISH_REPORT.md).
 
 Vary the placement and frequency of these situations plausibly and reproducibly,
 while preserving preparation rhythm, Bone occlusion and completion. A future

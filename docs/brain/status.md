@@ -25,19 +25,18 @@ B-17 validée.
 
 ## Current gate / next authorized action
 
-**P6A4.9 — candidat terminé, revue humaine finale attendue.**
-La dynamique enfouie P6A48 est validée. La finition autorisée est implémentée :
-apparition progressive, grains/agrégats mats, souffle court et fond lisible,
-zéro ou une poche choisie au départ parmi cinq préparations reproductibles.
-Revue interne native et itérations terminées ; 708 contrôles sans échec.
-Rapport actif : `docs/dev/P6A49_POCKET_FINISH_REPORT.md`.
-Prochaine action : playtest humain des cinq cas via `Launch-Game.ps1` ; H ouvre
-« Nouvelle préparation · recommencer », R rejoue le même cas. Juger la découverte,
-le souffle franc et la reprise au Pick avant de figer la référence et avancer.
+**P6A4.9 — validée humainement comme référence de travail.**
+Antoine valide la poche friable dans son état actuel. Figer cette référence et
+réserver une éventuelle nouvelle finition aux croisements avec d’autres systèmes.
+Rapport actif : `docs/dev/P6A49_POCKET_FINISH_REPORT.md`, dernier verdict humain.
+La preuve technique reste 708 contrôles sans échec ; le verdict humain vient
+explicitement du retour d’Antoine, pas des tests.
+Prochaine action : recommander le chantier au plus fort levier, puis définir son
+périmètre après sélection humaine. Aucun nouveau chantier d’implémentation lancé.
+La fréquence de production et la composition de toute la collection restent à
+concevoir ; la validation actuelle n’implique pas leur généralisation.
 B-17, outils, Brush, dégâts, collection, lumière et os enterrés restent protégés.
-Aucun merge automatique, générateur global, nouvelle mécanique, N-slots ou musée.
-Son différé. Les candidats précédents restent disponibles ; aucune validation
-artistique finale ou fréquence de production n’est déduite des tests.
+PR #23 conservée sans merge automatique. Sound Design toujours différé.
 
 ## Livraison cloud précédente — contexte historique
 

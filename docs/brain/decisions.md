@@ -1405,3 +1405,11 @@ reste validée ; ce GO ne vaut pas approbation de l’art final ou merge. La rec
 sépare génération géologique et admission Bone : rejeter entier un volume unsafe
 évite de révéler l’anatomie par le fond. Les preuves et limites de cette finition
 sont dans le rapport P6A49 ; le statut conserve seul la prochaine action.
+
+## 2026-10-15 — Poche friable validée pour avancer
+
+Antoine valide P6A49 comme référence actuelle. Réserver les éventuels raffinements
+aux interactions avec d’autres systèmes, plutôt que prolonger la finition de
+cette fonctionnalité isolée. Cette décision clôt la revue humaine de la passe ;
+elle ne sélectionne pas encore le prochain chantier et ne demande pas de merge.
+Le rapport P6A49 conserve le verdict et les preuves ; le statut conserve la gate.
