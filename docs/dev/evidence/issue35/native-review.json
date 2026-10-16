@@ -1,0 +1,97 @@
+{
+  "benchmark": [],
+  "brush": [],
+  "captures": [
+    "demo-0-01-covered.png",
+    "demo-0-02-native-excavation.png",
+    "demo-0-05-detail.png",
+    "demo-0-06-complete-native.png",
+    "demo-1-01-covered.png",
+    "demo-1-02-opened.png",
+    "demo-1-03-blown.png",
+    "demo-1-05-detail.png",
+    "marine-pick-recess-native.png",
+    "demo-1-06-complete-native.png",
+    "demo-2-01-covered.png",
+    "demo-2-02-opened.png",
+    "demo-2-03-blown.png",
+    "demo-2-03b-abrasive-contact.png",
+    "demo-2-04-abraded.png",
+    "demo-2-05-detail.png",
+    "demo-2-06-complete-native.png"
+  ],
+  "checks": 64,
+  "failures": [],
+  "geometry": {
+    "baked_samples": 19541,
+    "misses": 0,
+    "missing_cells": [],
+    "native_joint_occlusion": 0,
+    "roof_max_error_m": 0.00000000500679016302019,
+    "triangles": 88796,
+    "winning_mesh_cells": 19541
+  },
+  "profiles": [],
+  "relief_contacts": [
+    {
+      "baked_height_m": 0.0640045874118805,
+      "local_height_m": 0.0639978051185608,
+      "map": "(466.0, 368.0)"
+    },
+    {
+      "baked_height_m": 0.0380079160630703,
+      "local_height_m": 0.0378217808902264,
+      "map": "(542.0, 329.0)"
+    }
+  ],
+  "results": [
+    {
+      "crust_volume": 0.0,
+      "grain_volume": 0.0,
+      "impacts": 3739,
+      "kind": 0,
+      "snapshot": {
+        "classification": "Petit théropode",
+        "cleanliness": 99.9999996534617,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    },
+    {
+      "crust_volume": 0.0,
+      "grain_volume": 5810.93348217702,
+      "impacts": 1400,
+      "kind": 1,
+      "snapshot": {
+        "classification": "Ammonite côtelée",
+        "cleanliness": 99.9999997082336,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    },
+    {
+      "crust_volume": 130.014595910365,
+      "grain_volume": 11014.7658583759,
+      "impacts": 933,
+      "kind": 2,
+      "snapshot": {
+        "classification": "Ammonite côtelée",
+        "cleanliness": 99.9999998267089,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    }
+  ]
+}

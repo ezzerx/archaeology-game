@@ -1526,3 +1526,15 @@ workflow installé. Définir et valider la vision de chaque prochaine mission
 avant création d'issues exécutables et développement. Garder les démos séparées
 de la collection réelle ; leur acceptation ne valide pas encore un générateur
 de recettes, un catalogue supplémentaire ou une finition artistique définitive.
+
+## 2026-10-16 — GO relief de l'ammonite, puis finition ciblée des mécaniques
+
+Antoine approuve la mission de relief de M–08 : découvrir les bosses au souffle,
+suivre les creux au Pick et révéler les détails sous les concrétions. Réaliser
+cette mission avant les passes ciblées sur les mécaniques, chacune avec sa vision
+et sa validation. L'accord ne déclenche pas toutes les finitions en parallèle.
+
+Orientation durable : étendre la rejouabilité par des nouveautés de game design
+qui diversifient réellement les gestes et situations, puis bien les exécuter.
+Continuer à explorer des idées utiles au plaisir de préparation ; la seule
+quantité de matériaux ou de pièces n'est pas le moteur recherché.

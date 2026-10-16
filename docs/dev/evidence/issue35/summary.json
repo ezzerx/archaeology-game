@@ -1,0 +1,19 @@
+{
+  "functional_checks": 434,
+  "resource_loads": 268,
+  "failures": [],
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "source_base": "0f505af",
+  "native_relief_checks": 64,
+  "collection_native_checks": 32,
+  "collection_logic_checks": 26,
+  "materials_checks": 17,
+  "regressions": {
+    "P1": 52,
+    "P4V2": 91,
+    "P5": 128,
+    "store": 24
+  },
+  "art_comparison": "identical staged inspection cut; other selected images use actual tool inputs",
+  "human_validation": "pending"
+}

@@ -3,39 +3,32 @@
 **Date :** 2026-10-16
 
 ## Référence
-P0–P5 validées. P6A active. Main intègre les essais validés par la fusion de #34 (c297d42).
-L'accès habituel à B–17/M–08, les interactions validées et la collection réelle sont préservés. Caisses #30 rejetées et archivées sans fusion.
-#27/#28 différées, son différé. Découverte prioritaire, collection comme continuité.
+P0–P5 et les trois préparations #33 validées. Main 0f505af intègre #34.
+B–17/M–08, outils et interactions validés restent la référence.
+Caisses #30 rejetées ; #27/#28 et son différés.
 
-## Mission / gate
-L'essai [#33](https://github.com/ezzerx/archaeology-game/issues/33) reçoit la
-validation explicite d'Antoine : les trois approches apportent une variété
-ludique appréciée. Les réserves concernent la finition, pas l'acceptation de
-l'essai. [PR #34](https://github.com/ezzerx/archaeology-game/pull/34) fusionnée,
-issue #33 fermée ; branches de #33 et du cadrage #31 supprimées. Aucune mission
-de développement active. Source jouable validée : 2bf10ce.
-
-Brief : docs/dev/ISSUE33_PREPARATION_DEMOS.md.
-Rapport, verdict humain et captures : docs/dev/ISSUE33_PREPARATION_DEMOS_REPORT.md.
-Vision : docs/design/NEXT_STEPS_VISION.md.
-Worktree : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
-Lanceur : Launch-Preparation-Demos.cmd ; scène principale et collection réelle préservées.
+## Mission active / gate
+Antoine approuve l'amélioration de l'ammonite, puis des finitions ciblées.
+Issue [#35](https://github.com/ezzerx/archaeology-game/issues/35),
+branche codex/35-ammonite-relief depuis main, worktree
+C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+Brief : docs/dev/ISSUE35_AMMONITE_RELIEF.md.
+Modèle et contact réel : bosses au souffle, creux au Pick, détails sous les concrétions.
+Implémentation et revue native terminées ; PR à ouvrir, puis essai humain avant fusion.
 
 ## Prochaine action
-Cadrer ensemble une mission de finition avant toute nouvelle implémentation.
-Sujets : grès trop dominant / poches trop rares ; relief réel entre les tours
-de M–08 ; finition des concrétions ; familles d'outils et variantes sur une même
-touche. Aucun nouvel outil, ordre de missions ou développement n'est encore autorisé.
-Le détail des règles de sélection des variantes reste une proposition à discuter.
+Présenter les captures et ouvrir la PR. Attendre le verdict humain sur le volume
+et le plaisir de suivre les creux au Pick avant fusion. Rapport et preuves :
+docs/dev/ISSUE35_AMMONITE_RELIEF_REPORT.md.
+434 contrôles fonctionnels et 268 ressources passent ; quatre parcours complets.
+Le rééquilibrage des poches, les familles d'outils et les nouvelles variantes
+seront cadrés séparément après cette mission ; ne pas les développer ici.
 
-## Preuves et points de suivi
-518 contrôles de régression, 73 contrôles nouveaux et 267 ressources passent.
-Trois parcours natifs à 100/100, condition 100 ; occultation contrôlée pixel à pixel.
-Recettes fixes, deux fossiles, aucun générateur global. Le coût du souffle et le
-court chargement des scènes restent des points de suivi pour la production.
-#31 terminé ; #32 remplacée par #34. Le cadrage remplacé est conservé sous le
-tag archive/issue31-product-vision-2026-10-16. Les dossiers jouables et les
-changements utilisateur des anciens checkouts sont préservés. Le worktree des
-essais suit la référence de main en HEAD détachée ; créer la prochaine branche
-depuis main actualisée après validation d'une nouvelle vision.
-Workflow : une issue → branche depuis main → PR → validation → merge → nettoyage.
+## Direction et points de suivi
+Étendre la rejouabilité par des gestes et situations variés, bien réalisés.
+Découverte prioritaire, collection comme continuité. Recettes encore fixes,
+deux fossiles ; aucun générateur universel ni extension du catalogue approuvé.
+Rapport de référence : docs/dev/ISSUE33_PREPARATION_DEMOS_REPORT.md.
+Lanceur des trois essais : Launch-Preparation-Demos.cmd.
+Coût du souffle et chargement des scènes à suivre. Changements utilisateur
+des anciens checkouts préservés.
