@@ -1,0 +1,5 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://scenes/preparation/base/modeled_skeleton.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/workshop/lighting/centered_light.gd" id="2"]
+[node name="CenteredPreparationLight" instance=ExtResource("1")]
+script = ExtResource("2")

@@ -53,7 +53,7 @@ func run() -> void:
 	var args := OS.get_cmdline_user_args()
 	mode = args[0] if not args.is_empty() else "tests"
 	AudioServer.set_bus_mute(0,true)
-	main = load("res://scenes/p6a32_fossil_mesh.tscn").instantiate()
+	main = load("res://scenes/preparation/base/mesh_overlay.tscn").instantiate()
 	root.add_child(main)
 	main.display.persist = false
 	root.mode = Window.MODE_WINDOWED

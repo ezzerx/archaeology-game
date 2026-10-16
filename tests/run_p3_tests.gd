@@ -242,7 +242,7 @@ func test_exposure_epsilon() -> void:
 
 func test_scene() -> void:
 	root.size = Vector2i(1920, 1080)
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	var block: ExcavationBlock = main.get_node("ExcavationBlock")
 	var controller: ToolController = main.get_node("ToolController")

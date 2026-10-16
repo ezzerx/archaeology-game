@@ -26,8 +26,8 @@ func run() -> void:
   if arg.begins_with("--distinction-store="):DirAccess.make_dir_recursive_absolute(arg.trim_prefix("--distinction-store=").get_base_dir())
  AudioServer.set_bus_mute(0,true)
  root.size=Vector2i(1280,720)
- flow=load("res://scenes/p6a50_collection_loop.tscn").instantiate();root.add_child(flow)
- flow.store=preload("res://scripts/p6a50/collection_store.gd").new(out+"flow-"+str(Time.get_ticks_usec())+"/records.json",out+"no-legacy.json")
+ flow=load("res://scenes/collection.tscn").instantiate();root.add_child(flow)
+ flow.store=preload("res://scripts/collection/collection_store.gd").new(out+"flow-"+str(Time.get_ticks_usec())+"/records.json",out+"no-legacy.json")
  flow.hub.store=flow.store
  if mode!="tests":await shot("01-depot")
  await flow.open_specimen("M08")
@@ -208,7 +208,7 @@ func loop_visual() -> void:
  check(flow.saved_archive and flow.store.records.size()==2,"both specimen types archive to independent collection places")
  await click(main.session_ui.another_button)
  await shot("11-two-piece-collection")
- var restored=preload("res://scripts/p6a50/collection_store.gd").new(flow.store.path,out+"no-legacy.json")
+ var restored=preload("res://scripts/collection/collection_store.gd").new(flow.store.path,out+"no-legacy.json")
  check(restored.records.size()==2 and restored.badge("M08"),"cold store recreation retains the full collection and earned distinction")
  main.introduction_seen=true
  await click(flow.hub.item_buttons.M08);await idle()

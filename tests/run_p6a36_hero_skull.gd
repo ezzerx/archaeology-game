@@ -1,6 +1,6 @@
 extends "res://tests/run_p6a35_aesthetic.gd"
 func _pilot_scene() -> PackedScene:
-	return preload("res://scenes/p6a36_hero_skull.tscn")
+	return preload("res://scenes/preparation/base/sculpted_fossil.tscn")
 func _output_directory() -> String:
 	return "res://work/test-logs/p6a36/"
 func _expected_triangles() -> int:
@@ -19,7 +19,7 @@ func pilot_checks() -> void:
 	for point in [Vector2(195,222),Vector2(236,218),Vector2(274,213),Vector2(305,218),Vector2(280,264)]:
 		var i: int = int(point.y)*1024+int(point.x)
 		check(field.component_ids[i] == 0,"modeled cranial/mandibular window remains physically open: "+str(point))
-	var previous: FossilField = load("res://scripts/p6a35/mesh_fossil_field.gd").new()
+	var previous: FossilField = load("res://scripts/specimens/shaded_base/mesh_fossil_field.gd").new()
 	var wrong := 0
 	for i in range(field.component_ids.size()):
 		if previous.component_ids[i] == 3 or field.component_ids[i] == 3:

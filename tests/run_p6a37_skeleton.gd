@@ -1,6 +1,6 @@
 extends "res://tests/run_p6a35_aesthetic.gd"
 func _pilot_scene() -> PackedScene:
-	return preload("res://scenes/p6a37_modeled_skeleton.tscn")
+	return preload("res://scenes/preparation/base/modeled_skeleton.tscn")
 func _output_directory() -> String:
 	return "res://work/test-logs/p6a37/"
 func _expected_triangles() -> int:
@@ -25,7 +25,7 @@ func _manifest() -> Dictionary:
 func pilot_checks() -> void:
 	await super.pilot_checks()
 	var field: FossilField = main.block.working_map.fossil.field
-	var previous: FossilField = load("res://scripts/p6a36/mesh_fossil_field.gd").new()
+	var previous: FossilField = load("res://scripts/specimens/sculpted_base/mesh_fossil_field.gd").new()
 	var wrong_skull := 0
 	var legacy := 0
 	for i in range(field.component_ids.size()):

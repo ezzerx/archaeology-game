@@ -1,6 +1,6 @@
 extends "res://tests/run_p6a40_natural_block.gd"
 func _pilot_scene() -> PackedScene:
-	return preload("res://scenes/p6a41_rough_edges.tscn")
+	return preload("res://scenes/preparation/base/rough_block.tscn")
 func _output_directory() -> String:
 	return "res://work/test-logs/p6a41/"
 func _collection_store() -> String:
@@ -14,7 +14,7 @@ func pilot_checks() -> void:
 	var rim: RefCounted = main.block.rim
 	var shape: RefCounted = main.block.footprint
 	var fresh := WorkingSurface.new(s.size,Stratigraphy.new(s.size,main.block.material_definitions),s.fossil.field)
-	var reference: RefCounted = preload("res://scripts/p6a40/natural_profile.gd").new(fresh,shape)
+	var reference: RefCounted = preload("res://scripts/excavation/block/natural/natural_profile.gd").new(fresh,shape)
 	var changed_core := 0
 	var changed_bone := 0
 	var changed_rim := 0

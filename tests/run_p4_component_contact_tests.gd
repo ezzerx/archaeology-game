@@ -63,7 +63,7 @@ func hit(point: Vector2, protected: bool, expected_condition: float, label: Stri
 
 func run() -> void:
 	AudioServer.set_bus_mute(0, true)
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(main)
 	control = main.controller
 	control.set_physics_process(false)

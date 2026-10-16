@@ -3,7 +3,7 @@ func _initialize() -> void:run.call_deferred()
 func run() -> void:
  AudioServer.set_bus_mute(0,true)
  root.size=Vector2i(1280,720)
- var flow=load("res://scenes/p6a50_collection_loop.tscn").instantiate();root.add_child(flow)
+ var flow=load("res://scenes/collection.tscn").instantiate();root.add_child(flow)
  flow.hub.show_page("gallery")
  for n in range(12):await process_frame
  await RenderingServer.frame_post_draw

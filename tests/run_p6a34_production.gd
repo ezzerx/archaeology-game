@@ -282,7 +282,7 @@ func run() -> void:
 	quit(0 if failures.is_empty() else 1)
 
 func _pilot_scene() -> PackedScene:
-	return preload("res://scenes/p6a34_production_pilot.tscn")
+	return preload("res://scenes/preparation/base/mesh_fossil.tscn")
 func _output_directory() -> String:
 	return "res://work/test-logs/p6a34/"
 func _expected_triangles() -> int:

@@ -19,7 +19,7 @@ func meshes_below(node: Node) -> Array[MeshInstance3D]:
 	return result
 
 func run() -> void:
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(main)
 	main.set_process(false)
 	block = main.block

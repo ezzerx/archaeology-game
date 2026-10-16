@@ -155,7 +155,7 @@ func shadow_regression() -> void:
 func functional() -> void:
 	check(main.candidate == 1, "Hero explicitly starts on B")
 	var hero := main
-	var baseline: Node3D = load("res://scenes/p6a16_natural_matrix_lab.tscn").instantiate()
+	var baseline: Node3D = load("res://scenes/preparation/base/natural_matrix.tscn").instantiate()
 	root.add_child(baseline)
 	baseline.controller.set_physics_process(false)
 	baseline.select_candidate(1)
@@ -311,7 +311,7 @@ func run() -> void:
 		"gpu":RenderingServer.get_video_adapter_name(),"renderer":RenderingServer.get_current_rendering_method(),
 		"viewport":[1920,1080],"fps_cap":Engine.max_fps,"physics_hz":Engine.physics_ticks_per_second}
 	AudioServer.set_bus_mute(0,true)
-	main=load("res://scenes/p6a2_hero_patch.tscn").instantiate()
+	main=load("res://scenes/preparation/base/workshop.tscn").instantiate()
 	root.add_child(main)
 	main.controller.set_physics_process(false)
 	await settle()

@@ -151,7 +151,7 @@ func run() -> void:
 	root.size = Vector2i(1920, 1080)
 	root.content_scale_size = root.size
 	AudioServer.set_bus_mute(0, true)
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(main)
 	main.feedback.crumb_physics_enabled = false # Exact validated spectacle A/B reference.
 	block = main.block

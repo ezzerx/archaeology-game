@@ -87,7 +87,7 @@ func run() -> void:
 	await capture("probe")
 	scene.queue_free()
 	await process_frame
-	var lab: Node = load("res://scenes/p6a16_natural_matrix_lab.tscn").instantiate()
+	var lab: Node = load("res://scenes/preparation/base/natural_matrix.tscn").instantiate()
 	root.add_child(lab)
 	lab.select_candidate(1) # The historical comparison scene intentionally still defaults to A.
 	var surface: WorkingSurface = lab.block.working_map
@@ -105,7 +105,7 @@ func run() -> void:
 	measurements["baseline_B_hashes_height_strata_ceilings"] = before
 	lab.queue_free()
 	await process_frame
-	var production: Node = load("res://scenes/prototype_main.tscn").instantiate()
+	var production: Node = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(production)
 	await capture("baseline-P5")
 	check(production.session != null and production.controller.tools.size() == 4, "normal P5 baseline opens")

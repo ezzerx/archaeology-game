@@ -60,7 +60,7 @@ func test_material_reveals(fx: MaterialFeedback, layer: int) -> void:
 		print("P4 AUDIO MATERIAL: layer=", layer, " reset=", cycle, " later reveals=", later_reveals, " Bone sounds=", bone_sounds)
 
 func run() -> void:
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	main.get_node("ToolController").set_physics_process(false)
 	var fx: MaterialFeedback = main.feedback

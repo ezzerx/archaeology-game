@@ -255,7 +255,7 @@ func run() -> void:
 	var args:=OS.get_cmdline_user_args()
 	mode=args[0] if not args.is_empty() else "tests"
 	AudioServer.set_bus_mute(0,mode!="movie")
-	main=load("res://scenes/p6a3_tool_feel.tscn").instantiate()
+	main=load("res://scenes/preparation/base/tool_feedback.tscn").instantiate()
 	root.add_child(main)
 	# The interactive display helper reads the user's saved window size on setup.
 	# Restore the controlled review resolution after assembly; never persist QA.

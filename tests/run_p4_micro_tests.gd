@@ -96,7 +96,7 @@ func test_cleanup() -> void:
 		check(dirt.flying.is_empty() and events.size() == 1, "FX expires without another ejection or cap mutation: ON=%s" % enabled)
 
 func test_production_micro() -> void:
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	main.controller.set_physics_process(false)
 	main.set_process(false)

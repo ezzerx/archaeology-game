@@ -1,6 +1,6 @@
 extends "res://tests/run_p6a37_skeleton.gd"
 func _pilot_scene() -> PackedScene:
-	return preload("res://scenes/p6a40_natural_block.tscn")
+	return preload("res://scenes/preparation/base/natural_block.tscn")
 func _output_directory() -> String:
 	return "res://work/test-logs/p6a40/"
 func _collection_store() -> String:
@@ -16,7 +16,7 @@ func pilot_checks() -> void:
 	for i in shape.outside:
 		if s.fossil.field.component_ids[i] != 0: lost_bone += 1
 	check(lost_bone == 0 and shape.outside.size() > 50000,"natural cuts remove rectangle corners while retaining every approved Bone cell")
-	var reference: FossilField = load("res://scripts/p6a37/mesh_fossil_field.gd").new()
+	var reference: FossilField = load("res://scripts/specimens/skeleton/mesh_fossil_field.gd").new()
 	check(reference.image.get_data() == s.fossil.field.image.get_data(),"entire approved source-derived Bone field is byte-identical")
 	check(main.block.natural_wall.mesh.get_surface_count() == 1 and not main.jacket.visible,"actual silhouette walls replace the rectangular support jacket")
 	check(main.matrix_edges.edges.count(255) == 0,"intact matrix correction mask contains no buried Bone hint")

@@ -1,6 +1,6 @@
 extends "res://tests/run_p6a34_production.gd"
 func _pilot_scene() -> PackedScene:
-	return preload("res://scenes/p6a35_aesthetic_pilot.tscn")
+	return preload("res://scenes/preparation/base/shaded_fossil.tscn")
 func _output_directory() -> String:
 	return "res://work/test-logs/p6a35/"
 func _expected_triangles() -> int:

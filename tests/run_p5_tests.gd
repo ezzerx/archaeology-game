@@ -332,7 +332,7 @@ func finish(label: String) -> void:
 func run() -> void:
 	root.size = Vector2i(1920, 1080)
 	root.content_scale_size = root.size
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(main)
 	surface = main.block.working_map
 	session = main.session

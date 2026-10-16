@@ -41,7 +41,7 @@ func run() -> void:
 	for bucket in counts: bounded = bounded and counts[bucket] <= dirt.profile.crumbs_per_bucket[bucket.z - 1]
 	check(bounded and not counts.is_empty(), "long real Chisel session never accumulates more than the material quota per zone")
 	check(Array(surface.residue._values).max() > 0.1, "fracturing still leaves persistent Fine Dust")
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	var block: ExcavationBlock = main.get_node("ExcavationBlock")
 	main.get_node("ToolController").set_physics_process(false)

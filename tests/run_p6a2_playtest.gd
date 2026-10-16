@@ -258,7 +258,7 @@ func run() -> void:
 	DirAccess.make_dir_recursive_absolute(out)
 	root.size=Vector2i(1920,1080);root.content_scale_size=root.size
 	AudioServer.set_bus_mute(0,true)
-	main=load("res://scenes/p6a2_hero_patch.tscn").instantiate()
+	main=load("res://scenes/preparation/base/workshop.tscn").instantiate()
 	root.add_child(main)
 	evidence["runtime"]={"engine":Engine.get_version_info().string,"cpu":OS.get_processor_name(),"gpu":RenderingServer.get_video_adapter_name(),"renderer":RenderingServer.get_current_rendering_method(),"window":str(root.size),"render":str(root.get_texture().get_size()),"fps_cap":Engine.max_fps,"physics_hz":Engine.physics_ticks_per_second}
 	main.controller.set_physics_process(false)

@@ -1,0 +1,55 @@
+{
+  "baseline": "99cf5d1c38c2e893efb0df2d20edf744f6b3a14f",
+  "gameplay_checks": 622,
+  "gameplay_failures": 0,
+  "resource_checks": 252,
+  "fresh_import_resource_checks": 252,
+  "fresh_import_gameplay_checks": 26,
+  "source_comparison_files": 727,
+  "asset_source_files_unchanged": 181,
+  "logs": {
+    "collection-logic": [
+      "26 checks 0 failures"
+    ],
+    "store": [
+      "24 checks, 0 failures"
+    ],
+    "pocket-logic": [
+      "197 checks, 0 failures"
+    ],
+    "collection-native": [
+      "32 checks 0 failures"
+    ],
+    "pocket-native": [
+      "71 checks, 0 failures"
+    ],
+    "reload": [
+      "P6A50 COLD RELOAD PASS"
+    ],
+    "p1": [
+      "52 checks, 0 failures"
+    ],
+    "p5": [
+      "128 checks, 0 failures"
+    ],
+    "p4v2": [
+      "91 checks, 0 failures"
+    ],
+    "resources": [
+      "252 checks, 0 failures"
+    ],
+    "fresh-complete-import": [
+      "Import completed without errors/warnings"
+    ],
+    "fresh-complete-resources": [
+      "252 checks, 0 failures"
+    ],
+    "fresh-complete-collection": [
+      "26 checks 0 failures"
+    ],
+    "final-import": [
+      "Import completed without errors/warnings"
+    ]
+  },
+  "scope": "Path-only relocation of retained code, shaders and configuration; retired disconnected prototypes. No gameplay or art tuning."
+}

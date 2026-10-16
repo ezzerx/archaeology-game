@@ -67,7 +67,7 @@ func run() -> void:
 	check(packets.flying.size() < 8 and not packets.flying.is_empty(),
 		"one logical evacuation creates one temporary directional flight")
 
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	var block: ExcavationBlock = main.get_node("ExcavationBlock")
 	main.get_node("ToolController").set_physics_process(false)

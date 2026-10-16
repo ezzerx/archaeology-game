@@ -1,5 +1,5 @@
 extends SceneTree
-const Store=preload("res://scripts/p6a50/collection_store.gd")
+const Store=preload("res://scripts/collection/collection_store.gd")
 var checks:=0
 var failures:Array[String]=[]
 func check(ok:bool,label:String) -> void:
