@@ -1,0 +1,23 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "source_base": "c580911",
+  "functional_checks": 654,
+  "resource_loads": 272,
+  "failures": [],
+  "suites": {
+    "P1": 52,
+    "P4V2": 91,
+    "P5": 128,
+    "store": 24,
+    "pocket_reference": 197,
+    "collection_logic": 26,
+    "demo_materials": 17,
+    "compact_logic": 45,
+    "compact_native": 63,
+    "compact_runtime": 3,
+    "other_runtime": 8
+  },
+  "human_validation": "accepted by Antoine on 2026-10-17; playable commit 313a23d",
+  "preferred_disposition": "C - Veine profonde",
+  "screenshots": "All selected screenshots use actual tools/controller inputs; completion sweeps are systematic, not a human-paced artistic excavation."
+}

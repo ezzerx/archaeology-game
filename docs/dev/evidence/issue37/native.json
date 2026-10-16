@@ -1,0 +1,140 @@
+{
+  "benchmark": [],
+  "brush": [],
+  "captures": [
+    "compact-0-01-intact.png",
+    "compact-0-pocket-0-contact.png",
+    "compact-0-pocket-0-first-air.png",
+    "compact-0-pocket-0-cavity.png",
+    "compact-0-pocket-1-contact.png",
+    "compact-0-pocket-1-first-air.png",
+    "compact-0-pocket-1-cavity.png",
+    "compact-0-02-openings.png",
+    "compact-0-03-following-form.png",
+    "demo-0-06-complete-native.png",
+    "compact-0-04-complete.png",
+    "compact-1-01-intact.png",
+    "compact-1-pocket-0-contact.png",
+    "compact-1-pocket-0-first-air.png",
+    "compact-1-pocket-0-cavity.png",
+    "compact-1-pocket-1-contact.png",
+    "compact-1-pocket-1-first-air.png",
+    "compact-1-pocket-1-cavity.png",
+    "compact-1-pocket-2-contact.png",
+    "compact-1-pocket-2-first-air.png",
+    "compact-1-pocket-2-cavity.png",
+    "compact-1-02-openings.png",
+    "compact-1-03-following-form.png",
+    "demo-0-06-complete-native.png",
+    "compact-1-04-complete.png",
+    "compact-2-01-intact.png",
+    "compact-2-pocket-0-contact.png",
+    "compact-2-pocket-0-first-air.png",
+    "compact-2-pocket-0-cavity.png",
+    "compact-2-pocket-1-contact.png",
+    "compact-2-pocket-1-first-air.png",
+    "compact-2-pocket-1-cavity.png",
+    "compact-2-02-openings.png",
+    "compact-2-03-following-form.png",
+    "demo-0-06-complete-native.png",
+    "compact-2-04-complete.png"
+  ],
+  "checks": 63,
+  "failures": [],
+  "profiles": [],
+  "results": [
+    {
+      "complete": true,
+      "impacts": 3016,
+      "lenses": [
+        {
+          "center": "(415.0, 355.0)",
+          "first_jet_volume": 152.222226858139,
+          "opening_impacts": 20,
+          "removed_volume": 1333.75389102101
+        },
+        {
+          "center": "(570.0, 246.0)",
+          "first_jet_volume": 131.825542464852,
+          "opening_impacts": 14,
+          "removed_volume": 520.33032387495
+        }
+      ],
+      "snapshot": {
+        "classification": "Petit théropode",
+        "cleanliness": 99.999999749791,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      },
+      "variant": 0
+    },
+    {
+      "complete": true,
+      "impacts": 2963,
+      "lenses": [
+        {
+          "center": "(389.0, 353.0)",
+          "first_jet_volume": 135.92836856842,
+          "opening_impacts": 17,
+          "removed_volume": 678.790063351393
+        },
+        {
+          "center": "(501.0, 199.0)",
+          "first_jet_volume": 98.6996309161186,
+          "opening_impacts": 14,
+          "removed_volume": 736.849698930979
+        },
+        {
+          "center": "(550.0, 416.0)",
+          "first_jet_volume": 97.7294521033764,
+          "opening_impacts": 15,
+          "removed_volume": 651.065529480577
+        }
+      ],
+      "snapshot": {
+        "classification": "Petit théropode",
+        "cleanliness": 99.9999994285169,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      },
+      "variant": 1
+    },
+    {
+      "complete": true,
+      "impacts": 2934,
+      "lenses": [
+        {
+          "center": "(411.0, 382.0)",
+          "first_jet_volume": 131.461904555559,
+          "opening_impacts": 25,
+          "removed_volume": 853.012825250626
+        },
+        {
+          "center": "(505.0, 214.0)",
+          "first_jet_volume": 89.9714107215405,
+          "opening_impacts": 11,
+          "removed_volume": 813.515736252069
+        }
+      ],
+      "snapshot": {
+        "classification": "Petit théropode",
+        "cleanliness": 99.9999996441181,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      },
+      "variant": 2
+    }
+  ]
+}

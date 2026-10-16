@@ -3,29 +3,35 @@
 **Date :** 2026-10-17
 
 ## Référence validée
-P0–P5, les trois préparations #33 et le relief corrigé de l'ammonite #35 sont
-validés par Antoine. Spirale compacte et petites côtes sculptées retenues.
-Livraisons : PR #34 puis [PR #36](https://github.com/ezzerx/archaeology-game/pull/36).
-B–17/M–08, outils et interactions validés restent la référence.
+P0–P5, les trois préparations #33, l'ammonite corrigée #35 et les trois
+dispositions de terre compacte #37 sont validés par Antoine.
+B–17/M–08, outils, interactions et rendu font référence.
 Caisses #30 rejetées ; #27/#28 et son différés.
 
-## Mission / gate
-Fin de la mission #35 : retour humain positif sur le résultat 75555a0.
-Aucune nouvelle mission de développement autorisée.
-Rapport de la référence : docs/dev/ISSUE35_AMMONITE_RELIEF_REPORT.md.
-Reprendre depuis main après clôture de la PR validée, sans empiler les branches.
-Worktree jouable : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+## Mission livrée / gate
+Issue [#37](https://github.com/ezzerx/archaeology-game/issues/37), livraison
+[PR #38](https://github.com/ezzerx/archaeology-game/pull/38).
+Validation humaine explicite du commit jouable 313a23d le 17 octobre 2026 :
+mélange argile/grès/poches retenu, variations de hauteur appréciées pour le
+rythme et l'incertitude. **C · Veine profonde est la référence préférée.**
+Les trois dispositions restent disponibles ; aucun correctif demandé.
+Brief : docs/dev/ISSUE37_COMPACT_POCKETS.md.
+Rapport : docs/dev/ISSUE37_COMPACT_POCKETS_REPORT.md.
+Worktree de reprise : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
 
 ## Prochaine action
-Cadrer ensemble une finition ciblée des mécaniques, puis une issue bornée
-avant développement. Proposition : équilibre grès/poches de la terre compacte.
-Familles d'outils et autres variantes restent des pistes à définir séparément.
+Clôture de #37 selon le workflow : validation acquise pour fusion de #38,
+synchronisation de main et nettoyage de sa seule branche de mission.
+Après clôture, définir ensemble la vision de la prochaine finition.
+Aucune nouvelle mission de développement n'est autorisée par cette validation.
+Repartir de main synchronisé pour la prochaine issue approuvée.
 
 ## Direction et points de suivi
-Étendre la rejouabilité par des gestes et situations variés, bien réalisés.
-Découverte prioritaire, collection comme continuité. Recettes encore fixes,
-deux fossiles ; aucun générateur universel ni extension du catalogue approuvé.
-Rapport des trois essais : docs/dev/ISSUE33_PREPARATION_DEMOS_REPORT.md.
+Découverte prioritaire, collection comme continuité. La géologie doit créer
+des rencontres et des changements de rythme au cours d'une même préparation.
+Varier les gestes et situations sans allonger artificiellement le travail.
+Trois compositions bornées ; fréquence de production et extension à d'autres
+spécimens restent à cadrer. Marine, concrétions et familles d'outils à traiter
+par missions distinctes, chacune avec sa vision approuvée.
 Lanceur : Launch-Preparation-Demos.cmd.
-Coût du souffle et chargement des scènes à suivre. Changements utilisateur
-des anciens checkouts préservés.
+Changements utilisateur des anciens checkouts préservés.

@@ -5,6 +5,10 @@ const NOTES:=["SUIVRE UNE FORME  ·  Ouvrez la matrice, puis suivez ce qui appar
  "DÉGAGER LES DÉTAILS  ·  Ouvrez puis soufflez. La pointe abrasive (5) détache les concrétions ; le Brush finit la poussière."]
 var preparation:Node3D
 var selected:=-1
+var compact_selected:=0
+var pending_compact:=0
+var compact_bar:HBoxContainer
+var compact_buttons:Array[Button]=[]
 var busy:=false
 var buttons:Array[Button]=[]
 var hint:Label
@@ -23,28 +27,33 @@ func _ready() -> void:
   button.pressed.connect(choose.bind(i));bar.add_child(button);buttons.append(button)
  var reset:=Button.new();reset.text="Recommencer";reset.focus_mode=Control.FOCUS_NONE;reset.custom_minimum_size=Vector2(155,42);bar.add_child(reset)
  reset.pressed.connect(func():choose(selected,true))
+ _compact_selector(layer,style)
  hint=Label.new();hint.position=Vector2(360,962);hint.size=Vector2(1200,30);hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
  hint.add_theme_font_size_override("font_size",18);hint.add_theme_color_override("font_color",Color(.91,.83,.66))
  hint.add_theme_color_override("font_shadow_color",Color(0,0,0,.9));hint.add_theme_constant_override("shadow_offset_y",2);layer.add_child(hint)
  loading=Label.new();loading.text="Préparation du bloc…";loading.position=Vector2(800,500);loading.add_theme_font_size_override("font_size",30);layer.add_child(loading)
  confirmation=preload("res://scripts/experiments/preparation_demos/demo_confirmation.gd").new()
  layer.add_child(confirmation)
- confirmation.confirmed.connect(func():open_demo(pending))
+ confirmation.confirmed.connect(func():open_demo(pending,pending_compact))
  await open_demo(0)
-func choose(index:int,restart:=false) -> void:
- if busy or (index==selected and not restart):return
- pending=index
+func choose(index:int,restart:=false,compact:int=-1) -> void:
+ var choice:=compact_selected if compact<0 else posmod(compact,3)
+ if busy or (index==selected and not restart and choice==compact_selected):return
+ pending=index;pending_compact=choice
  if is_instance_valid(preparation) and not preparation.session.archived:
   preparation.controller.cancel_stroke();confirmation.popup_centered(Vector2i(540,160))
- else:open_demo(index)
-func open_demo(index:int) -> void:
+ else:open_demo(index,choice)
+func open_demo(index:int,compact:int=-1) -> void:
  if busy:return
  busy=true;loading.show()
+ if compact>=0:compact_selected=posmod(compact,3)
+ for button in compact_buttons:button.disabled=true
  for button in buttons:button.disabled=true
  if is_instance_valid(preparation):
   remove_child(preparation);preparation.queue_free()
  await get_tree().process_frame
  preparation=load("res://scenes/experiments/demo_preparation.tscn").instantiate()
+ preparation.compact_variant=compact_selected
  preparation.demo_kind=index;preparation.specimen_id="B17" if index==0 else "M08"
  var block=preparation.get_node("ExcavationBlock");block.demo_kind=index;block.specimen_id=preparation.specimen_id
  add_child(preparation)
@@ -54,7 +63,22 @@ func open_demo(index:int) -> void:
  preparation.controller.ui_blockers.append(confirmation)
  for button in buttons:preparation.controller.ui_blockers.append(button)
  preparation.controller.ui_blockers.append(buttons[0].get_parent().get_child(3))
+ for button in compact_buttons:preparation.controller.ui_blockers.append(button)
+ compact_bar.visible=index==0
+ for i in range(compact_buttons.size()):
+  compact_buttons[i].disabled=false;compact_buttons[i].modulate=Color(1,.83,.55) if i==compact_selected else Color.WHITE
  hint.text=NOTES[index]
  for i in range(buttons.size()):
   buttons[i].disabled=false;buttons[i].modulate=Color(1,.83,.55) if i==index else Color.WHITE
  loading.hide();busy=false
+
+func _compact_selector(layer:CanvasLayer,style:Script) -> void:
+ compact_bar=HBoxContainer.new();compact_bar.position=Vector2(470,66)
+ compact_bar.add_theme_constant_override("separation",8);layer.add_child(compact_bar)
+ var names:=["A · Grande ouverture","B · Poches dispersées","C · Veine profonde"]
+ for i in range(names.size()):
+  var button:=Button.new();button.text=names[i];button.focus_mode=Control.FOCUS_NONE
+  button.custom_minimum_size=Vector2(245,36);button.add_theme_font_size_override("font_size",16)
+  button.add_theme_color_override("font_color",style.INK)
+  button.add_theme_stylebox_override("normal",style.paper_style(style.PAPER,6))
+  button.pressed.connect(choose.bind(0,false,i));compact_bar.add_child(button);compact_buttons.append(button)
