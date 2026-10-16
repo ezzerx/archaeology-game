@@ -17,7 +17,8 @@ Godot 4.7.2 stable ; Sound Design toujours différé.
 
 - [#26 — Isoler la version active](https://github.com/ezzerx/archaeology-game/issues/26).
 - Branche `codex/26-clean-active-runtime`, créée depuis main `99cf5d1`.
-- PR en préparation pour validation ; aucun merge autorisé implicitement.
+- [PR #29](https://github.com/ezzerx/archaeology-game/pull/29), prête pour validation humaine.
+- Source candidate `707a630` ; aucun merge autorisé implicitement.
 - Rapport : `docs/dev/ISSUE26_RUNTIME_CLEANUP_REPORT.md`.
 - Organisation et reconstruction : `docs/RUNTIME_LAYOUT.md`.
 
