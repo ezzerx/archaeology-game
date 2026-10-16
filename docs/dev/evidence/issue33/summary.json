@@ -1,0 +1,20 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "renderer": "Compatibility/OpenGL",
+  "reference": "7feaa4e08d36197e53ac45263ba9ac47662f08ea",
+  "regressions": {
+    "P1": 52,
+    "P5": 128,
+    "P4V2": 91,
+    "P6A49": 197,
+    "M08": 26,
+    "collection_store": 24
+  },
+  "regression_checks": 518,
+  "regression_failures": 0,
+  "resource_checks": 267,
+  "resource_failures": [],
+  "new_checks": 73,
+  "human_validation": "pending",
+  "captures": "Native real-tool controller and mouse-event runs; no reveal/clean fixtures in screenshot route."
+}

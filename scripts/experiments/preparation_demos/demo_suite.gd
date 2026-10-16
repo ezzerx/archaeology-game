@@ -1,0 +1,60 @@
+extends Node
+const TITLES:=["01 · Terre compacte","02 · Sédiments marins","03 · Concrétions"]
+const NOTES:=["SUIVRE UNE FORME  ·  Ouvrez la matrice, puis suivez ce qui apparaît.",
+ "LIBÉRER LES GRAINS  ·  Ouvrez au Chisel, soufflez les zones friables. Les îlots solides se travaillent au Pick.",
+ "DÉGAGER LES DÉTAILS  ·  Ouvrez puis soufflez. La pointe abrasive (5) détache les concrétions ; le Brush finit la poussière."]
+var preparation:Node3D
+var selected:=-1
+var busy:=false
+var buttons:Array[Button]=[]
+var hint:Label
+var confirmation:Control
+var pending:=-1
+var loading:Label
+func _ready() -> void:
+ var layer:=CanvasLayer.new();layer.layer=18;add_child(layer)
+ var bar:=HBoxContainer.new();bar.position=Vector2(470,16);bar.add_theme_constant_override("separation",8);layer.add_child(bar)
+ var style=preload("res://scripts/workshop/playtest_preparation_ui.gd")
+ for i in range(3):
+  var button:=Button.new();button.text=TITLES[i];button.focus_mode=Control.FOCUS_NONE;button.custom_minimum_size=Vector2(245,42)
+  button.add_theme_font_size_override("font_size",18)
+  button.add_theme_color_override("font_color",style.INK)
+  button.add_theme_stylebox_override("normal",style.paper_style(style.PAPER,8))
+  button.pressed.connect(choose.bind(i));bar.add_child(button);buttons.append(button)
+ var reset:=Button.new();reset.text="Recommencer";reset.focus_mode=Control.FOCUS_NONE;reset.custom_minimum_size=Vector2(155,42);bar.add_child(reset)
+ reset.pressed.connect(func():choose(selected,true))
+ hint=Label.new();hint.position=Vector2(360,962);hint.size=Vector2(1200,30);hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+ hint.add_theme_font_size_override("font_size",18);hint.add_theme_color_override("font_color",Color(.91,.83,.66))
+ hint.add_theme_color_override("font_shadow_color",Color(0,0,0,.9));hint.add_theme_constant_override("shadow_offset_y",2);layer.add_child(hint)
+ loading=Label.new();loading.text="Préparation du bloc…";loading.position=Vector2(800,500);loading.add_theme_font_size_override("font_size",30);layer.add_child(loading)
+ confirmation=preload("res://scripts/experiments/preparation_demos/demo_confirmation.gd").new()
+ layer.add_child(confirmation)
+ confirmation.confirmed.connect(func():open_demo(pending))
+ await open_demo(0)
+func choose(index:int,restart:=false) -> void:
+ if busy or (index==selected and not restart):return
+ pending=index
+ if is_instance_valid(preparation) and not preparation.session.archived:
+  preparation.controller.cancel_stroke();confirmation.popup_centered(Vector2i(540,160))
+ else:open_demo(index)
+func open_demo(index:int) -> void:
+ if busy:return
+ busy=true;loading.show()
+ for button in buttons:button.disabled=true
+ if is_instance_valid(preparation):
+  remove_child(preparation);preparation.queue_free()
+ await get_tree().process_frame
+ preparation=load("res://scenes/experiments/demo_preparation.tscn").instantiate()
+ preparation.demo_kind=index;preparation.specimen_id="B17" if index==0 else "M08"
+ var block=preparation.get_node("ExcavationBlock");block.demo_kind=index;block.specimen_id=preparation.specimen_id
+ add_child(preparation)
+ selected=index
+ preparation.restart_requested.connect(func():choose(selected,true))
+ preparation.collection_requested.connect(func():choose((selected+1)%3))
+ preparation.controller.ui_blockers.append(confirmation)
+ for button in buttons:preparation.controller.ui_blockers.append(button)
+ preparation.controller.ui_blockers.append(buttons[0].get_parent().get_child(3))
+ hint.text=NOTES[index]
+ for i in range(buttons.size()):
+  buttons[i].disabled=false;buttons[i].modulate=Color(1,.83,.55) if i==index else Color.WHITE
+ loading.hide();busy=false

@@ -1,49 +1,39 @@
 # Statut canonique
 
 **Date :** 2026-10-16
-**Projet :** ArchaeologyGame
-Source unique de la phase, de la branche, de la gate et de la prochaine action.
 
-## Référence et invariants
+## Référence
+P0–P5 validées. P6A active. Main conserve B–17, M–08 et les interactions
+validées après fusion de #29. Caisses #30 rejetées et archivées sans fusion.
+#27/#28 différées, son différé. Découverte prioritaire, collection comme continuité.
 
-P0–P5 validées et fusionnées. P6A active ; P6B et P7 non démarrées.
-Base validée : main `99cf5d1`, consolidation #24 fusionnée, issue #25 clôturée.
-Antoine accepte cette base M–08/B–17 avec les écrans de caisses/collection provisoires.
-Poche friable P6A49 validée ; art de l'ammonite apprécié. Outils, Brush, dégâts
-localisés, lumière chaude, bloc brut et non-révélation des fossiles enfouis protégés.
-Godot 4.7.2 stable ; Sound Design toujours différé.
+## Mission / gate
+L'essai [#33](https://github.com/ezzerx/archaeology-game/issues/33) reçoit la
+validation explicite d'Antoine : les trois approches apportent une variété
+ludique appréciée. Les réserves concernent la finition, pas l'acceptation de
+l'essai. [PR #34](https://github.com/ezzerx/archaeology-game/pull/34),
+branche codex/33-preparation-demos : fusion et nettoyage autorisés par ce
+verdict selon le workflow installé. Source jouable validée : 2bf10ce.
 
-## Issue active / branche / PR
+Brief : docs/dev/ISSUE33_PREPARATION_DEMOS.md.
+Rapport, verdict humain et captures : docs/dev/ISSUE33_PREPARATION_DEMOS_REPORT.md.
+Vision : docs/design/NEXT_STEPS_VISION.md.
+Worktree : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+Lanceur : Launch-Preparation-Demos.cmd ; scène principale et collection réelle préservées.
 
-- [#26 — Isoler la version active](https://github.com/ezzerx/archaeology-game/issues/26).
-- Branche `codex/26-clean-active-runtime`, créée depuis main `99cf5d1`.
-- [PR #29](https://github.com/ezzerx/archaeology-game/pull/29), prête pour validation humaine.
-- Source candidate `707a630` ; aucun merge autorisé implicitement.
-- Rapport : `docs/dev/ISSUE26_RUNTIME_CLEANUP_REPORT.md`.
-- Organisation et reconstruction : `docs/RUNTIME_LAYOUT.md`.
+## Prochaine action
+Clore #34 et nettoyer ses branches après vérification de la fusion. Ensuite,
+cadrer ensemble une mission de finition avant toute nouvelle implémentation.
+Sujets : grès trop dominant / poches trop rares ; relief réel entre les tours
+de M–08 ; finition des concrétions ; familles d'outils et variantes sur une même
+touche. Aucun nouvel outil, ordre de missions ou développement n'est encore autorisé.
+Le détail des règles de sélection des variantes reste une proposition à discuter.
 
-## Gate / prochaine action
-
-Antoine autorise explicitement #26 : nettoyer les prototypes sans toucher au
-jeu validé, vérifier le fonctionnement et préparer la PR. Candidate implémentée :
-197 déplacements par responsabilité, 77 retraits de fichiers d'expériences et de
-lanceurs, même code conservé après substitution des chemins. Sources/assets,
-fixtures utiles et règles inchangées ; archives récupérables par tag Git.
-
-622 contrôles gameplay/persistance et 252 chargements de ressources passent.
-Import vierge et comparaison de 727 fichiers conservés passent également.
-Ces preuves ne remplacent pas le verdict humain : prochaine action, revue de la
-PR et essai M–08/B–17 par Antoine, puis corrections éventuelles dans cette issue.
-Pas de fusion avant sa validation. Ne pas démarrer #27/#28 dans cette branche.
-
-## Suite et limites
-
-#27 reprend les arrivages ; #28 reprend la collection. Desserte et registre restent
-à choisir avant réalisation. Musée complet, économie, montage et génération globale
-hors périmètre. Collection persistante ; fouille non archivée seulement en mémoire.
-
-Workflow : `docs/DEVELOPMENT_WORKFLOW.md` (une issue → PR → validation → merge →
-nettoyage, prochaine branche depuis main). Les anciennes branches ont été nettoyées ;
-le checkout principal modifié et les autres worktrees utilisateur restent préservés.
-Archives Git : `archive/pre-issue26-runtime` pour cette migration,
-`archive/p6a38-orientable-lamp-2026-10-16` pour la lampe abandonnée.
+## Preuves et points de suivi
+518 contrôles de régression, 73 contrôles nouveaux et 267 ressources passent.
+Trois parcours natifs à 100/100, condition 100 ; occultation contrôlée pixel à pixel.
+Recettes fixes, deux fossiles, aucun générateur global. Le coût du souffle et le
+court chargement des scènes restent des points de suivi pour la production.
+#31 terminé ; #32 remplacée par #34. Conserver les changements utilisateur des
+anciens checkouts et l'accès au lanceur des essais pendant le nettoyage.
+Workflow : une issue → branche depuis main → PR → validation → merge → nettoyage.
