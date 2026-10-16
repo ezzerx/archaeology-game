@@ -108,6 +108,11 @@ static func weight(distance_ratio: float, falloff: float) -> float:
 func constrain_removal(_index: int, next: float, _tool_id: StringName) -> float:
 	return next
 
+func can_detach_micro_remnant(_index: int) -> bool:
+	# Specialized attached deposits may require their own tool. Default materials
+	# retain exactly the validated micro-remnant behavior.
+	return true
+
 func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 		falloff: float, delta: float, effectiveness := Vector3.ONE,
 		residue_generation := 0.0, stop_at_initial_layer := false, brush_cleanup := false) -> int:
@@ -180,6 +185,10 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 							and last_micro_probes < loose_debris.profile.micro_probe_budget:
 						last_micro_probes += 1
 						var island := MicroRemnant.inspect(self, Vector2i(x, y), layer, micro_seen)
+						for member in island:
+							if not can_detach_micro_remnant(member):
+								island = PackedInt32Array()
+								break
 						var volume := 0.0
 						var center := Vector2.ZERO
 						for member in island:

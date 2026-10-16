@@ -1459,3 +1459,51 @@ les régressions utiles et les sources d'assets. Les déplacements gardent les U
 et le comportement ; une ancienne génération peut encore être une dépendance.
 Les preuves et limites de cette migration sont dans le rapport de l'issue 26.
 Cette autorisation ne porte ni sur le merge ni sur la refonte des écrans.
+
+
+## 2026-10-16 — Caisses abandonnées, priorité au cadrage avant réalisation
+
+Antoine rejette le concept de caisses actuel, insuffisant artistiquement, et le
+reporte à une passe dédiée future. Ce verdict remplace l’acceptation provisoire
+de la disposition. Fermer #30 sans fusion, garder une archive récupérable, retirer
+la branche active. Main conserve B–17 et l’ammonite avec le gameplay validé.
+
+Avant de poursuivre, mener un brainstorm global. Pour chaque étape, prendre le
+temps de définir ce qu’elle doit être dans le jeu avant de la développer. Une
+composition fonctionnelle ou des tests verts ne remplacent pas une vision validée.
+Les arrivages et la collection visuelle sont différés ; leur forme reste ouverte.
+
+
+## 2026-10-16 — Découverte prioritaire, collection comme continuité
+
+Antoine privilégie la surprise de découvrir, avec la collection qui donne envie
+de continuer. Il demande de définir ensemble la session idéale, sans développement.
+Cette orientation ne tranche pas encore les indices initiaux, la distribution du
+contenu, les doublons ou la forme de la collection.
+
+
+## 2026-10-16 — Indices larges et diversité réelle de préparation
+
+Antoine souhaite des indices de provenance sans connaître précisément le contenu.
+Il évoque de futures étiquettes et symboles sur des caisses ; le rendu abandonné
+reste rejeté. La rejouabilité doit dépasser le schéma argile/grès/poche : explorer
+des matières et approches différentes, éventuellement des outils distincts,
+cohérents avec les provenances. Préserver le plaisir de découverte et le soin de
+préparation. Les exemples marin/Égypte sont des pistes, pas des recettes ni un GO.
+
+
+## 2026-10-16 — Trois recettes à éprouver avant extension du contenu
+
+Après description des parcours, Antoine autorise trois démos soignées : compact,
+granulaire, encroûté. Les construire au niveau visuel du bloc de référence,
+prendre des captures et itérer après revue interne. Le nouveau geste doit
+modifier la manière de préparer, sans simplement allonger le travail.
+
+B–17 et M–08 servent de témoins. La pointe abrasive est un outil expérimental
+pour les dépôts localisés ; les quatre outils validés restent la référence.
+Une enveloppe granulaire peut découvrir réellement le fossile, à condition de
+respecter l'accès par une ouverture et les collisions. La couverture intacte
+ne doit porter aucune empreinte de l'anatomie ni des concrétions enfouies.
+Ces essais ne valident pas une génération globale ou une extension du catalogue.
+Leur qualité technique et la revue des captures ne remplacent pas le verdict
+humain sur l'intérêt des trois approches.

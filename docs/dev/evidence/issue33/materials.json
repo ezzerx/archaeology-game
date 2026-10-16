@@ -1,0 +1,36 @@
+{
+  "checks": 17,
+  "failures": [],
+  "reports": [
+    {
+      "crust_cells": 0,
+      "initial_height_range": [
+        0.482062578201294,
+        0.860012114048004
+      ],
+      "kind": 0,
+      "min_crust_cover_mm": -1,
+      "specimen_cells": 25404
+    },
+    {
+      "crust_cells": 0,
+      "initial_height_range": [
+        0.463957816362381,
+        0.666771292686462
+      ],
+      "kind": 1,
+      "min_crust_cover_mm": -1,
+      "specimen_cells": 21389
+    },
+    {
+      "crust_cells": 3895,
+      "initial_height_range": [
+        0.463957816362381,
+        0.666771292686462
+      ],
+      "kind": 2,
+      "min_crust_cover_mm": 4.50670409202576,
+      "specimen_cells": 21389
+    }
+  ]
+}

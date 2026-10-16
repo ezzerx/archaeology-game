@@ -70,3 +70,16 @@ construits dynamiquement sont signalés séparément. Les parcours natifs resten
 nécessaires pour vérifier les fabriques dynamiques, les sauvegardes et l'affichage.
 Ne pas utiliser ce comparateur figé comme interdiction de futurs changements
 fonctionnels autorisés dans d'autres issues.
+
+
+## Essais comparatifs de préparation
+
+`Launch-Preparation-Demos.cmd` ouvre exclusivement
+`scenes/experiments/preparation_demos.tscn`. Les adaptateurs, profils et outil
+abrasif vivent sous `scripts/experiments/preparation_demos/`, les shaders sous
+`shaders/experiments/`. La collection principale ne référence pas cette scène.
+B–17, M–08, leurs champs, leurs modèles et les quatre réglages d'outils sont réutilisés.
+Le seul point d'extension ajouté au noyau est `can_detach_micro_remnant`, vrai
+par défaut, afin qu'une concrétion adhérente ne devienne pas un débris nettoyable
+par la brosse lorsqu'elle devient minuscule. Les sources procédurales de la
+pointe sont `abrasive_tool.gd` et son shader, sans dépendance de reconstruction.

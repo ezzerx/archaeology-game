@@ -45,6 +45,22 @@ to rebuild models. See [runtime layout and maintenance](docs/RUNTIME_LAYOUT.md)
 for code, source assets, regression tests and recovery of retired prototypes.
 Gameplay reference: [collection delivery report](docs/dev/P6A50_COLLECTION_LOOP_REPORT.md).
 
+## Comparative preparation trials
+
+Double-click `Launch-Preparation-Demos.cmd` on Windows, or run
+`scenes/experiments/preparation_demos.tscn` with Godot 4.7.2. Set `GODOT_EXE`
+if your executable is installed elsewhere. This launcher does not require a
+PowerShell execution-policy change.
+
+Choose compact earth, marine sediment, or adherent concretions at the top.
+The four usual tools remain available; the third trial adds the abrasive tip on
+**5**. Unfinished work requires confirmation before switching. Trial distinctions
+use their own storage and do not enter the regular collection. Preparation work
+is kept only for the current trial while the game is open.
+
+See the [trial brief](docs/dev/ISSUE33_PREPARATION_DEMOS.md) and
+[review evidence](docs/dev/ISSUE33_PREPARATION_DEMOS_REPORT.md).
+
 ## Validated core
 
 - fixed tabletop / near-top-down excavation

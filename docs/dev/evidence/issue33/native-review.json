@@ -1,0 +1,75 @@
+{
+  "benchmark": [],
+  "brush": [],
+  "captures": [
+    "demo-0-01-covered.png",
+    "demo-0-02-native-excavation.png",
+    "demo-0-05-detail.png",
+    "demo-0-06-complete-native.png",
+    "demo-1-01-covered.png",
+    "demo-1-02-opened.png",
+    "demo-1-03-blown.png",
+    "demo-1-05-detail.png",
+    "demo-1-06-complete-native.png",
+    "demo-2-01-covered.png",
+    "demo-2-02-opened.png",
+    "demo-2-03-blown.png",
+    "demo-2-03b-abrasive-contact.png",
+    "demo-2-04-abraded.png",
+    "demo-2-05-detail.png",
+    "demo-2-06-complete-native.png"
+  ],
+  "checks": 48,
+  "failures": [],
+  "profiles": [],
+  "results": [
+    {
+      "crust_volume": 0.0,
+      "grain_volume": 0.0,
+      "impacts": 3739,
+      "kind": 0,
+      "snapshot": {
+        "classification": "Petit théropode",
+        "cleanliness": 99.9999996534617,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    },
+    {
+      "crust_volume": 0.0,
+      "grain_volume": 5076.27517805448,
+      "impacts": 1162,
+      "kind": 1,
+      "snapshot": {
+        "classification": "Ammonite côtelée",
+        "cleanliness": 99.9999998565892,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    },
+    {
+      "crust_volume": 137.988802698113,
+      "grain_volume": 10228.0056525127,
+      "impacts": 750,
+      "kind": 2,
+      "snapshot": {
+        "classification": "Ammonite côtelée",
+        "cleanliness": 99.9999996514226,
+        "condition": 100.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    }
+  ]
+}
