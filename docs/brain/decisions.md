@@ -1538,3 +1538,11 @@ Orientation durable : étendre la rejouabilité par des nouveautés de game desi
 qui diversifient réellement les gestes et situations, puis bien les exécuter.
 Continuer à explorer des idées utiles au plaisir de préparation ; la seule
 quantité de matériaux ou de pièces n'est pas le moteur recherché.
+
+## 2026-10-17 — Précision M–08 : relief entre petites côtes, spirale compacte
+
+Antoine préfère le sillon resserré de la version antérieure à #35. Les « petites
+vagues » désignent les côtes transversales de la coquille, pas les grands tours.
+Restaurer la spirale validée et donner du volume aux creux entre côtes pour que
+le Pick les suive réellement. Cette précision remplace l'interprétation élargie
+de la première proposition ; poursuivre la correction dans la même PR #36.

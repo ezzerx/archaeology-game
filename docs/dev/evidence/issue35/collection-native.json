@@ -6,12 +6,12 @@
     "sealed-relief.png"
   ],
   "checks": 32,
-  "collection_path": "res://work/test-logs/p6a50/flow-2558703/records.json",
+  "collection_path": "res://work/test-logs/p6a50/flow-2656237/records.json",
   "failures": [],
-  "first_contact_impacts": 4,
+  "first_contact_impacts": 2,
   "native_snapshot": {
     "classification": "Ammonite côtelée",
-    "cleanliness": 99.7952467391627,
+    "cleanliness": 99.5290548834863,
     "condition": 100.0,
     "condition_tier": "Excellent",
     "coverage_passed": true,
@@ -20,6 +20,6 @@
     "largest_hidden_cluster": 0
   },
   "native_ui_clicks": 12,
-  "pick_impacts": 1266,
+  "pick_impacts": 1024,
   "profiles": []
 }

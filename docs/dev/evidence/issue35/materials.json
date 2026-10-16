@@ -20,17 +20,17 @@
       ],
       "kind": 1,
       "min_crust_cover_mm": -1,
-      "specimen_cells": 19541
+      "specimen_cells": 21389
     },
     {
-      "crust_cells": 3671,
+      "crust_cells": 3895,
       "initial_height_range": [
         0.463957816362381,
         0.666771292686462
       ],
       "kind": 2,
-      "min_crust_cover_mm": 8.3314602971077,
-      "specimen_cells": 19541
+      "min_crust_cover_mm": 4.51938629150391,
+      "specimen_cells": 21389
     }
   ]
 }

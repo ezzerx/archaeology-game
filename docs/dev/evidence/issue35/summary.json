@@ -1,10 +1,10 @@
 {
-  "functional_checks": 434,
+  "functional_checks": 435,
   "resource_loads": 268,
   "failures": [],
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "source_base": "0f505af",
-  "native_relief_checks": 64,
+  "native_relief_checks": 65,
   "collection_native_checks": 32,
   "collection_logic_checks": 26,
   "materials_checks": 17,
@@ -13,6 +13,20 @@
     "P4V2": 91,
     "P5": 128,
     "store": 24
+  },
+  "geometry": {
+    "triangles": 71036,
+    "baked_cells": 21389,
+    "compact_silhouette_sha256": "aea779caec991bc4586c5eed422c3c7bcdbf23f3cb4c2526f16ee26d720d104e"
+  },
+  "small_ribs": {
+    "baseline_baked_crest_m": 0.0618165006637573,
+    "baseline_baked_trough_m": 0.0590531247854233,
+    "sculpted_baked_crest_m": 0.06171101224422454,
+    "sculpted_baked_trough_m": 0.05455673789978027,
+    "native_crest_m": 0.0615983903408051,
+    "native_trough_m": 0.0545561537146568,
+    "contact_distance_texels": 7.28010988235474
   },
   "art_comparison": "identical staged inspection cut; other selected images use actual tool inputs",
   "human_validation": "pending"

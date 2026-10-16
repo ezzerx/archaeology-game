@@ -39,42 +39,39 @@ func art_reference() -> void:
 func complete_demo(kind:int) -> void:
  if kind==1:
   geometry_checks()
-  var s=main.block.working_map
-  var target:=-1
-  for y in range(300,370):
-   for x in range(495,568):
-    var i:=y*1024+x
-    if s.structural_ceilings[i]>0 and s.structural_ceilings[i]<.19 and s.fossil.exposed[i]==0:
-     target=i;break
-   if target>=0:break
-  check(target>=0,"marine air leaves a real recessed shell flank to finish with Pick")
-  if target>=0:
-   var p:=Vector2(target%1024,target/1024)
-   var before:float=s._heights[target]
-   for n in range(20):
-    if s.fossil.exposed[target]!=0:break
-    native_impact(p,3);await process_frame
-   check(s.fossil.exposed[target]!=0 and s._heights[target]<before,"native Pick reaches a recessed flank after air")
-   check(absf(s._heights[target]-s.structural_ceilings[target])<.00002,"recess stops at its actual shell height")
-   main.feedback.proxies_enabled=true
-   await settle(8);await shot("marine-pick-recess-native")
+  var field=main.block.working_map.fossil.field
+  var mask:=PackedByteArray();mask.resize(field.component_ids.size())
+  for i in range(mask.size()):mask[i]=1 if field.component_ids[i]>0 else 0
+  # Golden silhouette of the accepted compact M08 at main 0f505af.
+  check(digest(mask)=="aea779caec991bc4586c5eed422c3c7bcdbf23f3cb4c2526f16ee26d720d104e","original compact spiral footprint is exactly preserved")
  await super.complete_demo(kind)
  if kind==1:
   var s=main.block.working_map
-  var outer:=-1;var inner:=-1
-  for i in range(s.structural_ceilings.size()):
-   var region:int=s.fossil.field.component_ids[i]
-   if region==1 and (outer<0 or s.structural_ceilings[i]>s.structural_ceilings[outer]):outer=i
-   if region==3 and (inner<0 or s.structural_ceilings[i]>s.structural_ceilings[inner]):inner=i
+  var crest:=-1;var trough:=-1
+  # Short arc across adjacent costae on ONE whorl, not between spiral turns.
+  for n in range(81):
+   var t:=lerpf(20.26,20.49,float(n)/80)
+   var r:=4.0*exp(.13*t);var theta:=t-1.05
+   var p:=Vector2i(roundi(532+r*cos(theta)),roundi(333+r*sin(theta)))
+   var i:=p.y*1024+p.x
+   if crest<0 or s.structural_ceilings[i]>s.structural_ceilings[crest]:crest=i
+   if trough<0 or s.structural_ceilings[i]<s.structural_ceilings[trough]:trough=i
   var levels:Array[float]=[]
   var contacts:Array[Dictionary]=[]
-  for i in [outer,inner]:
+  main.feedback.proxies_enabled=true
+  await zoom_to(3.5,Vector2(535,350))
+  for i in [crest,trough]:
    var p:=Vector2(i%1024,i/1024)
-   native_impact(p,3)
+   native_impact(p,3);await settle(4)
    var hit:Dictionary=main.controller.hit
-   check(hit.get("inside",false) and hit.map.distance_to(p)<2,"native Pick ray reaches the intended whorl")
+   check(hit.get("inside",false) and hit.map.distance_to(p)<2,"native Pick reaches the intended small rib or trough")
    levels.append(main.block.to_local(hit.world).y)
+   check(main.feedback.proxies[3].global_position.distance_to(hit.world)<.0001,"visible Pick tip stays at the actual contact")
    contacts.append({"map":str(p),"local_height_m":levels[-1],"baked_height_m":.018+s.structural_ceilings[i]*.102})
-  check(levels[0]-levels[1]>.020,"outer whorl stands at least 20 mm above the umbilical turn at actual tool contact")
-  check(s.fossil.condition==100,"recess and crest Pick contacts preserve shell condition")
-  evidence.relief_contacts=contacts
+  var distance:=Vector2(crest%1024,crest/1024).distance_to(Vector2(trough%1024,trough/1024))
+  check(distance>=4 and distance<=16,"measured crest and trough are neighboring small waves")
+  check(levels[0]-levels[1]>.005,"at least 5 mm of real Pick descent between adjacent costae")
+  check(s.fossil.condition==100,"following the small ribs preserves shell condition")
+  evidence.rib_contacts=contacts;evidence.rib_contact_distance_texels=distance
+  await shot("small-ribs-pick-contact-native")
+  main.feedback.proxies_enabled=false

@@ -17,35 +17,36 @@ bpy.context.preferences.filepaths.save_version=0
 bpy.context.scene.unit_settings.system='METRIC'
 mat=bpy.data.materials.new('M08_Warm_fossil_ivory');mat.diffuse_color=(.68,.60,.44,1)
 mat.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.78
-N=1100;SIDES=40;END=23.6;ROT=-1.05
+N=1100;SIDES=32;END=23.6;ROT=-1.05
 verts=[];faces=[];regions=[]
 def point(t,a,inner=False,depth=0):
-    r=4.0*math.exp(.13*t)
-    scale=(r/88)**.72
-    # Open a real spiral sulcus between successive whorls. Their shoulders no
-    # longer almost touch; the existing Pick can work the recessed matrix.
-    w=r*.345*(1+.012*math.sin(t*3.7)+.008*math.sin(t*7.1))
-    theta=t+ROT+.006*math.sin(t*2.3)
-    # Lower inner turns into a bowl while keeping the outer crest under the
-    # original sealed block. Full rounded flanks replace the former shallow loft.
-    height=.027+.008*scale
-    dz=.003+.026*scale
-    phase=t*27+.9*math.sin(a)+.22*math.sin(t*6)+.28*math.sin(2*a)
-    ridge=max(0,math.cos(phase))**2.5
-    rib=(.0006+.0038*scale)*(.88+.12*math.sin(t*9.3))
+    r=4.0*math.exp(.13*t);w=r*.377
+    theta=t+ROT
+    # Ribs lean into the whorl, branch subtly at the flanks, and vary in strength.
+    phase=t*27+.9*math.sin(a)+.12*math.sin(t*8)+.28*math.sin(2*a)
+    ridge=max(0,math.cos(phase))**3
+    height=.034+.014*(r/88)**.55
+    dz=.0025+.016*(r/88)**.7
+    rib=.00050+.0028*(r/88)**.65
     weather=1-.48*math.exp(-((t-15.45)/.28)**2)*max(0,math.sin(a))**5
     lateral=math.cos(a)*w
     h=height+math.sin(a)*dz+rib*ridge*max(0,math.sin(a))**.55*weather
-    # Worn lip and fine asymmetry are modeled, not painted crack lines.
-    h-=.004*max(0,min(1,(t-(END-.28))/.28))**2*max(0,math.sin(a))**2
-    h+=.00016*math.sin(t*83+a*11)*math.sin(t*39-a*17)
+    # Preserve the approved tight spiral and its crest envelope. The added
+    # depth is between adjacent costae, not between the large spiral whorls.
+    # Broad rounded troughs give the Pick a real surface to follow; fading at
+    # the flanks retains the existing outline and terminal opening.
+    wave=(.5+.5*math.cos(phase))**1.7
+    groove=(.0005+.0055*(r/88)**.7)*(1-wave)
+    h-=groove*max(0,math.sin(a))**1.5*weather
+    h-=.005*max(0,min(1,(t-(END-.28))/.28))**2*max(0,math.sin(a))**2
+    h+=.00012*math.sin(t*83+a*11)*math.sin(t*39-a*17)
+    # A small natural worn edge; the terminal opening has a recessed mineral core.
     if inner:
         lateral*=.79*(1-depth*.56)
         h=height+(h-height)*.73*(1-depth*.6)-.003*depth
     x=532+(r+lateral)*math.cos(theta)
     y=333+(r+lateral)*math.sin(theta)
     return ((x+.5)/1024*1.1-.55,-((y+.5)/640*.7-.35),h)
-
 for k in range(N+1):
     t=END*k/N
     for j in range(SIDES):verts.append(point(t,j/SIDES*math.tau))
@@ -82,7 +83,7 @@ uv=mesh.uv_layers.new(name='UVMap')
 for loop in mesh.loops:
     p=mesh.vertices[loop.vertex_index].co;uv.data[loop.index].uv=(p.x/.24,-p.y/.24)
 mesh.materials.append(mat)
-ob['source_method']='original deep-whorled planispiral loft with modeled costae, open sulcus and recessed aperture'
+ob['source_method']='original compact planispiral loft with sculpted intercostal troughs and recessed aperture'
 # Short-range vertex AO enhances actual folds; no painted uniform cracks.
 print('BAKE AO',len(mesh.vertices),flush=True)
 mesh.calc_loop_triangles();bvh=BVHTree.FromPolygons([v.co for v in mesh.vertices],[tuple(t.vertices) for t in mesh.loop_triangles],all_triangles=True)

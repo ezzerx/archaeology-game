@@ -1,23 +1,26 @@
-# Ammonite — relief à préparer (#35)
+# Ammonite — relief des petites côtes (#35)
 
-## Vision approuvée
-Améliorer l'ammonite avant les passes ciblées sur les mécaniques : découvrir les bosses au souffle, suivre les creux au Pick, révéler les détails sous les concrétions. Antoine approuve cette priorité ; la rejouabilité doit continuer à progresser par des gestes variés et bien réalisés.
-
-## Problème joueur
-Les sédiments marins changent agréablement la fouille, mais la finition de M–08 donne encore l'impression de travailler une surface trop plate. La forme doit guider le geste.
+## Vision précisée par Antoine
+Conserver la spirale compacte et le sillon resserré de la version validée sur
+main. Le relief demandé concerne les petites vagues transversales de la coquille,
+pas l'écart entre les grands tours. Le Pick doit pouvoir suivre les bosses et
+descendre dans leurs creux réels. Cette précision remplace l'interprétation
+initiale qui élargissait la spirale.
 
 ## Périmètre
-- Modeler des tours plus volumétriques, des sillons lisibles et des côtes organiques en conservant l'ivoire chaud et l'identité de M–08.
-- Rebâtir ensemble le modèle, son occlusion locale et le champ de collision réel ; les creux visuels doivent correspondre à la matière et au contact des outils.
-- Revoir le résultat natif avant/pendant/après, dans les préparations marine, encroûtée et la référence M–08.
-- Conserver les réglages des outils, le film de poussière, les dégâts localisés, les critères de fin et B–17.
+- Restaurer le profil général d'origine, dont largeur et espacement des tours.
+- Sculpter des creux arrondis entre les petites côtes, en gardant l'ivoire chaud
+  et l'aspect de la coquille validée.
+- Reconstruire ensemble modèle, occlusion locale et champ de contact.
+- Vérifier la lecture en jeu, le contact de la pointe sur deux vagues voisines,
+  l'occultation initiale et la finition complète.
+- Conserver les outils, matières, nettoyage, dégâts et critères de fin validés.
 
 ## Acceptation
-- [ ] Des crêtes et creux réellement distincts se lisent depuis la caméra de jeu.
-- [ ] Le Pick atteint les creux sans laisser de zones impossibles à préparer ; la finition complète reste accessible.
-- [ ] Le souffle et l'abrasion respectent le nouveau volume ; aucun indice sur la couverture intacte.
-- [ ] Captures natives comparables et contrôles de non-régression, avec limites documentées.
-- [ ] PR et essai humain avant fusion.
+- La silhouette compacte de main est conservée.
+- Les petites côtes ont un relief réel lisible et accessible au Pick.
+- Ni sillon entre tours élargi, ni centre artificiellement approfondi.
+- Les préparations marine, encroûtée et M–08 habituelle restent terminables.
+- Captures natives, contrôles puis essai humain avant fusion de la même PR.
 
-Hors périmètre : rééquilibrage des poches, familles d'outils, nouvel outil, générateur, nouvelles pièces ou interfaces. Ces missions seront cadrées séparément.
-
+Hors périmètre : poches, familles d'outils, nouvel outil, générateur et nouvelles pièces.

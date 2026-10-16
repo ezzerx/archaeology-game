@@ -8,19 +8,18 @@ B–17/M–08, outils et interactions validés restent la référence.
 Caisses #30 rejetées ; #27/#28 et son différés.
 
 ## Mission active / gate
-Antoine approuve l'amélioration de l'ammonite, puis des finitions ciblées.
 Issue [#35](https://github.com/ezzerx/archaeology-game/issues/35),
 branche codex/35-ammonite-relief depuis main, worktree
 C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+PR [#36](https://github.com/ezzerx/archaeology-game/pull/36) corrigée :
+spirale compacte restaurée, relief entre les petites côtes transversales.
+Vérifications et revue des captures terminées ; validation humaine attendue.
 Brief : docs/dev/ISSUE35_AMMONITE_RELIEF.md.
-Modèle et contact réel : bosses au souffle, creux au Pick, détails sous les concrétions.
-Implémentation et revue native terminées. PR [#36](https://github.com/ezzerx/archaeology-game/pull/36) ouverte ; source jouable 8d7402c. Attendre l’essai humain avant fusion.
+Rapport : docs/dev/ISSUE35_AMMONITE_RELIEF_REPORT.md.
 
 ## Prochaine action
-Attendre le verdict humain sur le volume
-et le plaisir de suivre les creux au Pick avant fusion. Rapport et preuves :
-docs/dev/ISSUE35_AMMONITE_RELIEF_REPORT.md.
-434 contrôles fonctionnels et 268 ressources passent ; quatre parcours complets.
+Présenter la correction à Antoine et recueillir son essai du relief des petites
+côtes. Ne pas fusionner avant sa validation explicite.
 Le rééquilibrage des poches, les familles d'outils et les nouvelles variantes
 seront cadrés séparément après cette mission ; ne pas les développer ici.
 
