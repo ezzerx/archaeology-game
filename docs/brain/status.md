@@ -10,8 +10,9 @@ validées après fusion de #29. Caisses #30 rejetées et archivées sans fusion.
 ## Mission active / gate
 [#33](https://github.com/ezzerx/archaeology-game/issues/33), branche
 `codex/33-preparation-demos`, créée depuis main. Trois démos comparatives livrables,
-revues et testées : compact, granulaire, encroûté. PR à préparer pour validation
-humaine ; aucune fusion autorisée implicitement.
+revues et testées : compact, granulaire, encroûté.
+[PR #34](https://github.com/ezzerx/archaeology-game/pull/34), prête pour validation
+humaine. Source jouable `2bf10ce` ; aucune fusion autorisée implicitement.
 
 Brief : `docs/dev/ISSUE33_PREPARATION_DEMOS.md`.
 Rapport, captures et limites : `docs/dev/ISSUE33_PREPARATION_DEMOS_REPORT.md`.
@@ -28,5 +29,7 @@ Antoine, corriger dans #33, puis attendre sa validation avant merge et nettoyage
 
 Recettes fixes, deux fossiles, aucun générateur global. Le coût du souffle et le
 court chargement des scènes restent des points de suivi pour la production.
-Le cadrage documentaire #32 est repris dans cette branche, sans empiler son code.
+Le cadrage #31 est terminé ; sa PR documentaire #32 est remplacée par #34,
+sans empiler son code. La branche documentaire est conservée jusqu’au nettoyage
+après validation de #34.
 Workflow : une issue → branche depuis main → PR → validation → merge → nettoyage.
