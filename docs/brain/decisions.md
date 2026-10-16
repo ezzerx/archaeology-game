@@ -1507,3 +1507,22 @@ ne doit porter aucune empreinte de l'anatomie ni des concrétions enfouies.
 Ces essais ne valident pas une génération globale ou une extension du catalogue.
 Leur qualité technique et la revue des captures ne remplacent pas le verdict
 humain sur l'intérêt des trois approches.
+
+## 2026-10-16 — Trois préparations validées, finition à cadrer par mécanique
+
+Antoine valide l'intérêt ludique de l'essai #33. La préparation marine centrée
+sur le souffle et la pointe abrasive des concrétions apportent une variation
+appréciée. Les poches doivent mieux équilibrer le grès du bloc compact ; les
+creux de l'ammonite doivent offrir un relief sensible au Pick. Ces réserves
+définissent des sujets de finition, pas un rejet des nouvelles approches.
+
+Il propose de regrouper les outils par familles avec variantes sur appuis
+répétés, par exemple Brush/abrasif sur 1. L'idée vise une utilisation plus
+ludique et une place pour de futurs gestes spécialisés ; elle ne valide ni une
+nouvelle alternative précise au Chisel, ni un changement automatique d'outil.
+
+La validation explicite de l'essai permet de clore sa PR conformément au
+workflow installé. Définir et valider la vision de chaque prochaine mission
+avant création d'issues exécutables et développement. Garder les démos séparées
+de la collection réelle ; leur acceptation ne valide pas encore un générateur
+de recettes, un catalogue supplémentaire ou une finition artistique définitive.

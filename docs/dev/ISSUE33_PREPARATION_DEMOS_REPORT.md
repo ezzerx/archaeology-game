@@ -98,13 +98,43 @@ mesures restent un point de suivi si ces matières passent en production.
 Trois recettes fixes, deux fossiles existants. Aucun générateur global, nouveau
 catalogue, économie, métier de conservation scientifique ou Sound Design.
 La pointe est sûre dans cet essai, sans nouvelle pénalité d'usure ou de dégâts.
-Les mécaniques et le budget de contenu restent à sélectionner après le test
-humain. La fouille non terminée n'est pas sauvegardée en fermant l'application.
+Le budget de contenu et la distribution de production restent à définir. La fouille non terminée n'est pas sauvegardée en fermant l'application.
 
 Tester surtout : la matière suggère-t-elle le bon geste ? Le souffle donne-t-il
 le plaisir de libérer une forme ? La concrétion ajoute-t-elle un petit moment
 intéressant plutôt qu'une corvée ? Quel essai donne envie de préparer le bloc
 suivant ? Le test technique ne tranche pas ces questions.
+
+## Verdict humain — 16 octobre 2026
+
+Antoine valide explicitement l'essai dans son ensemble : les trois approches
+apportent une nouveauté appréciée et changent la manière de fouiller. Cette
+validation porte sur l'intérêt des mécaniques ; chaque approche mérite encore
+une passe de finition ciblée.
+
+- **Terre compacte** : idée retenue, mais le grès domine trop et les poches sont
+  trop peu présentes. Rechercher un meilleur équilibre des rencontres, sans
+  transformer chaque bloc en la même succession obligatoire.
+- **Sédiments marins** : la préparation centrée sur le Blower est appréciée.
+  L'ammonite doit offrir davantage de relief réel entre les tours de la
+  coquille ; le travail au Pick paraît encore trop plat.
+- **Concrétions** : expérience et pointe abrasive appréciées. Le geste est
+  cohérent avec le thème et peut constituer une rencontre occasionnelle.
+- **Accès aux outils** : Antoine propose des familles sous les mêmes touches :
+  par exemple Brush et pointe abrasive sur 1, avec un second appui pour changer
+  de variante. La même logique pourrait accueillir une alternative au Chisel
+  lorsqu'un usage distinct sera défini. Il ne demande pas encore un outil précis.
+
+Pistes de cadrage à discuter, sans changement de code : creux réels de l'ammonite
+cohérents entre modèle, matière à dégager et contact du Pick ; répartition des
+poches/grès ; lecture et finition des concrétions. Pour les familles, rendre la
+variante active visible et éviter un changement involontaire au retour dans une
+famille. Une nouvelle variante doit apporter un geste utile, pas simplement
+remplir un emplacement.
+
+La recommandation de commencer par le relief de M–08 reste une proposition :
+elle bénéficierait aux préparations marine et encroûtée. Aucun ordre de
+développement ni nouveau périmètre n'est validé par ce retour.
 
 ## Reproduction
 
