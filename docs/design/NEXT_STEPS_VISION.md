@@ -94,8 +94,17 @@ La quantité de contenu doit amplifier une boucle convaincante.
 Une fois cette fiche approuvée : issues bornées, implémentation, preuve native,
 revue humaine puis fusion. Aucun de ces axes n’est encore autorisé en code.
 
+## Orientation exprimée par Antoine
+
+La surprise de découvrir vient en premier ; la collection donne envie de continuer.
+Antoine demande de définir ensemble la session idéale, sans développement.
+Cette hiérarchie guide le cadrage ; elle ne valide pas encore un scénario détaillé,
+un mécanisme de hasard ou une structure particulière de collection.
+
 ## Prochaine question à trancher ensemble
 
-Dans la promesse globale, quel équilibre Antoine souhaite-t-il entre surprise de
-la découverte, maîtrise du geste et construction d’une collection ? Recommandation
-initiale : découverte et geste au premier plan, collection comme raison de revenir.
+Quels indices le joueur reçoit-il avant la première découverte, et comment garder
+l’intérêt de la fouille après avoir reconnu la famille du spécimen ? Comparer les
+conséquences d’une priorité découverte et d’une priorité collection avant de fixer
+le déroulé de la session.
+

@@ -1472,3 +1472,11 @@ Avant de poursuivre, mener un brainstorm global. Pour chaque étape, prendre le
 temps de définir ce qu’elle doit être dans le jeu avant de la développer. Une
 composition fonctionnelle ou des tests verts ne remplacent pas une vision validée.
 Les arrivages et la collection visuelle sont différés ; leur forme reste ouverte.
+
+
+## 2026-10-16 — Découverte prioritaire, collection comme continuité
+
+Antoine privilégie la surprise de découvrir, avec la collection qui donne envie
+de continuer. Il demande de définir ensemble la session idéale, sans développement.
+Cette orientation ne tranche pas encore les indices initiaux, la distribution du
+contenu, les doublons ou la forme de la collection.

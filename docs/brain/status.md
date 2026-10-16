@@ -30,9 +30,9 @@ reprendre automatiquement les caisses physiques, une desserte ou un registre.
 - [PR documentaire #32](https://github.com/ezzerx/archaeology-game/pull/32), en brouillon ; aucun changement de gameplay.
 - Support : `docs/design/NEXT_STEPS_VISION.md`.
 
-Prochaine action autorisée : brainstorm avec Antoine sur l’état du jeu, sa
-promesse, les priorités et la vision de chaque mission. Les pistes du document
-sont des propositions non approuvées. Aucun développement, nouvelle passe d’art,
+Orientation exprimée : surprise de découvrir en premier, collection comme envie
+de continuer. Prochaine action autorisée : définir ensemble la session idéale,
+sans développer. Les scénarios détaillés restent des propositions non approuvées. Aucun développement, nouvelle passe d’art,
 merge ou passage de phase ne découle de ce brainstorm sans accord explicite.
 
 ## Méthode et limites
