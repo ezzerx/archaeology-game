@@ -1,0 +1,12 @@
+{
+  "checks": 3,
+  "disposition": 1,
+  "failures": [],
+  "native_impact_p95_ms": 13.833,
+  "native_impact_samples": 15,
+  "note": "Native controlled gesture on the largest total pocket layout; no whole-game FPS claim.",
+  "particles_in_capture": 162,
+  "pocket_flow_p95_ms": 6.015,
+  "pocket_flow_samples": 87,
+  "resolution": "(1440, 810)"
+}

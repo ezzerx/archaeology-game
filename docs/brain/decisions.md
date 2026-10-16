@@ -1552,3 +1552,12 @@ de la première proposition ; poursuivre la correction dans la même PR #36.
 Antoine accepte le résultat corrigé 75555a0 : « Ok c'est sympa comme ça ! ».
 La spirale compacte avec petites côtes sculptées devient la référence pour M–08.
 Clore #35 selon le workflow ; cadrer la prochaine finition avant développement.
+
+## 2026-10-17 — GO terre compacte, trois dispositions
+
+Antoine autorise une grande poche avec une petite, plusieurs poches modestes,
+puis une veine plus profonde avec une seconde rencontre. Argile dominante,
+bancs de grès discontinus, poches remplaçant de la matière compacte pour créer
+des accélérations et des choix de poursuite. Garder rendu et feeling des outils.
+Captures, revue et itérations avant PR ; l'accord porte sur l'essai #37, pas
+sur un générateur global ou les familles d'outils.

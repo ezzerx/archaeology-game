@@ -1,11 +1,13 @@
 extends "res://scripts/collection/specimen_preparation.gd"
 @export var demo_kind:=0
+var compact_variant:=0
 var material_hint:Label
 func _create_mastery_ui() -> PreparationUI:
  var ui=preload("res://scripts/experiments/preparation_demos/demo_ui.gd").new()
  ui.distinction=distinction
  return ui
 func _create_profile() -> SoilFoundationProfile:
+ if demo_kind==0:return preload("res://scripts/experiments/preparation_demos/compact_profile.gd").new(block.working_map,block.footprint,block.rim,compact_variant)
  return preload("res://scripts/experiments/preparation_demos/demo_profile.gd").new(block.working_map,block.footprint,block.rim,demo_kind)
 func _create_feedback() -> MaterialFeedback:return preload("res://scripts/experiments/preparation_demos/demo_feedback.gd").new()
 func _ready() -> void:
@@ -48,7 +50,7 @@ ALBEDO = mix(color, cursor_color.rgb, marker);""")
  material_hint.add_theme_color_override("font_shadow_color",Color(0,0,0,.9));material_hint.add_theme_constant_override("shadow_offset_y",2)
  session_ui.root_control.add_child(material_hint)
  # Keep discovery notices below the selector instead of underneath its buttons.
- session_ui.notice_label.position.y=78
+ session_ui.notice_label.position.y=116 if demo_kind==0 else 78
  if demo_kind>0:
   feedback.colors[0]=Color(.41,.34,.22);feedback.colors[1]=Color(.37,.34,.25);feedback.colors[2]=Color(.48,.42,.30)
  $Debug/Help.text="1 Brush   2 Chisel   3 Souffleur   4 Pick"+("   5 Pointe abrasive" if demo_kind==2 else "")+"     Molette · zoom     Clic droit · déplacer     Home · vue"

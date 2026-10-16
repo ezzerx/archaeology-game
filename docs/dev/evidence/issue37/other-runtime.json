@@ -1,0 +1,22 @@
+{
+  "active_render_p95_ms": 13.112,
+  "checks": 8,
+  "failures": [],
+  "idle_frame_p50_ms": 4.166,
+  "idle_frame_p95_ms": 4.244,
+  "resolution": "(1440, 810)",
+  "tools": {
+    "abrasive_tip": {
+      "active_ticks": 120,
+      "edit_max_ms": 1.295,
+      "edit_p50_ms": 0.876,
+      "edit_p95_ms": 1.157
+    },
+    "air_blower": {
+      "active_ticks": 180,
+      "edit_max_ms": 6.898,
+      "edit_p50_ms": 4.614,
+      "edit_p95_ms": 5.64
+    }
+  }
+}
