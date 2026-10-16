@@ -1459,3 +1459,13 @@ les régressions utiles et les sources d'assets. Les déplacements gardent les U
 et le comportement ; une ancienne génération peut encore être une dépendance.
 Les preuves et limites de cette migration sont dans le rapport de l'issue 26.
 Cette autorisation ne porte ni sur le merge ni sur la refonte des écrans.
+
+
+## 2026-10-16 — Fusion du nettoyage et composition des arrivages
+
+Antoine autorise explicitement la fusion de #29 et le passage au ticket suivant.
+La composition native de #27 retient deux caisses fermées sur l’établi : il la
+valide provisoirement tout en demandant un travail visuel supplémentaire.
+Cette acceptation de disposition ne vaut ni validation artistique finale ni
+permission de fusionner la refonte. Conserver l’accès rapide aux préparations,
+leurs protections et la surprise du contenu ; traiter la collection séparément.

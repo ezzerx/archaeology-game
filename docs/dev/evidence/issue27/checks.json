@@ -1,0 +1,26 @@
+{
+  "arrivals": {
+    "checks": 36,
+    "failures": []
+  },
+  "collection": {
+    "checks": 32,
+    "failures": []
+  },
+  "invariants": {
+    "checks": 26,
+    "failures": []
+  },
+  "store": {
+    "checks": 24,
+    "failures": []
+  },
+  "reload": {
+    "checks": 1,
+    "failures": []
+  },
+  "resources": {
+    "checks": 255,
+    "failures": []
+  }
+}

@@ -3,6 +3,10 @@ signal specimen_chosen(id:String)
 signal resume_requested
 const Catalog=preload("res://scripts/collection/catalog.gd")
 const Style=preload("res://scripts/workshop/playtest_preparation_ui.gd")
+var arrivals:Control
+var gallery_root:Control
+var gallery_resume:Button
+var gallery_banner:Label
 var root_control:Control
 var store:RefCounted
 var body:HBoxContainer
@@ -35,28 +39,39 @@ func button(parent:Node,text:String,action:Callable) -> Button:
 func setup(data:RefCounted) -> void:
  store=data;layer=20;add_child(style)
  root_control=Control.new();add_child(root_control)
+ root_control.mouse_filter=Control.MOUSE_FILTER_IGNORE
  root_control.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
- var background:=ColorRect.new();root_control.add_child(background)
+ gallery_root=Control.new();root_control.add_child(gallery_root)
+ gallery_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+ var background:=ColorRect.new();gallery_root.add_child(background)
  background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
  background.color=Color("342c23")
  var shader:=Shader.new()
  shader.code="shader_type canvas_item; void fragment(){vec2 p=UV;float grain=fract(sin(dot(FRAGCOORD.xy,vec2(12.9898,78.233)))*43758.5453);vec3 c=mix(vec3(.12,.105,.085),vec3(.25,.205,.15),1.0-distance(p,vec2(.5,.25))*.85);COLOR=vec4(c+(grain-.5)*.017,1.0);}"
  var mat:=ShaderMaterial.new();mat.shader=shader;background.material=mat
- var overline:=label(root_control,"MUSÉUM D’HISTOIRE NATURELLE     /     ATELIER DES COLLECTIONS",17,false,Color("cdbb96"))
+ var overline:=label(gallery_root,"MUSÉUM D’HISTOIRE NATURELLE     /     ATELIER DES COLLECTIONS",17,false,Color("cdbb96"))
  overline.position=Vector2(164,48)
- title=label(root_control,"Les arrivages",55,true,Style.PAPER);title.position=Vector2(160,82)
- subtitle=label(root_control,"Chaque caisse est une découverte à préparer.",23,false,Color("cdbb96"));subtitle.position=Vector2(164,158)
- count_label=label(root_control,"",22,false,Style.PAPER);count_label.position=Vector2(1480,62)
- var navigation:=HBoxContainer.new();root_control.add_child(navigation);navigation.position=Vector2(164,212);navigation.add_theme_constant_override("separation",12)
+ title=label(gallery_root,"Les arrivages",55,true,Style.PAPER);title.position=Vector2(160,82)
+ subtitle=label(gallery_root,"Chaque caisse est une découverte à préparer.",23,false,Color("cdbb96"));subtitle.position=Vector2(164,158)
+ count_label=label(gallery_root,"",22,false,Style.PAPER);count_label.position=Vector2(1480,62)
+ var navigation:=HBoxContainer.new();gallery_root.add_child(navigation);navigation.position=Vector2(164,212);navigation.add_theme_constant_override("separation",12)
  depot_button=button(navigation,"Les arrivages",func():show_page("depot"))
  gallery_button=button(navigation,"Ma collection",func():show_page("gallery"))
- resume_button=button(root_control,"Retour à l’établi",func():resume_requested.emit())
+ resume_button=button(gallery_root,"Retour à l’établi",func():resume_requested.emit())
  resume_button.position=Vector2(1505,212);resume_button.custom_minimum_size.x=250
- body=HBoxContainer.new();root_control.add_child(body);body.position=Vector2(164,294);body.size=Vector2(1592,628);body.add_theme_constant_override("separation",32)
- banner=label(root_control,"",23,false,Style.PAPER);banner.position=Vector2(164,947);banner.size=Vector2(1592,88);banner.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+ body=HBoxContainer.new();gallery_root.add_child(body);body.position=Vector2(164,294);body.size=Vector2(1592,628);body.add_theme_constant_override("separation",32)
+ banner=label(gallery_root,"",23,false,Style.PAPER);banner.position=Vector2(164,947);banner.size=Vector2(1592,88);banner.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+ gallery_resume=resume_button;gallery_banner=banner
+ arrivals=preload("res://scripts/collection/arrivals/arrivals_view.gd").new();root_control.add_child(arrivals)
+ arrivals.specimen_chosen.connect(func(id:String):specimen_chosen.emit(id))
+ arrivals.collection_requested.connect(func():show_page("gallery"))
+ arrivals.resume_requested.connect(func():resume_requested.emit())
  show_page("depot")
 func show_page(page:String,message:="") -> void:
  mode=page;root_control.show()
+ gallery_root.visible=page=="gallery";arrivals.visible=page=="depot"
+ resume_button=arrivals.resume_button if page=="depot" else gallery_resume
+ banner=arrivals.banner if page=="depot" else gallery_banner
  title.text="Les arrivages" if page=="depot" else "Votre collection"
  subtitle.text="Une provenance, quelques indices… à vous de faire apparaître le reste." if page=="depot" else "Les pièces que vous avez préparées, telles que vous les avez laissées."
  count_label.text="%d / 2 pièces conservées"%store.records.size()
@@ -64,10 +79,14 @@ func show_page(page:String,message:="") -> void:
  resume_button.visible=not current_id.is_empty() and not current_archived
  for child in body.get_children():body.remove_child(child);child.queue_free()
  item_buttons.clear();photos.clear()
- for id:String in Catalog.IDS:_item(id)
+ if page=="gallery":
+  for id:String in Catalog.IDS:_item(id)
+ else:
+  arrivals.configure(store,current_id,current_archived)
+  item_buttons=arrivals.item_buttons.duplicate()
  banner.text=message
  if banner.text.is_empty():
-  if page=="depot":banner.text="Ouvrez une caisse. Le travail à l’établi commence dès son ouverture."
+  if page=="depot":banner.text=""
   elif store.records.size()==2:banner.text="Deux découvertes réunies. Vous pouvez reprendre un exemplaire pour améliorer votre préparation."
   else:banner.text="Les emplacements vides attendent vos prochaines découvertes."
  if store.load_failed:banner.text="La collection enregistrée est illisible. Le fichier est préservé ; l’archivage est momentanément indisponible."

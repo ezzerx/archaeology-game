@@ -8,6 +8,7 @@ M–08 ou B–17. Le lanceur P6A50 reste compatible avec les raccourcis existant
 
 | Dossier | Responsabilité |
 | --- | --- |
+| `scripts/collection/arrivals/` | Caisses physiques dans un monde 3D séparé, sélection et actions d’arrivage |
 | `scripts/collection/` | Catalogue, arrivages, photos, sauvegarde, variantes M–08/B–17 |
 | `scripts/excavation/pockets/` | Poche friable validée, recette et rendu ; bases sous `base/` et `buried_base/` |
 | `scripts/excavation/block/` | Empreinte naturelle, débris, bords bruts |
@@ -28,6 +29,7 @@ Cette organisation nomme les responsabilités sans réécrire le gameplay.
 
 - B–17 : `assets/p6a37/`, `art/source/p6a37/`, `tools/p6a37/Build-Modeled-Skeleton.ps1`.
 - M–08 : `assets/p6a50/`, `art/source/p6a50/`, `tools/p6a50/Build-Ammonite.ps1`.
+- Caisses d’arrivages : `assets/arrivals/`, `art/source/arrivals/`, `tools/arrivals/build_crates.py` ; matières finales dans le décor Godot.
 - Les sources, notices et assets intermédiaires sont conservés avec leur provenance.
 - `scripts/p6a34/mesh_patch_data.gd` est volontairement stable : son chemin est
   sérialisé dans les champs binaires `.res`. Ne pas le déplacer sans migration

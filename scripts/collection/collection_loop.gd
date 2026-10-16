@@ -28,7 +28,7 @@ func _ready() -> void:
  loading.position=Vector2(620,985);loading.size=Vector2(1100,60)
  get_window().title="ArchaeologyGame — Atelier des collections"
 func choose_specimen(id:String) -> void:
- if busy or not id in Catalog.IDS:return
+ if busy or confirmation!=null or not id in Catalog.IDS:return
  if preparation!=null and not preparation.session.archived:
   if preparation.specimen_id==id:resume();return
   confirm_change("Ouvrir une autre caisse ?","La préparation en cours sera laissée de côté.
@@ -40,6 +40,7 @@ Seules les pièces ajoutées à la collection sont enregistrées.",func():open_s
  open_specimen(id)
 func confirm_change(title:String,message:String,action:Callable) -> void:
  if confirmation!=null:return
+ hub.arrivals.blocked=true
  confirmation=CanvasLayer.new();confirmation.layer=30;add_child(confirmation)
  var bg:=ColorRect.new();confirmation.add_child(bg);bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);bg.color=Color(0,0,0,.7)
  var center:=CenterContainer.new();bg.add_child(center);center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -49,13 +50,18 @@ func confirm_change(title:String,message:String,action:Callable) -> void:
  hub.label(col,message,23)
  confirm_button=hub.button(col,"Ouvrir la nouvelle caisse",func():close_confirmation();action.call())
  cancel_button=hub.button(col,"Garder ma préparation",close_confirmation)
+ confirm_button.focus_mode=Control.FOCUS_ALL;cancel_button.focus_mode=Control.FOCUS_ALL
+ cancel_button.grab_focus()
 func close_confirmation() -> void:
  if confirmation==null:return
  confirmation.queue_free();confirmation=null
+ hub.arrivals.blocked=false
 func open_specimen(id:String) -> void:
  if busy:return
  busy=true
  hub.root_control.show();hub.show_page("depot")
+ hub.arrivals.select_crate(id)
+ hub.arrivals.blocked=true
  hub.banner.text="Installation de la caisse "+Catalog.entry(id).code+" à l’établi…"
  for btn:Button in hub.item_buttons.values():btn.disabled=true
  loading.text="Préparation de l’établi…"
