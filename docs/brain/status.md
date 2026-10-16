@@ -4,46 +4,43 @@
 **Projet :** ArchaeologyGame
 Source unique de la phase, de la branche, de la gate et de la prochaine action.
 
-## Référence et invariants
+## Base conservée
 
-P0–P5 validées et fusionnées. P6A active ; P6B et P7 non démarrées.
-Base validée : main `99cf5d1`, consolidation #24 fusionnée, issue #25 clôturée.
-Antoine accepte cette base M–08/B–17 avec les écrans de caisses/collection provisoires.
-Poche friable P6A49 validée ; art de l'ammonite apprécié. Outils, Brush, dégâts
-localisés, lumière chaude, bloc brut et non-révélation des fossiles enfouis protégés.
-Godot 4.7.2 stable ; Sound Design toujours différé.
+Main `7feaa4e` conserve le gameplay validé et les deux spécimens : B–17 et
+M–08 (ammonite). PR #29 fusionnée, nettoyage #26 terminé. Godot 4.7.2 stable.
+P0–P5 validées ; le socle visuel P6A et les ajouts acceptés restent la référence.
+Outils, Brush, dégâts localisés, poche friable, bloc brut, lumière chaude et
+non-révélation des fossiles enfouis protégés. Sound Design différé.
 
-## Issue active / branche / PR
+## Décision humaine / essais retirés
 
-- [#26 — Isoler la version active](https://github.com/ezzerx/archaeology-game/issues/26).
-- Branche `codex/26-clean-active-runtime`, créée depuis main `99cf5d1`.
-- [PR #29](https://github.com/ezzerx/archaeology-game/pull/29), prête pour validation humaine.
-- Source candidate `707a630` ; aucun merge autorisé implicitement.
-- Rapport : `docs/dev/ISSUE26_RUNTIME_CLEANUP_REPORT.md`.
-- Organisation et reconstruction : `docs/RUNTIME_LAYOUT.md`.
+Antoine rejette le concept de caisses présenté dans #30 : niveau visuel insuffisant.
+La PR #30 est fermée sans fusion ; sa branche locale/distante a été supprimée.
+L’essai reste récupérable au tag `archive/issue27-arrivals-rejected-2026-10-16`.
+Aucun code de ces caisses n’a été ajouté à main. L’écran de choix et la galerie
+provisoires de main restent des accès fonctionnels, sans validation artistique.
 
-## Gate / prochaine action
+Les issues #27 (arrivages) et #28 (collection visuelle) sont différées. Ne pas
+reprendre automatiquement les caisses physiques, une desserte ou un registre.
 
-Antoine autorise explicitement #26 : nettoyer les prototypes sans toucher au
-jeu validé, vérifier le fonctionnement et préparer la PR. Candidate implémentée :
-197 déplacements par responsabilité, 77 retraits de fichiers d'expériences et de
-lanceurs, même code conservé après substitution des chemins. Sources/assets,
-fixtures utiles et règles inchangées ; archives récupérables par tag Git.
+## Travail actif / gate
 
-622 contrôles gameplay/persistance et 252 chargements de ressources passent.
-Import vierge et comparaison de 727 fichiers conservés passent également.
-Ces preuves ne remplacent pas le verdict humain : prochaine action, revue de la
-PR et essai M–08/B–17 par Antoine, puis corrections éventuelles dans cette issue.
-Pas de fusion avant sa validation. Ne pas démarrer #27/#28 dans cette branche.
+- Issue [#31 — Vision et prochaines missions](https://github.com/ezzerx/archaeology-game/issues/31).
+- Branche documentaire `codex/31-product-vision`, créée depuis main `7feaa4e`.
+- PR documentaire en préparation ; aucun changement de gameplay.
+- Support : `docs/design/NEXT_STEPS_VISION.md`.
 
-## Suite et limites
+Prochaine action autorisée : brainstorm avec Antoine sur l’état du jeu, sa
+promesse, les priorités et la vision de chaque mission. Les pistes du document
+sont des propositions non approuvées. Aucun développement, nouvelle passe d’art,
+merge ou passage de phase ne découle de ce brainstorm sans accord explicite.
 
-#27 reprend les arrivages ; #28 reprend la collection. Desserte et registre restent
-à choisir avant réalisation. Musée complet, économie, montage et génération globale
-hors périmètre. Collection persistante ; fouille non archivée seulement en mémoire.
+## Méthode et limites
 
-Workflow : `docs/DEVELOPMENT_WORKFLOW.md` (une issue → PR → validation → merge →
-nettoyage, prochaine branche depuis main). Les anciennes branches ont été nettoyées ;
-le checkout principal modifié et les autres worktrees utilisateur restent préservés.
-Archives Git : `archive/pre-issue26-runtime` pour cette migration,
-`archive/p6a38-orientable-lamp-2026-10-16` pour la lampe abandonnée.
+Pour chaque mission, définir et valider d’abord l’expérience en jeu, le parcours
+concret, le traitement visuel/gestuel, les exclusions et le test de réussite.
+Découper ensuite en issues exécutables ; une issue → PR → validation → merge →
+nettoyage. Voir `docs/DEVELOPMENT_WORKFLOW.md`.
+Collection archivée persistante ; fouille en cours uniquement en mémoire.
+Les modifications utilisateur dans le checkout principal et le worktree main
+restent préservées. Le code jouable de cette branche est identique à main.

@@ -1459,3 +1459,16 @@ les régressions utiles et les sources d'assets. Les déplacements gardent les U
 et le comportement ; une ancienne génération peut encore être une dépendance.
 Les preuves et limites de cette migration sont dans le rapport de l'issue 26.
 Cette autorisation ne porte ni sur le merge ni sur la refonte des écrans.
+
+
+## 2026-10-16 — Caisses abandonnées, priorité au cadrage avant réalisation
+
+Antoine rejette le concept de caisses actuel, insuffisant artistiquement, et le
+reporte à une passe dédiée future. Ce verdict remplace l’acceptation provisoire
+de la disposition. Fermer #30 sans fusion, garder une archive récupérable, retirer
+la branche active. Main conserve B–17 et l’ammonite avec le gameplay validé.
+
+Avant de poursuivre, mener un brainstorm global. Pour chaque étape, prendre le
+temps de définir ce qu’elle doit être dans le jeu avant de la développer. Une
+composition fonctionnelle ou des tests verts ne remplacent pas une vision validée.
+Les arrivages et la collection visuelle sont différés ; leur forme reste ouverte.

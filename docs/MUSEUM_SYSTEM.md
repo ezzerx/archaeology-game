@@ -10,25 +10,20 @@ Le jeu conserve une structure sans avatar contrôlable : la façade, l'atelier, 
 
 Transition de mise en scène envisagée : **façade du musée au menu principal → atelier intérieur au lancement → galerie/collection comme destination visible du travail**.
 
-## Specimen Intake — caisses de préparation
+## Arrivages — vision à redéfinir
 
-La sélection du prochain travail doit être **diégétique et tactile** plutôt qu'un simple menu de niveaux : le joueur choisit une **caisse de spécimen** reçue par le musée.
+Le choix du prochain travail doit soutenir l’anticipation et l’identité du musée,
+sans révéler le contenu encore enfoui ni ralentir l’accès à la préparation.
 
-Chaque caisse possède une étiquette scientifique/logistique qui donne des informations utiles sans révéler exactement ce qu'elle contient :
+La piste historique de caisses physiques et d’une cérémonie d’ouverture n’est
+plus une prescription : Antoine a rejeté l’essai réalisé et demande de cadrer
+une nouvelle vision lors d’une passe dédiée. Caisses, dossiers, desserte ou autre
+présentation restent des options à comparer, sans réalisation automatique.
+Les écrans actuels servent d’accès provisoire aux deux blocs jouables.
 
-- site / origine géologique ;
-- formation ou région ;
-- période estimée ;
-- type de matrice attendu ;
-- difficulté / besoins de préparation ;
-- note du conservateur / provenance ;
-- indice de rareté ou de caractère exceptionnel lorsque pertinent.
-
-Le contenu précis reste partiellement inconnu afin de préserver l'anticipation. Le système doit permettre le feeling : **« cette caisse a quelque chose de spécial, j'ai envie de l'ouvrir maintenant »**, sans devenir une lootbox monétisée ni bloquer la progression principale derrière du hasard punitif.
-
-Avant la préparation, une **courte phase d'ouverture de caisse** est une direction canonique à prototyper : enlever sangles/scellés/protections, ouvrir le couvercle, découvrir le bloc et son dossier, puis transition vers la table de préparation. La cérémonie doit rester courte et satisfaisante ; les caisses exceptionnelles peuvent recevoir une mise en scène légèrement plus marquée.
-
-La caisse montrée dans les concepts de façade/musée est une bonne grammaire visuelle pour ce système futur.
+Les propositions de collection ci-dessous décrivent des intentions de long terme ;
+elles ne fixent pas l’ordre des missions ni une autorisation de développement.
+Le cadrage global doit préciser leur première traduction jouable.
 
 ## Rôle
 
