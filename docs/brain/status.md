@@ -27,7 +27,7 @@ reprendre automatiquement les caisses physiques, une desserte ou un registre.
 
 - Issue [#31 — Vision et prochaines missions](https://github.com/ezzerx/archaeology-game/issues/31).
 - Branche documentaire `codex/31-product-vision`, créée depuis main `7feaa4e`.
-- PR documentaire en préparation ; aucun changement de gameplay.
+- [PR documentaire #32](https://github.com/ezzerx/archaeology-game/pull/32), en brouillon ; aucun changement de gameplay.
 - Support : `docs/design/NEXT_STEPS_VISION.md`.
 
 Prochaine action autorisée : brainstorm avec Antoine sur l’état du jeu, sa
@@ -43,4 +43,4 @@ Découper ensuite en issues exécutables ; une issue → PR → validation → m
 nettoyage. Voir `docs/DEVELOPMENT_WORKFLOW.md`.
 Collection archivée persistante ; fouille en cours uniquement en mémoire.
 Les modifications utilisateur dans le checkout principal et le worktree main
-restent préservées. Le code jouable de cette branche est identique à main.
+restent préservées. Le code jouable de cette branche est identique à main ; 252 ressources chargées sans échec.
