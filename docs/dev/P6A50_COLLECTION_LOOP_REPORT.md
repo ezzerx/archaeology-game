@@ -149,3 +149,12 @@ Le checkout principal et ses modifications utilisateur restent intacts.
 Lanceur final vérifié sous Godot 4.7.2 : fenêtre native répondante
 « ArchaeologyGame — Atelier des collections », arrivée sur le dépôt, stdout
 moteur attendu et stderr vide. Les anciennes fenêtres utilisateur sont conservées.
+
+
+## Revue humaine du 16 octobre 2026
+
+L'ammonite plaît à Antoine. Les écrans de caisses et de collection lui évoquent
+un jeu navigateur et leur présentation doit être reprise. Ce verdict est partiel :
+il ne valide pas l'ensemble de la boucle ni la fusion. Le plan de transition vers
+une issue par PR est décrit dans `GITHUB_TRANSITION_PLAN.md` ; le statut canonique
+porte seul la prochaine action. Aucun changement de gameplay dans cette passe.

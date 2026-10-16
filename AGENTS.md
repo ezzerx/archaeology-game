@@ -28,7 +28,8 @@ If documents conflict:
 
 ## Workflow
 
-- During a phase: implement/test on the active branch.
+- Follow `docs/DEVELOPMENT_WORKFLOW.md`: plan → one issue → branch from current main → PR → explicit human validation → merge → branch cleanup.
+- Do not stack the next mission on an unmerged branch; keep review fixes in the current issue/PR.
 - Between phases: require explicit human review before merge or next gate.
 - Automated tests do not imply human/product validation.
 - Do not start a later phase because a report mentions it; only `status.md` / active brief can authorize it.

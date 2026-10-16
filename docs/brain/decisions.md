@@ -1424,3 +1424,17 @@ B–17 ; cela n'est pas encore une validation humaine de son art ou de la boucle
 Conserver les outils et interactions acquis ; différer l'économie, le musée
 complet et le Sound Design. Le rapport P6A50 conserve les choix candidats et les
 preuves ; seul le statut porte la prochaine action autorisée.
+
+
+## 2026-10-16 — Workflow par issues et retour sur la présentation de la collection
+
+Antoine demande explicitement un plan découpé en issues GitHub, traitées une par
+une : issue terminée → PR → validation → merge → nettoyage des branches. Les
+missions suivantes repartent de main ; arrêter l'empilement de branches de
+prototypes. La méthode durable est dans `docs/DEVELOPMENT_WORKFLOW.md`.
+
+Antoine apprécie l'ammonite mais rejette l'esthétique des écrans de caisses et de
+collection, trop proche d'un jeu navigateur. Ne pas confondre ce retour positif
+sur l'asset avec une validation globale de la boucle ou une permission de merge.
+La continuité visuelle avec l'atelier guide les propositions ; desserte et registre
+restent des options à valider, sans modification des interactions acquises.
