@@ -8,6 +8,7 @@ var dimensions: Vector2
 var cells: Vector2i
 var floor_height: float
 var top_height: float
+var surface_domain := Callable() # Empty preserves the historical rectangle.
 
 func _init(height_image: Image, surface_size: Vector2, grid_cells: Vector2i,
 		minimum_y: float, maximum_y: float) -> void:
@@ -100,7 +101,7 @@ func ray_hit(origin: Vector3, direction: Vector3, far_distance: float) -> Dictio
 	var entry_point := origin + direction * enter
 	var uv := SurfaceMapping.local_to_uv(entry_point, dimensions).clamp(Vector2.ZERO, Vector2.ONE)
 	# The skirt occludes any top behind it. Do not paint through a solid side.
-	if entry_point.y < height_at(uv) - 0.000005:
+	if (not surface_domain.is_valid() or surface_domain.call(uv)) and entry_point.y < height_at(uv) - 0.000005:
 		return {}
 	var grid := uv * Vector2(cells)
 	var velocity := Vector2(direction.x / dimensions.x, direction.z / dimensions.y) * Vector2(cells)
@@ -113,7 +114,15 @@ func ray_hit(origin: Vector3, direction: Vector3, far_distance: float) -> Dictio
 			var boundary := cell[axis] + (1 if step[axis] > 0 else 0)
 			next[axis] = enter + (boundary - grid[axis]) / velocity[axis]
 			increment[axis] = absf(1.0 / velocity[axis])
+	var previous_domain := false
 	for visited in range(cells.x + cells.y + 2):
+		if surface_domain.is_valid():
+			var occupied: bool = surface_domain.call((Vector2(cell)+Vector2.ONE*.5)/Vector2(cells))
+			if occupied and not previous_domain:
+				var domain_entry := origin+direction*enter
+				var entry_uv := SurfaceMapping.local_to_uv(domain_entry,dimensions)
+				if domain_entry.y < height_at(entry_uv)-.000005: return {}
+			previous_domain = occupied
 		var end := minf(leave, minf(next.x, next.y))
 		var a := vertex_at(cell)
 		var b := vertex_at(cell + Vector2i(1, 0))
@@ -126,6 +135,7 @@ func ray_hit(origin: Vector3, direction: Vector3, far_distance: float) -> Dictio
 			if intersection == null:
 				continue
 			var point: Vector3 = intersection
+			if surface_domain.is_valid() and not surface_domain.call(SurfaceMapping.local_to_uv(point,dimensions)): continue
 			var t := (point - origin).dot(direction) / direction.length_squared()
 			if t >= enter - 0.000005 and t <= end + 0.000005 and t < best_t:
 				var normal: Vector3 = (triangle[2] - triangle[0]).cross(triangle[1] - triangle[0]).normalized()

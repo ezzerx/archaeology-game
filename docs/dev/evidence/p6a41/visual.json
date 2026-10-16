@@ -1,0 +1,58 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"natural-intact.png",
+		"natural-partial.png",
+		"neutral-centered.png",
+		"neutral-previous-left.png",
+		"natural-prepared-overview.png",
+		"natural-prepared-detail.png",
+		"natural-prepared-shadow-off.png",
+		"natural-upper-workspace.png",
+		"orange-contour-before.png",
+		"orange-contour-after.png",
+		"rough-intact-overview.png",
+		"rough-front-edge.png",
+		"vertical-wall-witness-same-heights.png",
+		"rough-left-edge.png"
+	],
+	"checks": 30,
+	"exposed_shadow_darkened_pixels": 20784,
+	"failures": [],
+	"neutral_light_balance": {
+		"centred": {
+			"left": 0.234371860822042,
+			"relative_difference": 0.0,
+			"right": 0.234371860822042
+		},
+		"patch_pixels": 25,
+		"positions_x": [
+			-0.42,
+			0.42
+		],
+		"positions_z": [
+			-0.22,
+			0,
+			0.22
+		],
+		"previous": {
+			"left": 0.272350708842278,
+			"relative_difference": 0.23993323010307,
+			"right": 0.207004723548889
+		}
+	},
+	"orange_contour": {
+		"corrected_contacts": 328,
+		"false_clay_cells": 328,
+		"orange_pixels_corrected": 2531,
+		"wrong_contacts": 0
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

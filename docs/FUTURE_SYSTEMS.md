@@ -24,7 +24,8 @@ Variation may include:
 - areas where a harder material intrudes into a softer layer;
 - varying fossil depth;
 - varying fossil position and orientation where compatible with the fossil system;
-- optional later materials and geological features.
+- optional later materials and geological features;
+- variable placement and frequency of local material behaviours, such as fractured slabs.
 
 ### Design rule
 
@@ -40,6 +41,27 @@ The system should produce blocks that are:
 - capable of difficulty bands.
 
 The player should learn to identify materials and choose tools, not learn a fixed timer/depth script.
+
+### Local behaviours / composed preparation situations
+
+Block variety should combine readable situations that invite different gestures
+and choices, alongside the geological layout. The fractured-slab experiment first gave
+an encouraging signal, but its usefulness as a retained system remains uncertain
+after the later human test. Treat slabs as an experiment, not a selected production
+rule. See [the initial signal](dev/P6A43_FRACTURED_SLAB_REPORT.md) and
+[the latest human feedback](dev/P6A46_EMBEDDED_SLAB_REPORT.md).
+
+The buried friable-pocket behaviour and its P6A49 finishing pass are human-validated
+as the current working reference. Discovery at varied positions and depths,
+an irregular volume continuing into the block and short evacuation use the
+existing Blower. Further refinement is deferred until other systems interact
+with it. Production encounter frequency and global collection/block composition
+remain separate design questions. See [the finishing pass and human verdict](dev/P6A49_POCKET_FINISH_REPORT.md).
+
+Vary the placement and frequency of these situations plausibly and reproducibly,
+while preserving preparation rhythm, Bone occlusion and completion. A future
+palette of complementary behaviours should create a different mixture between
+blocks. Exact composition, placement rules and additional behaviours remain open.
 
 ### Material Column / multi-slot stratigraphy — architecture under evaluation
 

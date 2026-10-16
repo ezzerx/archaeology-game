@@ -1,0 +1,66 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [],
+	"checks": 136,
+	"contact": {
+		"max_gap_m": 0.0,
+		"samples": 370
+	},
+	"failures": [],
+	"footprint": {
+		"boundary_segments": 3296,
+		"lost_bone_cells": 0,
+		"outside_cells": 116925
+	},
+	"geometry": {
+		"baked_samples": 25404,
+		"misses": 0,
+		"missing_cells": [],
+		"native_joint_occlusion": 0,
+		"roof_max_error_m": 0.00000000661611557206676,
+		"triangles": 83431,
+		"winning_mesh_cells": 25404
+	},
+	"native_review_cost": {
+		"impacts": 4847,
+		"seconds": 7.79475
+	},
+	"native_skeleton_review": {
+		"classification": "Likely small theropod",
+		"cleanliness": 99.9999996279168,
+		"condition": 100.0,
+		"condition_tier": "Excellent",
+		"coverage_passed": true,
+		"exposure": 100.0,
+		"fine_preparation": true,
+		"largest_hidden_cluster": 0
+	},
+	"pocket_design": {
+		"cells": 12555,
+		"covered_bone_cells": 4386,
+		"depth_mm": [
+			1.26094257831573,
+			22.5330036878586
+		],
+		"evacuated_after_2_1_seconds": 0.825631014336694,
+		"last_air_cpu_usec": 7224,
+		"opening_impacts": 1,
+		"remaining_after_opening": 1.00000010642191
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	},
+	"shadow_geometry": {
+		"ao_min": 0.376470595598221,
+		"build_usec": 3657,
+		"max_build_usec": 3657,
+		"partial_cells": 3126,
+		"triangles": 6252,
+		"wrong_cells": 0
+	}
+}

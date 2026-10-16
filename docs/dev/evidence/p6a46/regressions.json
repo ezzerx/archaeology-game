@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-14",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "suites": [
+    {
+      "script": "tests/run_p6a45_manual_slab.gd",
+      "checks": 202,
+      "failures": 0
+    },
+    {
+      "script": "tests/run_p1_tests.gd",
+      "checks": 52,
+      "failures": 0
+    },
+    {
+      "script": "tests/run_p5_tests.gd",
+      "checks": 128,
+      "failures": 0
+    },
+    {
+      "script": "tests/run_p4v2_tests.gd",
+      "checks": 91,
+      "failures": 0
+    }
+  ]
+}

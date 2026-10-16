@@ -1,0 +1,73 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"buried-intact-overview.png",
+		"buried-0-covered.png",
+		"buried-0-first-impact.png",
+		"buried-0-discovered.png",
+		"buried-0-native-blower.png",
+		"buried-0-local-cavity.png",
+		"buried-0-deep-cavity.png",
+		"buried-1-covered.png",
+		"buried-1-first-impact.png",
+		"buried-1-discovered.png",
+		"buried-1-native-blower.png",
+		"buried-1-local-cavity.png",
+		"buried-1-deep-cavity.png",
+		"buried-2-covered.png",
+		"buried-2-first-impact.png",
+		"buried-2-discovered.png",
+		"buried-2-native-blower.png",
+		"buried-2-local-cavity.png",
+		"buried-2-deep-cavity.png",
+		"natural-intact.png",
+		"natural-partial.png",
+		"neutral-centered.png",
+		"neutral-previous-left.png",
+		"natural-prepared-overview.png",
+		"natural-prepared-detail.png",
+		"natural-prepared-shadow-off.png",
+		"natural-upper-workspace.png",
+		"orange-contour-before.png",
+		"orange-contour-after.png"
+	],
+	"checks": 59,
+	"exposed_shadow_darkened_pixels": 19936,
+	"failures": [],
+	"neutral_light_balance": {
+		"centred": {
+			"left": 0.24532392124335,
+			"relative_difference": 0.0,
+			"right": 0.24532392124335
+		},
+		"patch_pixels": 25,
+		"positions_x": [
+			-0.42,
+			0.42
+		],
+		"positions_z": [
+			-0.22,
+			0,
+			0.22
+		],
+		"previous": {
+			"left": 0.254379878441493,
+			"relative_difference": 0.132805993833571,
+			"right": 0.220596705873807
+		}
+	},
+	"orange_contour": {
+		"corrected_contacts": 328,
+		"false_clay_cells": 328,
+		"orange_pixels_corrected": 2530,
+		"wrong_contacts": 0
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

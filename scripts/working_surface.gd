@@ -105,6 +105,9 @@ static func weight(distance_ratio: float, falloff: float) -> float:
 	var smooth_weight := 1.0 - t * t * (3.0 - 2.0 * t)
 	return pow(smooth_weight, maxf(falloff, 0.01))
 
+func constrain_removal(_index: int, next: float, _tool_id: StringName) -> float:
+	return next
+
 func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 		falloff: float, delta: float, effectiveness := Vector3.ONE,
 		residue_generation := 0.0, stop_at_initial_layer := false, brush_cleanup := false) -> int:
@@ -206,6 +209,8 @@ func apply_segment(from: Vector2, to: Vector2, radius: float, strength: float,
 					var initial_floor := upper if old_value > upper else (lower if old_value > lower else 0.0)
 					next_value = maxf(next_value, initial_floor)
 			if next_value < old_value:
+				next_value = constrain_removal(index, next_value, &"soft_brush" if brush_cleanup else &"precision_pick")
+				if next_value >= old_value: continue
 				if next_value <= bone_limit and bone_ceilings[index] > 0.0:
 					# Discard remaining work at bone. Ineffective strokes do not
 					# inspect fossil state, and clamped cells produce no dirty upload.

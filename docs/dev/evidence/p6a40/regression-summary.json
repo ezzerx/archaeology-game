@@ -1,0 +1,17 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "p1": {
+    "checks": 52,
+    "failures": 0,
+    "ray_samples": 180,
+    "max_error_m": 1.6e-07
+  },
+  "p5": {
+    "checks": 128,
+    "failures": 0
+  },
+  "p4v2_crumbs": {
+    "checks": 91,
+    "failures": 0
+  }
+}

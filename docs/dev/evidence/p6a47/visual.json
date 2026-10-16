@@ -1,0 +1,61 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"pocket-intact.png",
+		"pocket-opened.png",
+		"pocket-first-burst.png",
+		"pocket-native-blower.png",
+		"pocket-cavity-moving-grains.png",
+		"pocket-cavity.png",
+		"pocket-reset.png",
+		"natural-intact.png",
+		"natural-partial.png",
+		"neutral-centered.png",
+		"neutral-previous-left.png",
+		"natural-prepared-overview.png",
+		"natural-prepared-detail.png",
+		"natural-prepared-shadow-off.png",
+		"natural-upper-workspace.png",
+		"orange-contour-before.png",
+		"orange-contour-after.png"
+	],
+	"checks": 35,
+	"exposed_shadow_darkened_pixels": 18741,
+	"failures": [],
+	"neutral_light_balance": {
+		"centred": {
+			"left": 0.24532392124335,
+			"relative_difference": 0.0,
+			"right": 0.24532392124335
+		},
+		"patch_pixels": 25,
+		"positions_x": [
+			-0.42,
+			0.42
+		],
+		"positions_z": [
+			-0.22,
+			0,
+			0.22
+		],
+		"previous": {
+			"left": 0.254379878441493,
+			"relative_difference": 0.132805993833571,
+			"right": 0.220596705873807
+		}
+	},
+	"orange_contour": {
+		"corrected_contacts": 328,
+		"false_clay_cells": 328,
+		"orange_pixels_corrected": 2530,
+		"wrong_contacts": 0
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

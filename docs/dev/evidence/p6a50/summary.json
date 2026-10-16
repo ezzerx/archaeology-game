@@ -1,0 +1,19 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "adapter": "NVIDIA GeForce RTX 5080",
+  "date": "2026-10-16",
+  "checks": {
+    "M08_geometry_and_interactions": 26,
+    "collection_persistence": 24,
+    "native_collection_flow": 32,
+    "cold_process_reload": 1,
+    "reference_P6A49_logic": 197,
+    "reference_P6A49_native": 71,
+    "P1": 52,
+    "P5": 128,
+    "P4V2": 91
+  },
+  "total": 622,
+  "failures": 0,
+  "human_validation": "pending"
+}

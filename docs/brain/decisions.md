@@ -1132,3 +1132,319 @@ identité du bloc (silhouette) et variété des décisions de fouille (spécimen
 géologie, placement et effort). Tester d’abord un petit lot de blocs façonnés
 avec les rôles matériaux existants avant une migration de strates ou une
 multiplication des outils. C’est une recommandation, pas un GO d’implémentation.
+
+
+## 2026-10-14 — GO essai de lampe orientable
+
+Antoine autorise explicitement l’essai, avec ambiance chaude, interactions
+validées et secret des os enterrés conservés. La source se déplace autour du
+bloc pour changer le sens des ombres ; l’objet et ses réglages acceptés sont réutilisés.
+Mode de manipulation explicite, retour simple aux outils, capture sans excavation.
+
+La référence main reste inchangée. Le candidat P6A3.8 est isolé et sa validation
+humaine doit porter sur l’aide à lire le relief et le confort de manipulation.
+La protection des os enterrés reste indépendante de l’orientation de lumière :
+masque d’exposition réel et caster des seules cellules dégagées. Vérifier à la
+fois pixels et indices, car les ombres d’os déjà dégagés sur de la matrice couverte
+sont légitimes et ne constituent pas une révélation d’os encore enterrés.
+
+
+## 2026-10-14 — Lampe mobile mise de côté après essai humain
+
+Antoine juge le déplacement de lampe trop gadget actuellement : bénéfice de
+jeu insuffisant, geste peu intuitif et objet qui glisse autour de la table peu
+convaincant. Ne pas intégrer cet essai ; privilégier une bonne lumière fixe,
+chaude et centrée. Cela ne remet pas en cause le B-17 modelé ou les interactions
+acceptées. Aucun redesign supplémentaire de lampe n’est déclenché.
+
+Le signalement de restes orange autour des os doit distinguer matrice attachée,
+miettes libres et défaut de rendu. Ne pas masquer cosmétiquement un matériau
+encore présent, ni modifier la Brush validée sur la seule base d’une capture.
+
+
+## 2026-10-14 — Recentrage fixe et clarification des restes orange
+
+Antoine demande une lampe fixe centrée, afin de mieux répartir la lumière sur le
+bloc plutôt que de l’éclairer depuis la gauche. La demande ne rétablit pas le
+mode de manipulation mobile rejeté.
+
+Il confirme que l’argile orange se retire bien ; c’est son contour qui épouse
+artificiellement les os qui pose problème. Le diagnostic de retrait au Pick
+répondait à une autre question et ne constitue pas une validation artistique.
+Conserver ce retour sans modifier les outils acceptés. Les formes naturelles
+extérieures sont proposées comme suite, sans GO implicite sur tout le chantier.
+
+
+## 2026-10-14 — GO premier bloc naturel, contour et lampe
+
+Antoine autorise un premier bloc aux formes naturelles, B-17 et interactions
+validées conservés, ainsi que la correction du contour orange si un fix est
+identifié. Il signale que le modèle de lampe centré masque le dessus du bloc.
+La source chaude centrée reste la référence ; la géométrie décorative est retirée
+du champ de fouille dans le candidat, sans réintroduire de manipulation.
+
+Pour une silhouette de bloc, partager le domaine entre rendu, matière initiale,
+picking et évacuation des miettes ; ne pas produire seulement une découpe visuelle
+qui conserve des coins invisibles jouables. Ne pas façonner le contour d’après
+les os cachés. Le défaut de liseré reproduit vient de l’interpolation d’une hauteur
+Bone dans la matière voisine ; corriger l’identité locale réelle sans supprimer
+la matrice ni déplacer les plafonds. Le rapport P6A40 garde les preuves et limites.
+Cette livraison ne vaut pas validation humaine du nouveau bloc ou du correctif.
+
+
+## 2026-10-14 — Retour humain sur les bords du premier bloc naturel
+
+Antoine préfère nettement la silhouette irrégulière, mais les flancs et l’arête
+restent trop propres, comme découpés à la disqueuse. Conserver l’irrégularité
+extérieure comme direction ; rechercher des cassures et volumes de roche brute
+sur les bords. Ce retour ne valide pas toute la phase et ne déclenche pas seul
+une nouvelle implémentation. Le rapport P6A40 conserve le détail de la proposition.
+
+
+## 2026-10-14 — GO passe des bords bruts
+
+Antoine autorise la passe proposée : volumes cassés de tailles variées, pans
+inclinés et arête ébréchée avec portions préservées, matière des flancs plus lisible.
+Conserver la silhouette supérieure appréciée, B-17 et les interactions validées.
+
+Pour un domaine de hauteur irrégulier, le vide logique ne doit pas être moyenné
+comme un échantillon de roche à hauteur zéro sur le bord. Un guard de rendu hors
+domaine peut porter l’échantillon voisin, à condition de rester hors matière
+jouable et d’être partagé avec le picker. Garder la mise à jour immédiate des
+contacts après édition. Le rapport P6A41 conserve preuves et limites ; aucune
+validation artistique de cette nouvelle passe n’est déduite des contrôles.
+
+
+## 2026-10-14 — Bords bruts appréciés comme base de travail
+
+Antoine juge la passe P6A41 « déjà sympa pour le moment » et demande la suite.
+Conserver cette référence pour avancer, sans prolonger spontanément le polissage
+des bords. La prochaine étape doit être proposée puis choisie ; ce retour ne
+vaut pas GO pour la variabilité, un catalogue ou une fusion.
+
+
+## 2026-10-14 — GO essai de trois géologies B-17
+
+Antoine autorise les trois préparations proposées avec B-17, outils et interactions
+validés conservés. La variation doit porter sur la manière de fouiller, sans être
+une simple augmentation de durée. Tester d’abord des profils façonnés avec les
+matériaux actuels ; conserver les plafonds et la source du même spécimen pour
+isoler la géologie. Le rapport P6A42 garde budgets, parcours et limites ; le
+verdict humain décidera si les accès changent réellement les choix du joueur.
+
+
+## 2026-10-14 — Géologies variées, stratégie inchangée : essai non concluant
+
+Retour humain P6A42 : les trois profils restent essentiellement une variation
+visuelle. Le Chisel est utilisé en masse, puis le Pick et la Brush près des os.
+Changer la distribution de Clay/Sandstone ne suffit donc pas à prouver la
+rejouabilité. Le coût structurel inférieur à la référence garantit un budget,
+mais ne démontre pas de diversité d’actions. Discuter des comportements de
+matériaux et des choix qu’ils créent avant d’étendre les profils ou les outils.
+Conserver le tactile et l’art appréciés ; le nouveau gameplay exige un GO dédié.
+
+
+## 2026-10-14 — GO plaque de grès fracturée
+
+Antoine autorise un essai borné : garder le feeling des outils, proposer des
+fissures lisibles et un détachement satisfaisant. Le candidat repart des bords
+bruts avec un comportement local de joint ; les trois géologies restent une
+expérience non concluante pour la rejouabilité.
+
+L’impact natif doit conserver cadence, contact préalable et décisions Bone.
+Le retrait de plaque vient ensuite, limité à la matrice réellement restante et
+à ses plafonds. La pièce animée ne remplace pas la matière attachée : elle vient
+de la matière retirée et quitte le domaine jouable. Le Chisel reste une voie
+possible. Le rapport P6A43 garde seuils, preuves, coût ponctuel et limites ;
+le verdict humain sur le nouveau geste reste nécessaire.
+
+
+## 2026-10-14 — Plaque : incitation réussie, direction de composition variable
+
+Antoine juge la plaque imparfaite, mais elle donne une raison d’utiliser autre
+chose que le Chisel. Retenir ce signal positif sur la variation des gestes,
+sans assimiler le spike à une mécanique équilibrée ou visuellement finale.
+L’intégration artistique reste à améliorer.
+
+La direction souhaitée est un mélange de situations locales, avec des plaques
+réparties de manière variable et d’autres comportements complémentaires dans
+les blocs. La variété doit donc porter sur les gestes et choix, en plus de la
+géologie visible. Les règles de placement et la palette de situations restent
+à concevoir ; la gate du statut canonique détermine la prochaine action.
+
+
+## 2026-10-14 — GO intégration naturelle de la plaque
+
+Antoine autorise la proposition : contour moins découpé, fissures liées au relief
+et enfouissement partiel. Conserver le geste encourageant, les outils et B-17.
+Une couverture Clay doit être une vraie interface, pas un recoloriage ; elle
+remplit les fissures cachées au lieu d’en imprimer le contour. Le crédit de joint
+vient d’un grès réellement visible avant l’impact.
+
+Le morceau détaché doit conserver la matrice restante, son relief et ses couches,
+avec des normales/faces cohérentes et ses ombres. Le rapport P6A44 garde les preuves,
+coûts et limites. Cette passe ne constitue pas le GO d’une autre mécanique ou d’un
+générateur de blocs ; la revue artistique reste la prochaine étape.
+
+
+## 2026-10-14 — Revue de la plaque et limite de l’éclairage centré
+
+Antoine juge l’intégration de la plaque un peu meilleure mais encore peu naturelle,
+avec des fissures trop lisses, et remet en question son retrait automatique. Ne pas
+transformer l’intérêt déjà reconnu de varier les outils en validation de ce retrait
+ou de l’art final. Une extraction active reste à discuter.
+
+Le centre trop lumineux est un nouveau défaut signalé sur captures. L’équilibre
+mesuré entre points symétriques gauche/droite ne prouve pas l’uniformité entre le
+centre et les bords. Conserver cette distinction dans les prochaines revues de
+lumière. Le rapport P6A44 détaille le diagnostic et les propositions ; la gate du
+statut canonique conserve seule la prochaine action autorisée.
+
+
+## 2026-10-14 — GO lumière uniforme, fractures brutes et levier manuel
+
+Antoine autorise une passe ciblée sur les trois problèmes du retour P6A44 :
+éclairage plus uniforme, fissures plus brutes et retrait manuel au Pick par un
+petit geste de levier. Garder les outils, B-17, la chaleur, le relief et les os
+enterrés protégés. Le travail sur les joints doit rendre la plaque mobile ; le
+joueur décide ensuite de la décoller. Relâcher avant la fin doit être réversible.
+
+Le candidat P6A45 conserve les scènes témoins et les réglages des quatre outils.
+Le rapport dédié garde la distinction entre prévisualisation attachée, retrait de
+vraie matière et dépose assistée, ainsi que les preuves centre/bords. La validation
+artistique et tactile reste humaine ; aucun GO de généralisation ou de merge.
+
+
+## 2026-10-14 — Levier préféré ; plaque à penser comme un volume enfoui
+
+Antoine préfère le retrait manuel au Pick. Conserver cette direction sans assimiler
+la préférence à une validation artistique de la plaque. Il relève encore une
+frontière grès/argile trop nette, souhaite une influence visible sur l’argile et une
+rupture autour de la plaque quand elle est prête à sortir. L’idée d’un « iceberg »
+désigne un volume enfoui irrégulier avec une empreinte correspondante après retrait.
+Le rapport P6A45 conserve captures, diagnostic et proposition ; la gate du statut
+canonique conserve seule la prochaine action autorisée.
+
+
+## 2026-10-14 — GO essai de roche enchâssée pour décider du système
+
+Antoine autorise l’essai de la proposition plaque–argile–empreinte après avoir
+préféré le levier manuel. Garder ce geste, rendre la transition plus morcelée,
+faire progresser une rupture autour de la plaque et donner au volume enfoui une
+forme irrégulière dont dérivent ensemble le morceau et le creux.
+
+Le but de l’essai est de décider humainement si ce système est à retenir dans le
+jeu. Ce GO ne constitue donc pas la validation définitive, la généralisation à
+d’autres blocs ou le merge. Le rapport P6A46 garde les preuves, le modèle de volume
+et ses limites ; les autres interactions validées et les os enterrés restent
+protégés. La gate du statut canonique conserve seule la prochaine action.
+
+
+## 2026-10-15 — Rejouabilité : utilité de la plaque encore incertaine
+
+Antoine doute de la nouvelle fonctionnalité de plaque et demande d’autres idées
+pour la rejouabilité. Conserver l’expérimentation sans la considérer comme une
+fonctionnalité de production retenue ; la préférence antérieure pour le levier
+portait sur le mode de retrait. Reprendre le signal P6A42 : varier les deux
+matériaux visuellement n’avait pas suffi à varier la stratégie. Le rapport P6A46
+conserve ce retour et les hypothèses proposées, sans les canoniser comme choix
+humains. La gate du statut conserve seule la prochaine action autorisée.
+
+
+## 2026-10-15 — GO poche friable : premier essai cohérent de game design
+
+Antoine sélectionne la poche friable pour un essai et demande de concevoir une
+proposition convaincante dès la première livraison, plutôt que plusieurs retours
+sur une intégration minimale. Isoler une situation courte : ouvrir une croûte,
+évacuer les grains au souffleur, puis poursuivre la préparation du squelette.
+Le choix réutilise les outils existants et vise un vrai changement de geste,
+sans rallonger le bloc. Ce GO ne valide pas encore le plaisir, l’art final ou la
+généralisation ; la plaque précédente conserve son verdict incertain.
+Les preuves de l’essai sont dans le rapport P6A47 ; la gate demeure dans le statut.
+
+
+## 2026-10-15 — Retour positif sur la poche ; variation et profondeur souhaitées
+
+Antoine trouve la poche friable sympa, avec un potentiel conditionné à une bonne
+intégration. Il souhaite des découvertes à des endroits variables, qui puissent
+se prolonger dans le bloc plutôt que rester uniquement en surface, et une
+présence aléatoire entre blocs. Retenir cette direction pour le design de
+rejouabilité, sans transformer ce signal en validation artistique finale,
+fréquence imposée ou génération déjà approuvée. Le rapport P6A47 conserve le
+retour et la proposition de suite ; le statut conserve seul la gate.
+
+
+## 2026-10-15 — GO poche à mi-profondeur
+
+Antoine autorise l’essai de poche enfouie proposé après le retour positif P6A47.
+L’objectif est de la découvrir pendant la fouille et d’explorer un volume dans
+l’épaisseur, avec quelques implantations contrôlées avant une éventuelle
+répartition variable. Préserver les outils, le soufflage court et les os couverts.
+Ce GO n’autorise pas implicitement la génération globale, l’art final ou le merge.
+Le rapport P6A48 conserve les preuves et les limites de la représentation actuelle ;
+le statut conserve seul la prochaine action.
+
+
+## 2026-10-15 — Dynamique de poche enfouie validée ; viser une dernière finition
+
+Antoine valide explicitement la nouvelle dynamique apportée par la poche à
+mi-profondeur. Il veut une passe finale de game design, de rendu et d’apparition
+pour arrêter l’itération sur cette fonctionnalité et avancer vers d’autres
+missions. Retenir le comportement comme direction sélectionnée, sans assimiler
+ce verdict à l’approbation de l’art final ou de la distribution des rencontres.
+Le dernier addendum P6A48 conserve une proposition bornée et ses critères de
+clôture ; ces suggestions ne sont pas encore des décisions humaines.
+
+
+## 2026-10-15 — GO finition bornée des poches et revue interne
+
+Antoine sélectionne la passe de découverte progressive, grain mat, souffle court
+avec une fin lisible et zéro/une poche variable par préparation. Il demande une
+revue attentive et des corrections internes avant livraison. La dynamique P6A48
+reste validée ; ce GO ne vaut pas approbation de l’art final ou merge. La recette
+sépare génération géologique et admission Bone : rejeter entier un volume unsafe
+évite de révéler l’anatomie par le fond. Les preuves et limites de cette finition
+sont dans le rapport P6A49 ; le statut conserve seul la prochaine action.
+
+## 2026-10-15 — Poche friable validée pour avancer
+
+Antoine valide P6A49 comme référence actuelle. Réserver les éventuels raffinements
+aux interactions avec d’autres systèmes, plutôt que prolonger la finition de
+cette fonctionnalité isolée. Cette décision clôt la revue humaine de la passe ;
+elle ne sélectionne pas encore le prochain chantier et ne demande pas de merge.
+Le rapport P6A49 conserve le verdict et les preuves ; le statut conserve la gate.
+
+## 2026-10-16 — GO deuxième spécimen et petite collection persistante
+
+Après validation de la poche friable, Antoine autorise la mission proposée :
+un deuxième fossile distinct, deux places de collection et une transition entre
+préparations. Priorité à un premier essai amusant et soigné, avec revue et
+itérations internes. Le prototype retient M–08, une ammonite stylisée, face à
+B–17 ; cela n'est pas encore une validation humaine de son art ou de la boucle.
+Conserver les outils et interactions acquis ; différer l'économie, le musée
+complet et le Sound Design. Le rapport P6A50 conserve les choix candidats et les
+preuves ; seul le statut porte la prochaine action autorisée.
+
+
+## 2026-10-16 — Workflow par issues et retour sur la présentation de la collection
+
+Antoine demande explicitement un plan découpé en issues GitHub, traitées une par
+une : issue terminée → PR → validation → merge → nettoyage des branches. Les
+missions suivantes repartent de main ; arrêter l'empilement de branches de
+prototypes. La méthode durable est dans `docs/DEVELOPMENT_WORKFLOW.md`.
+
+Antoine apprécie l'ammonite mais rejette l'esthétique des écrans de caisses et de
+collection, trop proche d'un jeu navigateur. Ne pas confondre ce retour positif
+sur l'asset avec une validation globale de la boucle ou une permission de merge.
+La continuité visuelle avec l'atelier guide les propositions ; desserte et registre
+restent des options à valider, sans modification des interactions acquises.
+
+
+## 2026-10-16 — Consolidation approuvée avec interfaces provisoires
+
+Antoine répond « Yes je valide ! » à la proposition explicite de fusionner #24
+comme base jouable avec les écrans provisoires, avant leur refonte dans les
+issues dédiées. Cet accord autorise la fusion et le nettoyage des branches.
+Il ne valide pas artistiquement les écrans et ne déclenche pas automatiquement
+l'implémentation des issues suivantes. Le prototype divergent de lampe orientable
+est conservé sous le tag `archive/p6a38-orientable-lamp-2026-10-16` avant retrait.

@@ -1,0 +1,85 @@
+{
+	"benchmark": [],
+	"brush": [],
+	"captures": [
+		"finish-intact-overview.png",
+		"finish-0-covered.png",
+		"finish-0-first-contact.png",
+		"finish-0-discovered.png",
+		"finish-0-native-blower.png",
+		"finish-0-local-cavity.png",
+		"finish-0-open-band.png",
+		"finish-0-previous-material-same-terrain.png",
+		"finish-0-deep-cavity.png",
+		"finish-1-covered.png",
+		"finish-1-first-contact.png",
+		"finish-1-discovered.png",
+		"finish-1-native-blower.png",
+		"finish-1-local-cavity.png",
+		"finish-1-open-band.png",
+		"finish-1-deep-cavity.png",
+		"finish-2-covered.png",
+		"finish-2-first-contact.png",
+		"finish-2-discovered.png",
+		"finish-2-native-blower.png",
+		"finish-2-local-cavity.png",
+		"finish-2-open-band.png",
+		"finish-2-deep-cavity.png",
+		"finish-3-no-pocket.png",
+		"finish-4-covered.png",
+		"finish-4-first-contact.png",
+		"finish-4-discovered.png",
+		"finish-4-native-blower.png",
+		"finish-4-local-cavity.png",
+		"finish-4-open-band.png",
+		"finish-4-deep-cavity.png",
+		"natural-intact.png",
+		"natural-partial.png",
+		"neutral-centered.png",
+		"neutral-previous-left.png",
+		"natural-prepared-overview.png",
+		"natural-prepared-detail.png",
+		"natural-prepared-shadow-off.png",
+		"natural-upper-workspace.png",
+		"orange-contour-before.png",
+		"orange-contour-after.png"
+	],
+	"checks": 71,
+	"exposed_shadow_darkened_pixels": 20085,
+	"failures": [],
+	"neutral_light_balance": {
+		"centred": {
+			"left": 0.24532392124335,
+			"relative_difference": 0.0,
+			"right": 0.24532392124335
+		},
+		"patch_pixels": 25,
+		"positions_x": [
+			-0.42,
+			0.42
+		],
+		"positions_z": [
+			-0.22,
+			0,
+			0.22
+		],
+		"previous": {
+			"left": 0.254379878441493,
+			"relative_difference": 0.132805993833571,
+			"right": 0.220596705873807
+		}
+	},
+	"orange_contour": {
+		"corrected_contacts": 328,
+		"false_clay_cells": 328,
+		"orange_pixels_corrected": 2530,
+		"wrong_contacts": 0
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

@@ -1,0 +1,74 @@
+{
+	"benchmark": [],
+	"bone_shadow_pixels": 4659,
+	"brush": [],
+	"captures": [
+		"neutral-uniform.png",
+		"neutral-previous.png",
+		"prepared-uniform.png",
+		"slab-intact-overview.png",
+		"slab-joints-close.png",
+		"slab-first-joint.png",
+		"slab-second-joint.png",
+		"plate-ready.png",
+		"plate-lever-preview.png",
+		"plate-lever-with-pick.png",
+		"slab-lifting.png",
+		"slab-landed-overview.png",
+		"slab-reset.png",
+		"natural-matrix-close.png",
+		"previous-plate-same-view.png"
+	],
+	"checks": 33,
+	"failures": [],
+	"illumination": {
+		"new": {
+			"centre": 0.260727077722549,
+			"range_relative": 0.101883356312587,
+			"samples": [
+				0.249245494604111,
+				0.26453645825386,
+				0.249245494604111,
+				0.245323926210403,
+				0.260727077722549,
+				0.245323926210403,
+				0.241402342915535,
+				0.268787294626236,
+				0.241402342915535
+			]
+		},
+		"patch_pixels": 25,
+		"previous": {
+			"centre": 0.339976459741592,
+			"range_relative": 0.34755084474834,
+			"samples": [
+				0.221817353963852,
+				0.31656346321106,
+				0.221817353963852,
+				0.241786193847656,
+				0.339976459741592,
+				0.241786193847656,
+				0.234109804034233,
+				0.327928632497787,
+				0.234109804034233
+			]
+		},
+		"x": [
+			-0.42,
+			0,
+			0.42
+		],
+		"z": [
+			-0.24,
+			0,
+			0.24
+		]
+	},
+	"profiles": [],
+	"runtime": {
+		"adapter": "NVIDIA GeForce RTX 5080",
+		"engine": "4.7.2-stable (official)",
+		"physics_hz": 60,
+		"render_cap": 240
+	}
+}

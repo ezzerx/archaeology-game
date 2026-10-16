@@ -225,10 +225,7 @@ Future block generation must preserve:
 
 ## 11. Orchestration workflow
 
-Antoine’s preferred split:
-
-- **During a phase:** implementation/testing stays in Codex.
-- **Between phases:** return to ChatGPT orchestration for product review, human-gate decision, merge/canonization, next brief.
+Follow `docs/DEVELOPMENT_WORKFLOW.md`: agree a plan, split it into bounded GitHub issues, execute one issue on a branch from main, review its PR with Antoine, merge after explicit validation, then clean branches before the next mission. Implementation and technical review stay in Codex; product acceptance remains human. Do not stack successive unmerged prototype branches.
 
 The orchestrator should:
 - protect product intent;

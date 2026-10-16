@@ -116,7 +116,7 @@ if (debug_view != 0) {
 	session_ui.setup(session,controller,reset_specimen)
 	controller.ui_blockers.append(panel)
 	_restyle_workbench_ui()
-	display = preload("res://scripts/p6a/playtest_display.gd").new()
+	display = _create_display()
 	add_child(display)
 	display.setup(controller)
 	var screen_button := Button.new()
@@ -259,3 +259,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	super._unhandled_input(event)
+
+func _create_display() -> Node:
+	return preload("res://scripts/p6a/playtest_display.gd").new()
