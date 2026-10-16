@@ -1480,3 +1480,13 @@ Antoine privilégie la surprise de découvrir, avec la collection qui donne envi
 de continuer. Il demande de définir ensemble la session idéale, sans développement.
 Cette orientation ne tranche pas encore les indices initiaux, la distribution du
 contenu, les doublons ou la forme de la collection.
+
+
+## 2026-10-16 — Indices larges et diversité réelle de préparation
+
+Antoine souhaite des indices de provenance sans connaître précisément le contenu.
+Il évoque de futures étiquettes et symboles sur des caisses ; le rendu abandonné
+reste rejeté. La rejouabilité doit dépasser le schéma argile/grès/poche : explorer
+des matières et approches différentes, éventuellement des outils distincts,
+cohérents avec les provenances. Préserver le plaisir de découverte et le soin de
+préparation. Les exemples marin/Égypte sont des pistes, pas des recettes ni un GO.

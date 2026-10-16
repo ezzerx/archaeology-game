@@ -101,10 +101,36 @@ Antoine demande de définir ensemble la session idéale, sans développement.
 Cette hiérarchie guide le cadrage ; elle ne valide pas encore un scénario détaillé,
 un mécanisme de hasard ou une structure particulière de collection.
 
-## Prochaine question à trancher ensemble
+## Précisions exprimées par Antoine — provenance et rejouabilité
 
-Quels indices le joueur reçoit-il avant la première découverte, et comment garder
-l’intérêt de la fouille après avoir reconnu la famille du spécimen ? Comparer les
-conséquences d’une priorité découverte et d’une priorité collection avant de fixer
-le déroulé de la session.
+Donner des indices larges, tels qu’une provenance marine, sans révéler exactement
+la pièce. Antoine propose une caisse avec étiquette et symbole évoquant le milieu.
+Cette piste future ne réhabilite pas le rendu rejeté de #30 et n’autorise aucune
+nouvelle passe de caisses. Éviter que le symbole révèle l’espèce exacte.
 
+La rejouabilité doit changer la forme de la préparation tout en conservant le
+plaisir de découverte et le soin apporté à la pièce. Le schéma répétitif argile,
+puis grès, avec parfois une poche, est insuffisant pour le jeu complet. Explorer
+davantage de matériaux, d’approches et éventuellement d’outils ayant des rôles
+réellement distincts. Les provenances/sites peuvent donner une cohérence à ces
+rencontres ; Antoine cite le milieu marin et un site égyptien comme exemples.
+Aucune recette géologique, liste de matériaux ou extension de contenu n’est encore
+validée par ces exemples.
+
+## Proposition de cadrage suivante — à discuter
+
+Séparer provenance (ambiance et indices), famille de préparation (comportements
+dominants des matières) et configuration du bloc (distribution et rencontres).
+Une provenance pourrait accueillir plusieurs recettes cohérentes pour éviter de
+remplacer la répétition globale par une routine fixe dans chaque région.
+
+Définir quelques préparations contrastées et leur déroulé avant de choisir une
+liste d’outils : matière cohésive à fragmenter, matrice granulaire à désagréger et
+évacuer, pièce avec dépôts adhérents à traiter localement. Ce sont des hypothèses
+de gameplay stylisé, pas des recettes géologiques ni des missions autorisées.
+
+Pour chaque matière proposée, préciser comportement visible, geste efficace,
+choix créé, retour tactile et différence avec les matières déjà présentes.
+Changer seulement la couleur, la résistance ou le temps requis ne suffit pas.
+Déterminer ensuite quels gestes sont déjà couverts par les outils validés et
+lesquels justifieraient réellement un nouvel outil.

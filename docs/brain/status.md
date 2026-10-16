@@ -31,7 +31,9 @@ reprendre automatiquement les caisses physiques, une desserte ou un registre.
 - Support : `docs/design/NEXT_STEPS_VISION.md`.
 
 Orientation exprimée : surprise de découvrir en premier, collection comme envie
-de continuer. Prochaine action autorisée : définir ensemble la session idéale,
+de continuer. Indices larges de provenance, sans identité exacte ; diversité des
+matières et des approches essentielle à la rejouabilité. Les recettes et outils
+supplémentaires restent à définir. Prochaine action autorisée : définir ensemble la session idéale,
 sans développer. Les scénarios détaillés restent des propositions non approuvées. Aucun développement, nouvelle passe d’art,
 merge ou passage de phase ne découle de ce brainstorm sans accord explicite.
 
