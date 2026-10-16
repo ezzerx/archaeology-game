@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date :** 2026-10-16
+**Date :** 2026-10-17
 
 ## Référence
 P0–P5 et les trois préparations #33 validées. Main 0f505af intègre #34.
@@ -14,10 +14,10 @@ branche codex/35-ammonite-relief depuis main, worktree
 C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
 Brief : docs/dev/ISSUE35_AMMONITE_RELIEF.md.
 Modèle et contact réel : bosses au souffle, creux au Pick, détails sous les concrétions.
-Implémentation et revue native terminées ; PR à ouvrir, puis essai humain avant fusion.
+Implémentation et revue native terminées. PR [#36](https://github.com/ezzerx/archaeology-game/pull/36) ouverte ; source jouable 8d7402c. Attendre l’essai humain avant fusion.
 
 ## Prochaine action
-Présenter les captures et ouvrir la PR. Attendre le verdict humain sur le volume
+Attendre le verdict humain sur le volume
 et le plaisir de suivre les creux au Pick avant fusion. Rapport et preuves :
 docs/dev/ISSUE35_AMMONITE_RELIEF_REPORT.md.
 434 contrôles fonctionnels et 268 ressources passent ; quatre parcours complets.
