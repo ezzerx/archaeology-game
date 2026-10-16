@@ -124,3 +124,15 @@ d'autres fossiles restent à définir après cet essai.
 - Gros plans/mesures : tests/run_issue37_runtime.gd, natif.
 - Tous avec --qa --distinction-store=res://work/issue33/compact-badges.json
   après le séparateur des arguments Godot. Les preuves sont sous work/issue37/.
+
+## Retour humain — 17 octobre 2026
+
+Antoine valide l'essai du commit jouable 313a23d. Il juge le mélange nettement
+meilleur que l'ancienne disposition classique : les hauteurs variables,
+les bancs de grès locaux et les poches instaurent un rythme et suscitent
+l'incertitude sur les rencontres du prochain bloc.
+
+Sa préférence va à **C · Veine profonde**, pour la dynamique « sur quoi
+est-ce que je vais tomber ». Les trois dispositions sont retenues ; C sert
+de référence de rythme. Ce retour porte sur l'intérêt de l'essai comparatif,
+sans trancher la fréquence de production ou une génération globale.

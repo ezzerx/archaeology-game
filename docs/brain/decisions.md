@@ -1561,3 +1561,20 @@ bancs de grès discontinus, poches remplaçant de la matière compacte pour cré
 des accélérations et des choix de poursuite. Garder rendu et feeling des outils.
 Captures, revue et itérations avant PR ; l'accord porte sur l'essai #37, pas
 sur un générateur global ou les familles d'outils.
+
+## 2026-10-17 — Terre compacte validée, C comme référence de rythme
+
+Antoine valide le mélange des trois dispositions #37 : les variations de
+hauteur des matières, les bancs de grès locaux et les poches créent un rythme
+plus intéressant que l'ancienne disposition en couches. Elles nourrissent
+l'envie de découvrir ce qui se trouve plus loin et dans le prochain bloc.
+
+C · Veine profonde est sa préférée, pour la sensation « sur quoi est-ce que
+je vais tomber ». Retenir cette composition comme référence de rythme et
+d'incertitude pour la suite, en gardant les trois essais comparables.
+La surprise recherchée porte aussi sur la géologie pendant la fouille,
+en complément de l'identité du spécimen à découvrir.
+
+Ce verdict valide l'essai livré, pas encore un générateur de production ni
+une fréquence universelle de poches. Cadrer séparément les prochaines
+finitions avant développement, selon le workflow installé.

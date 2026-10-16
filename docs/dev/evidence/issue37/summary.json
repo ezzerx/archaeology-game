@@ -17,6 +17,7 @@
     "compact_runtime": 3,
     "other_runtime": 8
   },
-  "human_validation": "pending",
+  "human_validation": "accepted by Antoine on 2026-10-17; playable commit 313a23d",
+  "preferred_disposition": "C - Veine profonde",
   "screenshots": "All selected screenshots use actual tools/controller inputs; completion sweeps are systematic, not a human-paced artistic excavation."
 }
