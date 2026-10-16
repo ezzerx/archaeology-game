@@ -158,3 +158,7 @@ un jeu navigateur et leur présentation doit être reprise. Ce verdict est parti
 il ne valide pas l'ensemble de la boucle ni la fusion. Le plan de transition vers
 une issue par PR est décrit dans `GITHUB_TRANSITION_PLAN.md` ; le statut canonique
 porte seul la prochaine action. Aucun changement de gameplay dans cette passe.
+
+Antoine approuve ensuite explicitement la consolidation de cette base via #24,
+avec les interfaces conservées comme provisoires jusqu'aux issues #27/#28.
+Cette acceptation autorise la fusion ; les réserves artistiques restent valables.

@@ -53,3 +53,13 @@ et parcours natifs. Préserver l'ammonite, le B–17, les poches et les sauvegar
 
 Cette passe de gouvernance ne modifie ni les scènes ni le gameplay. Vérification :
 ascendance Git, état distant, paramètres du dépôt, liens issues/PR, diff documentaire.
+
+## Accord de consolidation
+
+Antoine approuve explicitement le 16 octobre la fusion de #24 comme base jouable,
+avec les deux écrans provisoires. La fermeture de #25 accompagne cette fusion.
+Nettoyage de clôture : vérifier l'inclusion de P6A39–50 dans main puis supprimer
+leurs branches ; P6A38 est récupérable sous le tag distant vérifié
+`archive/p6a38-orientable-lamp-2026-10-16`, pointant sur `14acef4`.
+Les travaux utilisateur restent préservés. Aucune issue suivante n'est lancée
+implicitement par cette approbation.

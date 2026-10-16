@@ -1438,3 +1438,13 @@ collection, trop proche d'un jeu navigateur. Ne pas confondre ce retour positif
 sur l'asset avec une validation globale de la boucle ou une permission de merge.
 La continuité visuelle avec l'atelier guide les propositions ; desserte et registre
 restent des options à valider, sans modification des interactions acquises.
+
+
+## 2026-10-16 — Consolidation approuvée avec interfaces provisoires
+
+Antoine répond « Yes je valide ! » à la proposition explicite de fusionner #24
+comme base jouable avec les écrans provisoires, avant leur refonte dans les
+issues dédiées. Cet accord autorise la fusion et le nettoyage des branches.
+Il ne valide pas artistiquement les écrans et ne déclenche pas automatiquement
+l'implémentation des issues suivantes. Le prototype divergent de lampe orientable
+est conservé sous le tag `archive/p6a38-orientable-lamp-2026-10-16` avant retrait.

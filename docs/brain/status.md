@@ -12,39 +12,43 @@ P6A49 (poche friable) validée par Antoine ; M–08 reçoit un retour positif.
 Outils, Brush, dégâts localisés, squelette, lumière chaude, bloc brut et
 non-révélation des fossiles enfouis restent protégés. Sound Design différé.
 
-## Branche et PR
+## Référence et PR de consolidation
 
-- Branche : `codex/p6a50-collection-loop`.
-- [PR #24 DRAFT](https://github.com/ezzerx/archaeology-game/pull/24) vers main :
-  consolidation exceptionnelle de la chaîne de prototypes, sous [issue #25](https://github.com/ezzerx/archaeology-game/issues/25).
+- Référence de reprise : `main` contenant la [PR #24](https://github.com/ezzerx/archaeology-game/pull/24).
+- [Issue #25](https://github.com/ezzerx/archaeology-game/issues/25) : consolidation et workflow par issues.
+- Branche de livraison historique : `codex/p6a50-collection-loop`, à retirer après fusion vérifiée.
 - Source jouable `ebd1b72` ; documentation de livraison `09593a3`.
-- Main conserve la référence précédente. Aucun merge de #24 effectué.
 - Rapport produit : `docs/dev/P6A50_COLLECTION_LOOP_REPORT.md`.
 
 ## Retour humain et gate
 
-Antoine apprécie l'ammonite. Il juge les écrans des caisses et de la collection
-trop proches d'un jeu navigateur. Leur art doit être repris ; ce retour ne valide
-ni leur présentation ni l'ensemble de la boucle de progression.
+**Antoine valide explicitement la consolidation le 16 octobre 2026**, avec
+les écrans de caisses et de collection conservés comme provisoires. Cette
+validation autorise la fusion de #24 et le nettoyage des branches associées.
+L'ammonite plaît ; la présentation des deux écrans doit être reprise dans
+ses issues dédiées. Ne pas présenter cet accord comme une validation de leur art.
 
-Nouvelle méthode demandée : plan découpé en issues, une issue à la fois, PR,
-validation humaine, merge, nettoyage des branches, puis départ depuis main à jour.
+Méthode : plan découpé en issues, une issue à la fois, PR, validation humaine,
+merge, nettoyage, puis départ depuis main à jour.
 Règles durables : `docs/DEVELOPMENT_WORKFLOW.md`.
 Plan ordonné et inventaire : `docs/dev/GITHUB_TRANSITION_PLAN.md`.
 
-**Action autorisée :** organiser GitHub, documenter le retour et préparer la
-consolidation #25. La fusion de #24 nécessite l'accord explicite d'Antoine sur
-cette base avec écrans provisoires. Ne pas ouvrir une nouvelle branche empilée.
-Après consolidation : #26 isole le code actif ; #27 puis #28 portent la reprise
-artistique des arrivages et de la collection. Les propositions desserte/registre
-restent à choisir avant leur réalisation ; aucune refonte graphique commencée.
+**Prochaine mission proposée :** #26, isoler le code actif et retirer les
+expériences inutiles. Elle n'est pas démarrée ; attendre sa sélection avant
+implémentation. #27 puis #28 portent la reprise artistique des arrivages et de
+la collection. Desserte/registre restent des propositions à choisir avant
+réalisation. Aucun changement de gameplay dans la clôture de #25.
 
 ## État du nettoyage et limites
 
 Neuf branches distantes et dix branches locales déjà contenues dans main ont
 été supprimées après contrôle d'ascendance. Suppression automatique de la branche
-source après merge activée sur GitHub. Les branches P6A39–49 attendent la fusion
-de la consolidation ; P6A38 diverge et doit être archivée avant retrait.
+source après merge activée sur GitHub. Les branches P6A39–50 doivent être
+retirées après vérification de leur inclusion dans main. La branche divergente
+P6A38 est préservée par le tag distant vérifié
+`archive/p6a38-orientable-lamp-2026-10-16` (tête `14acef4`) avant retrait.
+L’état effectif des branches est vérifiable dans Git ; ces références historiques
+ne constituent pas de nouvelles branches de travail.
 Le checkout principal modifié et les worktrees utilisateur sont conservés.
 
 Les 622 contrôles ciblés de P6A50 restent les preuves de la livraison précédente ;
