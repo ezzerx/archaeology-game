@@ -31,6 +31,13 @@ def point(t,a,inner=False,depth=0):
     weather=1-.48*math.exp(-((t-15.45)/.28)**2)*max(0,math.sin(a))**5
     lateral=math.cos(a)*w
     h=height+math.sin(a)*dz+rib*ridge*max(0,math.sin(a))**.55*weather
+    # Preserve the approved tight spiral and its crest envelope. The added
+    # depth is between adjacent costae, not between the large spiral whorls.
+    # Broad rounded troughs give the Pick a real surface to follow; fading at
+    # the flanks retains the existing outline and terminal opening.
+    wave=(.5+.5*math.cos(phase))**1.7
+    groove=(.0005+.0055*(r/88)**.7)*(1-wave)
+    h-=groove*max(0,math.sin(a))**1.5*weather
     h-=.005*max(0,min(1,(t-(END-.28))/.28))**2*max(0,math.sin(a))**2
     h+=.00012*math.sin(t*83+a*11)*math.sin(t*39-a*17)
     # A small natural worn edge; the terminal opening has a recessed mineral core.
@@ -76,7 +83,7 @@ uv=mesh.uv_layers.new(name='UVMap')
 for loop in mesh.loops:
     p=mesh.vertices[loop.vertex_index].co;uv.data[loop.index].uv=(p.x/.24,-p.y/.24)
 mesh.materials.append(mat)
-ob['source_method']='original planispiral loft with modeled costae and recessed aperture'
+ob['source_method']='original compact planispiral loft with sculpted intercostal troughs and recessed aperture'
 # Short-range vertex AO enhances actual folds; no painted uniform cracks.
 print('BAKE AO',len(mesh.vertices),flush=True)
 mesh.calc_loop_triangles();bvh=BVHTree.FromPolygons([v.co for v in mesh.vertices],[tuple(t.vertices) for t in mesh.loop_triangles],all_triangles=True)

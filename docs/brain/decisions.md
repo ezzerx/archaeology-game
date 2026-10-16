@@ -1526,3 +1526,29 @@ workflow installé. Définir et valider la vision de chaque prochaine mission
 avant création d'issues exécutables et développement. Garder les démos séparées
 de la collection réelle ; leur acceptation ne valide pas encore un générateur
 de recettes, un catalogue supplémentaire ou une finition artistique définitive.
+
+## 2026-10-16 — GO relief de l'ammonite, puis finition ciblée des mécaniques
+
+Antoine approuve la mission de relief de M–08 : découvrir les bosses au souffle,
+suivre les creux au Pick et révéler les détails sous les concrétions. Réaliser
+cette mission avant les passes ciblées sur les mécaniques, chacune avec sa vision
+et sa validation. L'accord ne déclenche pas toutes les finitions en parallèle.
+
+Orientation durable : étendre la rejouabilité par des nouveautés de game design
+qui diversifient réellement les gestes et situations, puis bien les exécuter.
+Continuer à explorer des idées utiles au plaisir de préparation ; la seule
+quantité de matériaux ou de pièces n'est pas le moteur recherché.
+
+## 2026-10-17 — Précision M–08 : relief entre petites côtes, spirale compacte
+
+Antoine préfère le sillon resserré de la version antérieure à #35. Les « petites
+vagues » désignent les côtes transversales de la coquille, pas les grands tours.
+Restaurer la spirale validée et donner du volume aux creux entre côtes pour que
+le Pick les suive réellement. Cette précision remplace l'interprétation élargie
+de la première proposition ; poursuivre la correction dans la même PR #36.
+
+## 2026-10-17 — Relief corrigé de M–08 retenu
+
+Antoine accepte le résultat corrigé 75555a0 : « Ok c'est sympa comme ça ! ».
+La spirale compacte avec petites côtes sculptées devient la référence pour M–08.
+Clore #35 selon le workflow ; cadrer la prochaine finition avant développement.
