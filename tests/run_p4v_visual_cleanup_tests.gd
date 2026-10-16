@@ -73,7 +73,7 @@ func test_face_meshes() -> void:
 			high = maxf(high, color.r)
 		check(colors.size() == a[Mesh.ARRAY_VERTEX].size() and low >= 0.49 and high - low > 0.20,
 			"bounded static face values separate tops / sides without adding geometry")
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	main.controller.set_physics_process(false)
 	var fx: MaterialFeedback = main.feedback

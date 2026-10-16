@@ -160,7 +160,7 @@ func test_bone_and_events() -> void:
 	check(surface.last_action.residue_cleared > 0 and surface.residue.value_at((contact + Vector2.ONE * 0.5) / Vector2(size)) < dust_before, "actual residue clearing emits airflow/dust work")
 
 func test_scene_and_audio() -> void:
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	var block: ExcavationBlock = main.get_node("ExcavationBlock")
 	var control: ToolController = main.get_node("ToolController")

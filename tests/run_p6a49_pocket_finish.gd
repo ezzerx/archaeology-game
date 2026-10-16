@@ -1,5 +1,5 @@
 extends "res://tests/run_p6a40_natural_block.gd"
-func _pilot_scene() -> PackedScene:return preload("res://scenes/p6a49_pocket_finish.tscn")
+func _pilot_scene() -> PackedScene:return preload("res://scenes/preparation/pocket_preparation.tscn")
 func _output_directory() -> String:return "res://work/test-logs/p6a49/"
 func _collection_store() -> String:return "res://work/test-logs/p6a49/collection-test.json"
 func _suite_name() -> String:return "P6A4.9"
@@ -54,7 +54,7 @@ func variant_checks() -> void:
  main.select_pocket_variant(0)
  var s:WorkingSurface=main.block.working_map
  var actor:Node=main.pocket
- var reference=preload("res://scenes/p6a41_rough_edges.tscn").instantiate()
+ var reference=preload("res://scenes/preparation/base/rough_block.tscn").instantiate()
  root.add_child(reference)
  reference.display.persist=false;reference.controller.set_physics_process(false)
  reference.reset_specimen()

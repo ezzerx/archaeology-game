@@ -1448,3 +1448,14 @@ issues dédiées. Cet accord autorise la fusion et le nettoyage des branches.
 Il ne valide pas artistiquement les écrans et ne déclenche pas automatiquement
 l'implémentation des issues suivantes. Le prototype divergent de lampe orientable
 est conservé sous le tag `archive/p6a38-orientable-lamp-2026-10-16` avant retrait.
+
+
+## 2026-10-16 — GO issue 26, conservation stricte du gameplay
+
+Antoine autorise le nettoyage du code et des anciens prototypes avec vérifications
+complètes et PR à valider. Nommer les composants réutilisés par responsabilité,
+retirer seulement les expériences séparables et leurs tests propres, conserver
+les régressions utiles et les sources d'assets. Les déplacements gardent les UID
+et le comportement ; une ancienne génération peut encore être une dépendance.
+Les preuves et limites de cette migration sont dans le rapport de l'issue 26.
+Cette autorisation ne porte ni sur le merge ni sur la refonte des écrans.

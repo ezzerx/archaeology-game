@@ -1,8 +1,0 @@
-[gd_scene load_steps=4 format=3]
-[ext_resource type="PackedScene" path="res://scenes/p6a44_natural_slab.tscn" id="1"]
-[ext_resource type="Script" path="res://scripts/p6a45/manual_preparation.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/p6a45/lever_controller.gd" id="3"]
-[node name="ManualSlabPreparation" instance=ExtResource("1")]
-script = ExtResource("2")
-[node name="ToolController" parent="." index="3"]
-script = ExtResource("3")

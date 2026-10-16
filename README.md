@@ -28,19 +28,22 @@ Documentation rules:
 
 ## Run the game
 
-Open `project.godot` in Godot **4.7.2 stable** and press F6 (Run Project),
+Open `project.godot` in Godot **4.7.2 stable** and use **Run Project**,
 or run `./Launch-Game.ps1` on Windows. Pass `-GodotBin` if the engine is installed
-elsewhere. The default entry point uses the modeled B-17 and starts fully buried.
+elsewhere. The entry point is `scenes/collection.tscn`: choose M–08 (ammonite)
+or B–17 (skeleton), both initially buried. `Launch-P6A50-Collection.ps1` is retained
+as a compatibility entry point for existing shortcuts.
 
 In game: left click works, 1–4 selects tools, wheel zooms, right drag pans,
-Home returns to overview and R restarts. F5 inspects the source model outside
-the matrix; Escape closes inspection. F6 compares mesh/relief and F7 compares
-preparation feedback. These in-game keys differ from Godot editor shortcuts.
+Home returns to overview, R offers a restart, and C opens the collection.
+The collection survives closing the game; an unarchived preparation only survives
+visits to the collection during the current launch. Model-reveal inspection is
+reserved for QA in the normal collection flow.
 
-The versioned GLB and baked field are sufficient to play; Blender is only needed
-to rebuild the model. Historical scenes and dedicated comparison launchers remain
-available. See the [B-17 report](docs/dev/P6A37_SKELETON_REPORT.md) for source,
-verification and known limits; use the Brain status for the current gate.
+The versioned GLBs and baked fields are sufficient to play; Blender is only needed
+to rebuild models. See [runtime layout and maintenance](docs/RUNTIME_LAYOUT.md)
+for code, source assets, regression tests and recovery of retired prototypes.
+Gameplay reference: [collection delivery report](docs/dev/P6A50_COLLECTION_LOOP_REPORT.md).
 
 ## Validated core
 
@@ -75,10 +78,9 @@ verification and known limits; use the Brain status for the current gate.
 
 Historical phase evidence lives under `docs/dev/` and must not be used to infer the current phase.
 
-## Playable geometry comparison
+## Development
 
-Run `./Launch-Natural-Matrix-Lab.ps1` or open
-`scenes/p6a16_natural_matrix_lab.tscn` in Godot and press F6.
-F8 compares the two substrates with the same thin Soil; F9 removes Soil for inspection.
-The [geometry report](docs/dev/P6A16_SURFACE_GRAMMAR_REPORT.md) contains the fixtures,
-measurements and human retest procedure. The normal project launch uses the entry point documented above.
+Follow the [issue workflow](docs/DEVELOPMENT_WORKFLOW.md): one issue, one PR,
+human validation, merge, branch cleanup. Historical comparison scenes are regression
+fixtures, not alternative launchers for the current game. Their dependency roles
+are documented in [runtime layout](docs/RUNTIME_LAYOUT.md).

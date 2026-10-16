@@ -1,6 +1,6 @@
 extends "res://tests/run_p6a37_skeleton.gd"
 func _pilot_scene() -> PackedScene:
-	return preload("res://scenes/p6a39_centered_light.tscn")
+	return preload("res://scenes/preparation/base/centered_light.tscn")
 func _output_directory() -> String:
 	return "res://work/test-logs/p6a39/"
 func _collection_store() -> String:
@@ -9,7 +9,7 @@ func _suite_name() -> String:
 	return "P6A3.9"
 func pilot_checks() -> void:
 	await super.pilot_checks()
-	check(ProjectSettings.get_setting("application/run/main_scene") == "res://scenes/p6a39_centered_light.tscn","default project opens the fixed centred light candidate")
+	check(ProjectSettings.get_setting("application/run/main_scene") == "res://scenes/preparation/base/centered_light.tscn","default project opens the fixed centred light candidate")
 	check(main.task_light.position.x == 0 and main.bench_bounce.position.x == 0,"source and bounce share the centre axis")
 	check(main.task_light.light_color == Color(1,.94,.83) and is_equal_approx(main.task_light.light_energy,1.2) and main.task_light.spot_angle == 50,"accepted warm colour, intensity and beam width remain exact")
 	var before := state()

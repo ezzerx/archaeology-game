@@ -72,7 +72,7 @@ func test_pick_readability_and_semantics() -> void:
 		"Blower launches detached crumb without structural removal")
 
 func test_lift_off() -> void:
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	main.set_process(false)
 	main.controller.set_physics_process(false)

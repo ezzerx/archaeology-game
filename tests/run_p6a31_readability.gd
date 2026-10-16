@@ -1,5 +1,5 @@
 extends "res://tests/run_p6a3_sensory.gd"
-const MasteryUI := preload("res://scripts/p6a31/mastery_ui.gd")
+const MasteryUI := preload("res://scripts/preparation/readability/mastery_ui.gd")
 
 func functional() -> void:
 	# Native trajectories and complete state hashes from P6A3, with P6A3.1 active.
@@ -103,7 +103,7 @@ func run() -> void:
 	var args := OS.get_cmdline_user_args()
 	mode = args[0] if not args.is_empty() else "tests"
 	AudioServer.set_bus_mute(0, true)
-	main = load("res://scenes/p6a31_mastery_readability.tscn").instantiate()
+	main = load("res://scenes/preparation/base/readability.tscn").instantiate()
 	root.add_child(main)
 	main.display.persist = false
 	root.mode = Window.MODE_WINDOWED

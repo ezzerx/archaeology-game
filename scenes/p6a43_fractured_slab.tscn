@@ -1,8 +1,0 @@
-[gd_scene load_steps=4 format=3]
-[ext_resource type="PackedScene" path="res://scenes/p6a41_rough_edges.tscn" id="1"]
-[ext_resource type="Script" path="res://scripts/p6a43/slab_preparation.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/p6a43/slab_block.gd" id="3"]
-[node name="FracturedSlabPreparation" instance=ExtResource("1")]
-script = ExtResource("2")
-[node name="ExcavationBlock" parent="." index="1"]
-script = ExtResource("3")

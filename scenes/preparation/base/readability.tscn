@@ -1,0 +1,5 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://scenes/preparation/base/tool_feedback.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/preparation/readability/mastery_readability.gd" id="2"]
+[node name="MasteryReadability" instance=ExtResource("1")]
+script = ExtResource("2")

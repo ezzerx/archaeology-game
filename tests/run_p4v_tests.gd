@@ -209,7 +209,7 @@ func test_fracture() -> void:
 
 func test_debug() -> void:
 	root.size = Vector2i(1920, 1080)
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	main.controller.set_physics_process(false)
 	for cell in [ZONES[0], ZONES[2], Vector2i(80, 80)]:

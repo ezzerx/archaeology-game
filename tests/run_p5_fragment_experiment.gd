@@ -129,7 +129,7 @@ func test_forceps_input() -> void:
 func run() -> void:
 	root.size = Vector2i(1920, 1080)
 	root.content_scale_size = root.size
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	main.get_node("ExcavationBlock").fragment_experiment = true
 	main.get_node("ToolController").tools.append(load("res://config/forceps.tres"))
 	root.add_child(main)

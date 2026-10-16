@@ -1,6 +1,6 @@
 extends "res://tests/run_p6a40_natural_block.gd"
 func _pilot_scene() -> PackedScene:
- return preload("res://scenes/p6a47_friable_pocket.tscn")
+ return preload("res://scenes/preparation/base/friable_pocket.tscn")
 func _output_directory() -> String:
  return "res://work/test-logs/p6a47/"
 func _collection_store() -> String:

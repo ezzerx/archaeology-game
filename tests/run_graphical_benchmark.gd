@@ -117,7 +117,7 @@ func run() -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	Engine.max_fps = 0 # Explicit benchmark override of P3's normal 240 cap.
 	process_frame.connect(on_frame)
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(main)
 	block = main.get_node("ExcavationBlock")
 	controller = main.get_node("ToolController")

@@ -298,7 +298,7 @@ func run() -> void:
 	# Exercise real mixer/voices without broadcasting repeated test audio.
 	AudioServer.set_bus_mute(0, true)
 	process_frame.connect(on_frame)
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(main)
 	block = main.get_node("ExcavationBlock")
 	controller = main.get_node("ToolController")

@@ -254,7 +254,7 @@ func tick() -> void:
 
 func test_input() -> void:
 	root.size = Vector2i(1920, 1080)
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(main)
 	block = main.get_node("ExcavationBlock")
 	controller = main.get_node("ToolController")

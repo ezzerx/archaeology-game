@@ -330,7 +330,7 @@ func test_persistent_state() -> void:
 	check(max_count <= dirt.profile.matrix_crumb_cap, "legacy flight + partial cleanup + new deposits never exceed the shared global cap")
 
 func test_scene() -> void:
-	var main := load("res://scenes/prototype_main.tscn").instantiate() as Node3D
+	var main := load("res://scenes/preparation/base/interaction.tscn").instantiate() as Node3D
 	root.add_child(main)
 	main.set_process(false)
 	main.controller.set_physics_process(false)

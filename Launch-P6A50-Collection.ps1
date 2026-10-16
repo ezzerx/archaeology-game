@@ -6,5 +6,5 @@ if (-not $GodotBin) {
 if (-not (Test-Path -LiteralPath $GodotBin)) { throw 'Pass -GodotBin for Godot 4.7.2 stable.' }
 $taskEngineVersion = & $GodotBin --version
 if ($LASTEXITCODE -ne 0 -or $taskEngineVersion -notmatch '^4\.7\.2\.stable') { throw 'Godot 4.7.2 stable required.' }
-& $GodotBin --path $PSScriptRoot res://scenes/p6a50_collection_loop.tscn
+& $GodotBin --path $PSScriptRoot res://scenes/collection.tscn
 exit $LASTEXITCODE

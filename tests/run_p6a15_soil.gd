@@ -182,7 +182,7 @@ func functional() -> void:
 	var reference: Dictionary
 	for version in range(3):
 		if version == 0:
-			main = load("res://scenes/prototype_main.tscn").instantiate()
+			main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 			root.add_child(main)
 			main.controller.set_physics_process(false)
 		else:

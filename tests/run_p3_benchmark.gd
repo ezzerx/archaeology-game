@@ -262,7 +262,7 @@ func run() -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	if "--uncapped" in OS.get_cmdline_user_args(): Engine.max_fps = 0
 	process_frame.connect(on_frame)
-	main = load("res://scenes/prototype_main.tscn").instantiate()
+	main = load("res://scenes/preparation/base/interaction.tscn").instantiate()
 	root.add_child(main)
 	block = main.get_node("ExcavationBlock")
 	controller = main.get_node("ToolController")

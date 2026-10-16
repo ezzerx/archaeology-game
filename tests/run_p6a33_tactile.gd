@@ -1,6 +1,6 @@
 extends "res://tests/run_p6a32_binding.gd"
 const QA_STORE := "res://work/test-logs/p6a33/collection-test.json"
-const Distinction := preload("res://scripts/p6a33/preparation_distinction.gd")
+const Distinction := preload("res://scripts/preparation/tactile/preparation_distinction.gd")
 
 func press_key(code: Key) -> void:
 	var event := InputEventKey.new()
@@ -181,7 +181,7 @@ func run() -> void:
 	var args := OS.get_cmdline_user_args()
 	mode = args[0] if not args.is_empty() else "tests"
 	AudioServer.set_bus_mute(0,true)
-	main = load("res://scenes/p6a33_tactile_preparation.tscn").instantiate()
+	main = load("res://scenes/preparation/base/tactile_preparation.tscn").instantiate()
 	root.add_child(main)
 	main.display.persist = false
 	root.mode = Window.MODE_WINDOWED

@@ -1,0 +1,8 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="PackedScene" path="res://scenes/preparation/base/centered_light.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/excavation/block/natural/natural_preparation.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/excavation/block/natural/natural_block.gd" id="3"]
+[node name="NaturalBlockPreparation" instance=ExtResource("1")]
+script = ExtResource("2")
+[node name="ExcavationBlock" parent="." index="1"]
+script = ExtResource("3")

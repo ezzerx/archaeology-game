@@ -1,0 +1,5 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://scenes/preparation/base/readability.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/specimens/mesh_overlay_base/fossil_mesh_pilot.gd" id="2"]
+[node name="FossilMeshPilot" instance=ExtResource("1")]
+script = ExtResource("2")
