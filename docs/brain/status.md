@@ -16,7 +16,7 @@ non-révélation des fossiles enfouis protégés. Godot 4.7.2 ; Sound Design dif
 
 - [#27 — Arrivages dans l’atelier](https://github.com/ezzerx/archaeology-game/issues/27).
 - Branche `codex/27-workshop-arrivals`, créée depuis main `7feaa4e`.
-- PR en préparation pour revue humaine.
+- [PR #30](https://github.com/ezzerx/archaeology-game/pull/30), prête pour revue humaine ; code candidat `1bfbdc5`.
 - Rapport : `docs/dev/ISSUE27_WORKSHOP_ARRIVALS_REPORT.md`.
 - Nouveau worktree isolé : `27-workshop-arrivals/ArchaeologyGame`.
 
