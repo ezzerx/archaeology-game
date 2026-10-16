@@ -8,17 +8,18 @@ Main c580911 intègre la PR #36. B–17/M–08, outils, interactions et rendu fo
 Caisses #30 rejetées ; #27/#28 et son différés.
 
 ## Mission active / gate
-Antoine autorise l'essai de terre compacte avec trois dispositions, revue des
-captures et itérations avant PR. Issue #37, branche codex/37-compact-pockets
-depuis main, worktree C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+Issue [#37](https://github.com/ezzerx/archaeology-game/issues/37), branche
+codex/37-compact-pockets depuis main, worktree
+C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+Trois dispositions de terre compacte livrées dans le commit jouable 313a23d.
+PR [#38](https://github.com/ezzerx/archaeology-game/pull/38) ouverte.
+Captures revues et contrôles réussis ; validation humaine du résultat attendue.
 Brief : docs/dev/ISSUE37_COMPACT_POCKETS.md.
-Trois dispositions livrées, captures revues et contrôles réussis. PR à ouvrir ;
-validation humaine du résultat attendue.
 Rapport : docs/dev/ISSUE37_COMPACT_POCKETS_REPORT.md.
 
 ## Prochaine action
-Conserver le feeling et le rendu, équilibrer les trois parcours, vérifier les
-captures natives et les régressions, préparer la PR pour essai humain.
+Faire essayer A/B/C à Antoine : fréquence utile des poches, place du grès et
+envie de changer de geste ou de direction. Corriger dans cette même PR si besoin.
 Ne pas fusionner ni ouvrir une autre mission sans retour humain.
 
 ## Direction et points de suivi
