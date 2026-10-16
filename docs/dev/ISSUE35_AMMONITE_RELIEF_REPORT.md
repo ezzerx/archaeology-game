@@ -84,3 +84,9 @@ leurs bosses et creux au Pick, sans rendre la finition laborieuse ?
   --distinction-store=res://work/issue35/ribs-production-badges.json.
 - Le JSON natif conserve 65 contrôles et les mesures des deux petites côtes.
   Le message console porte le nom ISSUE33 du harnais de parcours réutilisé.
+
+## Retour humain — 2026-10-17
+Antoine retient le résultat corrigé 75555a0 : « Ok c'est sympa comme ça ! ».
+La spirale resserrée et le relief des petites côtes sont acceptés comme nouvelle
+référence M–08. Ce retour concerne cette passe ; il ne clôt pas les sujets de
+finition des matériaux et des familles d'outils.

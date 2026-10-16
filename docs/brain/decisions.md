@@ -1546,3 +1546,9 @@ vagues » désignent les côtes transversales de la coquille, pas les grands tou
 Restaurer la spirale validée et donner du volume aux creux entre côtes pour que
 le Pick les suive réellement. Cette précision remplace l'interprétation élargie
 de la première proposition ; poursuivre la correction dans la même PR #36.
+
+## 2026-10-17 — Relief corrigé de M–08 retenu
+
+Antoine accepte le résultat corrigé 75555a0 : « Ok c'est sympa comme ça ! ».
+La spirale compacte avec petites côtes sculptées devient la référence pour M–08.
+Clore #35 selon le workflow ; cadrer la prochaine finition avant développement.

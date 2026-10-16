@@ -29,5 +29,5 @@
     "contact_distance_texels": 7.28010988235474
   },
   "art_comparison": "identical staged inspection cut; other selected images use actual tool inputs",
-  "human_validation": "pending"
+  "human_validation": "accepted by Antoine on corrected gameplay commit 75555a0, 2026-10-17"
 }
