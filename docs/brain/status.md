@@ -16,20 +16,18 @@ Rapport : docs/dev/ISSUE51_GALLERY_CLARITY.md.
 La copie historique locale de main comporte des changements indépendants
 préservés ; cette mission repart du main distant fusionné dans preparation-demos.
 
-## Mission active
+## Mission validée / prochaine étape
 [#28](https://github.com/ezzerx/archaeology-game/issues/28) : conserver et exposer
 le vrai bloc préparé, puis le retrouver identique après relance.
 Branche codex/28-prepared-exhibits créée depuis main 085b6a8.
 Brief actif : docs/dev/ISSUE28_PREPARED_EXHIBITS.md.
 Rapport : docs/dev/ISSUE28_PREPARED_EXHIBITS_REPORT.md.
-PR [#53](https://github.com/ezzerx/archaeology-game/pull/53) ouverte pour essai.
-Retour humain : conservation et exposition fonctionnent ; blanchiment excessif
-du sédiment signalé. Correctif colorimétrique livré dans la même PR, compatible
-avec les archives déjà créées. Retour suivant : poussière de B–17 trop blanche
-et contours dentelés au zoom ; corrections de restitution dans la même PR.
+PR [#53](https://github.com/ezzerx/archaeology-game/pull/53) validée par Antoine
+après essai des corrections de couleur, poussière et contours au zoom.
+Gate humain #28 levé le 2026-10-17 ; fusion et nettoyage autorisés.
 Rapport complémentaire : docs/dev/ISSUE28_EXHIBIT_DETAIL_FIX.md.
-Gate : attendre la revue visuelle corrigée.
-Aucune fusion de cette nouvelle mission sans revue d’Antoine.
+Prochaine action : cadrer avec Antoine la nouvelle vision des caisses #27,
+avant toute implémentation. Aucune nouvelle mission de développement active.
 
 Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,
 nettoyage et dégâts réels ; aucune substitution silencieuse par un meilleur

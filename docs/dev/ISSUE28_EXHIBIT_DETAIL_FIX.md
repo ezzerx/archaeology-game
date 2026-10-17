@@ -65,3 +65,8 @@ Reproduction du contrôle Forward+ après création des archives QA par
 $archives = Get-Content work/issue28/archive-directory.txt
 & $Godot --path . --rendering-method forward_plus --script res://tests/run_issue28_display.gd -- "--exhibit-store=$archives"
 ```
+
+## Validation humaine
+Le 2026-10-17, Antoine valide le rendu corrigé après essai et autorise la fusion
+de la PR #53. Cette validation porte sur la restitution au musée ; les pistes
+d’optimisation et les améliorations artistiques futures restent distinctes.
