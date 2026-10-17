@@ -85,7 +85,7 @@ func _work_material(from:Vector2,to:Vector2,tool:ToolDefinition,delta:float,abra
    _heights[i]=next
    if abrasion:crust_caps[i]=next if next>structural_ceilings[i]+.00001 else 0.0
    volume+=old-next;changed+=1
-   if sources.size()<8 and changed%sample_stride==0:sources.append(Vector3(x,old,y))
+   if sources.size()<8 and (changed%sample_stride==0 or (abrasion and changed==1)):sources.append(Vector3(x,old,y))
    if structural_ceilings[i]>0 and next<=structural_ceilings[i]+FossilField.EXPOSURE_EPSILON and fossil.exposed[i]==0:newly_exposed.append(i)
  if changed==0:return 0
  tool_applied.emit()

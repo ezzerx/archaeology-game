@@ -1578,3 +1578,16 @@ en complément de l'identité du spécimen à découvrir.
 Ce verdict valide l'essai livré, pas encore un générateur de production ni
 une fréquence universelle de poches. Cadrer séparément les prochaines
 finitions avant développement, selon le workflow installé.
+
+## 2026-10-17 — GO finition des concrétions et famille sur 1
+
+Antoine approuve trois rencontres : dépôt mince, amas entre plusieurs côtes et
+traînée suivant une courbure. L'abrasion doit montrer un retrait local et rapide,
+révéler le relief sous une poussière encore brossable, avec des dépôts visuellement
+minéraux et une majorité de coquille libre. Captures et itérations avant PR.
+
+La touche 1 regroupe Brush/pointe abrasive : retour à la dernière variante
+depuis un autre outil, alternance sur nouvel appui dans la famille, Brush par
+défaut. Un emplacement affiche clairement la variante et l'alternative.
+Le GO conserve outils et interactions validés ; aucune nouvelle pénalité,
+recette globale, collection ou passe sonore n'est incluse.

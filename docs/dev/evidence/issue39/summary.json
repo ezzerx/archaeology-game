@@ -1,0 +1,17 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "source_base": "fa61bc0",
+  "functional_checks": 332,
+  "resource_loads": 275,
+  "failures": [],
+  "suites": {
+    "P4V2": 91,
+    "P5": 128,
+    "compact_regression": 45,
+    "demo_materials": 17,
+    "concretion_native": 43,
+    "demo_runtime": 8
+  },
+  "human_validation": "pending",
+  "capture_method": "Native rendered game, real controller tool inputs. Full completion is a systematic QA sweep, not a human-time measurement."
+}

@@ -3,35 +3,29 @@
 **Date :** 2026-10-17
 
 ## Référence validée
-P0–P5, les trois préparations #33, l'ammonite corrigée #35 et les trois
-dispositions de terre compacte #37 sont validés par Antoine.
-B–17/M–08, outils, interactions et rendu font référence.
+P0–P5, trois préparations #33, ammonite corrigée #35, terre compacte #37 validés.
+Main fa61bc0 intègre la PR #38 ; C reste la référence préférée de rythme.
+B–17/M–08, feeling des outils, interactions et rendu à préserver.
 Caisses #30 rejetées ; #27/#28 et son différés.
 
-## Mission livrée / gate
-Issue [#37](https://github.com/ezzerx/archaeology-game/issues/37), livraison
-[PR #38](https://github.com/ezzerx/archaeology-game/pull/38).
-Validation humaine explicite du commit jouable 313a23d le 17 octobre 2026 :
-mélange argile/grès/poches retenu, variations de hauteur appréciées pour le
-rythme et l'incertitude. **C · Veine profonde est la référence préférée.**
-Les trois dispositions restent disponibles ; aucun correctif demandé.
-Brief : docs/dev/ISSUE37_COMPACT_POCKETS.md.
-Rapport : docs/dev/ISSUE37_COMPACT_POCKETS_REPORT.md.
-Worktree de reprise : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+## Mission active / gate
+Issue [#39](https://github.com/ezzerx/archaeology-game/issues/39),
+branche codex/39-concretion-finish depuis main.
+Worktree : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+GO humain : trois rencontres de concrétions, érosion et feedback soignés,
+Brush/pointe abrasive réunis sur 1. Résultat implémenté, revue native et itérations terminées.
+Brief : docs/dev/ISSUE39_CONCRETION_FINISH.md.
+Rapport : docs/dev/ISSUE39_CONCRETION_FINISH_REPORT.md.
+Contrôles réussis ; verdict humain du résultat attendu.
 
 ## Prochaine action
-Clôture de #37 selon le workflow : validation acquise pour fusion de #38,
-synchronisation de main et nettoyage de sa seule branche de mission.
-Après clôture, définir ensemble la vision de la prochaine finition.
-Aucune nouvelle mission de développement n'est autorisée par cette validation.
-Repartir de main synchronisé pour la prochaine issue approuvée.
+Préparer la PR, puis faire essayer les trois rencontres et la famille 1.
+Corriger dans cette mission si nécessaire ; attendre le verdict humain avant
+fusion ou nouvelle mission.
 
-## Direction et points de suivi
-Découverte prioritaire, collection comme continuité. La géologie doit créer
-des rencontres et des changements de rythme au cours d'une même préparation.
-Varier les gestes et situations sans allonger artificiellement le travail.
-Trois compositions bornées ; fréquence de production et extension à d'autres
-spécimens restent à cadrer. Marine, concrétions et familles d'outils à traiter
-par missions distinctes, chacune avec sa vision approuvée.
-Lanceur : Launch-Preparation-Demos.cmd.
-Changements utilisateur des anciens checkouts préservés.
+## Points de suivi
+Matières lisibles, rythme court et détail révélé : préserver le plaisir de découverte.
+La famille 1 rappelle la dernière variante ; un second appui alterne.
+Aucun indice sous couverture intacte. Film, condition et exposition distincts.
+Pas de génération globale, son, collection ou retouche des autres préparations.
+Lanceur : Launch-Preparation-Demos.cmd. Changements des anciens checkouts préservés.
