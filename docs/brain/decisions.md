@@ -1627,3 +1627,11 @@ un aperçu rapide de la découverte, puis laisser davantage de matrice dure sur
 l'ammonite et autour, à préparer au Chisel/Pick. Conserver la réaction rapide
 du sédiment ; ajouter du travail de précision plutôt que ralentir le souffle.
 Correction dans la même PR #42 avant validation globale ou fusion.
+
+## 2026-10-17 — Structure marine acceptée, durée encore trop courte
+Après essai de la correction 9fb752f, Antoine confirme que le mélange avec
+les bancs durs correspond à son intention. Il termine toutefois la préparation
+en 1 min 30 à 2 min et la juge encore trop rapide. Conserver le feeling et
+la structure acceptés ; définir la durée et le parcours avant de choisir le
+prochain levier. Ce retour ne fixe pas de durée cible et ne valide pas une
+nouvelle mécanique, un ralentissement des outils ou la fusion de la PR #42.

@@ -17,16 +17,17 @@ Vision : découverte rapide au souffle, bancs durs sous les sédiments sur et
 autour de l'ammonite, puis préparation Chisel/Pick et finition Brush.
 Brief : docs/dev/ISSUE41_MARINE_FINISH.md.
 Rapport : docs/dev/ISSUE41_MARINE_FINISH_REPORT.md.
-Retour humain : feeling du Blower et réaction de matière validés, mais préparation
-trop courte. Correction livrée : trois bancs durs sous la nappe, sur et autour
-de l'ammonite. Captures revues et contrôles réussis ; souffle préservé.
+Retour humain après correction : le mélange souffle / bancs durs correspond
+à l'intention d'Antoine. La préparation reste trop courte selon son essai
+(1 min 30 à 2 min). Structure acceptée ; durée globale encore à cadrer.
 PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte.
 Version précédemment testée : 605b4fd ; validation partielle du feeling.
-Version corrigée : 9fb752f ; nouvel essai du rythme attendu, pas de fusion.
+Version corrigée testée : 9fb752f ; réserve sur la durée, pas de fusion.
 
 ## Prochaine action autorisée
-Faire retester l'équilibre découverte rapide / travail de précision dans la
-PR #42, puis attendre la validation humaine avant fusion.
+Définir avec Antoine la durée et le parcours souhaités pour une préparation
+standard avant une nouvelle passe. Aucun ralentissement des outils ni nouvelle
+mécanique approuvé par ce seul retour. Garder la PR #42 ouverte.
 La passe fluidité/réactivité est demandée juste après, dans une mission distincte.
 Le ressenti de retard malgré 240 FPS doit être mesuré ; aucune correction de
 fréquence, de suivi des outils ou de synchronisation d'affichage dans #41.

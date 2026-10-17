@@ -20,6 +20,14 @@ Le débit, la cohésion des grains, les particules, les outils, leurs cadences e
 les dégâts restent ceux de la version testée. L'aide de la préparation rappelle
 la succession souffle → matrice → précision → brossage.
 
+## Retour humain sur la correction
+Antoine confirme que les bancs durs correspondent à la modification imaginée.
+Après essai, il rapporte toutefois une préparation terminée en 1 min 30 à 2 min,
+encore trop rapide à son goût. Ce verdict valide la structure et le feeling,
+mais laisse ouverte la question de la durée globale. Aucune durée cible ni
+solution supplémentaire n'est encore approuvée ; les chiffres de QA ci-dessous
+restent des contrôles techniques, distincts de cette durée humaine.
+
 ## Revue native
 Les captures montrent la découverte, les masses qui résistent au souffle et la
 reprise progressive au Pick. Le parcours de précision a été revu pour suivre des
