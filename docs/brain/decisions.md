@@ -1741,3 +1741,10 @@ Antoine autorise à intégrer les cinq modèles d'environnement déposés dans
 furniture et à juger le résultat dans la galerie. Réparer localement ce qui
 peut l'être ; une régénération reste possible si le rendu pose encore problème.
 Cette autorisation ne valide pas artistiquement l'assemblage final.
+
+## 2026-10-17 — Compléter le rendu du musée avant de multiplier les assets
+Antoine juge l'intégration de l'environnement meilleure mais insuffisante
+artistiquement. Il confirme la passe proposée : lumière douce, contacts,
+matières, appliques, fenêtre/vitrage et raccords, avec comparaison à la référence
+et itérations. Cette autorisation ne valide pas la qualité du résultat à venir.
+La cohérence de la travée complète doit guider la suite de la production.

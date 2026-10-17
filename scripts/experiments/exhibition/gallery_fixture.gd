@@ -29,6 +29,9 @@ static func build(id:String) -> Node3D:
  for mesh:MeshInstance3D in model.find_children("*","MeshInstance3D",true,false):
   mesh.material_override=ivory;mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON
  var vertices:=PackedVector3Array();var uvs:=PackedVector2Array();var colors:=PackedColorArray();var indices:=PackedInt32Array()
+ # Irregular geological surface, deterministic across launches.
+ var relief:=FastNoiseLite.new();relief.seed=5108 if marine else 5117
+ relief.frequency=.075;relief.fractal_octaves=3
  var valid:=PackedByteArray();valid.resize(GRID.x*GRID.y)
  for y in range(GRID.y+1):
   for x in range(GRID.x+1):
@@ -36,13 +39,13 @@ static func build(id:String) -> Node3D:
    var q:=(uv-origin)/(span*.5)
    var radius:=pow(absf(q.x),4)+pow(absf(q.y),4)
    var rim:=smoothstep(.45,.97,radius)
-   var ripple:=sin(x*.71+y*.37)*sin(y*.49-x*.17)*.003
-   var h:=.026+ripple+rim*.039
+   var ripple:=relief.get_noise_2d(x,y)*.003+relief.get_noise_2d(x*3.,y*3.)*.0006
+   var h:=.026+ripple+rim*.024
    var cell:=Vector2i(uv*Vector2(field.size)).clamp(Vector2i.ZERO,field.size-Vector2i.ONE)
    var i:int=cell.y*field.size.x+cell.x
    if field.component_ids[i]!=0:h=minf(h,.018+field.ceilings[i]*.102-.009)
    vertices.append(Vector3((uv.x-.5)*1.1,h,(uv.y-.5)*.7))
-   uvs.append(uv);colors.append(Color(rim,.88+.12*sin(x*.2+y*.4),0,1))
+   uvs.append(uv);colors.append(Color(rim,.90+.10*relief.get_noise_2d(x*.5,y*.5),0,1))
  for y in range(GRID.y):
   for x in range(GRID.x):
    var uv:=((Vector2(x,y)+Vector2.ONE*.5)/Vector2(GRID)-Vector2(.5,.5))*span+origin

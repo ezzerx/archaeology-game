@@ -26,15 +26,15 @@ Rapport : docs/dev/ISSUE51_EXHIBITION_STUDY_REPORT.md.
 PR [#52](https://github.com/ezzerx/archaeology-game/pull/52) ouverte pour essai humain.
 
 ## Version à essayer / prochaine action
-Antoine apprécie les meubles mais demande de refaire le sol, les murs et le fond.
-Les cinq nouveaux exports déposés dans furniture sont intégrés : niches,
-fenêtre, fougère, livres et minéral. Il autorise à avancer avec ces modèles et
-à envisager une régénération seulement si le rendu reste problématique.
-Le fond troué de la niche est remplacé dans l'assemblage Godot ; source GLB intacte.
-Dalles, enduit, boiseries, raccords architecturaux et lumière repris.
-Rapport actif : docs/dev/ISSUE51_MUSEUM_ENVIRONMENT.md, avec captures et limites.
-85 contrôles natifs et 298 chargements de ressources réussis ; attendre le
-verdict visuel humain avant nouvelle passe ou fusion. Aucun gameplay modifié.
+Antoine a autorisé la passe de rendu après avoir jugé l'environnement amélioré
+mais encore insuffisant. Le candidat ajoute ombres douces, SSIL/contact,
+reflets, lampes visibles, matières harmonisées, fenêtre/vitrage/jardin et raccords.
+Lanceur de galerie en Forward+ ; préparation et project.godot conservés.
+Captures comparées au concept, plusieurs itérations et contrôles terminés :
+85 contrôles par renderer et 300 ressources, zéro échec.
+Rapport actif : docs/dev/ISSUE51_GALLERY_RENDERING.md, avec avant/après et mesures.
+Attendre le nouveau verdict visuel d'Antoine avant fusion ou autre mission.
+PR #52 reste ouverte. Aucun gameplay ni donnée joueur modifié.
 
 Originaux archivés dans assets/museum/source/tripo-studio/ ; dépôt utilisateur
 stable : C:/Users/antoi/Documents/ArchaeologyGame-Assets/Tripo/museum/.
@@ -48,8 +48,9 @@ Pas de nouvelle génération Tripo réalisée pendant cette intégration.
 ## Points de suivi
 Exemples annoncés comme tels ; aucune acquisition ni modification de sauvegarde.
 Préparations, suivi d'outils et lanceurs existants conservés.
-Vue extérieure simplifiée, raccords de matières et ombres encore à peaufiner
-selon le verdict humain. Sources détaillées non optimisées pour une grande salle.
+Jardin secondaire simple et sources détaillées non optimisées pour une grande
+salle. Le rendu indirect est SSIL ; pas encore d'éclairage précalculé. Une future
+boucle atelier/musée dans un processus devra comparer le renderer commun.
 Retouche de l'inscription inventée au dos de B–17 et comparaison atelier/musée
 à taille strictement identique restent à traiter.
 Sauvegarde 3D réelle et boucle arrivage/atelier/galerie à définir ensuite.

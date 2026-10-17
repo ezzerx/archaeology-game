@@ -63,3 +63,10 @@ Antoine autorise à avancer avec les cinq GLB déposés dans furniture, puis à
 régénérer seulement si le rendu reste problématique. Intégrer les modules,
 reprendre sol/murs/lumière et corriger localement la niche si possible, en
 préservant les sources et le gameplay. Rapport : ISSUE51_MUSEUM_ENVIRONMENT.md.
+
+## Passe de rendu après l'intégration
+Antoine autorise à compléter lumière, ombres, matériaux, appliques, fenêtre et
+raccords, puis à comparer au concept et itérer. Le résultat est documenté dans
+[la passe de rendu](ISSUE51_GALLERY_RENDERING.md), avec preuves natives et coût.
+La galerie conserve ses commandes ; les préparations restent dans leur pipeline
+validée. Le choix de renderer de ce lanceur d'essai ne migre pas le jeu complet.

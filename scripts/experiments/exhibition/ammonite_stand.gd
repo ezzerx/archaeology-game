@@ -14,7 +14,9 @@ static func install(parent:Node3D,center:Vector3) -> Node3D:
  for mesh:MeshInstance3D in stand.find_children("*","MeshInstance3D",true,false):
   for surface in range(mesh.mesh.get_surface_count()):
    var material:=mesh.get_active_material(surface).duplicate() as StandardMaterial3D
-   material.albedo_color=Color(.52,.60,.67);material.normal_scale=.65
+   material.albedo_color=Color(.66,.70,.73);material.normal_scale=.40
+   material.roughness=.88;material.metallic_specular=.38
+   material.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
    mesh.set_surface_override_material(surface,material)
  stand.set_meta("plinth_height",stand.position.y)
  return stand

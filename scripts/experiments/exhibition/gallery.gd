@@ -73,19 +73,7 @@ func lettering(parent:Node3D,words:String,pos:Vector3,size:float,color:Color,fon
  t.outline_size=0;t.no_depth_test=false;t.shaded=false;t.double_sided=false
  parent.add_child(t);return t
 func _environment() -> void:
- var world:=WorldEnvironment.new();var env:=Environment.new()
- env.background_mode=Environment.BG_COLOR;env.background_color=Color("#1b201e")
- env.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;env.ambient_light_color=Color("#d8d3bb");env.ambient_light_energy=.46
- env.tonemap_mode=Environment.TONE_MAPPER_FILMIC;world.environment=env;add_child(world)
- var key:=DirectionalLight3D.new();add_child(key);key.rotation_degrees=Vector3(-48,-48,0)
- key.light_color=Color("#ffe8c2");key.light_energy=.43;key.shadow_enabled=true
- key.directional_shadow_max_distance=16;key.shadow_bias=.12;key.shadow_normal_bias=.75
- var fill:=DirectionalLight3D.new();add_child(fill);fill.rotation_degrees=Vector3(-38,125,0)
- fill.light_color=Color("#c8dfdc");fill.light_energy=.25
- for x in [-1.65,1.62]:
-  var light:=SpotLight3D.new();add_child(light);light.position=Vector3(x,3.6,.6)
-  light.look_at(Vector3(x,1,0));light.light_color=Color("#ffe3b3");light.light_energy=.22
-  light.spot_range=6;light.spot_angle=42;light.spot_attenuation=.6
+ preload("res://scripts/experiments/exhibition/gallery_lighting.gd").install(self)
 
 func _wall_drawing(pos:Vector3,marine:bool) -> MeshInstance3D:
  var line:=ImmediateMesh.new();line.surface_begin(Mesh.PRIMITIVE_LINES)
@@ -116,8 +104,8 @@ func _displays() -> void:
   mount.position=center;mount.rotation_degrees.x=19
   var stand:=B17Stand.install(self,center) if i==0 else AmmoniteStand.install(self,center)
   var plinth_height:float=stand.get_meta("plinth_height")
-  box(self,Vector3(width-.13,plinth_height-.06,depth-.13),Vector3(center.x,(plinth_height+.06)*.5,center.z),materials.dark)
-  box(self,Vector3(width-.04,.06,depth-.04),Vector3(center.x,.03,center.z),materials.edge)
+  Room.soft_box(self,Vector3(width-.13,plinth_height-.06,depth-.13),Vector3(center.x,(plinth_height+.06)*.5,center.z),_material(Color("#68482f")),.018)
+  Room.soft_box(self,Vector3(width-.04,.06,depth-.04),Vector3(center.x,.03,center.z),materials.edge,.012)
   mount.set_meta("usable_extent",B17Stand.USABLE_EXTENT if i==0 else AmmoniteStand.USABLE_EXTENT)
   Cartel.install(self,i,Vector3(center.x,.925,1.04),serif,sans)
 func _ui() -> void:

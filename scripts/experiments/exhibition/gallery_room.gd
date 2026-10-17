@@ -37,24 +37,31 @@ static func soft_box(parent:Node3D,size:Vector3,pos:Vector3,mat:Material,radius:
  return node
 static func install(g:Node3D) -> void:
  var root:=Node3D.new();root.name="GalleryArchitecture";g.add_child(root)
- var plaster:=masonry(PLASTER,Color(.71,.75,.78),false,2.3)
- var stone:=masonry(LIMESTONE,Color(.77,.80,.81),false,1.9)
- var wood:Material=g._material(Color("#64422c"))
- var wood_trim:Material=g._material(Color("#775037"))
+ var plaster:=masonry(PLASTER,Color(.86,.83,.76),false,2.3)
+ var stone:=masonry(LIMESTONE,Color(.88,.85,.78),false,1.9)
+ var wood:Material=g._material(Color("#755036"))
+ var wood_trim:Material=g._material(Color("#805c3f"))
  var grout:Material=g._material(Color("#686052"),1)
  g.box(root,Vector3(13,.14,9),Vector3(0,-.11,0),grout)
  # Thin joints and rounded stone arrises replace the prominent grid.
  for z in range(12):
   for x in range(15):
    var edge:bool=x==1 or x==13 or z==1 or z==10
-   var tint:=Color(.40,.51,.48) if edge else Color(.77,.79,.79)
+   var tint:=Color(.40,.51,.48) if edge else Color(.80,.79,.75)
    tint*=.97+float(posmod(x*11+z*7,7))*.009
    var floor_mat:=masonry(LIMESTONE,tint,true,1.8)
    soft_box(root,Vector3(.854,.048,.744),Vector3((x-7)*.86,-.024,(z-5.5)*.75),floor_mat,.006)
  # The wall sits behind the source modules and cannot intersect their recesses.
- g.box(root,Vector3(13,4.8,.24),Vector3(0,2.4,-2.66),plaster)
- # Window opening uses a luminous arched inset in front of the wall, not opaque panes.
- _window_view(g,root)
+ # Segments leave an actual opening behind the imported arched frame.
+ g.box(root,Vector3(1.40,4.8,.24),Vector3(-5.80,2.4,-2.66),plaster)
+ g.box(root,Vector3(10.36,4.8,.24),Vector3(1.32,2.4,-2.66),plaster)
+ g.box(root,Vector3(1.24,1.15,.24),Vector3(-4.48,.575,-2.66),plaster)
+ g.box(root,Vector3(1.24,1.40,.24),Vector3(-4.48,4.10,-2.66),plaster)
+ # Solid jamb returns close the parallax gap between the opening and the back wall.
+ for side in [-1.,1.]:
+  soft_box(root,Vector3(.18,2.22,.60),Vector3(-4.48+side*.71,2.20,-2.24),plaster,.008)
+ _window_spandrels(root,plaster)
+ preload("res://scripts/experiments/exhibition/gallery_garden.gd").install(g,root)
  # Wainscot echoes the imported niche profile, with softened rather than box-sharp edges.
  for i in range(19):
   var x:float=-5.85+i*.65
@@ -64,6 +71,10 @@ static func install(g:Node3D) -> void:
   soft_box(root,Vector3(.45,.67,.045),Vector3(x,.49,-2.245),wood,.012)
  for y in [.07,1.03,1.09]:
   soft_box(root,Vector3(12.4,.075,.24),Vector3(0,y,-2.29),wood_trim,.018)
+ # Bring the connecting wall forward to the furniture back plane. Keeping the
+ # entire wall behind the niches made the pilasters read as detached deep boxes.
+ soft_box(root,Vector3(2.46,2.22,.58),Vector3(0,2.20,-2.24),plaster,.012)
+ soft_box(root,Vector3(2.24,2.22,.58),Vector3(4.98,2.20,-2.24),plaster,.012)
  # Flush upper masonry ties the source modules into the architecture.
  soft_box(root,Vector3(9.84,.46,.75),Vector3(1.28,3.52,-2.175),plaster,.012)
  soft_box(root,Vector3(1.8,.46,.75),Vector3(-4.55,3.52,-2.175),plaster,.012)
@@ -78,16 +89,17 @@ static func install(g:Node3D) -> void:
  var title:Label3D=g.lettering(root,"Traces du vivant",Vector3(.1,3.51,-1.78),.14,Color("#6b5d40"))
  title.shaded=true
  EnvironmentAssets.install(g)
-static func _window_view(g:Node3D,parent:Node3D) -> void:
- # Arched silhouette follows the real open frame; subdued garden colour behind it.
- var points:=PackedVector2Array([Vector2(-.57,1.25),Vector2(.57,1.25),Vector2(.57,2.69)])
- for i in range(1,49):
-  var a:=PI*float(i)/48.;points.append(Vector2(cos(a)*.57,2.69+sin(a)*.57))
- var st:=SurfaceTool.new();st.begin(Mesh.PRIMITIVE_TRIANGLES)
- var indices:=Geometry2D.triangulate_polygon(points)
- for i in range(0,indices.size(),3):
-  for j in [2,1,0]:
-   var p:=points[indices[i+j]];st.set_uv(Vector2((p.x+.57)/1.14,(p.y-1.25)/2.01))
-   st.set_normal(Vector3.FORWARD);st.add_vertex(Vector3(p.x-4.48,p.y,-2.38))
- var mat:=ShaderMaterial.new();mat.shader=preload("res://shaders/experiments/gallery_window.gdshader")
- var panel:=MeshInstance3D.new();panel.name="GardenBeyondWindow";panel.mesh=st.commit();panel.material_override=mat;parent.add_child(panel)
+static func _window_spandrels(parent:Node3D,mat:Material) -> void:
+ # Fill only the upper corners outside the arch so sky never leaks above its frame.
+ for side in [-1.,1.]:
+  var points:=PackedVector2Array([Vector2(0,3.40),Vector2(side*.62,3.40),Vector2(side*.62,2.69)])
+  for i in range(1,25):
+   var a:=float(i)/24.*PI*.5
+   points.append(Vector2(side*cos(a)*.62,2.69+sin(a)*.62))
+  var indices:=Geometry2D.triangulate_polygon(points)
+  var st:=SurfaceTool.new();st.begin(Mesh.PRIMITIVE_TRIANGLES)
+  for i in range(0,indices.size(),3):
+   for j in [2,1,0]:
+    var point:=points[indices[i+j]]
+    st.set_normal(Vector3.BACK);st.set_uv(point);st.add_vertex(Vector3(point.x-4.48,point.y,-1.94))
+  var mesh:=MeshInstance3D.new();mesh.mesh=st.commit();mesh.material_override=mat;parent.add_child(mesh)

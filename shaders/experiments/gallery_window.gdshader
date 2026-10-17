@@ -1,11 +1,8 @@
 shader_type spatial;
-render_mode unshaded, cull_disabled;
+render_mode unshaded,cull_disabled;
 void fragment(){
- float sky=smoothstep(.20,.78,UV.y);
- vec3 colour=mix(vec3(.40,.49,.26),vec3(.48,.66,.72),sky);
- // Soft distant foliage, never high-contrast detail competing with the fossils.
- float tree=sin(UV.x*13.+.7)*.06+sin(UV.x*29.)*.025+.43;
- float leaf=1.-smoothstep(tree-.025,tree+.03,UV.y);
- colour=mix(colour,vec3(.42,.51,.29),leaf*.65);
- ALBEDO=colour;
+ vec3 sky=mix(vec3(.34,.51,.57),vec3(.08,.30,.48),smoothstep(.1,.75,1.-UV.y));
+ float cloud=exp(-pow((UV.y-.36)*27.,2.))*smoothstep(.2,.9,sin(UV.x*24.)*.3+.6);
+ sky=mix(sky,vec3(.91,.88,.76),cloud*.42);
+ ALBEDO=sky;
 }

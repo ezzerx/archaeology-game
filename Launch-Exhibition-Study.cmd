@@ -7,5 +7,5 @@ if not exist "%GODOT%" (
  pause
  exit /b 1
 )
-start "ArchaeologyGame - Exposition" "%GODOT%" --path "%~dp0." res://scenes/experiments/exhibition_study.tscn
+start "ArchaeologyGame - Exposition" "%GODOT%" --path "%~dp0." --rendering-method forward_plus res://scenes/experiments/exhibition_study.tscn
 endlocal
