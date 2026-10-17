@@ -18,10 +18,11 @@ accumulation révélant le relief de l'ammonite, finition Pick/Brush inchangée.
 Brief : docs/dev/ISSUE41_MARINE_FINISH.md.
 Rapport : docs/dev/ISSUE41_MARINE_FINISH_REPORT.md.
 Implémentation et revue native terminées ; contrôles réussis.
+PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte.
+Commit jouable : 605b4fd ; verdict humain attendu.
 
 ## Prochaine action autorisée
-Préparer la PR de cette mission puis attendre l'essai et le verdict d'Antoine
-avant fusion. Essai : Launch-Preparation-Demos.cmd → 02 · Sédiments marins.
+Attendre l'essai et le verdict d'Antoine sur la PR #42 avant fusion. Essai : Launch-Preparation-Demos.cmd → 02 · Sédiments marins.
 La passe fluidité/réactivité est demandée juste après, dans une mission distincte.
 Le ressenti de retard malgré 240 FPS doit être mesuré ; aucune correction de
 fréquence, de suivi des outils ou de synchronisation d'affichage dans #41.

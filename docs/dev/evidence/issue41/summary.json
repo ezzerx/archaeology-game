@@ -29,5 +29,6 @@
   },
   "runtime_cap": 240,
   "physics_hz": 60,
-  "fluidity_pass": "deferred to next mission"
+  "fluidity_pass": "deferred to next mission",
+  "playable_commit": "605b4fd53abf46375a1ed36c4ee538824368d0e1"
 }
