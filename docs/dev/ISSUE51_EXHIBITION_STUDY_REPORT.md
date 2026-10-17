@@ -97,3 +97,10 @@ H3.1, 10 000 faces, smart low-poly, textures PBR détaillées ; aucun appel de g
 exécuté. Le guide inclut une alternative dans Studio et distingue ses crédits de
 ceux de l'API. Aucun nouveau modèle 3D ni changement de runtime ; vérifications
 limitées à la revue d'images, aux fichiers, au plan et à git diff --check.
+
+## Pilote mobilier Tripo intégré
+Le présentoir B–17 fourni par Antoine est désormais importé dans la galerie,
+avec adaptation du plateau et correction de matériau. Contrôles étendus à 31,
+captures de l'objet vide et avec le bloc, ainsi que vues de détail et d'angle.
+Voir le [rapport du pilote B–17](ISSUE51_B17_TRIPO_PILOT.md) pour les preuves,
+la limite de l'inscription inventée au dos et la portée exacte de cette passe.

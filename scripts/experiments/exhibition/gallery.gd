@@ -1,6 +1,7 @@
 extends Node3D
 ## Isolated visual trial: two authored examples, no collection/storage access.
 const Fixture=preload("res://scripts/experiments/exhibition/gallery_fixture.gd")
+const B17Stand=preload("res://scripts/experiments/exhibition/b17_stand.gd")
 var camera:Camera3D
 var selected:=-1
 var focus:=Vector3(0,1.20,0)
@@ -38,7 +39,8 @@ func _ready() -> void:
   var fixture:=Fixture.build(id);var pivot:=get_node("Mount"+str(index))
   pivot.add_child(fixture)
   var extent:Vector2=fixture.get_meta("display_extent")
-  var fit:=minf((2.78 if index==0 else 1.84)/extent.x,(1.76 if index==0 else 1.54)/extent.y)
+  var usable:Vector2=pivot.get_meta("usable_extent",Vector2(1.84,1.54))
+  var fit:=minf(usable.x/extent.x,usable.y/extent.y)
   fixture.scale=Vector3.ONE*fit
   examples.append(fixture)
   await get_tree().process_frame
@@ -142,20 +144,27 @@ func _wall_drawing(pos:Vector3,marine:bool) -> void:
 func _displays() -> void:
  for i in range(2):
   var center:=centers[i]
-  var width:=3.05 if i==0 else 2.10
-  var depth:=2.02 if i==0 else 1.80
-  box(self,Vector3(width-.30,.77,depth-.34),Vector3(center.x,.44,.12),materials.wood)
-  box(self,Vector3(width-.20,.10,depth-.24),Vector3(center.x,.105,.12),materials.edge)
-  for offset in [-1,1]:
-   var front:=box(self,Vector3((width-.48)*.5,.58,.025),Vector3(center.x+offset*(width-.35)*.25,.47,depth*.5-.04),materials.trim)
-   box(front,Vector3((width-.61)*.5,.49,.02),Vector3(0,0,.02),materials.wood)
+  var width:=B17Stand.WIDTH if i==0 else 2.10
+  var depth:=B17Stand.DEPTH if i==0 else 1.80
   var mount:=Node3D.new();mount.name="Mount"+str(i);add_child(mount)
   mount.position=center;mount.rotation_degrees.x=19
-  box(mount,Vector3(width,.10,depth),Vector3(0,-.07,0),materials.trim)
-  box(mount,Vector3(width-.10,.024,depth-.10),Vector3(0,-.008,0),materials.dark)
-  for side in [-1,1]:
-   box(mount,Vector3(.018,.025,depth-.08),Vector3(side*(width*.5-.035),.008,0),materials.brass)
-   box(mount,Vector3(width-.06,.025,.018),Vector3(0,.008,side*(depth*.5-.035)),materials.brass)
+  if i==0:
+   var stand:=B17Stand.install(self,center)
+   var plinth_height:float=stand.get_meta("plinth_height")
+   box(self,Vector3(width-.13,plinth_height-.06,depth-.13),Vector3(center.x,(plinth_height+.06)*.5,center.z),materials.dark)
+   box(self,Vector3(width-.04,.06,depth-.04),Vector3(center.x,.03,center.z),materials.edge)
+   mount.set_meta("usable_extent",B17Stand.USABLE_EXTENT)
+  else:
+   box(self,Vector3(width-.30,.77,depth-.34),Vector3(center.x,.44,.12),materials.wood)
+   box(self,Vector3(width-.20,.10,depth-.24),Vector3(center.x,.105,.12),materials.edge)
+   for offset in [-1,1]:
+    var front:=box(self,Vector3((width-.48)*.5,.58,.025),Vector3(center.x+offset*(width-.35)*.25,.47,depth*.5-.04),materials.trim)
+    box(front,Vector3((width-.61)*.5,.49,.02),Vector3(0,0,.02),materials.wood)
+   box(mount,Vector3(width,.10,depth),Vector3(0,-.07,0),materials.trim)
+   box(mount,Vector3(width-.10,.024,depth-.10),Vector3(0,-.008,0),materials.dark)
+   for side in [-1,1]:
+    box(mount,Vector3(.018,.025,depth-.08),Vector3(side*(width*.5-.035),.008,0),materials.brass)
+    box(mount,Vector3(width-.06,.025,.018),Vector3(0,.008,side*(depth*.5-.035)),materials.brass)
   # Labels are mounted on a separate lip: they never overlap the specimen.
   var label_pivot:=Node3D.new();add_child(label_pivot)
   label_pivot.position=Vector3(center.x,.77,depth*.5+.16);label_pivot.rotation_degrees.x=-48

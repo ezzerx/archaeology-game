@@ -40,6 +40,16 @@ func run() -> void:
  while not gallery.fixtures_ready:await process_frame
  await shot("01-gallery");await sample("overview")
  check(gallery.examples.size()==2,"two museum examples loaded")
+ var stand:Node3D=gallery.get_node("B17TripoStand")
+ var stand_meshes:=stand.find_children("*","MeshInstance3D",true,false)
+ check(stand_meshes.size()==1,"one imported B17 stand replaces the authored tray")
+ var stand_material=stand_meshes[0].get_active_material(0)
+ check(stand_material.albedo_texture!=null and stand_material.normal_texture!=null and stand_material.roughness_texture!=null and stand_material.metallic_texture!=null,"stand keeps all PBR maps")
+ check(stand_material.albedo_texture.get_size()==Vector2(4096,4096),"stand source keeps 4K albedo")
+ var fitted:Vector2=gallery.examples[0].get_meta("display_extent")*gallery.examples[0].scale.x
+ var usable:Vector2=gallery.get_node("Mount0").get_meta("usable_extent")
+ check(fitted.x<=usable.x+.001 and fitted.y<=usable.y+.001,"B17 matrix fits the usable cloth area")
+ check(FileAccess.get_sha256("res://assets/museum/models/b17_stand.glb")==FileAccess.get_sha256("res://assets/museum/source/tripo-studio/b17/museum_b17_stand_pilot.glb"),"source GLB preserved byte for byte")
  for example in gallery.examples:
   check(example.get_meta("example_only",false),"fixture explicitly isolated")
   check(example.find_children("*","Camera3D",true,false).is_empty(),"no competing preparation camera")

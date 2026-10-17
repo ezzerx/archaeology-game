@@ -24,3 +24,10 @@ Conserver un nom distinct pour chaque génération ; ne pas écraser les sources
 - Paramètres conseillés dans la fiche Studio ; la réception du GLB ne confirme
   pas chaque option sélectionnée à la génération.
 - L'inspection technique du conteneur ne vaut pas validation artistique.
+
+## Copie de travail du pilote
+La copie assets/museum/models/b17_stand.glb est importable et reste identique à
+l'original par SHA-256. Transformations et correction de matériau se font dans
+scripts/experiments/exhibition/b17_stand.gd. La revue source a repéré une inscription
+inventée au dos, à reprendre avant finalisation ; voir le rapport
+[du pilote](../../../docs/dev/ISSUE51_B17_TRIPO_PILOT.md).

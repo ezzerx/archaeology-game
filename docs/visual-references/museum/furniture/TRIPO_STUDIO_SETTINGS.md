@@ -81,3 +81,10 @@ Le [plan API du guide](README.md#option-api--simulation-antérieure-non-exécut�
 est une simulation antérieure à cette révision : ne pas l'exécuter tel quel pour
 ce pilote détaillé. Ses paramètres `smart_low_poly` et `face_limit` ne sont pas
 la preuve que Studio utilise exactement le même traitement.
+
+## Retour du pilote dans Godot
+Le fichier fourni a été importé avec ses 84 656 triangles et ses textures PBR.
+Les détails du meuble paraissent suffisants pour cet essai après adaptation du
+plateau et correction de teinte ; aucune validation humaine du rendu n'en découle.
+Une inscription inventée au dos reste à retoucher. Voir le
+[rapport du pilote](../../../dev/ISSUE51_B17_TRIPO_PILOT.md).
