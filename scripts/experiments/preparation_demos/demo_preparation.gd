@@ -2,11 +2,13 @@ extends "res://scripts/collection/specimen_preparation.gd"
 @export var demo_kind:=0
 var compact_variant:=0
 var material_hint:Label
+var finishing_button:Button
 func _create_mastery_ui() -> PreparationUI:
  var ui=preload("res://scripts/experiments/preparation_demos/demo_ui.gd").new()
  ui.distinction=distinction
  return ui
 func _create_profile() -> SoilFoundationProfile:
+ if demo_kind==2:return preload("res://scripts/experiments/preparation_demos/concretion_profile.gd").new(block.working_map,block.footprint,block.rim)
  if demo_kind==0:return preload("res://scripts/experiments/preparation_demos/compact_profile.gd").new(block.working_map,block.footprint,block.rim,compact_variant)
  return preload("res://scripts/experiments/preparation_demos/demo_profile.gd").new(block.working_map,block.footprint,block.rim,demo_kind)
 func _create_feedback() -> MaterialFeedback:return preload("res://scripts/experiments/preparation_demos/demo_feedback.gd").new()
@@ -53,7 +55,8 @@ ALBEDO = mix(color, cursor_color.rgb, marker);""")
  session_ui.notice_label.position.y=116 if demo_kind==0 else 78
  if demo_kind>0:
   feedback.colors[0]=Color(.41,.34,.22);feedback.colors[1]=Color(.37,.34,.25);feedback.colors[2]=Color(.48,.42,.30)
- $Debug/Help.text="1 Brush   2 Chisel   3 Souffleur   4 Pick"+("   5 Pointe abrasive" if demo_kind==2 else "")+"     Molette · zoom     Clic droit · déplacer     Home · vue"
+ if demo_kind==2:_setup_finishing_toolbar()
+ $Debug/Help.text=("1 Brush ↔ Pointe abrasive" if demo_kind==2 else "1 Brush")+"   2 Chisel   3 Souffleur   4 Pick"+"     Molette · zoom     Clic droit · déplacer     Home · vue"
  get_window().title="ArchaeologyGame — Trois préparations"
  session_ui.archive_button.text="Terminer cet essai"
  session_ui.refresh()
@@ -74,7 +77,7 @@ func _process(delta:float) -> void:
  var height:float=surface._heights[i]
  # A cue describes the actual visible surface only; no look-ahead into buried anatomy.
  if surface.crust_caps[i]>0 and height<=surface.crust_caps[i]+.001:
-  material_hint.text="Concrétion adhérente  ·  Pointe abrasive [5]"
+  material_hint.text="Concrétion adhérente  ·  Pointe abrasive · famille [1]"
  elif surface.fossil.exposed[i]!=0:
   if surface.bone_film.value_at((Vector2(cell)+Vector2.ONE*.5)/Vector2(surface.size))>0:
    material_hint.text="Poussière sur la pièce  ·  Brush [1]"
@@ -85,3 +88,23 @@ func _process(delta:float) -> void:
  elif surface.grain_roofs[i]>0 and height>surface.grain_roofs[i]+.001:
   material_hint.text="Croûte compacte  ·  Chisel [2] / Pick [4]"
  else:material_hint.text="Matrice consolidée  ·  Chisel [2] / Pick [4]"
+
+func _setup_finishing_toolbar() -> void:
+ var redundant:=toolbar.get_child(4)
+ toolbar.remove_child(redundant);redundant.queue_free()
+ finishing_button=toolbar.get_child(0)
+ for connection in finishing_button.pressed.get_connections():
+  finishing_button.pressed.disconnect(connection.callable)
+ finishing_button.pressed.connect(controller.select_finishing)
+ finishing_button.custom_minimum_size=Vector2(292,58)
+ finishing_button.add_theme_font_size_override("font_size",16)
+ finishing_button.tooltip_text="1 : rappeler la finition · nouvel appui : changer de variante"
+ toolbar.offset_left=-422;toolbar.offset_right=422;toolbar.offset_top=-84
+ _update_toolbar(controller.selected_index)
+
+func _update_toolbar(index:int) -> void:
+ super._update_toolbar(index)
+ if not is_instance_valid(finishing_button):return
+ var abrasive:bool=controller.finishing_variant==4
+ finishing_button.text="[1] "+("Pointe abrasive\n↔ Brush" if abrasive else "Brush\n↔ Pointe abrasive")
+ finishing_button.set_pressed_no_signal(index in [0,4])

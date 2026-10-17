@@ -27,9 +27,17 @@ vec3 demo_material(vec3 original,vec2 uv,float h,bool skirt) {
  result*=clamp(original_luma/.34,.62,1.24);
  vec2 crust=texture(demo_crust,uv).rg;
  if(!skirt && crust.g>0.0 && h<=crust.g+.002 && h>crust.r+.0001){
-  float pit=smoothstep(.70,.90,grain)*smoothstep(.3,.7,fine);
-  vec3 mineral=mix(vec3(.235,.225,.20),vec3(.43,.415,.37),cloud*.4+fine*.6);
-  mineral*=1.0-pit*.25;
+  float pit=smoothstep(.72,.94,grain)*smoothstep(.32,.68,fine);
+  float freshly_cut=smoothstep(.002,.009,crust.g-h);
+  float bloom=demo_noise(p*.13);
+  vec3 rind=mix(vec3(.255,.243,.208),vec3(.43,.408,.347),bloom*.65+fine*.35);
+  vec3 interior=mix(vec3(.365,.335,.275),vec3(.50,.46,.38),fine*.6+cloud*.4);
+  vec3 mineral=mix(rind,interior,freshly_cut*.78);
+  mineral*=1.0-pit*mix(.24,.10,freshly_cut);
+  vec2 step_uv=vec2(3.0/1024.0,3.0/640.0);
+  float nearby=(texture(working_map,uv+vec2(step_uv.x,0)).r+texture(working_map,uv-vec2(step_uv.x,0)).r+
+                texture(working_map,uv+vec2(0,step_uv.y)).r+texture(working_map,uv-vec2(0,step_uv.y)).r)*.25;
+  mineral*=clamp(1.0-max(0.0,nearby-h)*6.0,.72,1.0);
   result=mix(result,mineral,1.0-smoothstep(crust.g,crust.g+.002,h));
  }
  return result;
@@ -43,5 +51,15 @@ vec3 demo_grain_normal(vec3 normal,vec2 uv,float h,vec3 axis_x,vec3 axis_z){
  vec2 p=uv*vec2(1024,640)*.7;
  float a=demo_noise(p);
  vec2 slope=vec2(demo_noise(p+vec2(.4,0))-a,demo_noise(p+vec2(0,.4))-a);
- return normalize(normal+(axis_x*slope.x+axis_z*slope.y)*(.45*loose+.30*coat));
+ // Smooth the actual current mineral height, including the local abrasion.
+ // Sampling is gated by visible coating; intact cover uses its original normal.
+ if(coat>0.0){
+  vec2 texel=vec2(1.0/1024.0,1.0/640.0);
+  float dx=texture(working_map,uv+vec2(texel.x*2.0,0)).r-texture(working_map,uv-vec2(texel.x*2.0,0)).r;
+  float dz=texture(working_map,uv+vec2(0,texel.y*2.0)).r-texture(working_map,uv-vec2(0,texel.y*2.0)).r;
+  vec3 up=normalize(cross(axis_z,axis_x));
+  vec3 sculpted=normalize(up-axis_x*clamp(dx*25.5,-2.0,2.0)-axis_z*clamp(dz*25.5,-2.0,2.0));
+  normal=normalize(mix(normal,sculpted,.88*smoothstep(.4,.8,dot(normal,up))));
+ }
+ return normalize(normal+(axis_x*slope.x+axis_z*slope.y)*(.45*loose+.50*coat*(1.0-smoothstep(.002,.012,crust.g-h)*.65)));
 }

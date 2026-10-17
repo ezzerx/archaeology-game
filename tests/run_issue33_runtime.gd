@@ -23,8 +23,9 @@ func run() -> void:
  main=suite.preparation;main.display.persist=false;main.controller.set_physics_process(false)
  check(root.size==chosen_size,"changing trial preserves native window size")
  main.controller._focused=true
- var key:=InputEventKey.new();key.physical_keycode=KEY_5;key.pressed=true;root.push_input(key,true);await process_frame
- check(main.controller.config.id==&"abrasive_tip","key 5 selects actual abrasive tool")
+ var key:=InputEventKey.new();key.physical_keycode=KEY_1;key.pressed=true;root.push_input(key,true);await process_frame
+ key=InputEventKey.new();key.physical_keycode=KEY_1;key.pressed=true;root.push_input(key,true);await process_frame
+ check(main.controller.config.id==&"abrasive_tip","repeated key 1 selects actual abrasive tool")
  var radius:float=main.controller.config.radius
  key=InputEventKey.new();key.physical_keycode=KEY_F6;key.pressed=true;root.push_input(key,true)
  check(main.controller.config.radius==radius,"old comparison shortcut cannot secretly retune abrasive")

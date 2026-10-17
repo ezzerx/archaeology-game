@@ -2,7 +2,7 @@ extends Node
 const TITLES:=["01 · Terre compacte","02 · Sédiments marins","03 · Concrétions"]
 const NOTES:=["SUIVRE UNE FORME  ·  Ouvrez la matrice, puis suivez ce qui apparaît.",
  "LIBÉRER LES GRAINS  ·  Ouvrez au Chisel, soufflez les zones friables. Les îlots solides se travaillent au Pick.",
- "DÉGAGER LES DÉTAILS  ·  Ouvrez puis soufflez. La pointe abrasive (5) détache les concrétions ; le Brush finit la poussière."]
+ "DÉGAGER LES DÉTAILS  ·  Ouvrez puis soufflez. [1] alterne Brush / pointe abrasive : érodez les dépôts, brossez les détails."]
 var preparation:Node3D
 var selected:=-1
 var compact_selected:=0
@@ -61,6 +61,7 @@ func open_demo(index:int,compact:int=-1) -> void:
  preparation.restart_requested.connect(func():choose(selected,true))
  preparation.collection_requested.connect(func():choose((selected+1)%3))
  preparation.controller.ui_blockers.append(confirmation)
+ preparation.controller.finishing_modal=confirmation
  for button in buttons:preparation.controller.ui_blockers.append(button)
  preparation.controller.ui_blockers.append(buttons[0].get_parent().get_child(3))
  for button in compact_buttons:preparation.controller.ui_blockers.append(button)
