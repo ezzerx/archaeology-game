@@ -14,12 +14,14 @@ locaux de l'ancien checkout. La durée marine de 5–7 minutes reste une cible.
 Issue [#43](https://github.com/ezzerx/archaeology-game/issues/43).
 Branche codex/43-tool-fluidity créée depuis main a98fd46.
 GO explicite : fluidité/réactivité avec comparaison avant/après sur les trois
-préparations, en gardant le feeling validé. Réalisation et comparaison terminées ; PR à préparer.
+préparations, en gardant le feeling validé. Réalisation et comparaison terminées.
+PR [#44](https://github.com/ezzerx/archaeology-game/pull/44) ouverte pour essai humain.
+Version jouable vérifiée : 6c9da01.
 Brief : docs/dev/ISSUE43_TOOL_FLUIDITY.md.
 Rapport : docs/dev/ISSUE43_TOOL_FLUIDITY_REPORT.md.
 
 ## Prochaine action autorisée
-Préparer la PR et faire tester le suivi des outils sur les trois préparations.
+Faire tester le suivi des outils sur les trois préparations.
 Attendre le verdict humain avant fusion ; traiter les retours dans cette mission.
 
 ## Points de suivi

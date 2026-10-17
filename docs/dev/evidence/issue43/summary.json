@@ -53,5 +53,7 @@
     "after-replay.json",
     "marine-native.json",
     "concretions-native.json"
-  ]
+  ],
+  "playable_commit": "6c9da016644981bfda9837ffd6e242fe61b9b70f",
+  "pull_request": 44
 }
