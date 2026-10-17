@@ -59,7 +59,9 @@ une texture d'éclairage à conserver dans le jeu.
 6. Exporter en **GLB avec textures**. GLB est un format proposé par
    [Tripo](https://www.tripo3d.ai/help/getting-started/what-3d-file-formats-do-you-support).
    Nom conseillé : `museum_b17_stand_pilot.glb`. Conserver le modèle d'origine
-   avant toute optimisation et communiquer son emplacement local pour la revue.
+   avant toute optimisation. Déposer les prochains fichiers dans
+   `C:\Users\antoi\Documents\ArchaeologyGame-Assets\Tripo\museum`, puis indiquer
+   leur nom dans le chat. [Stockage et provenance](../../../../assets/museum/source/README.md).
 
 Les menus et options peuvent varier selon le compte. Éviter de multiplier les
 générations pour corriger un détail que l'on peut reprendre dans Blender.

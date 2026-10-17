@@ -1,0 +1,20 @@
+{
+  "original_file": "museum_b17_stand_pilot.glb",
+  "received_date": "2026-10-17",
+  "source": "Tripo Studio export supplied by Antoine",
+  "archive_directory": "C:\\Users\\antoi\\Documents\\ArchaeologyGame-Assets\\Tripo\\museum",
+  "sha256": "b0bfae9bb315c8c340728b1b3edad7d3a23b887f8c500fdf44794dd8a01b7a2f",
+  "bytes": 10944680,
+  "gltf_version": "2.0",
+  "meshes": 1,
+  "triangles_in_mesh_definitions": 84656,
+  "non_triangle_primitives": 0,
+  "materials": 1,
+  "images": 3,
+  "external_image_uris": [],
+  "external_buffer_uris": [],
+  "reference": "docs/visual-references/museum/furniture/01-presentoir-b17.png",
+  "settings_recommendation": "docs/visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md",
+  "generation_parameters_confirmed": false,
+  "visual_review": "Pending in Godot"
+}

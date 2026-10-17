@@ -12,8 +12,11 @@ résultat validé dans Godot.
 
 ## Pilote 01 — Présentoir B–17
 
-Statut : **réglages recommandés ; modèle non encore reçu ni évalué**.
-Antoine prévoit de lancer lui-même cette génération dans Studio.
+Statut : **réglages recommandés ; export reçu, rendu encore à évaluer**.
+Antoine a fourni `museum_b17_stand_pilot.glb`. Le fichier contient 84 656 triangles,
+un matériau et trois images embarquées. Les réglages exacts utilisés dans Studio
+ne sont pas tous déductibles du GLB ; ils restent non confirmés.
+Source et provenance : [archive du dépôt](../../../../assets/museum/source/README.md).
 Les libellés ci-dessous proviennent de sa capture du 17 octobre 2026.
 
 Entrée : [01-presentoir-b17.png](01-presentoir-b17.png), une seule image.

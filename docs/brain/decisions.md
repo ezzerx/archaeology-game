@@ -1717,3 +1717,10 @@ Antoine remet en question le faible budget proposé pour B–17 et veut préserv
 la qualité artistique. Distinguer la source de génération de la version destinée
 au jeu : comparer dans Godot avant réduction. Fiche Studio révisée vers une source
 plus détaillée ; ces nouveaux réglages restent une recommandation non éprouvée.
+
+## 2026-10-17 — Conservation des exports Tripo
+Présentoir B–17 fourni par Antoine. Original copié sans retouche dans un dossier
+local stable hors worktree et dans assets/museum/source/ pour versionnage ;
+emplacements, provenance et empreinte dans assets/museum/source/README.md.
+Les futurs dépôts peuvent être signalés par leur nom dans le chat. Leur archivage
+Git reste explicite ; le dossier local seul ne garantit pas une sauvegarde distante.
