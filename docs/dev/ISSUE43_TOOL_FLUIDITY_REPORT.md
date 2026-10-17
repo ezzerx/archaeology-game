@@ -57,7 +57,7 @@ Le souffle marin reste plus coûteux : environ 148 images/s en moyenne pendant
 cette séquence après correction, contre 139 avant. Le suivi suit désormais chaque
 image effectivement rendue, mais des pics CPU subsistent pendant les gestes denses.
 Cette passe ne revendique ni 240 FPS constants en excavation ni l'élimination de
-toutes les saccades. L'essai humain décidera si le défaut principal de suivi est résolu.
+toutes les saccades. Le verdict humain ci-dessous confirme la correction du suivi.
 
 ## Préservation du feeling
 Un parcours distinct rejoue les mêmes entrées aux mêmes ticks de simulation sur
@@ -94,7 +94,16 @@ le focus, les panneaux, la sortie de fenêtre, l'archivage, le zoom/pan et les r
 Les parcours natifs marine et concrétions couvrent aussi la couverture intacte sans
 indice caché et la finition intégrale avec condition préservée.
 
-## Essai humain
+## Verdict humain — 17 octobre 2026
+Antoine valide : le suivi de la souris est clairement plus fluide. Il constate
+encore des chutes de FPS lors du souffle avec beaucoup de particules, sans en
+faire un obstacle à cette validation, et autorise la fusion de la PR #44.
+Ce retour ne mesure ni les FPS ni la cause exacte des ralentissements. Le suivi
+restant est isolé dans [#50](https://github.com/ezzerx/archaeology-game/issues/50).
+La version jouable acceptée est 6c9da01 ; la clôture ajoute uniquement la
+documentation du verdict et le backlog de cadrage suivant.
+
+## Protocole d'essai humain proposé
 Relancer **Launch-Preparation-Demos.cmd**. Sur chaque préparation : déplacer un outil
 rapidement puis lentement sans cliquer, travailler au Chisel/Pick, balayer avec
 Brush/Blower et essayer la pointe abrasive là où elle est disponible. Tester aussi

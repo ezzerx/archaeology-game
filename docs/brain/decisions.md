@@ -1662,3 +1662,16 @@ Antoine autorise la fusion de #42 et le nettoyage de sa branche, puis la passe
 fluidité. Comparer avant/après sur terre compacte, sédiments marins et concrétions,
 en conservant le feeling validé. Objectif : suivi précis, contact réactif et
 mouvements réguliers ; mesures techniques et verdict humain restent distincts.
+
+## 2026-10-17 — Fluidité acceptée et prochain cap à cadrer
+Antoine valide le suivi d'outils de #43 / PR #44, nettement plus fluide après essai,
+et autorise fusion puis nettoyage. Des baisses de FPS persistent lorsqu'il souffle
+beaucoup de particules ; elles ne remettent pas en cause cette acceptation.
+Les traiter séparément dans #50 sans attribuer leur cause aux seuls effets avant profilage.
+
+Antoine souhaite explorer une première exposition et une boucle arrivages,
+préparation, collection. Séparer le cadrage #45, arrivages #27, collection #28,
+UI #46, décor de bureau en assets 3D #47, sons avec Claude la semaine prochaine #48
+et musique #49. Approfondir chaque vision avant développement ; ces tickets
+n'autorisent pas une implémentation immédiate. Le rendu des anciennes caisses
+reste rejeté. La découverte est prioritaire, la collection donne envie de continuer.

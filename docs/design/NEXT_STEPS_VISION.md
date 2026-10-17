@@ -1,6 +1,6 @@
 # Discussion — vision et prochaines étapes
 
-Vision de travail, 16 octobre 2026. La priorité découverte puis collection est confirmée. Les trois recettes ci-dessous sont des essais à évaluer, pas une définition du jeu final. Le statut et les autorisations restent dans `docs/brain/status.md`.
+Vision de travail, actualisée le 17 octobre 2026. La priorité découverte puis collection est confirmée. Les trois familles ci-dessous ont été éprouvées puis affinées ; elles ne définissent pas tout le contenu du jeu final. Le statut et les autorisations restent dans `docs/brain/status.md`. Le prochain parcours proposé est détaillé dans [Première exposition](FIRST_EXHIBITION_PLAN.md).
 
 ## Point de départ
 
