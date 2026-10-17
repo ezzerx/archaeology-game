@@ -1,0 +1,10 @@
+{
+  "air_reachable_fossil_cells": 26870,
+  "checks": 21,
+  "failures": [],
+  "floor_range": [
+    0.162218287587166,
+    0.709647357463837
+  ],
+  "total_fossil_cells": 41846
+}

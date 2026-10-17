@@ -37,6 +37,7 @@ var _screen := Vector2.ZERO
 var _window_size := Vector2i.ZERO
 
 func _ready() -> void:
+	process_priority = -5 # After camera (-10), before the presentation consumers (0).
 	for i in range(tools.size()):
 		tools[i] = tools[i].duplicate() as ToolDefinition
 	_update_pointer_position()
@@ -179,6 +180,14 @@ func _render_cursor() -> void:
 		_hover_signature = signature
 		block.material.set_shader_parameter("highlighted_fragment", highlighted)
 		forceps_hover_changed.emit(fragment, message)
+
+func _process(_delta: float) -> void:
+	# Present the latest surface contact at render cadence. Excavation, sweep history
+	# and impact timing remain exclusively in the fixed 60 Hz simulation below.
+	if get_window().size != _window_size:
+		_update_pointer_position()
+	hit = _pick_current()
+	_render_cursor()
 
 func _physics_process(delta: float) -> void:
 	if block.working_map.loose_debris != null:

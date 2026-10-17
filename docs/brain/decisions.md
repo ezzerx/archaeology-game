@@ -1656,3 +1656,9 @@ Antoine décrit le nouvel essai comme sympa et une base fun, tout en évoquant
 quelques améliorations possibles sans les préciser. Retenir ce retour sur le
 plaisir du parcours actuel, sans inventer de défaut à corriger ni de durée
 humaine mesurée. La cible de 5–7 minutes reste distincte de ce verdict.
+
+## 2026-10-17 — Clôture marine et GO fluidité
+Antoine autorise la fusion de #42 et le nettoyage de sa branche, puis la passe
+fluidité. Comparer avant/après sur terre compacte, sédiments marins et concrétions,
+en conservant le feeling validé. Objectif : suivi précis, contact réactif et
+mouvements réguliers ; mesures techniques et verdict humain restent distincts.

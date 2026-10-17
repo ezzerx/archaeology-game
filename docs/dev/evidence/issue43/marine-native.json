@@ -1,0 +1,88 @@
+{
+  "benchmark": [],
+  "brush": [],
+  "captures": [
+    "01-covered.png",
+    "02-first-breath.png",
+    "03-shallow-discovery.png",
+    "04-deeper-reaches.png",
+    "05-precision-shoulders.png",
+    "06-late-nodules.png",
+    "07-abrasive-contact.png",
+    "08-nodules-finished.png",
+    "09-finished-detail.png",
+    "demo-1-06-complete-native.png"
+  ],
+  "checks": 31,
+  "completion": {
+    "classification": "Ammonite côtelée",
+    "cleanliness": 99.9999994301855,
+    "condition": 100.0,
+    "condition_tier": "Excellent",
+    "coverage_passed": true,
+    "exposure": 100.0,
+    "fine_preparation": true,
+    "largest_hidden_cluster": 0
+  },
+  "failures": [],
+  "minimum_cover_mm": 11.8145509958267,
+  "profiles": [],
+  "route": [
+    {
+      "cleanliness": 0.0,
+      "crust": 0.0,
+      "exposure": 13.9176982268317,
+      "grains": 2933.01624656848,
+      "impacts": 1,
+      "stage": "shallow discovery"
+    },
+    {
+      "cleanliness": 0.0,
+      "crust": 0.0,
+      "exposure": 43.8106390097022,
+      "grains": 10279.4963289815,
+      "impacts": 6,
+      "stage": "deeper reaches"
+    },
+    {
+      "cleanliness": 0.0,
+      "crust": 0.0,
+      "exposure": 49.2854753142475,
+      "grains": 10615.7627874495,
+      "impacts": 130,
+      "stage": "precision shoulders"
+    },
+    {
+      "cleanliness": 0.0,
+      "crust": 0.0,
+      "exposure": 50.0645222960379,
+      "grains": 10746.0242762911,
+      "impacts": 149,
+      "stage": "nodules reached"
+    },
+    {
+      "cleanliness": 0.0,
+      "crust": 26.1504962228927,
+      "exposure": 52.3060746546862,
+      "grains": 10746.0242762911,
+      "impacts": 149,
+      "stage": "nodules finished"
+    },
+    {
+      "cleanliness": 99.9999994301855,
+      "crust": 27.3644525483109,
+      "exposure": 100.0,
+      "grains": 23711.7691123866,
+      "impacts": 1042,
+      "stage": "systematic completion"
+    }
+  ],
+  "timings": {
+    "air_blower": {
+      "active_ticks": 240,
+      "edit_max_ms": 7.2,
+      "edit_p50_ms": 3.481,
+      "edit_p95_ms": 4.804
+    }
+  }
+}
