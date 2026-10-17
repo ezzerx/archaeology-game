@@ -111,13 +111,19 @@ exports suivants sont reçus et intégrés ; cartels, architecture et éclairage
 sont repris autour des meubles. Voir le [rapport mobilier](ISSUE51_MUSEUM_FURNITURE.md)
 pour les captures, les 49 contrôles natifs et les limites restantes.
 
-## RÃ©fÃ©rences environnement
-Le mobilier Tripo est apprÃ©ciÃ© par Antoine, qui demande une reprise du sol,
-des murs et du dÃ©cor de fond. Sept images sÃ©lectionnÃ©es produites avec Imagegen
-intÃ©grÃ© : niche, fenÃªtre, fougÃ¨re, livres, Ã©chantillon minÃ©ral, calcaire et enduit.
-La fenÃªtre a Ã©tÃ© corrigÃ©e pour retirer des panneaux pleins indÃ©sirables.
+## Références environnement
+Le mobilier Tripo est apprécié par Antoine, qui demande une reprise du sol,
+des murs et du décor de fond. Sept images sélectionnées produites avec Imagegen
+intégré : niche, fenêtre, fougère, livres, échantillon minéral, calcaire et enduit.
+La fenêtre a été corrigée pour retirer des panneaux pleins indésirables.
 Prompts, dimensions, empreintes et fiches Studio sont dans le
 [pack environnement](../visual-references/museum/environment/README.md).
-Les rÃ©fÃ©rences ont Ã©tÃ© revues visuellement ; les matiÃ¨res restent Ã  vÃ©rifier
-en rÃ©pÃ©tition et dans le moteur. Cette passe ne modifie aucun runtime,
-ne lance aucun appel Tripo et ne nÃ©cessite pas de nouveau test de gameplay.
+Les références ont été revues visuellement ; les matières restent à vérifier
+en répétition et dans le moteur. Cette passe ne modifie aucun runtime,
+ne lance aucun appel Tripo et ne nécessite pas de nouveau test de gameplay.
+
+## Environnement importé et niche corrigée
+Les cinq exports fournis sont intégrés. Le fond de la niche est reconstruit dans
+Godot, les matières et raccords de la salle repris. Voir le
+[rapport environnement](ISSUE51_MUSEUM_ENVIRONMENT.md) pour les captures finales,
+les 85 contrôles natifs et les 298 chargements de ressources réussis.

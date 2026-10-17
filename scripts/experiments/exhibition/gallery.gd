@@ -8,10 +8,10 @@ const Room=preload("res://scripts/experiments/exhibition/gallery_room.gd")
 const Cartel=preload("res://scripts/experiments/exhibition/gallery_cartel.gd")
 var camera:Camera3D
 var selected:=-1
-var focus:=Vector3(0,1.45,-.25)
-var target_focus:=Vector3(0,1.45,-.25)
-var view_size:=5.4
-var target_size:=5.4
+var focus:=Vector3(0,1.62,-.25)
+var target_focus:=Vector3(0,1.62,-.25)
+var view_size:=5.8
+var target_size:=5.8
 var angle:=Vector2.ZERO
 var target_angle:=Vector2.ZERO
 var orbit:=Vector3(1.0,4.5,7.6)
@@ -75,13 +75,13 @@ func lettering(parent:Node3D,words:String,pos:Vector3,size:float,color:Color,fon
 func _environment() -> void:
  var world:=WorldEnvironment.new();var env:=Environment.new()
  env.background_mode=Environment.BG_COLOR;env.background_color=Color("#1b201e")
- env.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;env.ambient_light_color=Color("#d8d3bb");env.ambient_light_energy=.33
+ env.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;env.ambient_light_color=Color("#d8d3bb");env.ambient_light_energy=.46
  env.tonemap_mode=Environment.TONE_MAPPER_FILMIC;world.environment=env;add_child(world)
- var key:=DirectionalLight3D.new();add_child(key);key.rotation_degrees=Vector3(-55,-26,0)
- key.light_color=Color("#ffe8c2");key.light_energy=.60;key.shadow_enabled=true
- key.directional_shadow_max_distance=16;key.shadow_bias=.15;key.shadow_normal_bias=.7
+ var key:=DirectionalLight3D.new();add_child(key);key.rotation_degrees=Vector3(-48,-48,0)
+ key.light_color=Color("#ffe8c2");key.light_energy=.43;key.shadow_enabled=true
+ key.directional_shadow_max_distance=16;key.shadow_bias=.12;key.shadow_normal_bias=.75
  var fill:=DirectionalLight3D.new();add_child(fill);fill.rotation_degrees=Vector3(-38,125,0)
- fill.light_color=Color("#c8dfdc");fill.light_energy=.20
+ fill.light_color=Color("#c8dfdc");fill.light_energy=.25
  for x in [-1.65,1.62]:
   var light:=SpotLight3D.new();add_child(light);light.position=Vector3(x,3.6,.6)
   light.look_at(Vector3(x,1,0));light.light_color=Color("#ffe3b3");light.light_energy=.22
@@ -150,8 +150,8 @@ func _ui() -> void:
 func select(index:int) -> void:
  if not fixtures_ready:return
  selected=clampi(index,-1,1);target_angle=Vector2.ZERO
- target_focus=Vector3(0,1.45,-.25) if selected<0 else centers[selected]+Vector3(0,-.14,.12)
- target_size=5.4 if selected<0 else (3.2 if selected==0 else 2.65)
+ target_focus=Vector3(0,1.62,-.25) if selected<0 else centers[selected]+Vector3(0,-.14,.12)
+ target_size=5.8 if selected<0 else (3.2 if selected==0 else 2.65)
  _captions()
 func _captions() -> void:
  heading.text="Traces du vivant" if selected<0 else ("Petit théropode · B–17" if selected==0 else "Ammonite côtelée · M–08")

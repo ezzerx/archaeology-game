@@ -1,0 +1,113 @@
+{
+  "source": "05 mineral.glb",
+  "id": "mineral_sample",
+  "bytes": 17909088,
+  "sha256": "3af1ae04ea6c100fdc3788340e440f70fa381560cf86aeb8e9ab7b7480bf5468",
+  "nodes": [
+    {
+      "name": "tripo_node_debd2b6e-9873-4a09-86ed-8d6429981d18",
+      "mesh": 0
+    }
+  ],
+  "materials": [
+    {
+      "name": "tripo_material_debd2b6e-9873-4a09-86ed-8d6429981d18",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      },
+      "normalTexture": {
+        "index": 2
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "05+mineral_basecolor.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          236
+        ]
+      ]
+    },
+    {
+      "name": "05+mineral_rm.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          192,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          153
+        ]
+      ]
+    },
+    {
+      "name": "05+mineral_normal.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          16,
+          239
+        ],
+        [
+          13,
+          240
+        ],
+        [
+          181,
+          255
+        ]
+      ]
+    }
+  ],
+  "primitives": [
+    {
+      "vertices": 50788,
+      "triangles": 94336,
+      "min": [
+        -0.48931884765625,
+        0.0,
+        -0.489593505859375
+      ],
+      "max": [
+        0.48931884765625,
+        0.724212646484375,
+        0.489593505859375
+      ]
+    }
+  ],
+  "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+}

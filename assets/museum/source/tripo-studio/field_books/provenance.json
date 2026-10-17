@@ -1,0 +1,113 @@
+{
+  "source": "04 livres.glb",
+  "id": "field_books",
+  "bytes": 13224456,
+  "sha256": "df9f8783146d1e9933064c700d7a2ab1f8ce2174d18ba4c9c4ca0a2892e4be4a",
+  "nodes": [
+    {
+      "name": "tripo_node_c447aa8f-015e-4bb3-91fd-6d3b5d4b7511",
+      "mesh": 0
+    }
+  ],
+  "materials": [
+    {
+      "name": "tripo_material_c447aa8f-015e-4bb3-91fd-6d3b5d4b7511",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      },
+      "normalTexture": {
+        "index": 2
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "04+livres_basecolor.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          225
+        ],
+        [
+          0,
+          205
+        ]
+      ]
+    },
+    {
+      "name": "04+livres_rm.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          201,
+          255
+        ],
+        [
+          15,
+          255
+        ],
+        [
+          0,
+          119
+        ]
+      ]
+    },
+    {
+      "name": "04+livres_normal.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          8,
+          246
+        ],
+        [
+          8,
+          246
+        ],
+        [
+          169,
+          255
+        ]
+      ]
+    }
+  ],
+  "primitives": [
+    {
+      "vertices": 69262,
+      "triangles": 83360,
+      "min": [
+        -0.4902191460132599,
+        0.0,
+        -0.32818603515625
+      ],
+      "max": [
+        0.4902191460132599,
+        0.5086058974266052,
+        0.32818603515625
+      ]
+    }
+  ],
+  "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+}

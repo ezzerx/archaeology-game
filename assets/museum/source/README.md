@@ -31,3 +31,10 @@ l'original par SHA-256. Transformations et correction de matériau se font dans
 scripts/experiments/exhibition/b17_stand.gd. La revue source a repéré une inscription
 inventée au dos, à reprendre avant finalisation ; voir le rapport
 [du pilote](../../../docs/dev/ISSUE51_B17_TRIPO_PILOT.md).
+
+## Environnement
+Les cinq exports suivants sont archivés avec leur provenance dans les dossiers
+tripo-studio/wall_niche, arched_window, potted_fern, field_books et mineral_sample.
+Chaque copie runtime reste identique à sa source. Le fond de la niche est réparé
+par une géométrie complémentaire de scène, sans modifier son GLB original.
+Voir [le rapport environnement](../../../docs/dev/ISSUE51_MUSEUM_ENVIRONMENT.md).

@@ -49,11 +49,17 @@ artistique : présentoir ammonite, vitrine, applique, puis architecture et lumi�
 Les fiches de génération sont dans le guide du mobilier ; conserver les sources
 et distinguer la revue de chaque élément de l'acceptation globale de la salle.
 
-## RÃ©fÃ©rences pour remplacer le dÃ©cor de fond
-Antoine apprÃ©cie les meubles Tripo mais demande de refaire le sol, les murs et
-les Ã©lÃ©ments derriÃ¨re les prÃ©parations. PrÃ©parer les images utiles Ã  cette
-production : niche et fenÃªtre comme modules, quelques accessoires sobres,
-matiÃ¨res de calcaire et dâ€™enduit pour les surfaces aux dimensions contrÃ´lÃ©es.
+## Références pour remplacer le décor de fond
+Antoine apprécie les meubles Tripo mais demande de refaire le sol, les murs et
+les éléments derrière les préparations. Préparer les images utiles à cette
+production : niche et fenêtre comme modules, quelques accessoires sobres,
+matières de calcaire et d’enduit pour les surfaces aux dimensions contrôlées.
 Le [pack environnement](../visual-references/museum/environment/README.md)
-distingue chaque entrÃ©e Tripo des rÃ©fÃ©rences de textures. Les images ne
-valident pas encore le rÃ©sultat 3D ni lâ€™architecture assemblÃ©e.
+distingue chaque entrée Tripo des références de textures. Les images ne
+valident pas encore le résultat 3D ni l’architecture assemblée.
+
+## Intégration de l'environnement fourni
+Antoine autorise à avancer avec les cinq GLB déposés dans furniture, puis à
+régénérer seulement si le rendu reste problématique. Intégrer les modules,
+reprendre sol/murs/lumière et corriger localement la niche si possible, en
+préservant les sources et le gameplay. Rapport : ISSUE51_MUSEUM_ENVIRONMENT.md.

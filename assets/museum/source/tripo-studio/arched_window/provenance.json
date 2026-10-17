@@ -1,0 +1,113 @@
+{
+  "source": "02 fenetre.glb",
+  "id": "arched_window",
+  "bytes": 11953124,
+  "sha256": "a8dbd84d91074e40e71531efde3215b0eb597a3bc13308db25e74a098e331654",
+  "nodes": [
+    {
+      "name": "tripo_node_ff456396-8933-47d1-838c-2538a6ab5289",
+      "mesh": 0
+    }
+  ],
+  "materials": [
+    {
+      "name": "tripo_material_ff456396-8933-47d1-838c-2538a6ab5289",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      },
+      "normalTexture": {
+        "index": 2
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "02+fenetre_basecolor.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          11,
+          255
+        ],
+        [
+          0,
+          235
+        ],
+        [
+          0,
+          225
+        ]
+      ]
+    },
+    {
+      "name": "02+fenetre_rm.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          179,
+          255
+        ],
+        [
+          60,
+          255
+        ],
+        [
+          0,
+          253
+        ]
+      ]
+    },
+    {
+      "name": "02+fenetre_normal.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          6,
+          247
+        ],
+        [
+          7,
+          247
+        ],
+        [
+          168,
+          255
+        ]
+      ]
+    }
+  ],
+  "primitives": [
+    {
+      "vertices": 80087,
+      "triangles": 124188,
+      "min": [
+        -0.3332977294921875,
+        0.0,
+        -0.10383987426757812
+      ],
+      "max": [
+        0.3332977294921875,
+        0.979034423828125,
+        0.10383987426757812
+      ]
+    }
+  ],
+  "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+}

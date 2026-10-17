@@ -11,10 +11,12 @@ C reste la référence de rythme compacte ; 5–7 minutes pour la petite ammonit
 reste une cible, sans nouvelle durée humaine mesurée.
 
 ## Vision acceptée / mission active
-Antoine valide provisoirement la petite galerie 3D avec préparations dans leur
-matrice, vues composées, inspection rapprochée et supports adaptés. Direction
-à éprouver par des essais, sans validation artistique finale.
+Petite galerie 3D chaleureuse, sans avatar, avec préparations dans leur matrice,
+vues composées et inspection rapprochée. Direction acceptée provisoirement pour
+essais ; caméra et transitions appréciées, qualité artistique finale non validée.
+Seconde référence stylisée choisie, avec continuité graphique avec la préparation.
 Vision : docs/design/FIRST_EXHIBITION_PLAN.md ; cadrage parent #45, collection #28.
+Direction artistique : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.
 
 Premier essai [#51](https://github.com/ezzerx/archaeology-game/issues/51) :
 galerie avec deux exemples de préparation, indépendante des données du joueur.
@@ -22,38 +24,37 @@ Branche codex/51-exhibition-study depuis main 683bd11.
 Brief : docs/dev/ISSUE51_EXHIBITION_STUDY.md.
 Rapport : docs/dev/ISSUE51_EXHIBITION_STUDY_REPORT.md.
 PR [#52](https://github.com/ezzerx/archaeology-game/pull/52) ouverte pour essai humain.
-Version jouable : quatre assets Tripo intégrés, cartels refaits et travée avec niches.
-Rapport mobilier et preuves : docs/dev/ISSUE51_MUSEUM_FURNITURE.md.
-Retour humain : caméra et transitions appréciées ; rendu du musée rejeté pour la production.
-Seconde référence stylisée choisie par Antoine, avec continuité graphique obligatoire
-avec la préparation. Le concept guide architecture et ambiance ; le jeu validé guide
-les matières, le niveau de détail et le rendu des spécimens.
 
-## Prochaine action autorisÃ©e
-Antoine apprÃ©cie les assets Tripo mais rejette encore le sol, les murs et le
-dÃ©cor de fond. PrÃ©parer leur remplacement Ã  partir de nouvelles rÃ©fÃ©rences.
-Pack produit : docs/visual-references/museum/environment/README.md.
-Cinq images dâ€™objets/modules pour Tripo ; deux rÃ©fÃ©rences de matiÃ¨res
-pour calcaire et enduit. RÃ©glages complets par objet dans le mÃªme dossier.
-Premier export conseillÃ© : museum_wall_niche_v01.glb, puis inspection du module.
-Copie pratique : Documents/ArchaeologyGame-Assets/Tripo/museum/references-environnement/.
-La scÃ¨ne jouable reste celle de la passe mobilier ; ces images nâ€™y sont pas intÃ©grÃ©es.
-ApprÃ©ciation des assets distincte dâ€™une validation artistique globale ; pas de fusion.
-Conserver les originaux dans assets/museum/source/tripo-studio/ avant retouche.
-Toujours fournir les rÃ©glages adaptÃ©s avant chaque gÃ©nÃ©ration ; prioritÃ© Ã  la source,
-puis optimisation sur copie aprÃ¨s comparaison.
-Direction : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.
-Conserver camÃ©ra/navigation et prÃ©parations ; reprendre architecture, matiÃ¨res
-et Ã©clairage autour des meubles. Comparaison atelier/musÃ©e Ã  taille comparable
-et retouche de lâ€™inscription inventÃ©e au dos Bâ€“17 restent Ã  traiter.
-La sauvegarde 3D rÃ©elle et la boucle arrivage/atelier/galerie restent Ã  dÃ©finir ensuite.
+## Version à essayer / prochaine action
+Antoine apprécie les meubles mais demande de refaire le sol, les murs et le fond.
+Les cinq nouveaux exports déposés dans furniture sont intégrés : niches,
+fenêtre, fougère, livres et minéral. Il autorise à avancer avec ces modèles et
+à envisager une régénération seulement si le rendu reste problématique.
+Le fond troué de la niche est remplacé dans l'assemblage Godot ; source GLB intacte.
+Dalles, enduit, boiseries, raccords architecturaux et lumière repris.
+Rapport actif : docs/dev/ISSUE51_MUSEUM_ENVIRONMENT.md, avec captures et limites.
+85 contrôles natifs et 298 chargements de ressources réussis ; attendre le
+verdict visuel humain avant nouvelle passe ou fusion. Aucun gameplay modifié.
+
+Originaux archivés dans assets/museum/source/tripo-studio/ ; dépôt utilisateur
+stable : C:/Users/antoi/Documents/ArchaeologyGame-Assets/Tripo/museum/.
+Le dossier furniture contenait un dépôt ponctuel : ses cinq GLB ont été rangés
+dans ce dossier stable après vérification des copies.
+Pack de références : docs/visual-references/museum/environment/README.md.
+Toujours fournir les réglages adaptés avant chaque génération ; priorité à la
+source, puis optimisation sur copie après comparaison.
+Pas de nouvelle génération Tripo réalisée pendant cette intégration.
 
 ## Points de suivi
 Exemples annoncés comme tels ; aucune acquisition ni modification de sauvegarde.
 Préparations, suivi d'outils et lanceurs existants conservés.
-Plafond 240 FPS / physique 60 Hz ; baisses de FPS au souffle dense suivies dans #50.
+Vue extérieure simplifiée, raccords de matières et ombres encore à peaufiner
+selon le verdict humain. Sources détaillées non optimisées pour une grande salle.
+Retouche de l'inscription inventée au dos de B–17 et comparaison atelier/musée
+à taille strictement identique restent à traiter.
+Sauvegarde 3D réelle et boucle arrivage/atelier/galerie à définir ensuite.
+Plafond 240 FPS / physique 60 Hz ; baisses au souffle dense suivies dans #50.
 Arrivages #27 : ancien rendu rejeté, vision détaillée encore à approfondir.
-UI #46, décor #47, sons avec Claude la semaine prochaine #48, musique #49.
-Surprise de découverte prioritaire ; exposition, propreté et condition distinctes.
-Lanceur de l'essai : Launch-Exhibition-Study.cmd.
+UI #46, décor #47, sons avec Claude #48, musique #49.
+Lanceur : Launch-Exhibition-Study.cmd.
 Worktree : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.

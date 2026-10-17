@@ -69,6 +69,31 @@ func run() -> void:
  var cabinet_mesh:MeshInstance3D=gallery.get_node("MuseumCabinet").find_children("*","MeshInstance3D",true,false)[0]
  var cabinet_bounds:AABB=cabinet_mesh.global_transform*cabinet_mesh.get_aabb()
  check(cabinet_bounds.end.z < gallery.centers[0].z-1.09,"cabinet clear of the preparation stands")
+ # Environment sources retain their geometry and full texture maps.
+ for item in [
+  ["Niche0","wall_niche","01 niche.glb"],
+  ["ArchedWindow","arched_window","02 fenetre.glb"],
+  ["WindowFern","potted_fern","03 Fougère.glb"],
+  ["NicheBooks","field_books","04 livres.glb"],
+  ["NicheMineral","mineral_sample","05 mineral.glb"]]:
+  var prop:Node3D=gallery.get_node("EnvironmentAssets/"+item[0])
+  var meshes:=prop.find_children("*","MeshInstance3D",true,false)
+  check(not meshes.is_empty(),"environment model present: "+item[0])
+  var material=meshes[0].get_active_material(0)
+  check(material.albedo_texture!=null and material.normal_texture!=null and material.roughness_texture!=null and material.metallic_texture!=null,"environment PBR maps preserved: "+item[0])
+  check(material.albedo_texture.get_size()==Vector2(4096,4096),"environment 4K albedo: "+item[0])
+  check(FileAccess.get_sha256("res://assets/museum/models/"+item[1]+".glb")==FileAccess.get_sha256("res://assets/museum/source/tripo-studio/"+item[1]+"/"+item[2]),"original environment export preserved: "+item[0])
+ for i in range(2):
+  var back:MeshInstance3D=gallery.get_node("EnvironmentAssets/Niche"+str(i)+"/ContinuousNicheBack")
+  var local_bounds:AABB=back.transform*back.get_aabb()
+  for point in [Vector3(0,.35,-.101),Vector3(0,.52,-.101),Vector3(0,.75,-.101)]:
+   check(local_bounds.has_point(point),"continuous backing covers source hole "+str(i)+" "+str(point.y))
+ # Background props must stay behind the displayed preparation footprint.
+ for prop_name in ["Niche0","Niche1","NicheBooks","MarineBooks","NicheMineral","MarineMineral","CabinetMineral","CabinetBooks"]:
+  var prop:Node3D=gallery.get_node("EnvironmentAssets/"+prop_name)
+  for mesh:MeshInstance3D in prop.find_children("*","MeshInstance3D",true,false):
+   check((mesh.global_transform*mesh.get_aabb()).end.z < -1.03,"background clear of preparation: "+prop_name)
+
  for example in gallery.examples:
   check(example.get_meta("example_only",false),"fixture explicitly isolated")
   check(example.find_children("*","Camera3D",true,false).is_empty(),"no competing preparation camera")

@@ -1735,3 +1735,9 @@ ne valide pas la salle entière ni la fusion de #52.
 Antoine trouve les assets Tripo sympathiques, mais rejette encore le sol, les
 murs et le décor de fond. Préparer des références de production pour remplacer
 ces éléments ; cette appréciation ne vaut pas validation de la salle entière.
+
+## 2026-10-17 — Essayer les exports avant de régénérer
+Antoine autorise à intégrer les cinq modèles d'environnement déposés dans
+furniture et à juger le résultat dans la galerie. Réparer localement ce qui
+peut l'être ; une régénération reste possible si le rendu pose encore problème.
+Cette autorisation ne valide pas artistiquement l'assemblage final.
