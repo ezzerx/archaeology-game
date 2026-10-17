@@ -13,12 +13,14 @@ Antoine valide provisoirement la proposition, pour des essais suivis d'ajustemen
 
 L'accord porte sur une direction à éprouver, pas sur une qualité artistique finale.
 
-## Direction artistique à préciser
+## Direction artistique retenue
 La navigation du premier essai est appréciée, mais son décor n'est pas une
 référence de production. Concevoir le musée par des références d'ambiance et
 de composition, puis des assets 3D avec Tripo. L'esprit d'un musée d'histoire
 naturelle accueillant, comme celui d'Animal Crossing, complète les premiers concepts.
-Voir [l'étude artistique](MUSEUM_ART_DIRECTION_STUDY.md) pour les propositions ;
+Antoine retient la seconde référence stylisée pour l'architecture et l'ambiance,
+avec les graphismes validés de la préparation comme référence de matières et de détail.
+Voir [l'étude artistique](MUSEUM_ART_DIRECTION_STUDY.md) pour cette hiérarchie ;
 les modèles de fossiles et le résultat de préparation restent à préserver.
 
 ## Découpage de réalisation

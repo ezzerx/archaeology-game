@@ -33,3 +33,11 @@ rejeté pour la production. Concevoir la scène, l'ambiance et les supports à
 partir de références, puis préparer une pipeline 3D avec Tripo.
 Voir [l'étude artistique proposée](../design/MUSEUM_ART_DIRECTION_STUDY.md).
 L'appréciation de la navigation ne valide pas la qualité artistique.
+
+## Direction choisie et continuité visuelle
+Antoine retient le second concept stylisé, à harmoniser avec le rendu validé de
+la préparation. Le concept guide la composition et l'ambiance ; les modèles,
+matières, reliefs et détails du jeu guident le traitement des blocs et du décor.
+Comparer une travée avec B–17/M–08 aux préparations à taille d'écran comparable,
+en vue d'ensemble et en inspection. Choix de référence distinct de l'acceptation
+du futur rendu natif ; aucune modification du gameplay n'est requise.

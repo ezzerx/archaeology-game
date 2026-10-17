@@ -24,14 +24,18 @@ Rapport : docs/dev/ISSUE51_EXHIBITION_STUDY_REPORT.md.
 PR [#52](https://github.com/ezzerx/archaeology-game/pull/52) ouverte pour essai humain.
 Version jouable : 2d4ee3e. Captures revues et contrôles terminés.
 Retour humain : caméra et transitions appréciées ; rendu du musée rejeté pour la production.
-Références d'ambiance et pipeline 3D avec Tripo demandés avant de refaire le décor.
+Seconde référence stylisée choisie par Antoine, avec continuité graphique obligatoire
+avec la préparation. Le concept guide architecture et ambiance ; le jeu validé guide
+les matières, le niveau de détail et le rendu des spécimens.
 
 ## Prochaine action autorisée
-Cadrer la direction artistique du musée par des images de référence, puis un
-découpage de scène et d'assets Tripo. Proposition :
-docs/design/MUSEUM_ART_DIRECTION_STUDY.md (concepts à discuter, pas encore validés).
-Conserver caméra/navigation ; attendre le choix artistique avant de reconstruire
-la salle. Aucune fusion autorisée par cette appréciation partielle.
+Décliner la seconde référence retenue en cadrage de scène et d'assets Tripo,
+avec les préparations validées comme référence de matières et de rendu.
+Direction et critères : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.
+Préparer une travée pilote avec les vrais modèles B–17/M–08 pour comparer
+atelier et musée à taille comparable. Conserver caméra/navigation.
+La référence est choisie ; la future réalisation native reste à éprouver.
+Aucune fusion de la galerie actuelle n'est autorisée par ce choix.
 La sauvegarde 3D réelle et la boucle arrivage/atelier/galerie restent à définir ensuite.
 
 ## Points de suivi

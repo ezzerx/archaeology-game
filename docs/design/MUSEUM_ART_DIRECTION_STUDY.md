@@ -1,6 +1,8 @@
-# Musée — proposition de direction artistique
+# Musée — direction artistique retenue
 
-Date : 17 octobre 2026. Proposition à discuter, pas une cible déjà approuvée.
+Date : 17 octobre 2026. Antoine choisit la seconde direction stylisée, avec
+continuité graphique obligatoire avec les préparations déjà validées.
+Ce choix de référence ne valide pas encore la future réalisation native.
 Retour humain et autorisation courante : [statut canonique](../brain/status.md).
 
 ## Intention
@@ -14,7 +16,7 @@ La planche d'origine fournit le bois, le laiton, les cartels et la mise en valeu
 Animal Crossing inspire l'accueil, la lisibilité des formes et le plaisir de voir
 la collection prendre place. Les scènes, personnages et assets restent originaux.
 
-## Proposition recommandée : galerie chaleureuse stylisée
+## Référence retenue : galerie chaleureuse stylisée
 
 ![Proposition de galerie](../visual-references/museum/02-gallery-stylized.png)
 
@@ -26,7 +28,7 @@ la collection prendre place. Les scènes, personnages et assets restent originau
 - Vitrines, illustrations et végétation en second plan ; le bloc reste le sujet principal.
 - Une ouverture vers la suite du musée suggère sa taille sans imposer un niveau à parcourir.
 
-L'image est une proposition de composition et d'ambiance. Les fossiles générés,
+L'image guide la composition et l'ambiance du musée. Les fossiles générés,
 l'anatomie, la forme des matrices et le décor de collection sont indicatifs :
 ils ne remplacent pas nos modèles validés ni le futur résultat réel du joueur.
 La facettisation des pierres du concept doit être tempérée pour rester cohérente
@@ -40,9 +42,36 @@ cadrages avec les vrais modèles, dont les angles visibles restent limités.
 La première image établit les volumes et la hiérarchie, mais son traitement
 photographique, le sol brillant et les microdétails paraissent trop réalistes
 pour la direction actuelle. La seconde simplifie les matières et adoucit les formes.
-Ce jugement de travail n'est pas une sélection humaine entre les deux propositions.
+Antoine a ensuite choisi la seconde direction en précisant que les graphismes
+doivent rester cohérents avec la préparation.
 
-## Pipeline proposé après choix de la référence
+## Continuité avec la préparation
+
+La préparation validée est la référence pour le traitement des matières et des
+spécimens ; le concept 02 guide l'architecture, les volumes et l'ambiance.
+Le décor doit accueillir les vrais blocs et leur niveau de détail.
+
+- **Os et ammonite :** garder les modèles, l'ivoire chaud, les variations de
+  surface, les sillons, les détails modelés et les ombres qui rendent le relief lisible.
+- **Matrices :** garder grain, couleurs, cassures et irrégularités des matières
+  validées. La pierre simplifiée en larges facettes dans l'image ne devient pas
+  une nouvelle cible de rendu pour les blocs.
+- **Mobilier :** silhouettes douces et profils soignés du concept, mais bois
+  patiné, métal sobre et textures à une échelle compatible avec l'atelier.
+  Éviter le décalage entre un meuble lisse comme un jouet et une préparation détaillée.
+- **Lumière :** le contexte d'exposition peut changer l'éclairage ; conserver
+  la couleur identifiable des matériaux et des ombres de contact qui révèlent
+  les volumes, sans écraser le grain ou rendre les os uniformément blancs.
+- **Comparaison :** présenter B–17 et M–08 dans l'atelier et dans la travée,
+  avec une taille à l'écran comparable, puis examiner les mêmes détails de près.
+  Réutiliser les ressources existantes et harmoniser le décor autour d'elles.
+
+L'essai actuel réutilise déjà les GLB et le shader d'os du projet, mais sa matrice
+d'exemple utilise un rendu simplifié propre à la galerie. Cela ne démontre pas
+encore une restitution fidèle d'une préparation. Le futur archivage réel,
+avec matière restante, nettoyage et dégâts, reste un sujet distinct dans #28.
+
+## Pipeline de réalisation proposé
 
 1. **Fixer la scène.** Confirmer la vue d'ensemble, l'inspection rapprochée,
    les proportions et une palette commune. Conserver le système de caméra et

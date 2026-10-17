@@ -76,3 +76,10 @@ trop réaliste selon la revue de travail, puis une variante plus stylisée.
 Ils sont documentés dans [l'étude artistique](../design/MUSEUM_ART_DIRECTION_STUDY.md).
 Ce sont des propositions, distinctes des captures natives ci-dessus.
 Aucune modification de runtime ni génération Tripo dans cette passe de cadrage.
+
+## Choix de référence artistique
+Antoine choisit ensuite le second concept stylisé, à condition que les graphismes
+restent cohérents avec les préparations. L'étude artistique précise maintenant
+la hiérarchie des références et la comparaison atelier/musée à effectuer.
+La réalisation native et le rendu des matrices réelles restent à éprouver.
+Cette mise à jour est documentaire ; aucun runtime modifié ni nouveau test de jeu.

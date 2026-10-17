@@ -1696,3 +1696,10 @@ d'Animal Crossing ; établir des références visuelles avant la production
 d'assets 3D avec Tripo. Cette appréciation partielle ne valide pas le décor.
 Les nouveaux concepts restent des propositions tant qu'Antoine n'en a pas choisi
 la direction ; la conservation des vrais blocs reste souhaitée.
+
+## 2026-10-17 — Seconde direction de musée retenue, continuité atelier obligatoire
+Antoine préfère le second concept, plus stylisé, et demande que ses graphismes
+collent à ceux de la préparation. Retenir son architecture et son ambiance tout
+en prenant le rendu validé du jeu comme référence pour les matières, les os et
+le niveau de détail. Adapter le décor aux vrais blocs. La sélection du concept
+ne valide ni le décor natif actuel ni une fusion de #52.
