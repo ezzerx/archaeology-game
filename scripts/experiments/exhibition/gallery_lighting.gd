@@ -3,9 +3,9 @@ extends RefCounted
 static func install(g:Node3D) -> void:
  var forward:=RenderingServer.get_current_rendering_method()=="forward_plus"
  if forward:
-  RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM)
+  RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_HIGH)
   RenderingServer.positional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM)
-  g.get_viewport().use_taa=true
+  # More shadow samples keep soft penumbras without blurring the entire image.
   RenderingServer.environment_set_ssao_quality(RenderingServer.ENV_SSAO_QUALITY_MEDIUM,true,.5,2,20.,40.)
   RenderingServer.environment_set_ssil_quality(RenderingServer.ENV_SSIL_QUALITY_MEDIUM,true,.5,2,20.,40.)
  var world:=WorldEnvironment.new();world.name="GalleryLighting";g.add_child(world)

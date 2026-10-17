@@ -35,10 +35,15 @@ func run() -> void:
  create_timer(70).timeout.connect(func():push_error("Gallery timeout");quit(2))
  for path in ["user://collection/records.json","user://preparation_distinctions.json","user://preparation_demos/distinctions.json"]:
   stores[path]=FileAccess.get_sha256(path) if FileAccess.file_exists(path) else "absent"
+ var original_stretch:=root.content_scale_mode
+ var original_msaa:=root.msaa_3d
+ var original_taa:=root.use_taa
  root.mode=Window.MODE_WINDOWED;root.size=Vector2i(1440,810)
  gallery=load("res://scenes/experiments/exhibition_study.tscn").instantiate();root.add_child(gallery)
  while not gallery.fixtures_ready:await process_frame
  await shot("01-gallery");await sample("overview")
+ check(root.get_texture().get_image().get_size()==root.size,"3D renders at native window resolution")
+ check(not root.use_taa,"no temporal softening of specimen details")
  check(gallery.examples.size()==2,"two museum examples loaded")
  var stand:Node3D=gallery.get_node("B17TripoStand")
  var stand_meshes:=stand.find_children("*","MeshInstance3D",true,false)
@@ -120,16 +125,22 @@ func run() -> void:
  gallery.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
  check(not gallery.dragging,"focus loss cancels drag")
  gallery.select(1);gallery.target_angle=Vector2(.16,.06);await shot("04-relief-angle")
- for dimensions in [Vector2i(1024,768),Vector2i(1680,720)]:
+ for dimensions in [Vector2i(1024,768),Vector2i(1680,720),Vector2i(2560,1440)]:
   root.size=dimensions;await create_timer(.3).timeout
+  await RenderingServer.frame_post_draw
+  # KEEP aspect preserves the 16:9 content area, with native pixels inside the bars.
+  var content_pixels:=Vector2i((root.get_visible_rect().size*root.get_final_transform().get_scale()).round())
+  check(root.get_texture().get_image().get_size()==content_pixels,"native content after resize to "+str(dimensions))
   var bounds:=root.get_visible_rect()
   for button in gallery.nav_buttons:
    check(bounds.encloses(button.get_global_rect()),"navigation visible at "+str(dimensions))
   check(not gallery.heading.get_global_rect().intersects(gallery.nav_buttons[0].get_global_rect()),"caption clear of navigation at "+str(dimensions))
  root.size=Vector2i(1440,810);gallery.select(-1)
+ gallery.queue_free();await gallery.tree_exited;await process_frame
+ check(root.content_scale_mode==original_stretch and root.msaa_3d==original_msaa and root.use_taa==original_taa,"gallery restores window rendering when leaving (%s / %s / %s)"%[root.content_scale_mode,root.msaa_3d,root.use_taa])
  for path in stores:
   var after:=FileAccess.get_sha256(path) if FileAccess.file_exists(path) else "absent"
   check(after==stores[path],"player storage unchanged: "+path)
  FileAccess.open("res://work/issue51/visual.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"failures":failed,"frame_ms":frames,"render":RenderingServer.get_current_rendering_method(),"engine":Engine.get_version_info().string,"window":Vector2i(1440,810),"examples_only":true},"  "))
  print("GALLERY ",checks," checks / ",failed.size()," failures")
- gallery.queue_free();await process_frame;quit(0 if failed.is_empty() else 1)
+ quit(0 if failed.is_empty() else 1)

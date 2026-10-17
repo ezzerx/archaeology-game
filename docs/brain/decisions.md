@@ -1748,3 +1748,14 @@ artistiquement. Il confirme la passe proposée : lumière douce, contacts,
 matières, appliques, fenêtre/vitrage et raccords, avec comparaison à la référence
 et itérations. Cette autorisation ne valide pas la qualité du résultat à venir.
 La cohérence de la travée complète doit guider la suite de la production.
+
+## 2026-10-17 — Base de galerie appréciée et ordre de la boucle confirmé
+Antoine juge le rendu plus abouti et sympathique comme base, sans le considérer
+fini. Corriger d'abord le flou proche/lointain, puis exposer le vrai bloc que le
+joueur vient de préparer, et travailler ensuite les caisses avant préparation.
+Ce parcours doit former la boucle de démo caisse → préparation → musée.
+L'apparence exposée doit conserver les traces du travail personnel ; la sélection
+automatique d'un ancien meilleur résultat ne répond pas au souhait de voir la
+préparation juste terminée. Préserver les meilleurs résultats et distinctions
+existants pendant le futur raccordement. Les détails de cette conservation et
+le traitement de plusieurs tentatives seront cadrés dans #28.

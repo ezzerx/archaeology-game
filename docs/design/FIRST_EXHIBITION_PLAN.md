@@ -31,6 +31,19 @@ les modèles de fossiles et le résultat de préparation restent à préserver.
 
 L'essai #51 utilise des exemples déterministes, annoncés comme tels. Ils servent à éprouver le rendu en matrice et ne représentent pas les sauvegardes du joueur. Une représentation figée évite d'exécuter toute une simulation de fouille pour chaque objet exposé. La fidélité de l'archivage réel reste un chantier distinct.
 
+## Suite confirmée après la base visuelle
+Le retour du 17 octobre retient la galerie comme base à améliorer et confirme
+l'ordre : corriger la netteté, conserver et exposer la préparation juste terminée,
+puis concevoir les caisses précédant la préparation.
+
+Pour le raccordement, l'essai décisif sera de terminer deux blocs volontairement
+différents, puis de reconnaître dans la galerie leurs matières restantes, leur
+nettoyage et leurs dégâts, y compris après fermeture et relance du jeu. La photo
+et les scores actuels ne suffisent pas à cette restitution 3D. Les meilleurs
+résultats historiques et distinctions restent à préserver séparément du bloc
+qui vient de finir. Le choix d'un renderer commun entre atelier et galerie doit
+faire l'objet d'une comparaison des trois préparations avant intégration continue.
+
 ## Backlog
 | Ticket | Objet |
 |---|---|

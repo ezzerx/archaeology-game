@@ -3,6 +3,8 @@ extends SceneTree
 var gallery:Node3D
 var output:="res://work/issue51-lookdev/current"
 var metrics:Dictionary={}
+var dimensions:=Vector2i(1440,810)
+var previous_rendering:=false
 func _initialize() -> void:call_deferred("run")
 func shot(label:String) -> void:
  await create_timer(1.6).timeout
@@ -28,16 +30,24 @@ func sample(label:String) -> void:
 func run() -> void:
  for arg in OS.get_cmdline_user_args():
   if arg.begins_with("--out="):output="res://"+arg.trim_prefix("--out=")
+  if arg.begins_with("--size="):
+   var parts:=arg.trim_prefix("--size=").split("x")
+   if parts.size()==2:dimensions=Vector2i(int(parts[0]),int(parts[1]))
+  if arg=="--previous-rendering":previous_rendering=true
  DirAccess.make_dir_recursive_absolute(output)
  create_timer(100).timeout.connect(func():push_error("Lookdev capture timeout");quit(2))
- root.size=Vector2i(1440,810)
+ root.size=dimensions
  gallery=load("res://scenes/experiments/exhibition_study.tscn").instantiate();root.add_child(gallery)
  while not gallery.fixtures_ready:await process_frame
+ if previous_rendering:
+  root.content_scale_mode=Window.CONTENT_SCALE_MODE_VIEWPORT;root.use_taa=true
+  RenderingServer.directional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM)
+  RenderingServer.positional_soft_shadow_filter_set_quality(RenderingServer.SHADOW_QUALITY_SOFT_MEDIUM)
  await shot("01-gallery");await sample("overview")
  gallery.select(0);await shot("02-b17");await sample("b17")
  gallery.select(1);await shot("03-ammonite");await sample("ammonite")
  gallery.target_angle=Vector2(.16,.06);await shot("04-ammonite-angle")
  gallery.select(-1);gallery.target_focus=Vector3(-2.8,1.9,-1.9);gallery.target_size=3.7;await shot("05-niche-window")
  gallery.target_focus=Vector3(.05,1.7,-1.7);gallery.target_size=3.0;await shot("06-cabinet")
- FileAccess.open(output+"/metrics.json",FileAccess.WRITE).store_string(JSON.stringify({"engine":Engine.get_version_info().string,"renderer":RenderingServer.get_current_rendering_method(),"image_size":root.get_texture().get_size(),"window_size":root.size,"uncapped_static_frames":metrics},"  "))
+ FileAccess.open(output+"/metrics.json",FileAccess.WRITE).store_string(JSON.stringify({"engine":Engine.get_version_info().string,"renderer":RenderingServer.get_current_rendering_method(),"image_size":root.get_texture().get_image().get_size(),"window_size":root.size,"taa":root.use_taa,"previous_rendering":previous_rendering,"uncapped_static_frames":metrics},"  "))
  gallery.queue_free();await process_frame;quit()

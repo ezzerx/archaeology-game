@@ -6,6 +6,7 @@ const AmmoniteStand=preload("res://scripts/experiments/exhibition/ammonite_stand
 const Furniture=preload("res://scripts/experiments/exhibition/gallery_furniture.gd")
 const Room=preload("res://scripts/experiments/exhibition/gallery_room.gd")
 const Cartel=preload("res://scripts/experiments/exhibition/gallery_cartel.gd")
+var _previous_rendering:Dictionary={}
 var camera:Camera3D
 var selected:=-1
 var focus:=Vector3(0,1.62,-.25)
@@ -30,7 +31,11 @@ var serif:=SystemFont.new()
 var sans:=SystemFont.new()
 func _ready() -> void:
  get_window().title="ArchaeologyGame — Première exposition"
+ # Render 3D at window resolution; keep the authored logical UI layout.
+ _previous_rendering={"stretch":get_window().content_scale_mode,"msaa":get_viewport().msaa_3d,"taa":get_viewport().use_taa}
+ get_window().content_scale_mode=Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
  get_viewport().msaa_3d=Viewport.MSAA_4X
+ get_viewport().use_taa=false
  serif.font_names=PackedStringArray(["Georgia","Noto Serif"])
  sans.font_names=PackedStringArray(["Segoe UI","Noto Sans"])
  _materials();_environment();Room.install(self);Furniture.install(self);_displays();_ui()
@@ -186,3 +191,9 @@ func _click_piece(point:Vector2) -> void:
   if Rect2(c-Vector2(w,w*.65),Vector2(w*2,w*1.3)).has_point(point):select(i);return
 func _notification(what:int) -> void:
  if what in [NOTIFICATION_APPLICATION_FOCUS_OUT,NOTIFICATION_WM_MOUSE_EXIT]:dragging=false
+
+func _exit_tree() -> void:
+ if _previous_rendering.is_empty():return
+ get_window().content_scale_mode=_previous_rendering.stretch
+ get_viewport().msaa_3d=_previous_rendering.msaa
+ get_viewport().use_taa=_previous_rendering.taa

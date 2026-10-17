@@ -26,15 +26,22 @@ Rapport : docs/dev/ISSUE51_EXHIBITION_STUDY_REPORT.md.
 PR [#52](https://github.com/ezzerx/archaeology-game/pull/52) ouverte pour essai humain.
 
 ## Version à essayer / prochaine action
-Antoine a autorisé la passe de rendu après avoir jugé l'environnement amélioré
-mais encore insuffisant. Le candidat ajoute ombres douces, SSIL/contact,
-reflets, lampes visibles, matières harmonisées, fenêtre/vitrage/jardin et raccords.
-Lanceur de galerie en Forward+ ; préparation et project.godot conservés.
-Captures comparées au concept, plusieurs itérations et contrôles terminés :
-85 contrôles par renderer et 300 ressources, zéro échec.
-Rapport actif : docs/dev/ISSUE51_GALLERY_RENDERING.md, avec avant/après et mesures.
-Attendre le nouveau verdict visuel d'Antoine avant fusion ou autre mission.
-PR #52 reste ouverte. Aucun gameplay ni donnée joueur modifié.
+Antoine apprécie la galerie comme base, plus aboutie qu'une démo, tout en
+réservant des améliorations artistiques. Il demande de corriger le flou près/loin.
+Correctif de revue dans #52 : rendu à la résolution native de la fenêtre,
+MSAA 4× sans TAA, filtrage des ombres ajusté pour garder leur douceur.
+Rapport actif : docs/dev/ISSUE51_GALLERY_CLARITY.md (comparaisons et limites).
+95 contrôles par renderer et 300 ressources passent. Le rendu 1440p natif
+coûte davantage : la galerie ne tient pas encore la cible 240 FPS à cette résolution.
+Le lanceur reste Launch-Exhibition-Study.cmd, en Forward+ ; préparation préservée.
+PR #52 reste ouverte pour vérifier ce correctif avant fusion.
+
+Ordre confirmé par Antoine : netteté → vrai bloc préparé exposé (#28) →
+caisses avant préparation (#27), pour une boucle démo caisse/préparation/musée.
+Le prochain raccordement doit conserver l'apparence du travail juste terminé :
+matière restante, nettoyage et dégâts. Les exemples actuels ne sont pas encore
+remplacés. Cadrer cette mission sur main après clôture de la revue #52,
+conformément au workflow par issue/PR ; puis définir la passe caisses.
 
 Originaux archivés dans assets/museum/source/tripo-studio/ ; dépôt utilisateur
 stable : C:/Users/antoi/Documents/ArchaeologyGame-Assets/Tripo/museum/.
@@ -53,7 +60,9 @@ salle. Le rendu indirect est SSIL ; pas encore d'éclairage précalculé. Une fu
 boucle atelier/musée dans un processus devra comparer le renderer commun.
 Retouche de l'inscription inventée au dos de B–17 et comparaison atelier/musée
 à taille strictement identique restent à traiter.
-Sauvegarde 3D réelle et boucle arrivage/atelier/galerie à définir ensuite.
+Sauvegarde 3D réelle à définir : le stockage actuel garde une photo et des scores,
+et choisit le meilleur résultat. Distinguer cette archive de la préparation
+qui vient de finir, demandée pour l’exposition ; préserver les archives existantes.
 Plafond 240 FPS / physique 60 Hz ; baisses au souffle dense suivies dans #50.
 Arrivages #27 : ancien rendu rejeté, vision détaillée encore à approfondir.
 UI #46, décor #47, sons avec Claude #48, musique #49.

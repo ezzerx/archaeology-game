@@ -1,5 +1,10 @@
 # Galerie — passe de rendu et comparaison artistique
 
+> Revue suivante : Antoine apprécie cette base, mais signale un flou près/loin.
+> Le [correctif de netteté](ISSUE51_GALLERY_CLARITY.md) remplace le réglage TAA
+> et la résolution fixe décrits dans ce rapport. Les mesures ci-dessous décrivent
+> le candidat précédent.
+
 ## Intention et résultat
 Antoine demande de compléter le rendu Godot, de comparer à la référence
 stylisée et d'itérer sur lumière, matières et finitions. La direction reste
