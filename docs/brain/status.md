@@ -21,7 +21,8 @@ Retour humain : feeling du Blower et réaction de matière validés, mais prépa
 trop courte. Correction livrée : trois bancs durs sous la nappe, sur et autour
 de l'ammonite. Captures revues et contrôles réussis ; souffle préservé.
 PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte.
-Version testée : 605b4fd ; validation partielle du feeling, pas de fusion.
+Version précédemment testée : 605b4fd ; validation partielle du feeling.
+Version corrigée : 9fb752f ; nouvel essai du rythme attendu, pas de fusion.
 
 ## Prochaine action autorisée
 Faire retester l'équilibre découverte rapide / travail de précision dans la

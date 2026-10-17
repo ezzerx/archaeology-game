@@ -37,5 +37,6 @@
     }
   },
   "correction": "Three discontinuous consolidated banks below the unchanged loose cover, across and around the shell.",
-  "baseline_audit": "baseline-comparison.json: two freshly initialized preparations; unchanged roof, cohesion and initial surface, only consolidated floors raised."
+  "baseline_audit": "baseline-comparison.json: two freshly initialized preparations; unchanged roof, cohesion and initial surface, only consolidated floors raised.",
+  "playable_commit": "9fb752f2287f9ea4357bb7936e1754255528f3f7"
 }
