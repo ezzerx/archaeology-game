@@ -1601,3 +1601,21 @@ sur 1 telles que livrées ; aucune correction supplémentaire n'est demandée.
 Conserver cette référence pour les prochaines préparations. La génération
 de production et les futures mécaniques nécessitent leur propre vision
 approuvée avant développement.
+
+## 2026-10-17 — Cadrage marin, puis fluidité des outils
+
+Antoine demande une proposition concrète de finition des sédiments marins,
+avec le gameplay axé sur le Blower. Il souhaite ensuite une passe dédiée à
+la fluidité : sensation de retard ou de mouvement peu fluide malgré 240 FPS
+affichés. Ne pas confondre débit d'images, fréquence d'écran et réactivité.
+Ces demandes fixent les sujets à cadrer, sans approuver une implémentation.
+
+Une inspection du code donne une piste à vérifier en exécution : le point visé
+et le cercle sont actualisés dans ToolController._physics_process à 60 Hz ;
+le modèle animé à chaque image réutilise controller.hit.world. Ce constat
+ne mesure ni la latence totale ni la fréquence effective de l'écran.
+
+## 2026-10-17 — GO finition des sédiments marins
+Antoine approuve la vision fenêtre → nappe → relief, avec le Blower central,
+les gestes et outils validés conservés, et une revue native par captures avec
+itérations avant PR. La passe fluidité vient après cette mission, séparément.

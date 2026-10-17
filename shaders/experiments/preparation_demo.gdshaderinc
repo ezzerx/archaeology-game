@@ -22,7 +22,12 @@ vec3 demo_material(vec3 original,vec2 uv,float h,bool skirt) {
  if(preparation_demo==2)result=mix(result,vec3(.41,.30,.20)*(0.65+cloud*.35+grain*.18),.52);
  // Contact dirt and mineral pores remain in the same lit material; no unlit overlay.
  float consolidated=(field.r>0.0?1.0-field.b:1.0);
- if(preparation_demo==1)result=mix(result,result*vec3(.75,.86,.94),consolidated*.52);
+ if(preparation_demo==1){
+  vec3 sediment=mix(vec3(.34,.315,.245),vec3(.56,.51,.395),fine*.55+grain*.45);
+  // Loose bed, firm marl and exposed base share a mineral palette but read differently.
+  result=mix(marl*vec3(.97,1.0,1.04),sediment,freed*.92);
+  result*=1.0-consolidated*.10;
+ }
  float original_luma=dot(original,vec3(.21,.72,.07));
  result*=clamp(original_luma/.34,.62,1.24);
  vec2 crust=texture(demo_crust,uv).rg;
@@ -52,14 +57,14 @@ vec3 demo_grain_normal(vec3 normal,vec2 uv,float h,vec3 axis_x,vec3 axis_z){
  float a=demo_noise(p);
  vec2 slope=vec2(demo_noise(p+vec2(.4,0))-a,demo_noise(p+vec2(0,.4))-a);
  // Smooth the actual current mineral height, including the local abrasion.
- // Sampling is gated by visible coating; intact cover uses its original normal.
- if(coat>0.0){
+ // Only visible coating or freed marine grains use this shading; sealed cover is unchanged.
+ if(coat>0.0 || (preparation_demo==1 && loose>.01)){
   vec2 texel=vec2(1.0/1024.0,1.0/640.0);
   float dx=texture(working_map,uv+vec2(texel.x*2.0,0)).r-texture(working_map,uv-vec2(texel.x*2.0,0)).r;
   float dz=texture(working_map,uv+vec2(0,texel.y*2.0)).r-texture(working_map,uv-vec2(0,texel.y*2.0)).r;
   vec3 up=normalize(cross(axis_z,axis_x));
   vec3 sculpted=normalize(up-axis_x*clamp(dx*25.5,-2.0,2.0)-axis_z*clamp(dz*25.5,-2.0,2.0));
-  normal=normalize(mix(normal,sculpted,.88*smoothstep(.4,.8,dot(normal,up))));
+  normal=normalize(mix(normal,sculpted,(coat>0.0?.88:.62*loose)*smoothstep(.4,.8,dot(normal,up))));
  }
  return normalize(normal+(axis_x*slope.x+axis_z*slope.y)*(.45*loose+.50*coat*(1.0-smoothstep(.002,.012,crust.g-h)*.65)));
 }

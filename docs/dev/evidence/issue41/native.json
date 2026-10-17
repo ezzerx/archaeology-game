@@ -1,0 +1,100 @@
+{
+  "benchmark": [],
+  "brush": [],
+  "captures": [
+    "01-covered.png",
+    "02-first-window.png",
+    "03-short-contact.png",
+    "04-window-extended.png",
+    "05-flow-over-ribs.png",
+    "06-islands-and-relief.png",
+    "07-picked-island.png",
+    "08-ribs-contact.png",
+    "09-ribs-brushed.png",
+    "demo-1-06-complete-native.png"
+  ],
+  "checks": 27,
+  "completion": {
+    "classification": "Ammonite côtelée",
+    "cleanliness": 99.9999998722599,
+    "condition": 100.0,
+    "condition_tier": "Excellent",
+    "coverage_passed": true,
+    "exposure": 100.0,
+    "fine_preparation": true,
+    "largest_hidden_cluster": 0
+  },
+  "failures": [],
+  "minimum_cover_mm": 5.91593599319458,
+  "profiles": [],
+  "route": [
+    {
+      "exposure": 0.0,
+      "grains": 0.0,
+      "impacts": 1,
+      "stage": "opened"
+    },
+    {
+      "exposure": 0.070129505820749,
+      "grains": 119.919068235384,
+      "impacts": 1,
+      "stage": "first short breath"
+    },
+    {
+      "exposure": 11.9126653887512,
+      "grains": 1182.26543700054,
+      "impacts": 1,
+      "stage": "window extended"
+    },
+    {
+      "exposure": 18.2850998176633,
+      "grains": 2105.17641766359,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 29.0008883070737,
+      "grains": 2929.08539473795,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 45.5514516807705,
+      "grains": 3621.83277218467,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 58.3477488428632,
+      "grains": 4146.85547409904,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 66.7913413436813,
+      "grains": 4891.9364117398,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 78.9564729533872,
+      "grains": 5830.09305573888,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 83.0052830894385,
+      "grains": 5927.82111192578,
+      "impacts": 1,
+      "stage": "follow bed"
+    }
+  ],
+  "timings": {
+    "air_blower": {
+      "active_ticks": 455,
+      "edit_max_ms": 9.046,
+      "edit_p50_ms": 6.188,
+      "edit_p95_ms": 7.726
+    }
+  }
+}

@@ -9,24 +9,22 @@ C reste la référence préférée de rythme pour la terre compacte.
 B–17/M–08, feeling des outils, interactions et rendu à préserver.
 Caisses #30 rejetées ; #27/#28 et son différés.
 
-## Dernière livraison / gate
-Issue [#39](https://github.com/ezzerx/archaeology-game/issues/39),
-PR [#40](https://github.com/ezzerx/archaeology-game/pull/40).
-Commit jouable validé : a750318.
-Trois rencontres de concrétions, érosion et feedback soignés,
-Brush/pointe abrasive réunis sur 1.
-Verdict humain du 17 octobre : « Ok j'ai testé c'est cool ! »
-Validation globale de cette passe ; aucune correction demandée.
-Brief : docs/dev/ISSUE39_CONCRETION_FINISH.md.
-Rapport : docs/dev/ISSUE39_CONCRETION_FINISH_REPORT.md.
+## Mission active / gate
+Issue [#41](https://github.com/ezzerx/archaeology-game/issues/41).
+Branche codex/41-marine-finish depuis main d07f24a (PR #40 fusionnée).
+GO humain : finition marine centrée sur le Blower, captures et itérations avant PR.
+Vision : fenêtre dans une croûte mince, nappe autour de rares îlots consolidés,
+accumulation révélant le relief de l'ammonite, finition Pick/Brush inchangée.
+Brief : docs/dev/ISSUE41_MARINE_FINISH.md.
+Rapport : docs/dev/ISSUE41_MARINE_FINISH_REPORT.md.
+Implémentation et revue native terminées ; contrôles réussis.
 
 ## Prochaine action autorisée
-Clôturer cette livraison selon le workflow convenu : fusion de la PR #40,
-synchronisation de main et nettoyage de sa seule branche de mission.
-Puis définir avec Antoine la vision de la prochaine étape avant développement.
-Aucune nouvelle mission d'implémentation n'est autorisée.
-Pour reprendre, partir de main synchronisé ; conserver les changements locaux
-des anciens checkouts.
+Préparer la PR de cette mission puis attendre l'essai et le verdict d'Antoine
+avant fusion. Essai : Launch-Preparation-Demos.cmd → 02 · Sédiments marins.
+La passe fluidité/réactivité est demandée juste après, dans une mission distincte.
+Le ressenti de retard malgré 240 FPS doit être mesuré ; aucune correction de
+fréquence, de suivi des outils ou de synchronisation d'affichage dans #41.
 
 ## Points de suivi
 Matières lisibles, rythme court et détail révélé : préserver le plaisir de découverte.

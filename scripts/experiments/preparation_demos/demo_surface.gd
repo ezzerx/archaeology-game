@@ -6,6 +6,7 @@ var crust_caps:=PackedFloat32Array()
 var grains_removed:=0.0
 var crust_removed:=0.0
 var demo_ready:=false
+var marine_grain_ease:=PackedFloat32Array()
 var radial_weights:=PackedFloat32Array()
 func configure_demo(roofs:PackedFloat32Array,floors:PackedFloat32Array,caps:PackedFloat32Array) -> void:
  grain_roofs=roofs;grain_floors=floors;crust_caps=caps.duplicate()
@@ -70,7 +71,7 @@ func _work_material(from:Vector2,to:Vector2,tool:ToolDefinition,delta:float,abra
     var roof:=grain_roofs[i]
     if roof<=0 or old<=grain_floors[i]:continue
     if old>roof+.0001:
-     if old>roof+.022:continue
+     if old>roof+(.028 if demo_kind==1 else .022):continue
      var unsupported:=false
      for offset in [-size.x*3,-3,3,size.x*3]:
       var j:int=i+offset
@@ -79,13 +80,14 @@ func _work_material(from:Vector2,to:Vector2,tool:ToolDefinition,delta:float,abra
      if not unsupported:continue
     floor_height=maxf(grain_floors[i],maxf(floor_height,cap))
    var influence:=radial_weights[mini(4096,int(distance_squared*lookup_scale))]
+   if demo_kind==1 and not marine_grain_ease.is_empty():influence*=marine_grain_ease[i]
    var next:=maxf(floor_height,old-work*influence)
    if next-floor_height<.002 and influence>.25:next=floor_height
    if next>=old:continue
    _heights[i]=next
    if abrasion:crust_caps[i]=next if next>structural_ceilings[i]+.00001 else 0.0
    volume+=old-next;changed+=1
-   if sources.size()<8 and (changed%sample_stride==0 or (abrasion and changed==1)):sources.append(Vector3(x,old,y))
+   if sources.size()<8 and (changed%sample_stride==0 or ((abrasion or demo_kind==1) and changed==1)):sources.append(Vector3(x,old,y))
    if structural_ceilings[i]>0 and next<=structural_ceilings[i]+FossilField.EXPOSURE_EPSILON and fossil.exposed[i]==0:newly_exposed.append(i)
  if changed==0:return 0
  tool_applied.emit()

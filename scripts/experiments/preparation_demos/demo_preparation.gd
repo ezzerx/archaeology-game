@@ -8,10 +8,13 @@ func _create_mastery_ui() -> PreparationUI:
  ui.distinction=distinction
  return ui
 func _create_profile() -> SoilFoundationProfile:
+ if demo_kind==1:return preload("res://scripts/experiments/preparation_demos/marine_profile.gd").new(block.working_map,block.footprint,block.rim)
  if demo_kind==2:return preload("res://scripts/experiments/preparation_demos/concretion_profile.gd").new(block.working_map,block.footprint,block.rim)
  if demo_kind==0:return preload("res://scripts/experiments/preparation_demos/compact_profile.gd").new(block.working_map,block.footprint,block.rim,compact_variant)
  return preload("res://scripts/experiments/preparation_demos/demo_profile.gd").new(block.working_map,block.footprint,block.rim,demo_kind)
-func _create_feedback() -> MaterialFeedback:return preload("res://scripts/experiments/preparation_demos/demo_feedback.gd").new()
+func _create_feedback() -> MaterialFeedback:
+ if demo_kind==1:return preload("res://scripts/experiments/preparation_demos/marine_feedback.gd").new()
+ return preload("res://scripts/experiments/preparation_demos/demo_feedback.gd").new()
 func _ready() -> void:
  if demo_kind==2:
   var tool:=ToolDefinition.new();tool.id=&"abrasive_tip";tool.display_name="Pointe abrasive";tool.radius=18;tool.power=0;tool.effectiveness=Vector3.ZERO;tool.bone_damage=0

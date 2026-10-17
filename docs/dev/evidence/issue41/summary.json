@@ -1,0 +1,33 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "source_base": "d07f24a",
+  "functional_checks": 365,
+  "resource_loads": 279,
+  "suites": {
+    "marine_native": 27,
+    "marine_materials": 14,
+    "demo_materials": 17,
+    "compact_regression": 45,
+    "concretion_native": 43,
+    "P4V2": 91,
+    "P5": 128
+  },
+  "failures": [],
+  "human_validation": "pending",
+  "native_window": [
+    1440,
+    810
+  ],
+  "renderer": "GL Compatibility",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "capture_method": "Native rendered game and real controller tools. Deterministic route and full systematic completion are QA, not a human-duration measurement.",
+  "blower_edit_cost": {
+    "active_ticks": 455,
+    "edit_max_ms": 9.046,
+    "edit_p50_ms": 6.188,
+    "edit_p95_ms": 7.726
+  },
+  "runtime_cap": 240,
+  "physics_hz": 60,
+  "fluidity_pass": "deferred to next mission"
+}
