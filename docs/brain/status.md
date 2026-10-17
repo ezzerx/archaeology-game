@@ -16,10 +16,11 @@ GO humain : trois rencontres de concrétions, érosion et feedback soignés,
 Brush/pointe abrasive réunis sur 1. Résultat implémenté, revue native et itérations terminées.
 Brief : docs/dev/ISSUE39_CONCRETION_FINISH.md.
 Rapport : docs/dev/ISSUE39_CONCRETION_FINISH_REPORT.md.
-Contrôles réussis ; verdict humain du résultat attendu.
+PR [#40](https://github.com/ezzerx/archaeology-game/pull/40) ouverte.
+Commit jouable a750318. Contrôles réussis ; verdict humain du résultat attendu.
 
 ## Prochaine action
-Préparer la PR, puis faire essayer les trois rencontres et la famille 1.
+Faire essayer les trois rencontres et la famille 1 à Antoine via la PR #40.
 Corriger dans cette mission si nécessaire ; attendre le verdict humain avant
 fusion ou nouvelle mission.
 

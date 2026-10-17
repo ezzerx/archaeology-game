@@ -13,5 +13,6 @@
     "demo_runtime": 8
   },
   "human_validation": "pending",
-  "capture_method": "Native rendered game, real controller tool inputs. Full completion is a systematic QA sweep, not a human-time measurement."
+  "capture_method": "Native rendered game, real controller tool inputs. Full completion is a systematic QA sweep, not a human-time measurement.",
+  "playable_commit": "a750318fe8d2af3d1d26dc929952f9c25e7475fa"
 }
