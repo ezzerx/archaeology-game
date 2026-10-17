@@ -47,7 +47,7 @@ Le rendu est un premier échantillon artistique à évaluer humainement.
 
 Détails : [summary.json](evidence/issue51/summary.json).
 Test : tests/run_issue51_gallery_native.gd. Sorties temporaires : work/issue51.
-Le verdict artistique et le confort de visite restent à recueillir auprès d'Antoine.
+Le retour humain ci-dessous complète ces vérifications techniques.
 
 ## Captures
 ![Vue d'ensemble](evidence/issue51/01-gallery.png)
@@ -63,3 +63,16 @@ faire légèrement varier l'angle, puis revenir à l'ensemble.
 Évaluer : envie d'admirer/conserver ces objets, cohérence du lieu avec l'atelier,
 lisibilité des reliefs et confort de navigation. Cet essai n'évalue pas encore
 la satisfaction d'une vraie acquisition ni la répétition de toute la boucle.
+
+
+## Retour humain du 17 octobre et recherche artistique
+Antoine apprécie la caméra et les transitions entre les pièces. Il aimerait
+voir ses vraies préparations dans cette présentation. Le décor actuel est
+jugé insuffisant pour la production : architecture, environnement et ambiance
+doivent être conçus avec de vraies références puis une pipeline d'assets Tripo.
+
+Deux concepts Imagegen ont été produits et revus : une première composition
+trop réaliste selon la revue de travail, puis une variante plus stylisée.
+Ils sont documentés dans [l'étude artistique](../design/MUSEUM_ART_DIRECTION_STUDY.md).
+Ce sont des propositions, distinctes des captures natives ci-dessus.
+Aucune modification de runtime ni génération Tripo dans cette passe de cadrage.

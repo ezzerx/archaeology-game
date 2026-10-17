@@ -1685,3 +1685,14 @@ Privilégier des emplacements conçus et une boucle arrivage → préparation �
 → nouvel arrivage. L'extraction et le squelette monté ne font pas partie du premier cap.
 Commencer les essais puis ajuster ; cet accord ne vaut pas validation artistique finale.
 L'essai visuel borné #51 précède la conservation 3D réelle et le raccordement de la boucle.
+
+
+## 2026-10-17 — Navigation appréciée, art du musée à reconcevoir
+Antoine apprécie la caméra et les transitions entre pièces de #51, mais juge
+le rendu actuel impropre à la production. Concevoir une vraie scène de musée
+d'histoire naturelle : architecture, ambiance, environnement et supports pour
+les préparations. Repartir des concepts initiaux et de l'esprit accueillant
+d'Animal Crossing ; établir des références visuelles avant la production
+d'assets 3D avec Tripo. Cette appréciation partielle ne valide pas le décor.
+Les nouveaux concepts restent des propositions tant qu'Antoine n'en a pas choisi
+la direction ; la conservation des vrais blocs reste souhaitée.

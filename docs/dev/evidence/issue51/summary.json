@@ -20,10 +20,11 @@
   "render": "gl_compatibility",
   "window": "(1440, 810)",
   "resource_checks": 290,
-  "human_review": "pending",
+  "human_review": "navigation_appreciated_environment_art_rejected",
   "baseline": "683bd1174a38011feb0e5674814069eac1aa9923",
   "issue": 51,
   "date": "2026-10-17",
   "playable_commit": "2d4ee3e",
-  "pull_request": 52
+  "pull_request": 52,
+  "human_review_note": "Camera and piece transitions appreciated; production environment needs concept-led redesign and Tripo asset pipeline. Image concepts remain proposals."
 }

@@ -19,9 +19,17 @@ Pas de génération d'une collection complète, placement libre de meubles, avat
 ## Acceptation et essai
 - [ ] Vue d'ensemble cohérente avec l'atelier, au-delà d'une maquette de placement.
 - [ ] B–17 et ammonite lisibles dans leur matrice aux vues choisies.
-- [ ] Navigation ensemble → pièce → voisine → ensemble, sans perte de lisibilité.
+- [x] Caméra et transitions entre pièces appréciées par Antoine le 17 octobre.
 - [ ] Aucun effet sur les données réelles ; scène et lanceur isolés.
 - [ ] Captures revues, contrôles natifs et limites consignées.
 - [ ] PR soumise à Antoine avant fusion ; aucune validation artistique déduite des tests.
 
 Lié à #45 et #28. L'essai juge l'envie d'admirer/conserver une préparation, pas encore la boucle complète.
+
+
+## Précision issue de la revue humaine
+La caméra et les changements de pièce sont appréciés. Le rendu du décor est
+rejeté pour la production. Concevoir la scène, l'ambiance et les supports à
+partir de références, puis préparer une pipeline 3D avec Tripo.
+Voir [l'étude artistique proposée](../design/MUSEUM_ART_DIRECTION_STUDY.md).
+L'appréciation de la navigation ne valide pas la qualité artistique.
