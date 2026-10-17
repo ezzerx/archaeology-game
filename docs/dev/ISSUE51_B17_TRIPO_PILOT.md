@@ -74,3 +74,8 @@ Défaut source à retoucher : [vue du dos](evidence/issue51-b17/source-back.png)
 - Contrôles : Godot --path . --script res://tests/run_issue51_gallery_native.gd.
 - Captures : Godot --path . --script res://tools/museum/capture_b17_pilot.gd.
   Exécuter avec rendu graphique ; sorties temporaires dans work/issue51-b17.
+
+## Retour humain et continuation
+Antoine apprécie le rendu du meuble B–17 et autorise la poursuite de la scène.
+Le cartel frontal est rejeté. Ce retour ne valide ni la salle entière ni une
+fusion. La passe suivante est documentée dans [Mobilier et travée](ISSUE51_MUSEUM_FURNITURE.md).

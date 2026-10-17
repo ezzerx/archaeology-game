@@ -12,7 +12,7 @@ résultat validé dans Godot.
 
 ## Pilote 01 — Présentoir B–17
 
-Statut : **réglages recommandés ; export reçu, rendu encore à évaluer**.
+Statut : **export reçu ; rendu du meuble apprécié par Antoine, cartel à reprendre**.
 Antoine a fourni `museum_b17_stand_pilot.glb`. Le fichier contient 84 656 triangles,
 un matériau et trois images embarquées. Les réglages exacts utilisés dans Studio
 ne sont pas tous déductibles du GLB ; ils restent non confirmés.
@@ -73,9 +73,8 @@ l'échelle du vrai B–17 avant de produire la suite.
 
 ### Suite
 
-Les fiches ammonite, vitrine et applique seront précisées avant leurs générations,
-en tenant compte du résultat du pilote. Ne pas appliquer automatiquement le
-budget du présentoir à tous les futurs assets.
+Les fiches ammonite, vitrine et applique figurent ci-dessous. Les budgets sont
+adaptés à chaque objet et restent à confronter aux modèles obtenus.
 
 Le [plan API du guide](README.md#option-api--simulation-antérieure-non-exécutée)
 est une simulation antérieure à cette révision : ne pas l'exécuter tel quel pour
@@ -84,7 +83,57 @@ la preuve que Studio utilise exactement le même traitement.
 
 ## Retour du pilote dans Godot
 Le fichier fourni a été importé avec ses 84 656 triangles et ses textures PBR.
-Les détails du meuble paraissent suffisants pour cet essai après adaptation du
-plateau et correction de teinte ; aucune validation humaine du rendu n'en découle.
+Antoine apprécie ensuite le rendu du meuble et demande de remplacer le cartel.
+Cette validation du présentoir ne vaut pas acceptation de la salle entière.
 Une inscription inventée au dos reste à retoucher. Voir le
 [rapport du pilote](../../../dev/ISSUE51_B17_TRIPO_PILOT.md).
+
+## Générations suivantes — mobilier de la travée
+
+Le rendu du présentoir B–17 est apprécié par Antoine le 17 octobre 2026.
+Il demande de remplacer son cartel et de poursuivre l'harmonisation de la scène.
+Les budgets ci-dessous visent des sources détaillées, à inspecter ensuite.
+Ils ne sont pas des mesures de qualité ni des budgets définitifs du jeu.
+
+| Réglage | Présentoir ammonite | Vitrine sans verre | Applique |
+|---|---|---|---|
+| Image | 02-presentoir-ammonite.png | 03-vitrine-sans-verre.png | 04-applique-laiton.png |
+| Mode | Modèle HD | Modèle HD | Modèle HD |
+| AI Modèle | H3.1 – Qualité Optimale | H3.1 – Qualité Optimale | H3.1 – Qualité Optimale |
+| Qualité de maillage Ultra | Activée | Activée | Activée |
+| Complétion IA et amélioration 3D | Désactivée | Désactivée | Désactivée |
+| Texture | Activée | Activée | Activée |
+| Qualité de la texture | 4K | 4K | 4K |
+| Supprimer l'éclairage | Activé | Activé | Activé |
+| PBR | Activé | Activé | Activé |
+| Topologie | Triangle | Triangle | Triangle |
+| Nombre de polygones | 100 000 | 200 000 | 100 000 |
+| Générer par parties | Désactivé | Désactivé | Désactivé |
+| Texture 8K | Désactivée | Désactivée | Désactivée |
+| Générer des multi-vues | Ne pas lancer | Ne pas lancer | Ne pas lancer |
+| Export | GLB avec textures | GLB avec textures | GLB avec textures |
+| Nom proposé | museum_ammonite_stand_v01.glb | museum_cabinet_v01.glb | museum_wall_lamp_v01.glb |
+
+Une génération par objet. Vérifier le coût affiché par Studio avant le clic.
+Le seul changement de réglage par rapport au pilote B–17 est le budget de la vitrine.
+
+- **Ammonite :** conserver la famille de bois, le lit vert et les arrondis du
+  premier meuble ; le spécimen sera ajouté séparément.
+- **Vitrine :** budget source supérieur pour les montants, moulures, poignées et
+  étagères. Vérifier que les espaces entre étagères sont réellement creux.
+  Le verre sera créé séparément dans Godot ; portes statiques dans cet essai.
+- **Applique :** marge pour la courbe du bras et le bord du réflecteur. Inspecter
+  l'intérieur de l'abat-jour et la fixation murale ; éclairage ajouté dans Godot.
+- Pour tous : examiner aussi le dos et les dessous, où une image unique laisse
+  de l'interprétation au générateur. Aucun texte ni logo inventé à conserver.
+
+Déposer les GLB dans
+`C:\Users\antoi\Documents\ArchaeologyGame-Assets\Tripo\museum`,
+puis donner leurs noms dans le chat. Sources conservées avant toute retouche.
+
+### Exports reçus
+Le 17 octobre 2026 : Presentoir 02.glb, 03 vitrine.glb et 04 lampe laiton.glb
+reçus dans le dossier stable, puis archivés avec leurs noms et empreintes.
+Intégration et revue native : [rapport mobilier](../../../dev/ISSUE51_MUSEUM_FURNITURE.md).
+Les fiches ci-dessus restent les recommandations données avant génération ;
+les paramètres exacts choisis dans Studio ne sont pas attestés par les GLB.

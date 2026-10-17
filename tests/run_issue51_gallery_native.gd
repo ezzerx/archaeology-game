@@ -50,6 +50,25 @@ func run() -> void:
  var usable:Vector2=gallery.get_node("Mount0").get_meta("usable_extent")
  check(fitted.x<=usable.x+.001 and fitted.y<=usable.y+.001,"B17 matrix fits the usable cloth area")
  check(FileAccess.get_sha256("res://assets/museum/models/b17_stand.glb")==FileAccess.get_sha256("res://assets/museum/source/tripo-studio/b17/museum_b17_stand_pilot.glb"),"source GLB preserved byte for byte")
+ for item in [
+  ["AmmoniteTripoStand","ammonite_stand","ammonite/Presentoir 02.glb"],
+  ["MuseumCabinet","cabinet","cabinet/03 vitrine.glb"],
+  ["WallLamp0","wall_lamp","wall-lamp/04 lampe laiton.glb"],
+  ["WallLamp1","wall_lamp","wall-lamp/04 lampe laiton.glb"]]:
+  var prop:Node3D=gallery.get_node(item[0])
+  var meshes:=prop.find_children("*","MeshInstance3D",true,false)
+  check(meshes.size()==1,"imported mesh present: "+item[0])
+  var material=meshes[0].get_active_material(0)
+  check(material.albedo_texture!=null and material.normal_texture!=null and material.roughness_texture!=null and material.metallic_texture!=null,"PBR maps intact: "+item[0])
+  check(material.albedo_texture.get_size()==Vector2(4096,4096),"4K source albedo: "+item[0])
+  check(FileAccess.get_sha256("res://assets/museum/models/"+item[1]+".glb")==FileAccess.get_sha256("res://assets/museum/source/tripo-studio/"+item[2]),"unchanged original: "+item[0])
+ var marine_fitted:Vector2=gallery.examples[1].get_meta("display_extent")*gallery.examples[1].scale.x
+ var marine_usable:Vector2=gallery.get_node("Mount1").get_meta("usable_extent")
+ check(marine_fitted.x<=marine_usable.x+.001 and marine_fitted.y<=marine_usable.y+.001,"ammonite matrix fits its cloth bed")
+ # The rear furniture must stay behind the preparation footprint.
+ var cabinet_mesh:MeshInstance3D=gallery.get_node("MuseumCabinet").find_children("*","MeshInstance3D",true,false)[0]
+ var cabinet_bounds:AABB=cabinet_mesh.global_transform*cabinet_mesh.get_aabb()
+ check(cabinet_bounds.end.z < gallery.centers[0].z-1.09,"cabinet clear of the preparation stands")
  for example in gallery.examples:
   check(example.get_meta("example_only",false),"fixture explicitly isolated")
   check(example.find_children("*","Camera3D",true,false).is_empty(),"no competing preparation camera")

@@ -1,0 +1,24 @@
+{
+  "checks": 49,
+  "engine": "4.7.2-stable (official)",
+  "examples_only": true,
+  "failures": [],
+  "frame_ms": {
+    "ammonite": {
+      "mean": 4.11998333333334,
+      "p95": 4.229
+    },
+    "b17": {
+      "mean": 4.11999444444444,
+      "p95": 4.19
+    },
+    "overview": {
+      "mean": 4.12002777777778,
+      "p95": 4.173
+    }
+  },
+  "render": "gl_compatibility",
+  "window": "(1440, 810)",
+  "resource_load_checks": 295,
+  "resource_load_failures": []
+}

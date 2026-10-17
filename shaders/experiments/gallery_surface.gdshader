@@ -14,7 +14,7 @@ void fragment(){
  float streak=sin(q.z*180.+noise(q*4.)*10.)*.5+.5;
  vec3 c=tint.rgb;
  if(kind==0){c*=.83+.12*grain+.025*streak;ROUGHNESS=.48;}
- else if(kind==1){c*=.90+.12*n+.07*noise(q*4.);ROUGHNESS=.96;}
+ else if(kind==1){c*=.96+.025*n+.025*noise(q*4.);ROUGHNESS=.96;}
  else if(kind==2){c*=.83+.16*n;METALLIC=.72;ROUGHNESS=.38;}
  else{c*=.89+.14*n;ROUGHNESS=.82;}
  ALBEDO=c;SPECULAR=.25;

@@ -104,3 +104,9 @@ avec adaptation du plateau et correction de matériau. Contrôles étendus à 31
 captures de l'objet vide et avec le bloc, ainsi que vues de détail et d'angle.
 Voir le [rapport du pilote B–17](ISSUE51_B17_TRIPO_PILOT.md) pour les preuves,
 la limite de l'inscription inventée au dos et la portée exacte de cette passe.
+
+## Mobilier complet et nouvelle travée
+Antoine apprécie le présentoir B–17 mais rejette son cartel frontal. Les trois
+exports suivants sont reçus et intégrés ; cartels, architecture et éclairage
+sont repris autour des meubles. Voir le [rapport mobilier](ISSUE51_MUSEUM_FURNITURE.md)
+pour les captures, les 49 contrôles natifs et les limites restantes.

@@ -1724,3 +1724,9 @@ local stable hors worktree et dans assets/museum/source/ pour versionnage ;
 emplacements, provenance et empreinte dans assets/museum/source/README.md.
 Les futurs dépôts peuvent être signalés par leur nom dans le chat. Leur archivage
 Git reste explicite ; le dossier local seul ne garantit pas une sauvegarde distante.
+
+## 2026-10-17 — Présentoir B–17 retenu, scène à poursuivre
+Antoine apprécie le rendu du pilote B–17 mais rejette le cartel frontal « Petit
+théropode ». Conserver le rendu du meuble comme référence, refaire le cartel et
+poursuivre l'application de cette qualité au reste de la scène. Cette appréciation
+ne valide pas la salle entière ni la fusion de #52.

@@ -41,3 +41,10 @@ matières, reliefs et détails du jeu guident le traitement des blocs et du déc
 Comparer une travée avec B–17/M–08 aux préparations à taille d'écran comparable,
 en vue d'ensemble et en inspection. Choix de référence distinct de l'acceptation
 du futur rendu natif ; aucune modification du gameplay n'est requise.
+
+## Retour sur le pilote de mobilier
+Antoine apprécie le rendu du présentoir B–17 importé mais demande de remplacer
+le cartel frontal. Continuer à harmoniser le reste de la scène avec ce niveau
+artistique : présentoir ammonite, vitrine, applique, puis architecture et lumière.
+Les fiches de génération sont dans le guide du mobilier ; conserver les sources
+et distinguer la revue de chaque élément de l'acceptation globale de la salle.

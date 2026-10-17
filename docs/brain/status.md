@@ -22,8 +22,8 @@ Branche codex/51-exhibition-study depuis main 683bd11.
 Brief : docs/dev/ISSUE51_EXHIBITION_STUDY.md.
 Rapport : docs/dev/ISSUE51_EXHIBITION_STUDY_REPORT.md.
 PR [#52](https://github.com/ezzerx/archaeology-game/pull/52) ouverte pour essai humain.
-Version jouable : essai #51 avec présentoir B–17 Tripo intégré.
-Rapport complémentaire : docs/dev/ISSUE51_B17_TRIPO_PILOT.md.
+Version jouable : quatre assets Tripo intégrés, cartels refaits et travée avec niches.
+Rapport mobilier et preuves : docs/dev/ISSUE51_MUSEUM_FURNITURE.md.
 Retour humain : caméra et transitions appréciées ; rendu du musée rejeté pour la production.
 Seconde référence stylisée choisie par Antoine, avec continuité graphique obligatoire
 avec la préparation. Le concept guide architecture et ambiance ; le jeu validé guide
@@ -37,9 +37,12 @@ Dossier de dépôt stable et provenance : assets/museum/source/README.md.
 Fiche recommandée : docs/visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md.
 Fournir une fiche de réglages adaptée avant chaque prochaine génération.
 Privilégier la qualité de la source pour le pilote, puis optimiser après comparaison.
-Pilote intégré : plateau ajusté, matériau harmonisé, captures revues et 31 contrôles.
-Prochaine étape : revue humaine de B–17 avant de produire le reste du mobilier.
-Inscription inventée au dos à retoucher avant production ; salle encore provisoire.
+Rendu du présentoir B–17 apprécié et retenu par Antoine ; cartel frontal rejeté.
+Suite autorisée : remplacer les cartels et poursuivre la qualité de la scène.
+Exports ammonite, vitrine et applique reçus, archivés et intégrés.
+49 contrôles natifs et 295 chargements de ressources réussis ; captures revues.
+Faire essayer la travée et les nouveaux cartels à Antoine avant la suite.
+Inscription inventée au dos B–17 à retoucher ; niches/vitrine encore vides.
 Direction et critères : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.
 Préparer une travée pilote avec les vrais modèles B–17/M–08 pour comparer
 atelier et musée à taille comparable. Conserver caméra/navigation.
