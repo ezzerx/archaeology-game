@@ -21,10 +21,11 @@ galerie avec deux exemples de préparation, indépendante des données du joueur
 Branche codex/51-exhibition-study depuis main 683bd11.
 Brief : docs/dev/ISSUE51_EXHIBITION_STUDY.md.
 Rapport : docs/dev/ISSUE51_EXHIBITION_STUDY_REPORT.md.
-PR à préparer après revue native.
+PR [#52](https://github.com/ezzerx/archaeology-game/pull/52) ouverte pour essai humain.
+Version jouable : 2d4ee3e. Captures revues et contrôles terminés.
 
 ## Prochaine action autorisée
-Réaliser et vérifier ce premier essai visuel, puis le soumettre à Antoine.
+Faire tester ce premier essai visuel et recueillir le verdict d’Antoine.
 Attendre la revue humaine avant fusion ou raccordement de la vraie collection.
 La sauvegarde 3D réelle et la boucle arrivage/atelier/galerie restent les prochaines
 étapes à préciser à partir de cet essai.
