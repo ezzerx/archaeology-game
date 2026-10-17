@@ -24,9 +24,10 @@ la succession souffle → matrice → précision → brossage.
 Antoine confirme que les bancs durs correspondent à la modification imaginée.
 Après essai, il rapporte toutefois une préparation terminée en 1 min 30 à 2 min,
 encore trop rapide à son goût. Ce verdict valide la structure et le feeling,
-mais laisse ouverte la question de la durée globale. Aucune durée cible ni
-solution supplémentaire n'est encore approuvée ; les chiffres de QA ci-dessous
-restent des contrôles techniques, distincts de cette durée humaine.
+mais laisse ouverte la question du parcours. Antoine confirme ensuite une
+cible de 5–7 minutes pour ce petit spécimen ; d'autres pièces pourront être
+plus longues. Les leviers précis restent à cadrer. Les chiffres de QA
+ci-dessous restent des contrôles techniques, distincts de cette durée humaine.
 
 ## Revue native
 Les captures montrent la découverte, les masses qui résistent au souffle et la

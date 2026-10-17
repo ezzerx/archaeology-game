@@ -1635,3 +1635,11 @@ en 1 min 30 à 2 min et la juge encore trop rapide. Conserver le feeling et
 la structure acceptés ; définir la durée et le parcours avant de choisir le
 prochain levier. Ce retour ne fixe pas de durée cible et ne valide pas une
 nouvelle mécanique, un ralentissement des outils ou la fusion de la PR #42.
+
+## 2026-10-17 — Durée cible des petits spécimens
+Antoine confirme 5–7 minutes comme durée adaptée à un petit spécimen de type
+ammonite. D'autres spécimens pourront demander des préparations plus longues ;
+aucune durée n'est encore fixée pour ceux-ci. C'est une cible de conception
+à évaluer en essai humain, sans minuterie imposée. La confirmation porte sur
+la durée ; les leviers de progression en profondeur et les rencontres
+supplémentaires proposés restent à cadrer.

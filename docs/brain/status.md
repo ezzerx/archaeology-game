@@ -19,15 +19,18 @@ Brief : docs/dev/ISSUE41_MARINE_FINISH.md.
 Rapport : docs/dev/ISSUE41_MARINE_FINISH_REPORT.md.
 Retour humain après correction : le mélange souffle / bancs durs correspond
 à l'intention d'Antoine. La préparation reste trop courte selon son essai
-(1 min 30 à 2 min). Structure acceptée ; durée globale encore à cadrer.
+(1 min 30 à 2 min). Structure acceptée. Cible confirmée : 5–7 minutes pour
+un petit spécimen comme cette ammonite ; d’autres pièces pourront être plus longues.
 PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte.
 Version précédemment testée : 605b4fd ; validation partielle du feeling.
 Version corrigée testée : 9fb752f ; réserve sur la durée, pas de fusion.
 
 ## Prochaine action autorisée
-Définir avec Antoine la durée et le parcours souhaités pour une préparation
-standard avant une nouvelle passe. Aucun ralentissement des outils ni nouvelle
-mécanique approuvé par ce seul retour. Garder la PR #42 ouverte.
+Cadrer le parcours permettant d’atteindre la cible approuvée de 5–7 minutes
+pour cette petite ammonite, en préservant le feeling validé. Les leviers précis
+(profondeur, disposition, rencontre ponctuelle) restent des propositions ;
+la confirmation de durée ne valide pas à elle seule leur implémentation.
+Garder la PR #42 ouverte en attendant le prochain essai et sa validation.
 La passe fluidité/réactivité est demandée juste après, dans une mission distincte.
 Le ressenti de retard malgré 240 FPS doit être mesuré ; aucune correction de
 fréquence, de suivi des outils ou de synchronisation d'affichage dans #41.

@@ -11,6 +11,16 @@ rester sous la nappe, sur l'ammonite et autour. Le souffle donne un aperçu ;
 le Chisel dégage les masses autour, puis le Pick suit précisément la coquille.
 Le Brush conserve la finition distincte du film adhérent.
 
+## Durée cible confirmée après essai
+Le mélange corrigé souffle / bancs durs correspond à l'intention, mais Antoine
+termine en 1 min 30 à 2 min. Il confirme désormais une cible de **5–7 minutes
+pour un petit spécimen comme cette ammonite**. D'autres pièces pourront proposer
+des préparations plus longues ; leurs durées restent à définir.
+
+La cible doit guider le parcours et être évaluée humainement. La progression
+en profondeur, plusieurs zones distinctes et une rencontre ponctuelle sont
+des pistes proposées, pas encore une composition détaillée approuvée.
+
 ## Périmètre
 - Couverture mince et nappe granulaire conservées, sans ralentir le souffle.
 - Bancs consolidés discontinus et d'épaisseur variable ; passages meubles entre eux.
