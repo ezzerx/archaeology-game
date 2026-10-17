@@ -12,33 +12,29 @@ Caisses #30 rejetées ; #27/#28 et son différés.
 ## Mission active / gate
 Issue [#41](https://github.com/ezzerx/archaeology-game/issues/41).
 Branche codex/41-marine-finish depuis main d07f24a (PR #40 fusionnée).
-GO humain : finition marine centrée sur le Blower, captures et itérations avant PR.
-Vision : découverte rapide au souffle, bancs durs sous les sédiments sur et
-autour de l'ammonite, puis préparation Chisel/Pick et finition Brush.
+PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte, sans fusion.
+Feeling du souffle et mélange avec les bancs durs acceptés ; durée humaine
+précédente de 1 min 30 à 2 min jugée trop courte. Cible confirmée : 5–7 minutes
+pour cette petite ammonite ; d'autres pièces pourront être plus longues.
+
+Nouvel essai réalisé selon le GO : découverte rapide, progression en profondeur,
+reprises dans la matrice et courte rencontre de concrétions. Captures revues,
+parcours complet et régressions vérifiés. **En attente du nouvel essai humain** :
+la durée de 5–7 minutes reste une cible, pas un résultat mesuré.
 Brief : docs/dev/ISSUE41_MARINE_FINISH.md.
-Rapport : docs/dev/ISSUE41_MARINE_FINISH_REPORT.md.
-Retour humain après correction : le mélange souffle / bancs durs correspond
-à l'intention d'Antoine. La préparation reste trop courte selon son essai
-(1 min 30 à 2 min). Structure acceptée. Cible confirmée : 5–7 minutes pour
-un petit spécimen comme cette ammonite ; d’autres pièces pourront être plus longues.
-PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte.
-Version précédemment testée : 605b4fd ; validation partielle du feeling.
-Version corrigée testée : 9fb752f ; réserve sur la durée, pas de fusion.
+Rapport : docs/dev/ISSUE41_MARINE_JOURNEY_REPORT.md.
 
 ## Prochaine action autorisée
-Cadrer le parcours permettant d’atteindre la cible approuvée de 5–7 minutes
-pour cette petite ammonite, en préservant le feeling validé. Les leviers précis
-(profondeur, disposition, rencontre ponctuelle) restent des propositions ;
-la confirmation de durée ne valide pas à elle seule leur implémentation.
-Garder la PR #42 ouverte en attendant le prochain essai et sa validation.
+Faire tester le parcours marin et traiter le retour dans la même PR #42.
+Attendre la validation humaine avant fusion ou prochaine mission.
 La passe fluidité/réactivité est demandée juste après, dans une mission distincte.
 Le ressenti de retard malgré 240 FPS doit être mesuré ; aucune correction de
 fréquence, de suivi des outils ou de synchronisation d'affichage dans #41.
 
 ## Points de suivi
-Matières lisibles, rythme court et détail révélé : préserver le plaisir de découverte.
+Préserver le plaisir de découverte et la variété des gestes sur tout le parcours.
 La famille 1 rappelle la dernière variante ; un second appui alterne.
 Aucun indice sous couverture intacte. Film, condition et exposition distincts.
 L'acceptation porte sur l'essai composé, pas sur un générateur de production.
-Lanceur : Launch-Preparation-Demos.cmd.
-Worktree d'essai conservé : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+Lanceur : Launch-Preparation-Demos.cmd → 02 · Sédiments marins.
+Worktree d'essai : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.

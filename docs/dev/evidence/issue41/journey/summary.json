@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-17",
+  "issue": 41,
+  "pull_request": 42,
+  "branch": "codex/41-marine-finish",
+  "base_main": "d07f24a",
+  "previous_human_trial": "9fb752f",
+  "engine": "Godot 4.7.2 stable ed1daf0bf",
+  "renderer": "Compatibility / NVIDIA GeForce RTX 5080",
+  "native_viewport": [
+    1440,
+    810
+  ],
+  "functional_checks": 377,
+  "resource_checks": 282,
+  "checks": {
+    "marine_native": 31,
+    "marine_materials": 21,
+    "compact": 45,
+    "concretions_native": 44,
+    "resources": 282,
+    "run_issue33_materials": 17,
+    "run_p4v2_tests": 91,
+    "run_p5_tests": 128
+  },
+  "failures": [],
+  "asset": {
+    "source": "art/source/p6a50/m08-ammonite.blend",
+    "source_sha256": "5bcf008955117a767aa8387a3166d864c8dab346dca18ff1e8f09c29407c2051",
+    "scale": 1.4,
+    "tilt_radians": 0.075,
+    "offset_m": -0.004,
+    "cells": 41846,
+    "roof_range": [
+      0.09288259595632553,
+      0.6379757523536682
+    ],
+    "component_cells": {
+      "1": 28969,
+      "2": 4320,
+      "3": 487,
+      "4": 8070
+    },
+    "glb_sha256": "2f3343f327ae6e1d3977865f9f149d8cb652d754c46254302300ba276cf9ecab"
+  },
+  "human_duration_target_minutes": [
+    5,
+    7
+  ],
+  "human_duration_measured": false,
+  "human_review": "pending",
+  "limitations": [
+    "Deterministic authored trial, not production generation.",
+    "Automated routes know geology and safe clearances; no human completion time inferred.",
+    "Editing cost is not end-to-end input latency or a 240 FPS guarantee."
+  ],
+  "captures": [
+    "03-shallow-discovery.png",
+    "04-deeper-reaches.png",
+    "06-late-nodules.png",
+    "07-abrasive-contact.png",
+    "09-finished-detail.png",
+    "demo-1-06-complete-native.png"
+  ]
+}

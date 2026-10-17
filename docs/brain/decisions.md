@@ -1643,3 +1643,10 @@ aucune durée n'est encore fixée pour ceux-ci. C'est une cible de conception
 à évaluer en essai humain, sans minuterie imposée. La confirmation porte sur
 la durée ; les leviers de progression en profondeur et les rencontres
 supplémentaires proposés restent à cadrer.
+
+## 2026-10-17 — GO parcours marin suivant
+Antoine autorise le prochain test selon les modifications proposées : découverte
+rapide, progression en profondeur et zones de travail distinctes, avec une courte
+rencontre de concrétions utilisant la famille de finition validée. Cible humaine
+5–7 minutes pour cette petite ammonite ; conserver outils et réactions validés.
+La correction reste dans #41 / PR #42, avec captures et contrôles avant essai.

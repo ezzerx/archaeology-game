@@ -7,6 +7,8 @@ var grains_removed:=0.0
 var crust_removed:=0.0
 var demo_ready:=false
 var marine_grain_ease:=PackedFloat32Array()
+var deep_grain_roofs:=PackedFloat32Array()
+var deep_grain_floors:=PackedFloat32Array()
 var radial_weights:=PackedFloat32Array()
 func configure_demo(roofs:PackedFloat32Array,floors:PackedFloat32Array,caps:PackedFloat32Array) -> void:
  grain_roofs=roofs;grain_floors=floors;crust_caps=caps.duplicate()
@@ -15,14 +17,17 @@ func configure_demo(roofs:PackedFloat32Array,floors:PackedFloat32Array,caps:Pack
   radial_weights.resize(4097)
   for i in range(4097):radial_weights[i]=weight(sqrt(float(i)/4096),.65)
 func can_detach_micro_remnant(i:int) -> bool:
- return not demo_ready or demo_kind!=2 or crust_caps[i]<=0
+ return not demo_ready or demo_kind==0 or crust_caps[i]<=0
 func constrain_removal(i:int,next:float,tool_id:StringName) -> float:
  if demo_kind==0 or not demo_ready:return super.constrain_removal(i,next,tool_id)
  var old:=_heights[i]
  if crust_caps[i]>0:next=maxf(next,crust_caps[i])
- if grain_roofs[i]>0 and old>grain_floors[i]:
+ var roof:=grain_roofs[i];var floor_height:=grain_floors[i]
+ if not deep_grain_roofs.is_empty() and deep_grain_roofs[i]>0 and old<=floor_height+.0001:
+  roof=deep_grain_roofs[i];floor_height=deep_grain_floors[i]
+ if roof>0 and old>floor_height:
   # A tool opens the cover. Once grains are freed, air is efficient and impacts nibble.
-  if old>grain_roofs[i]+.0001:next=maxf(next,grain_roofs[i])
+  if old>roof+.0001:next=maxf(next,roof)
   elif tool_id==&"soft_brush":next=maxf(next,old)
   else:next=maxf(next,old-.024)
  return minf(old,next)
@@ -68,17 +73,21 @@ func _work_material(from:Vector2,to:Vector2,tool:ToolDefinition,delta:float,abra
    if abrasion:
     if cap<=0 or old>cap+.001:continue
    else:
-    var roof:=grain_roofs[i]
-    if roof<=0 or old<=grain_floors[i]:continue
+    var roof:=grain_roofs[i];var bed_floor:=grain_floors[i]
+    var deep_layer:=not deep_grain_roofs.is_empty() and deep_grain_roofs[i]>0 and old<=bed_floor+.0001
+    if deep_layer:roof=deep_grain_roofs[i];bed_floor=deep_grain_floors[i]
+    if roof<=0 or old<=bed_floor:continue
     if old>roof+.0001:
      if old>roof+(.028 if demo_kind==1 else .022):continue
      var unsupported:=false
      for offset in [-size.x*3,-3,3,size.x*3]:
       var j:int=i+offset
-      if j>=0 and j<grain_roofs.size() and abs(j%size.x-x)<=3 and grain_roofs[j]>0 and previous_heights[j]<grain_roofs[j]-.018:
+      if j<0 or j>=grain_roofs.size() or abs(j%size.x-x)>3:continue
+      var neighbor_roof:float=deep_grain_roofs[j] if deep_layer else grain_roofs[j]
+      if neighbor_roof>0 and previous_heights[j]<neighbor_roof-.018:
        unsupported=true;break
      if not unsupported:continue
-    floor_height=maxf(grain_floors[i],maxf(floor_height,cap))
+    floor_height=maxf(bed_floor,maxf(floor_height,cap))
    var influence:=radial_weights[mini(4096,int(distance_squared*lookup_scale))]
    if demo_kind==1 and not marine_grain_ease.is_empty():influence*=marine_grain_ease[i]
    var next:=maxf(floor_height,old-work*influence)

@@ -132,7 +132,11 @@ func run() -> void:
  await suite.open_demo(1)
  main=suite.preparation;main.display.persist=false;main.controller.set_physics_process(false)
  main.controller._focused=true;await key(KEY_1);await key(KEY_1)
- check(main.controller.selected_index==0 and main.toolbar.get_child_count()==4 and not main.controller.has_finishing_family(),"marine keeps its single Brush slot")
+ check(main.controller.selected_index==4 and main.toolbar.get_child_count()==4 and main.controller.has_finishing_family(),"marine late nodules use the existing finishing family")
+ await suite.open_demo(0)
+ main=suite.preparation;main.display.persist=false;main.controller.set_physics_process(false)
+ main.controller._focused=true;await key(KEY_1);await key(KEY_1)
+ check(main.controller.selected_index==0 and main.toolbar.get_child_count()==4 and not main.controller.has_finishing_family(),"compact earth keeps its single Brush slot")
  report.checks=checks;report.failures=failures
  FileAccess.open(out+"native.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))
  print("ISSUE39 NATIVE ",JSON.stringify(report))

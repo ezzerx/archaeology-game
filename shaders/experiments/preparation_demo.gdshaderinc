@@ -1,10 +1,19 @@
 uniform int preparation_demo = 0;
 uniform sampler2D demo_geology : filter_nearest, repeat_disable;
+uniform sampler2D demo_deep_geology : filter_nearest, repeat_disable;
 uniform sampler2D demo_crust : filter_nearest, repeat_disable;
 float demo_hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float demo_noise(vec2 p) {
  vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
  return mix(mix(demo_hash(i),demo_hash(i+vec2(1,0)),f.x),mix(demo_hash(i+vec2(0,1)),demo_hash(i+vec2(1,1)),f.x),f.y);
+}
+vec4 demo_bed(vec2 uv,float h) {
+ vec4 upper=texture(demo_geology,uv);
+ if(preparation_demo==1 && h<=upper.g+.0001){
+  vec4 lower=texture(demo_deep_geology,uv);
+  if(lower.r>0.0)return lower;
+ }
+ return upper;
 }
 vec3 demo_material(vec3 original,vec2 uv,float h,bool skirt) {
  if(preparation_demo==0)return original;
@@ -12,7 +21,7 @@ vec3 demo_material(vec3 original,vec2 uv,float h,bool skirt) {
  float grain=demo_hash(floor(p*1.4));
  float cloud=demo_noise(p*.026);
  float fine=demo_noise(p*.22);
- vec4 field=texture(demo_geology,uv);
+ vec4 field=demo_bed(uv,h);
  float freed=field.r>0.0 ? (1.0-smoothstep(field.r+.001,field.r+.014,h))*step(field.g+.002,h):0.0;
  float lamina=sin(p.y*.21+p.x*.034+demo_noise(p*.018)*9.0+h*95.0)*.5+.5;
  vec3 marl=mix(vec3(.22,.205,.155),vec3(.49,.45,.33),cloud*.55+fine*.30);
@@ -49,7 +58,7 @@ vec3 demo_material(vec3 original,vec2 uv,float h,bool skirt) {
 }
 
 vec3 demo_grain_normal(vec3 normal,vec2 uv,float h,vec3 axis_x,vec3 axis_z){
- vec4 field=texture(demo_geology,uv);
+ vec4 field=demo_bed(uv,h);
  vec2 crust=texture(demo_crust,uv).rg;
  float loose=field.r>0.0 ? (1.0-smoothstep(field.r+.001,field.r+.014,h))*step(field.g+.002,h):0.0;
  float coat=(crust.g>0.0 && h<=crust.g+.002 && h>crust.r+.0001)?1.0:0.0;

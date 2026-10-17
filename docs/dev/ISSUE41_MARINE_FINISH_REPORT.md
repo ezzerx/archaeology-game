@@ -1,5 +1,9 @@
 # Sédiments marins — découverte au souffle, préparation sur bancs durs (#41)
 
+> Rapport de la correction précédente (9fb752f). Le nouvel essai de parcours
+> est documenté dans [ISSUE41_MARINE_JOURNEY_REPORT.md](ISSUE41_MARINE_JOURNEY_REPORT.md).
+> Ses mesures et captures ne remplacent pas celles conservées ici.
+
 ## Résultat et retour humain
 Antoine valide le feeling du Blower et la réaction de matière, mais juge la
 préparation trop courte : environ 30 secondes lors de son essai. Cette correction

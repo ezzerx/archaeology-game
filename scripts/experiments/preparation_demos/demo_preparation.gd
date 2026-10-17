@@ -12,11 +12,14 @@ func _create_profile() -> SoilFoundationProfile:
  if demo_kind==2:return preload("res://scripts/experiments/preparation_demos/concretion_profile.gd").new(block.working_map,block.footprint,block.rim)
  if demo_kind==0:return preload("res://scripts/experiments/preparation_demos/compact_profile.gd").new(block.working_map,block.footprint,block.rim,compact_variant)
  return preload("res://scripts/experiments/preparation_demos/demo_profile.gd").new(block.working_map,block.footprint,block.rim,demo_kind)
+func _create_mesh_view() -> Node3D:
+ if demo_kind==1:return preload("res://scripts/experiments/preparation_demos/marine_mesh.gd").new("M08")
+ return super._create_mesh_view()
 func _create_feedback() -> MaterialFeedback:
  if demo_kind==1:return preload("res://scripts/experiments/preparation_demos/marine_feedback.gd").new()
  return preload("res://scripts/experiments/preparation_demos/demo_feedback.gd").new()
 func _ready() -> void:
- if demo_kind==2:
+ if demo_kind in [1,2]:
   var tool:=ToolDefinition.new();tool.id=&"abrasive_tip";tool.display_name="Pointe abrasive";tool.radius=18;tool.power=0;tool.effectiveness=Vector3.ZERO;tool.bone_damage=0
   $ToolController.tools.append(tool)
  super._ready()
@@ -47,6 +50,7 @@ ALBEDO = mix(color, cursor_color.rgb, marker);""")
   mat.set_shader_parameter("preparation_demo",demo_kind)
   mat.set_shader_parameter("demo_geology",profile.geology)
   mat.set_shader_parameter("demo_crust",profile.crust)
+  if demo_kind==1:mat.set_shader_parameter("demo_deep_geology",profile.deep_geology)
  material_hint=Label.new();material_hint.position=Vector2(560,923);material_hint.size=Vector2(800,28)
  material_hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
  material_hint.add_theme_font_override("font",session_ui.body_font)
@@ -58,8 +62,8 @@ ALBEDO = mix(color, cursor_color.rgb, marker);""")
  session_ui.notice_label.position.y=116 if demo_kind==0 else 78
  if demo_kind>0:
   feedback.colors[0]=Color(.41,.34,.22);feedback.colors[1]=Color(.37,.34,.25);feedback.colors[2]=Color(.48,.42,.30)
- if demo_kind==2:_setup_finishing_toolbar()
- $Debug/Help.text=("1 Brush ↔ Pointe abrasive" if demo_kind==2 else "1 Brush")+"   2 Chisel   3 Souffleur   4 Pick"+"     Molette · zoom     Clic droit · déplacer     Home · vue"
+ if demo_kind in [1,2]:_setup_finishing_toolbar()
+ $Debug/Help.text=("1 Brush ↔ Pointe abrasive" if demo_kind in [1,2] else "1 Brush")+"   2 Chisel   3 Souffleur   4 Pick"+"     Molette · zoom     Clic droit · déplacer     Home · vue"
  get_window().title="ArchaeologyGame — Trois préparations"
  session_ui.archive_button.text="Terminer cet essai"
  session_ui.refresh()
@@ -78,17 +82,20 @@ func _process(delta:float) -> void:
  var cell:=Vector2i(point.round()).clamp(Vector2i.ZERO,surface.size-Vector2i.ONE)
  var i:int=cell.y*surface.size.x+cell.x
  var height:float=surface._heights[i]
+ var roof:float=surface.grain_roofs[i];var floor_height:float=surface.grain_floors[i]
+ if demo_kind==1 and surface.deep_grain_roofs[i]>0 and height<=floor_height+.0001:
+  roof=surface.deep_grain_roofs[i];floor_height=surface.deep_grain_floors[i]
  # A cue describes the actual visible surface only; no look-ahead into buried anatomy.
  if surface.crust_caps[i]>0 and height<=surface.crust_caps[i]+.001:
   material_hint.text="Concrétion adhérente  ·  Pointe abrasive · famille [1]"
  elif surface.fossil.exposed[i]!=0:
   if surface.bone_film.value_at((Vector2(cell)+Vector2.ONE*.5)/Vector2(surface.size))>0:
    material_hint.text="Poussière sur la pièce  ·  Brush [1]"
- elif surface.grain_roofs[i]>0 and height<=surface.grain_roofs[i]+.001 and height>surface.grain_floors[i]+.002:
+ elif roof>0 and height<=roof+.001 and height>floor_height+.002:
   material_hint.text="Grains libérés  ·  Souffleur [3]"
  elif height>surface.strata.packed_limits[i*2]+.0001:
   material_hint.text="Terre de surface  ·  Brush [1]"
- elif surface.grain_roofs[i]>0 and height>surface.grain_roofs[i]+.001:
+ elif roof>0 and height>roof+.001:
   material_hint.text="Croûte compacte  ·  Chisel [2] / Pick [4]"
  else:material_hint.text="Matrice consolidée  ·  Chisel [2] / Pick [4]"
 

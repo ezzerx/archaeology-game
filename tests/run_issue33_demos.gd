@@ -122,6 +122,20 @@ func complete_demo(kind:int) -> void:
  for i in range(s.fossil.field.component_ids.size()):
   if s.fossil.field.component_ids[i]==0:continue
   var p:=Vector2i(i%1024,floori(float(i)/1024));lo=lo.min(p);hi=hi.max(p)
+ if kind==1:
+  # Efficient bulk passes before systematic precision. Condition checks still apply;
+  # every contact uses the controller, only the QA path knows exact safe clearances.
+  for pass_index in range(2):
+   for y in range(lo.y,hi.y+1,18):
+    for x in range(lo.x,hi.x+1,18):
+     var i:=y*1024+x
+     for repeat in range(2):
+      if s._heights[i]<=s.structural_ceilings[i]+.09:break
+      native_impact(Vector2(x,y),1)
+    await process_frame
+   for y in range(lo.y,hi.y+15,35):
+    await tool_sweep(Vector2(lo.x-10,y),Vector2(hi.x+10,y),1.0,2)
+    await tool_sweep(Vector2(hi.x+10,y),Vector2(lo.x-10,y),1.0,2)
  if kind>0:
   for y in range(lo.y-8,hi.y+10,18):
    for x in range(lo.x-8,hi.x+10,18):
@@ -141,7 +155,7 @@ func complete_demo(kind:int) -> void:
  for i in range(s.fossil.exposed.size()):
   if s.fossil.field.component_ids[i]==0 or s.fossil.exposed[i]!=0:continue
   var p:=Vector2(i%1024,floori(float(i)/1024))
-  if kind==2 and s.crust_caps[i]>0:
+  if s.crust_caps[i]>0 and main.controller.tools.size()>4:
    for tick in range(60):
     if s._heights[i]<=s.crust_caps[i]+.001:break
     native_impact(p,3)

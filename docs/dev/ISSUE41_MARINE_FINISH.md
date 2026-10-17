@@ -17,12 +17,23 @@ termine en 1 min 30 à 2 min. Il confirme désormais une cible de **5–7 minute
 pour un petit spécimen comme cette ammonite**. D'autres pièces pourront proposer
 des préparations plus longues ; leurs durées restent à définir.
 
-La cible doit guider le parcours et être évaluée humainement. La progression
-en profondeur, plusieurs zones distinctes et une rencontre ponctuelle sont
-des pistes proposées, pas encore une composition détaillée approuvée.
+Antoine autorise ensuite la réalisation du prochain test selon ces pistes.
+La cible guide la composition et sera évaluée humainement : les tests techniques
+ne garantissent pas une durée de 5–7 minutes.
+
+## Composition du prochain essai
+- Même sculpture, plus ample et légèrement inclinée dans cette préparation seule ;
+  garder les petites côtes, l'ivoire chaud et le contact exact des outils.
+- Première fenêtre accessible en quelques gestes sur la gauche.
+- Nappe supérieure rapide, puis bancs consolidés et lentilles de sédiments plus
+  profondes. Le souffle revient après l'ouverture de nouveaux accès dans la matrice.
+- Épaules solides à préparer au Chisel/Pick autour et au contact du fossile.
+- Une petite rencontre de concrétions entre les côtes, avec Brush/pointe abrasive
+  sur la famille 1 déjà validée. Le film reste une finition distincte.
+- Tout est enterré au départ ; la disposition géologique ignore l'anatomie cachée.
 
 ## Périmètre
-- Couverture mince et nappe granulaire conservées, sans ralentir le souffle.
+- Réaction du souffle conservée sur les nappes supérieure et profonde.
 - Bancs consolidés discontinus et d'épaisseur variable ; passages meubles entre eux.
 - Géologie indépendante du fossile, sans silhouette imprimée dans la couverture.
 - Même palette, grains au contact et réaction locale validés.
@@ -38,4 +49,4 @@ des pistes proposées, pas encore une composition détaillée approuvée.
 - Nouvel essai humain pour le rythme global avant fusion.
 
 Hors périmètre : fluidité/latence (mission suivante), son, nouvel outil, génération
-globale, collection et retouche du modèle d'ammonite.
+globale et collection. La sculpture est conservée ; seul son placement marin est adapté.
