@@ -5,33 +5,36 @@
 ## Références validées
 P0–P5, préparations #33, ammonite #35, terre compacte #37, concrétions #39,
 parcours marin #41 et fluidité #43 retenus après essai humain.
+PR #44 fusionnée sur main 683bd11, issue #43 fermée et branche nettoyée.
 B–17/M–08, trois familles de préparation, outils, matières et art à préserver.
 C reste la référence de rythme compacte ; 5–7 minutes pour la petite ammonite
 reste une cible, sans nouvelle durée humaine mesurée.
 
-Dernière livraison validée : [PR #44](https://github.com/ezzerx/archaeology-game/pull/44),
-version jouable 6c9da01. Antoine constate un suivi de souris clairement plus fluide
-et autorise la fusion/nettoyage. Rapport : docs/dev/ISSUE43_TOOL_FLUIDITY_REPORT.md.
+## Vision acceptée / mission active
+Antoine valide provisoirement la petite galerie 3D avec préparations dans leur
+matrice, vues composées, inspection rapprochée et supports adaptés. Direction
+à éprouver par des essais, sans validation artistique finale.
+Vision : docs/design/FIRST_EXHIBITION_PLAN.md ; cadrage parent #45, collection #28.
 
-## Mission active / gate
-Cadrage [#45](https://github.com/ezzerx/archaeology-game/issues/45) :
-première exposition et continuité arrivage → préparation → collection.
-Plan de discussion : docs/design/FIRST_EXHIBITION_PLAN.md.
-Aucune branche ni PR de développement suivante ouverte.
+Premier essai [#51](https://github.com/ezzerx/archaeology-game/issues/51) :
+galerie avec deux exemples de préparation, indépendante des données du joueur.
+Branche codex/51-exhibition-study depuis main 683bd11.
+Brief : docs/dev/ISSUE51_EXHIBITION_STUDY.md.
+Rapport : docs/dev/ISSUE51_EXHIBITION_STUDY_REPORT.md.
+PR à préparer après revue native.
 
 ## Prochaine action autorisée
-Organiser le backlog puis approfondir chaque vision avec Antoine avant de développer.
-Commencer par la session complète : ce qui est exposé, le résultat personnel conservé,
-et ce qui donne envie de préparer la pièce suivante. Choisir le périmètre et le
-niveau artistique avant un nouveau GO d'implémentation.
+Réaliser et vérifier ce premier essai visuel, puis le soumettre à Antoine.
+Attendre la revue humaine avant fusion ou raccordement de la vraie collection.
+La sauvegarde 3D réelle et la boucle arrivage/atelier/galerie restent les prochaines
+étapes à préciser à partir de cet essai.
 
 ## Points de suivi
-Suivi d'outils accepté ; baisses de FPS encore ressenties au souffle dense,
-non bloquantes pour cette validation, isolées dans #50. Cause précise à profiler.
-Plafond 240 FPS / physique 60 Hz ; feeling, sauvegardes et distinctions à préserver.
-Arrivages #27 et collection #28 remis au cadrage ; ancien rendu des caisses rejeté.
-UI #46, décor 3D #47, sons avec Claude la semaine prochaine #48, musique #49.
-Surprise de découverte prioritaire ; collection comme envie de continuer.
-Aucun fossile enterré révélé ; exposition, propreté et condition distinctes.
-Lanceur des trois préparations : Launch-Preparation-Demos.cmd.
-Worktree conservé : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+Exemples annoncés comme tels ; aucune acquisition ni modification de sauvegarde.
+Préparations, suivi d'outils et lanceurs existants conservés.
+Plafond 240 FPS / physique 60 Hz ; baisses de FPS au souffle dense suivies dans #50.
+Arrivages #27 : ancien rendu rejeté, vision détaillée encore à approfondir.
+UI #46, décor #47, sons avec Claude la semaine prochaine #48, musique #49.
+Surprise de découverte prioritaire ; exposition, propreté et condition distinctes.
+Lanceur de l'essai : Launch-Exhibition-Study.cmd.
+Worktree : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.

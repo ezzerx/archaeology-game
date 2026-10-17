@@ -1675,3 +1675,13 @@ UI #46, décor de bureau en assets 3D #47, sons avec Claude la semaine prochaine
 et musique #49. Approfondir chaque vision avant développement ; ces tickets
 n'autorisent pas une implémentation immédiate. Le rendu des anciennes caisses
 reste rejeté. La découverte est prioritaire, la collection donne envie de continuer.
+
+## 2026-10-17 — Vision d'exposition acceptée pour essais
+Antoine valide provisoirement une petite galerie 3D, sans avatar, avec vues composées,
+déplacement horizontal et inspection rapprochée. B–17 et ammonite restent dans leur
+matrice, sur des supports adaptés ; le résultat réel de préparation doit, à terme,
+être conservé avec matière restante, nettoyage, dégâts et distinctions.
+Privilégier des emplacements conçus et une boucle arrivage → préparation → exposition
+→ nouvel arrivage. L'extraction et le squelette monté ne font pas partie du premier cap.
+Commencer les essais puis ajuster ; cet accord ne vaut pas validation artistique finale.
+L'essai visuel borné #51 précède la conservation 3D réelle et le raccordement de la boucle.
