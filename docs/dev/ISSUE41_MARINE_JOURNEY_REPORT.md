@@ -11,6 +11,12 @@ La cible approuvée est **5–7 minutes pour cette ammonite**, après un essai h
 précédent terminé en 1 min 30 à 2 min. Ce nouvel essai prépare cette évaluation :
 aucune durée humaine n'a encore été mesurée sur cette composition.
 
+## Retour humain après essai
+Antoine : « Ok là c'est sympa, il y aurait peut être qlq truc à améliorer mais
+ça reste une base fun ». Le parcours actuel reçoit donc un retour positif sur
+son plaisir, avec des raffinements possibles encore non précisés. Aucune durée
+n'est communiquée : la cible de 5–7 minutes n'est pas présentée comme mesurée.
+
 ## Composition et contact réel
 - Sculpture approuvée conservée, placement marin agrandi ×1,4 et incliné de 4,3°.
   La surface de préparation passe de 21 389 à 41 846 cellules. Le relief entre les

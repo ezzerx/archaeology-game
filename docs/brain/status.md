@@ -18,16 +18,18 @@ Feeling du souffle et mélange avec les bancs durs acceptés ; durée humaine
 précédente de 1 min 30 à 2 min jugée trop courte. Cible confirmée : 5–7 minutes
 pour cette petite ammonite ; d'autres pièces pourront être plus longues.
 
-Nouvel essai réalisé selon le GO : découverte rapide, progression en profondeur,
-reprises dans la matrice et courte rencontre de concrétions. Captures revues,
-parcours complet et régressions vérifiés. **En attente du nouvel essai humain** :
-la durée de 5–7 minutes reste une cible, pas un résultat mesuré.
+Retour humain sur le nouvel essai : Antoine trouve le parcours sympa et le
+considère comme une base fun, avec quelques améliorations possibles non précisées.
+Ce retour positif porte sur la composition actuelle ; aucune correction précise
+n’est demandée. La durée de 5–7 minutes reste une cible, sans mesure humaine
+communiquée. Captures, parcours complet et régressions déjà vérifiés.
 Brief : docs/dev/ISSUE41_MARINE_FINISH.md.
 Rapport : docs/dev/ISSUE41_MARINE_JOURNEY_REPORT.md.
 
 ## Prochaine action autorisée
-Faire tester le parcours marin et traiter le retour dans la même PR #42.
-Attendre la validation humaine avant fusion ou prochaine mission.
+Retour positif consigné dans #42. Cadrer la passe fluidité/réactivité suivante.
+La PR reste ouverte : ce message ne demande pas explicitement sa fusion ni
+le lancement du développement suivant. Ne pas empiler une nouvelle branche.
 La passe fluidité/réactivité est demandée juste après, dans une mission distincte.
 Le ressenti de retard malgré 240 FPS doit être mesuré ; aucune correction de
 fréquence, de suivi des outils ou de synchronisation d'affichage dans #41.

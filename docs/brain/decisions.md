@@ -1650,3 +1650,9 @@ rapide, progression en profondeur et zones de travail distinctes, avec une court
 rencontre de concrétions utilisant la famille de finition validée. Cible humaine
 5–7 minutes pour cette petite ammonite ; conserver outils et réactions validés.
 La correction reste dans #41 / PR #42, avec captures et contrôles avant essai.
+
+## 2026-10-17 — Retour positif sur le parcours marin en profondeur
+Antoine décrit le nouvel essai comme sympa et une base fun, tout en évoquant
+quelques améliorations possibles sans les préciser. Retenir ce retour sur le
+plaisir du parcours actuel, sans inventer de défaut à corriger ni de durée
+humaine mesurée. La cible de 5–7 minutes reste distincte de ce verdict.
