@@ -1,0 +1,58 @@
+{
+  "archives": [
+    {
+      "bytes": 7019031,
+      "exact_render": true,
+      "file": "B17-1792258996-73001169.scn",
+      "kind": 0,
+      "snapshot": {
+        "classification": "Petit théropode",
+        "cleanliness": 99.9999998896706,
+        "condition": 95.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "integral_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    },
+    {
+      "bytes": 10073108,
+      "exact_render": true,
+      "file": "M08-1792259049-126717624.scn",
+      "kind": 1,
+      "snapshot": {
+        "classification": "Ammonite côtelée",
+        "cleanliness": 99.9999997984088,
+        "condition": 95.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "integral_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    },
+    {
+      "bytes": 8163618,
+      "exact_render": true,
+      "file": "M08-1792259096-173265998.scn",
+      "kind": 2,
+      "snapshot": {
+        "classification": "Ammonite côtelée",
+        "cleanliness": 99.999999094251,
+        "condition": 95.0,
+        "condition_tier": "Excellent",
+        "coverage_passed": true,
+        "exposure": 100.0,
+        "fine_preparation": true,
+        "integral_preparation": true,
+        "largest_hidden_cluster": 0
+      }
+    }
+  ],
+  "checks": 68,
+  "directory": "res://work/issue28/archives-2333967",
+  "failures": []
+}

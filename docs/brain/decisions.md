@@ -1759,3 +1759,23 @@ automatique d'un ancien meilleur résultat ne répond pas au souhait de voir la
 préparation juste terminée. Préserver les meilleurs résultats et distinctions
 existants pendant le futur raccordement. Les détails de cette conservation et
 le traitement de plusieurs tentatives seront cadrés dans #28.
+
+## 2026-10-17 — Galerie nette validée, résultat réel ensuite
+Antoine confirme la disparition du flou et valide le rendu de base. PR #52
+fusionnée ; la mission suivante conserve le bloc réellement préparé, avec sa
+matière et ses traces, avant la passe sur les caisses. Le dernier résultat doit
+être reconnaissable au musée, sans écraser les archives historiques.
+
+## 2026-10-17 — Préserver l’identité des matières entre atelier et musée
+Le transfert du vrai bloc est apprécié à l’essai. Le sédiment blanchi dans la
+galerie est un défaut de restitution : une ambiance lumineuse différente doit
+conserver la couleur reconnaissable des matières. Comparer aussi les matériaux
+entre Compatibility et Forward+, au-delà du contrôle de sauvegarde dans un seul
+renderer. Les corrections doivent bénéficier aux préparations déjà conservées.
+
+## 2026-10-17 — Préparations réelles exposées validées
+Antoine valide le résultat de la PR #53 après les corrections de restitution
+des matières, de la poussière et des contours au zoom, et autorise la fusion.
+Le bloc exposé conserve le travail réel du joueur, y compris la matière et la
+poussière restantes. Prochaine étape produit : définir une nouvelle vision des
+caisses avant développement, sans reprendre le concept précédemment rejeté.

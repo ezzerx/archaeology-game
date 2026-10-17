@@ -2,6 +2,15 @@ uniform int preparation_demo = 0;
 uniform sampler2D demo_geology : filter_nearest, repeat_disable;
 uniform sampler2D demo_deep_geology : filter_nearest, repeat_disable;
 uniform sampler2D demo_crust : filter_nearest, repeat_disable;
+// This palette was authored in the Compatibility renderer's sRGB space.
+// Explicitly decode its final color for Forward+/Mobile, including old archives
+// which reference this include. Height, geology and masks remain linear data.
+vec3 demo_srgb_to_linear(vec3 c) {
+ return mix(c/12.92,pow((c+vec3(.055))/1.055,vec3(2.4)),step(vec3(.04045),c));
+}
+vec3 demo_linear_to_srgb(vec3 c) {
+ return mix(c*12.92,1.055*pow(max(c,vec3(0.0)),vec3(1.0/2.4))-.055,step(vec3(.0031308),c));
+}
 float demo_hash(vec2 p) { return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
 float demo_noise(vec2 p) {
  vec2 i=floor(p), f=fract(p); f=f*f*(3.0-2.0*f);
@@ -37,7 +46,8 @@ vec3 demo_material(vec3 original,vec2 uv,float h,bool skirt) {
   result=mix(marl*vec3(.97,1.0,1.04),sediment,freed*.92);
   result*=1.0-consolidated*.10;
  }
- float original_luma=dot(original,vec3(.21,.72,.07));
+ vec3 original_srgb=OUTPUT_IS_SRGB ? original : demo_linear_to_srgb(original);
+ float original_luma=dot(original_srgb,vec3(.21,.72,.07));
  result*=clamp(original_luma/.34,.62,1.24);
  vec2 crust=texture(demo_crust,uv).rg;
  if(!skirt && crust.g>0.0 && h<=crust.g+.002 && h>crust.r+.0001){
@@ -54,7 +64,7 @@ vec3 demo_material(vec3 original,vec2 uv,float h,bool skirt) {
   mineral*=clamp(1.0-max(0.0,nearby-h)*6.0,.72,1.0);
   result=mix(result,mineral,1.0-smoothstep(crust.g,crust.g+.002,h));
  }
- return result;
+ return OUTPUT_IS_SRGB ? result : demo_srgb_to_linear(result);
 }
 
 vec3 demo_grain_normal(vec3 normal,vec2 uv,float h,vec3 axis_x,vec3 axis_z){
