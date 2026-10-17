@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-17",
+  "issue": 43,
+  "branch": "codex/43-tool-fluidity",
+  "baseline_commit": "a98fd463281f51b47186edb199c15e16795a0820",
+  "previous_pr": {
+    "number": 42,
+    "state": "MERGED",
+    "issue": 41,
+    "issue_state": "CLOSED",
+    "local_branch_removed": true,
+    "remote_branch_removed": true
+  },
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "native_window": [
+    1440,
+    810
+  ],
+  "screen_reported_hz": 279.960998535156,
+  "vsync": 1,
+  "fps_cap": 240,
+  "physics_hz": 60,
+  "checks": {
+    "native_fluidity": 20,
+    "run_issue43_fluidity_replay": 38,
+    "run_p2_tests": 97,
+    "run_p3_zoom_tests": 160,
+    "run_p4v2_tests": 91,
+    "run_p5_tests": 128,
+    "run_issue33_materials": 17,
+    "run_issue37_compact": 45,
+    "run_issue41_marine_materials": 21,
+    "run_issue39_concretions_native": 44,
+    "run_issue41_marine_native": 31,
+    "run_runtime_resources": 284
+  },
+  "functional_checks": 692,
+  "resource_checks": 284,
+  "failures": [],
+  "replay_equivalent_stages": 14,
+  "native_following_stages": 17,
+  "human_review": "accepted",
+  "limits": [
+    "Software presentation alignment, not physical mouse-to-display latency.",
+    "One measured before/after pair per preparation; runtime timing remains variable.",
+    "CPU spikes remain during excavation; no guarantee of continuous 240 FPS."
+  ],
+  "sources": [
+    "before.json",
+    "after.json",
+    "comparison.csv",
+    "before-replay.json",
+    "after-replay.json",
+    "marine-native.json",
+    "concretions-native.json"
+  ],
+  "playable_commit": "6c9da016644981bfda9837ffd6e242fe61b9b70f",
+  "pull_request": 44,
+  "human_review_date": "2026-10-17",
+  "human_feedback": {
+    "tool_following": "clearly smoother",
+    "remaining_issue": "occasional FPS drops during dense blowing; non-blocking for acceptance",
+    "follow_up_issue": 50,
+    "merge_authorized": true
+  }
+}

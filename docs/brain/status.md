@@ -2,42 +2,36 @@
 
 **Date :** 2026-10-17
 
-## Référence validée
-P0–P5, trois préparations #33, ammonite corrigée #35, terre compacte #37
-et finition des concrétions #39 validés par Antoine après essai.
-C reste la référence préférée de rythme pour la terre compacte.
-B–17/M–08, feeling des outils, interactions et rendu à préserver.
-Caisses #30 rejetées ; #27/#28 et son différés.
+## Références validées
+P0–P5, préparations #33, ammonite #35, terre compacte #37, concrétions #39,
+parcours marin #41 et fluidité #43 retenus après essai humain.
+B–17/M–08, trois familles de préparation, outils, matières et art à préserver.
+C reste la référence de rythme compacte ; 5–7 minutes pour la petite ammonite
+reste une cible, sans nouvelle durée humaine mesurée.
+
+Dernière livraison validée : [PR #44](https://github.com/ezzerx/archaeology-game/pull/44),
+version jouable 6c9da01. Antoine constate un suivi de souris clairement plus fluide
+et autorise la fusion/nettoyage. Rapport : docs/dev/ISSUE43_TOOL_FLUIDITY_REPORT.md.
 
 ## Mission active / gate
-Issue [#41](https://github.com/ezzerx/archaeology-game/issues/41).
-Branche codex/41-marine-finish depuis main d07f24a (PR #40 fusionnée).
-PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte, sans fusion.
-Version jouable vérifiée : 7bc4455.
-Feeling du souffle et mélange avec les bancs durs acceptés ; durée humaine
-précédente de 1 min 30 à 2 min jugée trop courte. Cible confirmée : 5–7 minutes
-pour cette petite ammonite ; d'autres pièces pourront être plus longues.
-
-Retour humain sur le nouvel essai : Antoine trouve le parcours sympa et le
-considère comme une base fun, avec quelques améliorations possibles non précisées.
-Ce retour positif porte sur la composition actuelle ; aucune correction précise
-n’est demandée. La durée de 5–7 minutes reste une cible, sans mesure humaine
-communiquée. Captures, parcours complet et régressions déjà vérifiés.
-Brief : docs/dev/ISSUE41_MARINE_FINISH.md.
-Rapport : docs/dev/ISSUE41_MARINE_JOURNEY_REPORT.md.
+Cadrage [#45](https://github.com/ezzerx/archaeology-game/issues/45) :
+première exposition et continuité arrivage → préparation → collection.
+Plan de discussion : docs/design/FIRST_EXHIBITION_PLAN.md.
+Aucune branche ni PR de développement suivante ouverte.
 
 ## Prochaine action autorisée
-Retour positif consigné dans #42. Cadrer la passe fluidité/réactivité suivante.
-La PR reste ouverte : ce message ne demande pas explicitement sa fusion ni
-le lancement du développement suivant. Ne pas empiler une nouvelle branche.
-La passe fluidité/réactivité est demandée juste après, dans une mission distincte.
-Le ressenti de retard malgré 240 FPS doit être mesuré ; aucune correction de
-fréquence, de suivi des outils ou de synchronisation d'affichage dans #41.
+Organiser le backlog puis approfondir chaque vision avec Antoine avant de développer.
+Commencer par la session complète : ce qui est exposé, le résultat personnel conservé,
+et ce qui donne envie de préparer la pièce suivante. Choisir le périmètre et le
+niveau artistique avant un nouveau GO d'implémentation.
 
 ## Points de suivi
-Préserver le plaisir de découverte et la variété des gestes sur tout le parcours.
-La famille 1 rappelle la dernière variante ; un second appui alterne.
-Aucun indice sous couverture intacte. Film, condition et exposition distincts.
-L'acceptation porte sur l'essai composé, pas sur un générateur de production.
-Lanceur : Launch-Preparation-Demos.cmd → 02 · Sédiments marins.
-Worktree d'essai : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.
+Suivi d'outils accepté ; baisses de FPS encore ressenties au souffle dense,
+non bloquantes pour cette validation, isolées dans #50. Cause précise à profiler.
+Plafond 240 FPS / physique 60 Hz ; feeling, sauvegardes et distinctions à préserver.
+Arrivages #27 et collection #28 remis au cadrage ; ancien rendu des caisses rejeté.
+UI #46, décor 3D #47, sons avec Claude la semaine prochaine #48, musique #49.
+Surprise de découverte prioritaire ; collection comme envie de continuer.
+Aucun fossile enterré révélé ; exposition, propreté et condition distinctes.
+Lanceur des trois préparations : Launch-Preparation-Demos.cmd.
+Worktree conservé : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.

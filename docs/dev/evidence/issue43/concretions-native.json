@@ -1,0 +1,87 @@
+{
+  "captures": [
+    "01-covered.png",
+    "02-three-encounters.png",
+    "encounter-0-before.png",
+    "encounter-0-contact.png",
+    "encounter-0-eroded.png",
+    "encounter-0-brushed.png",
+    "encounter-1-before.png",
+    "encounter-1-contact.png",
+    "encounter-1-eroded.png",
+    "encounter-1-brushed.png",
+    "encounter-2-before.png",
+    "encounter-2-contact.png",
+    "encounter-2-eroded.png",
+    "encounter-2-brushed.png",
+    "03-restored-details.png",
+    "demo-2-06-complete-native.png"
+  ],
+  "checks": 44,
+  "costs": {
+    "abrasive_tip": {
+      "p95_ms": 0.92,
+      "samples": 383
+    }
+  },
+  "encounters": [
+    {
+      "after_short_contact": 5.56567254662514,
+      "after_three_passes": 0.0340709388256073,
+      "initial_volume": 12.7950666844845,
+      "name": "Voile mince"
+    },
+    {
+      "after_short_contact": 46.1652356684208,
+      "after_three_passes": 2.48048123717308,
+      "initial_volume": 56.6707960218191,
+      "name": "Amas entre les côtes"
+    },
+    {
+      "after_short_contact": 25.1378355026245,
+      "after_three_passes": 2.84648936986923,
+      "initial_volume": 33.7105772793293,
+      "name": "Traînée courbe"
+    }
+  ],
+  "failures": [],
+  "final_snapshot": {
+    "classification": "Ammonite côtelée",
+    "cleanliness": 99.9999998980967,
+    "condition": 100.0,
+    "condition_tier": "Excellent",
+    "coverage_passed": true,
+    "exposure": 100.0,
+    "fine_preparation": true,
+    "largest_hidden_cluster": 0
+  },
+  "geometry": [
+    {
+      "cells": 957,
+      "minimum_cover_mm": 11.0507858991623,
+      "thickness_mm": [
+        0.264642119407654,
+        2.75400102138519
+      ],
+      "zone": 1
+    },
+    {
+      "cells": 1309,
+      "minimum_cover_mm": 6.08458614349365,
+      "thickness_mm": [
+        0.517121851444244,
+        15.2811262607574
+      ],
+      "zone": 2
+    },
+    {
+      "cells": 1213,
+      "minimum_cover_mm": 7.33252429962158,
+      "thickness_mm": [
+        0.338467597961426,
+        6.22876560688019
+      ],
+      "zone": 3
+    }
+  ]
+}
