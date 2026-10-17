@@ -22,7 +22,8 @@ le vrai bloc préparé, puis le retrouver identique après relance.
 Branche codex/28-prepared-exhibits créée depuis main 085b6a8.
 Brief actif : docs/dev/ISSUE28_PREPARED_EXHIBITS.md.
 Rapport : docs/dev/ISSUE28_PREPARED_EXHIBITS_REPORT.md.
-Gate : implémentation et vérifications terminées ; PR à préparer pour essai humain.
+PR [#53](https://github.com/ezzerx/archaeology-game/pull/53) ouverte pour essai.
+Gate : implémentation et vérifications terminées ; attendre la revue humaine.
 Aucune fusion de cette nouvelle mission sans revue d’Antoine.
 
 Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,
