@@ -25,7 +25,10 @@ Rapport : docs/dev/ISSUE28_PREPARED_EXHIBITS_REPORT.md.
 PR [#53](https://github.com/ezzerx/archaeology-game/pull/53) ouverte pour essai.
 Retour humain : conservation et exposition fonctionnent ; blanchiment excessif
 du sédiment signalé. Correctif colorimétrique livré dans la même PR, compatible
-avec les archives déjà créées. Gate : attendre la revue visuelle corrigée.
+avec les archives déjà créées. Retour suivant : poussière de B–17 trop blanche
+et contours dentelés au zoom ; corrections de restitution dans la même PR.
+Rapport complémentaire : docs/dev/ISSUE28_EXHIBIT_DETAIL_FIX.md.
+Gate : attendre la revue visuelle corrigée.
 Aucune fusion de cette nouvelle mission sans revue d’Antoine.
 
 Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,
@@ -48,7 +51,8 @@ Les caisses rejetées ne constituent pas une référence ; définir leur vision
 avant développement. Pas de nouvelle passe caisses dans #28.
 
 ## Points de suivi
-Galerie avec deux vrais blocs : environ 165 FPS en 1080p, sous la cible 240 FPS.
+Dernière mesure galerie avant les corrections : environ 165 FPS en 1080p ;
+à réévaluer après le retrait des copies de rendu en double. Cible : 240 FPS.
 Archives de 7–10 Mo par tentative ; transition de fenêtre de 7–8 s.
 Préparation préservée. Mesures et limites détaillées dans le rapport #28.
 Plafond 240 FPS / physique 60 Hz ; souffle dense suivi dans #50.

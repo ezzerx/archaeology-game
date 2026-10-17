@@ -139,3 +139,8 @@ Résultats : [Compatibility](evidence/issue28/colors-compatibility.json),
 [Forward+ corrigé](evidence/issue28/colors-forward.json),
 [contrôle négatif ancien shader](evidence/issue28/colors-before-forward.json),
 [archive existante inchangée](evidence/issue28/colors-existing-archive.json).
+
+
+## Retour suivant : poussière et contours au zoom
+Diagnostic et corrections complémentaires dans
+[le rapport de restitution rapprochée](ISSUE28_EXHIBIT_DETAIL_FIX.md).

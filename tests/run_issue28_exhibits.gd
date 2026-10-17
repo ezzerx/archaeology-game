@@ -58,6 +58,7 @@ func run() -> void:
   var frozen:=reloaded.load_block(main.specimen_id)
   check(frozen!=null,"new store reloads the finished block "+str(kind))
   if frozen==null:break
+  check(frozen.find_children("*","MeshInstance3D",true,false).size()==4,"capture does not duplicate Bone descendants "+str(kind))
   var surface:=frozen.get_node("SurfaceMesh") as MeshInstance3D
   var recorded_height:Texture2D=surface.material_override.get_shader_parameter("working_map")
   check(recorded_height.get_image().get_data()==main.block.texture.get_image().get_data(),"relief pixels survive serialization exactly")

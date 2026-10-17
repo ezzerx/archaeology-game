@@ -15,8 +15,9 @@ func capture(preparation:Node3D) -> Node3D:
  root.set_meta("display_center",Vector3(center.x,0,center.y))
  root.set_meta("snapshot_version",1)
  # Preserve local vertex coordinates: bone/strata shaders address their maps in block space.
- for source:Node3D in [preparation.block,preparation.mesh_view]:
-  _copy_visible(source,root,root,preparation.block.global_transform.affine_inverse())
+ _copy_visible(preparation.block,root,root,preparation.block.global_transform.affine_inverse())
+ if not preparation.block.is_ancestor_of(preparation.mesh_view):
+  _copy_visible(preparation.mesh_view,root,root,preparation.block.global_transform.affine_inverse())
  return root
 
 func _copy_visible(source:Node,container:Node3D,owner_node:Node3D,from_world:Transform3D) -> void:

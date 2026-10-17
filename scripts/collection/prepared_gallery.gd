@@ -20,7 +20,9 @@ func _ready() -> void:
  Handoff.ready(exhibit_store.directory)
 
 func _build_exhibit(id:String) -> Node3D:
- return exhibit_store.load_block(id)
+ var block:Node3D=exhibit_store.load_block(id)
+ preload("res://scripts/collection/exhibit_display.gd").apply(block)
+ return block
 
 func _ui() -> void:
  super._ui()

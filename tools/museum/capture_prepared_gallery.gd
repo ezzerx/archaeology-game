@@ -44,7 +44,7 @@ func run() -> void:
  for record in gallery.exhibit_store.manifest.attempts:
   if int(record.get("kind",-1))!=1:continue
   gallery.exhibit_store.manifest.latest.M08=record
-  var marine:Node3D=gallery.exhibit_store.load_block("M08")
+  var marine:Node3D=gallery._build_exhibit("M08")
   check(marine!=null,"marine archive reloads its own modeled shell")
   if marine==null:break
   gallery.examples[1].queue_free()
