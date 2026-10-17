@@ -13,6 +13,7 @@ Caisses #30 rejetées ; #27/#28 et son différés.
 Issue [#41](https://github.com/ezzerx/archaeology-game/issues/41).
 Branche codex/41-marine-finish depuis main d07f24a (PR #40 fusionnée).
 PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte, sans fusion.
+Version jouable vérifiée : 7bc4455.
 Feeling du souffle et mélange avec les bancs durs acceptés ; durée humaine
 précédente de 1 min 30 à 2 min jugée trop courte. Cible confirmée : 5–7 minutes
 pour cette petite ammonite ; d'autres pièces pourront être plus longues.
