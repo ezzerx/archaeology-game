@@ -83,3 +83,17 @@ restent cohérents avec les préparations. L'étude artistique précise maintena
 la hiérarchie des références et la comparaison atelier/musée à effectuer.
 La réalisation native et le rendu des matrices réelles restent à éprouver.
 Cette mise à jour est documentaire ; aucun runtime modifié ni nouveau test de jeu.
+
+## Références du mobilier et préparation Tripo
+
+Quatre images isolées produites avec Imagegen intégré et revues : présentoir long,
+présentoir compact, vitrine vide sans verre et applique éteinte. Elles reprennent
+le second concept et la matière tactile de la préparation. Les PNG, prompts,
+empreintes et contrôles de transparence sont conservés dans
+[le dossier mobilier](../visual-references/museum/furniture/README.md).
+
+La simulation CLI du présentoir B–17 est valide : une génération image-to-model,
+H3.1, 10 000 faces, smart low-poly, textures PBR détaillées ; aucun appel de génération
+exécuté. Le guide inclut une alternative dans Studio et distingue ses crédits de
+ceux de l'API. Aucun nouveau modèle 3D ni changement de runtime ; vérifications
+limitées à la revue d'images, aux fichiers, au plan et à git diff --check.

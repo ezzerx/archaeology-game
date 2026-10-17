@@ -119,3 +119,11 @@ Deux images générées avec l'outil intégré Imagegen, puis revues visuellemen
 Prompts exacts : [prompts.json](../visual-references/museum/prompts.json).
 La deuxième génération transforme uniquement la direction de rendu de la première.
 Aucune génération Tripo, aucun nouveau mesh ni changement de jeu dans cette passe.
+
+## Références du mobilier
+
+Les [quatre images isolées et le guide Tripo](../visual-references/museum/furniture/README.md)
+déclinent le concept choisi : deux présentoirs, une vitrine sans verre et une applique.
+Le présentoir B–17 est proposé comme premier pilote pour juger le résultat en 3D.
+Les références d'objets et le futur modèle restent à examiner ; les dimensions et
+matériaux finaux seront ajustés autour des vrais blocs dans Godot.

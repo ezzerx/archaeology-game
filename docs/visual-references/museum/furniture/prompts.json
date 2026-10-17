@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-17",
+  "tool": "built-in image_gen.imagegen",
+  "status": "furniture_reference_images_for_review_not_3d_assets",
+  "images": [
+    {
+      "file": "01-presentoir-b17.png",
+      "mode": "edit",
+      "transparent_background": true,
+      "prompt": "Use case: precise-object-edit / asset extraction.\nInput 1 is the selected museum concept. Extract and refine ONLY the large inclined walnut fossil display pedestal in the foreground left. Input 2 is the actual preparation game, used only to match tactile material richness; do not reproduce its fossil, rock or interface.\nDeliver ONE isolated complete furniture object, front-right three-quarter view, slightly elevated so both empty sloped top and front and side joinery are visible. Transparent background, full object with generous 12 percent margin. No floor, no room, no cast shadow plane, no text, no logos, no extra views.\nPreserve the concept's welcoming crafted museum furniture silhouette: substantial low walnut cabinet plinth, broad rounded external corners, restrained projecting base molding, subtly recessed front panels, continuous sloped specimen bed in a thick but elegant rounded walnut frame. The long flat rectangular bed slopes roughly 35 degrees upward toward the back. It is empty and surfaced in matte very dark bottle-green felt, visually flat and unobstructed, able to receive a separate irregular fossil block later. Remove the fossil, the rock, brass retaining pegs, label/cartel and light fixture completely. Retain only four small flush brass corner screws in the frame.\nArt direction: polished stylized 3D natural-history game prop, warm medium-dark walnut with restrained irregular hand-painted grain, slight patina in joinery, broad carefully modeled bevels, shallow believable carved molding, crisp sculpted edges. More tactile than a smooth toy; less glossy and less photographically noisy than photorealism. The wood should harmonize with the textured earth and ivory bones in image 2. Avoid toy plastic, conspicuous low-poly faceting, black outlines, excessive grime, ornamental rococo carving or damage. Subtle aged brass screw heads, not bright yellow.\nLighting: soft neutral studio light revealing geometry and local ambient occlusion, no warm yellow cast baked into materials, no dramatic rim glow. Solid modeling, believable supported sloped top, stable base, coherent seams, useful reference for image-to-3D generation. Single object, no annotations.",
+      "inputs": [
+        "../02-gallery-stylized.png",
+        "../../../dev/evidence/issue37/compact-0-04-complete.png"
+      ]
+    },
+    {
+      "file": "02-presentoir-ammonite.png",
+      "mode": "edit",
+      "transparent_background": true,
+      "prompt": "Use case: precise-object-edit.\nEdit this isolated museum display stand to make its compact companion for an ammonite block. Preserve EXACTLY the same medium-dark warm walnut, restrained textured patina, joinery language, broad rounded corner profiles, base molding, dark bottle-green felt bed and small flush aged brass corner screws. Change the proportions: the inclined bed should be approximately square (width equal to its own sloped depth, before perspective), instead of the long rectangular dinosaur bed. Its independent cabinet base should feel like a compact lower companion in the same furniture family, still wide and stable; not a tall lectern or a stretched scaling of the wood grain. Keep a roughly 35 degree inclined specimen bed supported all the way down the sides. Entire bed EMPTY, clear and flat, no ammonite or stone, no retaining pegs, no label, no lamp, no drawer handles, no glass cover. Front-right three-quarter view, slightly elevated, consistent with the source angle. Render one whole isolated object on a truly transparent background, no floor or shadow plane. Leave comfortable margins all around. Soft neutral studio light and subtle modeling/contact shading; polished tactile stylized 3D game prop, no toy plastic and no exaggerated cartoon. No text, no collage, no additional objects.",
+      "inputs": [
+        "01-presentoir-b17.png"
+      ]
+    },
+    {
+      "file": "03-vitrine-sans-verre.png",
+      "mode": "edit",
+      "transparent_background": true,
+      "prompt": "Use case: precise-object-edit / asset extraction.\nInput 1 is the selected museum scene: extract and complete ONLY the tall wooden specimen cabinet centered on its rear wall. Input 2 is the isolated display pedestal and is the MATERIAL AND JOINERY MATCH reference. Create one full independent floor-standing cabinet, front-right three-quarter view, eye slightly above the cabinet mid-height; full top, base and one side visible. Transparent background with generous margin, no room, wall, floor plane, text, extra views or loose objects.\nPreserve the concept's softly modeled classical natural-history cabinet: restrained projecting cornice, rounded vertical walnut stiles, two tall narrow wood door frames closed at the front, subtle brass handles and hinges, three empty broad display levels with wood shelves. Matte bottle-green solid back panel, visible and evenly lit through the front openings. A low paneled closed storage cupboard integrated below, with two quiet matching doors, and a simple solid stepped plinth. Tall but stable, approximately width 1.2 m by height 2 m by depth .45 m as visual proportions. Carefully fitted joinery with broad smooth bevels, straight shelves, consistent widths.\nCRITICAL for a usable 3D reference: front door frames have empty open apertures with NO GLASS, no transparent reflections, no smoked panes. Glass will be a separate material/mesh added in the game. All shelves completely EMPTY: no fossils, jars, books, lamps, cards or skeletons. Show real inner depth and supported shelves, not a flat green rectangle. Do not bake spotlights into the wood or back panel.\nMatch image 2 medium-dark warm walnut with fine restrained grain and light patina, muted aged brass, soft crafted profiles, tactile stylized 3D art, not shiny toy plastic, not photorealistic antique grime, not ornate rococo. Soft neutral studio illumination and modest contact shading. One coherent complete object, detached from the scene, on fully transparent alpha.",
+      "inputs": [
+        "../02-gallery-stylized.png",
+        "01-presentoir-b17.png"
+      ]
+    },
+    {
+      "file": "04-applique-laiton.png",
+      "mode": "edit",
+      "transparent_background": true,
+      "prompt": "Use case: precise-object-edit / asset extraction.\nInput 1 is the selected museum concept: extract and refine ONLY one of its small brass wall sconces, keeping the same simple welcoming natural-history museum design. Input 2 gives the subdued brass fastener material used on the matching furniture.\nShow ONE complete isolated wall-mounted lamp on genuinely transparent alpha. Front-right three-quarter view that clearly shows the mounting plate, the whole curved arm and the domed shade, plus a little of the shade's underside. No wall, no screw holes floating in space, no room, no floor, no glow or background vignette, no text, no collage.\nDesign: a vertical oval aged brass backplate with two small mounting screws, a short round stem extending forward then gently curving downward, one simple rounded bell-shaped brass shade with a rolled rim, a small collar joining the shade and stem. Credible thickness, a robust small arm rather than a thin wire, simple seams and screw details. Shape elegant and restrained, no elaborate rococo ornament or mechanical articulated desk-lamp joints. Approximate visual proportions: 35 cm tall, shade 18 cm wide, projection 22 cm from wall.\nWarm muted brushed brass with restrained patina in creases, broad soft highlights, subtle fine texture, not shiny gold, not rusty scrap. Inside the shade is matte warm ivory enamel; show a small frosted bulb socket inside, UNLIT. Real light emission and shadows will come from the game engine later. Polished sculpted stylized 3D game asset with smooth geometry, readable round bevels and tactile finish, consistent with the wooden museum furniture. Neutral soft studio illumination, no warm scene lighting baked into textures. Full object entirely visible with 12 percent margin.",
+      "inputs": [
+        "../02-gallery-stylized.png",
+        "01-presentoir-b17.png"
+      ]
+    }
+  ],
+  "unused_iteration": {
+    "reference": "02-presentoir-ammonite.png",
+    "prompt": "Use case: background-extraction. Keep this exact compact wooden museum pedestal unchanged: same shape, proportions, camera, texture, bottle-green felt, brass screw heads and all furniture pixels. Remove the entire brown/orange glow and every background/shadow pixel outside its silhouette. Output a clean isolated cutout on genuine fully transparent alpha, with a tight natural antialiased edge. There must be NO brown halo, no floor, no ground shadow, no glow, no backdrop, no smoke, no drop shadow. Do not alter or redesign the furniture.",
+    "reason": "Initial selected image already had zero alpha in sampled background; extraction iteration not selected."
+  }
+}
