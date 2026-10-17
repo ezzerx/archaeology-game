@@ -1,0 +1,42 @@
+{
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "source_base": "d07f24a",
+  "functional_checks": 326,
+  "resource_loads": 279,
+  "suites": {
+    "marine_native": 31,
+    "marine_materials": 14,
+    "demo_materials": 17,
+    "compact_regression": 45,
+    "P4V2": 91,
+    "P5": 128
+  },
+  "failures": [],
+  "human_validation": "Blower feeling, material response and consolidated-bank structure approved. Human completion in 90–120 seconds still too short. Target confirmed: 5–7 minutes for a small ammonite; revised preparation journey still to define.",
+  "native_window": [
+    1440,
+    810
+  ],
+  "renderer": "GL Compatibility",
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "capture_method": "Native rendered game and real controller tools. Deterministic route and full systematic completion are QA, not a human-duration measurement.",
+  "blower_edit_cost": {
+    "active_ticks": 452,
+    "edit_max_ms": 8.685,
+    "edit_p50_ms": 6.062,
+    "edit_p95_ms": 7.788
+  },
+  "runtime_cap": 240,
+  "physics_hz": 60,
+  "fluidity_pass": "deferred to next mission",
+  "carried_forward": {
+    "concretion_native": {
+      "checks": 43,
+      "source_commit": "605b4fd53abf46375a1ed36c4ee538824368d0e1",
+      "note": "Previous passing native run retained. Concretion code and shared mechanics unchanged by this correction."
+    }
+  },
+  "correction": "Three discontinuous consolidated banks below the unchanged loose cover, across and around the shell.",
+  "baseline_audit": "baseline-comparison.json: two freshly initialized preparations; unchanged roof, cohesion and initial surface, only consolidated floors raised.",
+  "playable_commit": "9fb752f2287f9ea4357bb7936e1754255528f3f7"
+}

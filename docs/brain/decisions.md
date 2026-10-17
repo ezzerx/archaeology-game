@@ -1601,3 +1601,58 @@ sur 1 telles que livrées ; aucune correction supplémentaire n'est demandée.
 Conserver cette référence pour les prochaines préparations. La génération
 de production et les futures mécaniques nécessitent leur propre vision
 approuvée avant développement.
+
+## 2026-10-17 — Cadrage marin, puis fluidité des outils
+
+Antoine demande une proposition concrète de finition des sédiments marins,
+avec le gameplay axé sur le Blower. Il souhaite ensuite une passe dédiée à
+la fluidité : sensation de retard ou de mouvement peu fluide malgré 240 FPS
+affichés. Ne pas confondre débit d'images, fréquence d'écran et réactivité.
+Ces demandes fixent les sujets à cadrer, sans approuver une implémentation.
+
+Une inspection du code donne une piste à vérifier en exécution : le point visé
+et le cercle sont actualisés dans ToolController._physics_process à 60 Hz ;
+le modèle animé à chaque image réutilise controller.hit.world. Ce constat
+ne mesure ni la latence totale ni la fréquence effective de l'écran.
+
+## 2026-10-17 — GO finition des sédiments marins
+Antoine approuve la vision fenêtre → nappe → relief, avec le Blower central,
+les gestes et outils validés conservés, et une revue native par captures avec
+itérations avant PR. La passe fluidité vient après cette mission, séparément.
+
+## 2026-10-17 — Blower marin validé, préparation à prolonger par du travail dur
+Antoine valide le feeling du souffle et la réaction de matière de #41, mais
+termine trop vite (environ 30 secondes selon son essai). Le Blower doit donner
+un aperçu rapide de la découverte, puis laisser davantage de matrice dure sur
+l'ammonite et autour, à préparer au Chisel/Pick. Conserver la réaction rapide
+du sédiment ; ajouter du travail de précision plutôt que ralentir le souffle.
+Correction dans la même PR #42 avant validation globale ou fusion.
+
+## 2026-10-17 — Structure marine acceptée, durée encore trop courte
+Après essai de la correction 9fb752f, Antoine confirme que le mélange avec
+les bancs durs correspond à son intention. Il termine toutefois la préparation
+en 1 min 30 à 2 min et la juge encore trop rapide. Conserver le feeling et
+la structure acceptés ; définir la durée et le parcours avant de choisir le
+prochain levier. Ce retour ne fixe pas de durée cible et ne valide pas une
+nouvelle mécanique, un ralentissement des outils ou la fusion de la PR #42.
+
+## 2026-10-17 — Durée cible des petits spécimens
+Antoine confirme 5–7 minutes comme durée adaptée à un petit spécimen de type
+ammonite. D'autres spécimens pourront demander des préparations plus longues ;
+aucune durée n'est encore fixée pour ceux-ci. C'est une cible de conception
+à évaluer en essai humain, sans minuterie imposée. La confirmation porte sur
+la durée ; les leviers de progression en profondeur et les rencontres
+supplémentaires proposés restent à cadrer.
+
+## 2026-10-17 — GO parcours marin suivant
+Antoine autorise le prochain test selon les modifications proposées : découverte
+rapide, progression en profondeur et zones de travail distinctes, avec une courte
+rencontre de concrétions utilisant la famille de finition validée. Cible humaine
+5–7 minutes pour cette petite ammonite ; conserver outils et réactions validés.
+La correction reste dans #41 / PR #42, avec captures et contrôles avant essai.
+
+## 2026-10-17 — Retour positif sur le parcours marin en profondeur
+Antoine décrit le nouvel essai comme sympa et une base fun, tout en évoquant
+quelques améliorations possibles sans les préciser. Retenir ce retour sur le
+plaisir du parcours actuel, sans inventer de défaut à corriger ni de durée
+humaine mesurée. La cible de 5–7 minutes reste distincte de ce verdict.

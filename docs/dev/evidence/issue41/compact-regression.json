@@ -1,0 +1,66 @@
+{
+  "checks": 45,
+  "failures": [],
+  "reports": [
+    {
+      "bone_cells_under_pockets": 4145,
+      "cells": 21584,
+      "depth_range_mm": [
+        1.31353783607483,
+        20.3759354352951
+      ],
+      "granular_volume": 2808.53535923362,
+      "legacy_stone_volume": 2690.67787750124,
+      "lenses": 2,
+      "min_bone_cover_mm": 2.98687988519669,
+      "min_cover_mm": 10.108497262001,
+      "short_jet_gain": 145.526224374771,
+      "stone_volume": 689.519064217806,
+      "stone_work_cells": 2529,
+      "surface_first_opening_impacts": 2,
+      "total_cover_volume": 8781.54937182367,
+      "useful_granular_volume": 548.790346235037,
+      "variant": 0
+    },
+    {
+      "bone_cells_under_pockets": 2999,
+      "cells": 24736,
+      "depth_range_mm": [
+        1.13060349225998,
+        18.8403618335724
+      ],
+      "granular_volume": 2990.24566034973,
+      "legacy_stone_volume": 2690.67787750124,
+      "lenses": 3,
+      "min_bone_cover_mm": 5.06782150268555,
+      "min_cover_mm": 10.5396798849106,
+      "short_jet_gain": 133.66698551178,
+      "stone_volume": 901.184874072671,
+      "stone_work_cells": 3685,
+      "surface_first_opening_impacts": 2,
+      "total_cover_volume": 8781.54937182367,
+      "useful_granular_volume": 365.762637674809,
+      "variant": 1
+    },
+    {
+      "bone_cells_under_pockets": 3434,
+      "cells": 20662,
+      "depth_range_mm": [
+        1.24906289577484,
+        20.3900098800659
+      ],
+      "granular_volume": 2614.93683624268,
+      "legacy_stone_volume": 2690.67787750124,
+      "lenses": 2,
+      "min_bone_cover_mm": 2.87494701147079,
+      "min_cover_mm": 10.4776915311813,
+      "short_jet_gain": 124.927902132273,
+      "stone_volume": 670.955327808857,
+      "stone_work_cells": 3587,
+      "surface_first_opening_impacts": 3,
+      "total_cover_volume": 8781.54937182367,
+      "useful_granular_volume": 462.484620928764,
+      "variant": 2
+    }
+  ]
+}

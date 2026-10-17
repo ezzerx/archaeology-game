@@ -1,0 +1,19 @@
+{
+  "source": "art/source/p6a50/m08-ammonite.blend",
+  "source_sha256": "5bcf008955117a767aa8387a3166d864c8dab346dca18ff1e8f09c29407c2051",
+  "scale": 1.4,
+  "tilt_radians": 0.075,
+  "offset_m": -0.004,
+  "cells": 41846,
+  "roof_range": [
+    0.09288259595632553,
+    0.6379757523536682
+  ],
+  "component_cells": {
+    "1": 28969,
+    "2": 4320,
+    "3": 487,
+    "4": 8070
+  },
+  "glb_sha256": "2f3343f327ae6e1d3977865f9f149d8cb652d754c46254302300ba276cf9ecab"
+}

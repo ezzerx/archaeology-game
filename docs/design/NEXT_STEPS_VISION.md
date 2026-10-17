@@ -33,7 +33,12 @@ récompense conservée. Préciser ce que le joueur remarque et décide à chaque
 Déterminer la place relative de la découverte, du geste et de la collection.
 
 Livrable de cadrage : un scénario précis, illustré si utile, et les sensations
-attendues. Pas de durée cible arbitraire avant de regarder le rythme des essais.
+attendues. Le rythme des essais guide les cibles de durée.
+
+Après l'essai marin, Antoine confirme le 17 octobre 2026 une cible de **5–7 minutes
+pour un petit spécimen comme l'ammonite**. D'autres spécimens pourront demander
+plus longtemps ; cette cible n'est pas une durée universelle pour la collection.
+Elle décrit l'expérience recherchée, sans chronomètre imposé.
 
 ### 2. Varier la façon de préparer un bloc
 

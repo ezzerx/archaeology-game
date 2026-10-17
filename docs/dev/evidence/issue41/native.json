@@ -1,0 +1,112 @@
+{
+  "benchmark": [],
+  "brush": [],
+  "captures": [
+    "01-covered.png",
+    "02-first-window.png",
+    "03-short-contact.png",
+    "04-window-extended.png",
+    "05-flow-over-ribs.png",
+    "06-islands-and-relief.png",
+    "07-picked-island.png",
+    "07b-precision-banks.png",
+    "08-ribs-contact.png",
+    "09-ribs-brushed.png",
+    "demo-1-06-complete-native.png"
+  ],
+  "checks": 31,
+  "completion": {
+    "classification": "Ammonite côtelée",
+    "cleanliness": 99.9999998137929,
+    "condition": 100.0,
+    "condition_tier": "Excellent",
+    "coverage_passed": true,
+    "exposure": 100.0,
+    "fine_preparation": true,
+    "largest_hidden_cluster": 0
+  },
+  "failures": [],
+  "hard_banks": {
+    "air_floor_checks": 3,
+    "bulk_floor": 0.306140661239624,
+    "bulk_height_before": 0.306140661239624
+  },
+  "minimum_cover_mm": 5.91593599319458,
+  "profiles": [],
+  "route": [
+    {
+      "exposure": 0.0,
+      "grains": 0.0,
+      "impacts": 1,
+      "stage": "opened"
+    },
+    {
+      "exposure": 0.070129505820749,
+      "grains": 119.919113485143,
+      "impacts": 1,
+      "stage": "first short breath"
+    },
+    {
+      "exposure": 11.9126653887512,
+      "grains": 1182.24482683217,
+      "impacts": 1,
+      "stage": "window extended"
+    },
+    {
+      "exposure": 14.4466781990743,
+      "grains": 1970.7235322791,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 16.4710832670999,
+      "grains": 2565.57930030722,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 29.6367291598485,
+      "grains": 3210.31495181441,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 39.796156903081,
+      "grains": 3679.84954628931,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 48.034036186825,
+      "grains": 4363.8363483368,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 50.5119453924915,
+      "grains": 5075.72055523806,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 51.6994716910562,
+      "grains": 5133.03553311712,
+      "impacts": 1,
+      "stage": "follow bed"
+    },
+    {
+      "exposure": 63.1960353452709,
+      "grains": 5728.86503972154,
+      "impacts": 110,
+      "stage": "precision after discovery"
+    }
+  ],
+  "timings": {
+    "air_blower": {
+      "active_ticks": 452,
+      "edit_max_ms": 8.685,
+      "edit_p50_ms": 6.062,
+      "edit_p95_ms": 7.788
+    }
+  }
+}
