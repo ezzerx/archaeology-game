@@ -23,7 +23,9 @@ Branche codex/28-prepared-exhibits créée depuis main 085b6a8.
 Brief actif : docs/dev/ISSUE28_PREPARED_EXHIBITS.md.
 Rapport : docs/dev/ISSUE28_PREPARED_EXHIBITS_REPORT.md.
 PR [#53](https://github.com/ezzerx/archaeology-game/pull/53) ouverte pour essai.
-Gate : implémentation et vérifications terminées ; attendre la revue humaine.
+Retour humain : conservation et exposition fonctionnent ; blanchiment excessif
+du sédiment signalé. Correctif colorimétrique livré dans la même PR, compatible
+avec les archives déjà créées. Gate : attendre la revue visuelle corrigée.
 Aucune fusion de cette nouvelle mission sans revue d’Antoine.
 
 Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,

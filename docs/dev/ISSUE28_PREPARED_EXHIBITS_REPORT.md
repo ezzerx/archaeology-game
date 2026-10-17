@@ -43,7 +43,8 @@ Godot 4.7.2, RTX 5080, pilotes NVIDIA 610.88. Stockages QA isolés.
 | Relève effective vers la galerie puis vers l’atelier | Réussie dans les deux sens |
 
 Pour chaque famille, la capture de l’archive rechargée est identique pixel pour
-pixel à la préparation vivante, à caméra et lumière identiques. La simulation
+pixel à la préparation vivante, à caméra et lumière identiques dans le renderer
+Compatibility. Cette preuve seule ne vérifiait pas la colorimétrie en Forward+. La simulation
 source est désactivée et ses géométries masquées pendant la comparaison.
 Le relief figé reste inchangé après réinitialisation de la source.
 
@@ -89,3 +90,52 @@ conservé. Le plafond et la physique de préparation restent inchangés.
 
 Pas de nouvelle caisse, d’extraction, de tuning des outils ou de modification
 des sources Tripo. Revue humaine requise avant fusion.
+
+
+## Correction de continuité des matières après essai humain
+
+Antoine confirme que la conservation fonctionne, puis signale un sédiment
+marine presque blanc dans la galerie. Ce blanchiment n’était pas une variation
+artistique voulue.
+
+La palette procédurale marine/concrétions était calculée en sRGB comme dans
+l’atelier, mais envoyée directement au rendu linéaire Forward+. Elle est
+désormais décodée à la sortie du calcul ; la modulation par la matière source
+se fait également dans son espace d’origine. La branche Compatibility reste
+identique. B–17 retourne sa matière d’origine avant cette conversion.
+
+Le choix utilise le signal [OUTPUT_IS_SRGB de Godot](https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/spatial_shader.html#global-built-ins).
+Aucune retouche de la lumière du musée, de la palette choisie, des outils,
+de la géométrie ou des masques de couverture. Les archives v1 référencent
+l’inclusion corrigée : aucune réécriture ni nouvelle préparation nécessaire.
+
+### Preuves du correctif
+
+- [Même archive du joueur, avant](evidence/issue28/marine-color-before.png)
+  et [après](evidence/issue28/marine-color-after.png), même caméra et même lumière.
+  Son fichier binaire conserve exactement le même hash après relecture.
+- Nuancier natif isolant huit états : matière compacte, marne, grains libres,
+  couche profonde, contact sombre, matrice à concrétions, croûte et coupe fraîche.
+  Ancien shader Forward+ : 7 écarts détectés, jusqu’à 0,288 par canal.
+  Shader corrigé : 17 contrôles, aucun échec ; écart maximal moyen par canal
+  inférieur à 0,0042 (environ 1,1 niveau sur 255).
+- Nuancier Compatibility avant/après : PNG identiques octet pour octet.
+- Galerie réelle : 9 contrôles sans échec, inspection des trois familles.
+- Chargement des ressources : 313 contrôles, aucun échec.
+
+Les mesures du nuancier isolent le matériau, sans éclairage ni tonemapping.
+Les scènes complètes gardent naturellement leurs ambiances différentes ;
+ces chiffres ne promettent pas une identité des pixels entre atelier et musée.
+La capture de galerie pendant cet essai cohabitait avec la galerie ouverte du
+joueur : ses temps GPU ne constituent pas une nouvelle mesure de performance.
+
+Reproduction (Godot natif, depuis la racine, processus successifs) :
+```powershell
+& $Godot --path . --rendering-method gl_compatibility --script res://tests/run_issue28_colors.gd
+& $Godot --path . --rendering-method forward_plus --script res://tests/run_issue28_colors.gd -- --reference=res://work/issue28/colors/gl_compatibility.json
+```
+
+Résultats : [Compatibility](evidence/issue28/colors-compatibility.json),
+[Forward+ corrigé](evidence/issue28/colors-forward.json),
+[contrôle négatif ancien shader](evidence/issue28/colors-before-forward.json),
+[archive existante inchangée](evidence/issue28/colors-existing-archive.json).

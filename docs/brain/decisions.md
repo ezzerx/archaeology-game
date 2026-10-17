@@ -1765,3 +1765,10 @@ Antoine confirme la disparition du flou et valide le rendu de base. PR #52
 fusionnée ; la mission suivante conserve le bloc réellement préparé, avec sa
 matière et ses traces, avant la passe sur les caisses. Le dernier résultat doit
 être reconnaissable au musée, sans écraser les archives historiques.
+
+## 2026-10-17 — Préserver l’identité des matières entre atelier et musée
+Le transfert du vrai bloc est apprécié à l’essai. Le sédiment blanchi dans la
+galerie est un défaut de restitution : une ambiance lumineuse différente doit
+conserver la couleur reconnaissable des matières. Comparer aussi les matériaux
+entre Compatibility et Forward+, au-delà du contrôle de sauvegarde dans un seul
+renderer. Les corrections doivent bénéficier aux préparations déjà conservées.
