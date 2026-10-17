@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-17",
+  "generator": "image_gen built-in",
+  "images": [
+    {
+      "file": "01-niche-murale.png",
+      "source": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-415242a1-600c-427a-9b91-6938755d7f2e.png",
+      "sha256": "9f43606f01e200f7baaca008cda970ea34a61be18a1a6a7b3a1e27bec83cddac",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "file": "02-fenetre-cintree.png",
+      "source": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-f4b12299-57e5-4d5b-99fb-4754a666babc.png",
+      "sha256": "d24797f0dab7ca842d5d94b39ab21fcf04932453d11234df11dd04a4caa2ce7a",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "mode": "RGB",
+      "alpha_range": null
+    },
+    {
+      "file": "03-fougere-en-pot.png",
+      "source": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-1cf017c8-ad2a-45b4-ba96-c8f2d7f043c2.png",
+      "sha256": "cb88c26255a865be3562d19887524468f683fccc684107e25dd443a8b729c799",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "mode": "RGB",
+      "alpha_range": null
+    },
+    {
+      "file": "04-livres-naturaliste.png",
+      "source": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-9bf72b43-b2da-49d6-8fe4-6ed35f9e0155.png",
+      "sha256": "f4e7600517961583c3c466900650fdc57533008658137b7ca7c8431fd3da0c1c",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alpha_range": null
+    },
+    {
+      "file": "05-echantillon-calcite.png",
+      "source": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-6c230a8c-2cec-4932-8524-711d3a12309e.png",
+      "sha256": "13b879672642a08e3967f00b27cc1d27e99e422e64c7280a55ce928e2e3fd011",
+      "dimensions": [
+        1402,
+        1122
+      ],
+      "mode": "RGB",
+      "alpha_range": null
+    },
+    {
+      "file": "06-calcaire-matiere.png",
+      "source": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-3e366028-fdd1-42ef-aa7c-3a0ff20ecb09.png",
+      "sha256": "48feffa2de4abf83d70febe2de3c54010b61dc69c5b20d5a5e3bf80e850b59d8",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha_range": null
+    },
+    {
+      "file": "07-enduit-matiere.png",
+      "source": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-598fb825-dc53-47ba-8a93-0dcc9a79f97f.png",
+      "sha256": "ed36f1a842a4aecf54405ac57f1ebaf9ad145eb8ac2aa48d12f159997c4795ee",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha_range": null
+    }
+  ]
+}

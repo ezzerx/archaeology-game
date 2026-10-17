@@ -1730,3 +1730,8 @@ Antoine apprécie le rendu du pilote B–17 mais rejette le cartel frontal « Pe
 théropode ». Conserver le rendu du meuble comme référence, refaire le cartel et
 poursuivre l'application de cette qualité au reste de la scène. Cette appréciation
 ne valide pas la salle entière ni la fusion de #52.
+
+## 2026-10-17 — Mobilier apprécié, environnement à refaire
+Antoine trouve les assets Tripo sympathiques, mais rejette encore le sol, les
+murs et le décor de fond. Préparer des références de production pour remplacer
+ces éléments ; cette appréciation ne vaut pas validation de la salle entière.

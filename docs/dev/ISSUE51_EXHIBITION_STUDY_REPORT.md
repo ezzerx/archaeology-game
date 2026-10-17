@@ -110,3 +110,14 @@ Antoine apprécie le présentoir B–17 mais rejette son cartel frontal. Les tro
 exports suivants sont reçus et intégrés ; cartels, architecture et éclairage
 sont repris autour des meubles. Voir le [rapport mobilier](ISSUE51_MUSEUM_FURNITURE.md)
 pour les captures, les 49 contrôles natifs et les limites restantes.
+
+## RÃ©fÃ©rences environnement
+Le mobilier Tripo est apprÃ©ciÃ© par Antoine, qui demande une reprise du sol,
+des murs et du dÃ©cor de fond. Sept images sÃ©lectionnÃ©es produites avec Imagegen
+intÃ©grÃ© : niche, fenÃªtre, fougÃ¨re, livres, Ã©chantillon minÃ©ral, calcaire et enduit.
+La fenÃªtre a Ã©tÃ© corrigÃ©e pour retirer des panneaux pleins indÃ©sirables.
+Prompts, dimensions, empreintes et fiches Studio sont dans le
+[pack environnement](../visual-references/museum/environment/README.md).
+Les rÃ©fÃ©rences ont Ã©tÃ© revues visuellement ; les matiÃ¨res restent Ã  vÃ©rifier
+en rÃ©pÃ©tition et dans le moteur. Cette passe ne modifie aucun runtime,
+ne lance aucun appel Tripo et ne nÃ©cessite pas de nouveau test de gameplay.

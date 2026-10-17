@@ -29,26 +29,24 @@ Seconde référence stylisée choisie par Antoine, avec continuité graphique ob
 avec la préparation. Le concept guide architecture et ambiance ; le jeu validé guide
 les matières, le niveau de détail et le rendu des spécimens.
 
-## Prochaine action autorisée
-Références du mobilier préparées : deux présentoirs, vitrine et applique.
-Guide et images : docs/visual-references/museum/furniture/README.md.
-Pilote B–17 reçu ; original archivé dans assets/museum/source/tripo-studio/b17/.
-Dossier de dépôt stable et provenance : assets/museum/source/README.md.
-Fiche recommandée : docs/visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md.
-Fournir une fiche de réglages adaptée avant chaque prochaine génération.
-Privilégier la qualité de la source pour le pilote, puis optimiser après comparaison.
-Rendu du présentoir B–17 apprécié et retenu par Antoine ; cartel frontal rejeté.
-Suite autorisée : remplacer les cartels et poursuivre la qualité de la scène.
-Exports ammonite, vitrine et applique reçus, archivés et intégrés.
-49 contrôles natifs et 295 chargements de ressources réussis ; captures revues.
-Faire essayer la travée et les nouveaux cartels à Antoine avant la suite.
-Inscription inventée au dos B–17 à retoucher ; niches/vitrine encore vides.
-Direction et critères : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.
-Préparer une travée pilote avec les vrais modèles B–17/M–08 pour comparer
-atelier et musée à taille comparable. Conserver caméra/navigation.
-La référence est choisie ; la future réalisation native reste à éprouver.
-Aucune fusion de la galerie actuelle n'est autorisée par ce choix.
-La sauvegarde 3D réelle et la boucle arrivage/atelier/galerie restent à définir ensuite.
+## Prochaine action autorisÃ©e
+Antoine apprÃ©cie les assets Tripo mais rejette encore le sol, les murs et le
+dÃ©cor de fond. PrÃ©parer leur remplacement Ã  partir de nouvelles rÃ©fÃ©rences.
+Pack produit : docs/visual-references/museum/environment/README.md.
+Cinq images dâ€™objets/modules pour Tripo ; deux rÃ©fÃ©rences de matiÃ¨res
+pour calcaire et enduit. RÃ©glages complets par objet dans le mÃªme dossier.
+Premier export conseillÃ© : museum_wall_niche_v01.glb, puis inspection du module.
+Copie pratique : Documents/ArchaeologyGame-Assets/Tripo/museum/references-environnement/.
+La scÃ¨ne jouable reste celle de la passe mobilier ; ces images nâ€™y sont pas intÃ©grÃ©es.
+ApprÃ©ciation des assets distincte dâ€™une validation artistique globale ; pas de fusion.
+Conserver les originaux dans assets/museum/source/tripo-studio/ avant retouche.
+Toujours fournir les rÃ©glages adaptÃ©s avant chaque gÃ©nÃ©ration ; prioritÃ© Ã  la source,
+puis optimisation sur copie aprÃ¨s comparaison.
+Direction : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.
+Conserver camÃ©ra/navigation et prÃ©parations ; reprendre architecture, matiÃ¨res
+et Ã©clairage autour des meubles. Comparaison atelier/musÃ©e Ã  taille comparable
+et retouche de lâ€™inscription inventÃ©e au dos Bâ€“17 restent Ã  traiter.
+La sauvegarde 3D rÃ©elle et la boucle arrivage/atelier/galerie restent Ã  dÃ©finir ensuite.
 
 ## Points de suivi
 Exemples annoncés comme tels ; aucune acquisition ni modification de sauvegarde.
