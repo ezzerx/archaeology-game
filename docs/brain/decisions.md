@@ -1591,3 +1591,13 @@ depuis un autre outil, alternance sur nouvel appui dans la famille, Brush par
 défaut. Un emplacement affiche clairement la variante et l'alternative.
 Le GO conserve outils et interactions validés ; aucune nouvelle pénalité,
 recette globale, collection ou passe sonore n'est incluse.
+
+## 2026-10-17 — Concrétions et famille de finition validées
+
+Après essai de la passe #39 livrée dans la PR #40, Antoine confirme :
+« Ok j'ai testé c'est cool ! » Le commit jouable est a750318.
+Ce retour valide globalement les trois rencontres et la famille Brush/pointe
+sur 1 telles que livrées ; aucune correction supplémentaire n'est demandée.
+Conserver cette référence pour les prochaines préparations. La génération
+de production et les futures mécaniques nécessitent leur propre vision
+approuvée avant développement.

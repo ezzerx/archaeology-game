@@ -114,3 +114,11 @@ systématique ; son contour de fouille ne représente pas un parcours humain.
 - Interface/timings : tests/run_issue33_runtime.gd, natif.
 - Démonstrations avec --qa --distinction-store=res://work/issue39/badges.json
   après le séparateur des arguments Godot ; sorties locales sous work/issue39/.
+
+## Retour humain — 17 octobre 2026
+
+Antoine a essayé la passe et répond : « Ok j'ai testé c'est cool ! »
+Validation globale du résultat livré au commit jouable a750318, sans
+correction demandée. Le protocole d'essai ci-dessus reste une référence ;
+le retour ne détaille pas séparément chaque rencontre ou commande.
+Les limites de l'essai composé restent applicables.
