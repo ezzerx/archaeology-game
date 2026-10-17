@@ -1,0 +1,22 @@
+{
+  "checks": 85,
+  "engine": "4.7.2-stable (official)",
+  "examples_only": true,
+  "failures": [],
+  "frame_ms": {
+    "ammonite": {
+      "mean": 4.12006666666667,
+      "p95": 4.22
+    },
+    "b17": {
+      "mean": 4.12005555555556,
+      "p95": 4.192
+    },
+    "overview": {
+      "mean": 4.12017777777778,
+      "p95": 4.178
+    }
+  },
+  "render": "forward_plus",
+  "window": "(1440, 810)"
+}

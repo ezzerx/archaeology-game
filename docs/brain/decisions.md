@@ -1675,3 +1675,87 @@ UI #46, décor de bureau en assets 3D #47, sons avec Claude la semaine prochaine
 et musique #49. Approfondir chaque vision avant développement ; ces tickets
 n'autorisent pas une implémentation immédiate. Le rendu des anciennes caisses
 reste rejeté. La découverte est prioritaire, la collection donne envie de continuer.
+
+## 2026-10-17 — Vision d'exposition acceptée pour essais
+Antoine valide provisoirement une petite galerie 3D, sans avatar, avec vues composées,
+déplacement horizontal et inspection rapprochée. B–17 et ammonite restent dans leur
+matrice, sur des supports adaptés ; le résultat réel de préparation doit, à terme,
+être conservé avec matière restante, nettoyage, dégâts et distinctions.
+Privilégier des emplacements conçus et une boucle arrivage → préparation → exposition
+→ nouvel arrivage. L'extraction et le squelette monté ne font pas partie du premier cap.
+Commencer les essais puis ajuster ; cet accord ne vaut pas validation artistique finale.
+L'essai visuel borné #51 précède la conservation 3D réelle et le raccordement de la boucle.
+
+
+## 2026-10-17 — Navigation appréciée, art du musée à reconcevoir
+Antoine apprécie la caméra et les transitions entre pièces de #51, mais juge
+le rendu actuel impropre à la production. Concevoir une vraie scène de musée
+d'histoire naturelle : architecture, ambiance, environnement et supports pour
+les préparations. Repartir des concepts initiaux et de l'esprit accueillant
+d'Animal Crossing ; établir des références visuelles avant la production
+d'assets 3D avec Tripo. Cette appréciation partielle ne valide pas le décor.
+Les nouveaux concepts restent des propositions tant qu'Antoine n'en a pas choisi
+la direction ; la conservation des vrais blocs reste souhaitée.
+
+## 2026-10-17 — Seconde direction de musée retenue, continuité atelier obligatoire
+Antoine préfère le second concept, plus stylisé, et demande que ses graphismes
+collent à ceux de la préparation. Retenir son architecture et son ambiance tout
+en prenant le rendu validé du jeu comme référence pour les matières, les os et
+le niveau de détail. Adapter le décor aux vrais blocs. La sélection du concept
+ne valide ni le décor natif actuel ni une fusion de #52.
+
+## 2026-10-17 — Réglages explicites avant chaque génération Tripo
+Antoine demande de mémoriser les réglages et de lui donner, pour chaque nouvelle
+génération, une fiche adaptée à l'asset : référence, modèle, géométrie, textures,
+budget de polygones et export. Ne pas se fier à la persistance des options Studio.
+Première fiche recommandée pour le présentoir B–17 :
+[réglages Studio](../visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md).
+Antoine prévoit un lancement manuel ; aucun modèle n'est encore reçu ni validé.
+
+## 2026-10-17 — Qualité du pilote avant réduction du maillage
+Antoine remet en question le faible budget proposé pour B–17 et veut préserver
+la qualité artistique. Distinguer la source de génération de la version destinée
+au jeu : comparer dans Godot avant réduction. Fiche Studio révisée vers une source
+plus détaillée ; ces nouveaux réglages restent une recommandation non éprouvée.
+
+## 2026-10-17 — Conservation des exports Tripo
+Présentoir B–17 fourni par Antoine. Original copié sans retouche dans un dossier
+local stable hors worktree et dans assets/museum/source/ pour versionnage ;
+emplacements, provenance et empreinte dans assets/museum/source/README.md.
+Les futurs dépôts peuvent être signalés par leur nom dans le chat. Leur archivage
+Git reste explicite ; le dossier local seul ne garantit pas une sauvegarde distante.
+
+## 2026-10-17 — Présentoir B–17 retenu, scène à poursuivre
+Antoine apprécie le rendu du pilote B–17 mais rejette le cartel frontal « Petit
+théropode ». Conserver le rendu du meuble comme référence, refaire le cartel et
+poursuivre l'application de cette qualité au reste de la scène. Cette appréciation
+ne valide pas la salle entière ni la fusion de #52.
+
+## 2026-10-17 — Mobilier apprécié, environnement à refaire
+Antoine trouve les assets Tripo sympathiques, mais rejette encore le sol, les
+murs et le décor de fond. Préparer des références de production pour remplacer
+ces éléments ; cette appréciation ne vaut pas validation de la salle entière.
+
+## 2026-10-17 — Essayer les exports avant de régénérer
+Antoine autorise à intégrer les cinq modèles d'environnement déposés dans
+furniture et à juger le résultat dans la galerie. Réparer localement ce qui
+peut l'être ; une régénération reste possible si le rendu pose encore problème.
+Cette autorisation ne valide pas artistiquement l'assemblage final.
+
+## 2026-10-17 — Compléter le rendu du musée avant de multiplier les assets
+Antoine juge l'intégration de l'environnement meilleure mais insuffisante
+artistiquement. Il confirme la passe proposée : lumière douce, contacts,
+matières, appliques, fenêtre/vitrage et raccords, avec comparaison à la référence
+et itérations. Cette autorisation ne valide pas la qualité du résultat à venir.
+La cohérence de la travée complète doit guider la suite de la production.
+
+## 2026-10-17 — Base de galerie appréciée et ordre de la boucle confirmé
+Antoine juge le rendu plus abouti et sympathique comme base, sans le considérer
+fini. Corriger d'abord le flou proche/lointain, puis exposer le vrai bloc que le
+joueur vient de préparer, et travailler ensuite les caisses avant préparation.
+Ce parcours doit former la boucle de démo caisse → préparation → musée.
+L'apparence exposée doit conserver les traces du travail personnel ; la sélection
+automatique d'un ancien meilleur résultat ne répond pas au souhait de voir la
+préparation juste terminée. Préserver les meilleurs résultats et distinctions
+existants pendant le futur raccordement. Les détails de cette conservation et
+le traitement de plusieurs tentatives seront cadrés dans #28.

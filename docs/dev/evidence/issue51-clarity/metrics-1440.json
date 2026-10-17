@@ -1,0 +1,28 @@
+{
+  "engine": "4.7.2-stable (official)",
+  "image_size": "(2560, 1440)",
+  "previous_rendering": false,
+  "renderer": "forward_plus",
+  "taa": false,
+  "uncapped_static_frames": {
+    "ammonite": {
+      "gpu_mean_ms": 5.42424166798592,
+      "gpu_p95_ms": 5.77600002288818,
+      "mean_ms": 5.853975,
+      "p95_ms": 6.173
+    },
+    "b17": {
+      "gpu_mean_ms": 5.59664583007495,
+      "gpu_p95_ms": 5.93400001525879,
+      "mean_ms": 5.95770833333333,
+      "p95_ms": 6.27
+    },
+    "overview": {
+      "gpu_mean_ms": 5.91585833827655,
+      "gpu_p95_ms": 6.22900009155273,
+      "mean_ms": 6.277625,
+      "p95_ms": 6.608
+    }
+  },
+  "window_size": "(2560, 1440)"
+}

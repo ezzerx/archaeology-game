@@ -1,0 +1,91 @@
+[
+  {
+    "id": "01-niche-murale",
+    "prompt": "Use case: stylized-concept. Production reference for ArchaeologyGame, a warm tactile natural-history museum. The attached gallery concept is STYLE REFERENCE ONLY, and the cabinet is MATERIAL REFERENCE ONLY. Create one isolated object from that design language: sophisticated stylized 3D, rounded carved profiles, subtle material grain, warm cream limestone and plaster, dark bottle green, softly worn walnut. Not photorealistic, not low-poly facets, not plastic or cartoon. Soft neutral diffuse studio light; minimal baked shadows; no dramatic lighting, no orange color cast. Actual transparent background, no floor, no cast shadow, no labels, logos, writing, watermark, people or specimen. Entire object visible, ample margins. One consistent three-quarter near-frontal view, mild perspective, sharp and detailed materials suitable for image-to-3D. Subject: a SINGLE complete modular wall bay with one deep arched display niche. About 1.8 metres wide, 3.2 metres tall, 0.4 metres deep. Warm off-white fine plaster rectangular surrounding wall, soft cream limestone arched reveal with rounded molding, DEEP dark olive bottle-green recessed interior, exactly two empty walnut shelves inside. Bottom third has finely made walnut wainscoting with two inset rectangular panels, subtly rounded wood cap rail and low skirting, matching the cabinet reference. Two straight vertical outer sides and straight flat top suitable for joining neighboring plain walls. All empty. Show real niche depth and thick shelves without making it look like a standalone cupboard. Beautiful understated construction, consistent believable dimensions. No lights, bulbs, handles, contents, images or other objects.",
+    "tool": "image_gen built-in",
+    "referenced_image_paths": [
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/02-gallery-stylized.png",
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/furniture/03-vitrine-sans-verre.png"
+    ],
+    "transparent_background": true,
+    "selected": true,
+    "generated_output": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-415242a1-600c-427a-9b91-6938755d7f2e.png"
+  },
+  {
+    "id": "02-fenetre-cintree",
+    "prompt": "Use case: stylized-concept. Production reference for ArchaeologyGame, a warm tactile natural-history museum. The attached gallery concept is STYLE REFERENCE ONLY, and the cabinet is MATERIAL REFERENCE ONLY. Create one isolated object from that design language: sophisticated stylized 3D, rounded carved profiles, subtle material grain, warm cream limestone and plaster, dark bottle green, softly worn walnut. Not photorealistic, not low-poly facets, not plastic or cartoon. Soft neutral diffuse studio light; minimal baked shadows; no dramatic lighting, no orange color cast. Actual transparent background, no floor, no cast shadow, no labels, logos, writing, watermark, people or specimen. Entire object visible, ample margins. One consistent three-quarter near-frontal view, mild perspective, sharp and detailed materials suitable for image-to-3D. Subject: one tall elegant arched window frame from a small natural-history museum, around 1.3 metres wide and 2.8 metres high. A warm pale limestone arch surround with softly sculpted beveled edge and deep sill, a darker aged walnut inner frame, one vertical center mullion, two horizontal wooden crossbars, small brass fastenings. The arched top follows a smooth semicircle. All window openings genuinely empty transparent holes: NO GLASS, NO sky, NO trees, NO view behind it. Whole frame is a single connected piece with modest real depth and a broad cream stone sill. Only window surround and frame, no wall slab, roof, floor, curtains or light rays.",
+    "tool": "image_gen built-in",
+    "referenced_image_paths": [
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/02-gallery-stylized.png",
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/furniture/03-vitrine-sans-verre.png"
+    ],
+    "transparent_background": true,
+    "selected": false,
+    "generated_output": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-26bbaedd-5a17-4ac0-bb25-a09c74628975.png"
+  },
+  {
+    "id": "03-fougere-en-pot",
+    "prompt": "Use case: stylized-concept. Production reference for ArchaeologyGame, a warm tactile natural-history museum. The attached gallery concept is STYLE REFERENCE ONLY, and the cabinet is MATERIAL REFERENCE ONLY. Create one isolated object from that design language: sophisticated stylized 3D, rounded carved profiles, subtle material grain, warm cream limestone and plaster, dark bottle green, softly worn walnut. Not photorealistic, not low-poly facets, not plastic or cartoon. Soft neutral diffuse studio light; minimal baked shadows; no dramatic lighting, no orange color cast. Clean uniform neutral light-gray studio background, no floor, no cast shadow, no labels, logos, writing, watermark, people or specimen. Entire object visible, ample margins. One consistent three-quarter near-frontal view, mild perspective, sharp and detailed materials suitable for image-to-3D. Subject: one generous potted fern, from the museum concept window corner. A squat warm cream unglazed ceramic planter, thick rounded lip, faint throwing rings, modest foot. Dense but legible fan of about twelve gracefully arching fronds with relatively BROAD chunky green leaflets in olive and forest green; fronds arranged in distinct open layers with natural asymmetry. Rich sculpted leaves, coherent sturdy stems, no hair-thin filigree, no stray disconnected leaves. Show dark soil just within the pot. Entire plant and pot as one standalone object, no other scene elements. A restrained welcoming botanical prop rather than a tropical jungle.",
+    "tool": "image_gen built-in",
+    "referenced_image_paths": [
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/02-gallery-stylized.png",
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/furniture/03-vitrine-sans-verre.png"
+    ],
+    "transparent_background": false,
+    "selected": true,
+    "generated_output": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-1cf017c8-ad2a-45b4-ba96-c8f2d7f043c2.png"
+  },
+  {
+    "id": "04-livres-naturaliste",
+    "prompt": "Use case: stylized-concept. Production reference for ArchaeologyGame, a warm tactile natural-history museum. The attached gallery concept is STYLE REFERENCE ONLY, and the cabinet is MATERIAL REFERENCE ONLY. Create one isolated object from that design language: sophisticated stylized 3D, rounded carved profiles, subtle material grain, warm cream limestone and plaster, dark bottle green, softly worn walnut. Not photorealistic, not low-poly facets, not plastic or cartoon. Soft neutral diffuse studio light; minimal baked shadows; no dramatic lighting, no orange color cast. Clean uniform neutral light-gray studio background, no floor, no cast shadow, no labels, logos, writing, watermark, people or specimen. Entire object visible, ample margins. One consistent three-quarter near-frontal view, mild perspective, sharp and detailed materials suitable for image-to-3D. Subject: a small SINGLE stack of three closed nineteenth-century naturalist field volumes, resting horizontally with the top book rotated slightly, one small stack around 32cm wide. Covers in muted bottle green, oxblood brown and warm tobacco leather, warm ivory page edges, subtle wear at corners, solid thick cover boards with rounded corners, refined blind embossed rectangular borders, simple raised ribs on the spines. No writing, letters, titles, labels, diagrams, bookmarks or logos anywhere. Three books clearly differentiated by their cover colors and a few narrow page strata, not thousands of modeled loose sheets. Beautiful quiet handmade museum library prop, compact clean silhouette.",
+    "tool": "image_gen built-in",
+    "referenced_image_paths": [
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/02-gallery-stylized.png",
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/furniture/03-vitrine-sans-verre.png"
+    ],
+    "transparent_background": false,
+    "selected": true,
+    "generated_output": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-9bf72b43-b2da-49d6-8fe4-6ed35f9e0155.png"
+  },
+  {
+    "id": "05-echantillon-calcite",
+    "prompt": "Use case: stylized-concept. Production reference for ArchaeologyGame, a warm tactile natural-history museum. The attached gallery concept is STYLE REFERENCE ONLY, and the cabinet is MATERIAL REFERENCE ONLY. Create one isolated object from that design language: sophisticated stylized 3D, rounded carved profiles, subtle material grain, warm cream limestone and plaster, dark bottle green, softly worn walnut. Not photorealistic, not low-poly facets, not plastic or cartoon. Soft neutral diffuse studio light; minimal baked shadows; no dramatic lighting, no orange color cast. Clean uniform neutral light-gray studio background, no floor, no cast shadow, no labels, logos, writing, watermark, people or specimen. Entire object visible, ample margins. One consistent three-quarter near-frontal view, mild perspective, sharp and detailed materials suitable for image-to-3D. Subject: ONE small natural calcite specimen for a museum shelf, around 25cm wide. A compact irregular dusty warm-gray limestone matrix with five to seven short thick ivory and pale honey calcite crystals growing coherently from it, grounded mineralogical forms with rhombohedral facets and blunt tips, subtle cloudy translucency but mostly opaque stone. Natural asymmetrical cluster, not a magical crystal, not a gemstone trophy, not sparkling, no glow. Real tactile grain and small imperfect edges, stylized restrained material treatment matching the warm ivory fossil props. The specimen rests on its own stable flat underside; no wooden base, no plaque, no loose floating crystals.",
+    "tool": "image_gen built-in",
+    "referenced_image_paths": [
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/02-gallery-stylized.png",
+      "C:\\Users\\antoi\\.codex\\worktrees\\preparation-demos\\ArchaeologyGame/docs/visual-references/museum/furniture/03-vitrine-sans-verre.png"
+    ],
+    "transparent_background": false,
+    "selected": true,
+    "generated_output": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-6c230a8c-2cec-4932-8524-711d3a12309e.png"
+  },
+  {
+    "id": "02-fenetre-cintree-v2",
+    "prompt": "Precise edit of the supplied window-frame reference. Keep the entire limestone surround, walnut mullions, brass fastenings, silhouette, perspective and material quality unchanged. This object is an OPEN WINDOW FRAME WITHOUT GLASS, NOT A DOOR. Remove all six opaque flat brown panels inside the wooden frame completely. These six openings must be genuine empty holes through which the SAME perfectly uniform neutral light-gray background is visible, with no tinted glass, reflections, wood sheets, scenery, black void or recessed fill. Replace the outer gradient background with the same uniform neutral light-gray background. Keep the mild shading on the object itself only. No cast shadow on a floor. Entire object remains visible. Do not add or remove frame bars. High quality stylized game-asset reference.",
+    "tool": "image_gen built-in",
+    "referenced_image_paths": [
+      "C:/Users/antoi/.codex/generated_images/01a1363b-d493-71b1-96fc-06e5dd83694e/exec-26bbaedd-5a17-4ac0-bb25-a09c74628975.png"
+    ],
+    "transparent_background": false,
+    "selected": true,
+    "generated_output": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-f4b12299-57e5-4d5b-99fb-4754a666babc.png"
+  },
+  {
+    "id": "06-calcaire-matiere",
+    "prompt": "Use case: stylized-concept. A square, full-bleed, orthographic flat material reference / diffuse base color for warm limestone museum flooring in a refined warm stylized 2.5D natural-history game. Approximate physical area 1.2 metres across. Fill every pixel with the same continuous limestone surface. Ivory warm gray-beige overall, restrained pale ochre flecks, softly cloudy mineral variation, very faint thin broken hairline mineral veins, fine understated grain. Variation is calm, tactile and readable, like hand-selected honed limestone, lightly worn, never dirty. Diffuse, evenly illuminated and spatially uniform lighting. Zero perspective, zero directional light, zero shadows, zero shine, zero vignette. Seamless repeating intent, left edge matches right and top matches bottom; no obvious large standout feature. NO tile grid, grout, seams, bricks, border, ornaments, writing, objects or 3D cube. Not a photograph with camera blur, not flat solid paint, not marble, not sand, no orange cast. This is a material sheet ONLY, not a rendered room. Muted warm palette matching pale limestone in a cozy walnut and dark-green museum. Square 2048x2048 composition.",
+    "tool": "image_gen built-in",
+    "referenced_image_paths": [],
+    "transparent_background": false,
+    "selected": true,
+    "generated_output": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-3e366028-fdd1-42ef-aa7c-3a0ff20ecb09.png"
+  },
+  {
+    "id": "07-enduit-matiere",
+    "prompt": "Use case: stylized-concept. A square full-bleed flat diffuse/base-color material reference for smooth traditional lime plaster in a refined warm stylized 2.5D natural-history museum game. Every pixel is continuous warm ivory / soft greige plaster. Very subtle broad translucent overlapping trowel clouds, fine chalky mineral grain, almost imperceptible mottling, mature handmade craftsmanship. Very low contrast, matte calm surface, warm neutral undertone, no yellow-orange tint. Even perfectly uniform diffuse illumination: no directional shadows, shadows in pores, highlights, spotlight, gradient or vignette. Orthographic straight-on view with zero perspective. Seamless repeating intent; left matches right and top matches bottom. No brick, cracks, damage, grime, stains, architectural objects, edges, borders, moldings, labels or text. Not rough stucco, not concrete, not glossy paint, not a photorealistic photographed wall. Material only for a cozy walnut and bottle-green museum. Square 2048x2048 composition.",
+    "tool": "image_gen built-in",
+    "referenced_image_paths": [],
+    "transparent_background": false,
+    "selected": true,
+    "generated_output": "C:\\Users\\antoi\\.codex\\generated_images\\01a1363b-d493-71b1-96fc-06e5dd83694e\\exec-598fb825-dc53-47ba-8a93-0dcc9a79f97f.png"
+  }
+]

@@ -1,61 +1,69 @@
-# Première exposition — plan de discussion
+# Première exposition — vision et essais
 
-## Intention
-La préparation dispose de trois rythmes validés et le suivi d'outil est accepté.
-Le prochain levier proposé est de donner une continuité à ce plaisir :
-un arrivage intrigue, la préparation révèle une pièce, l'exposition conserve
-visiblement le travail et suscite l'envie de revenir.
+## Vision de travail acceptée — 17 octobre 2026
+Antoine valide provisoirement la proposition, pour des essais suivis d'ajustements.
 
-Antoine souhaite explorer cette boucle, améliorer l'UI, enrichir le décor 3D,
-préparer les sons la semaine prochaine avec Claude et ajouter de la musique.
-Il demande des tickets distincts et une vision approfondie avant chaque réalisation.
-La surprise de découverte reste prioritaire ; la collection soutient la durée.
+- Une petite galerie de musée en 3D, sans avatar, parcourue par des vues composées et un déplacement horizontal.
+- B–17 et M–08 présentés dans leur matrice, sur des supports inclinés adaptés ; bois patiné, fonds sombres, cartels ivoire et lumière chaude lisible.
+- Inspection rapprochée et variation d'angle limitée, compatible avec les assets de préparation ; pas d'inspection à 360° implicite.
+- À terme, conserver réellement le travail du joueur : matière restante, nettoyage et dégâts, avec distinction discrète pour la finition intégrale.
+- Emplacements conçus pour les pièces ; éventuel choix entre supports compatibles, sans système de placement libre de mobilier.
+- Parcours visé : arrivage avec indices larges → préparation → fin choisie → installation → admiration → nouvel arrivage.
+- Première expérience fondée sur les deux spécimens et les trois familles existantes ; extraction et squelette monté restent des pistes ultérieures.
 
-## Première discussion recommandée
-Décrire une session complète et le retour vers une nouvelle préparation, puis
-choisir ce qui apparaît dans l'exposition. Pièce dans sa matrice, spécimen extrait
-ou autre présentation sont encore des options : ce choix détermine le coût des
-assets, les transitions et la nature du souvenir du joueur.
+L'accord porte sur une direction à éprouver, pas sur une qualité artistique finale.
 
-Proposition de périmètre : éprouver cette boucle avec B–17, M–08 et les familles
-de préparation existantes avant de produire une collection complète. Le nombre
-de pièces, le format de l'exposition et la distribution des préparations restent
-à décider. Pas de nouvelle mécanique d'extraction ni de musée explorable implicites.
+## Direction artistique retenue
+La navigation du premier essai est appréciée, mais son décor n'est pas une
+référence de production. Concevoir le musée par des références d'ambiance et
+de composition, puis des assets 3D avec Tripo. L'esprit d'un musée d'histoire
+naturelle accueillant, comme celui d'Animal Crossing, complète les premiers concepts.
+Antoine retient la seconde référence stylisée pour l'architecture et l'ambiance,
+avec les graphismes validés de la préparation comme référence de matières et de détail.
+Voir [l'étude artistique](MUSEUM_ART_DIRECTION_STUDY.md) pour cette hiérarchie ;
+les modèles de fossiles et le résultat de préparation restent à préserver.
 
-Le scénario doit préciser ce que le joueur sait au départ, ce qu'il décide,
-quand il reconnaît la pièce, comment il choisit de terminer, ce qu'il conserve
-et ce qui lui donne envie de choisir la suite. La mise en valeur du 100 % peut
-s'appuyer sur les distinctions existantes, sans en faire une obligation.
+## Découpage de réalisation
+1. **Essai visuel #51, lié à #28 :** salle, présentoirs, matériaux, lumière et navigation avec deux préparations d'exemple. Valider le désir d'admirer ces objets et les angles autorisés.
+2. **Conservation du résultat réel, sous #28 :** définir puis sauvegarder les données nécessaires à la restitution 3D du bloc préparé. Garder les photographies et résultats existants lisibles ; ne pas remplacer une préparation par un modèle parfait.
+3. **Boucle commune, à préciser avec #27 et #28 :** intégrer les trois préparations, le choix d'un arrivage, la fin et le retour vers la galerie. Créer la mission de raccordement une fois ces interfaces convenues.
+4. **Finitions coordonnées :** UI #46, décor d'atelier #47, sons #48 et musique #49 renforcent ce parcours. Chaque sujet garde son cadrage et son essai humain.
 
-## Backlog et dépendances
-| Ticket | Résultat à définir | Dépendance principale |
-|---|---|---|
-| [#45 Première exposition](https://github.com/ezzerx/archaeology-game/issues/45) | Scénario complet, format exposé, périmètre et découpage | Discussion de départ |
-| [#28 Collection](https://github.com/ezzerx/archaeology-game/issues/28) | Destination visible et personnelle du travail | Choix du format dans #45 |
-| [#27 Arrivages](https://github.com/ezzerx/archaeology-game/issues/27) | Anticipation, indices de provenance et arrivée du bloc | Articulation avec #45 / #28 |
-| [#46 UI](https://github.com/ezzerx/archaeology-game/issues/46) | Présentation aboutie, lisible et cohérente | Parcours et rôles définis |
-| [#47 Décor 3D](https://github.com/ezzerx/archaeology-game/issues/47) | Bureau habité, chaleureux et lisible | Composition et espace de travail |
-| [#48 Sons](https://github.com/ezzerx/archaeology-game/issues/48) | Retour tactile des outils et matières | Palette avec Claude la semaine prochaine |
-| [#49 Musique](https://github.com/ezzerx/archaeology-game/issues/49) | Identité calme, agréable sur la durée | Coordination avec le mix des effets |
-| [#50 Performance](https://github.com/ezzerx/archaeology-game/issues/50) | Réduire les ralentissements au souffle dense | Diagnostic mesuré avant optimisation |
+L'essai #51 utilise des exemples déterministes, annoncés comme tels. Ils servent à éprouver le rendu en matrice et ne représentent pas les sauvegardes du joueur. Une représentation figée évite d'exécuter toute une simulation de fouille pour chaque objet exposé. La fidélité de l'archivage réel reste un chantier distinct.
 
-L'ordre recommandé consiste à définir d'abord la destination et la session,
-puis à accorder arrivages et collection ; UI et décor servent cette composition.
-Sons et musique se cadrent ensemble pour conserver la lisibilité tactile.
-Le suivi FPS demeure un sujet distinct, non bloquant pour le cadrage de la boucle.
+## Suite confirmée après la base visuelle
+Le retour du 17 octobre retient la galerie comme base à améliorer et confirme
+l'ordre : corriger la netteté, conserver et exposer la préparation juste terminée,
+puis concevoir les caisses précédant la préparation.
 
-## Qualité et périmètre
-Les caisses précédentes ont été rejetées ; leur implémentation archivée ne devient
-pas la base artistique par défaut. Une nouvelle proposition doit montrer matériaux,
-lumière, proportions et gestes, pas seulement des rectangles de placement.
-Les accessoires ne doivent pas reproduire l'occlusion du bloc par la lampe.
+Pour le raccordement, l'essai décisif sera de terminer deux blocs volontairement
+différents, puis de reconnaître dans la galerie leurs matières restantes, leur
+nettoyage et leurs dégâts, y compris après fermeture et relance du jeu. La photo
+et les scores actuels ne suffisent pas à cette restitution 3D. Les meilleurs
+résultats historiques et distinctions restent à préserver séparément du bloc
+qui vient de finir. Le choix d'un renderer commun entre atelier et galerie doit
+faire l'objet d'une comparaison des trois préparations avant intégration continue.
 
-Conserver outils, matières, temps de réponse, qualité des fossiles, sauvegardes,
-photos et distinctions. Éviter que l'arrivée ou la collection révèle l'espèce avant
-la fouille. Ne pas remplir les transitions d'interactions répétitives sans intérêt.
+## Backlog
+| Ticket | Objet |
+|---|---|
+| [#45](https://github.com/ezzerx/archaeology-game/issues/45) | Vision de la première exposition et suivi du découpage |
+| [#51](https://github.com/ezzerx/archaeology-game/issues/51) | Premier essai visuel de galerie et inspection |
+| [#28](https://github.com/ezzerx/archaeology-game/issues/28) | Collection, résultat réel conservé et mise en valeur |
+| [#27](https://github.com/ezzerx/archaeology-game/issues/27) | Arrivages et anticipation |
+| [#46](https://github.com/ezzerx/archaeology-game/issues/46) | Interface de l'atelier et des transitions |
+| [#47](https://github.com/ezzerx/archaeology-game/issues/47) | Décor 3D du bureau |
+| [#48](https://github.com/ezzerx/archaeology-game/issues/48) | Sons avec Claude la semaine prochaine |
+| [#49](https://github.com/ezzerx/archaeology-game/issues/49) | Musique et place du silence |
+| [#50](https://github.com/ezzerx/archaeology-game/issues/50) | Ralentissements au souffle dense, suivi non bloquant |
 
-Pour chaque sujet : problème joueur, exemple de parcours, direction visuelle ou
-sonore, exclusions, dépendances et essai humain. Un sujet trop large se découpe
-avant réalisation ; le raccordement final de la boucle aura sa mission dédiée
-une fois la vision choisie. Les autorisations courantes restent dans
-[le statut canonique](../brain/status.md).
+## Points à éprouver
+- La galerie est-elle agréable à regarder, et les pièces mieux mises en valeur qu'à l'établi ?
+- Le résultat reste-t-il reconnaissable comme le travail personnel du joueur ?
+- Les transitions vers une pièce puis vers l'ensemble sont-elles confortables ?
+- Les places disponibles donnent-elles envie de poursuivre sans dévoiler les futures espèces ?
+- L'arrivée et la fin ajoutent-elles du plaisir sans devenir une cérémonie répétitive ?
+
+La qualité artistique, la fidélité de la conservation, le traitement des nouvelles tentatives et les règles de placement seront évalués au fil des essais. Les anciennes caisses rejetées ne sont pas une référence artistique. Préserver les outils, matières, sauvegardes, photos et distinctions validés.
+
+Les autorisations et l'essai courant restent dans [le statut canonique](../brain/status.md).

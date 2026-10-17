@@ -1,0 +1,146 @@
+extends SceneTree
+var gallery:Node3D
+var failed:Array[String]=[]
+var checks:=0
+var frames:Dictionary={}
+var stores:Dictionary={}
+func _initialize() -> void:call_deferred("run")
+func check(value:bool,message:String) -> void:
+ checks+=1
+ if not value:failed.append(message);push_error(message)
+func shot(name:String) -> void:
+ await create_timer(1.3).timeout
+ await RenderingServer.frame_post_draw
+ root.get_texture().get_image().save_png("res://work/issue51/"+name+".png")
+func key(code:Key) -> void:
+ var event:=InputEventKey.new();event.physical_keycode=code;event.pressed=true;root.push_input(event,true)
+ event=InputEventKey.new();event.physical_keycode=code;event.pressed=false;root.push_input(event,true)
+func click(point:Vector2) -> void:
+ for pressed in [true,false]:
+  var event:=InputEventMouseButton.new();event.position=point;event.button_index=MOUSE_BUTTON_LEFT;event.pressed=pressed;root.push_input(event,true)
+func wheel(up:bool) -> void:
+ var event:=InputEventMouseButton.new();event.position=Vector2(900,400)
+ event.button_index=MOUSE_BUTTON_WHEEL_UP if up else MOUSE_BUTTON_WHEEL_DOWN
+ event.pressed=true;root.push_input(event,true)
+func sample(name:String) -> void:
+ var times:Array[float]=[];var previous:=Time.get_ticks_usec()
+ for n in range(180):
+  await process_frame
+  var now:=Time.get_ticks_usec();times.append((now-previous)/1000.0);previous=now
+ times.sort();var sum:=0.
+ for t in times:sum+=t
+ frames[name]={"mean":sum/times.size(),"p95":times[int(times.size()*.95)]}
+func run() -> void:
+ DirAccess.make_dir_recursive_absolute("res://work/issue51")
+ create_timer(70).timeout.connect(func():push_error("Gallery timeout");quit(2))
+ for path in ["user://collection/records.json","user://preparation_distinctions.json","user://preparation_demos/distinctions.json"]:
+  stores[path]=FileAccess.get_sha256(path) if FileAccess.file_exists(path) else "absent"
+ var original_stretch:=root.content_scale_mode
+ var original_msaa:=root.msaa_3d
+ var original_taa:=root.use_taa
+ root.mode=Window.MODE_WINDOWED;root.size=Vector2i(1440,810)
+ gallery=load("res://scenes/experiments/exhibition_study.tscn").instantiate();root.add_child(gallery)
+ while not gallery.fixtures_ready:await process_frame
+ await shot("01-gallery");await sample("overview")
+ check(root.get_texture().get_image().get_size()==root.size,"3D renders at native window resolution")
+ check(not root.use_taa,"no temporal softening of specimen details")
+ check(gallery.examples.size()==2,"two museum examples loaded")
+ var stand:Node3D=gallery.get_node("B17TripoStand")
+ var stand_meshes:=stand.find_children("*","MeshInstance3D",true,false)
+ check(stand_meshes.size()==1,"one imported B17 stand replaces the authored tray")
+ var stand_material=stand_meshes[0].get_active_material(0)
+ check(stand_material.albedo_texture!=null and stand_material.normal_texture!=null and stand_material.roughness_texture!=null and stand_material.metallic_texture!=null,"stand keeps all PBR maps")
+ check(stand_material.albedo_texture.get_size()==Vector2(4096,4096),"stand source keeps 4K albedo")
+ var fitted:Vector2=gallery.examples[0].get_meta("display_extent")*gallery.examples[0].scale.x
+ var usable:Vector2=gallery.get_node("Mount0").get_meta("usable_extent")
+ check(fitted.x<=usable.x+.001 and fitted.y<=usable.y+.001,"B17 matrix fits the usable cloth area")
+ check(FileAccess.get_sha256("res://assets/museum/models/b17_stand.glb")==FileAccess.get_sha256("res://assets/museum/source/tripo-studio/b17/museum_b17_stand_pilot.glb"),"source GLB preserved byte for byte")
+ for item in [
+  ["AmmoniteTripoStand","ammonite_stand","ammonite/Presentoir 02.glb"],
+  ["MuseumCabinet","cabinet","cabinet/03 vitrine.glb"],
+  ["WallLamp0","wall_lamp","wall-lamp/04 lampe laiton.glb"],
+  ["WallLamp1","wall_lamp","wall-lamp/04 lampe laiton.glb"]]:
+  var prop:Node3D=gallery.get_node(item[0])
+  var meshes:=prop.find_children("*","MeshInstance3D",true,false)
+  check(meshes.size()==1,"imported mesh present: "+item[0])
+  var material=meshes[0].get_active_material(0)
+  check(material.albedo_texture!=null and material.normal_texture!=null and material.roughness_texture!=null and material.metallic_texture!=null,"PBR maps intact: "+item[0])
+  check(material.albedo_texture.get_size()==Vector2(4096,4096),"4K source albedo: "+item[0])
+  check(FileAccess.get_sha256("res://assets/museum/models/"+item[1]+".glb")==FileAccess.get_sha256("res://assets/museum/source/tripo-studio/"+item[2]),"unchanged original: "+item[0])
+ var marine_fitted:Vector2=gallery.examples[1].get_meta("display_extent")*gallery.examples[1].scale.x
+ var marine_usable:Vector2=gallery.get_node("Mount1").get_meta("usable_extent")
+ check(marine_fitted.x<=marine_usable.x+.001 and marine_fitted.y<=marine_usable.y+.001,"ammonite matrix fits its cloth bed")
+ # The rear furniture must stay behind the preparation footprint.
+ var cabinet_mesh:MeshInstance3D=gallery.get_node("MuseumCabinet").find_children("*","MeshInstance3D",true,false)[0]
+ var cabinet_bounds:AABB=cabinet_mesh.global_transform*cabinet_mesh.get_aabb()
+ check(cabinet_bounds.end.z < gallery.centers[0].z-1.09,"cabinet clear of the preparation stands")
+ # Environment sources retain their geometry and full texture maps.
+ for item in [
+  ["Niche0","wall_niche","01 niche.glb"],
+  ["ArchedWindow","arched_window","02 fenetre.glb"],
+  ["WindowFern","potted_fern","03 Fougère.glb"],
+  ["NicheBooks","field_books","04 livres.glb"],
+  ["NicheMineral","mineral_sample","05 mineral.glb"]]:
+  var prop:Node3D=gallery.get_node("EnvironmentAssets/"+item[0])
+  var meshes:=prop.find_children("*","MeshInstance3D",true,false)
+  check(not meshes.is_empty(),"environment model present: "+item[0])
+  var material=meshes[0].get_active_material(0)
+  check(material.albedo_texture!=null and material.normal_texture!=null and material.roughness_texture!=null and material.metallic_texture!=null,"environment PBR maps preserved: "+item[0])
+  check(material.albedo_texture.get_size()==Vector2(4096,4096),"environment 4K albedo: "+item[0])
+  check(FileAccess.get_sha256("res://assets/museum/models/"+item[1]+".glb")==FileAccess.get_sha256("res://assets/museum/source/tripo-studio/"+item[1]+"/"+item[2]),"original environment export preserved: "+item[0])
+ for i in range(2):
+  var back:MeshInstance3D=gallery.get_node("EnvironmentAssets/Niche"+str(i)+"/ContinuousNicheBack")
+  var local_bounds:AABB=back.transform*back.get_aabb()
+  for point in [Vector3(0,.35,-.101),Vector3(0,.52,-.101),Vector3(0,.75,-.101)]:
+   check(local_bounds.has_point(point),"continuous backing covers source hole "+str(i)+" "+str(point.y))
+ # Background props must stay behind the displayed preparation footprint.
+ for prop_name in ["Niche0","Niche1","NicheBooks","MarineBooks","NicheMineral","MarineMineral","CabinetMineral","CabinetBooks"]:
+  var prop:Node3D=gallery.get_node("EnvironmentAssets/"+prop_name)
+  for mesh:MeshInstance3D in prop.find_children("*","MeshInstance3D",true,false):
+   check((mesh.global_transform*mesh.get_aabb()).end.z < -1.03,"background clear of preparation: "+prop_name)
+
+ for example in gallery.examples:
+  check(example.get_meta("example_only",false),"fixture explicitly isolated")
+  check(example.find_children("*","Camera3D",true,false).is_empty(),"no competing preparation camera")
+ click(gallery.camera.unproject_position(gallery.centers[0]));await process_frame
+ check(gallery.selected==0,"click on B17 opens inspection")
+ await shot("02-b17");await sample("b17")
+ key(KEY_RIGHT);await process_frame
+ check(gallery.selected==1,"right key moves to ammonite")
+ await shot("03-ammonite");await sample("ammonite")
+ for n in range(30):wheel(true)
+ check(is_equal_approx(gallery.target_size,1.3),"wheel reaches bounded close-up")
+ for n in range(30):wheel(false)
+ check(is_equal_approx(gallery.target_size,4.),"wheel reaches bounded wide view")
+ key(KEY_ESCAPE);await process_frame
+ check(gallery.selected==-1,"escape returns to overview")
+ await create_timer(.9).timeout
+ for i in range(gallery.nav_buttons.size()):
+  click(gallery.nav_buttons[i].get_global_rect().get_center());await process_frame
+  check(gallery.selected==i-1,"UI navigation %d"%i)
+ # Native drag input: angle clamp and focus-loss cancellation.
+ var press:=InputEventMouseButton.new();press.button_index=MOUSE_BUTTON_LEFT;press.pressed=true;press.position=Vector2(900,400);root.push_input(press,true)
+ var motion:=InputEventMouseMotion.new();motion.position=Vector2(1700,600);motion.relative=Vector2(800,200);motion.button_mask=MOUSE_BUTTON_MASK_LEFT;root.push_input(motion,true)
+ check(gallery.dragging and absf(gallery.target_angle.x)<=.1601 and absf(gallery.target_angle.y)<=.0601,"drag stays within authored inspection angles")
+ gallery.notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
+ check(not gallery.dragging,"focus loss cancels drag")
+ gallery.select(1);gallery.target_angle=Vector2(.16,.06);await shot("04-relief-angle")
+ for dimensions in [Vector2i(1024,768),Vector2i(1680,720),Vector2i(2560,1440)]:
+  root.size=dimensions;await create_timer(.3).timeout
+  await RenderingServer.frame_post_draw
+  # KEEP aspect preserves the 16:9 content area, with native pixels inside the bars.
+  var content_pixels:=Vector2i((root.get_visible_rect().size*root.get_final_transform().get_scale()).round())
+  check(root.get_texture().get_image().get_size()==content_pixels,"native content after resize to "+str(dimensions))
+  var bounds:=root.get_visible_rect()
+  for button in gallery.nav_buttons:
+   check(bounds.encloses(button.get_global_rect()),"navigation visible at "+str(dimensions))
+  check(not gallery.heading.get_global_rect().intersects(gallery.nav_buttons[0].get_global_rect()),"caption clear of navigation at "+str(dimensions))
+ root.size=Vector2i(1440,810);gallery.select(-1)
+ gallery.queue_free();await gallery.tree_exited;await process_frame
+ check(root.content_scale_mode==original_stretch and root.msaa_3d==original_msaa and root.use_taa==original_taa,"gallery restores window rendering when leaving (%s / %s / %s)"%[root.content_scale_mode,root.msaa_3d,root.use_taa])
+ for path in stores:
+  var after:=FileAccess.get_sha256(path) if FileAccess.file_exists(path) else "absent"
+  check(after==stores[path],"player storage unchanged: "+path)
+ FileAccess.open("res://work/issue51/visual.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"failures":failed,"frame_ms":frames,"render":RenderingServer.get_current_rendering_method(),"engine":Engine.get_version_info().string,"window":Vector2i(1440,810),"examples_only":true},"  "))
+ print("GALLERY ",checks," checks / ",failed.size()," failures")
+ quit(0 if failed.is_empty() else 1)

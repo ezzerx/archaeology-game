@@ -1,0 +1,19 @@
+{
+  "original_file": "04 lampe laiton.glb",
+  "received_date": "2026-10-17",
+  "source": "Tripo Studio export supplied by Antoine",
+  "archive_directory": "C:\\Users\\antoi\\Documents\\ArchaeologyGame-Assets\\Tripo\\museum",
+  "sha256": "a828e5f32f6f3ca0563c4f45d3d318b9d34fddbb9411233eca0bbc286a69d04a",
+  "bytes": 11052352,
+  "gltf_version": "2.0",
+  "meshes": 1,
+  "triangles_in_mesh_definitions": 99128,
+  "materials": 1,
+  "images": 3,
+  "external_image_uris": [],
+  "external_buffer_uris": [],
+  "reference": "docs/visual-references/museum/furniture/04-applique-laiton.png",
+  "settings_recommendation": "docs/visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md",
+  "generation_parameters_confirmed": false,
+  "visual_review": "Inspected natively in Godot: source and assembled gallery; report docs/dev/ISSUE51_MUSEUM_FURNITURE.md. Human review pending."
+}

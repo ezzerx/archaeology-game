@@ -1,0 +1,113 @@
+{
+  "source": "01 niche.glb",
+  "id": "wall_niche",
+  "bytes": 11778328,
+  "sha256": "1c1451717613f606bfe800ff22ee2b3309a187b016ec00db6890ba3ca27041e3",
+  "nodes": [
+    {
+      "name": "tripo_node_366e76d8-00cb-4335-b868-481b5c30fd9b",
+      "mesh": 0
+    }
+  ],
+  "materials": [
+    {
+      "name": "tripo_material_366e76d8-00cb-4335-b868-481b5c30fd9b",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      },
+      "normalTexture": {
+        "index": 2
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "01+niche_basecolor.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          5,
+          255
+        ],
+        [
+          0,
+          238
+        ],
+        [
+          0,
+          195
+        ]
+      ]
+    },
+    {
+      "name": "01+niche_rm.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          177,
+          255
+        ],
+        [
+          48,
+          255
+        ],
+        [
+          0,
+          152
+        ]
+      ]
+    },
+    {
+      "name": "01+niche_normal.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          13,
+          241
+        ],
+        [
+          14,
+          241
+        ],
+        [
+          181,
+          255
+        ]
+      ]
+    }
+  ],
+  "primitives": [
+    {
+      "vertices": 98805,
+      "triangles": 170764,
+      "min": [
+        -0.322845458984375,
+        0.0,
+        -0.11353682726621628
+      ],
+      "max": [
+        0.322845458984375,
+        0.980438232421875,
+        0.11353682726621628
+      ]
+    }
+  ],
+  "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+}

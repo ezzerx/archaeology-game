@@ -1,0 +1,436 @@
+{
+  "checks": 300,
+  "dependencies": {
+    "assets/experiments/marine_trial/field.res": [
+      "scripts/p6a34/mesh_patch_data.gd"
+    ],
+    "assets/p6a34/mesh_patch_data.res": [
+      "scripts/p6a34/mesh_patch_data.gd"
+    ],
+    "assets/p6a35/mesh_patch_data.res": [
+      "scripts/p6a34/mesh_patch_data.gd"
+    ],
+    "assets/p6a36/mesh_patch_data.res": [
+      "scripts/p6a34/mesh_patch_data.gd"
+    ],
+    "assets/p6a37/mesh_patch_data.res": [
+      "scripts/p6a34/mesh_patch_data.gd"
+    ],
+    "assets/p6a50/mesh_patch_data.res": [
+      "scripts/p6a34/mesh_patch_data.gd"
+    ],
+    "config/air_blower.tres": [
+      "scripts/tool_definition.gd"
+    ],
+    "config/chisel.tres": [
+      "scripts/tool_definition.gd"
+    ],
+    "config/compact_clay.tres": [
+      "scripts/material_definition.gd"
+    ],
+    "config/debris_physics_profile.tres": [
+      "scripts/debris_physics_profile.gd"
+    ],
+    "config/debris_profile.tres": [
+      "scripts/debris_profile.gd"
+    ],
+    "config/debug_excavator.tres": [
+      "scripts/debug_excavator.gd"
+    ],
+    "config/forceps.tres": [
+      "scripts/tool_definition.gd"
+    ],
+    "config/loose_soil.tres": [
+      "scripts/material_definition.gd"
+    ],
+    "config/material_reactions.tres": [
+      "scripts/reaction_profile.gd"
+    ],
+    "config/p6a49_pocket.tres": [
+      "scripts/excavation/pockets/pocket_recipe.gd"
+    ],
+    "config/precision_pick.tres": [
+      "scripts/tool_definition.gd"
+    ],
+    "config/sandstone.tres": [
+      "scripts/material_definition.gd"
+    ],
+    "config/soft_brush.tres": [
+      "scripts/tool_definition.gd"
+    ],
+    "materials/p6a2/canvas.tres": [
+      "shaders/p6a2_static.gdshader"
+    ],
+    "materials/p6a2/plaster.tres": [
+      "shaders/p6a2_static.gdshader",
+      "assets/p6a2/textures/plaster/p6a2_plaster_albedo_v02.png"
+    ],
+    "materials/p6a2/workbench.tres": [
+      "shaders/p6a2_static.gdshader"
+    ],
+    "scenes/collection.tscn": [
+      "scripts/collection/collection_loop.gd"
+    ],
+    "scenes/experiments/demo_preparation.tscn": [
+      "scenes/specimen_preparation.tscn",
+      "scripts/experiments/preparation_demos/demo_preparation.gd",
+      "scripts/experiments/preparation_demos/demo_block.gd",
+      "scripts/experiments/preparation_demos/finishing_controller.gd"
+    ],
+    "scenes/experiments/exhibition_study.tscn": [
+      "scripts/experiments/exhibition/gallery.gd"
+    ],
+    "scenes/experiments/preparation_demos.tscn": [
+      "scripts/experiments/preparation_demos/demo_suite.gd"
+    ],
+    "scenes/p6a15_soil_lab.tscn": [
+      "scenes/preparation/base/interaction.tscn",
+      "scripts/workshop/soil_foundation_lab.gd"
+    ],
+    "scenes/p6a_material_lab.tscn": [
+      "scenes/preparation/base/interaction.tscn",
+      "scripts/workshop/material_lab.gd"
+    ],
+    "scenes/preflight/pipeline_probe.tscn": [
+      "assets/preflight/pipeline_probe.glb"
+    ],
+    "scenes/preparation/base/buried_pocket.tscn": [
+      "scenes/preparation/base/friable_pocket.tscn",
+      "scripts/excavation/pockets/buried_base/buried_preparation.gd"
+    ],
+    "scenes/preparation/base/centered_light.tscn": [
+      "scenes/preparation/base/modeled_skeleton.tscn",
+      "scripts/workshop/lighting/centered_light.gd"
+    ],
+    "scenes/preparation/base/friable_pocket.tscn": [
+      "scenes/preparation/base/rough_block.tscn",
+      "scripts/excavation/pockets/base/pocket_preparation.gd",
+      "scripts/excavation/pockets/base/pocket_block.gd"
+    ],
+    "scenes/preparation/base/interaction.tscn": [
+      "scripts/preparation/interaction.gd",
+      "scripts/excavation_block.gd",
+      "scripts/tool_controller.gd",
+      "scripts/precision_zoom.gd",
+      "shaders/surface_debug.gdshader"
+    ],
+    "scenes/preparation/base/mesh_fossil.tscn": [
+      "scenes/preparation/base/tactile_preparation.tscn",
+      "scripts/specimens/mesh_base/production_pilot.gd",
+      "scripts/specimens/mesh_base/production_block.gd"
+    ],
+    "scenes/preparation/base/mesh_overlay.tscn": [
+      "scenes/preparation/base/readability.tscn",
+      "scripts/specimens/mesh_overlay_base/fossil_mesh_pilot.gd"
+    ],
+    "scenes/preparation/base/modeled_skeleton.tscn": [
+      "scenes/preparation/base/sculpted_fossil.tscn",
+      "scripts/specimens/skeleton/modeled_skeleton.gd",
+      "scripts/specimens/skeleton/production_block.gd"
+    ],
+    "scenes/preparation/base/natural_block.tscn": [
+      "scenes/preparation/base/centered_light.tscn",
+      "scripts/excavation/block/natural/natural_preparation.gd",
+      "scripts/excavation/block/natural/natural_block.gd"
+    ],
+    "scenes/preparation/base/natural_matrix.tscn": [
+      "scenes/preparation/base/interaction.tscn",
+      "scripts/workshop/natural_matrix_lab.gd"
+    ],
+    "scenes/preparation/base/readability.tscn": [
+      "scenes/preparation/base/tool_feedback.tscn",
+      "scripts/preparation/readability/mastery_readability.gd"
+    ],
+    "scenes/preparation/base/rough_block.tscn": [
+      "scenes/preparation/base/natural_block.tscn",
+      "scripts/excavation/block/rough/rough_preparation.gd",
+      "scripts/excavation/block/rough/rough_block.gd"
+    ],
+    "scenes/preparation/base/sculpted_fossil.tscn": [
+      "scenes/preparation/base/shaded_fossil.tscn",
+      "scripts/specimens/sculpted_base/hero_skull.gd",
+      "scripts/specimens/sculpted_base/production_block.gd"
+    ],
+    "scenes/preparation/base/shaded_fossil.tscn": [
+      "scenes/preparation/base/mesh_fossil.tscn",
+      "scripts/specimens/shaded_base/aesthetic_pilot.gd",
+      "scripts/specimens/shaded_base/production_block.gd"
+    ],
+    "scenes/preparation/base/tactile_preparation.tscn": [
+      "scenes/preparation/base/mesh_overlay.tscn",
+      "scripts/preparation/tactile/tactile_preparation.gd"
+    ],
+    "scenes/preparation/base/tool_feedback.tscn": [
+      "scenes/preparation/base/workshop.tscn",
+      "scripts/tools/feedback/tool_feel.gd"
+    ],
+    "scenes/preparation/base/workshop.tscn": [
+      "scenes/preparation/base/natural_matrix.tscn",
+      "scripts/workshop/hero_patch.gd"
+    ],
+    "scenes/preparation/pocket_preparation.tscn": [
+      "scenes/preparation/base/buried_pocket.tscn",
+      "scripts/excavation/pockets/final_preparation.gd",
+      "scripts/excavation/pockets/final_block.gd"
+    ],
+    "scenes/specimen_preparation.tscn": [
+      "scenes/preparation/pocket_preparation.tscn",
+      "scripts/collection/specimen_preparation.gd",
+      "scripts/collection/specimen_block.gd"
+    ],
+    "scripts/block_verticality_profile.gd": [],
+    "scripts/bone_surface_film.gd": [],
+    "scripts/collection/catalog.gd": [],
+    "scripts/collection/collection_hub.gd": [],
+    "scripts/collection/collection_loop.gd": [],
+    "scripts/collection/collection_store.gd": [],
+    "scripts/collection/crate_art.gd": [],
+    "scripts/collection/specimen_block.gd": [],
+    "scripts/collection/specimen_field.gd": [],
+    "scripts/collection/specimen_inspection.gd": [],
+    "scripts/collection/specimen_mesh.gd": [],
+    "scripts/collection/specimen_preparation.gd": [],
+    "scripts/collection/specimen_profile.gd": [],
+    "scripts/collection/specimen_ui.gd": [],
+    "scripts/debris_physics_profile.gd": [],
+    "scripts/debris_profile.gd": [],
+    "scripts/debris_visual_mesh.gd": [],
+    "scripts/debug_excavator.gd": [],
+    "scripts/excavation/block/natural/footprint.gd": [],
+    "scripts/excavation/block/natural/matrix_edges.gd": [],
+    "scripts/excavation/block/natural/natural_block.gd": [],
+    "scripts/excavation/block/natural/natural_debris.gd": [],
+    "scripts/excavation/block/natural/natural_preparation.gd": [],
+    "scripts/excavation/block/natural/natural_profile.gd": [],
+    "scripts/excavation/block/rough/rough_block.gd": [],
+    "scripts/excavation/block/rough/rough_preparation.gd": [],
+    "scripts/excavation/block/rough/rough_profile.gd": [],
+    "scripts/excavation/block/rough/rough_rim.gd": [],
+    "scripts/excavation/pockets/base/friable_pocket.gd": [],
+    "scripts/excavation/pockets/base/pocket_block.gd": [],
+    "scripts/excavation/pockets/base/pocket_feedback.gd": [],
+    "scripts/excavation/pockets/base/pocket_layout.gd": [],
+    "scripts/excavation/pockets/base/pocket_preparation.gd": [],
+    "scripts/excavation/pockets/base/pocket_profile.gd": [],
+    "scripts/excavation/pockets/base/pocket_surface.gd": [],
+    "scripts/excavation/pockets/buried_base/buried_layout.gd": [],
+    "scripts/excavation/pockets/buried_base/buried_pocket.gd": [],
+    "scripts/excavation/pockets/buried_base/buried_preparation.gd": [],
+    "scripts/excavation/pockets/buried_base/buried_profile.gd": [],
+    "scripts/excavation/pockets/final_block.gd": [],
+    "scripts/excavation/pockets/final_feedback.gd": [],
+    "scripts/excavation/pockets/final_pocket.gd": [],
+    "scripts/excavation/pockets/final_preparation.gd": [],
+    "scripts/excavation/pockets/final_profile.gd": [],
+    "scripts/excavation/pockets/final_surface.gd": [],
+    "scripts/excavation/pockets/pocket_layout.gd": [],
+    "scripts/excavation/pockets/pocket_recipe.gd": [],
+    "scripts/excavation_block.gd": [],
+    "scripts/experiments/exhibition/ammonite_stand.gd": [],
+    "scripts/experiments/exhibition/b17_stand.gd": [],
+    "scripts/experiments/exhibition/gallery.gd": [],
+    "scripts/experiments/exhibition/gallery_cartel.gd": [],
+    "scripts/experiments/exhibition/gallery_environment_assets.gd": [],
+    "scripts/experiments/exhibition/gallery_fixture.gd": [],
+    "scripts/experiments/exhibition/gallery_furniture.gd": [],
+    "scripts/experiments/exhibition/gallery_garden.gd": [],
+    "scripts/experiments/exhibition/gallery_lighting.gd": [],
+    "scripts/experiments/exhibition/gallery_room.gd": [],
+    "scripts/experiments/preparation_demos/abrasive_tool.gd": [],
+    "scripts/experiments/preparation_demos/compact_profile.gd": [],
+    "scripts/experiments/preparation_demos/concretion_profile.gd": [],
+    "scripts/experiments/preparation_demos/demo_block.gd": [],
+    "scripts/experiments/preparation_demos/demo_confirmation.gd": [],
+    "scripts/experiments/preparation_demos/demo_feedback.gd": [],
+    "scripts/experiments/preparation_demos/demo_preparation.gd": [],
+    "scripts/experiments/preparation_demos/demo_profile.gd": [],
+    "scripts/experiments/preparation_demos/demo_suite.gd": [],
+    "scripts/experiments/preparation_demos/demo_surface.gd": [],
+    "scripts/experiments/preparation_demos/demo_ui.gd": [],
+    "scripts/experiments/preparation_demos/finishing_controller.gd": [],
+    "scripts/experiments/preparation_demos/marine_feedback.gd": [],
+    "scripts/experiments/preparation_demos/marine_field.gd": [],
+    "scripts/experiments/preparation_demos/marine_mesh.gd": [],
+    "scripts/experiments/preparation_demos/marine_profile.gd": [],
+    "scripts/forceps_view.gd": [],
+    "scripts/fossil_field.gd": [],
+    "scripts/fossil_state.gd": [],
+    "scripts/fragment_state.gd": [],
+    "scripts/fragment_tray_3d.gd": [],
+    "scripts/hidden_bone_coverage.gd": [],
+    "scripts/impact_clock.gd": [],
+    "scripts/loose_debris.gd": [],
+    "scripts/loose_debris_view.gd": [],
+    "scripts/material_audio.gd": [],
+    "scripts/material_definition.gd": [],
+    "scripts/material_feedback.gd": [],
+    "scripts/material_fracture.gd": [],
+    "scripts/micro_remnant.gd": [],
+    "scripts/p6a34/mesh_patch_data.gd": [],
+    "scripts/precision_zoom.gd": [],
+    "scripts/preparation/interaction.gd": [],
+    "scripts/preparation/readability/cleaning_feedback.gd": [],
+    "scripts/preparation/readability/mastery_readability.gd": [],
+    "scripts/preparation/readability/mastery_ui.gd": [],
+    "scripts/preparation/tactile/cleaning_feedback.gd": [],
+    "scripts/preparation/tactile/local_bone_damage.gd": [],
+    "scripts/preparation/tactile/preparation_distinction.gd": [],
+    "scripts/preparation/tactile/preparation_ui.gd": [],
+    "scripts/preparation/tactile/tactile_preparation.gd": [],
+    "scripts/preparation_rules.gd": [],
+    "scripts/preparation_session.gd": [],
+    "scripts/preparation_ui.gd": [],
+    "scripts/reaction_profile.gd": [],
+    "scripts/recoverable_fragment_field.gd": [],
+    "scripts/relief_surface.gd": [],
+    "scripts/specimens/mesh_base/asset_inspection.gd": [],
+    "scripts/specimens/mesh_base/mesh_fossil_field.gd": [],
+    "scripts/specimens/mesh_base/production_block.gd": [],
+    "scripts/specimens/mesh_base/production_mesh_view.gd": [],
+    "scripts/specimens/mesh_base/production_pilot.gd": [],
+    "scripts/specimens/mesh_overlay_base/fossil_mesh_pilot.gd": [],
+    "scripts/specimens/mesh_overlay_base/fossil_mesh_view.gd": [],
+    "scripts/specimens/sculpted_base/asset_inspection.gd": [],
+    "scripts/specimens/sculpted_base/hero_skull.gd": [],
+    "scripts/specimens/sculpted_base/mesh_fossil_field.gd": [],
+    "scripts/specimens/sculpted_base/production_block.gd": [],
+    "scripts/specimens/sculpted_base/production_mesh_view.gd": [],
+    "scripts/specimens/shaded_base/aesthetic_pilot.gd": [],
+    "scripts/specimens/shaded_base/asset_inspection.gd": [],
+    "scripts/specimens/shaded_base/mesh_fossil_field.gd": [],
+    "scripts/specimens/shaded_base/production_block.gd": [],
+    "scripts/specimens/shaded_base/production_mesh_view.gd": [],
+    "scripts/specimens/skeleton/asset_inspection.gd": [],
+    "scripts/specimens/skeleton/mesh_fossil_field.gd": [],
+    "scripts/specimens/skeleton/modeled_skeleton.gd": [],
+    "scripts/specimens/skeleton/production_block.gd": [],
+    "scripts/specimens/skeleton/production_mesh_view.gd": [],
+    "scripts/stratigraphy.gd": [],
+    "scripts/surface_mapping.gd": [],
+    "scripts/surface_residue.gd": [],
+    "scripts/terrain_debris.gd": [],
+    "scripts/tool_controller.gd": [],
+    "scripts/tool_definition.gd": [],
+    "scripts/tool_proxy_pose.gd": [],
+    "scripts/tools/feedback/authored_tool_pose.gd": [],
+    "scripts/tools/feedback/foley_audio.gd": [],
+    "scripts/tools/feedback/sensory_feedback.gd": [],
+    "scripts/tools/feedback/tool_feel.gd": [],
+    "scripts/working_surface.gd": [],
+    "scripts/workshop/hero_patch.gd": [],
+    "scripts/workshop/lighting/centered_light.gd": [],
+    "scripts/workshop/material_lab.gd": [],
+    "scripts/workshop/material_presets.gd": [],
+    "scripts/workshop/material_variants.gd": [],
+    "scripts/workshop/natural_matrix_fixtures.gd": [],
+    "scripts/workshop/natural_matrix_lab.gd": [],
+    "scripts/workshop/natural_matrix_profile.gd": [],
+    "scripts/workshop/playtest_display.gd": [],
+    "scripts/workshop/playtest_preparation_ui.gd": [],
+    "scripts/workshop/playtest_soil_profile.gd": [],
+    "scripts/workshop/soil_foundation_lab.gd": [],
+    "scripts/workshop/soil_foundation_profile.gd": [],
+    "shaders/experiments/abrasive_tool.gdshader": [],
+    "shaders/experiments/gallery_masonry.gdshader": [],
+    "shaders/experiments/gallery_matrix.gdshader": [],
+    "shaders/experiments/gallery_surface.gdshader": [],
+    "shaders/experiments/gallery_window.gdshader": [],
+    "shaders/p6a2_static.gdshader": [],
+    "shaders/p6a32/fossil_mesh.gdshader": [],
+    "shaders/p6a34_production_bone.gdshader": [],
+    "shaders/p6a35_aesthetic_bone.gdshader": [],
+    "shaders/p6a36_hero_bone.gdshader": [],
+    "shaders/surface_debug.gdshader": [],
+    "tests/export_p6a15_evidence.gd": [],
+    "tests/export_p6a16_evidence.gd": [],
+    "tests/export_p6a2_hero_evidence.gd": [],
+    "tests/export_p6a_evidence.gd": [],
+    "tests/fixtures/p4_fossil_field.gd": [],
+    "tests/fixtures/p4v11_surface.gdshader": [],
+    "tests/fixtures/p4v1_profile.gd": [],
+    "tests/natural_matrix_mesh_oracle.gd": [],
+    "tests/p5_fixture.gd": [],
+    "tests/run_graphical_benchmark.gd": [],
+    "tests/run_issue33_demos.gd": [],
+    "tests/run_issue33_materials.gd": [],
+    "tests/run_issue33_runtime.gd": [],
+    "tests/run_issue35_relief.gd": [],
+    "tests/run_issue37_compact.gd": [],
+    "tests/run_issue37_compact_native.gd": [],
+    "tests/run_issue37_runtime.gd": [],
+    "tests/run_issue39_concretions_native.gd": [],
+    "tests/run_issue41_marine_materials.gd": [],
+    "tests/run_issue41_marine_native.gd": [],
+    "tests/run_issue43_fluidity_native.gd": [],
+    "tests/run_issue43_fluidity_replay.gd": [],
+    "tests/run_issue51_gallery_native.gd": [],
+    "tests/run_p1_tests.gd": [],
+    "tests/run_p2_benchmark.gd": [],
+    "tests/run_p2_tests.gd": [],
+    "tests/run_p3_benchmark.gd": [],
+    "tests/run_p3_runtime_probe.gd": [],
+    "tests/run_p3_tests.gd": [],
+    "tests/run_p3_zoom_tests.gd": [],
+    "tests/run_p4_audio_tests.gd": [],
+    "tests/run_p4_benchmark.gd": [],
+    "tests/run_p4_brush_benchmark.gd": [],
+    "tests/run_p4_closure_benchmark.gd": [],
+    "tests/run_p4_closure_tests.gd": [],
+    "tests/run_p4_closure_visual.gd": [],
+    "tests/run_p4_component_contact_tests.gd": [],
+    "tests/run_p4_condition_probe.gd": [],
+    "tests/run_p4_debris_budget_tests.gd": [],
+    "tests/run_p4_dirt_tests.gd": [],
+    "tests/run_p4_feedback_tests.gd": [],
+    "tests/run_p4_feedback_visual.gd": [],
+    "tests/run_p4_final_feel_visual.gd": [],
+    "tests/run_p4_material_visual.gd": [],
+    "tests/run_p4_micro_tests.gd": [],
+    "tests/run_p4_micro_visual.gd": [],
+    "tests/run_p4_pan_tests.gd": [],
+    "tests/run_p4_pick_tests.gd": [],
+    "tests/run_p4_proxy_cost.gd": [],
+    "tests/run_p4_proxy_tests.gd": [],
+    "tests/run_p4_tests.gd": [],
+    "tests/run_p4v2_benchmark.gd": [],
+    "tests/run_p4v2_look_visual.gd": [],
+    "tests/run_p4v2_soil_probe.gd": [],
+    "tests/run_p4v2_tests.gd": [],
+    "tests/run_p4v_benchmark.gd": [],
+    "tests/run_p4v_effort_tests.gd": [],
+    "tests/run_p4v_tests.gd": [],
+    "tests/run_p4v_visual_cleanup_tests.gd": [],
+    "tests/run_p4v_visual_cleanup_visual.gd": [],
+    "tests/run_p5_benchmark.gd": [],
+    "tests/run_p5_correction_tests.gd": [],
+    "tests/run_p5_fragment_experiment.gd": [],
+    "tests/run_p5_tests.gd": [],
+    "tests/run_p5_visual.gd": [],
+    "tests/run_p6a15_soil.gd": [],
+    "tests/run_p6a16_geometry.gd": [],
+    "tests/run_p6a2_hero.gd": [],
+    "tests/run_p6a2_playtest.gd": [],
+    "tests/run_p6a2_preflight.gd": [],
+    "tests/run_p6a31_readability.gd": [],
+    "tests/run_p6a32_binding.gd": [],
+    "tests/run_p6a33_tactile.gd": [],
+    "tests/run_p6a34_production.gd": [],
+    "tests/run_p6a35_aesthetic.gd": [],
+    "tests/run_p6a36_hero_skull.gd": [],
+    "tests/run_p6a37_skeleton.gd": [],
+    "tests/run_p6a39_centered_light.gd": [],
+    "tests/run_p6a3_sensory.gd": [],
+    "tests/run_p6a40_natural_block.gd": [],
+    "tests/run_p6a41_rough_edges.gd": [],
+    "tests/run_p6a47_friable_pocket.gd": [],
+    "tests/run_p6a48_buried_pocket.gd": [],
+    "tests/run_p6a49_pocket_finish.gd": [],
+    "tests/run_p6a50_collection.gd": [],
+    "tests/run_p6a50_reload.gd": [],
+    "tests/run_p6a50_store.gd": [],
+    "tests/run_p6a_lab.gd": [],
+    "tests/run_runtime_resources.gd": [],
+    "tests/run_tests.gd": []
+  },
+  "failures": []
+}

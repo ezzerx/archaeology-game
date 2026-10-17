@@ -1,0 +1,98 @@
+[
+  {
+    "file": "01-presentoir-b17.png",
+    "width": 1672,
+    "height": 941,
+    "format": "Format32bppArgb",
+    "outside_samples": [
+      {
+        "x": 0,
+        "y": 0,
+        "alpha": 0
+      },
+      {
+        "x": 100,
+        "y": 200,
+        "alpha": 0
+      },
+      {
+        "x": 400,
+        "y": 50,
+        "alpha": 0
+      }
+    ],
+    "sha256": "6d11f28dc88fb3b8bb98a26db4f3101e7e3f1212577563c021e712a1d46e0b0e"
+  },
+  {
+    "file": "02-presentoir-ammonite.png",
+    "width": 1536,
+    "height": 1024,
+    "format": "Format32bppArgb",
+    "outside_samples": [
+      {
+        "x": 0,
+        "y": 0,
+        "alpha": 0
+      },
+      {
+        "x": 100,
+        "y": 200,
+        "alpha": 0
+      },
+      {
+        "x": 400,
+        "y": 50,
+        "alpha": 0
+      }
+    ],
+    "sha256": "6ef43495f721ace25e5bbdc0b0a987aed214d19add906eaae6da877f692d22c0"
+  },
+  {
+    "file": "03-vitrine-sans-verre.png",
+    "width": 1024,
+    "height": 1536,
+    "format": "Format32bppArgb",
+    "outside_samples": [
+      {
+        "x": 0,
+        "y": 0,
+        "alpha": 0
+      },
+      {
+        "x": 100,
+        "y": 200,
+        "alpha": 0
+      },
+      {
+        "x": 400,
+        "y": 50,
+        "alpha": 0
+      }
+    ],
+    "sha256": "8aed51cdddeecca4a9e09b10cafd4052d932ba52a4358baf3ece1af507204209"
+  },
+  {
+    "file": "04-applique-laiton.png",
+    "width": 1374,
+    "height": 1145,
+    "format": "Format32bppArgb",
+    "outside_samples": [
+      {
+        "x": 0,
+        "y": 0,
+        "alpha": 0
+      },
+      {
+        "x": 100,
+        "y": 200,
+        "alpha": 0
+      },
+      {
+        "x": 400,
+        "y": 50,
+        "alpha": 0
+      }
+    ],
+    "sha256": "80645dfa9777a415cf2237028dbc7ab550e39bee6695d9b38004212dc9073055"
+  }
+]

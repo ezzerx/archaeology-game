@@ -1,0 +1,113 @@
+{
+  "source": "03 Fougère.glb",
+  "id": "potted_fern",
+  "bytes": 14311076,
+  "sha256": "c1c11eebd07439892f88c33e78a2508a1ce31b2e09bd48c7bb88932d2b6ca733",
+  "nodes": [
+    {
+      "name": "tripo_node_84ed5585-b50b-4e7b-aa9a-0f01c49bd404",
+      "mesh": 0
+    }
+  ],
+  "materials": [
+    {
+      "name": "tripo_material_84ed5585-b50b-4e7b-aa9a-0f01c49bd404",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      },
+      "normalTexture": {
+        "index": 2
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "03+Fougère_basecolor.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          20,
+          255
+        ],
+        [
+          4,
+          224
+        ],
+        [
+          0,
+          187
+        ]
+      ]
+    },
+    {
+      "name": "03+Fougère_rm.jpg",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          186,
+          255
+        ],
+        [
+          0,
+          255
+        ],
+        [
+          0,
+          147
+        ]
+      ]
+    },
+    {
+      "name": "03+Fougère_normal.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "extrema": [
+        [
+          11,
+          238
+        ],
+        [
+          7,
+          237
+        ],
+        [
+          159,
+          255
+        ]
+      ]
+    }
+  ],
+  "primitives": [
+    {
+      "vertices": 119252,
+      "triangles": 197026,
+      "min": [
+        -0.489288330078125,
+        0.0,
+        -0.3333434760570526
+      ],
+      "max": [
+        0.489288330078125,
+        0.903167724609375,
+        0.3333434760570526
+      ]
+    }
+  ],
+  "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+}

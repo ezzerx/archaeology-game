@@ -1,0 +1,567 @@
+[
+  {
+    "source": "01 niche.glb",
+    "id": "wall_niche",
+    "bytes": 11778328,
+    "sha256": "1c1451717613f606bfe800ff22ee2b3309a187b016ec00db6890ba3ca27041e3",
+    "nodes": [
+      {
+        "name": "tripo_node_366e76d8-00cb-4335-b868-481b5c30fd9b",
+        "mesh": 0
+      }
+    ],
+    "materials": [
+      {
+        "name": "tripo_material_366e76d8-00cb-4335-b868-481b5c30fd9b",
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 0
+          },
+          "metallicRoughnessTexture": {
+            "index": 1
+          }
+        },
+        "normalTexture": {
+          "index": 2
+        }
+      }
+    ],
+    "images": [
+      {
+        "name": "01+niche_basecolor.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            5,
+            255
+          ],
+          [
+            0,
+            238
+          ],
+          [
+            0,
+            195
+          ]
+        ]
+      },
+      {
+        "name": "01+niche_rm.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            177,
+            255
+          ],
+          [
+            48,
+            255
+          ],
+          [
+            0,
+            152
+          ]
+        ]
+      },
+      {
+        "name": "01+niche_normal.png",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            13,
+            241
+          ],
+          [
+            14,
+            241
+          ],
+          [
+            181,
+            255
+          ]
+        ]
+      }
+    ],
+    "primitives": [
+      {
+        "vertices": 98805,
+        "triangles": 170764,
+        "min": [
+          -0.322845458984375,
+          0.0,
+          -0.11353682726621628
+        ],
+        "max": [
+          0.322845458984375,
+          0.980438232421875,
+          0.11353682726621628
+        ]
+      }
+    ],
+    "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+  },
+  {
+    "source": "02 fenetre.glb",
+    "id": "arched_window",
+    "bytes": 11953124,
+    "sha256": "a8dbd84d91074e40e71531efde3215b0eb597a3bc13308db25e74a098e331654",
+    "nodes": [
+      {
+        "name": "tripo_node_ff456396-8933-47d1-838c-2538a6ab5289",
+        "mesh": 0
+      }
+    ],
+    "materials": [
+      {
+        "name": "tripo_material_ff456396-8933-47d1-838c-2538a6ab5289",
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 0
+          },
+          "metallicRoughnessTexture": {
+            "index": 1
+          }
+        },
+        "normalTexture": {
+          "index": 2
+        }
+      }
+    ],
+    "images": [
+      {
+        "name": "02+fenetre_basecolor.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            11,
+            255
+          ],
+          [
+            0,
+            235
+          ],
+          [
+            0,
+            225
+          ]
+        ]
+      },
+      {
+        "name": "02+fenetre_rm.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            179,
+            255
+          ],
+          [
+            60,
+            255
+          ],
+          [
+            0,
+            253
+          ]
+        ]
+      },
+      {
+        "name": "02+fenetre_normal.png",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            6,
+            247
+          ],
+          [
+            7,
+            247
+          ],
+          [
+            168,
+            255
+          ]
+        ]
+      }
+    ],
+    "primitives": [
+      {
+        "vertices": 80087,
+        "triangles": 124188,
+        "min": [
+          -0.3332977294921875,
+          0.0,
+          -0.10383987426757812
+        ],
+        "max": [
+          0.3332977294921875,
+          0.979034423828125,
+          0.10383987426757812
+        ]
+      }
+    ],
+    "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+  },
+  {
+    "source": "03 Fougère.glb",
+    "id": "potted_fern",
+    "bytes": 14311076,
+    "sha256": "c1c11eebd07439892f88c33e78a2508a1ce31b2e09bd48c7bb88932d2b6ca733",
+    "nodes": [
+      {
+        "name": "tripo_node_84ed5585-b50b-4e7b-aa9a-0f01c49bd404",
+        "mesh": 0
+      }
+    ],
+    "materials": [
+      {
+        "name": "tripo_material_84ed5585-b50b-4e7b-aa9a-0f01c49bd404",
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 0
+          },
+          "metallicRoughnessTexture": {
+            "index": 1
+          }
+        },
+        "normalTexture": {
+          "index": 2
+        }
+      }
+    ],
+    "images": [
+      {
+        "name": "03+Fougère_basecolor.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            20,
+            255
+          ],
+          [
+            4,
+            224
+          ],
+          [
+            0,
+            187
+          ]
+        ]
+      },
+      {
+        "name": "03+Fougère_rm.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            186,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            147
+          ]
+        ]
+      },
+      {
+        "name": "03+Fougère_normal.png",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            11,
+            238
+          ],
+          [
+            7,
+            237
+          ],
+          [
+            159,
+            255
+          ]
+        ]
+      }
+    ],
+    "primitives": [
+      {
+        "vertices": 119252,
+        "triangles": 197026,
+        "min": [
+          -0.489288330078125,
+          0.0,
+          -0.3333434760570526
+        ],
+        "max": [
+          0.489288330078125,
+          0.903167724609375,
+          0.3333434760570526
+        ]
+      }
+    ],
+    "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+  },
+  {
+    "source": "04 livres.glb",
+    "id": "field_books",
+    "bytes": 13224456,
+    "sha256": "df9f8783146d1e9933064c700d7a2ab1f8ce2174d18ba4c9c4ca0a2892e4be4a",
+    "nodes": [
+      {
+        "name": "tripo_node_c447aa8f-015e-4bb3-91fd-6d3b5d4b7511",
+        "mesh": 0
+      }
+    ],
+    "materials": [
+      {
+        "name": "tripo_material_c447aa8f-015e-4bb3-91fd-6d3b5d4b7511",
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 0
+          },
+          "metallicRoughnessTexture": {
+            "index": 1
+          }
+        },
+        "normalTexture": {
+          "index": 2
+        }
+      }
+    ],
+    "images": [
+      {
+        "name": "04+livres_basecolor.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            225
+          ],
+          [
+            0,
+            205
+          ]
+        ]
+      },
+      {
+        "name": "04+livres_rm.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            201,
+            255
+          ],
+          [
+            15,
+            255
+          ],
+          [
+            0,
+            119
+          ]
+        ]
+      },
+      {
+        "name": "04+livres_normal.png",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            8,
+            246
+          ],
+          [
+            8,
+            246
+          ],
+          [
+            169,
+            255
+          ]
+        ]
+      }
+    ],
+    "primitives": [
+      {
+        "vertices": 69262,
+        "triangles": 83360,
+        "min": [
+          -0.4902191460132599,
+          0.0,
+          -0.32818603515625
+        ],
+        "max": [
+          0.4902191460132599,
+          0.5086058974266052,
+          0.32818603515625
+        ]
+      }
+    ],
+    "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+  },
+  {
+    "source": "05 mineral.glb",
+    "id": "mineral_sample",
+    "bytes": 17909088,
+    "sha256": "3af1ae04ea6c100fdc3788340e440f70fa381560cf86aeb8e9ab7b7480bf5468",
+    "nodes": [
+      {
+        "name": "tripo_node_debd2b6e-9873-4a09-86ed-8d6429981d18",
+        "mesh": 0
+      }
+    ],
+    "materials": [
+      {
+        "name": "tripo_material_debd2b6e-9873-4a09-86ed-8d6429981d18",
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 0
+          },
+          "metallicRoughnessTexture": {
+            "index": 1
+          }
+        },
+        "normalTexture": {
+          "index": 2
+        }
+      }
+    ],
+    "images": [
+      {
+        "name": "05+mineral_basecolor.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            236
+          ]
+        ]
+      },
+      {
+        "name": "05+mineral_rm.jpg",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            192,
+            255
+          ],
+          [
+            0,
+            255
+          ],
+          [
+            0,
+            153
+          ]
+        ]
+      },
+      {
+        "name": "05+mineral_normal.png",
+        "size": [
+          4096,
+          4096
+        ],
+        "mode": "RGB",
+        "extrema": [
+          [
+            16,
+            239
+          ],
+          [
+            13,
+            240
+          ],
+          [
+            181,
+            255
+          ]
+        ]
+      }
+    ],
+    "primitives": [
+      {
+        "vertices": 50788,
+        "triangles": 94336,
+        "min": [
+          -0.48931884765625,
+          0.0,
+          -0.489593505859375
+        ],
+        "max": [
+          0.48931884765625,
+          0.724212646484375,
+          0.489593505859375
+        ]
+      }
+    ],
+    "note": "Original user-supplied Studio export; generation settings not attested. Runtime GLB identical; corrections are scene-side."
+  }
+]

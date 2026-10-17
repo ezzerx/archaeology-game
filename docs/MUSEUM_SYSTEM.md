@@ -45,15 +45,24 @@ Règles de design :
 
 Le musée peut commencer partiellement rempli par des acquisitions historiques afin de donner immédiatement le sentiment d'un lieu existant avant le joueur et de créer des collections déjà entamées. Le degré exact de remplissage sera défini lors du macro game design.
 
-## Navigation confirmée
+## Vision de travail acceptée — 17 octobre 2026
+Antoine valide provisoirement la proposition, pour des essais suivis d'ajustements.
 
-Une galerie scrollable horizontalement, sans personnage à déplacer. Une grande carte / un panneau central montre l’exposition sélectionnée ; les expositions voisines restent partiellement visibles. Des flèches et / ou une scrollbar permettent de parcourir la collection.
+- Une petite galerie de musée en 3D, sans avatar, parcourue par des vues composées et un déplacement horizontal.
+- B–17 et M–08 présentés dans leur matrice, sur des supports inclinés adaptés ; bois patiné, fonds sombres, cartels ivoire et lumière chaude lisible.
+- Inspection rapprochée et variation d'angle limitée, compatible avec les assets de préparation ; pas d'inspection à 360° implicite.
+- À terme, conserver réellement le travail du joueur : matière restante, nettoyage et dégâts, avec distinction discrète pour la finition intégrale.
+- Emplacements conçus pour les pièces ; éventuel choix entre supports compatibles, sans système de placement libre de mobilier.
+- Parcours visé : arrivage avec indices larges → préparation → fin choisie → installation → admiration → nouvel arrivage.
+- Première expérience fondée sur les deux spécimens et les trois familles existantes ; extraction et squelette monté restent des pistes ultérieures.
 
-Chaque panneau présente le squelette dans son état réel, l’identité connue du spécimen, les pièces acquises et les **Missing Fossil Parts** avec compteurs.
+L'accord porte sur une direction à éprouver, pas sur une qualité artistique finale.
 
-Catégories possibles, encore non engagées : **Dinosaur Hall, Marine Fossils, Plants & Insects, Ice Age Mammals, Ancient Cultures, Archives**. Ancient Cultures représenterait une extension de contenu ; elle n’étend pas le prototype initial aux artefacts.
+Catégories possibles à long terme : Dinosaur Hall, Marine Fossils, Plants & Insects, Ice Age Mammals, Ancient Cultures, Archives. Cette liste n’engage pas de nouveaux contenus pour le premier essai.
 
-## Pièces et assemblage
+## Pistes d’assemblage ultérieures
+
+Les fragments et armatures ci-dessous sont des possibilités de long terme. La première exposition retient les spécimens dans leur matrice, sans extraction ni montage.
 
 Chaque squelette est constitué de parties / collectibles réels définis pour le spécimen : **Skull, Teeth / Frill, Ribs, Forelimbs, Hindlimbs / Leg Bones, Vertebrae, Tail**, etc. Les catégories et quantités dépendent du contenu créé ; elles ne forment pas une anatomie universelle.
 

@@ -290,3 +290,14 @@ Privilégier une lumière fixe, chaude et bien centrée sur la zone de travail.
 L’essai de déplacement de lampe n’a pas apporté assez d’intérêt de gameplay et
 son glissement autour de la table n’est pas une direction visuelle retenue.
 Conserver relief lisible et ombres des seuls os réellement exposés.
+
+## Continuité visuelle atelier / musée — 2026-10-17
+
+La seconde référence de galerie stylisée est retenue pour l'architecture,
+la composition et l'ambiance : voir [l'étude du musée](design/MUSEUM_ART_DIRECTION_STUDY.md).
+Le rendu validé de la préparation reste la référence pour l'ivoire, les matières
+de matrice, le grain, les reliefs et le niveau de détail. Les vrais spécimens
+guident l'harmonisation des meubles, de la pierre et des métaux du musée.
+Une lumière d'exposition différente doit conserver leur identité matérielle.
+Comparer atelier et galerie avec les mêmes modèles à une taille d'écran comparable ;
+la simplification des fossiles du concept ne remplace pas les assets validés.

@@ -1,0 +1,19 @@
+{
+  "original_file": "03 vitrine.glb",
+  "received_date": "2026-10-17",
+  "source": "Tripo Studio export supplied by Antoine",
+  "archive_directory": "C:\\Users\\antoi\\Documents\\ArchaeologyGame-Assets\\Tripo\\museum",
+  "sha256": "9e50c4d7974806c41b7462164f330590d4028f9090005cdcf1c5e9ad0077dc21",
+  "bytes": 12505124,
+  "gltf_version": "2.0",
+  "meshes": 1,
+  "triangles_in_mesh_definitions": 163290,
+  "materials": 1,
+  "images": 3,
+  "external_image_uris": [],
+  "external_buffer_uris": [],
+  "reference": "docs/visual-references/museum/furniture/03-vitrine-sans-verre.png",
+  "settings_recommendation": "docs/visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md",
+  "generation_parameters_confirmed": false,
+  "visual_review": "Inspected natively in Godot: source and assembled gallery; report docs/dev/ISSUE51_MUSEUM_FURNITURE.md. Human review pending."
+}

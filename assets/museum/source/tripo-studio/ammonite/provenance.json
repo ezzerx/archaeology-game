@@ -1,0 +1,19 @@
+{
+  "original_file": "Presentoir 02.glb",
+  "received_date": "2026-10-17",
+  "source": "Tripo Studio export supplied by Antoine",
+  "archive_directory": "C:\\Users\\antoi\\Documents\\ArchaeologyGame-Assets\\Tripo\\museum",
+  "sha256": "4abb7d2aa3a674fe80e321a81b7dece5f286e1446b2c4a2ec415b713e64e0df7",
+  "bytes": 11360540,
+  "gltf_version": "2.0",
+  "meshes": 1,
+  "triangles_in_mesh_definitions": 84089,
+  "materials": 1,
+  "images": 3,
+  "external_image_uris": [],
+  "external_buffer_uris": [],
+  "reference": "docs/visual-references/museum/furniture/02-presentoir-ammonite.png",
+  "settings_recommendation": "docs/visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md",
+  "generation_parameters_confirmed": false,
+  "visual_review": "Inspected natively in Godot: source and assembled gallery; report docs/dev/ISSUE51_MUSEUM_FURNITURE.md. Human review pending."
+}
