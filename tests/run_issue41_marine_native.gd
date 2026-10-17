@@ -77,9 +77,21 @@ func run() -> void:
   if route.size()==7:await shot("05-flow-over-ribs")
  await quiet();await shot("06-islands-and-relief")
  print("STAGE islands captured")
- check(s.fossil.exposure_percent()>65,"one entry and blower route reveal most of the shell")
+ check(s.fossil.exposure_percent()>25 and s.fossil.exposure_percent()<60,"fast blower route reveals the shell but leaves substantial hard preparation")
  check(s._heights[island]>=s.grain_floors[island] and s._heights[island]>s.structural_ceilings[island]+.01,"solid island survives surrounding airflow")
  check(main.controller.total_impacts==impacts,"blower progression needs no grid of Chisel impacts")
+ var after_air:float=s.fossil.exposure_percent()
+ var air_floor:PackedFloat32Array=s._heights.duplicate()
+ # Prolonged air must not eat through the consolidated banks.
+ await tool_sweep(Vector2(458,373),Vector2(548,306),.8,2)
+ var bank_indices:=[373*1024+460,306*1024+548,400*1024+581]
+ var firm_unchanged:=true
+ var firm_checked:=0
+ for i in bank_indices:
+  if air_floor[i]<=s.grain_floors[i]+.0001:
+   firm_checked+=1
+   if s._heights[i]!=air_floor[i]:firm_unchanged=false
+ check(firm_checked>=2 and firm_unchanged,"continued blower preserves the hard bank floors")
  var film:float=s.bone_film.cleanliness_percent()
  check(film<1 and s.fossil.condition==100,"air reveals dirty intact shell without cleaning film")
  for point in [Vector2(496,307),Vector2(501,321),Vector2(506,335)]:
@@ -89,6 +101,27 @@ func run() -> void:
  await tool_sweep(Vector2(480,312),Vector2(525,338),.7,2)
  print("STAGE sweeping done")
  await quiet();await shot("07-picked-island")
+ # Bulk work outside the shell, then connected precision paths along the banks.
+ await tool_sweep(Vector2(590,400),Vector2(616,400),.8,2)
+ var bulk:=400*1024+616
+ var before_bulk:float=s._heights[bulk]
+ native_impact(Vector2(616,400),1)
+ check(before_bulk<=s.grain_floors[bulk]+.0001 and s._heights[bulk]<s.grain_floors[bulk],"Chisel cuts the consolidated matrix outside the shell")
+ for path in [
+  [Vector2(441,350),Vector2(449,370),Vector2(465,388),Vector2(482,389)],
+  [Vector2(530,294),Vector2(545,305),Vector2(558,315),Vector2(568,328)],
+  [Vector2(577,382),Vector2(589,396),Vector2(598,407)]]:
+  for segment in range(path.size()-1):
+   var steps:int=ceili(path[segment].distance_to(path[segment+1])/5.0)
+   for n in range(steps):
+    var point:Vector2=path[segment].lerp(path[segment+1],float(n)/steps)
+    for contact in range(3):native_impact(point,3)
+    await process_frame
+ await tool_sweep(Vector2(440,370),Vector2(590,390),.8,2)
+ record("precision after discovery")
+ check(s.fossil.exposure_percent()>after_air+8,"Chisel and Pick continue substantial preparation after air discovery")
+ check(s.fossil.condition==100,"bulk work around shell and precise Pick work preserve condition")
+ await quiet();await shot("07b-precision-banks")
  await zoom_to(3.2,Vector2(552,387))
  main.feedback.proxies_enabled=true
  await tool_sweep(Vector2(538,369),Vector2(565,405),.35,2)
@@ -111,6 +144,7 @@ func run() -> void:
  evidence.completion=completed
  evidence.checks=checks;evidence.failures=failures;evidence.route=route
  evidence.minimum_cover_mm=minimum*102
+ evidence.hard_banks={"air_floor_checks":firm_checked,"bulk_height_before":before_bulk,"bulk_floor":s.grain_floors[bulk]}
  var timings:={}
  for tool in costs:
   var values:Array=costs[tool];values.sort()

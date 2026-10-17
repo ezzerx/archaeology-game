@@ -1,7 +1,7 @@
 extends Node
 const TITLES:=["01 · Terre compacte","02 · Sédiments marins","03 · Concrétions"]
 const NOTES:=["SUIVRE UNE FORME  ·  Ouvrez la matrice, puis suivez ce qui apparaît.",
- "SUIVRE LES SÉDIMENTS  ·  Ouvrez une fenêtre, puis prolongez-la au souffle. Pick sur les îlots, Brush sur la pièce.",
+ "SUIVRE LES SÉDIMENTS  ·  Soufflez pour découvrir. Chisel sur la matrice, Pick près de la pièce, Brush pour finir.",
  "DÉGAGER LES DÉTAILS  ·  Ouvrez puis soufflez. [1] alterne Brush / pointe abrasive : érodez les dépôts, brossez les détails."]
 var preparation:Node3D
 var selected:=-1

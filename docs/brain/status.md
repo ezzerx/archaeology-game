@@ -13,16 +13,19 @@ Caisses #30 rejetées ; #27/#28 et son différés.
 Issue [#41](https://github.com/ezzerx/archaeology-game/issues/41).
 Branche codex/41-marine-finish depuis main d07f24a (PR #40 fusionnée).
 GO humain : finition marine centrée sur le Blower, captures et itérations avant PR.
-Vision : fenêtre dans une croûte mince, nappe autour de rares îlots consolidés,
-accumulation révélant le relief de l'ammonite, finition Pick/Brush inchangée.
+Vision : découverte rapide au souffle, bancs durs sous les sédiments sur et
+autour de l'ammonite, puis préparation Chisel/Pick et finition Brush.
 Brief : docs/dev/ISSUE41_MARINE_FINISH.md.
 Rapport : docs/dev/ISSUE41_MARINE_FINISH_REPORT.md.
-Implémentation et revue native terminées ; contrôles réussis.
+Retour humain : feeling du Blower et réaction de matière validés, mais préparation
+trop courte. Correction livrée : trois bancs durs sous la nappe, sur et autour
+de l'ammonite. Captures revues et contrôles réussis ; souffle préservé.
 PR [#42](https://github.com/ezzerx/archaeology-game/pull/42) ouverte.
-Commit jouable : 605b4fd ; verdict humain attendu.
+Version testée : 605b4fd ; validation partielle du feeling, pas de fusion.
 
 ## Prochaine action autorisée
-Attendre l'essai et le verdict d'Antoine sur la PR #42 avant fusion. Essai : Launch-Preparation-Demos.cmd → 02 · Sédiments marins.
+Faire retester l'équilibre découverte rapide / travail de précision dans la
+PR #42, puis attendre la validation humaine avant fusion.
 La passe fluidité/réactivité est demandée juste après, dans une mission distincte.
 Le ressenti de retard malgré 240 FPS doit être mesuré ; aucune correction de
 fréquence, de suivi des outils ou de synchronisation d'affichage dans #41.

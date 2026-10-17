@@ -18,7 +18,7 @@ func run() -> void:
   if s.structural_ceilings[i]<=0:continue
   total+=1
   if s.grain_roofs[i]>0 and s.grain_floors[i]<=s.structural_ceilings[i]:airy+=1
- check(float(airy)/total>.85 and airy<total,"blower can reach most fossil cells; local firm islands remain")
+ check(float(airy)/total>.35 and float(airy)/total<.65,"blower gives a substantial glimpse while leaving broad hard preparation")
  check(max_floor-min_floor>.15,"bed and mineral lenses have meaningful depth variation")
  var pristine:PackedFloat32Array=s._heights.duplicate()
  s.apply_continuous(Vector2(450,300),Vector2(550,380),main.controller.tools[2],0)
@@ -62,7 +62,6 @@ func run() -> void:
  for n in range(20):s.apply_continuous(p,p,main.controller.tools[2],1.0/60)
  check(is_equal_approx(s._heights[target],bone) and s.fossil.exposed[target]!=0,"air stops exactly at the real fossil relief")
  check(s.bone_film.cleanliness_percent()==0 and s.fossil.condition==100,"air reveals film without cleaning or damaging fossil")
- var heights:PackedFloat32Array=s._heights.duplicate()
  for n in range(10):s.apply_continuous(p,p,main.controller.tools[2],1.0/60)
  check(s._heights[target]==bone,"continued airflow cannot cut through the exposed fossil")
  main.reset_specimen()

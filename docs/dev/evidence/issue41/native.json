@@ -9,14 +9,15 @@
     "05-flow-over-ribs.png",
     "06-islands-and-relief.png",
     "07-picked-island.png",
+    "07b-precision-banks.png",
     "08-ribs-contact.png",
     "09-ribs-brushed.png",
     "demo-1-06-complete-native.png"
   ],
-  "checks": 27,
+  "checks": 31,
   "completion": {
     "classification": "Ammonite côtelée",
-    "cleanliness": 99.9999998722599,
+    "cleanliness": 99.9999998137929,
     "condition": 100.0,
     "condition_tier": "Excellent",
     "coverage_passed": true,
@@ -25,6 +26,11 @@
     "largest_hidden_cluster": 0
   },
   "failures": [],
+  "hard_banks": {
+    "air_floor_checks": 3,
+    "bulk_floor": 0.306140661239624,
+    "bulk_height_before": 0.306140661239624
+  },
   "minimum_cover_mm": 5.91593599319458,
   "profiles": [],
   "route": [
@@ -36,65 +42,71 @@
     },
     {
       "exposure": 0.070129505820749,
-      "grains": 119.919068235384,
+      "grains": 119.919113485143,
       "impacts": 1,
       "stage": "first short breath"
     },
     {
       "exposure": 11.9126653887512,
-      "grains": 1182.26543700054,
+      "grains": 1182.24482683217,
       "impacts": 1,
       "stage": "window extended"
     },
     {
-      "exposure": 18.2850998176633,
-      "grains": 2105.17641766359,
+      "exposure": 14.4466781990743,
+      "grains": 1970.7235322791,
       "impacts": 1,
       "stage": "follow bed"
     },
     {
-      "exposure": 29.0008883070737,
-      "grains": 2929.08539473795,
+      "exposure": 16.4710832670999,
+      "grains": 2565.57930030722,
       "impacts": 1,
       "stage": "follow bed"
     },
     {
-      "exposure": 45.5514516807705,
-      "grains": 3621.83277218467,
+      "exposure": 29.6367291598485,
+      "grains": 3210.31495181441,
       "impacts": 1,
       "stage": "follow bed"
     },
     {
-      "exposure": 58.3477488428632,
-      "grains": 4146.85547409904,
+      "exposure": 39.796156903081,
+      "grains": 3679.84954628931,
       "impacts": 1,
       "stage": "follow bed"
     },
     {
-      "exposure": 66.7913413436813,
-      "grains": 4891.9364117398,
+      "exposure": 48.034036186825,
+      "grains": 4363.8363483368,
       "impacts": 1,
       "stage": "follow bed"
     },
     {
-      "exposure": 78.9564729533872,
-      "grains": 5830.09305573888,
+      "exposure": 50.5119453924915,
+      "grains": 5075.72055523806,
       "impacts": 1,
       "stage": "follow bed"
     },
     {
-      "exposure": 83.0052830894385,
-      "grains": 5927.82111192578,
+      "exposure": 51.6994716910562,
+      "grains": 5133.03553311712,
       "impacts": 1,
       "stage": "follow bed"
+    },
+    {
+      "exposure": 63.1960353452709,
+      "grains": 5728.86503972154,
+      "impacts": 110,
+      "stage": "precision after discovery"
     }
   ],
   "timings": {
     "air_blower": {
-      "active_ticks": 455,
-      "edit_max_ms": 9.046,
-      "edit_p50_ms": 6.188,
-      "edit_p95_ms": 7.726
+      "active_ticks": 452,
+      "edit_max_ms": 8.685,
+      "edit_p50_ms": 6.062,
+      "edit_p95_ms": 7.788
     }
   }
 }

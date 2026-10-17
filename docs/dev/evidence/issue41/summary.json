@@ -1,19 +1,18 @@
 {
   "engine": "4.7.2.stable.official.ed1daf0bf",
   "source_base": "d07f24a",
-  "functional_checks": 365,
+  "functional_checks": 326,
   "resource_loads": 279,
   "suites": {
-    "marine_native": 27,
+    "marine_native": 31,
     "marine_materials": 14,
     "demo_materials": 17,
     "compact_regression": 45,
-    "concretion_native": 43,
     "P4V2": 91,
     "P5": 128
   },
   "failures": [],
-  "human_validation": "pending",
+  "human_validation": "Blower feeling and material response approved; revised discovery/precision balance awaiting playtest.",
   "native_window": [
     1440,
     810
@@ -22,13 +21,21 @@
   "gpu": "NVIDIA GeForce RTX 5080",
   "capture_method": "Native rendered game and real controller tools. Deterministic route and full systematic completion are QA, not a human-duration measurement.",
   "blower_edit_cost": {
-    "active_ticks": 455,
-    "edit_max_ms": 9.046,
-    "edit_p50_ms": 6.188,
-    "edit_p95_ms": 7.726
+    "active_ticks": 452,
+    "edit_max_ms": 8.685,
+    "edit_p50_ms": 6.062,
+    "edit_p95_ms": 7.788
   },
   "runtime_cap": 240,
   "physics_hz": 60,
   "fluidity_pass": "deferred to next mission",
-  "playable_commit": "605b4fd53abf46375a1ed36c4ee538824368d0e1"
+  "carried_forward": {
+    "concretion_native": {
+      "checks": 43,
+      "source_commit": "605b4fd53abf46375a1ed36c4ee538824368d0e1",
+      "note": "Previous passing native run retained. Concretion code and shared mechanics unchanged by this correction."
+    }
+  },
+  "correction": "Three discontinuous consolidated banks below the unchanged loose cover, across and around the shell.",
+  "baseline_audit": "baseline-comparison.json: two freshly initialized preparations; unchanged roof, cohesion and initial surface, only consolidated floors raised."
 }

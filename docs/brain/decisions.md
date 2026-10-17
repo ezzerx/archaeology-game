@@ -1619,3 +1619,11 @@ ne mesure ni la latence totale ni la fréquence effective de l'écran.
 Antoine approuve la vision fenêtre → nappe → relief, avec le Blower central,
 les gestes et outils validés conservés, et une revue native par captures avec
 itérations avant PR. La passe fluidité vient après cette mission, séparément.
+
+## 2026-10-17 — Blower marin validé, préparation à prolonger par du travail dur
+Antoine valide le feeling du souffle et la réaction de matière de #41, mais
+termine trop vite (environ 30 secondes selon son essai). Le Blower doit donner
+un aperçu rapide de la découverte, puis laisser davantage de matrice dure sur
+l'ammonite et autour, à préparer au Chisel/Pick. Conserver la réaction rapide
+du sédiment ; ajouter du travail de précision plutôt que ralentir le souffle.
+Correction dans la même PR #42 avant validation globale ou fusion.
