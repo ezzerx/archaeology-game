@@ -1703,3 +1703,11 @@ collent à ceux de la préparation. Retenir son architecture et son ambiance tou
 en prenant le rendu validé du jeu comme référence pour les matières, les os et
 le niveau de détail. Adapter le décor aux vrais blocs. La sélection du concept
 ne valide ni le décor natif actuel ni une fusion de #52.
+
+## 2026-10-17 — Réglages explicites avant chaque génération Tripo
+Antoine demande de mémoriser les réglages et de lui donner, pour chaque nouvelle
+génération, une fiche adaptée à l'asset : référence, modèle, géométrie, textures,
+budget de polygones et export. Ne pas se fier à la persistance des options Studio.
+Première fiche recommandée pour le présentoir B–17 :
+[réglages Studio](../visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md).
+Antoine prévoit un lancement manuel ; aucun modèle n'est encore reçu ni validé.

@@ -31,9 +31,11 @@ les matières, le niveau de détail et le rendu des spécimens.
 ## Prochaine action autorisée
 Références du mobilier préparées : deux présentoirs, vitrine et applique.
 Guide et images : docs/visual-references/museum/furniture/README.md.
-Pilote recommandé : présentoir B–17 ; plan API simulé et guide Studio fournis.
-Prochaine étape : générer/recevoir ce seul modèle après choix du mode et du coût,
-puis juger l'asset dans Godot avant de produire les autres.
+Pilote : présentoir B–17 ; Antoine prévoit une génération manuelle dans Studio.
+Fiche recommandée : docs/visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md.
+Fournir une fiche de réglages adaptée avant chaque prochaine génération.
+Prochaine étape : recevoir ce modèle puis juger l'asset dans Godot avant de produire
+les autres. Réglages proposés ; aucun nouveau modèle encore reçu ou validé.
 Direction et critères : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.
 Préparer une travée pilote avec les vrais modèles B–17/M–08 pour comparer
 atelier et musée à taille comparable. Conserver caméra/navigation.

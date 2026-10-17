@@ -44,9 +44,11 @@ une texture d'éclairage à conserver dans le jeu.
 2. Choisir **Best Quality / HD Model** sur l'accueil, ou **3D Workspace → HD Model**.
    Charger uniquement `01-presentoir-b17.png`.
    Ce sont les libellés indiqués par [l'aide officielle](https://www.tripo3d.ai/help/features/how-to-use-the-image-to-3d-feature).
-3. Pour ce pilote, viser une génération avec textures. Si le sélecteur est proposé,
-   choisir H3.1 / v3.1 et conserver les matériaux PBR. Utiliser l'image telle quelle,
-   sans ajouter de fossile ni de décor. Une seule variante suffit pour la première revue.
+3. Appliquer la [fiche de réglages Studio du présentoir B–17](TRIPO_STUDIO_SETTINGS.md),
+   établie à partir de l'écran fourni par Antoine : H3.1, Ultra désactivé,
+   10 000 polygones, textures 4K et PBR, suppression de l'éclairage activée.
+   Utiliser l'image telle quelle, sans fossile ni décor. Une seule variante suffit.
+   Ce sont des réglages recommandés, à évaluer sur le modèle obtenu.
 4. Vérifier le coût affiché par Studio avant de lancer la génération. Les crédits
    Studio et API sont [distincts](https://www.tripo3d.ai/help/api-plugins/tripo-studiotripo-api).
    Le budget API ci-dessous ne prédit pas le prix Studio.
