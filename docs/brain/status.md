@@ -5,66 +5,54 @@
 ## Références validées
 P0–P5, préparations #33, ammonite #35, terre compacte #37, concrétions #39,
 parcours marin #41 et fluidité #43 retenus après essai humain.
-PR #44 fusionnée sur main 683bd11, issue #43 fermée et branche nettoyée.
-B–17/M–08, trois familles de préparation, outils, matières et art à préserver.
-C reste la référence de rythme compacte ; 5–7 minutes pour la petite ammonite
-reste une cible, sans nouvelle durée humaine mesurée.
+B–17/M–08, trois familles, outils, matières et art à préserver.
+C reste la référence de rythme compacte ; 5–7 minutes reste la cible de la
+petite ammonite, sans nouvelle durée humaine mesurée.
 
-## Vision acceptée / mission active
-Petite galerie 3D chaleureuse, sans avatar, avec préparations dans leur matrice,
-vues composées et inspection rapprochée. Direction acceptée provisoirement pour
-essais ; caméra et transitions appréciées, qualité artistique finale non validée.
-Seconde référence stylisée choisie, avec continuité graphique avec la préparation.
-Vision : docs/design/FIRST_EXHIBITION_PLAN.md ; cadrage parent #45, collection #28.
+Galerie #51 : base visuelle et correctif de netteté validés par Antoine.
+PR #52 fusionnée sur main 085b6a8 ; issue fermée, branche distante et locale
+nettoyées. La qualité artistique pourra encore être améliorée.
+Rapport : docs/dev/ISSUE51_GALLERY_CLARITY.md.
+La copie historique locale de main comporte des changements indépendants
+préservés ; cette mission repart du main distant fusionné dans preparation-demos.
+
+## Mission active
+[#28](https://github.com/ezzerx/archaeology-game/issues/28) : conserver et exposer
+le vrai bloc préparé, puis le retrouver identique après relance.
+Branche codex/28-prepared-exhibits créée depuis main 085b6a8.
+Brief actif : docs/dev/ISSUE28_PREPARED_EXHIBITS.md.
+Rapport : docs/dev/ISSUE28_PREPARED_EXHIBITS_REPORT.md.
+Gate : implémentation et vérifications terminées ; PR à préparer pour essai humain.
+Aucune fusion de cette nouvelle mission sans revue d’Antoine.
+
+Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,
+nettoyage et dégâts réels ; aucune substitution silencieuse par un meilleur
+résultat ancien. Préserver photos, meilleurs scores et distinctions historiques.
+Les trois préparations restent identiques ; les places encore vides ne dévoilent
+pas les espèces. L’archivage 3D est figé, sans simulation de fouille au musée.
+
+## Parcours / limites techniques
+Vision : docs/design/FIRST_EXHIBITION_PLAN.md.
 Direction artistique : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.
+Atelier en Compatibility, galerie en Forward+ ; relève de processus pour cette
+passe, avec chargement et changement de fenêtre. Le renderer commun et la
+transition continue demandent une comparaison dédiée des trois préparations.
+Nouveaux lanceurs : Launch-Prepare-For-Museum.cmd, Launch-Museum.cmd.
+Les lanceurs d’essais précédents restent disponibles.
 
-Premier essai [#51](https://github.com/ezzerx/archaeology-game/issues/51) :
-galerie avec deux exemples de préparation, indépendante des données du joueur.
-Branche codex/51-exhibition-study depuis main 683bd11.
-Brief : docs/dev/ISSUE51_EXHIBITION_STUDY.md.
-Rapport : docs/dev/ISSUE51_EXHIBITION_STUDY_REPORT.md.
-PR [#52](https://github.com/ezzerx/archaeology-game/pull/52) ouverte pour essai humain.
-
-## Version à essayer / prochaine action
-Antoine apprécie la galerie comme base, plus aboutie qu'une démo, tout en
-réservant des améliorations artistiques. Il demande de corriger le flou près/loin.
-Correctif de revue dans #52 : rendu à la résolution native de la fenêtre,
-MSAA 4× sans TAA, filtrage des ombres ajusté pour garder leur douceur.
-Rapport actif : docs/dev/ISSUE51_GALLERY_CLARITY.md (comparaisons et limites).
-95 contrôles par renderer et 300 ressources passent. Le rendu 1440p natif
-coûte davantage : la galerie ne tient pas encore la cible 240 FPS à cette résolution.
-Le lanceur reste Launch-Exhibition-Study.cmd, en Forward+ ; préparation préservée.
-PR #52 reste ouverte pour vérifier ce correctif avant fusion.
-
-Ordre confirmé par Antoine : netteté → vrai bloc préparé exposé (#28) →
-caisses avant préparation (#27), pour une boucle démo caisse/préparation/musée.
-Le prochain raccordement doit conserver l'apparence du travail juste terminé :
-matière restante, nettoyage et dégâts. Les exemples actuels ne sont pas encore
-remplacés. Cadrer cette mission sur main après clôture de la revue #52,
-conformément au workflow par issue/PR ; puis définir la passe caisses.
-
-Originaux archivés dans assets/museum/source/tripo-studio/ ; dépôt utilisateur
-stable : C:/Users/antoi/Documents/ArchaeologyGame-Assets/Tripo/museum/.
-Le dossier furniture contenait un dépôt ponctuel : ses cinq GLB ont été rangés
-dans ce dossier stable après vérification des copies.
-Pack de références : docs/visual-references/museum/environment/README.md.
-Toujours fournir les réglages adaptés avant chaque génération ; priorité à la
-source, puis optimisation sur copie après comparaison.
-Pas de nouvelle génération Tripo réalisée pendant cette intégration.
+Ordre confirmé : netteté validée → vrais blocs exposés #28 → caisses #27.
+Les caisses rejetées ne constituent pas une référence ; définir leur vision
+avant développement. Pas de nouvelle passe caisses dans #28.
 
 ## Points de suivi
-Exemples annoncés comme tels ; aucune acquisition ni modification de sauvegarde.
-Préparations, suivi d'outils et lanceurs existants conservés.
-Jardin secondaire simple et sources détaillées non optimisées pour une grande
-salle. Le rendu indirect est SSIL ; pas encore d'éclairage précalculé. Une future
-boucle atelier/musée dans un processus devra comparer le renderer commun.
-Retouche de l'inscription inventée au dos de B–17 et comparaison atelier/musée
-à taille strictement identique restent à traiter.
-Sauvegarde 3D réelle à définir : le stockage actuel garde une photo et des scores,
-et choisit le meilleur résultat. Distinguer cette archive de la préparation
-qui vient de finir, demandée pour l’exposition ; préserver les archives existantes.
-Plafond 240 FPS / physique 60 Hz ; baisses au souffle dense suivies dans #50.
-Arrivages #27 : ancien rendu rejeté, vision détaillée encore à approfondir.
+Galerie avec deux vrais blocs : environ 165 FPS en 1080p, sous la cible 240 FPS.
+Archives de 7–10 Mo par tentative ; transition de fenêtre de 7–8 s.
+Préparation préservée. Mesures et limites détaillées dans le rapport #28.
+Plafond 240 FPS / physique 60 Hz ; souffle dense suivi dans #50.
 UI #46, décor #47, sons avec Claude #48, musique #49.
-Lanceur : Launch-Exhibition-Study.cmd.
+Retouche de l’inscription inventée au dos de B–17 à traiter.
+Sources Tripo : assets/museum/source/tripo-studio/ ; dépôt utilisateur :
+C:/Users/antoi/Documents/ArchaeologyGame-Assets/Tripo/museum/.
+Toujours fournir les réglages adaptés avant chaque génération ; travailler
+sur copie pour optimiser, conserver les originaux.
 Worktree : C:/Users/antoi/.codex/worktrees/preparation-demos/ArchaeologyGame.

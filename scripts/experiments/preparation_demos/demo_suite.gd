@@ -52,7 +52,7 @@ func open_demo(index:int,compact:int=-1) -> void:
  if is_instance_valid(preparation):
   remove_child(preparation);preparation.queue_free()
  await get_tree().process_frame
- preparation=load("res://scenes/experiments/demo_preparation.tscn").instantiate()
+ preparation=_make_preparation()
  preparation.compact_variant=compact_selected
  preparation.demo_kind=index;preparation.specimen_id="B17" if index==0 else "M08"
  var block=preparation.get_node("ExcavationBlock");block.demo_kind=index;block.specimen_id=preparation.specimen_id
@@ -83,3 +83,6 @@ func _compact_selector(layer:CanvasLayer,style:Script) -> void:
   button.add_theme_color_override("font_color",style.INK)
   button.add_theme_stylebox_override("normal",style.paper_style(style.PAPER,6))
   button.pressed.connect(choose.bind(0,false,i));compact_bar.add_child(button);compact_buttons.append(button)
+
+func _make_preparation() -> Node3D:
+ return load("res://scenes/experiments/demo_preparation.tscn").instantiate()

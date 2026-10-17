@@ -1759,3 +1759,9 @@ automatique d'un ancien meilleur résultat ne répond pas au souhait de voir la
 préparation juste terminée. Préserver les meilleurs résultats et distinctions
 existants pendant le futur raccordement. Les détails de cette conservation et
 le traitement de plusieurs tentatives seront cadrés dans #28.
+
+## 2026-10-17 — Galerie nette validée, résultat réel ensuite
+Antoine confirme la disparition du flou et valide le rendu de base. PR #52
+fusionnée ; la mission suivante conserve le bloc réellement préparé, avec sa
+matière et ses traces, avant la passe sur les caisses. Le dernier résultat doit
+être reconnaissable au musée, sans écraser les archives historiques.

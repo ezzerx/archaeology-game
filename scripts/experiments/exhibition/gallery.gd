@@ -24,6 +24,7 @@ var centers:Array[Vector3]=[Vector3(-1.65,1.14,.06),Vector3(1.62,1.14,.06)]
 var heading:Label
 var subtitle:Label
 var nav_buttons:Array[Button]=[]
+var exhibition_note:Label
 var fade:ColorRect
 var fixtures_ready:=false
 var materials:Dictionary={}
@@ -45,13 +46,16 @@ func _ready() -> void:
  await get_tree().process_frame
  for id in ["B17","M08"]:
   var index:=examples.size()
-  var fixture:=Fixture.build(id);var pivot:=get_node("Mount"+str(index))
+  var fixture:=_build_exhibit(id);var pivot:=get_node("Mount"+str(index))
+  examples.append(fixture)
+  if fixture==null:continue
   pivot.add_child(fixture)
   var extent:Vector2=fixture.get_meta("display_extent")
   var usable:Vector2=pivot.get_meta("usable_extent",Vector2(1.84,1.54))
   var fit:=minf(usable.x/extent.x,usable.y/extent.y)
+  if fixture.has_meta("snapshot_version"):fit*=.92 # Leave room for the real block thickness above the board.
   fixture.scale=Vector3.ONE*fit
-  examples.append(fixture)
+  fixture.position=-Vector3(fixture.get_meta("display_center",Vector3.ZERO))*fit
   await get_tree().process_frame
  fixtures_ready=true
  var tween:=create_tween();tween.tween_property(fade,"modulate:a",0.0,.7)
@@ -135,7 +139,7 @@ func _ui() -> void:
   button.add_theme_stylebox_override("pressed",hover);button.add_theme_color_override("font_color",Color("#e6d5af"))
   button.pressed.connect(select.bind(i-1));nav_buttons.append(button)
  var note_back:=ColorRect.new();ui.add_child(note_back);note_back.position=Vector2(18,12);note_back.size=Vector2(460,42);note_back.color=Color(.055,.075,.06,.83);note_back.mouse_filter=Control.MOUSE_FILTER_IGNORE
- var note:=Label.new();ui.add_child(note);note.position=Vector2(30,22)
+ var note:=Label.new();exhibition_note=note;ui.add_child(note);note.position=Vector2(30,22)
  note.text="ÉTUDE D’EXPOSITION · PRÉPARATIONS D’EXEMPLE";note.add_theme_font_override("font",sans)
  note.add_theme_font_size_override("font_size",15);note.modulate=Color("#d7c8aa")
  fade=ColorRect.new();ui.add_child(fade);fade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);fade.color=Color("#17221d");fade.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -197,3 +201,6 @@ func _exit_tree() -> void:
  get_window().content_scale_mode=_previous_rendering.stretch
  get_viewport().msaa_3d=_previous_rendering.msaa
  get_viewport().use_taa=_previous_rendering.taa
+
+func _build_exhibit(id:String) -> Node3D:
+ return Fixture.build(id)

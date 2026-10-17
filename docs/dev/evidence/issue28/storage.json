@@ -1,0 +1,20 @@
+{
+  "checks": 18,
+  "failures": [],
+  "fixture": {
+    "classification": "Petit théropode",
+    "cleanliness": 91.7864152031124,
+    "condition": 100.0,
+    "condition_tier": "Excellent",
+    "coverage_passed": true,
+    "exposure": 94.0009447331129,
+    "fine_preparation": false,
+    "integral_preparation": false,
+    "largest_hidden_cluster": 49
+  },
+  "legacy": {
+    "user://collection/records.json": "dd46e6294ddf37a20b975508f7971cae92148e0951675a8264671f4cbd235d1d",
+    "user://p6a2_display.cfg": "880858e3ce12f57e3d14a5629fa50669783a15ad5f9cb74bbe7e193d9f8a6ac9",
+    "user://preparation_distinctions.json": "f5aaf71529128848c8fb1eb774cb0b45eac0ef16e380a97752173151d304e375"
+  }
+}
