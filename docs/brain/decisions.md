@@ -1711,3 +1711,9 @@ budget de polygones et export. Ne pas se fier à la persistance des options Stud
 Première fiche recommandée pour le présentoir B–17 :
 [réglages Studio](../visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md).
 Antoine prévoit un lancement manuel ; aucun modèle n'est encore reçu ni validé.
+
+## 2026-10-17 — Qualité du pilote avant réduction du maillage
+Antoine remet en question le faible budget proposé pour B–17 et veut préserver
+la qualité artistique. Distinguer la source de génération de la version destinée
+au jeu : comparer dans Godot avant réduction. Fiche Studio révisée vers une source
+plus détaillée ; ces nouveaux réglages restent une recommandation non éprouvée.

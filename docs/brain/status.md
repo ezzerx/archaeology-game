@@ -34,6 +34,7 @@ Guide et images : docs/visual-references/museum/furniture/README.md.
 Pilote : présentoir B–17 ; Antoine prévoit une génération manuelle dans Studio.
 Fiche recommandée : docs/visual-references/museum/furniture/TRIPO_STUDIO_SETTINGS.md.
 Fournir une fiche de réglages adaptée avant chaque prochaine génération.
+Privilégier la qualité de la source pour le pilote, puis optimiser après comparaison.
 Prochaine étape : recevoir ce modèle puis juger l'asset dans Godot avant de produire
 les autres. Réglages proposés ; aucun nouveau modèle encore reçu ou validé.
 Direction et critères : docs/design/MUSEUM_ART_DIRECTION_STUDY.md.

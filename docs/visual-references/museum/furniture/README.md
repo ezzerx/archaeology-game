@@ -45,8 +45,8 @@ une texture d'éclairage à conserver dans le jeu.
    Charger uniquement `01-presentoir-b17.png`.
    Ce sont les libellés indiqués par [l'aide officielle](https://www.tripo3d.ai/help/features/how-to-use-the-image-to-3d-feature).
 3. Appliquer la [fiche de réglages Studio du présentoir B–17](TRIPO_STUDIO_SETTINGS.md),
-   établie à partir de l'écran fourni par Antoine : H3.1, Ultra désactivé,
-   10 000 polygones, textures 4K et PBR, suppression de l'éclairage activée.
+   établie à partir de l'écran fourni par Antoine et révisée pour privilégier
+   une source détaillée avant optimisation. Les valeurs exactes sont dans la fiche.
    Utiliser l'image telle quelle, sans fossile ni décor. Une seule variante suffit.
    Ce sont des réglages recommandés, à évaluer sur le modèle obtenu.
 4. Vérifier le coût affiché par Studio avant de lancer la génération. Les crédits
@@ -66,7 +66,11 @@ générations pour corriger un détail que l'on peut reprendre dans Blender.
 L'optimisation, les matériaux et les ajustements au bloc seront jugés dans Godot
 avant de produire la suite du mobilier.
 
-## Option API : plan du pilote préparé, non exécuté
+## Option API : simulation antérieure, non exécutée
+
+Cette simulation visait un maillage déjà réduit. Elle précède la recommandation
+Studio révisée pour une source détaillée : préparer un nouveau plan avant un
+éventuel lancement API, sans réutiliser cette commande telle quelle.
 
 Simulation CLI réussie : `valid: true`, aucune erreur ni avertissement.
 La simulation n'a envoyé aucune génération et n'a consommé aucun crédit de génération.

@@ -23,30 +23,39 @@ Il s'agit du meuble vide ; le vrai bloc et les cartels seront ajoutés dans Godo
 |---|---|
 | Mode | Modèle HD |
 | AI Modèle | H3.1 – Qualité Optimale |
-| Qualité de maillage Ultra | Désactivée |
+| Qualité de maillage Ultra | Activée |
 | Complétion IA et amélioration 3D | Désactivée |
 | Texture | Activée |
 | Qualité de la texture | 4K |
 | Supprimer l'éclairage | Activé |
 | PBR | Activé |
 | Topologie | Triangle |
-| Nombre de polygones | 10 000 |
+| Nombre de polygones | 100 000 |
 | Générer par parties | Désactivé |
 | Texture 8K | Désactivée |
 | Générer des multi-vues | Ne pas lancer pour ce pilote |
 
-Par rapport à la capture : désactiver **Ultra** et remplacer **2 000 000**
-par **10 000** dans le champ numérique. Les autres valeurs visibles correspondent
-à la recommandation. Une seule génération suffit pour la première inspection.
+Par rapport à la capture : conserver **Ultra activé** et remplacer **2 000 000**
+par **100 000** dans le champ numérique. Les autres valeurs visibles correspondent
+à la recommandation. Cette recommandation remplace celle de 10 000 polygones et
+Ultra désactivé, qui anticipait trop tôt l'optimisation pour le jeu.
+Une seule génération suffit pour la première inspection.
 Le coût à retenir est celui affiché dans Studio, sans extrapolation du tarif API.
 
 ### Raisons et contrôle du résultat
 
-- 10 000 triangles constituent un budget de départ pour ce meuble statique aux
-  formes simples. Vérifier le cadre, les angles arrondis et les petites pièces
-  en laiton ; ce budget ne garantit pas la qualité du maillage obtenu.
-- Le mode Ultra ne paraît pas nécessaire pour ce premier présentoir. Réserver
-  les décisions de densité supplémentaire à un défaut visible sur le modèle.
+- Priorité de ce pilote : juger une source détaillée, puis optimiser sur une copie
+  après comparaison dans Godot. Le budget de génération ne vaut pas budget final
+  pour chaque meuble présent dans la scène.
+- Recommandation : 100 000 triangles avec Ultra activé pour laisser de la marge
+  aux arrondis, moulures et petites pièces. C'est une proposition de travail,
+  pas un seuil de qualité mesuré ; le nombre réellement obtenu reste à vérifier.
+- Tripo distingue la qualité géométrique Ultra de la limite de polygones :
+  [fiche H3.1](https://developers.tripo3d.ai/en/models/v3-1). Augmenter la densité
+  ne garantit ni une meilleure silhouette ni une meilleure texture. Le grain
+  du bois et la patine dépendent aussi des matériaux ; inspecter le résultat.
+- Conserver le GLB source avant toute réduction. Choisir ensuite un budget pour
+  le jeu par comparaison à l'échelle d'écran réelle, sans dégradation visible.
 - Conserver une source 4K pour inspecter bois et laiton de près ; la résolution
   réellement utilisée dans le jeu sera décidée après comparaison dans Godot.
 - Activer PBR et la suppression de l'éclairage pour obtenir des matériaux qui
@@ -65,6 +74,7 @@ Les fiches ammonite, vitrine et applique seront précisées avant leurs généra
 en tenant compte du résultat du pilote. Ne pas appliquer automatiquement le
 budget du présentoir à tous les futurs assets.
 
-Le [plan API du guide](README.md#option-api--plan-du-pilote-préparé-non-exécuté)
-est une autre voie : ses paramètres `smart_low_poly` et `face_limit` ne sont pas
+Le [plan API du guide](README.md#option-api--simulation-antérieure-non-exécutée)
+est une simulation antérieure à cette révision : ne pas l'exécuter tel quel pour
+ce pilote détaillé. Ses paramètres `smart_low_poly` et `face_limit` ne sont pas
 la preuve que Studio utilise exactement le même traitement.
