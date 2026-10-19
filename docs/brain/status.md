@@ -30,13 +30,19 @@ sur main 04a8406 ; PR [#54](https://github.com/ezzerx/archaeology-game/pull/54)
 en brouillon. Brief : docs/dev/ISSUE27_ARRIVALS_BRIEF.md.
 Planche et pack : docs/visual-references/arrivals/README.md.
 
-Les trois GLB sont reçus et intégrés à la V1 : sources Tripo conservées,
+V1 de test exportée depuis le runtime 35b921e : sources Tripo conservées,
 masters Blender et copies runtime rangés dans assets/arrivals/. Réception,
 loquet/couvercle, vrais blocs couverts et retour atelier/musée implémentés.
-Prochaine action : terminer les contrôles du candidat, exporter Windows et
-publier les captures commentées. L'essai humain du candidat puis la validation
-explicite avant merge restent requis. Une seule issue/PR ; aucun changement
-des règles de préparation.
+115 contrôles automatisés passent. ZIP Windows x64 et paquet contrôlés sous
+Linux ; l’exécution Windows, les transitions et la fluidité restent à tester.
+Captures commentées en OpenGL logiciel ; le premier rendu Forward+ n’a pas
+abouti sur le cloud, donc son éclairage doit être jugé sur le PC cible.
+Rapport : docs/dev/ISSUE27_ARRIVALS_V1_REPORT.md.
+Preuves : docs/dev/evidence/issue27/.
+
+Gate : essai humain de la V1 et corrections éventuelles sur la même PR #54,
+encore en brouillon. Attendre la validation explicite d’Antoine avant merge.
+Aucune nouvelle mission ni modification des règles de préparation.
 
 Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,
 nettoyage et dégâts réels ; aucune substitution silencieuse par un meilleur

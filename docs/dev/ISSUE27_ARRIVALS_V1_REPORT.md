@@ -59,16 +59,26 @@ l'API existante. Aucun format de sauvegarde ni règle de préparation ne change.
 
 ## Vérifications
 
-- 72 contrôles de réception : vrai raycast souris sur loquet/couvercle, glissement,
+- 75 contrôles de réception : vrai raycast souris sur loquet/couvercle, glissement,
   fermeture initiale, bloc masqué, association des trois blocs, focus perdu,
-  blocage de préparation, arguments de lancement, deux rapports d'écran.
+  blocage de préparation, couvercle dans le cadre, arguments de lancement, deux rapports d'écran.
 - 22 contrôles d'atelier : lancement direct du troisième colis, trois familles,
   variante C, retour avec confirmation, annulation sans perte et blocage d'une
   archive non enregistrée.
 - 18 contrôles de stockage existants : échec et reprise d'archivage, historique,
   dernier résultat même moins bon, concurrence, corruption et anciennes données.
 - Export avec moteur et templates officiels Godot 4.7.2 ; PE x64 et CRC du ZIP
-  vérifiés. L'exécutable Windows n'a pas été exécuté sur ce cloud Linux.
+  vérifiés. Le paquet final a aussi été chargé depuis un répertoire isolé :
+  scène de réception, trois aperçus optimisés et exclusion des sources vérifiés ;
+  ressources atelier/musée présentes. L'exécutable Windows n'a pas été exécuté sur ce cloud Linux.
+
+Les arguments des relèves de processus sont vérifiés ; le parcours complet entre
+fenêtres et sa durée restent à éprouver sous Windows.
+
+La caméra recule légèrement et remonte pendant l’ouverture pour garder le haut
+du couvercle visible. Les captures sont réalisées en OpenGL logiciel sous Linux :
+le premier rendu Forward+ n’a pas abouti dans le cloud. Elles contrôlent le
+cadrage et les modèles, sans valider l’éclairage Forward+ sur le PC cible.
 
 Les scripts de test, résultats JSON et captures constituent les preuves du candidat.
 Les contrôles automatisés ne valident ni le plaisir d'ouverture ni les performances

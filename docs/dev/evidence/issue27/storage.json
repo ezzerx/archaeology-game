@@ -1,0 +1,20 @@
+{
+  "checks": 18,
+  "failures": [],
+  "fixture": {
+    "classification": "Petit théropode",
+    "cleanliness": 91.7864152031124,
+    "condition": 100.0,
+    "condition_tier": "Excellent",
+    "coverage_passed": true,
+    "exposure": 94.0009447331129,
+    "fine_preparation": false,
+    "integral_preparation": false,
+    "largest_hidden_cluster": 49
+  },
+  "legacy": {
+    "user://collection/records.json": "absent",
+    "user://p6a2_display.cfg": "absent",
+    "user://preparation_distinctions.json": "absent"
+  }
+}
