@@ -19,6 +19,7 @@ func run() -> void:
   preload("res://scripts/collection/exhibit_display.gd").apply(frozen)
   frozen.set_meta("arrival_kind",kind)
   frozen.set_meta("arrival_compact_variant",2)
+  preload("res://tools/arrivals/covered_preview.gd").optimize(frozen)
   var pack:=PackedScene.new();assert(pack.pack(frozen)==OK)
   var path:="res://assets/arrivals/covered_blocks/block_%d.scn"%kind
   assert(ResourceSaver.save(pack,path,ResourceSaver.FLAG_COMPRESS)==OK)

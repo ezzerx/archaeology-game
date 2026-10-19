@@ -10,7 +10,7 @@ Les accessoires du musée sont référencés directement, sans copie ici.
 - `models/<objet>.glb` : copie réduite pour Godot, textures embarquées et imports associés.
 - `models/budgets.json` : résultats mesurés de la préparation Blender.
 - `covered_blocks/block_<0|1|2>.scn` : snapshots figés des vrais blocs initiaux,
-  sans simulation ; produits par `tools/arrivals/bake_covered_blocks.gd`.
+  sans simulation, grille d’aperçu limitée à 81 920 triangles et os enfouis exclus ; produits par `tools/arrivals/bake_covered_blocks.gd`.
 
 Les géométries des loquets, charnières, calages, étiquettes et de l'architecture
 restent dans `scripts/arrivals/`. Les scènes sont dans `scenes/arrivals/`.

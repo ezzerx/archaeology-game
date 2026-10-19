@@ -13,7 +13,7 @@ func settle() -> void:
  for i in range(5):await process_frame
 func shot(name:String) -> void:
  if not captures:return
- await settle();await RenderingServer.frame_post_draw
+ print("Capturing ",name);await settle();await RenderingServer.frame_post_draw
  root.get_texture().get_image().save_png(out+"/"+name+".png")
 func mouse(point:Vector2,pressed:bool) -> void:
  var e:=InputEventMouseButton.new();e.position=point;e.button_index=MOUSE_BUTTON_LEFT;e.pressed=pressed;scene._unhandled_input(e)
@@ -21,7 +21,9 @@ func run() -> void:
  captures="--capture" in OS.get_cmdline_user_args()
  DirAccess.make_dir_recursive_absolute(out)
  root.size=Vector2i(1280,720)
+ print("Loading arrivals scene")
  scene=load("res://scenes/arrivals/receiving_room.tscn").instantiate();root.add_child(scene)
+ print("Arrivals scene assembled")
  while not scene.ready_for_input:await process_frame
  check(scene.crates.size()==3,"Three crate assemblies")
  check(scene.selected==-1,"Start at overview")
@@ -34,6 +36,8 @@ func run() -> void:
   check(not c.unlocked and c.opening==0,"Sealed initial state %d"%i)
   check(c.covered.get_meta("arrival_kind")==i,"Exact preparation preview mapping %d"%i)
   check(c.covered.find_children("*","MeshInstance3D",true,false).size()>0,"Frozen real mesh available %d"%i)
+  check(c.covered.get_node_or_null("ProductionBoneBatch")==null,"No buried bones loaded into preview %d"%i)
+  check(c.covered.get_node("SurfaceMesh").mesh.subdivide_width==255,"Preview mesh budget bounded %d"%i)
   var extent:Vector2=c.covered.get_meta("display_extent")*c.covered.scale.x
   check(extent.x<=.721 and extent.y<=.431,"Covered preparation fits interior %d"%i)
   check(c.label.text.contains(c.LOTS[i]) and not c.label.text.contains("Ammonite") and not c.label.text.contains("B17"),"Label does not identify species %d"%i)
