@@ -1,0 +1,38 @@
+{
+  "exhibit-only-b17": {
+    "frame_p50_ms": 5.454,
+    "frame_p95_ms": 5.733,
+    "gpu_p50_ms": 5.07999992370605,
+    "gpu_p95_ms": 5.28599977493286
+  },
+  "exhibit-only-overview": {
+    "frame_p50_ms": 4.822,
+    "frame_p95_ms": 5.187,
+    "gpu_p50_ms": 4.4060001373291,
+    "gpu_p95_ms": 4.73099994659424
+  },
+  "four-local-b17": {
+    "frame_p50_ms": 5.499,
+    "frame_p95_ms": 5.845,
+    "gpu_p50_ms": 5.11100006103516,
+    "gpu_p95_ms": 5.35699987411499
+  },
+  "four-local-overview": {
+    "frame_p50_ms": 4.835,
+    "frame_p95_ms": 5.195,
+    "gpu_p50_ms": 4.44299983978271,
+    "gpu_p95_ms": 4.74900007247925
+  },
+  "sun-only-b17": {
+    "frame_p50_ms": 4.882,
+    "frame_p95_ms": 5.169,
+    "gpu_p50_ms": 4.53599977493286,
+    "gpu_p95_ms": 4.71799993515015
+  },
+  "sun-only-overview": {
+    "frame_p50_ms": 4.372,
+    "frame_p95_ms": 4.668,
+    "gpu_p50_ms": 3.98300004005432,
+    "gpu_p95_ms": 4.26999998092651
+  }
+}

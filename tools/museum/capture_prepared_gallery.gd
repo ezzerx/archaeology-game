@@ -3,6 +3,7 @@ var gallery:Node3D
 var output:="res://work/issue28/gallery/"
 var checks:=0
 var failures:Array[String]=[]
+var archive_hashes:Dictionary={}
 func _initialize() -> void:run.call_deferred()
 func check(ok:bool,label:String) -> void:
  checks+=1
@@ -13,13 +14,19 @@ func capture(label:String) -> void:
  await RenderingServer.frame_post_draw
  root.get_texture().get_image().save_png(output+label+".png")
 func run() -> void:
+ create_timer(180).timeout.connect(func():push_error("Prepared museum capture timeout");quit(2))
  var empty:bool="--empty" in OS.get_cmdline_user_args()
  if empty:output="res://work/issue28/empty/"
+ for argument in OS.get_cmdline_user_args():
+  if argument.begins_with("--out="):output="res://"+argument.trim_prefix("--out=").trim_suffix("/")+"/"
  DirAccess.make_dir_recursive_absolute(output)
  AudioServer.set_bus_mute(0,true)
  root.size=Vector2i(1920,1080)
  gallery=load("res://scenes/collection/prepared_gallery.tscn").instantiate();root.add_child(gallery)
  while not gallery.fixtures_ready:await process_frame
+ for record in gallery.exhibit_store.manifest.attempts:
+  var path:String=gallery.exhibit_store.directory.path_join(record.file)
+  archive_hashes[path]=FileAccess.get_sha256(path)
  await capture("01-overview")
  if empty:
   check(gallery.examples==[null,null],"empty collection has no perfect stand-ins")
@@ -67,6 +74,7 @@ func run() -> void:
   await process_frame
   var now:=Time.get_ticks_usec();samples.append((now-previous)/1000.0);previous=now
  Engine.max_fps=240;samples.sort()
+ for path in archive_hashes:check(FileAccess.get_sha256(path)==archive_hashes[path],"gallery never rewrites archived preparation")
  var report:={"checks":checks,"failures":failures,"render_size":str(root.get_texture().get_image().get_size()),
   "frame_p50_ms":samples[90],"frame_p95_ms":samples[171],"archive":gallery.exhibit_store.directory}
  FileAccess.open(output+"native.json",FileAccess.WRITE).store_string(JSON.stringify(report,"  "))

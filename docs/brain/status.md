@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date :** 2026-10-19
+**Date :** 2026-10-20
 
 ## Références validées
 P0–P5, préparations #33, ammonite #35, terre compacte #37, concrétions #39,
@@ -12,40 +12,33 @@ C reste la référence compacte ; cible de 5–7 minutes pour la petite ammonite
 sans nouvelle durée humaine mesurée.
 
 ## Mission active / gate
-Antoine autorise explicitement le 19 octobre une amélioration visuelle et
-sonore par Technical Artist, Godot Shader Developer et Game Audio Engineer,
-selon les trois images fournies dans le chat. Livrable : version existante
-améliorée sur branche séparée et PR draft, **aucune fusion**.
+Antoine a autorisé la finition visuelle/sonore par Technical Artist,
+Godot Shader Developer et Game Audio Engineer sur branche séparée et PR draft.
+Après appréciation des matières et sons atelier, il a étendu la passe au musée,
+autorisé les assets originaux, demandé une ambiance/musique, le retrait de la
+lampe visible et une amélioration du souffleur. **Aucune fusion autorisée.**
 
-Branche : `codex/atelier-sensory-polish`, créée depuis main 04a8406.
+Branche : `codex/atelier-sensory-polish`.
 PR draft : [#55](https://github.com/ezzerx/archaeology-game/pull/55).
-Rapport : `docs/dev/ATELIER_SENSORY_POLISH_REPORT.md`.
-Notes des spécialistes : `ATELIER_TECHNICAL_ART_NOTES.md`,
-`ATELIER_SHADER_NOTES.md`, `ATELIER_AUDIO_NOTES.md` sous `docs/dev/`.
-Lancement : `Launch-Atelier-Polish.cmd`.
+Rapport actif : `docs/dev/MUSEUM_SENSORY_POLISH_REPORT.md`.
+Notes spécialistes, diagnostic de rejeu et preuves liés dans ce rapport.
+Première passe : `docs/dev/ATELIER_SENSORY_POLISH_REPORT.md`.
+Lanceurs : `Launch-Museum-Polish.cmd` et `Launch-Atelier-Polish.cmd`.
+Worktree : `C:/Users/antoi/.codex/worktrees/sensory-polish/ArchaeologyGame`.
 
-La passe concerne la mise en scène périphérique de l’atelier, les matières,
-la lumière, les sons des outils et une ambiance discrète. Elle conserve les
-cartes et règles de fouille, les outils/cadences, les trois préparations,
-Exposure/Cleanliness/Condition, la caméra et l’archivage.
+Version améliorée implémentée, captures comparées à la référence et itérées,
+revue par les deux agents visuels et l’orchestrateur. Tests natifs, stockage,
+audio et équivalence du souffleur documentés. **En attente de validation
+artistique et sonore d’Antoine**, les tests ne valant pas validation humaine.
+Prochaine action : essai humain de cette livraison, puis corrections demandées.
+Pas de merge ni de démarrage d’une autre étape sans instruction explicite.
 
-Livraison et vérifications terminées (runtime 0bc84f3). Prochaine action : attendre
-le verdict artistique et sonore d’Antoine. Tests automatisés et captures
-ne valent pas validation humaine. Pas de merge ni de mission suivante.
-
-## Travaux indépendants / limites
+## Travaux indépendants / points de vigilance
 PR #54 `codex/27-arrivals` : arrivages en revue humaine dans son propre
-worktree. Elle n’est ni reprise, ni modifiée, ni fusionnée par cette mission.
-La nouvelle demande autorise cette branche distincte depuis main ; elle ne
-valide pas implicitement les arrivages.
-
-Atelier en Compatibility, galerie en Forward+ ; transition par relève de
-processus inchangée. Plafond rendu 240 FPS / physique 60 Hz ; coût réel et
-pics sous excavation à distinguer de ce plafond. Souffle dense suivi sous #50.
-Le dernier bloc achevé devient la pièce exposée avec ses vrais restes, dégâts,
-nettoyage et poussière ; historique et meilleurs résultats conservés.
-Les copies historiques du dépôt et leurs changements locaux sont préservés.
-
-Worktree de cette mission :
-`C:/Users/antoi/.codex/worktrees/sensory-polish/ArchaeologyGame`.
+worktree, inchangés et non fusionnés par cette mission.
+Atelier Compatibility / musée Forward+ ; relève de processus conservée.
+Plafond 240 FPS / physique 60 Hz maintenus, sans garantie de 240 FPS sur
+archives denses ou sous souffleur ; améliorations et pointes restantes mesurées.
+Le terrain reste lisible mais sa grille est visible à très gros zoom.
+Les fichiers joueur et les autres checkouts sont préservés.
 Les étapes produit suivantes restent dans `docs/design/FIRST_EXHIBITION_PLAN.md`.

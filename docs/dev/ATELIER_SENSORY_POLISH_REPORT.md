@@ -145,3 +145,12 @@ Moyennes par segment **150,9–240,6 FPS** à 1440 × 810 ; des pointes de frame
 subsistent (voir `active-runtime.json`), ces moyennes ne promettent donc pas une
 latence constante. Le minimum concerne le souffle marin dense (P95 17,05 ms), un point de suivi à conserver sous #50 ; cette passe ne prétend pas le résoudre. Le log signale également une invalidation du périphérique
 WASAPI pendant la fin du test ; il n’est pas utilisé comme preuve d’écoute.
+
+## Suite du retour humain — 20 octobre
+
+La première passe documentée ci-dessus est historique. La lampe visible a
+ensuite été retirée, le musée refondu et sonorisé, et le souffleur optimisé.
+Voir [le rapport musée](MUSEUM_SENSORY_POLISH_REPORT.md) pour la version
+à examiner, ses captures et mesures. Le nouveau test différentiel documente
+aussi la sensibilité de la caméra dans le rejeu historique, sans en réécrire
+les fixtures. Le statut canonique reste `docs/brain/status.md`.

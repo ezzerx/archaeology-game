@@ -42,82 +42,15 @@ func _work_material(from:Vector2,to:Vector2,tool:ToolDefinition,delta:float,abra
  var started:=Time.get_ticks_usec()
  var low:=Vector2i((from.min(to)-Vector2.ONE*tool.radius).floor()).max(Vector2i.ZERO)
  var high:=Vector2i((from.max(to)+Vector2.ONE*tool.radius).ceil()).min(size-Vector2i.ONE)
- var segment:=to-from
- var length_squared:=segment.length_squared()
- var inverse_length:=1.0/length_squared if length_squared>0 else 0.0
- var radius_squared:=tool.radius*tool.radius
- var lookup_scale:=4096.0/radius_squared
- var changed:=0
- var volume:=0.0
- var newly_exposed:=PackedInt32Array()
- var sources:Array[Vector3]=[]
  var was_discovered:=fossil.first_contact
- # Explicit snapshot: packed-array assignments share mutable storage. Neighbor
- # eligibility must stay frozen for the whole stroke (no same-tick cascade).
- var previous_heights:=_heights.duplicate()
- var next_heights:=_heights
- var caps:=crust_caps
- var ceilings:=structural_ceilings
- var roofs:=grain_roofs;var floors:=grain_floors
- var lower_roofs:=deep_grain_roofs;var lower_floors:=deep_grain_floors
- var weights:=radial_weights;var ease:=marine_grain_ease
- var exposed:=fossil.exposed
- var width:=size.x;var count:=previous_heights.size()
- var offsets:PackedInt32Array=PackedInt32Array([-width*3,-3,3,width*3])
- var has_lower:=not lower_roofs.is_empty()
- var marine:=demo_kind==1
- var varying_ease:=marine and not ease.is_empty()
- var lip:=.028 if marine else .022
- var sx:=segment.x;var sy:=segment.y
- var sample_stride:=maxi(1,floori(radius_squared*.23))
- var rate:=.27 if abrasion else .72
- var work:=rate*minf(delta,.05)
- for y in range(low.y,high.y+1):
-  var dy:float=y-from.y
-  var row:=y*width
-  for x in range(low.x,high.x+1):
-   var i:=row+x
-   var old:=previous_heights[i]
-   var cap:=caps[i]
-   var floor_height:=ceilings[i]
-   var roof:=0.0;var bed_floor:=0.0;var deep_layer:=false
-   # Already finished cells need neither distance math nor neighborhood queries.
-   if abrasion:
-    if cap<=0 or old>cap+.001 or old<=floor_height:continue
-   else:
-    roof=roofs[i];bed_floor=floors[i]
-    deep_layer=has_lower and lower_roofs[i]>0 and old<=bed_floor+.0001
-    if deep_layer:roof=lower_roofs[i];bed_floor=lower_floors[i]
-    if roof<=0 or old<=bed_floor:continue
-    floor_height=maxf(bed_floor,maxf(floor_height,cap))
-    if old<=floor_height or old>roof+lip:continue
-   var dx:float=x-from.x
-   var t:=clampf((dx*sx+dy*sy)*inverse_length,0,1)
-   var px:=dx-sx*t;var py:=dy-sy*t
-   var distance_squared:=px*px+py*py
-   if distance_squared>=radius_squared:continue
-   if not abrasion and old>roof+.0001:
-    var unsupported:=false
-    for offset in offsets:
-     var j:int=i+offset
-     if j<0 or j>=count or abs(j%width-x)>3:continue
-     var neighbor_roof:float=lower_roofs[j] if deep_layer else roofs[j]
-     if neighbor_roof>0 and previous_heights[j]<neighbor_roof-.018:
-      unsupported=true;break
-    if not unsupported:continue
-   var influence:=weights[mini(4096,int(distance_squared*lookup_scale))]
-   if varying_ease:influence*=ease[i]
-   var next:=maxf(floor_height,old-work*influence)
-   if next-floor_height<.002 and influence>.25:next=floor_height
-   if next>=old:continue
-   next_heights[i]=next
-   if abrasion:caps[i]=next if next>ceilings[i]+.00001 else 0.0
-   volume+=old-next;changed+=1
-   if sources.size()<8 and (changed%sample_stride==0 or ((abrasion or marine) and changed==1)):sources.append(Vector3(x,old,y))
-   if ceilings[i]>0 and next<=ceilings[i]+FossilField.EXPOSURE_EPSILON and exposed[i]==0:newly_exposed.append(i)
+ # Keep the expensive texel loops specialized. Tool rules and final event order
+ # remain shared; neither scanner caches eligibility across gestures.
+ var result:=_scan_abrasion(from,to,tool.radius,delta,low,high) if abrasion else _scan_grains(from,to,tool.radius,delta,low,high)
+ var changed:int=result[0]
+ var volume:float=result[1]
+ var newly_exposed:PackedInt32Array=result[2]
+ var sources:Array[Vector3]=result[3]
  if changed==0:return 0
- _heights=next_heights
- if abrasion:crust_caps=caps
  tool_applied.emit()
  image.set_data(size.x,size.y,false,Image.FORMAT_RF,_heights.to_byte_array());dirty=true
  fossil.expose_cells(newly_exposed)
@@ -133,3 +66,147 @@ func _work_material(from:Vector2,to:Vector2,tool:ToolDefinition,delta:float,abra
  last_edit_usec=Time.get_ticks_usec()-started
  material_action.emit(last_action)
  return changed
+
+func _scan_grains(from:Vector2,to:Vector2,radius:float,delta:float,low:Vector2i,high:Vector2i) -> Array:
+ var segment:=to-from
+ var length_squared:=segment.length_squared()
+ var inverse_length:=1.0/length_squared if length_squared>0 else 0.0
+ var radius_squared:=radius*radius
+ var lookup_scale:=4096.0/radius_squared
+ var changed:=0
+ var volume:=0.0
+ var newly_exposed:=PackedInt32Array()
+ var sources:Array[Vector3]=[]
+ # Freeze neighbor eligibility for the whole stroke: packed arrays otherwise
+ # share mutable storage, allowing an unintended same-tick lip cascade.
+ var previous_heights:=_heights.duplicate()
+ var next_heights:=_heights
+ var caps:=crust_caps
+ var ceilings:=structural_ceilings
+ var weights:=radial_weights
+ var exposed:=fossil.exposed
+ var width:=size.x
+ var sx:=segment.x;var sy:=segment.y
+ var stationary:=length_squared==0.0
+ var sample_stride:=maxi(1,floori(radius_squared*.23))
+ var minimum_x:=minf(from.x,to.x);var maximum_x:=maxf(from.x,to.x)
+ var minimum_y:=minf(from.y,to.y);var maximum_y:=maxf(from.y,to.y)
+ var roofs:=grain_roofs;var floors:=grain_floors
+ var lower_roofs:=deep_grain_roofs;var lower_floors:=deep_grain_floors
+ var ease:=marine_grain_ease
+ var count:=previous_heights.size()
+ var offsets:=PackedInt32Array([-width*3,-3,3,width*3])
+ var has_lower:=not lower_roofs.is_empty()
+ var marine:=demo_kind==1
+ var varying_ease:=marine and not ease.is_empty()
+ var lip:=.028 if marine else .022
+ var work:=.72*minf(delta,.05)
+ for y in range(low.y,high.y+1):
+  var dy:float=y-from.y
+  var row:=y*width
+  # This conservative capsule bound only culls unreachable texels. The exact
+  # original segment-distance expression below still decides every influence.
+  var edge_distance:=maxf(0.0,maxf(minimum_y-y,y-maximum_y))
+  var reach:=sqrt(maxf(0.0,radius_squared-edge_distance*edge_distance))
+  var row_low:=maxi(low.x,floori(minimum_x-reach))
+  var row_high:=mini(high.x,ceili(maximum_x+reach))
+  for x in range(row_low,row_high+1):
+   var i:=row+x
+   var old:=previous_heights[i]
+   var roof:=roofs[i];var bed_floor:=floors[i]
+   var deep_layer:=has_lower and lower_roofs[i]>0 and old<=bed_floor+.0001
+   if deep_layer:roof=lower_roofs[i];bed_floor=lower_floors[i]
+   # Sealed or exhausted cells need no ceiling/cap reads, projection or neighbors.
+   if roof<=0 or old<=bed_floor or old>roof+lip:continue
+   var floor_height:=maxf(bed_floor,maxf(ceilings[i],caps[i]))
+   if old<=floor_height:continue
+   var dx:float=x-from.x
+   var distance_squared:=0.0
+   if stationary:
+    distance_squared=dx*dx+dy*dy
+   else:
+    var t:=clampf((dx*sx+dy*sy)*inverse_length,0,1)
+    var px:=dx-sx*t;var py:=dy-sy*t
+    distance_squared=px*px+py*py
+   if distance_squared>=radius_squared:continue
+   if old>roof+.0001:
+    var unsupported:=false
+    for offset in offsets:
+     var j:int=i+offset
+     if j<0 or j>=count or abs(j%width-x)>3:continue
+     var neighbor_roof:float=lower_roofs[j] if deep_layer else roofs[j]
+     if neighbor_roof>0 and previous_heights[j]<neighbor_roof-.018:
+      unsupported=true;break
+    if not unsupported:continue
+   var influence:=weights[mini(4096,int(distance_squared*lookup_scale))]
+   if varying_ease:influence*=ease[i]
+   var next:=maxf(floor_height,old-work*influence)
+   if next-floor_height<.002 and influence>.25:next=floor_height
+   if next>=old:continue
+   next_heights[i]=next
+   volume+=old-next;changed+=1
+   if sources.size()<8 and (changed%sample_stride==0 or (marine and changed==1)):sources.append(Vector3(x,old,y))
+   if ceilings[i]>0 and next<=ceilings[i]+FossilField.EXPOSURE_EPSILON and exposed[i]==0:newly_exposed.append(i)
+ _heights=next_heights
+ return [changed,volume,newly_exposed,sources]
+
+func _scan_abrasion(from:Vector2,to:Vector2,radius:float,delta:float,low:Vector2i,high:Vector2i) -> Array:
+ var segment:=to-from
+ var length_squared:=segment.length_squared()
+ var inverse_length:=1.0/length_squared if length_squared>0 else 0.0
+ var radius_squared:=radius*radius
+ var lookup_scale:=4096.0/radius_squared
+ var changed:=0
+ var volume:=0.0
+ var newly_exposed:=PackedInt32Array()
+ var sources:Array[Vector3]=[]
+ var previous_heights:=_heights.duplicate()
+ var next_heights:=_heights
+ var caps:=crust_caps
+ var ceilings:=structural_ceilings
+ var weights:=radial_weights
+ var exposed:=fossil.exposed
+ var width:=size.x
+ var sx:=segment.x;var sy:=segment.y
+ var stationary:=length_squared==0.0
+ var sample_stride:=maxi(1,floori(radius_squared*.23))
+ var minimum_x:=minf(from.x,to.x);var maximum_x:=maxf(from.x,to.x)
+ var minimum_y:=minf(from.y,to.y);var maximum_y:=maxf(from.y,to.y)
+ var varying_ease:=demo_kind==1 and not marine_grain_ease.is_empty()
+ var ease:=marine_grain_ease
+ var work:=.27*minf(delta,.05)
+ for y in range(low.y,high.y+1):
+  var dy:float=y-from.y
+  var row:=y*width
+  # This conservative capsule bound only culls unreachable texels. The exact
+  # original segment-distance expression below still decides every influence.
+  var edge_distance:=maxf(0.0,maxf(minimum_y-y,y-maximum_y))
+  var reach:=sqrt(maxf(0.0,radius_squared-edge_distance*edge_distance))
+  var row_low:=maxi(low.x,floori(minimum_x-reach))
+  var row_high:=mini(high.x,ceili(maximum_x+reach))
+  for x in range(row_low,row_high+1):
+   var i:=row+x
+   var old:=previous_heights[i]
+   var cap:=caps[i];var floor_height:=ceilings[i]
+   if cap<=0 or old>cap+.001 or old<=floor_height:continue
+   var dx:float=x-from.x
+   var distance_squared:=0.0
+   if stationary:
+    distance_squared=dx*dx+dy*dy
+   else:
+    var t:=clampf((dx*sx+dy*sy)*inverse_length,0,1)
+    var px:=dx-sx*t;var py:=dy-sy*t
+    distance_squared=px*px+py*py
+   if distance_squared>=radius_squared:continue
+   var influence:=weights[mini(4096,int(distance_squared*lookup_scale))]
+   if varying_ease:influence*=ease[i]
+   var next:=maxf(floor_height,old-work*influence)
+   if next-floor_height<.002 and influence>.25:next=floor_height
+   if next>=old:continue
+   next_heights[i]=next
+   caps[i]=next if next>ceilings[i]+.00001 else 0.0
+   volume+=old-next;changed+=1
+   if sources.size()<8 and (changed%sample_stride==0 or changed==1):sources.append(Vector3(x,old,y))
+   if ceilings[i]>0 and next<=ceilings[i]+FossilField.EXPOSURE_EPSILON and exposed[i]==0:newly_exposed.append(i)
+ _heights=next_heights;crust_caps=caps
+ return [changed,volume,newly_exposed,sources]

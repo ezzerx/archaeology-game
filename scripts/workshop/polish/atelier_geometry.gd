@@ -34,7 +34,7 @@ func build(marine := false) -> void:
  _notebook(Vector3(.653,.016,.105), -.13)
  _books(Vector3(.676,.014,-.245), .09)
  _tray(Vector3(-.657,.012,.105), -.06)
- _asset("lamp", _pose(Vector3(-.685,0,-.361),-.30).scaled_local(Vector3.ONE*.45))
+ # The visible lamp is removed by explicit art direction; task illumination stays separate.
  _sample_jar(Vector3(.676,0,.324), .035, .086)
  _brush_pot(Vector3(-.673,0,-.257))
  _plant(Vector3(.745,0,-.447))

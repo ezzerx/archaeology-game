@@ -1,0 +1,12 @@
+{
+  "asset": "heritage_rug_woven.png",
+  "created": "2026-10-20",
+  "source": "OpenAI built-in image_gen; original image, no input image",
+  "purpose": "Museum carpet albedo",
+  "source_dimensions": [
+    1774,
+    887
+  ],
+  "alterations": "None; original resolution retained",
+  "prompt": "Use case: photorealistic-natural. Asset type: albedo texture for a high-quality 3D natural-history museum game. Generate a brand-new original antique handknotted botanical Persian-inspired carpet texture, strictly orthographic directly overhead, RECTANGULAR aspect ratio exactly 2:1. The carpet fills the entire image from edge to edge, no background and no fringe, no perspective, no shadows, perfectly evenly diffuse lit, no objects. Restrained desaturated burnt umber and rust field, dark forest green and charcoal accents, many intricate small faded ivory and muted gold palmettes, curling arabesque tendrils, delicate serrated leaves and floral lattice. Closely packed intricate fine ornament, not large simple flowers or sparse repeated sprigs. Multiple continuous ornamental borders on all four sides, a restrained small central rosette medallion. Genuine natural irregular wool pile, thousands of tiny woven thread details and knots, softly worn antique patches, slightly uneven dye and subtle thin faded weave, tactile detailed textile surface, realistic museum quality. Avoid sharp vector edges, avoid shiny synthetic cloth, no floor, no tassels, no folds, no letters, no logos. The result must be a flat 2:1 texture map ready to apply directly to a rectangular 3D carpet plane. Keep the overall pattern low contrast enough to support beautiful fossil exhibits above it."
+}

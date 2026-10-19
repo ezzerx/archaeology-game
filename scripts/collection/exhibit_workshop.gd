@@ -50,7 +50,10 @@ func _after_archive() -> void:
   _save_exhibit(preparation.session.archive_snapshot);return
  busy=true;preparation.session_ui.another_button.disabled=true
  preparation.session_ui.card_subtitle.text="Installation de votre bloc dans la galerie…"
+ var audio_bridge=preload("res://scripts/audio/museum_audio.gd")
+ var audio_token:Dictionary=await audio_bridge.fade_workshop_for_handoff(get_tree(),.65)
  var ok:bool=await Handoff.transfer(get_tree(),true,exhibit_store.directory,0 if preparation.specimen_id=="B17" else 1)
  if not ok:
+  await audio_bridge.restore_workshop_after_cancel(get_tree(),audio_token)
   busy=false;preparation.session_ui.refresh()
   preparation.session_ui.card_subtitle.text="La galerie n’a pas pu s’ouvrir. Votre bloc est enregistré ; réessayez."

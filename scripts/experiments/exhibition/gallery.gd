@@ -6,13 +6,17 @@ const AmmoniteStand=preload("res://scripts/experiments/exhibition/ammonite_stand
 const Furniture=preload("res://scripts/experiments/exhibition/gallery_furniture.gd")
 const Room=preload("res://scripts/experiments/exhibition/gallery_room.gd")
 const Cartel=preload("res://scripts/experiments/exhibition/gallery_cartel.gd")
+const OVERVIEW_FOCUS=Vector3(0,1.72,-.25)
+const OVERVIEW_SIZE=6.15
 var _previous_rendering:Dictionary={}
+var museum_audio:Node
+var sound_mode:OptionButton
 var camera:Camera3D
 var selected:=-1
-var focus:=Vector3(0,1.62,-.25)
-var target_focus:=Vector3(0,1.62,-.25)
-var view_size:=5.8
-var target_size:=5.8
+var focus:=OVERVIEW_FOCUS
+var target_focus:=OVERVIEW_FOCUS
+var view_size:=OVERVIEW_SIZE
+var target_size:=OVERVIEW_SIZE
 var angle:=Vector2.ZERO
 var target_angle:=Vector2.ZERO
 var orbit:=Vector3(1.0,4.5,7.6)
@@ -57,6 +61,7 @@ func _ready() -> void:
   fixture.scale=Vector3.ONE*fit
   fixture.position=-Vector3(fixture.get_meta("display_center",Vector3.ZERO))*fit
   await get_tree().process_frame
+ _install_audio()
  fixtures_ready=true
  var tween:=create_tween();tween.tween_property(fade,"modulate:a",0.0,.7)
  tween.tween_callback(fade.hide)
@@ -147,8 +152,8 @@ func _ui() -> void:
 func select(index:int) -> void:
  if not fixtures_ready:return
  selected=clampi(index,-1,1);target_angle=Vector2.ZERO
- target_focus=Vector3(0,1.62,-.25) if selected<0 else centers[selected]+Vector3(0,-.14,.12)
- target_size=5.8 if selected<0 else (3.2 if selected==0 else 2.65)
+ target_focus=OVERVIEW_FOCUS if selected<0 else centers[selected]+Vector3(0,-.14,.12)
+ target_size=OVERVIEW_SIZE if selected<0 else (3.2 if selected==0 else 2.65)
  _captions()
 func _captions() -> void:
  heading.text="Traces du vivant" if selected<0 else ("Petit théropode · B–17" if selected==0 else "Ammonite côtelée · M–08")
@@ -204,3 +209,16 @@ func _exit_tree() -> void:
 
 func _build_exhibit(id:String) -> Node3D:
  return Fixture.build(id)
+
+func _install_audio() -> void:
+ museum_audio=preload("res://scripts/audio/museum_audio.gd").new()
+ museum_audio.name="MuseumAudio";add_child(museum_audio);museum_audio.setup(self)
+ sound_mode=OptionButton.new();exhibition_note.get_parent().add_child(sound_mode)
+ sound_mode.name="MuseumSoundMode";sound_mode.position=Vector2(1250,18)
+ sound_mode.custom_minimum_size=Vector2(350,46);sound_mode.focus_mode=Control.FOCUS_NONE
+ for label in museum_audio.LABELS:sound_mode.add_item(label)
+ sound_mode.select(museum_audio.mode)
+ sound_mode.add_theme_stylebox_override("normal",nav_buttons[0].get_theme_stylebox("normal"))
+ sound_mode.add_theme_font_override("font",sans);sound_mode.add_theme_font_size_override("font_size",19)
+ sound_mode.add_theme_color_override("font_color",Color("#e6d5af"))
+ sound_mode.item_selected.connect(func(index:int):museum_audio.set_mode(index))

@@ -1788,3 +1788,6 @@ AAA désigne ici une attente de finition, pas une migration photoréaliste.
 Technical Artist, Godot Shader Developer et Game Audio Engineer sont mandatés.
 Branche séparée depuis main, PR draft et validation humaine avant toute fusion.
 Cette demande ne valide ni ne fusionne la PR arrivages indépendante.
+
+## 2026-10-20 — Retour atelier et extension de la passe au musée
+Antoine apprécie les nouvelles matières et les sons de l'atelier, et demande de retirer sa lampe visible. La même passe de finition est étendue au prototype de salle d'exposition : recréer ou retoucher librement les éléments pour se rapprocher de sa référence de cabinet d'histoire naturelle, avec vérification collective des captures et itérations avant livraison. Les assets originaux sont encouragés quand ils améliorent le rendu ; la réutilisation des anciens n'est pas obligatoire. Game Audio Engineer ajoute également ambiance et musique au musée. L'optimisation du souffleur est demandée si possible, sans changer les règles de fouille. Ce retour n'autorise aucune fusion : la PR #55 reste draft en attente du nouvel essai.
