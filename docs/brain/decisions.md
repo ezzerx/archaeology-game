@@ -1779,3 +1779,15 @@ des matières, de la poussière et des contours au zoom, et autorise la fusion.
 Le bloc exposé conserve le travail réel du joueur, y compris la matière et la
 poussière restantes. Prochaine étape produit : définir une nouvelle vision des
 caisses avant développement, sans reprendre le concept précédemment rejeté.
+
+
+## 2026-10-19 — Direction visuelle des arrivages acceptée pour test
+Antoine valide la nouvelle planche #27 : comptoir de réception chaleureux,
+trois colis en bois patiné avec renforts vert bouteille, étiquettes discrètes,
+focus puis ouverture au loquet et au couvercle. L'ouverture montre un bloc
+entièrement couvert ; la découverte des fossiles reste dans la préparation.
+Préparer les assets de qualité via références isolées → Tripo Studio → Blender
+→ Godot et éclairage natif. Corps et couvercle séparés ; mécanisme et étiquettes
+éditables. Réutiliser les accessoires de musée existants. L'accord porte sur la
+version test et sa direction artistique, pas sur un résultat natif encore absent
+ni sur le merge. Planche : docs/visual-references/arrivals/00-arrivals-approved.png.
