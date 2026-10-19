@@ -52,7 +52,8 @@ pe=struct.unpack_from('<I',exe,0x3c)[0];assert exe[pe:pe+4]==b'PE\0\0' and struc
 archive=output.parent/'ArchaeologyGame-Arrivals-V1-Windows.zip'
 names=['ArchaeologyGame.exe','ArchaeologyGame.pck','LISEZ-MOI.txt','LICENCES.txt']
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
-    for name in names:z.write(output/name,name)
+    # PCK is already compressed: avoid redundant compression of the large game data.
+    for name in names:z.write(output/name,name,compress_type=zipfile.ZIP_STORED if name.endswith('.pck') else zipfile.ZIP_DEFLATED)
 with zipfile.ZipFile(archive) as z:assert z.testzip() is None
 report={'filename':archive.name,'size':archive.stat().st_size,'sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'game_runtime_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),'engine':subprocess.check_output([str(godot),'--version'],text=True).strip(),'windows_execution_verified':False,'stage':str(stage)}
 (output/'build.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))

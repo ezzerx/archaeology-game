@@ -19,6 +19,8 @@ func mouse(point:Vector2,pressed:bool) -> void:
  var e:=InputEventMouseButton.new();e.position=point;e.button_index=MOUSE_BUTTON_LEFT;e.pressed=pressed;scene._unhandled_input(e)
 func run() -> void:
  captures="--capture" in OS.get_cmdline_user_args()
+ for argument in OS.get_cmdline_user_args():
+  if argument.begins_with("--capture-dir="):out=argument.trim_prefix("--capture-dir=")
  DirAccess.make_dir_recursive_absolute(out)
  root.size=Vector2i(1280,720)
  print("Loading arrivals scene")
@@ -60,6 +62,9 @@ func run() -> void:
   check(c.opening>.99 and c.covered.visible,"Mouse drag opens lid and reveals covered block %d"%i)
   scene._refresh();check(not scene.start_button.disabled,"Preparation available after opening %d"%i)
   check(c.lid.rotation.x< -1.8,"Lid clears the working area %d"%i)
+  scene._process(1.0)
+  var lid_top:Vector2=scene.camera.unproject_position(c.lid.to_global(Vector3(0,.04,.636)))
+  check(lid_top.y>20 and scene.get_viewport().get_visible_rect().has_point(lid_top),"Open lid stays within framing %d"%i)
   await shot("03-open-%d"%i)
   scene.dragging_lid=true;scene._notification(Node.NOTIFICATION_APPLICATION_FOCUS_OUT)
   check(not scene.dragging_lid,"Focus loss cancels manipulation %d"%i)

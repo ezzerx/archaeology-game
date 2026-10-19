@@ -55,6 +55,10 @@ func _button(parent:Node,text:String) -> Button:
  var style:=StyleBoxFlat.new();style.bg_color=Color("#324a3a");style.border_color=Color("#9d8b5e");style.set_border_width_all(1);style.set_corner_radius_all(4);style.content_margin_left=18;style.content_margin_right=18;b.add_theme_stylebox_override("normal",style)
  var hover:=style.duplicate();hover.bg_color=Color("#4b6247");b.add_theme_stylebox_override("hover",hover);b.add_theme_stylebox_override("pressed",hover);b.add_theme_color_override("font_color",Color("#eee0bf"));return b
 func _process(delta:float) -> void:
+ if selected>=0:
+  var opened:float=crates[selected].opening
+  target_size=lerpf(1.25,1.65,opened)
+  target_focus=crates[selected].position+Vector3(0,.25+.07*opened,.02)
  var a:=1-exp(-delta*7)
  focus=focus.lerp(target_focus,a);view_size=lerpf(view_size,target_size,a);_camera()
  if selected>=0 and not transferring:
