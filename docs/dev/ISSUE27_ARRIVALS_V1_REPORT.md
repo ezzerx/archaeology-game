@@ -91,3 +91,29 @@ avec E ; choisir puis annuler un retour atelier ; conserver une préparation et
 vérifier sa présence au musée après relance. Relever confort des gestes, durée
 des transitions, éclairage, collisions visuelles et fluidité. Les corrections
 restent sur la PR #54 ; le statut canonique porte le gate de validation.
+
+## Livraison du candidat
+
+Le ZIP `builds/issue27/ArchaeologyGame-Arrivals-V1-Windows.zip` est conservé
+dans le workspace cloud (496 966 065 octets), SHA-256
+`80cbe6a35c546a5457200ea22c8d0ce775c714efc34bd71ea82f91b8c033016a`.
+Il n'est pas suivi dans le dépôt de jeu. L'hébergement du téléchargement a échoué :
+limite d'archive locale de 256 MiB, puis erreur distante
+`Cannot create a string longer than 0x1fffffe8 characters`.
+Les vérifications d'assemblage des 60 parties concernent le paquet local,
+pas un téléchargement publié.
+
+Pour reprendre localement : récupérer `codex/27-arrivals`, utiliser Godot 4.7.2,
+puis `Launch-Arrivals.cmd`. Le script `tools/arrivals/export_native.py`
+reproduit le paquet natif. Les captures et résultats sont dans
+[le dossier de preuves](evidence/issue27/README.md).
+
+Diagnostic de la publication du paquet complet :
+- Site : `appgprj_6ace1afd5f2c81919e82f40e93b3ef32`.
+- Version : `appgprj_6ace1afd5f2c81919e82f40e93b3ef32~appgver_abb590213af88191ba048db586f18be6`.
+- Premier déploiement : `appgdep_6ad6321683848191a86ad52bda3f9b24`, clonage interrompu (`early EOF`).
+- Nouvelle tentative de la même version : `appgdep_6ad63356552081918ea3ff3f2d808827`, limite de chaîne ci-dessus.
+
+La revue légère est publiée séparément ; elle signale explicitement l'absence
+de téléchargement Windows. Les anciens binaires et la version complète restent
+récupérables dans l'historique du dépôt du site.
