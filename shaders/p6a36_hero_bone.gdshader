@@ -1,4 +1,6 @@
 shader_type spatial;
+// Godot 4.7 Compatibility / Mobile / Forward+. No screen/depth reads.
+// Existing exact visibility discard stays intact: never reveal buried anatomy.
 render_mode diffuse_burley;
 uniform sampler2D working_map : filter_linear, repeat_disable;
 uniform sampler2D fossil_map : filter_nearest, repeat_disable;
@@ -33,6 +35,9 @@ void fragment() {
  ivec2 cell=clamp(ivec2(uv*map_size),ivec2(0),ivec2(map_size)-ivec2(1));
  float cover=0.0;
  vec3 albedo=shape_study ? vec3(.43,.40,.34) : hero_albedo(bone_position,normalize(bone_normal),3);
+ float micro_height=shape_study ? 0.0 : hero_detail_height(albedo,3);
+ // Derivatives are evaluated before nonuniform burial discard.
+ vec3 detailed_normal=hero_detail_normal(VERTEX,NORMAL,micro_height);
  // Short-range baked occlusion preserves warm ivory in broad lit faces.
  albedo *= mix(vec3(.64,.60,.53),vec3(1.0),bone_occlusion);
  float cavity=inspection ? 0.0 : hero_cavity(uv,(bone_position.y-.018)/excavatable_height);
@@ -57,6 +62,7 @@ void fragment() {
   albedo=mix(albedo,cursor_color.rgb,marker);
  }
  ALBEDO=albedo;
- ROUGHNESS=mix(.67,.97,cover);
+ NORMAL=normalize(mix(detailed_normal,NORMAL,cover));
+ ROUGHNESS=mix(hero_detail_roughness(micro_height,3),.97,cover);
  SPECULAR=.28*(1.0-cover*.65);
 }

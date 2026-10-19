@@ -1,0 +1,24 @@
+{
+  "checks": 22,
+  "failures": [],
+  "preparations": [
+    {
+      "audio_script": "res://scripts/audio/atelier_audio.gd",
+      "preparation": 0,
+      "room_voices": 1,
+      "spatial_pool": 8
+    },
+    {
+      "audio_script": "res://scripts/audio/atelier_audio.gd",
+      "preparation": 1,
+      "room_voices": 1,
+      "spatial_pool": 8
+    },
+    {
+      "audio_script": "res://scripts/audio/atelier_audio.gd",
+      "preparation": 2,
+      "room_voices": 1,
+      "spatial_pool": 8
+    }
+  ]
+}

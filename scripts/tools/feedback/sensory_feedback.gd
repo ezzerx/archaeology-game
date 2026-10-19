@@ -29,7 +29,7 @@ func _create_proxies() -> void:
 		proxy.hide()
 
 func _create_audio() -> MaterialAudio:
-	return MaterialAudio.new() # Human playtest rollback: original P4/P5 audio.
+	return preload("res://scripts/audio/atelier_audio.gd").new()
 
 func setup(target: ExcavationBlock, input: ToolController) -> void:
 	super.setup(target,input)

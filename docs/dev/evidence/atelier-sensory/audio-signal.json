@@ -1,0 +1,328 @@
+{
+  "files": [
+    {
+      "file": "abrasive_tip_loop.wav",
+      "peak_dbfs": -9.999861863811931,
+      "rms_dbfs": -21.465748602975875,
+      "dc": 3.6559928698796633e-06,
+      "seam": 0.1553086947233497,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "seam": true
+      }
+    },
+    {
+      "file": "air_loop.wav",
+      "peak_dbfs": -7.999851954109188,
+      "rms_dbfs": -20.73649253932283,
+      "dc": 7.123522986608233e-06,
+      "seam": 0.05496383556627094,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "seam": true
+      }
+    },
+    {
+      "file": "brush_clay_loop.wav",
+      "peak_dbfs": -9.000127250426592,
+      "rms_dbfs": -22.15205657734851,
+      "dc": 6.292210783663421e-06,
+      "seam": 0.08993804742576372,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "seam": true
+      }
+    },
+    {
+      "file": "brush_soil_loop.wav",
+      "peak_dbfs": -7.999851954109188,
+      "rms_dbfs": -21.914605183272077,
+      "dc": 8.929812756833845e-06,
+      "seam": 0.0065919980468153935,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "seam": true
+      }
+    },
+    {
+      "file": "chisel_clay_01.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -28.536026082933542,
+      "dc": 0.00015977179735985627,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_clay_02.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -27.356945187286982,
+      "dc": 0.00021208924217585144,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_clay_03.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -27.327181190831965,
+      "dc": 0.0003254861206669808,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_clay_04.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -26.900520905980617,
+      "dc": 0.0002175428826300875,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_clay_05.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -27.160751752734207,
+      "dc": 0.0003281694099940343,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_clay_06.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -29.287725647166724,
+      "dc": 0.00022360372333137728,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_stone_01.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -29.098165222311362,
+      "dc": 0.000203379385344844,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_stone_02.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -27.719363477276318,
+      "dc": 0.0002715361686123672,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_stone_03.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -27.840351180777656,
+      "dc": 0.0001962779394623741,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_stone_04.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -27.79924520451289,
+      "dc": 0.00020770457092817698,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_stone_05.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -27.668682474392952,
+      "dc": 0.0003684488210193387,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "chisel_stone_06.wav",
+      "peak_dbfs": -6.000212666958634,
+      "rms_dbfs": -28.86213180740549,
+      "dc": 0.0002484793675356634,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "precision_pick_01.wav",
+      "peak_dbfs": -9.000127250426592,
+      "rms_dbfs": -29.064969964940563,
+      "dc": 0.00020812793026998085,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "precision_pick_02.wav",
+      "peak_dbfs": -9.000127250426592,
+      "rms_dbfs": -27.957810669955894,
+      "dc": 0.0002017414848143624,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "precision_pick_03.wav",
+      "peak_dbfs": -9.000127250426592,
+      "rms_dbfs": -28.920666557300095,
+      "dc": 0.00015572645327693803,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "precision_pick_04.wav",
+      "peak_dbfs": -9.000127250426592,
+      "rms_dbfs": -30.075093262708247,
+      "dc": 0.0002590613156993095,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "precision_pick_05.wav",
+      "peak_dbfs": -9.000127250426592,
+      "rms_dbfs": -29.253473042915047,
+      "dc": 0.00027874461740540294,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    },
+    {
+      "file": "precision_pick_06.wav",
+      "peak_dbfs": -9.000127250426592,
+      "rms_dbfs": -29.63722283978744,
+      "dc": 0.00013022515907760708,
+      "seam": 0.0,
+      "checks": {
+        "headroom": true,
+        "non_silent": true,
+        "dc": true,
+        "zero_endpoints": true,
+        "prompt_attack": true,
+        "short_tail": true
+      }
+    }
+  ],
+  "room_peak_dbfs": -15.276993521187777,
+  "failures": []
+}

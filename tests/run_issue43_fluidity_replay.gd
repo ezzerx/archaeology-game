@@ -1,9 +1,11 @@
 extends "res://tests/run_issue33_demos.gd"
 var label:="before"
+var reference:="res://docs/dev/evidence/issue43/before-replay.json"
 var records:Array=[]
 func run() -> void:
  for arg in OS.get_cmdline_user_args():
   if arg.begins_with("--label="):label=arg.trim_prefix("--label=")
+  if arg.begins_with("--reference="):reference=arg.trim_prefix("--reference=")
  out="res://work/issue43/";DirAccess.make_dir_recursive_absolute(out)
  AudioServer.set_bus_mute(0,true)
  suite=load("res://scenes/experiments/preparation_demos.tscn").instantiate();root.add_child(suite)
@@ -66,7 +68,7 @@ func run() -> void:
    check(not c.hit.inside,"archived session blocks visual contact %d"%kind)
   records.append({"kind":kind,"stages":stages})
  if label!="before":
-  var baseline:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://docs/dev/evidence/issue43/before-replay.json"))
+  var baseline:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(reference))
   for k in range(records.size()):
    for n in range(records[k].stages.size()):
     var old:Dictionary=baseline.records[k].stages[n];var current:Dictionary=records[k].stages[n]

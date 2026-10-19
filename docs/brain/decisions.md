@@ -1779,3 +1779,12 @@ des matières, de la poussière et des contours au zoom, et autorise la fusion.
 Le bloc exposé conserve le travail réel du joueur, y compris la matière et la
 poussière restantes. Prochaine étape produit : définir une nouvelle vision des
 caisses avant développement, sans reprendre le concept précédemment rejeté.
+
+## 2026-10-19 — Passe atelier par l’équipe game dev
+Antoine demande une amélioration visuelle et sonore de la version existante,
+guidée par trois références de laboratoire chaleureux de musée : matière,
+lumière et contexte scientifique doivent donner envie de jouer. Le qualificatif
+AAA désigne ici une attente de finition, pas une migration photoréaliste.
+Technical Artist, Godot Shader Developer et Game Audio Engineer sont mandatés.
+Branche séparée depuis main, PR draft et validation humaine avant toute fusion.
+Cette demande ne valide ni ne fusionne la PR arrivages indépendante.
