@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-19",
+  "generator": "Imagegen",
+  "reference": "docs/visual-references/museum/02-gallery-stylized.png",
+  "tripo_generation_performed": false,
+  "images": [
+    {
+      "file": "00-arrivals-approved.png",
+      "source": "exec-ce67e74a-17c0-4642-a7d7-206ffe6a56f9.png",
+      "sha256": "0979f9698d4006d6aa7d1859329193c875d57f4c1530c05e281cb77c6868d1aa",
+      "scope": "scene concept approved for test on 2026-10-19"
+    },
+    {
+      "file": "01-crate-body.png",
+      "source": "exec-052ab0e2-88c1-445f-8206-8db434db493c.png",
+      "sha256": "ddb97f974de09e831d84e296c2a81c81bd7c983cd8435b78408395032e9b1e34",
+      "scope": "isolated empty body; production reference"
+    },
+    {
+      "file": "02-crate-lid.png",
+      "source": "exec-e5cb2e5f-9f2b-4827-b4ca-2727e3defff4.png",
+      "sha256": "c1f339b6240ece390151f3d43d4547ff50d1e5c3dd1f77abaabd16b6c60e0fd0",
+      "scope": "isolated matching lid; production reference"
+    },
+    {
+      "file": "03-reception-counter.png",
+      "source": "exec-cffa26f7-8c71-4816-981d-11d6a82fade8.png",
+      "sha256": "ce89005318a995bda62b743cc690251e22a1268f534d39e9aa38bfd51289be38",
+      "scope": "isolated empty counter; production reference"
+    }
+  ]
+}

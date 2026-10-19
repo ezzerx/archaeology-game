@@ -1,0 +1,13 @@
+{
+  "name": "crate_lid",
+  "original_filename": "02- crate lid.glb",
+  "received": "2026-10-19",
+  "sha256": "ccc035d4461886d1602d5d99e0be226007d0783d6564e18cd9f7c8fadef680fd",
+  "bytes": 14198240,
+  "source_triangles": 40283,
+  "generator": {
+    "version": "2.0",
+    "generator": "Tripo"
+  },
+  "studio_settings": "not inferable from GLB; recommendations in docs/visual-references/arrivals/README.md"
+}

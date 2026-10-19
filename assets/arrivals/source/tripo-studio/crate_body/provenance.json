@@ -1,0 +1,13 @@
+{
+  "name": "crate_body",
+  "original_filename": "01-crate body.glb",
+  "received": "2026-10-19",
+  "sha256": "cb2d93e309434480d5e314459c47e416734feb7136ee630f62e6dfdc5135ef79",
+  "bytes": 14224144,
+  "source_triangles": 80152,
+  "generator": {
+    "version": "2.0",
+    "generator": "Tripo"
+  },
+  "studio_settings": "not inferable from GLB; recommendations in docs/visual-references/arrivals/README.md"
+}

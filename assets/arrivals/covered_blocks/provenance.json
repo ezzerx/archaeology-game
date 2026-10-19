@@ -1,0 +1,18 @@
+{
+  "0": {
+    "path": "res://assets/arrivals/covered_blocks/block_0.scn",
+    "reused_completed_snapshot": true
+  },
+  "1": {
+    "center": "(0.021417, 0.0, 0.015365)",
+    "exposure": 0.0,
+    "extent": "(0.572846, 0.53343)",
+    "path": "res://assets/arrivals/covered_blocks/block_1.scn"
+  },
+  "2": {
+    "center": "(0.021417, 0.0, 0.015365)",
+    "exposure": 0.0,
+    "extent": "(0.572846, 0.53343)",
+    "path": "res://assets/arrivals/covered_blocks/block_2.scn"
+  }
+}

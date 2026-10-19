@@ -1,0 +1,137 @@
+{
+  "crate_body": {
+    "source_triangles": 80152,
+    "runtime_triangles": 36068,
+    "dimensions_blender_xyz": [
+      0.9000624418258667,
+      0.6202017068862915,
+      0.2700254023075104
+    ],
+    "textures": [
+      {
+        "name": "01-crate+body_basecolor.jpg",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "01-crate+body_normal.png",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "01-crate+body_rm.jpg",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      }
+    ],
+    "source_sha256": "cb2d93e309434480d5e314459c47e416734feb7136ee630f62e6dfdc5135ef79"
+  },
+  "crate_lid": {
+    "source_triangles": 40283,
+    "runtime_triangles": 18126,
+    "dimensions_blender_xyz": [
+      0.9160842895507812,
+      0.6363956928253174,
+      0.04516274854540825
+    ],
+    "textures": [
+      {
+        "name": "02-+crate+lid_basecolor.jpg",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "02-+crate+lid_normal.png",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "02-+crate+lid_rm.jpg",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      }
+    ],
+    "source_sha256": "ccc035d4461886d1602d5d99e0be226007d0783d6564e18cd9f7c8fadef680fd"
+  },
+  "reception_counter": {
+    "source_triangles": 121386,
+    "runtime_triangles": 60693,
+    "dimensions_blender_xyz": [
+      2.799989938735962,
+      1.2399592399597168,
+      0.8499999642372131
+    ],
+    "textures": [
+      {
+        "name": "03-reception+counter_basecolor.jpg",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "03-reception+counter_normal.png",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "03-reception+counter_rm.jpg",
+        "source_size": [
+          4096,
+          4096
+        ],
+        "runtime_size": [
+          2048,
+          2048
+        ]
+      }
+    ],
+    "source_sha256": "67158a952a8ed0d20ec7513ea231d40f8f9643c1308460b9112acd55a868c70e"
+  }
+}

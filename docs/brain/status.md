@@ -1,6 +1,6 @@
 # Statut canonique
 
-**Date :** 2026-10-17
+**Date :** 2026-10-19
 
 ## Références validées
 P0–P5, préparations #33, ammonite #35, terre compacte #37, concrétions #39,
@@ -17,17 +17,32 @@ La copie historique locale de main comporte des changements indépendants
 préservés ; cette mission repart du main distant fusionné dans preparation-demos.
 
 ## Mission validée / prochaine étape
-[#28](https://github.com/ezzerx/archaeology-game/issues/28) : conserver et exposer
-le vrai bloc préparé, puis le retrouver identique après relance.
-Branche codex/28-prepared-exhibits créée depuis main 085b6a8.
-Brief actif : docs/dev/ISSUE28_PREPARED_EXHIBITS.md.
-Rapport : docs/dev/ISSUE28_PREPARED_EXHIBITS_REPORT.md.
-PR [#53](https://github.com/ezzerx/archaeology-game/pull/53) validée par Antoine
-après essai des corrections de couleur, poussière et contours au zoom.
-Gate humain #28 levé le 2026-10-17 ; fusion et nettoyage autorisés.
-Rapport complémentaire : docs/dev/ISSUE28_EXHIBIT_DETAIL_FIX.md.
-Prochaine action : cadrer avec Antoine la nouvelle vision des caisses #27,
-avant toute implémentation. Aucune nouvelle mission de développement active.
+#28 / PR #53 fusionnée dans main le 17 octobre (04a8406), après validation
+humaine des vrais blocs exposés et des correctifs couleur, poussière et contours.
+Rapports : docs/dev/ISSUE28_PREPARED_EXHIBITS_REPORT.md et
+ISSUE28_EXHIBIT_DETAIL_FIX.md.
+
+[#27](https://github.com/ezzerx/archaeology-game/issues/27) devient la mission
+courante. Antoine valide le 19 octobre les visuels pour la version test :
+comptoir chaleureux, trois caisses, sélection/focus, loquet puis couvercle,
+bloc entièrement couvert avant préparation. Branche codex/27-arrivals créée
+sur main 04a8406 ; PR [#54](https://github.com/ezzerx/archaeology-game/pull/54)
+en brouillon. Brief : docs/dev/ISSUE27_ARRIVALS_BRIEF.md.
+Planche et pack : docs/visual-references/arrivals/README.md.
+
+V1 de test exportée depuis le runtime 35b921e : sources Tripo conservées,
+masters Blender et copies runtime rangés dans assets/arrivals/. Réception,
+loquet/couvercle, vrais blocs couverts et retour atelier/musée implémentés.
+115 contrôles automatisés passent. ZIP Windows x64 et paquet contrôlés sous
+Linux ; l’exécution Windows, les transitions et la fluidité restent à tester.
+Captures commentées en OpenGL logiciel ; le premier rendu Forward+ n’a pas
+abouti sur le cloud, donc son éclairage doit être jugé sur le PC cible.
+Rapport : docs/dev/ISSUE27_ARRIVALS_V1_REPORT.md.
+Preuves : docs/dev/evidence/issue27/.
+
+Gate : essai humain de la V1 et corrections éventuelles sur la même PR #54,
+encore en brouillon. Attendre la validation explicite d’Antoine avant merge.
+Aucune nouvelle mission ni modification des règles de préparation.
 
 Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,
 nettoyage et dégâts réels ; aucune substitution silencieuse par un meilleur
@@ -45,8 +60,8 @@ Nouveaux lanceurs : Launch-Prepare-For-Museum.cmd, Launch-Museum.cmd.
 Les lanceurs d’essais précédents restent disponibles.
 
 Ordre confirmé : netteté validée → vrais blocs exposés #28 → caisses #27.
-Les caisses rejetées ne constituent pas une référence ; définir leur vision
-avant développement. Pas de nouvelle passe caisses dans #28.
+La nouvelle planche du 19 octobre remplace les anciens visuels rejetés.
+Leur archive reste conservée ; leur code n'est pas repris automatiquement.
 
 ## Points de suivi
 Dernière mesure galerie avant les corrections : environ 165 FPS en 1080p ;
