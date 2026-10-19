@@ -1,0 +1,13 @@
+{
+  "name": "reception_counter",
+  "original_filename": "03-reception counter.glb",
+  "received": "2026-10-19",
+  "sha256": "67158a952a8ed0d20ec7513ea231d40f8f9643c1308460b9112acd55a868c70e",
+  "bytes": 16306456,
+  "source_triangles": 121386,
+  "generator": {
+    "version": "2.0",
+    "generator": "Tripo"
+  },
+  "studio_settings": "not inferable from GLB; recommendations in docs/visual-references/arrivals/README.md"
+}

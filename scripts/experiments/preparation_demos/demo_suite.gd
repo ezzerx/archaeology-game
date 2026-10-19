@@ -35,7 +35,7 @@ func _ready() -> void:
  confirmation=preload("res://scripts/experiments/preparation_demos/demo_confirmation.gd").new()
  layer.add_child(confirmation)
  confirmation.confirmed.connect(func():open_demo(pending,pending_compact))
- await open_demo(0)
+ await open_demo(_initial_demo())
 func choose(index:int,restart:=false,compact:int=-1) -> void:
  var choice:=compact_selected if compact<0 else posmod(compact,3)
  if busy or (index==selected and not restart and choice==compact_selected):return
@@ -86,3 +86,5 @@ func _compact_selector(layer:CanvasLayer,style:Script) -> void:
 
 func _make_preparation() -> Node3D:
  return load("res://scenes/experiments/demo_preparation.tscn").instantiate()
+
+func _initial_demo() -> int:return 0

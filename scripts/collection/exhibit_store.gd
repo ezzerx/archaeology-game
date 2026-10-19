@@ -147,7 +147,7 @@ func _acquire_lock(path:String) -> Error:
  if err!=OK:
   if not FileAccess.file_exists(owner_path):return ERR_BUSY
   var previous:=FileAccess.get_file_as_string(owner_path).to_int()
-  if previous<=0 or OS.is_process_running(previous):return ERR_BUSY
+  if previous<=0 or _writer_is_running(previous):return ERR_BUSY
   # A crashed writer leaves its unique scene unindexed, never an overwritten exhibit.
   DirAccess.remove_absolute(owner_path)
   if DirAccess.remove_absolute(path)!=OK:return ERR_BUSY
@@ -161,3 +161,10 @@ func _acquire_lock(path:String) -> Error:
  if err!=OK:
   DirAccess.remove_absolute(owner_path);DirAccess.remove_absolute(path)
  return err
+
+func _writer_is_running(pid:int) -> bool:
+ if pid==OS.get_process_id():return true
+ # Godot's Unix process API only tracks children started by this process.
+ # Independent workshop instances must not steal one another's live lock.
+ if OS.get_name()=="Linux":return DirAccess.dir_exists_absolute("/proc/"+str(pid))
+ return OS.is_process_running(pid)

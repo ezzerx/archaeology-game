@@ -30,12 +30,13 @@ sur main 04a8406 ; PR [#54](https://github.com/ezzerx/archaeology-game/pull/54)
 en brouillon. Brief : docs/dev/ISSUE27_ARRIVALS_BRIEF.md.
 Planche et pack : docs/visual-references/arrivals/README.md.
 
-Prochaine action : produire les GLB du corps, du couvercle et du comptoir
-avec Antoine dans Tripo Studio, conserver les sources, inspecter/adapter le
-pilote dans Blender/Godot, puis assembler la version de test et ses captures.
-La référence visuelle est approuvée ; aucun build #27 ni nouveau GLB n'est
-encore livré. L'essai humain du candidat et la validation avant merge restent
-requis. Une seule issue/PR ; aucun changement de gameplay des préparations.
+Les trois GLB sont reçus et intégrés à la V1 : sources Tripo conservées,
+masters Blender et copies runtime rangés dans assets/arrivals/. Réception,
+loquet/couvercle, vrais blocs couverts et retour atelier/musée implémentés.
+Prochaine action : terminer les contrôles du candidat, exporter Windows et
+publier les captures commentées. L'essai humain du candidat puis la validation
+explicite avant merge restent requis. Une seule issue/PR ; aucun changement
+des règles de préparation.
 
 Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,
 nettoyage et dégâts réels ; aucune substitution silencieuse par un meilleur

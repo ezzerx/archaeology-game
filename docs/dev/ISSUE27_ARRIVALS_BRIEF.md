@@ -78,11 +78,12 @@ transitions, conserver la cible 240 FPS / physique 60 Hz sans les promettre.
 - Antoine examine les captures à distance puis teste les gestes et répétitions
   sur PC avant validation explicite et merge de la PR liée à #27.
 
-## Limites de cette livraison de références
+## Limites de la V1
 
-Ce commit prépare la production : trois images isolées, réglages Studio,
-inventaire et planche approuvée. Aucun nouveau modèle Tripo reçu, aucun build
-jouable #27, aucune vérification de rendu ou performance de ces assets à ce stade.
+Les trois GLB ont été reçus le 19 octobre et leur intégration est autorisée par
+Antoine. Sources intactes, masters Blender et copies runtime sont regroupés dans
+`assets/arrivals/` ; les accessoires du musée sont réutilisés par référence.
+Le rapport de réalisation et les preuves sont séparés de ce brief.
 L'ancien essai #30 reste rejeté et archivé ; son code n'est pas repris.
 UI globale, sons avec Claude, musique, économie, nouvelles préparations et
 renderer commun restent des missions séparées.

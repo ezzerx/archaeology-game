@@ -27,7 +27,7 @@ func _build_exhibit(id:String) -> Node3D:
 func _ui() -> void:
  super._ui()
  return_button=Button.new();exhibition_note.get_parent().add_child(return_button)
- return_button.text="Retour à l’atelier";return_button.position=Vector2(1620,18)
+ return_button.text="Nouveaux arrivages" if "--arrivals-loop" in OS.get_cmdline_user_args() else "Retour à l’atelier";return_button.position=Vector2(1620,18)
  return_button.custom_minimum_size=Vector2(265,46);return_button.focus_mode=Control.FOCUS_NONE
  return_button.add_theme_stylebox_override("normal",nav_buttons[0].get_theme_stylebox("normal"))
  return_button.add_theme_font_override("font",sans);return_button.add_theme_font_size_override("font_size",19)
@@ -55,7 +55,7 @@ func _captions() -> void:
 
 func _return_to_workshop() -> void:
  if transferring:return
- transferring=true;return_button.disabled=true;return_button.text="Ouverture de l’atelier…"
- if not await Handoff.transfer(get_tree(),false,exhibit_store.directory):
-  transferring=false;return_button.disabled=false;return_button.text="Réessayer l’atelier"
-  subtitle.text="L’atelier n’a pas pu s’ouvrir. Vos préparations sont conservées."
+ transferring=true;return_button.disabled=true;return_button.text="Ouverture des arrivages…" if "--arrivals-loop" in OS.get_cmdline_user_args() else "Ouverture de l’atelier…"
+ if not await Handoff.transfer_to(get_tree(),"arrivals" if "--arrivals-loop" in OS.get_cmdline_user_args() else "workshop",exhibit_store.directory,-1,"--arrivals-loop" in OS.get_cmdline_user_args()):
+  transferring=false;return_button.disabled=false;return_button.text="Réessayer le passage"
+  subtitle.text="Le passage n’a pas pu s’ouvrir. Vos préparations sont conservées."
