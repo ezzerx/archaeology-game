@@ -18,7 +18,7 @@ selon les trois images fournies dans le chat. Livrable : version existante
 améliorée sur branche séparée et PR draft, **aucune fusion**.
 
 Branche : `codex/atelier-sensory-polish`, créée depuis main 04a8406.
-PR draft : en préparation ; lien à inscrire après création.
+PR draft : [#55](https://github.com/ezzerx/archaeology-game/pull/55).
 Rapport : `docs/dev/ATELIER_SENSORY_POLISH_REPORT.md`.
 Notes des spécialistes : `ATELIER_TECHNICAL_ART_NOTES.md`,
 `ATELIER_SHADER_NOTES.md`, `ATELIER_AUDIO_NOTES.md` sous `docs/dev/`.
@@ -29,7 +29,7 @@ la lumière, les sons des outils et une ambiance discrète. Elle conserve les
 cartes et règles de fouille, les outils/cadences, les trois préparations,
 Exposure/Cleanliness/Condition, la caméra et l’archivage.
 
-Prochaine action : terminer les vérifications et la PR draft, puis attendre
+Livraison et vérifications terminées (runtime 0bc84f3). Prochaine action : attendre
 le verdict artistique et sonore d’Antoine. Tests automatisés et captures
 ne valent pas validation humaine. Pas de merge ni de mission suivante.
 

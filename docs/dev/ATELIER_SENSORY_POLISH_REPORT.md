@@ -9,6 +9,7 @@ crédible, lumière de préparation et sons tactiles. Le niveau « AAA » exprim
 une attente de finition et d’envie de jouer, pas une promesse de photoréalisme.
 
 Base : `origin/main` 04a8406. Branche : `codex/atelier-sensory-polish`.
+Livraison runtime : `0bc84f3`. PR draft [#55](https://github.com/ezzerx/archaeology-game/pull/55), non fusionnée.
 La PR arrivages #54 est indépendante et n’est pas intégrée à cette passe.
 La demande explicite autorise cette nouvelle mission ; les anciens arrêts
 historiques ne sont pas interprétés comme un refus de cette demande.
