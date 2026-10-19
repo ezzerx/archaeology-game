@@ -26,7 +26,8 @@ ISSUE28_EXHIBIT_DETAIL_FIX.md.
 courante. Antoine valide le 19 octobre les visuels pour la version test :
 comptoir chaleureux, trois caisses, sélection/focus, loquet puis couvercle,
 bloc entièrement couvert avant préparation. Branche codex/27-arrivals créée
-sur main 04a8406 ; brief : docs/dev/ISSUE27_ARRIVALS_BRIEF.md.
+sur main 04a8406 ; PR [#54](https://github.com/ezzerx/archaeology-game/pull/54)
+en brouillon. Brief : docs/dev/ISSUE27_ARRIVALS_BRIEF.md.
 Planche et pack : docs/visual-references/arrivals/README.md.
 
 Prochaine action : produire les GLB du corps, du couvercle et du comptoir
