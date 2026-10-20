@@ -7,6 +7,7 @@ Demande d’Antoine du 20 octobre : ajouter les profils Game Designer et Level
 Designer pour une future conversation dédiée au plan de game design.
 Issue [#56](https://github.com/ezzerx/archaeology-game/issues/56), branche
 `codex/56-design-agent-profiles`, depuis main `04a8406`.
+PR [#57](https://github.com/ezzerx/archaeology-game/pull/57) ouverte pour revue.
 Guide : [docs/agents/README.md](../agents/README.md).
 Les fichiers fournis sont conservés à l’identique. Revue documentaire avant
 fusion ; le lancement de la mission de conception reste à l’initiative d’Antoine.
