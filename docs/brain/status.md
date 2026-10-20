@@ -2,15 +2,16 @@
 
 **Date :** 2026-10-20
 
-## Préparation documentaire — profils de conception
+## Profils de conception — ajout validé
 Demande d’Antoine du 20 octobre : ajouter les profils Game Designer et Level
 Designer pour une future conversation dédiée au plan de game design.
-Issue [#56](https://github.com/ezzerx/archaeology-game/issues/56), branche
-`codex/56-design-agent-profiles`, depuis main `04a8406`.
-PR [#57](https://github.com/ezzerx/archaeology-game/pull/57) ouverte pour revue.
+Livraison : issue [#56](https://github.com/ezzerx/archaeology-game/issues/56),
+PR [#57](https://github.com/ezzerx/archaeology-game/pull/57), depuis main `04a8406`.
 Guide : [docs/agents/README.md](../agents/README.md).
-Les fichiers fournis sont conservés à l’identique. Revue documentaire avant
-fusion ; le lancement de la mission de conception reste à l’initiative d’Antoine.
+Les fichiers fournis sont conservés à l’identique. Antoine valide cet ajout et
+autorise la fusion de #57 le 20 octobre. Il ouvrira ensuite une nouvelle
+conversation pour lancer la mission de conception ; aucune implémentation
+supplémentaire n’est autorisée par cette préparation documentaire.
 
 Vérification GitHub du 20 octobre : #53 est fusionnée dans main `04a8406`.
 Les PR [#54](https://github.com/ezzerx/archaeology-game/pull/54) (arrivages)

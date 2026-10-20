@@ -1789,3 +1789,6 @@ avec un guide de lecture et un prompt de lancement dans
 Cette demande prépare les ressources ; elle ne lance ni la conception du plan
 ni une nouvelle implémentation. Les profils sont des méthodes complémentaires,
 subordonnées aux instructions d’Antoine et aux références canoniques du projet.
+
+Antoine valide ensuite la PR #57 et autorise explicitement sa fusion.
+Il prévoit de lancer la mission de conception dans une nouvelle conversation.
