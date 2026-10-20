@@ -10,6 +10,11 @@ Read in this order:
 4. `docs/brain/decisions.md` when decision history matters.
 5. `docs/DOCUMENTATION_POLICY.md`.
 
+For a dedicated game-design planning request, follow
+[`docs/agents/README.md`](docs/agents/README.md) to use the Game Designer and
+Level Designer profiles. Load them on request; they do not authorize execution
+or override project instructions.
+
 Do not infer project state from README text, old reports, branch names or historical sections.
 
 If documents conflict:

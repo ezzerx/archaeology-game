@@ -1779,3 +1779,16 @@ des matières, de la poussière et des contours au zoom, et autorise la fusion.
 Le bloc exposé conserve le travail réel du joueur, y compris la matière et la
 poussière restantes. Prochaine étape produit : définir une nouvelle vision des
 caisses avant développement, sans reprendre le concept précédemment rejeté.
+
+## 2026-10-20 — Profils pour préparer une conversation de game design
+Antoine demande de versionner les fichiers Game Designer et Level Designer
+fournis afin de les utiliser dans une conversation dédiée à l’établissement
+d’un plan de game design. Les originaux sont conservés dans `docs/agents/`,
+avec un guide de lecture et un prompt de lancement dans
+[docs/agents/README.md](../agents/README.md).
+Cette demande prépare les ressources ; elle ne lance ni la conception du plan
+ni une nouvelle implémentation. Les profils sont des méthodes complémentaires,
+subordonnées aux instructions d’Antoine et aux références canoniques du projet.
+
+Antoine valide ensuite la PR #57 et autorise explicitement sa fusion.
+Il prévoit de lancer la mission de conception dans une nouvelle conversation.
