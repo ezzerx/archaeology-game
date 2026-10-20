@@ -1,6 +1,22 @@
 # Statut canonique
 
-**Date :** 2026-10-17
+**Date :** 2026-10-20
+
+## Préparation documentaire — profils de conception
+Demande d’Antoine du 20 octobre : ajouter les profils Game Designer et Level
+Designer pour une future conversation dédiée au plan de game design.
+Issue [#56](https://github.com/ezzerx/archaeology-game/issues/56), branche
+`codex/56-design-agent-profiles`, depuis main `04a8406`.
+Guide : [docs/agents/README.md](../agents/README.md).
+Les fichiers fournis sont conservés à l’identique. Revue documentaire avant
+fusion ; le lancement de la mission de conception reste à l’initiative d’Antoine.
+
+Vérification GitHub du 20 octobre : #53 est fusionnée dans main `04a8406`.
+Les PR [#54](https://github.com/ezzerx/archaeology-game/pull/54) (arrivages)
+et [#55](https://github.com/ezzerx/archaeology-game/pull/55) (atelier/musée)
+sont ouvertes et attendent une validation humaine selon leurs descriptions.
+Le cadrage de conception devra consulter leurs branches et retours récents ;
+les sections ci-dessous conservent la référence produit validée du 17 octobre.
 
 ## Références validées
 P0–P5, préparations #33, ammonite #35, terre compacte #37, concrétions #39,
@@ -16,18 +32,18 @@ Rapport : docs/dev/ISSUE51_GALLERY_CLARITY.md.
 La copie historique locale de main comporte des changements indépendants
 préservés ; cette mission repart du main distant fusionné dans preparation-demos.
 
-## Mission validée / prochaine étape
+## Dernière mission produit validée
 [#28](https://github.com/ezzerx/archaeology-game/issues/28) : conserver et exposer
 le vrai bloc préparé, puis le retrouver identique après relance.
-Branche codex/28-prepared-exhibits créée depuis main 085b6a8.
-Brief actif : docs/dev/ISSUE28_PREPARED_EXHIBITS.md.
+Brief : docs/dev/ISSUE28_PREPARED_EXHIBITS.md.
 Rapport : docs/dev/ISSUE28_PREPARED_EXHIBITS_REPORT.md.
 PR [#53](https://github.com/ezzerx/archaeology-game/pull/53) validée par Antoine
 après essai des corrections de couleur, poussière et contours au zoom.
-Gate humain #28 levé le 2026-10-17 ; fusion et nettoyage autorisés.
+Gate humain #28 levé le 2026-10-17 ; fusion confirmée dans main `04a8406`.
 Rapport complémentaire : docs/dev/ISSUE28_EXHIBIT_DETAIL_FIX.md.
-Prochaine action : cadrer avec Antoine la nouvelle vision des caisses #27,
-avant toute implémentation. Aucune nouvelle mission de développement active.
+La décision suivante portait sur le cadrage de la nouvelle vision des caisses
+#27 avant implémentation. La proposition est désormais en revue dans #54 ;
+consulter cette PR pour son état courant, sans la considérer comme validée.
 
 Le dernier bloc terminé de chaque espèce devient la pièce exposée, avec matière,
 nettoyage et dégâts réels ; aucune substitution silencieuse par un meilleur
@@ -45,8 +61,7 @@ Nouveaux lanceurs : Launch-Prepare-For-Museum.cmd, Launch-Museum.cmd.
 Les lanceurs d’essais précédents restent disponibles.
 
 Ordre confirmé : netteté validée → vrais blocs exposés #28 → caisses #27.
-Les caisses rejetées ne constituent pas une référence ; définir leur vision
-avant développement. Pas de nouvelle passe caisses dans #28.
+Les caisses précédemment rejetées ne constituent pas une référence.
 
 ## Points de suivi
 Dernière mesure galerie avant les corrections : environ 165 FPS en 1080p ;
