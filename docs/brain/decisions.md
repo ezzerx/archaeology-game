@@ -1780,6 +1780,18 @@ Le bloc exposé conserve le travail réel du joueur, y compris la matière et la
 poussière restantes. Prochaine étape produit : définir une nouvelle vision des
 caisses avant développement, sans reprendre le concept précédemment rejeté.
 
+## 2026-10-19 — Passe atelier par l’équipe game dev
+Antoine demande une amélioration visuelle et sonore de la version existante,
+guidée par trois références de laboratoire chaleureux de musée : matière,
+lumière et contexte scientifique doivent donner envie de jouer. Le qualificatif
+AAA désigne ici une attente de finition, pas une migration photoréaliste.
+Technical Artist, Godot Shader Developer et Game Audio Engineer sont mandatés.
+Branche séparée depuis main, PR draft et validation humaine avant toute fusion.
+Cette demande ne valide ni ne fusionne la PR arrivages indépendante.
+
+## 2026-10-20 — Retour atelier et extension de la passe au musée
+Antoine apprécie les nouvelles matières et les sons de l'atelier, et demande de retirer sa lampe visible. La même passe de finition est étendue au prototype de salle d'exposition : recréer ou retoucher librement les éléments pour se rapprocher de sa référence de cabinet d'histoire naturelle, avec vérification collective des captures et itérations avant livraison. Les assets originaux sont encouragés quand ils améliorent le rendu ; la réutilisation des anciens n'est pas obligatoire. Game Audio Engineer ajoute également ambiance et musique au musée. L'optimisation du souffleur est demandée si possible, sans changer les règles de fouille. Ce retour n'autorise aucune fusion : la PR #55 reste draft en attente du nouvel essai.
+
 ## 2026-10-20 — Profils pour préparer une conversation de game design
 Antoine demande de versionner les fichiers Game Designer et Level Designer
 fournis afin de les utiliser dans une conversation dédiée à l’établissement
@@ -1792,3 +1804,10 @@ subordonnées aux instructions d’Antoine et aux références canoniques du pro
 
 Antoine valide ensuite la PR #57 et autorise explicitement sa fusion.
 Il prévoit de lancer la mission de conception dans une nouvelle conversation.
+
+## 2026-10-27 — Autorisation de fusion de la PR #55
+Antoine demande explicitement de fusionner la PR #55 dans main et de synchroniser
+sa copie locale. Cette instruction lève la restriction de fusion du 20 octobre.
+Les historiques de la passe atelier/musée et des profils #57 sont conservés.
+La PR #54 reste indépendante ; le GDD et la proposition du Mur restent des
+pistes de conception, sans autorisation de nouvelle implémentation.

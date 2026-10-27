@@ -1,0 +1,30 @@
+{
+  "checks": 27,
+  "failures": [],
+  "gpu": "NVIDIA GeForce RTX 5080",
+  "renderer": "gl_compatibility",
+  "samples": [
+    {
+      "draw_calls": 94.0,
+      "idle_frame_p50_ms": 4.166,
+      "idle_frame_p95_ms": 4.212,
+      "kind": 0,
+      "objects": 629.0
+    },
+    {
+      "draw_calls": 92.0,
+      "idle_frame_p50_ms": 4.166,
+      "idle_frame_p95_ms": 4.205,
+      "kind": 1,
+      "objects": 746.0
+    },
+    {
+      "draw_calls": 92.0,
+      "idle_frame_p50_ms": 4.166,
+      "idle_frame_p95_ms": 4.201,
+      "kind": 2,
+      "objects": 752.0
+    }
+  ],
+  "window": "(1440, 810)"
+}

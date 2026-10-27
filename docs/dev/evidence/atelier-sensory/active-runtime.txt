@@ -1,0 +1,25 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 610.88 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 5080
+
+STAGE hover fps 240.2 updates 240.2 frame95 4.485 edit95 0
+STAGE chisel fps 234.8 updates 234.8 frame95 5.297 edit95 11.472
+STAGE blower fps 236.3 updates 236.3 frame95 10.676 edit95 7.75
+STAGE pick fps 238.1 updates 238.1 frame95 5.048 edit95 3.225
+STAGE brush fps 236.3 updates 236.3 frame95 11.542 edit95 6.007
+STAGE hover fps 240.5 updates 240.5 frame95 4.541 edit95 0
+STAGE chisel fps 235.3 updates 235.3 frame95 5.391 edit95 11.974
+STAGE blower fps 150.9 updates 150.9 frame95 17.047 edit95 8.376
+STAGE pick fps 240.4 updates 240.4 frame95 4.843 edit95 1.765
+STAGE brush fps 239.4 updates 239.4 frame95 10.329 edit95 5.091
+STAGE abrasive fps 226.8 updates 226.8 frame95 12.781 edit95 0.88
+STAGE hover fps 240.6 updates 240.6 frame95 4.442 edit95 0
+STAGE chisel fps 236.9 updates 236.9 frame95 5.041 edit95 8.733
+STAGE blower fps 210.2 updates 210.2 frame95 13.826 edit95 5.277
+STAGE pick fps 240.4 updates 240.4 frame95 4.84 edit95 1.074
+STAGE brush fps 236.3 updates 236.3 frame95 11.598 edit95 5.731
+STAGE abrasive fps 238.6 updates 238.6 frame95 10.511 edit95 0.846
+ERROR: WASAPI: GetBufferSize error
+   at: thread_func (drivers/wasapi/audio_driver_wasapi.cpp:778)
+WARNING: WASAPI: Current output_device invalidated, closing output_device
+   at: thread_func (drivers/wasapi/audio_driver_wasapi.cpp:849)
+FLUIDITY after-sensory 20 checks 0 failures screen 279.960998535156

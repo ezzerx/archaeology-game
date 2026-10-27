@@ -1,0 +1,5 @@
+Original atelier audio audition, 24 s, nominal -15 dB event gain.
+0-1 room / 1-4 soft soil brush / 4.5-7 harder dry brush
+8-9.5 clay / 10-11.5 sandstone / 12-13.8 precision pick
+14.5-17 abrasive tip / 18-21.5 air / 21.5-24 quiet room
+This is an offline sound-design audition, not a gameplay capture.

@@ -1,0 +1,26 @@
+{
+  "checks": 4,
+  "failures": [],
+  "files": [
+    {
+      "file": "B17-1792265681-1412ac2d95ef6fee280cc55a.scn",
+      "unchanged": true,
+      "sha256": "0399BFB3C16483571D9FEE7AE1468E15CBEB1C6AC65E5F6F2DA1DAEDE8F2DFF3"
+    },
+    {
+      "file": "latest.json",
+      "unchanged": true,
+      "sha256": "07BD5CE6416C40E852D4999304CE59B6DEC8A915FC81FA6A298AFAD19672669C"
+    },
+    {
+      "file": "M08-1792264396-d404ee4fed48a0edb982bfe1.scn",
+      "unchanged": true,
+      "sha256": "44443DA24C9F8961532283C657A382AB931CC12370BE08331F52169E6D8D392C"
+    },
+    {
+      "file": "M08-1792445917-6a666d2e278365a4878ab79e.scn",
+      "unchanged": true,
+      "sha256": "FF228E2E0733A3855CDCEA64CF03E8292AA9FC58CF497EB8746756D554136EB2"
+    }
+  ]
+}

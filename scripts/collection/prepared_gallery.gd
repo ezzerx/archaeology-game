@@ -8,6 +8,7 @@ var transferring:=false
 func _ready() -> void:
  exhibit_store=Store.new(Store.configured_directory())
  await super._ready()
+ return_button.disabled=false
  exhibition_note.text="COLLECTION · VOS PRÉPARATIONS"
  for i in range(2):
   if examples[i]==null:
@@ -26,7 +27,7 @@ func _build_exhibit(id:String) -> Node3D:
 
 func _ui() -> void:
  super._ui()
- return_button=Button.new();exhibition_note.get_parent().add_child(return_button)
+ return_button=Button.new();return_button.disabled=true;exhibition_note.get_parent().add_child(return_button)
  return_button.text="Retour à l’atelier";return_button.position=Vector2(1620,18)
  return_button.custom_minimum_size=Vector2(265,46);return_button.focus_mode=Control.FOCUS_NONE
  return_button.add_theme_stylebox_override("normal",nav_buttons[0].get_theme_stylebox("normal"))
@@ -54,8 +55,10 @@ func _captions() -> void:
   subtitle.text+="   |   Molette : rapprocher · Glisser : relief"
 
 func _return_to_workshop() -> void:
- if transferring:return
+ if transferring or not fixtures_ready or not is_instance_valid(museum_audio):return
  transferring=true;return_button.disabled=true;return_button.text="Ouverture de l’atelier…"
+ await museum_audio.fade_out(.65)
  if not await Handoff.transfer(get_tree(),false,exhibit_store.directory):
+  museum_audio.resume_after_cancel()
   transferring=false;return_button.disabled=false;return_button.text="Réessayer l’atelier"
   subtitle.text="L’atelier n’a pas pu s’ouvrir. Vos préparations sont conservées."

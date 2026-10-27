@@ -37,6 +37,11 @@ func _ready() -> void:
   if label.text.begins_with("Specimen B"):label.text="Spécimen "+preload("res://scripts/collection/catalog.gd").entry(specimen_id).code
  session_ui.refresh()
  controller.select_tool(1)
+ var atelier=preload("res://scripts/workshop/polish/atelier_set_dressing.gd").new()
+ add_child(atelier)
+ atelier.setup(self)
+ preload("res://scripts/workshop/atelier_sound_controls.gd").new().setup(self)
+ preload("res://scripts/workshop/sensory_lighting.gd").setup(self)
 func _input(event:InputEvent) -> void:
  if event is InputEventKey and event.pressed and not event.echo:
   if event.physical_keycode==KEY_C:
@@ -46,3 +51,10 @@ func _input(event:InputEvent) -> void:
   if not "--qa" in OS.get_cmdline_user_args() and event.physical_keycode in [KEY_F5,KEY_H,KEY_F8,KEY_F9,KEY_F10,KEY_F11]:
    get_viewport().set_input_as_handled();return
  super._input(event)
+
+func set_hero_look(enabled: bool) -> void:
+ super.set_hero_look(enabled)
+ if is_node_ready():
+  var art=get_node_or_null("AtelierSetDressing")
+  if art!=null:art.set_enabled(enabled)
+  if enabled:preload("res://scripts/workshop/sensory_lighting.gd").setup(self)

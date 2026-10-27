@@ -1,0 +1,36 @@
+{
+  "streams": [
+    {
+      "file": "museum_contemplation.ogg",
+      "seconds": 84.0,
+      "peak_dbfs": -5.144525134499208,
+      "rms_dbfs": -23.17548471347596,
+      "dc": 1.728271821314769e-06,
+      "seam": 0.0004970976151525974,
+      "checks": {
+        "duration": true,
+        "headroom": true,
+        "audible": true,
+        "dc": true,
+        "seam": true
+      }
+    },
+    {
+      "file": "museum_room.ogg",
+      "seconds": 48.0,
+      "peak_dbfs": -14.250684752039506,
+      "rms_dbfs": -28.513853298437127,
+      "dc": 8.012532116240416e-06,
+      "seam": 0.006084725260734558,
+      "checks": {
+        "duration": true,
+        "headroom": true,
+        "audible": true,
+        "dc": true,
+        "seam": true
+      }
+    }
+  ],
+  "preview_peak_dbfs": -16.10587429963021,
+  "failures": []
+}

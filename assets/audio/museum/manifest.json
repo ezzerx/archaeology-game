@@ -1,0 +1,32 @@
+{
+  "music_source": {
+    "provider": "ElevenLabs",
+    "model": "eleven_music_v2",
+    "generation_id": "H1SzIeW1xMyOEFs8GI10",
+    "sha256": "21eaac75aad83d43801207ce7d8cfe726b9ef8386417049e48d02ede1bacb7bf"
+  },
+  "ambience_source": "Original deterministic synthesis; no external recordings.",
+  "processing": "35 Hz HP / 14.5 kHz LP music; 6 s raised-cosine overlap; DC removal; peak -5 dBFS; Vorbis q5. Room 320 ms overlap, peak -14 dBFS.",
+  "files": {
+    "museum_contemplation.ogg": {
+      "seconds": 84.0,
+      "channels": 2,
+      "sample_rate": 44100,
+      "source_peak_dbfs": -4.999999888090177,
+      "source_rms_dbfs": -23.1894881640724,
+      "source_seam_step": 0.0006892699748277664,
+      "sha256": "df51b01ad5ea08bc731c2dabb3833b5eeae71551288e03d6a74db1254470350b",
+      "bytes": 1529072
+    },
+    "museum_room.ogg": {
+      "seconds": 48.0,
+      "channels": 1,
+      "sample_rate": 44100,
+      "source_peak_dbfs": -13.999999827421785,
+      "source_rms_dbfs": -28.433707644893374,
+      "source_seam_step": 0.0038990527391433716,
+      "sha256": "f7731166980f2b3e0d0c7cea7479cc5663af7235a4df092576a55c4b90d2bad3",
+      "bytes": 491008
+    }
+  }
+}

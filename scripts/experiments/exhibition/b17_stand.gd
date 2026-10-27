@@ -23,9 +23,9 @@ static func install(parent:Node3D,center:Vector3) -> Node3D:
   for surface in range(mesh.mesh.get_surface_count()):
    var material:=mesh.get_active_material(surface).duplicate() as StandardMaterial3D
    # The source orange varnish is subdued to sit beside the warm ivory and room wood.
-   material.albedo_color=Color(.66,.70,.73)
+   material.albedo_color=Color(.72,.74,.75)
    material.normal_scale=.40
-   material.roughness=.88;material.metallic_specular=.38
+   material.roughness=.54;material.metallic_specular=.43
    material.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
    mesh.set_surface_override_material(surface,material)
   mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON

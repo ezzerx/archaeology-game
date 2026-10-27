@@ -31,10 +31,12 @@ func _ready() -> void:
 	var code := witness_shader.code
 	code = _hook(code, "void vertex() {", '#include "res://shaders/p6a2_materials.gdshaderinc"\nvoid vertex() {')
 	code = _hook(code, "float contact_deposit = 0.0;", """
+float hero_micro_height = 0.0;
 if (debug_view == 0) {
  vec3 hero_position = (inverse(MODEL_MATRIX)*INV_VIEW_MATRIX*vec4(VERTEX,1.0)).xyz;
  vec3 hero_normal = normalize(transpose(mat3(VIEW_MATRIX*MODEL_MATRIX))*relief_normal);
  color = hero_albedo(hero_position, hero_normal, exposed_bone ? 3 : layer);
+ hero_micro_height = hero_detail_height(color, exposed_bone ? 3 : layer);
  if (!exposed_bone && layer == 0 && hero_fragmented_soil) {
   // Only the actual, submillimetric Soil fringe blends toward its substrate.
   // No colour extends beyond the real Soil mask; picking/height stay native.
@@ -53,10 +55,10 @@ float contact_deposit = 0.0;
 	code = _hook(code, "vec3(0.86, 0.76, 0.58)", "vec3(0.47, 0.37, 0.25)")
 	code = _hook(code, "if (debug_view != 0) {", """
 if (debug_view == 0) {
- float dry = exposed_bone ? .73 : (layer == 0 ? .98 : (layer == 1 ? .89 : .94));
+ float dry = hero_detail_roughness(hero_micro_height, exposed_bone ? 3 : layer);
  ROUGHNESS = clamp(dry + film_cover*.28 + dust_cover*.12, .4, 1.0);
  vec3 cosmetic_normal = exposed_bone ? normalize((VIEW_MATRIX*MODEL_MATRIX*vec4(hero_bone_normal(UV),0.0)).xyz) : relief_normal;
- NORMAL = cosmetic_normal;
+ NORMAL = hero_detail_normal(VERTEX, cosmetic_normal, hero_micro_height * (1.0 - clamp(film_cover + dust_cover, 0.0, 1.0)));
 }
 if (debug_view != 0) {
 """)

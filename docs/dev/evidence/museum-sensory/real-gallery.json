@@ -1,0 +1,8 @@
+{
+  "archive": "res://work/museum-polish/player-copy",
+  "checks": 12,
+  "failures": [],
+  "frame_p50_ms": 4.662,
+  "frame_p95_ms": 5.193,
+  "render_size": "(1920, 1080)"
+}

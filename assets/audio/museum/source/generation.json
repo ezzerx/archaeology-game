@@ -1,0 +1,21 @@
+{
+  "title": "Lumière sur les collections",
+  "generated_on": "2026-10-19",
+  "provider": "ElevenLabs",
+  "model_id": "eleven_music_v2",
+  "generation_id": "H1SzIeW1xMyOEFs8GI10",
+  "flow_id": "z6gzp7Rr13t3CIPTk3QG",
+  "source_duration_seconds": 90,
+  "price": {
+    "credits": 1350,
+    "price_cents": 13.5,
+    "cost_fiat_currency": "usd"
+  },
+  "prompt": "Compose one original 90-second instrumental ambient chamber miniature for a warm natural-history museum at golden hour. Intimate felt piano, soft warm sustained chamber strings, a very faint breathy woodwind colour. Quiet scientific wonder, patient contemplation, reassuring and timeless. Unhurried 60 BPM, delicate human rubato, generous long rests and asymmetrical phrases. An original understated harmonic journey that returns gently to its initial tonic so it can be looped. Begin and end with the same warm sustained harmonic colour, no dramatic intro or ending, no final stinger. Restrained dynamics, soft rounded piano attacks, natural warm room reverb. No vocals, no speech, no drums, no ticking pulse, no mechanical repeating arpeggio, no music-box bells, no dramatic swelling soundtrack, no existing melody or artist reference. Polished cinematic acoustic timbre while remaining unobtrusive background music.",
+  "parameters": {
+    "duration_seconds": 90,
+    "lyrics_type": "instrumental",
+    "instrumental": true
+  },
+  "flow_url": "https://elevenlabs.io/app/flows/z6gzp7Rr13t3CIPTk3QG"
+}

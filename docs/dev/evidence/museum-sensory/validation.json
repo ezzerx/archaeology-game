@@ -1,0 +1,44 @@
+{
+  "engine": "Godot 4.7.2 stable",
+  "runtime_resources": {
+    "checks": 332,
+    "failures": 0
+  },
+  "collection_storage": {
+    "checks": 18,
+    "failures": 0
+  },
+  "real_marine_materials": {
+    "checks": 21,
+    "failures": 0
+  },
+  "native_gallery": {
+    "checks": 58,
+    "failures": 0
+  },
+  "replay_headless": {
+    "checks": 77,
+    "failures": 0
+  },
+  "replay_native": {
+    "checks": 77,
+    "failures": 0
+  },
+  "native_handoffs": {
+    "workshop_to_gallery_seconds": 4.371173,
+    "gallery_to_workshop_seconds": 7.611348,
+    "both_source_exit_codes": 0,
+    "qa_child_processes_closed": true
+  },
+  "launch_museum": {
+    "actual_scene": "scenes/collection/prepared_gallery.tscn",
+    "renderer": "forward_plus",
+    "window": "1600x900",
+    "actual_window_title": "ArchaeologyGame — Première exposition (DEBUG)"
+  },
+  "historical_replay": {
+    "native_failures": 4,
+    "headless_failures": 14,
+    "diagnostic": "MUSEUM_REPLAY_DIAGNOSTIC.md; frame-dependent camera, immutable oracle reproduced; historical fixtures unchanged"
+  }
+}

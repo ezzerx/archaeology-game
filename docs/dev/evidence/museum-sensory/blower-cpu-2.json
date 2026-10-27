@@ -1,0 +1,40 @@
+{
+  "candidate_sha256": "6ed90316c1b2078a771685f1efea247b8e8bc5f85df76ca649dd579a66efca28",
+  "cases": [
+    {
+      "active_ticks": [
+        100,
+        100,
+        100
+      ],
+      "candidate": {
+        "mean_us": 3638.52,
+        "n": 100,
+        "p50_us": 3564,
+        "p95_us": 4518
+      },
+      "case": "open",
+      "crust": 0.0,
+      "grains": 3038.09583975716,
+      "kind": 1,
+      "oracle": {
+        "mean_us": 4684.27,
+        "n": 100,
+        "p50_us": 4589,
+        "p95_us": 5649
+      },
+      "row_bound": {
+        "mean_us": 4063.87,
+        "n": 100,
+        "p50_us": 3975,
+        "p95_us": 5033
+      }
+    }
+  ],
+  "checks": 200,
+  "engine": "4.7.2-stable (official)",
+  "failures": [],
+  "label": "candidate2-quick-repeat",
+  "oracle_sha256": "e035ee37f62689a80c56dae91290bbe7eaa07e7408906ca4512a1df49bfd295d",
+  "resolution": "(1024, 640)"
+}

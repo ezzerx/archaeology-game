@@ -1,0 +1,511 @@
+{
+  "checks": 38,
+  "failures": [],
+  "records": [
+    {
+      "kind": 0,
+      "stages": [
+        {
+          "changed": 7360,
+          "edit_p95_ms": 10.527,
+          "state": {
+            "bone": "a47c6b117f4ad16cfc3a4fc4ce5ff520a3adda7d89736f196c3b088b28e4c551",
+            "caps": "6de7493c5c90f643357c268fbaaf461c1567e0334e4948023ce17268403aa37a",
+            "ceilings": "fe69b5bcf8d4c3d2d8d04d7db5c56150b4659b805b87f8264325cd16e77c7ee7",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 65,
+            "crust": 0.0,
+            "dust": "703bc34fac1d9166fa8192c33637d7d42416364522d2db0b21c2a5f6410455e1",
+            "exposed": "4f62e3ebd68b92943143b865962fea4688e1c3a5310dc3d05de96d3675d7cce4",
+            "film": "6141f622863e159cc4f61be318865ecee8958fb6c1959878d7a876e33bdde7be",
+            "fracture": "ec9191aadb9f60f5a0a0538830580b119181f60b417ef4b6c7669f3fe1030853",
+            "grains": 0.0,
+            "height": "4afcecee98827bd643f0ab8a135a64542db2642bf8f4191348091c615b9665d9",
+            "impacts": 9,
+            "progress": [
+              false,
+              false,
+              false,
+              0
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "49602de49143ec399580e1281d5ad0faa5b9c7944d8d9228eb0e97c6b4af32be"
+          },
+          "tool": 1
+        },
+        {
+          "changed": 28747,
+          "edit_p95_ms": 10.283,
+          "state": {
+            "bone": "a47c6b117f4ad16cfc3a4fc4ce5ff520a3adda7d89736f196c3b088b28e4c551",
+            "caps": "6de7493c5c90f643357c268fbaaf461c1567e0334e4948023ce17268403aa37a",
+            "ceilings": "fe69b5bcf8d4c3d2d8d04d7db5c56150b4659b805b87f8264325cd16e77c7ee7",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 0,
+            "crust": 0.0,
+            "dust": "18e468e00b788ee98f1fa5872a22d7e2eb35bef7f790311789ddd9f766ed8d97",
+            "exposed": "4f62e3ebd68b92943143b865962fea4688e1c3a5310dc3d05de96d3675d7cce4",
+            "film": "6141f622863e159cc4f61be318865ecee8958fb6c1959878d7a876e33bdde7be",
+            "fracture": "121867911a5106a5f7a732b075c03bb16cbf4b821f8ac703afdd41ae21066a46",
+            "grains": 0.0,
+            "height": "5f4d545e4c380c5d20b7534e3f590f4b14d84baab7bf5ce87fa19931a396c8bb",
+            "impacts": 9,
+            "progress": [
+              false,
+              false,
+              false,
+              0
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "49602de49143ec399580e1281d5ad0faa5b9c7944d8d9228eb0e97c6b4af32be"
+          },
+          "tool": 2
+        },
+        {
+          "changed": 4529,
+          "edit_p95_ms": 3.189,
+          "state": {
+            "bone": "a47c6b117f4ad16cfc3a4fc4ce5ff520a3adda7d89736f196c3b088b28e4c551",
+            "caps": "6de7493c5c90f643357c268fbaaf461c1567e0334e4948023ce17268403aa37a",
+            "ceilings": "fe69b5bcf8d4c3d2d8d04d7db5c56150b4659b805b87f8264325cd16e77c7ee7",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 41,
+            "crust": 0.0,
+            "dust": "aa35f46b3d4b8c6cf639238f711bdc446c3f4eff619510bc616b933da505cca3",
+            "exposed": "d6dc1e0ba7d9673f2e50cce3c2fe3363221ef23b4a3163e90bd04d9a21c86cb0",
+            "film": "7485d035125309aeac0c4b66ee01e5650703f0bf3b2a49ed4dfee02eadca5370",
+            "fracture": "121867911a5106a5f7a732b075c03bb16cbf4b821f8ac703afdd41ae21066a46",
+            "grains": 0.0,
+            "height": "2b5d8f7f700ac6ccdad3416221ea77d92840f2e3b423e6620aa6981e8b2da619",
+            "impacts": 21,
+            "progress": [
+              false,
+              false,
+              false,
+              0
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "49602de49143ec399580e1281d5ad0faa5b9c7944d8d9228eb0e97c6b4af32be"
+          },
+          "tool": 3
+        },
+        {
+          "changed": 21944,
+          "edit_p95_ms": 5.2,
+          "state": {
+            "bone": "a47c6b117f4ad16cfc3a4fc4ce5ff520a3adda7d89736f196c3b088b28e4c551",
+            "caps": "6de7493c5c90f643357c268fbaaf461c1567e0334e4948023ce17268403aa37a",
+            "ceilings": "fe69b5bcf8d4c3d2d8d04d7db5c56150b4659b805b87f8264325cd16e77c7ee7",
+            "clean": 99.9999983060881,
+            "condition": 100.0,
+            "crumbs": 0,
+            "crust": 0.0,
+            "dust": "acc2ab3d2b1081dd7bc35a87c63477e87e9edadc66fd4f0771de0ea10f93aaeb",
+            "exposed": "d6dc1e0ba7d9673f2e50cce3c2fe3363221ef23b4a3163e90bd04d9a21c86cb0",
+            "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+            "fracture": "121867911a5106a5f7a732b075c03bb16cbf4b821f8ac703afdd41ae21066a46",
+            "grains": 0.0,
+            "height": "b06e906157cea3b3fa4b34e4efe025a9a65a1a50dc0c21437b1595003b170aa3",
+            "impacts": 21,
+            "progress": [
+              false,
+              false,
+              false,
+              0
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "49602de49143ec399580e1281d5ad0faa5b9c7944d8d9228eb0e97c6b4af32be"
+          },
+          "tool": 0
+        }
+      ]
+    },
+    {
+      "kind": 1,
+      "stages": [
+        {
+          "changed": 8198,
+          "edit_p95_ms": 8.948,
+          "state": {
+            "bone": "d21c29dc48a19fa3e88fc398abf2811ae41b2caed5b55978e90f067c0871c1bc",
+            "caps": "31c42510d0c7775c0bee37b0f858702de0aac085c3dc1c60f348880646641341",
+            "ceilings": "9a3b9e1a98c5dc5adee16c4e91ff2e126bdb001e0e584d053ecf159ae7d03c1d",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 56,
+            "crust": 0.0,
+            "dust": "1f8530067bec186ebe2ca69ab6541371d77fe9fe085538e368c8571875673ee8",
+            "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+            "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 0.0,
+            "height": "2d507d934697b2166f005af3d51349ad9cc813a7470fa64efa6d21c9c9175507",
+            "impacts": 9,
+            "progress": [
+              false,
+              false,
+              false,
+              0
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "5a237dd514b7cc09d9cdf4d2f722516c53b527747d42b16fe5561aae351b4314"
+          },
+          "tool": 1
+        },
+        {
+          "changed": 373483,
+          "edit_p95_ms": 8.864,
+          "state": {
+            "bone": "d21c29dc48a19fa3e88fc398abf2811ae41b2caed5b55978e90f067c0871c1bc",
+            "caps": "31c42510d0c7775c0bee37b0f858702de0aac085c3dc1c60f348880646641341",
+            "ceilings": "9a3b9e1a98c5dc5adee16c4e91ff2e126bdb001e0e584d053ecf159ae7d03c1d",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 0,
+            "crust": 0.0,
+            "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+            "exposed": "c3f1942706244de573cd0a9847a828fa7eb828fabc8fd4c5f98a7892b1bd051b",
+            "film": "d9cb5d9ec0ca5e393f14e42c442be34666118fd695ed09da00cca2ac214d3b07",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 2433.22467321753,
+            "height": "66c732cce84d66cfb5572f7acf368d916d6e4c19d69be635a8dfd8dcc9eadd5f",
+            "impacts": 9,
+            "progress": [
+              false,
+              false,
+              false,
+              1
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "5a237dd514b7cc09d9cdf4d2f722516c53b527747d42b16fe5561aae351b4314"
+          },
+          "tool": 2
+        },
+        {
+          "changed": 2577,
+          "edit_p95_ms": 1.438,
+          "state": {
+            "bone": "d21c29dc48a19fa3e88fc398abf2811ae41b2caed5b55978e90f067c0871c1bc",
+            "caps": "31c42510d0c7775c0bee37b0f858702de0aac085c3dc1c60f348880646641341",
+            "ceilings": "9a3b9e1a98c5dc5adee16c4e91ff2e126bdb001e0e584d053ecf159ae7d03c1d",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 23,
+            "crust": 0.0,
+            "dust": "07aaf5734db1d2c2ad6d4d1eabdab56b242012e9eed42f61ce71957a82a2e35f",
+            "exposed": "7f2502fefeee536e7630b59a6c3fcaf50f5abdcdbd1a5ef702588e58a50a61b4",
+            "film": "47f7b7bf9a3f674ff7b43efa2608acf7114c34b56e14102917c55d01831893db",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 2433.22467321753,
+            "height": "97aab913f34510b0463e4e5b5f743addf732b78c4f441b47f047daaf308c49ed",
+            "impacts": 21,
+            "progress": [
+              false,
+              false,
+              false,
+              1
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "5a237dd514b7cc09d9cdf4d2f722516c53b527747d42b16fe5561aae351b4314"
+          },
+          "tool": 3
+        },
+        {
+          "changed": 7954,
+          "edit_p95_ms": 5.576,
+          "state": {
+            "bone": "d21c29dc48a19fa3e88fc398abf2811ae41b2caed5b55978e90f067c0871c1bc",
+            "caps": "31c42510d0c7775c0bee37b0f858702de0aac085c3dc1c60f348880646641341",
+            "ceilings": "9a3b9e1a98c5dc5adee16c4e91ff2e126bdb001e0e584d053ecf159ae7d03c1d",
+            "clean": 86.4163364758951,
+            "condition": 100.0,
+            "crumbs": 0,
+            "crust": 0.0,
+            "dust": "d26c471872c090a6bfb0c4238b91bbbca47c84f5385e0e1c9d67b3480dcf40b0",
+            "exposed": "b2ff462f2123129fd56ec21953931a1be26cb7b58e758e6e9038131bf9d74202",
+            "film": "c50be49212beb2abed19a32d1d951331b31f2a16a6f4af197b29fbbdca314bc4",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 2433.22467321753,
+            "height": "2416e358d06519dad07fcf2cebf5bba09907685fda543703dfbdd492c95451ed",
+            "impacts": 21,
+            "progress": [
+              false,
+              false,
+              false,
+              1
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "5a237dd514b7cc09d9cdf4d2f722516c53b527747d42b16fe5561aae351b4314"
+          },
+          "tool": 0
+        },
+        {
+          "changed": 2069,
+          "edit_p95_ms": 0.687,
+          "state": {
+            "bone": "d21c29dc48a19fa3e88fc398abf2811ae41b2caed5b55978e90f067c0871c1bc",
+            "caps": "a139f8eff8746ef521754c16ef4f7c90dbd2df62718c7272e6586d1562d3ccd4",
+            "ceilings": "9a3b9e1a98c5dc5adee16c4e91ff2e126bdb001e0e584d053ecf159ae7d03c1d",
+            "clean": 83.0985743225457,
+            "condition": 100.0,
+            "crumbs": 0,
+            "crust": 4.98289100303794,
+            "dust": "d26c471872c090a6bfb0c4238b91bbbca47c84f5385e0e1c9d67b3480dcf40b0",
+            "exposed": "32f08d01b82ee6019c8aa2fde61a6e2413ef729205e9b39245dc731d59089d77",
+            "film": "a55d73ab9defe2055eedc0f40662ab50a3b42b43ee6e27b2cfb6a2e5fb1862d7",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 2433.22467321753,
+            "height": "e893f66de5db8319c739935e3cbad3e273a9d5afc04fabc6172bd0af374a2a9a",
+            "impacts": 21,
+            "progress": [
+              false,
+              false,
+              false,
+              1
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "5a237dd514b7cc09d9cdf4d2f722516c53b527747d42b16fe5561aae351b4314"
+          },
+          "tool": 4
+        }
+      ]
+    },
+    {
+      "kind": 2,
+      "stages": [
+        {
+          "changed": 8198,
+          "edit_p95_ms": 9.501,
+          "state": {
+            "bone": "c3f93bcfb86740d463155a975f28d5459492635b2a59c00cf0d4311e70e5abd1",
+            "caps": "2d94cdfcfe3a168cf99a1a09972b340bbedf952ff88d16ed52dccfbf7fdb0f4b",
+            "ceilings": "15db4bf1c9c86e0d59645198a84a60d7898987ee05d95a7ce78db97c4e4f4a0c",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 56,
+            "crust": 0.0,
+            "dust": "5ab37eec6a94430f8a2b3d40e4c22df996e095620eca2582ebcd5b50e9d7d5cd",
+            "exposed": "ff6335069b6e140eb47149d847aea80bf7e2b06bd80ae9708aa382efb3ae21ee",
+            "film": "6cdd259c8ecbe61fbc369f3293c1961541386954a223b17a37899d7fd9ad42da",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 0.0,
+            "height": "b2c36606dabfab802f59ed7047badab6ca1b652321815254437c1591b374a1f3",
+            "impacts": 9,
+            "progress": [
+              false,
+              false,
+              false,
+              0
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "ea2b8c48fbccb439b7bae6029eeb27815e697ef9c9467ff41350db96cbe9e01a"
+          },
+          "tool": 1
+        },
+        {
+          "changed": 203956,
+          "edit_p95_ms": 5.79,
+          "state": {
+            "bone": "c3f93bcfb86740d463155a975f28d5459492635b2a59c00cf0d4311e70e5abd1",
+            "caps": "2d94cdfcfe3a168cf99a1a09972b340bbedf952ff88d16ed52dccfbf7fdb0f4b",
+            "ceilings": "15db4bf1c9c86e0d59645198a84a60d7898987ee05d95a7ce78db97c4e4f4a0c",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 0,
+            "crust": 0.0,
+            "dust": "02b1c2234680617802901a77eae606ad02e4ddb4282ccbc60061eac5b2d90bba",
+            "exposed": "21800a9513b397201b3d21d9c372cc26d7ffc1d8b4feb4c4e3635672ef29c3af",
+            "film": "ba079254f264aa7433840126c8495fdfa582c1348e43a8112599c2d48f985e5d",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 1493.3843842927,
+            "height": "1e63df197b0f3140e52f08c900fbb8eb4dbb7317f34133192cf315b6f1446057",
+            "impacts": 9,
+            "progress": [
+              false,
+              false,
+              false,
+              1
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "ea2b8c48fbccb439b7bae6029eeb27815e697ef9c9467ff41350db96cbe9e01a"
+          },
+          "tool": 2
+        },
+        {
+          "changed": 2114,
+          "edit_p95_ms": 1.701,
+          "state": {
+            "bone": "c3f93bcfb86740d463155a975f28d5459492635b2a59c00cf0d4311e70e5abd1",
+            "caps": "2d94cdfcfe3a168cf99a1a09972b340bbedf952ff88d16ed52dccfbf7fdb0f4b",
+            "ceilings": "15db4bf1c9c86e0d59645198a84a60d7898987ee05d95a7ce78db97c4e4f4a0c",
+            "clean": 0.0,
+            "condition": 100.0,
+            "crumbs": 33,
+            "crust": 0.0,
+            "dust": "fb7c7bd0375db7adba6cb79d950776fd276995fee34b75f56a105132094ac925",
+            "exposed": "7e316e435c8a96f1bf849eb5e28e49f6830efd2d6d707e820bc380cdfc045874",
+            "film": "1db89ba5c32514ae9fe2bb3bf369247a34a110b19cf9986b5054ed27d424f41f",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 1493.3843842927,
+            "height": "481c2d0d4673ad26d0227a3afef9da4e5f56e53ac1721adb1b59ba44b40315b3",
+            "impacts": 21,
+            "progress": [
+              false,
+              false,
+              false,
+              1
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "ea2b8c48fbccb439b7bae6029eeb27815e697ef9c9467ff41350db96cbe9e01a"
+          },
+          "tool": 3
+        },
+        {
+          "changed": 21901,
+          "edit_p95_ms": 6.09,
+          "state": {
+            "bone": "c3f93bcfb86740d463155a975f28d5459492635b2a59c00cf0d4311e70e5abd1",
+            "caps": "2d94cdfcfe3a168cf99a1a09972b340bbedf952ff88d16ed52dccfbf7fdb0f4b",
+            "ceilings": "15db4bf1c9c86e0d59645198a84a60d7898987ee05d95a7ce78db97c4e4f4a0c",
+            "clean": 91.1791434421738,
+            "condition": 100.0,
+            "crumbs": 0,
+            "crust": 0.0,
+            "dust": "c1afb8003bc221ba0b0087f9290bb0e811958a6e9b06a173c45d791f49c42c8c",
+            "exposed": "7e316e435c8a96f1bf849eb5e28e49f6830efd2d6d707e820bc380cdfc045874",
+            "film": "90a71996c9a0482975157ca195a3b329772a33dfd70843542cc78f02bfdd64ac",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 1493.3843842927,
+            "height": "aec89a4a4fe4f78f46a2a6575c631eaeae158eda653c2b7115da6a30c87536b0",
+            "impacts": 21,
+            "progress": [
+              false,
+              false,
+              false,
+              1
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "ea2b8c48fbccb439b7bae6029eeb27815e697ef9c9467ff41350db96cbe9e01a"
+          },
+          "tool": 0
+        },
+        {
+          "changed": 17553,
+          "edit_p95_ms": 0.793,
+          "state": {
+            "bone": "c3f93bcfb86740d463155a975f28d5459492635b2a59c00cf0d4311e70e5abd1",
+            "caps": "86d2fca9d86ada31c320de965ca1dc0dd31cc49f9985c4f23fa8c7d5156b87fa",
+            "ceilings": "15db4bf1c9c86e0d59645198a84a60d7898987ee05d95a7ce78db97c4e4f4a0c",
+            "clean": 80.3259862007049,
+            "condition": 100.0,
+            "crumbs": 0,
+            "crust": 31.9843500753611,
+            "dust": "c1afb8003bc221ba0b0087f9290bb0e811958a6e9b06a173c45d791f49c42c8c",
+            "exposed": "7c1a39f0d672080597ed1f1f6cfef97085f4158721f30e426211f38792945d8e",
+            "film": "76849cc15319f1343baf77178c54beb9cd1d0451a4208415a6d55382ee6ad899",
+            "fracture": "a07150008b10851ded993de30c4262be0c671f051575e7bdb41c7ef277235acd",
+            "grains": 1493.3843842927,
+            "height": "5b81e543a0050beacb4ae245777881d228f9e60faaffa069ed22ea52d919a044",
+            "impacts": 21,
+            "progress": [
+              false,
+              false,
+              false,
+              1
+            ],
+            "protected": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "strata": "ea2b8c48fbccb439b7bae6029eeb27815e697ef9c9467ff41350db96cbe9e01a"
+          },
+          "tool": 4
+        }
+      ]
+    }
+  ]
+}

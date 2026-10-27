@@ -1,0 +1,234 @@
+{
+  "authorship": "Original deterministic synthesis, no external samples.",
+  "generator": "tools/audio/build_atelier_audio.py",
+  "sample_rate": 44100,
+  "wav_format": "mono PCM16 masters; Godot imports short impacts as IMA ADPCM",
+  "files": {
+    "brush_soil_loop.wav": {
+      "frames": 220500,
+      "seconds": 5.0,
+      "peak_dbfs": -8.0,
+      "rms_dbfs": -21.915,
+      "dc": -8.94e-06,
+      "loop": true,
+      "endpoint_step": 0.0065919980468153935,
+      "sha256": "ef2061829c40107b2f4b1a37fa4cc88f4a6a5095f65b290308fd45dbbac0aa07"
+    },
+    "brush_clay_loop.wav": {
+      "frames": 220500,
+      "seconds": 5.0,
+      "peak_dbfs": -9.0,
+      "rms_dbfs": -22.152,
+      "dc": 6.31e-06,
+      "loop": true,
+      "endpoint_step": 0.08993804742576372,
+      "sha256": "e3a51a13ca9d2e52eddec66638c2af89046f990c188780b94aa7c910522773f0"
+    },
+    "air_loop.wav": {
+      "frames": 264600,
+      "seconds": 6.0,
+      "peak_dbfs": -8.0,
+      "rms_dbfs": -20.736,
+      "dc": -7.15e-06,
+      "loop": true,
+      "endpoint_step": 0.05496383556627094,
+      "sha256": "c83b1cc9d0c20cb31fc3ab0bb650afd9bc0d517893b4662187b61f1a1d321632"
+    },
+    "abrasive_tip_loop.wav": {
+      "frames": 176400,
+      "seconds": 4.0,
+      "peak_dbfs": -10.0,
+      "rms_dbfs": -21.466,
+      "dc": -3.65e-06,
+      "loop": true,
+      "endpoint_step": 0.1553086947233497,
+      "sha256": "1ad52baf9a65a28f02f71e53c8bad970c522cc58866ce6edb978bcaa5eed0493"
+    },
+    "chisel_clay_01.wav": {
+      "frames": 13671,
+      "seconds": 0.31,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -28.536,
+      "dc": -0.00015966,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "db622e9a0e40c185d0b7f7dc60ee56d5423350d0e60434fb6af0065c9da03863"
+    },
+    "chisel_clay_02.wav": {
+      "frames": 13671,
+      "seconds": 0.31,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -27.357,
+      "dc": -0.00021221,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "187061e2b586b26af080029a288009df8953148039e662c49731432a4f538be5"
+    },
+    "chisel_clay_03.wav": {
+      "frames": 13671,
+      "seconds": 0.31,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -27.327,
+      "dc": -0.00032554,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "6b154b6b54ba0ad4b14e4e36d35708eb2e97b2e5dea73c480ab3e6d48ff9b744"
+    },
+    "chisel_clay_04.wav": {
+      "frames": 13671,
+      "seconds": 0.31,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -26.901,
+      "dc": -0.00021746,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "02ec7c00bd88bc135ebe5b32391605892ffdd603f58f96f6b20ec34526fc03b7"
+    },
+    "chisel_clay_05.wav": {
+      "frames": 13671,
+      "seconds": 0.31,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -27.161,
+      "dc": -0.0003281,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "7395f89ae3655dfba025fa561b97db79b76c117ef8ee3b123a46e109445e39e5"
+    },
+    "chisel_clay_06.wav": {
+      "frames": 13671,
+      "seconds": 0.31,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -29.288,
+      "dc": -0.00022365,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "0447803a581192aa28b17b832b1c2091238df731482207e3bff3e7d21e30ad81"
+    },
+    "chisel_stone_01.wav": {
+      "frames": 14994,
+      "seconds": 0.34,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -29.098,
+      "dc": -0.00020334,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "3bf2f09798565fef224c73aa640a782f93c69b03db33870707435e72856104c0"
+    },
+    "chisel_stone_02.wav": {
+      "frames": 14994,
+      "seconds": 0.34,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -27.719,
+      "dc": -0.00027136,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "4fc282a9948f20875de43215065f7eecb50e9d8a1141167010556b799c17be3c"
+    },
+    "chisel_stone_03.wav": {
+      "frames": 14994,
+      "seconds": 0.34,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -27.84,
+      "dc": -0.00019597,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "5e58ac139d5a88ad22d311896c4de57cc7c5a2b76c23ffb8cee0d8738f10dae3"
+    },
+    "chisel_stone_04.wav": {
+      "frames": 14994,
+      "seconds": 0.34,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -27.799,
+      "dc": -0.00020792,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "c785d0e5f8d98d07b6918ca38a6fb0ff4d3ff0e80703d0c6fdaed9b27c4d4326"
+    },
+    "chisel_stone_05.wav": {
+      "frames": 14994,
+      "seconds": 0.34,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -27.669,
+      "dc": -0.00036856,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "f3eccb971d4ebe80a9d75a169838497b0f58d1dd360ddfb0bac8b033de52e259"
+    },
+    "chisel_stone_06.wav": {
+      "frames": 14994,
+      "seconds": 0.34,
+      "peak_dbfs": -6.0,
+      "rms_dbfs": -28.862,
+      "dc": -0.00024893,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "7ad47624dc5c24431a051cdc2ec9b2e012b17f3ff482a995a7b4e8d32e9aeedd"
+    },
+    "precision_pick_01.wav": {
+      "frames": 6174,
+      "seconds": 0.14,
+      "peak_dbfs": -9.0,
+      "rms_dbfs": -29.065,
+      "dc": -0.00020825,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "cc92beaf82283f2fc2da8f47dcda3b4b143d57070fddfdf48feb9266832650da"
+    },
+    "precision_pick_02.wav": {
+      "frames": 6174,
+      "seconds": 0.14,
+      "peak_dbfs": -9.0,
+      "rms_dbfs": -27.958,
+      "dc": -0.0002018,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "d326ac35bb7a29d9088cb695b940994279770c9252ff11dad01fe6e59acf7c90"
+    },
+    "precision_pick_03.wav": {
+      "frames": 6174,
+      "seconds": 0.14,
+      "peak_dbfs": -9.0,
+      "rms_dbfs": -28.921,
+      "dc": -0.00015592,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "41b8cdb321c83b5f75208da56b41e88b230dcabf6583890875fb1543edb5f6cf"
+    },
+    "precision_pick_04.wav": {
+      "frames": 6174,
+      "seconds": 0.14,
+      "peak_dbfs": -9.0,
+      "rms_dbfs": -30.075,
+      "dc": -0.00025924,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "a7008131eb6365c725a700f9bc627c2fcd482e5461183d6a4815b14b369b1cbd"
+    },
+    "precision_pick_05.wav": {
+      "frames": 6174,
+      "seconds": 0.14,
+      "peak_dbfs": -9.0,
+      "rms_dbfs": -29.254,
+      "dc": -0.00027882,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "50efab2c1ba04697d31b29d4cbb1e957988048d1e284028efca6c87173b45afb"
+    },
+    "precision_pick_06.wav": {
+      "frames": 6174,
+      "seconds": 0.14,
+      "peak_dbfs": -9.0,
+      "rms_dbfs": -29.637,
+      "dc": -0.00013008,
+      "loop": false,
+      "endpoint_step": 0.0,
+      "sha256": "95a6a929ca8e146c303091e6a6297f01e0a79375daa035016aeca7dbc6737740"
+    },
+    "workshop_room.ogg": {
+      "seconds": 24,
+      "codec": "Vorbis mono, q4, streamed",
+      "source_peak_dbfs": -15,
+      "sha256": "fe54ea0a2a6d596f1bf6ee20beb34a9a2dff8f86bc88252104923ba29c5d7ae5"
+    }
+  }
+}
