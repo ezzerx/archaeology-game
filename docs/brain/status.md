@@ -1,44 +1,42 @@
 # Statut canonique
 
-**Date :** 2026-10-20
+**Date :** 2026-10-27
+
+## Dernière livraison retenue pour intégration
+Antoine autorise explicitement la fusion de la PR
+[#55](https://github.com/ezzerx/archaeology-game/pull/55) dans main le 27 octobre,
+et demande la synchronisation de la copie locale de main.
+Cette instruction remplace la restriction de fusion de la passe précédente.
+Périmètre : finition de l’atelier et du musée, matières et éclairage, sons et
+musique, optimisation du souffleur sans changement des règles de fouille.
+Rapport : `docs/dev/MUSEUM_SENSORY_POLISH_REPORT.md` ; première passe :
+`docs/dev/ATELIER_SENSORY_POLISH_REPORT.md`.
+Lanceurs : `Launch-Museum-Polish.cmd` et `Launch-Atelier-Polish.cmd`.
+Les contrôles et limites sont documentés dans le rapport ; l’autorisation de
+fusion ne transforme pas les contrôles automatiques en mesures humaines.
 
 ## Références validées
-P0–P5, préparations #33, ammonite #35, terre compacte #37, concrétions #39,
-parcours marin #41 et fluidité #43 retenus après essai humain.
-Galerie #51 et conservation des vrais blocs #28 validées et fusionnées.
-Base distante de cette mission : main 04a8406.
-B–17/M–08, trois familles, outils et règles de préparation à préserver.
-C reste la référence compacte ; cible de 5–7 minutes pour la petite ammonite,
-sans nouvelle durée humaine mesurée.
+P0–P5, préparations #33, ammonite #35, compacte #37, concrétions #39,
+parcours marin #41 et fluidité #43 ; galerie #51 et conservation du vrai bloc
+#28/#53. B–17/M–08, trois familles, outils et règles à préserver.
+C reste la référence compacte ; 5–7 minutes pour la petite ammonite est une
+cible, sans nouvelle durée humaine mesurée.
+Le dernier bloc terminé est exposé tel quel ; meilleurs résultats, photos et
+distinctions restent séparés. Archives figées, sans simulation au musée.
+Les profils Game Designer / Level Designer ont été ajoutés et leur PR #57
+validée le 20 octobre. Guide : `docs/agents/README.md`.
 
-## Mission active / gate
-Antoine a autorisé la finition visuelle/sonore par Technical Artist,
-Godot Shader Developer et Game Audio Engineer sur branche séparée et PR draft.
-Après appréciation des matières et sons atelier, il a étendu la passe au musée,
-autorisé les assets originaux, demandé une ambiance/musique, le retrait de la
-lampe visible et une amélioration du souffleur. **Aucune fusion autorisée.**
+## Gate et prochaine action
+Achever la fusion autorisée de #55 et vérifier la synchronisation locale.
+Aucune nouvelle phase de développement n’est autorisée par cette opération.
+La direction V1 fait l’objet d’une discussion : carnet de préparations et
+hypothèse du Mur. Aucun des deux concepts n’est ici validé pour implémentation.
+La PR #54 (arrivages) reste indépendante et n’est pas fusionnée par cette demande.
 
-Branche : `codex/atelier-sensory-polish`.
-PR draft : [#55](https://github.com/ezzerx/archaeology-game/pull/55).
-Rapport actif : `docs/dev/MUSEUM_SENSORY_POLISH_REPORT.md`.
-Notes spécialistes, diagnostic de rejeu et preuves liés dans ce rapport.
-Première passe : `docs/dev/ATELIER_SENSORY_POLISH_REPORT.md`.
-Lanceurs : `Launch-Museum-Polish.cmd` et `Launch-Atelier-Polish.cmd`.
-Worktree : `C:/Users/antoi/.codex/worktrees/sensory-polish/ArchaeologyGame`.
-
-Version améliorée implémentée, captures comparées à la référence et itérées,
-revue par les deux agents visuels et l’orchestrateur. Tests natifs, stockage,
-audio et équivalence du souffleur documentés. **En attente de validation
-artistique et sonore d’Antoine**, les tests ne valant pas validation humaine.
-Prochaine action : essai humain de cette livraison, puis corrections demandées.
-Pas de merge ni de démarrage d’une autre étape sans instruction explicite.
-
-## Travaux indépendants / points de vigilance
-PR #54 `codex/27-arrivals` : arrivages en revue humaine dans son propre
-worktree, inchangés et non fusionnés par cette mission.
+## Points de vigilance
 Atelier Compatibility / musée Forward+ ; relève de processus conservée.
-Plafond 240 FPS / physique 60 Hz maintenus, sans garantie de 240 FPS sur
-archives denses ou sous souffleur ; améliorations et pointes restantes mesurées.
-Le terrain reste lisible mais sa grille est visible à très gros zoom.
-Les fichiers joueur et les autres checkouts sont préservés.
-Les étapes produit suivantes restent dans `docs/design/FIRST_EXHIBITION_PLAN.md`.
+Plafond 240 FPS / physique 60 Hz ; pointes restantes sous souffle dense.
+Grille visible à très gros zoom et limites visuelles/sonores dans le rapport.
+Préserver les fichiers joueur, les archives et leurs dépendances de rendu.
+Les modifications indépendantes des checkouts locaux doivent être conservées
+lors de leur synchronisation. Aucun nettoyage destructif des anciennes branches.

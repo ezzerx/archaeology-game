@@ -1791,3 +1791,23 @@ Cette demande ne valide ni ne fusionne la PR arrivages indépendante.
 
 ## 2026-10-20 — Retour atelier et extension de la passe au musée
 Antoine apprécie les nouvelles matières et les sons de l'atelier, et demande de retirer sa lampe visible. La même passe de finition est étendue au prototype de salle d'exposition : recréer ou retoucher librement les éléments pour se rapprocher de sa référence de cabinet d'histoire naturelle, avec vérification collective des captures et itérations avant livraison. Les assets originaux sont encouragés quand ils améliorent le rendu ; la réutilisation des anciens n'est pas obligatoire. Game Audio Engineer ajoute également ambiance et musique au musée. L'optimisation du souffleur est demandée si possible, sans changer les règles de fouille. Ce retour n'autorise aucune fusion : la PR #55 reste draft en attente du nouvel essai.
+
+## 2026-10-20 — Profils pour préparer une conversation de game design
+Antoine demande de versionner les fichiers Game Designer et Level Designer
+fournis afin de les utiliser dans une conversation dédiée à l’établissement
+d’un plan de game design. Les originaux sont conservés dans `docs/agents/`,
+avec un guide de lecture et un prompt de lancement dans
+[docs/agents/README.md](../agents/README.md).
+Cette demande prépare les ressources ; elle ne lance ni la conception du plan
+ni une nouvelle implémentation. Les profils sont des méthodes complémentaires,
+subordonnées aux instructions d’Antoine et aux références canoniques du projet.
+
+Antoine valide ensuite la PR #57 et autorise explicitement sa fusion.
+Il prévoit de lancer la mission de conception dans une nouvelle conversation.
+
+## 2026-10-27 — Autorisation de fusion de la PR #55
+Antoine demande explicitement de fusionner la PR #55 dans main et de synchroniser
+sa copie locale. Cette instruction lève la restriction de fusion du 20 octobre.
+Les historiques de la passe atelier/musée et des profils #57 sont conservés.
+La PR #54 reste indépendante ; le GDD et la proposition du Mur restent des
+pistes de conception, sans autorisation de nouvelle implémentation.
